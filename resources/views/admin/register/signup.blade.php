@@ -31,7 +31,7 @@
           <div class="container-fluid d-flex flex-column flex-grow-1">
 
           <div class="card w-md-50 w-sm-25  m-auto">
-            <h4 class="card-header bg-info text-center">Sign Up</h4>
+            <h4 class="card-header bg-info text-center text-white">Sign Up</h4>
 
 <form class="card-body">
      <div class="w-50 mx-auto">

@@ -18,3 +18,11 @@ Route::get('/', function() {
 Route::get('/signin', 'userController@LoginPage')->name('signin'); 
 
 Route::get('/signup', 'userController@SignupPage' )->name('signup'); 
+
+Route::get('/client', function() {
+    return view('admin.home.registration.client');
+})->name('client'); 
+
+Route::get('/pet', function() {
+    return view('admin.home.registration.pet');
+})->name('pet'); 

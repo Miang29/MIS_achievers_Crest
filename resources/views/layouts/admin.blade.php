@@ -58,11 +58,7 @@
 		<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js" defer></script>
 
 		{{-- Custom CSS --}}
-		<style>
-			.bg-custom {
-				background-color: light blue;
-			}
-		</style>
+
 		@yield('css')
 
 		{{-- Fontawesome --}}
@@ -79,52 +75,58 @@
 	
 	<body class="min-vh-100">
 		{{-- NEW NAVBAR --}}
-		<nav class="navbar navbar-expand-lg navbar-dark bg-secondary bg-custom">
-			<a class="navbar-brand text-white" href="#">Achiever's CREST</a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navcontent" aria-controls="navcontent" aria-expanded="false" aria-label="Toggle Navbar Content">
+		<nav class="navbar navbar-expand-lg navbar-dark bg-light bg-custom">
+			<a class="navbar-brand text-info font-weight-bold text-uppercase" href="#">
+			<img src="{{asset('img/logo.png')}}" style= "max-height: 2.0rem">
+			Veterinary Clinic </a>
+
+			<button class="navbar-toggler bg-dark " type="button" data-toggle="collapse" data-target="#navcontent" aria-controls="navcontent" aria-expanded="false" aria-label="Toggle Navbar Content">
 				<span class="navbar-toggler-icon"></span>
 			</button>
 
 			<div class="collapse navbar-collapse" id="navcontent">
-				<ul class="navbar-nav mr-auto">
+				<ul class="navbar-nav ml-auto">
 
 					<li class="nav-item">
-						<a href="#" class="nav-link text-white"><i class="fa fa-fw fa-home mr-2"></i>Home</a>
-					</li>
-					
-					<li class="nav-item">
-						<a href="#" class="nav-link text-white"><i class="fa-sharp fa-solid fa-chart-line mr-2"></i>Dashboard</a>
+						<a href="{{route('menu')}}" class="nav-link text-dark font-weight-bold"><i class="fa-solid fa-house"></i> Home</a>
 					</li>
 
 					<li class="nav-item dropdown">
-       				 	 <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+       				 	 <a class="nav-link dropdown-toggle text-dark font-weight-bold" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         				  Registration </a>
 
 						  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-         			 	<a class="dropdown-item" href="#">Client Registration</a>
+         			 	<a class="dropdown-item" href="{{route('client')}}">Client Registration</a>
           				<a class="dropdown-item" href="#">Pet Registration</a>
 						</div>
 					
 						<li class="nav-item dropdown">
-       				 	 <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+       				 	 <a class="nav-link dropdown-toggle text-dark font-weight-bold" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         				  Services </a>
 
 						  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-         			 	<a class="dropdown-item" href="#">Consulatation</a>
-          				<a class="dropdown-item" href="#">Vaccination</a>
+         			 	<a class="dropdown-item" href="#">Consultation</a>
 						  <a class="dropdown-item" href="#">Pet Grooming</a>
 						  <a class="dropdown-item" href="#">Pet Boarding</a>
 						  <a class="dropdown-item" href="#">Vaccination</a>
-						  <a class="dropdown-item" href="#">Pet Supplies</a>
-						  <a class="dropdown-item" href="#">Transaction</a>
+						  <a class="dropdown-item" href="#">Stocks</a>
 						</div>    
 
 					<li class="nav-item">
-						<a href="#" class="nav-link text-white"><i class="fa-sharp fa-solid fa-print mr-2"></i>Reports</a>
+						<a href="#" class="nav-link text-dark font-weight-bold"><i class="fa-solid fa-cash-register"></i> Transaction</a>
+					</li>
+
+
+					<li class="nav-item">
+						<a href="#" class="nav-link text-dark font-weight-bold"><i class="fa-sharp fa-solid fa-print mr-2"></i>Reports</a>
 					</li>
 
                     <li class="nav-item">
-						<a href="#" class="nav-link text-white"><i class="fa fa-fw fa-user mr-2"></i>Users</a>
+						<a href="#" class="nav-link text-dark font-weight-bold"><i class="fa fa-fw fa-user mr-2"></i>Users</a>
+					</li>
+
+					<li class="nav-item">
+						<a href="#" class="nav-link text-dark font-weight-bold"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a>
 					</li>
 				</ul>
 			</div>

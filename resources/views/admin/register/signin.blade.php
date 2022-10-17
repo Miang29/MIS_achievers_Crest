@@ -39,7 +39,7 @@
             <div class="container-fluid d-flex flex-column flex-grow-1">
 
                 <div class="card w-sm-75 w-md-50 w-lg-25 m-auto">
-                    <h4 class="card-header bg-info text-center">Sign In</h4>
+                    <h4 class="card-header bg-info text-center text-white">Sign In</h4>
 
                     <form class="card-body">
 
