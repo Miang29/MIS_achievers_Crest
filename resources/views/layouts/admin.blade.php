@@ -76,7 +76,7 @@
 	<body class="min-vh-100">
 		{{-- NEW NAVBAR --}}
 		<nav class="navbar navbar-expand-lg navbar-dark bg-light bg-custom">
-			<a class="navbar-brand text-info font-weight-bold text-uppercase" href="#">
+			<a class="navbar-brand text-info font-weight-bold text-uppercase" href="{{('menu')}}">
 			<img src="{{asset('img/logo.png')}}" style= "max-height: 2.0rem">
 			Veterinary Clinic </a>
 
@@ -88,7 +88,7 @@
 				<ul class="navbar-nav ml-auto">
 
 					<li class="nav-item">
-						<a href="{{route('menu')}}" class="nav-link text-dark font-weight-bold"><i class="fa-solid fa-house"></i> Home</a>
+						<a href="{{route('dashboard')}}" class="nav-link text-dark font-weight-bold"><i class="fa-solid fa-chart-simple"></i> Dashboard</a>
 					</li>
 
 					<li class="nav-item">

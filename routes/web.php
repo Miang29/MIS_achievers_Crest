@@ -12,8 +12,8 @@
 */
 
 Route::get('/', function() {
-    return view('admin.home.menu');
-})->name('menu'); 
+    return view('admin.home.dashboard');
+})->name('dashboard'); 
 
 Route::get('/signin', 'userController@LoginPage')->name('signin'); 
 
@@ -34,3 +34,7 @@ Route::get('/consultation', function() {
 Route::get('/vaccination', function() {
     return view('admin.home.services.vaccination');
 })->name('vaccination'); 
+
+Route::get('/menu', function() {
+    return view('admin.home.menu');
+})->name('menu'); 

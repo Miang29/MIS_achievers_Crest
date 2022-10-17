@@ -2,26 +2,36 @@
 
 @section('css')
 <style>
+    
     .custom-input {
-        padding:1px;
+        padding:5px;
         margin-left:10px; 
         margin-right:10px; 
-        margin-bottom:10px
+        margin-bottom:4rem;
+       
     }
     .custom-card{
-        width:500px; 
-        margin-left:10rem; 
-        padding-top: 1rem; 
-        padding-bottom: 1rem; 
-        margin-top:2rem; 
-        margin-bottom:3rem; 
-        height:650px;
+        width:550px; 
+        position: absolute;
+        height:600px;
+        padding:1px;
+        
     }
     .btn{
-        margin-left:100px; 
-        margin-right:100px; 
+        margin-left:200px; 
+        margin-right:200px; 
         margin-bottom:10px; 
         border-radius:20px;
+    }
+    .custom-col{
+        margin-top: 1rem;
+    }
+    .custom-col2{
+        padding-bottom:1px;
+        margin-left : 38rem;
+       
+     
+    
     }
    
 </style>
@@ -32,12 +42,13 @@
 @section('content')
 
 <div class="container">
-    <div class="row ">
-        <div class="col-sm ">
-<div class="card custom-card">
+  <div class="row row-cols-2">
+    <div class="col custom-col">
+
+    <div class="card custom-card">
+        
        <h5 class="card-title text-center text-info font-weight-bold">Consultation</h5>
-      
-           <div class="card-body custom-input">
+    <div class="card-body custom-input">
        <input type="text" class="form-control"  id="Clientame" aria-describedby="FirstHelp" placeholder="Client Name">
            </div>
            <div class="card-body custom-input">
@@ -67,13 +78,22 @@
            <div class="card-body custom-input">
        <input type="number" class="form-control" id="Cost" placeholder="Cost">
            </div>
-
+       
            <a class=" btn btn-info  text-center" href="#" > Add</a>
            <a class=" btn btn-danger  text-center" href="#" > Cancel</a>
+    </div>
+
+
+
+    <div class="col custom-col2">
+    <div class="card custom-card ">
+        
+        <h5 class="card-title text-center text-info font-weight-bold">Database</h5>
+        
+     </div>
+     </div>
+ 
+  </div>
 </div>
-       </div>   
-      
-    </div>   
-</div>   
     
 @endsection
