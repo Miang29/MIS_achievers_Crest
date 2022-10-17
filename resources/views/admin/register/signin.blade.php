@@ -33,11 +33,10 @@
     <link rel="stylesheet" href="{{ asset('/css/style.css') }}" type="text/css">
 </head>
 
-<body>
+<body style="background-image: url('{{asset('img/bg.png')}}'); background-position: contain; background-repeat:no-repeat; background-size: inherit   ;">
     <div class="d-flex flex-column min-vh-100">
         <div class="content d-flex flex-column flex-grow-1 my-3 my-lg-5" id="content">
             <div class="container-fluid d-flex flex-column flex-grow-1">
-
                 <div class="card w-sm-75 w-md-50 w-lg-25 m-auto">
                     <h4 class="card-header bg-info text-center text-white">Sign In</h4>
 
@@ -61,7 +60,7 @@
                                 <span class="input-group-text border-secondary " id="inputGroupPrepend"> <i
                                         class="fa-solid fa-lock"></i></span>
                                         </div>
-                                <input type="password" placeholder="Password" class="form-control bg-white border-secondary border-right-0 " id="InputPassword">
+                                <input type="password" placeholder="Password" class="form-control bg-white border-secondary border-right-0 " id="password">
                                 <div class="input-group-append">
                                     <button type="button" class="btn bg-white border-secondary border-left-0" id="toggle-show-password" aria-label="Show Password" data-target="#password" > 
                                     <i class="fas fa-eye-slash" id="hide"></i>
@@ -82,6 +81,7 @@
             </div>
         </div>
     </div>
+    <script src="{{ asset('js/login.js') }}"></script>
 </body>
 
 </html>

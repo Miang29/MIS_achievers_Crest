@@ -91,24 +91,20 @@
 						<a href="{{route('menu')}}" class="nav-link text-dark font-weight-bold"><i class="fa-solid fa-house"></i> Home</a>
 					</li>
 
-					<li class="nav-item dropdown">
-       				 	 <a class="nav-link dropdown-toggle text-dark font-weight-bold" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        				  Registration </a>
+					<li class="nav-item">
+						<a href="{{route('client')}}" class="nav-link text-dark font-weight-bold"><i class="fa-solid fa-registered"></i> Registration</a>
+					</li>
 
-						  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-         			 	<a class="dropdown-item" href="{{route('client')}}">Client Registration</a>
-          				<a class="dropdown-item" href="#">Pet Registration</a>
-						</div>
 					
 						<li class="nav-item dropdown">
        				 	 <a class="nav-link dropdown-toggle text-dark font-weight-bold" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         				  Services </a>
 
 						  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-         			 	<a class="dropdown-item" href="#">Consultation</a>
+         			 	<a class="dropdown-item" href="{{route('consultation')}}">Consultation</a>
 						  <a class="dropdown-item" href="#">Pet Grooming</a>
 						  <a class="dropdown-item" href="#">Pet Boarding</a>
-						  <a class="dropdown-item" href="#">Vaccination</a>
+						  <a class="dropdown-item" href="{{route('vaccination')}}">Vaccination</a>
 						  <a class="dropdown-item" href="#">Stocks</a>
 						</div>    
 

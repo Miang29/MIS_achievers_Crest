@@ -26,3 +26,11 @@ Route::get('/client', function() {
 Route::get('/pet', function() {
     return view('admin.home.registration.pet');
 })->name('pet'); 
+
+Route::get('/consultation', function() {
+    return view('admin.home.services.consultation');
+})->name('consultation'); 
+
+Route::get('/vaccination', function() {
+    return view('admin.home.services.vaccination');
+})->name('vaccination'); 
