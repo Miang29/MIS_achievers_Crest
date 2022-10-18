@@ -11,30 +11,34 @@
 |
 */
 
-Route::get('/', function() {
-    return view('admin.home.dashboard');
-})->name('dashboard'); 
+//HOME
+Route::get('/', 'MenuController@menuPage')->name('menu'); 
+Route::get('/dashboard','MenuController@dashboardPage' )->name('dashboard'); 
+Route::get('/stocks', 'MenuController@stocksPage')->name('stocks'); 
 
+
+//REGISTRATION
+Route::get('/client','MenuController@clientPage' )->name('client'); 
+Route::get('/pet','MenuController@petPage'  )->name('pet'); 
+
+
+//SERVICES
+Route::get('/consultation', 'MenuController@consultPage' )->name('consultation'); 
+Route::get('/vaccination', 'MenuController@vaccinePage' )->name('vaccination'); 
+
+
+//USERS
 Route::get('/signin', 'userController@LoginPage')->name('signin'); 
-
 Route::get('/signup', 'userController@SignupPage' )->name('signup'); 
+Route::get('/users', 'userController@userAccountPage')->name('users'); 
 
-Route::get('/client', function() {
-    return view('admin.home.registration.client');
-})->name('client'); 
 
-Route::get('/pet', function() {
-    return view('admin.home.registration.pet');
-})->name('pet'); 
+//Authenticate&store
+Route::post('/authenticate', 'userController@authenticate' )->name('authenticate'); 
+Route::post('/store-signup', 'userController@store' )->name('store'); 
 
-Route::get('/consultation', function() {
-    return view('admin.home.services.consultation');
-})->name('consultation'); 
+//Logout
 
-Route::get('/vaccination', function() {
-    return view('admin.home.services.vaccination');
-})->name('vaccination'); 
+Route::get('/logout', 'userController@logout')->name('logout'); 
 
-Route::get('/menu', function() {
-    return view('admin.home.menu');
-})->name('menu'); 
+

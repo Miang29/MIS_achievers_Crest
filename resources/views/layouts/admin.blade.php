@@ -105,7 +105,7 @@
 						  <a class="dropdown-item" href="#">Pet Grooming</a>
 						  <a class="dropdown-item" href="#">Pet Boarding</a>
 						  <a class="dropdown-item" href="{{route('vaccination')}}">Vaccination</a>
-						  <a class="dropdown-item" href="#">Stocks</a>
+						  <a class="dropdown-item" href="{{route('stocks')}}">Stocks</a>
 						</div>    
 
 					<li class="nav-item">
@@ -118,11 +118,11 @@
 					</li>
 
                     <li class="nav-item">
-						<a href="#" class="nav-link text-dark font-weight-bold"><i class="fa fa-fw fa-user mr-2"></i>Users</a>
+						<a href="{{route('users')}}" class="nav-link text-dark font-weight-bold"><i class="fa fa-fw fa-user mr-2"></i>Users</a>
 					</li>
 
 					<li class="nav-item">
-						<a href="#" class="nav-link text-dark font-weight-bold"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a>
+						<a href="{{route('logout')}}" class="nav-link text-dark font-weight-bold"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a>
 					</li>
 				</ul>
 			</div>
