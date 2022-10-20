@@ -15,7 +15,11 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'username','email', 'password',
+        'name',
+        'username',
+        'email',
+        'password',
+        'user_type_id',
     ];
 
     /**
@@ -26,4 +30,9 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    // Relational Functions
+    protected function userType() {
+        return $this->belongsTo('App\UserType');
+    }
 }

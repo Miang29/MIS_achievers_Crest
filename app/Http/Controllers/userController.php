@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
 use Illuminate\Http\Request;
+
+use App\User;
+
 use Auth;
 use DB;
 use Exception;
@@ -13,7 +15,12 @@ use Hash;
 
 class UserController extends Controller
 {
-	protected function dashboard() {
-		return view('layouts.admin');
+	// AUTHENTICATION
+	protected function login() {
+		return view('login');
+	}
+
+	protected function authentice(Request $req) {
+		
 	}
 }

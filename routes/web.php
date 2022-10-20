@@ -11,6 +11,9 @@
 |
 */
 
+Route::get('/login', 'UserController@login')->name('login');
+Route::post('/authenticate', 'UserController@authenticate')->name('authenticate');
+
 // Route::group('middleware' => ['auth'], function() {
 	// DASHBOARD
 	Route::get('/dashboard', 'PageController@dashboard')->name('dashboard');

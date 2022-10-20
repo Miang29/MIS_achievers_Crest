@@ -262,6 +262,16 @@ textarea.not-resizable {
 	resize: none;
 }
 
+/* COLORS */
+.bg-custom-1 {
+	background-color: #021f53;
+}
+
+.text-custom-1 {
+	color: #021f53;
+}
+/* COLORS END */
+
 /* ANIMATION RELATED */
 .enlarge-on-hover {
 	position: relative;
