@@ -40,7 +40,7 @@
                     {{ csrf_field() }}
                         {{--USERNAME--}}
                         <div class="form-group">
-                        <span class="text-danger ">{{Session::get('flash_error')}}</span>
+                        <small class="text-danger ">{{Session::get('flash_error')}}</small>
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class=" input-group-text border-secondary" id="inputGroupPrepend"> <i class="fa-solid fa-user"></i></span>
@@ -51,9 +51,10 @@
 
                         {{--PASSWORD--}}
                         <div class="form-group">
-                        <span class="text-danger">{{Session::get('flash_error')}}</span>
+                         <small class="text-danger">{{Session::get('flash_error')}}</small>
                             <div class="input-group">
                                 <div class="input-group-prepend">
+                                   
                                     <span class="input-group-text border-secondary " id="inputGroupPrepend"> <i class="fa-solid fa-lock"></i></span>
                                 </div>
                                 <input type="password" placeholder="Password" class="form-control bg-white border-secondary border-right-0 " id="password" name="password">

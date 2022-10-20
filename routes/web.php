@@ -38,7 +38,7 @@ Route::post('/authenticate', 'userController@authenticate' )->name('authenticate
 Route::post('/store-signup', 'userController@store' )->name('store'); 
 
 //Logout
-
+Route::get('/sidebar','MenuController@sidebarPage')->name('sidebar');
 Route::get('/logout', 'userController@logout')->name('logout'); 
 
 

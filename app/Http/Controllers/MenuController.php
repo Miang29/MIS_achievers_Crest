@@ -33,5 +33,8 @@ class MenuController extends Controller
     function stocksPage() {
         return view('admin.home.services.stocks');
     }
+    function sidebarPage() {
+        return view('admin.home.sidebar');
+    }
 }
 
