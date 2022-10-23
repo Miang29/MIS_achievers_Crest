@@ -33,10 +33,11 @@
 
 .content {
 	max-width: 100vw;
-	max-height: calc(100vh - 52.8px);
+	max-height: 1000px;
 	overflow-y: auto;
 	overflow-x: hidden;
 	white-space: nowrap;
+	
 	
 	-webkit-transition: width 0.5s cubic-bezier(0.25, 0.45, 0.45, 1);
 	-moz-transition: width 0.5s cubic-bezier(0.25, 0.45, 0.45, 1);
@@ -44,7 +45,47 @@
 	-o-transition: width 0.5s cubic-bezier(0.25, 0.45, 0.45, 1);
 	transition: width 0.5s cubic-bezier(0.25, 0.45, 0.45, 1);
 }
+/*  Registration */
+.custom-card{
+    width: 35rem; 
+	margin-left: 20rem;
+    padding-top: 1rem; 
+    margin-top:1rem; 
+    height:auto;
+    }
+    .custom-input{
+        padding:1px; 
+        margin-left:10px; 
+        margin-right:10px; 
+        margin-bottom:10px
+    }
+	
+ /* Text- Sizes */
+ .text-title{
+	font-size:2.5rem;
+ }
 
+/* Text color */
+.text-1{
+	color:#021f53;
+}
+/* Background color */
+.bg-1{
+	background-color:#021f53;
+}
+.bg-2{
+	background-color:#60D3C5;
+}
+.bg-3{
+	background-color:#6BC666;
+}
+
+.bg-4{
+	background-color:#CAC049;
+}
+.bg-5{
+	background-color:#F3F3F3;
+}
 .sidebar.collapse-horizontal.show {
 	width: 100%;
 }

@@ -17,4 +17,7 @@ Route::post('/authenticate', 'UserController@authenticate')->name('authenticate'
 // Route::group('middleware' => ['auth'], function() {
 	// DASHBOARD
 	Route::get('/dashboard', 'PageController@dashboard')->name('dashboard');
-// });
+
+	// Registration
+	Route::get('/registration', 'PageController@registration')->name('registration');
+	Route::get('/registerPet', 'PageController@registerPet')->name('pet');

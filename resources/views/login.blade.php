@@ -56,7 +56,7 @@
 		<link rel="mask-icon" href="{{ App\Settings::getInstance('web-logo')->getImage(!App\Settings::getInstance('web-logo')->is_file) }}">
 
 		{{-- TITLE --}}
-		<title>User Login - Municipality of Taytay, Rizal</title>
+		<title>User Login-Nano Management Information System, Taytay Rizal</title>
 	</head>
 
 	<body>
@@ -94,13 +94,14 @@
 				<div class="my-auto">
 					<h2 class="w-75 w-lg-50 mt-auto mb-5 mx-auto text-white">LOGIN</h2>
 
+					
 					{{-- LOGIN FORM START --}}
 					<form action="{{ route('authenticate') }}" method="POST" class="form w-75 w-lg-50 mb-auto mx-auto">
 						{{ csrf_field() }}
 						
 						<div class="form-group">
 							<label class="form-label text-white" for="username">Username</label>
-							<input class="form-control border-secondary" type="text" name="username" value="{{ old('username') }}" aria-label="Username" placeholder="Username" />
+							<input class="form-control border-secondary " type="text" name="username" value="{{ old('username') }}" aria-label="Username" placeholder="Username" />
 						</div>
 
 						<div class="form-group">
