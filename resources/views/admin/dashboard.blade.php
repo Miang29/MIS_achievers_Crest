@@ -38,7 +38,7 @@
         <div class="total-block bg-4 text-white dark-shadow invisiborder rounded">
         <i class="fas fa-users fa-5x"></i>
             <div class="d-flex flex-d-col flex-grow-1 text-right ml-3">
-                <h6 class="my-auto">Users</h6>
+                <h6 class="my-auto">Clients</h6>
                 <h6 class="my-auto"></h6>
             </div>
         </div>

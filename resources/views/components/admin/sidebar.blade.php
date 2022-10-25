@@ -14,16 +14,18 @@
 		{{-- @if (Auth::user()->isAdmin()) --}}
 			<hr class="w-100 custom-hr">
 
-			{{-- TYPES --}}
+			{{-- Reservation --}}
 			{{-- @if (Auth::user()->isAdmin()) --}}
-				@if (\Request::is('admin/registration'))
-				<span class="bg-secondary text-white"><i class="fas fa-pen-to-square"></i>Registration</span>
-				@elseif (\Request::is('admin/registration/*'))
-				<a class="text-decoration-none aria-link bg-secondary text-white" href="{{route('registration')}}" aria-hidden="false" aria-label="Registration"><i class="fas fa-pen-to-square mr-2"></i>Registration</a>
+				@if (\Request::is('admin/reservation'))
+				<span class="bg-secondary text-white"><i class="fa-solid fa-calendar mr-2"></i>Reservation</span>
+				@elseif (\Request::is('admin/reservation/*'))
+				<a class="text-decoration-none aria-link bg-secondary text-white" href="{{route('registration')}}" aria-hidden="false" aria-label="Registration"><i class="fa-solid fa-calendar mr-2"></i>Reservation</a>
 				@else
-				<a class="text-decoration-none text-1 font-weight-bold aria-link" href="{{route('registration')}}" aria-hidden="false" aria-label="Registration"><i class="fas fa-pen-to-square mr-2"></i>Registration</a>
+				<a class="text-decoration-none text-1 font-weight-bold aria-link" href="{{route('registration')}}" aria-hidden="false" aria-label="Registration"><i class="fa-solid fa-calendar mr-2"></i>Reservation</a>
 				@endif
 			{{-- @endif --}}
+
+		
 
 			{{-- Services --}}
 			{{-- @if (Auth::user()->isAdmin()) --}}
@@ -47,7 +49,7 @@
 				@endif
 			{{-- @endif --}}
 
-			{{--  --}}
+			{{-- Reports --}}
 			{{-- @if (Auth::user()->isAdmin()) --}}
 				@if (\Request::is('admin/reports'))
 				<span class="bg-secondary text-white"><i class="fa-solid fa-chart-simple mr-2"></i>Reports</span>
