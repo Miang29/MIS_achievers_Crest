@@ -122,7 +122,7 @@
 					@include('components.admin.sidebar')
 
 					{{-- CONTENT --}}
-					<div class="container-fluid content flex-fill m-5 bg-5">
+					<div class="container-fluid content flex-fill bg-5 mx-auto">
 					@yield('content')
 					</div>
 				</div>

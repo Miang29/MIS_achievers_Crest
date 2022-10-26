@@ -19,9 +19,9 @@
 				@if (\Request::is('admin/reservation'))
 				<span class="bg-secondary text-white"><i class="fa-solid fa-calendar mr-2"></i>Reservation</span>
 				@elseif (\Request::is('admin/reservation/*'))
-				<a class="text-decoration-none aria-link bg-secondary text-white" href="{{route('registration')}}" aria-hidden="false" aria-label="Registration"><i class="fa-solid fa-calendar mr-2"></i>Reservation</a>
+				<a class="text-decoration-none aria-link bg-secondary text-white" href="{{route('reservation')}}" aria-hidden="false" aria-label="Reservation"><i class="fa-solid fa-calendar mr-2"></i>Reservation</a>
 				@else
-				<a class="text-decoration-none text-1 font-weight-bold aria-link" href="{{route('registration')}}" aria-hidden="false" aria-label="Registration"><i class="fa-solid fa-calendar mr-2"></i>Reservation</a>
+				<a class="text-decoration-none text-1 font-weight-bold aria-link" href="{{route('reservation')}}" aria-hidden="false" aria-label="Reservation"><i class="fa-solid fa-calendar mr-2"></i>Reservation</a>
 				@endif
 			{{-- @endif --}}
 
@@ -46,6 +46,17 @@
 				<a class="text-decoration-none text-white bg-secondary aria-link" href="" aria-hidden="false" aria-label="Transaction"><i class="fa-solid fa-money-check-dollar mr-2"></i>Transaction</a>
 				@else
 				<a class="text-decoration-none text-1 font-weight-bold aria-link" href="" aria-hidden="false" aria-label="Transaction"><i class="fa-solid fa-money-check-dollar mr-2"></i>Transaction</a>
+				@endif
+			{{-- @endif --}}
+
+			{{-- Inventory --}}
+			{{-- @if (Auth::user()->isAdmin()) --}}
+				@if (\Request::is('admin/inventory'))
+				<span class="bg-secondary text-white"><i class="fa-solid fa-warehouse mr-2"></i>Inventory</span>
+				@elseif (\Request::is('admin/inventory/*'))
+				<a class="text-decoration-none text-white bg-secondary aria-link" href="" aria-hidden="false" aria-label="Transaction"><i class="fa-solid fa-warehouse mr-2"></i>Inventory</a>
+				@else
+				<a class="text-decoration-none text-1 font-weight-bold aria-link" href="" aria-hidden="false" aria-label="Transaction"><i class="fa-solid fa-warehouse mr-2"></i>Inventory</a>
 				@endif
 			{{-- @endif --}}
 

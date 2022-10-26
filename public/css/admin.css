@@ -45,24 +45,14 @@
 	-o-transition: width 0.5s cubic-bezier(0.25, 0.45, 0.45, 1);
 	transition: width 0.5s cubic-bezier(0.25, 0.45, 0.45, 1);
 }
-/*  Registration */
-.custom-card{
-    width: 35rem; 
-	margin-left: 20rem;
-    padding-top: 1rem; 
-    margin-top:1rem; 
-    height:auto;
-    }
-    .custom-input{
-        padding:1px; 
-        margin-left:10px; 
-        margin-right:10px; 
-        margin-bottom:10px
-    }
-	
+
  /* Text- Sizes */
  .text-title{
 	font-size:2.5rem;
+ }
+ .btn-dark-blue
+ {
+	background-color:#021f53;
  }
 
 /* Text color */

@@ -10,10 +10,10 @@ class PageController extends Controller
 		return view('admin.dashboard');
 	}
 
-	 protected function registration() {
-		return view('admin.registration.index');
+	 protected function reservation() {
+		return view('admin.reservation.index');
 	}
-	protected function registerPet() {
-		return view('admin.registration.registerPet.pet');
+	protected function createReservation() {
+		return view('admin.reservation.create');
 	}
 }

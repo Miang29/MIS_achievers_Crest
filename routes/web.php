@@ -19,5 +19,5 @@ Route::post('/authenticate', 'UserController@authenticate')->name('authenticate'
 	Route::get('/dashboard', 'PageController@dashboard')->name('dashboard');
 
 	// Registration
-	Route::get('/registration', 'PageController@registration')->name('registration');
-	Route::get('/registerPet', 'PageController@registerPet')->name('pet');
+	Route::get('/reservation', 'PageController@reservation')->name('reservation');
+	Route::get('/Create-Reservation', 'PageController@createReservation')->name('create-reservation');
