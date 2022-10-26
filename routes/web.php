@@ -18,6 +18,10 @@ Route::post('/authenticate', 'UserController@authenticate')->name('authenticate'
 	// DASHBOARD
 	Route::get('/dashboard', 'PageController@dashboard')->name('dashboard');
 
-	// Registration
+	// Reservation
 	Route::get('/reservation', 'PageController@reservation')->name('reservation');
 	Route::get('/Create-Reservation', 'PageController@createReservation')->name('create-reservation');
+	Route::get('/Edit-Client', 'PageController@editClient')->name('edit-client');
+	Route::get('/View-Client', 'PageController@viewClient')->name('view-client');
+	Route::get('/Edit-Pet', 'PageController@editPet')->name('edit-pet');
+	Route::get('/View-Pet', 'PageController@viewPet')->name('view-pet');

@@ -7,7 +7,7 @@
 <div class="container-fluid px-2 px-lg-6 py-2 h-100">
     <div class="row">
         <div class="col-12 col-lg text-center text-lg-left">
-            <h2 class="font-weight-bold">Reservation</h2>
+            <h2 class="font-weight-bold text-1">Reservation</h2>
         </div>
 
         <div class="col-12 col-md-6 col-lg my-2 text-center text-md-left text-lg-right">
@@ -28,15 +28,17 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th scope="col" class="hr-thick">Pet Owner</th>
-                    <th scope="col" class="hr-thick">Email</th>
-                    <th scope="col" class="hr-thick">Pet Name</th>
-                    <th></th>
+                    <th scope="col" class="hr-thick text-1">Pet Owner</th>
+                    <th scope="col" class="hr-thick text-1">Email</th>
+                    <th scope="col" class="hr-thick text-1">Pet Name</th>
+                    <th scope="col" class="hr-thick text-1">Species</th>
+                    <th>
                 </tr>
             </thead>
 
             <tbody>
                 <tr>
+                    <td></td>
                     <td></td>
                     <td></td>
                     <td></td>
@@ -47,15 +49,16 @@
                                 Action
                             </button>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown">
-                            <a href="" class="dropdown-item">View</a>
-                            <a href="" class="dropdown-item">Edit</a>
-                            <a href="" class="dropdown-item">Delete</a>
+                            <a href="{{route('view-client')}}" class="dropdown-item"><i class="fa-solid fa-eye mr-2"></i>View Client</a>
+                            <a href="{{route('edit-client')}}" class="dropdown-item"><i class="fa-regular fa-pen-to-square mr-2"></i>Edit Client</a>
+                            <a href="{{route('view-pet')}}" class="dropdown-item"><i class="fa-solid fa-eye mr-2"></i>View Pet</a>
+                            <a href="{{route('edit-pet')}}" class="dropdown-item"><i class="fa-solid fa-pen-to-square mr-2"></i>Edit Pet</a>
+                            <a href="" class="dropdown-item"><i class="fa-solid fa-trash mr-2"></i>Delete</a>
                             </div>
                         </div>
                     </td>
                 </tr>
             </tbody>
-
 
         </table>
     </div>

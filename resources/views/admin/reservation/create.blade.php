@@ -114,8 +114,8 @@
 		
 		<div class="row">
 			<div class="col-12 my-3 d-flex flex-row">
-				<button class="btn btn-outline-info ml-auto mr-1"><a href="#"></a>Save</button>
-				<button class="btn btn-outline-danger ml-1 mr-auto"><a href="#"></a>Cancel</button>
+				<button class="btn btn-outline-info ml-auto mr-1 w-25"><a href="#"></a>Save</button>
+				<button class="btn btn-outline-danger ml-1 mr-auto w-25"><a href="#"></a>Cancel</button>
 			</div>
 		</div>
 	</form>
