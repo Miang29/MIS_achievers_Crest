@@ -33,16 +33,15 @@
         </div>
 
         <div class="col-12 my-3">
-            <div class="card mx-auto" style="width: 50rem; height:auto;">
-                
+            <div class="card mx-auto">
             </div>
         </div>
 
         <div class="col-6 my-3">
-            <div class="card mx-auto" style="width: 25rem; height:auto;">
+            <div class="card mx-auto">
                 <h5 class="card-header text-center">Pet Registration</h5>
+                
                 <div class="card-body">
-
                 </div>
             </div>
         </div>
