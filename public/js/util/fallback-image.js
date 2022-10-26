@@ -45,30 +45,30 @@ head.innerHTML = `
 	</style>
 `;
 
-let i = 1;
-Array.from(img).forEach((v) => {
-	v.addEventListener('error', function fallbackImageOnErrorReplace(e) {
-		let obj = e.currentTarget;
-		// console.log(e.target);
+function fallbackImageOnErrorReplace(e) {
+	let obj = e.currentTarget;
 
-		// console.log(obj)
-		if (obj.getAttribute('data-fallback-image') !== null && obj.getAttribute('data-fallback-image') != 'none') {
-			obj.src = obj.getAttribute('data-fallback-image');
-		}
-		else if (obj.getAttribute('data-fallback-img') != 'none' && obj.getAttribute('data-fallback-img') !== null) {
-			obj.src = obj.getAttribute('data-fallback-img');
+	if (obj.getAttribute('data-fallback-image') !== null && obj.getAttribute('data-fallback-image') != 'none') {
+		obj.src = obj.getAttribute('data-fallback-image');
+	}
+	else if (obj.getAttribute('data-fallback-img') != 'none' && obj.getAttribute('data-fallback-img') !== null) {
+		obj.src = obj.getAttribute('data-fallback-img');
+	}
+	else {
+		if (typeof fiFallbackImage != 'undefined' || typeof fiFallbackImg != 'undefined') {
+			let fiFallbackImgURL = typeof fiFallbackImg != 'undefined' ? fiFallbackImg : fiFallbackImage;
+			obj.src = fiFallbackImgURL;
 		}
 		else {
-			if (typeof fiFallbackImage != 'undefined' || typeof fiFallbackImg != 'undefined') {
-				let fiFallbackImgURL = typeof fiFallbackImg != 'undefined' ? fiFallbackImg : fiFallbackImage;
-				obj.src = fiFallbackImgURL;
-			}
-			else {
-				obj.id = 'imgFallbackMissing' + (i++);
-				obj.classList.add('img-fallback-missing');
-				console.warn('It seems that this element does not have a fallback image:\n', (window.location.href.indexOf('#') < 0 ? window.location.href : window.location.href.substr(0, window.location.href.indexOf('#'))) + "#" + obj.id);
-			}
+			obj.id = 'imgFallbackMissing' + (i++);
+			obj.classList.add('img-fallback-missing');
+			console.warn('It seems that this element does not have a fallback image:\n', (window.location.href.indexOf('#') < 0 ? window.location.href : window.location.href.substr(0, window.location.href.indexOf('#'))) + "#" + obj.id);
 		}
-		obj.removeEventListener('error', fallbackImageOnErrorReplace);
-	});
+	}
+	obj.removeEventListener('error', fallbackImageOnErrorReplace);
+}
+
+let i = 1;
+Array.from(img).forEach((v) => {
+	v.addEventListener('error', fallbackImageOnErrorReplace);
 });
