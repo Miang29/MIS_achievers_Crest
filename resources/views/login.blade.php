@@ -48,6 +48,7 @@
 		{{-- CSS --}}
 		<link href="{{ asset('css/style.css') }}" rel="stylesheet">
 		<link href="{{ asset('css/login.css') }}" rel="stylesheet">
+		<link href="{{ asset('css/util/floating-label.css') }}" rel="stylesheet">
 
 		{{-- FAVICON --}}
 		<link rel="icon" href="{{ App\Settings::getInstance('web-logo')->getImage(!App\Settings::getInstance('web-logo')->is_file) }}">
@@ -99,21 +100,20 @@
 					<form action="{{ route('authenticate') }}" method="POST" class="form w-75 w-lg-50 mb-auto mx-auto">
 						{{ csrf_field() }}
 						
-						<div class="form-group">
-							<label class="form-label text-white" for="username">Username</label>
-							<input class="form-control border-secondary " type="text" name="username" value="{{ old('username') }}" aria-label="Username" placeholder="Username" />
+						<div class="form-group floating-label-group">
+							<input class="form-control border-secondary floating-label-input" type="text" name="username" value="{{ old('username') }}" aria-label="Username" placeholder=" " />
+							<label class="form-label text-white floating-label" for="username">Username</label>
 						</div>
 
 						<div class="form-group">
-							<label class="form-label text-white" for="password">Password</label>
-							<div class="input-group">
-								<input class="form-control border-secondary border-right-0" type="password" name="password" id="password" aria-label="Password" aria-describedby="toggle-show-password" placeholder="Password" />
-								<div class="input-group-append">
-									<button type="button" class="btn bg-white border-secondary border-left-0" id="toggle-show-password" aria-label="Show Password" data-target="#password">
-										<i class="fas fa-eye d-none" id="show"></i>
-										<i class="fas fa-eye-slash" id="hide"></i>
-									</button>
-								</div>
+							<div class="input-group floating-label-group">
+								<input class="form-control border-secondary floating-label-input" type="password" name="password" id="password" aria-label="Password" aria-describedby="toggle-show-password" placeholder=" " />
+								<label class="form-label text-white floating-label" for="password">Password</label>
+								
+								<button type="button" class="btn text-white floating-eye-pass p-1" id="toggle-show-password" aria-label="Show Password" data-target="#password">
+									<i class="fas fa-eye d-none" id="show"></i>
+									<i class="fas fa-eye-slash" id="hide"></i>
+								</button>
 							</div>
 						</div>
 

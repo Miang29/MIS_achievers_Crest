@@ -7,7 +7,8 @@ $(document).on('click', '#toggle-show-password, .toggle-show-password', (e)=> {
         show: obj.find('#show'),
         hide: obj.find('#hide')
     }
-     console.log(target)
+    
+    // console.log(target)
     if(target.attr('type') == 'password'){
         obj.attr('aria-label', 'Hide Password')
         target.attr('type', 'text');

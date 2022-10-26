@@ -1,5 +1,27 @@
-#toggle-show-password {
-	max-width: 3.75rem;
-	min-width: 3.75rem;
-	width: 3.75rem;
+.floating-label-input,
+.floating-label-input:focus {
+	background-color: transparent;
+	border: none;
+	border-bottom: solid 1px;
+	border-radius: 0;
+	box-shadow: none;
+}
+
+.floating-label {
+	background-color: #021f53;
+}
+
+.floating-eye-pass,
+.floating-eye-pass:focus {
+	position: absolute;
+	right: 0;
+	top: 50%;
+	box-shadow: none;
+	z-index: 100;
+
+	-webkit-transform: translateY(-50%);
+	-moz-transform: translateY(-50%);
+	-ms-transform: translateY(-50%);
+	-o-transform: translateY(-50%);
+	transform: translateY(-50%);
 }
