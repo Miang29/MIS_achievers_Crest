@@ -17,6 +17,8 @@
 									<label class="h2 text-1 ml-5" for="image">Pet Image</label><br>
 									<img src="{{ asset('images/UI/placeholder.jpg') }}" class="img-fluid cursor-pointer border" style="border-width: 0.25rem!important; max-height: 16.25rem;" alt="Pet Image">
 									<br><br>
+									<a href="" class="btn btn-info bg-1 w-100"><i class="fa-regular fa-eye mr-2"></i>View History</a>
+
 								</div>
 							</div>
 

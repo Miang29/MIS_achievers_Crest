@@ -49,7 +49,7 @@
                                     Action
                                 </button>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown">
-                                    <a href="" class="dropdown-item"><i class="fa-solid fa-eye mr-2"></i>View</a>
+                                    <a href="{{route('view-consultation')}}" class="dropdown-item"><i class="fa-solid fa-eye mr-2"></i>View</a>
                                     <a href="" class="dropdown-item"><i class="fa-regular fa-pen-to-square mr-2"></i>Edit</a>
                                     <a href="" class="dropdown-item"><i class="fa-solid fa-trash mr-2"></i>Delete</a>
                                 </div>
