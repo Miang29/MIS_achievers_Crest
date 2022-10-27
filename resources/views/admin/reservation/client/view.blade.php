@@ -9,31 +9,26 @@
 <div class="row" id="form-area">
     <div class="col-12">
         <div class="card my-3 mx-auto">
-            <h5 class="card-header text-center">View Client Information</h5>
+            <h5 class="card-header text-center text-white bg-1">View Client Information</h5>
             <div class="card-body d-flex">
                 <div class="form-group mx-auto w-50">
-                    <label class="h6" for="petowner">Pet Owner<span class="text-danger">*</span></label>
-                    <input class="form-control " type="text" name="petowner" value="{{old('petowner')}}" />
+                    <label class="h6" for="petowner">Pet Owner<span class="text-danger"></span></label>
+                    <input class="form-control " type="text" name="petowner" value="{{old('petowner')}}"readonly />
 
-                    <label class="h6" for="address">Address<span class="text-danger">*</span></label>
-                    <input class="form-control" type="text" name="address" value="{{old('address')}}" />
+                    <label class="h6" for="address">Address<span class="text-danger"></span></label>
+                    <input class="form-control" type="text" name="address" value="{{old('address')}}" readonly />
 
-                    <label class="h6" for="email">Email<span class="text-danger">*</span></label>
-                    <input class="form-control" type="email" name="email" value="{{old('email')}}" />
+                    <label class="h6" for="email">Email<span class="text-danger"></span></label>
+                    <input class="form-control" type="email" name="email" value="{{old('email')}}"  readonly/>
 
-                    <label class="h6" for="telephone">Telephone No<span class="text-danger">*</span></label>
-                    <input class="form-control" type="text" name="telephone" value="{{old('telephone')}}" />
+                    <label class="h6" for="telephone">Telephone No<span class="text-danger"></span></label>
+                    <input class="form-control" type="text" name="telephone" value="{{old('telephone')}} " readonly/>
 
-                    <label class="h6" for="mobile">Mobile No<span class="text-danger">*</span></label>
-                    <input class="form-control" type="text" name="mobile" value="{{old('mobile')}}" />
+                    <label class="h6" for="mobile">Mobile No<span class="text-danger"></span></label>
+                    <input class="form-control" type="text" name="mobile" value="{{old('mobile')}}" readonly />
 
-                    <div class="input-group mb-3 my-2">
-                        <select class="custom-select" id="inputGroupSelect01">
-                            <option selected>Choose...</option>
-                            <option value="1">Old</option>
-                            <option value="2">New</option>
-                        </select>
-                    </div>
+                    <label class="h6" for="mobile">Type<span class="text-danger"></span></label>
+                    <input class="form-control" type="text" name="mobile" value="{{old('mobile')}}" readonly />
                 </div>
             </div>
         </div>

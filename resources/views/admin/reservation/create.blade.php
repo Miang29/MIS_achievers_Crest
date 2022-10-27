@@ -29,9 +29,10 @@
 							<label class="h6" for="mobile">Mobile No<span class="text-danger">*</span></label>
 							<input class="form-control" type="text" name="mobile" value="{{old('mobile')}}" />
 
+							<label class="h6" for="type">Type<span class="text-danger">*</span></label>
 							<div class="input-group mb-3 my-2">
 								<select class="custom-select" id="inputGroupSelect01">
-									<option selected>Choose...</option>
+									<option selected name="type"></option>
 									<option value="1">Old</option>
 									<option value="2">New</option>
 								</select>

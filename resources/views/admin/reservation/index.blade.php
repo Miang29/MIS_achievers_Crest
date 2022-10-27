@@ -4,7 +4,7 @@
 
 @section('content')
 
-<div class="container-fluid px-2 px-lg-6 py-2 h-100">
+<div class="container-fluid px-2 px-lg-6 py-2 h-100 my-3">
     <div class="row">
         <div class="col-12 col-lg text-center text-lg-left">
             <h2 class="font-weight-bold text-1">Reservation</h2>
@@ -12,6 +12,7 @@
 
         <div class="col-12 col-md-6 col-lg my-2 text-center text-md-left text-lg-right">
             <a href="{{route('create-reservation')}}" class="btn btn-info bg-1"><i class="fas fa-plus-circle mr-2"></i>Add Reservation</a>
+            <a href="" class="btn btn-info bg-1"><i class="fa-solid fa-bell mr-2"></i>Notify Clients</a>
         </div>
 
         <div class=" col-12 col-md-6 col-lg my-2 text-center text-lg-right">
@@ -24,8 +25,9 @@
         </div>
     </div>
 
-    <div class="overflow-x-auto h-100">
-        <table class="table">
+    <div class="overflow-x-auto h-100 card">
+        <div class=" card-body h-100 px-0 pt-0 ">
+        <table class="table table-striped ">
             <thead>
                 <tr>
                     <th scope="col" class="hr-thick text-1">Pet Owner</th>
@@ -61,6 +63,7 @@
             </tbody>
 
         </table>
+        </div>
     </div>
 </div>
 

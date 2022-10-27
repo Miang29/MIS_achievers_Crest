@@ -12,87 +12,94 @@
 
 		{{-- ADMIN SETTING AREA --}}
 		{{-- @if (Auth::user()->isAdmin()) --}}
-			<hr class="w-100 custom-hr">
+		<hr class="w-100 custom-hr">
 
-			{{-- Reservation --}}
-			{{-- @if (Auth::user()->isAdmin()) --}}
-				@if (\Request::is('admin/reservation'))
-				<span class="bg-secondary text-white"><i class="fa-solid fa-calendar mr-2"></i>Reservation</span>
-				@elseif (\Request::is('admin/reservation/*'))
-				<a class="text-decoration-none aria-link bg-secondary text-white" href="{{route('reservation')}}" aria-hidden="false" aria-label="Reservation"><i class="fa-solid fa-calendar mr-2"></i>Reservation</a>
-				@else
-				<a class="text-decoration-none text-1 font-weight-bold aria-link" href="{{route('reservation')}}" aria-hidden="false" aria-label="Reservation"><i class="fa-solid fa-calendar mr-2"></i>Reservation</a>
-				@endif
-			{{-- @endif --}}
+		{{-- Reservation --}}
+		{{-- @if (Auth::user()->isAdmin()) --}}
+		@if (\Request::is('admin/reservation'))
+		<span class="bg-secondary text-white"><i class="fa-solid fa-calendar mr-2"></i> Reservation</span>
+		@elseif (\Request::is('admin/reservation/*'))
+		<a class="text-decoration-none aria-link bg-secondary text-white" href="{{route('reservation')}}" aria-hidden="false" aria-label="Reservation"><i class="fa-solid fa-calendar mr-2"></i>Reservation</a>
+		@else
+		<a class="text-decoration-none text-1 font-weight-bold aria-link" href="{{route('reservation')}}" aria-hidden="false" aria-label="Reservation"><i class="fa-solid fa-calendar mr-2"></i>Reservation</a>
+		@endif
+		{{-- @endif --}}
 
+
+		{{-- Services --}}
+	
+			<a class="btn text-decoration-none text-1 font-weight-bold aria-link text-left" aria-label="Services" data-toggle="collapse" href="#collapseItem" role="button" aria-expanded="false" aria-controls="collapseItem">
+				<i class="fas fa-list-check mr-2"></i>Services
+			</a>
 		
 
-			{{-- Services --}}
-			{{-- @if (Auth::user()->isAdmin()) --}}
-				@if (\Request::is('admin/services'))
-				<span class="bg-secondary text-white"><i class="fas fa-list-check mr-2"></i>Services</span>
-				@elseif (\Request::is('adminservices/*'))
-				<a class="text-decoration-none text-white bg-secondary aria-link" href="" aria-hidden="false" aria-label="Services"><i class="fas fa-list-check mr-2"></i>Services</a>
-				@else
-				<a class="text-decoration-none text-1 font-weight-bold aria-link" href="" aria-hidden="false" aria-label="Services"><i class="fas fa-list-check mr-2"></i>Services</a>
-				@endif
-			{{-- @endif --}}
+		<div class="collapse " id="collapseItem">
+			<div class="card card-body">
+				<a class="dropdown-item  font-weight-bold" href="{{route('consultation')}}"><i class="fa-solid fa-stethoscope mr-1"></i>Consultation</a>
+				<a class="dropdown-item font-weight-bold" href="#"><i class="fa-solid fa-syringe mr-1"></i>Vaccination</a>
+				<a class="dropdown-item font-weight-bold" href="#"><i class="fa-solid fa-shield-dog mr-1"></i>Pet Boarding</a>
+				<a class="dropdown-item font-weight-bold" href="#"><i class="fa-solid fa-scissors mr-1"></i>Pet Grooming</a>
+			</div>
+		</div>
 
-			{{-- Transaction --}}
-			{{-- @if (Auth::user()->isAdmin()) --}}
-				@if (\Request::is('admin/transaction'))
-				<span class="bg-secondary text-white"><i class="fa-solid fa-money-check-dollar mr-2"></i>Transaction</span>
-				@elseif (\Request::is('admin/transaction/*'))
-				<a class="text-decoration-none text-white bg-secondary aria-link" href="" aria-hidden="false" aria-label="Transaction"><i class="fa-solid fa-money-check-dollar mr-2"></i>Transaction</a>
-				@else
-				<a class="text-decoration-none text-1 font-weight-bold aria-link" href="" aria-hidden="false" aria-label="Transaction"><i class="fa-solid fa-money-check-dollar mr-2"></i>Transaction</a>
-				@endif
-			{{-- @endif --}}
+		{{-- @endif --}}
 
-			{{-- Inventory --}}
-			{{-- @if (Auth::user()->isAdmin()) --}}
-				@if (\Request::is('admin/inventory'))
-				<span class="bg-secondary text-white"><i class="fa-solid fa-warehouse mr-2"></i>Inventory</span>
-				@elseif (\Request::is('admin/inventory/*'))
-				<a class="text-decoration-none text-white bg-secondary aria-link" href="" aria-hidden="false" aria-label="Transaction"><i class="fa-solid fa-warehouse mr-2"></i>Inventory</a>
-				@else
-				<a class="text-decoration-none text-1 font-weight-bold aria-link" href="" aria-hidden="false" aria-label="Transaction"><i class="fa-solid fa-warehouse mr-2"></i>Inventory</a>
-				@endif
-			{{-- @endif --}}
 
-			{{-- Reports --}}
-			{{-- @if (Auth::user()->isAdmin()) --}}
-				@if (\Request::is('admin/reports'))
-				<span class="bg-secondary text-white"><i class="fa-solid fa-chart-simple mr-2"></i>Reports</span>
-				@elseif (\Request::is('admin/reports/*'))
-				<a class="text-decoration-none text-white bg-secondary aria-link" href="" aria-hidden="false" aria-label="Reports"><i class="fa-solid fa-chart-simple mr-2"></i>Reports</a>
-				@else
-				<a class="text-decoration-none text-1 font-weight-bold aria-link" href="@{{ route('admin.users.index') }}" aria-hidden="false" aria-label="Reports"><i class="fa-solid fa-chart-simple mr-2"></i>Reports</a>
-				@endif
-			{{-- @endif --}}
-            
+		{{-- Transaction --}}
+		{{-- @if (Auth::user()->isAdmin()) --}}
+		@if (\Request::is('admin/transaction'))
+		<span class="bg-secondary text-white"><i class="fa-solid fa-money-check-dollar mr-2"></i>Transaction</span>
+		@elseif (\Request::is('admin/transaction/*'))
+		<a class="text-decoration-none text-white bg-secondary aria-link" href="" aria-hidden="false" aria-label="Transaction"><i class="fa-solid fa-money-check-dollar mr-2"></i>Transaction</a>
+		@else
+		<a class="text-decoration-none text-1 font-weight-bold aria-link" href="" aria-hidden="false" aria-label="Transaction"><i class="fa-solid fa-money-check-dollar mr-2"></i>Transaction</a>
+		@endif
+		{{-- @endif --}}
 
-			{{-- USERS --}}
-			{{-- @if (Auth::user()->isAdmin()) --}}
-				@if (\Request::is('admin/users'))
-				<span class="bg-secondary text-white"><i class="fas fa-user-alt mr-2"></i>Users</span>
-				@elseif (\Request::is('admin/users/*'))
-				<a class="text-decoration-none text-white bg-secondary aria-link" href="@{{ route('admin.users.index') }}" aria-hidden="false" aria-label="Users"><i class="fas fa-user-alt mr-2"></i>Users</a>
-				@else
-				<a class="text-decoration-none text-1 font-weight-bold aria-link" href="@{{ route('admin.users.index') }}" aria-hidden="false" aria-label="Users"><i class="fas fa-user-alt mr-2"></i>Users</a>
-				@endif
-			{{-- @endif --}}
+		{{-- Inventory --}}
+		{{-- @if (Auth::user()->isAdmin()) --}}
+		@if (\Request::is('admin/inventory'))
+		<span class="bg-secondary text-white"><i class="fa-solid fa-warehouse mr-2"></i>Inventory</span>
+		@elseif (\Request::is('admin/inventory/*'))
+		<a class="text-decoration-none text-white bg-secondary aria-link" href="" aria-hidden="false" aria-label="Transaction"><i class="fa-solid fa-warehouse mr-2"></i>Inventory</a>
+		@else
+		<a class="text-decoration-none text-1 font-weight-bold aria-link" href="" aria-hidden="false" aria-label="Transaction"><i class="fa-solid fa-warehouse mr-2"></i>Inventory</a>
+		@endif
+		{{-- @endif --}}
 
-			{{-- SETTINGS --}}
-			{{-- @if (Auth::user()->isAdmin()) --}}
-				@if (\Request::is('admin/settings'))
-				<span class="bg-secondary text-white"><i class="fas fa-gear mr-2"></i>Settings</span>
-				@elseif (\Request::is('admin/settings/*'))
-				<a class="text-decoration-none text-white bg-secondary aria-link" href="@{{ route('admin.settings.index') }}" aria-hidden="false" aria-label="Settings"><i class="fas fa-gear mr-2"></i>Settings</a>
-				@else
-				<a class="text-decoration-none text-1 font-weight-bold aria-link" href="@{{ route('admin.settings.index') }}" aria-hidden="false" aria-label="Settings"><i class="fas fa-gear mr-2"></i>Settings</a>
-				@endif
-			{{-- @endif --}}
+		{{-- Reports --}}
+		{{-- @if (Auth::user()->isAdmin()) --}}
+		@if (\Request::is('admin/reports'))
+		<span class="bg-secondary text-white"><i class="fa-solid fa-chart-simple mr-2"></i>Reports</span>
+		@elseif (\Request::is('admin/reports/*'))
+		<a class="text-decoration-none text-white bg-secondary aria-link" href="" aria-hidden="false" aria-label="Reports"><i class="fa-solid fa-chart-simple mr-2"></i>Reports</a>
+		@else
+		<a class="text-decoration-none text-1 font-weight-bold aria-link" href="@{{ route('admin.users.index') }}" aria-hidden="false" aria-label="Reports"><i class="fa-solid fa-chart-simple mr-2"></i>Reports</a>
+		@endif
+		{{-- @endif --}}
+
+
+		{{-- USERS --}}
+		{{-- @if (Auth::user()->isAdmin()) --}}
+		@if (\Request::is('admin/users'))
+		<span class="bg-secondary text-white"><i class="fas fa-user-alt mr-2"></i>Users</span>
+		@elseif (\Request::is('admin/users/*'))
+		<a class="text-decoration-none text-white bg-secondary aria-link" href="@{{ route('admin.users.index') }}" aria-hidden="false" aria-label="Users"><i class="fas fa-user-alt mr-2"></i>Users</a>
+		@else
+		<a class="text-decoration-none text-1 font-weight-bold aria-link" href="@{{ route('admin.users.index') }}" aria-hidden="false" aria-label="Users"><i class="fas fa-user-alt mr-2"></i>Users</a>
+		@endif
+		{{-- @endif --}}
+
+		{{-- SETTINGS --}}
+		{{-- @if (Auth::user()->isAdmin()) --}}
+		@if (\Request::is('admin/settings'))
+		<span class="bg-secondary text-white"><i class="fas fa-gear mr-2"></i>Settings</span>
+		@elseif (\Request::is('admin/settings/*'))
+		<a class="text-decoration-none text-white bg-secondary aria-link" href="@{{ route('admin.settings.index') }}" aria-hidden="false" aria-label="Settings"><i class="fas fa-gear mr-2"></i>Settings</a>
+		@else
+		<a class="text-decoration-none text-1 font-weight-bold aria-link" href="@{{ route('admin.settings.index') }}" aria-hidden="false" aria-label="Settings"><i class="fas fa-gear mr-2"></i>Settings</a>
+		@endif
+		{{-- @endif --}}
 		{{-- @endif --}}
 
 		{{-- SIGNOUT --}}

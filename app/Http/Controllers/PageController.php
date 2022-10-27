@@ -32,4 +32,20 @@ class PageController extends Controller
 	protected function viewPet() {
 		return view('admin.reservation.pet.view');
 	}
+
+	protected function consultation() {
+		return view('admin.services.consultation.index');
+	}
+
+	protected function createConsultation() {
+		return view('admin.services.consultation.create');
+	}
+
+	protected function viewConsultation() {
+		return view('admin.services.consultation.view');
+	}
+
+	protected function editConsultation() {
+		return view('admin.services.consultation.edit');
+	}
 }

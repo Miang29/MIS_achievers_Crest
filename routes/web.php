@@ -25,3 +25,11 @@ Route::post('/authenticate', 'UserController@authenticate')->name('authenticate'
 	Route::get('/View-Client', 'PageController@viewClient')->name('view-client');
 	Route::get('/Edit-Pet', 'PageController@editPet')->name('edit-pet');
 	Route::get('/View-Pet', 'PageController@viewPet')->name('view-pet');
+
+	//SERVICES
+	//Consultation
+
+	Route::get('/consultation', 'PageController@consultation')->name('consultation');
+	Route::get('/Create-Consultation', 'PageController@createConsultation')->name('create-consultation');
+	Route::get('/View-Consultation', 'PageController@viewConsultation')->name('view-consultation');
+	Route::get('/Edit-Consultation', 'PageController@editConsultation')->name('edit-consultation');
