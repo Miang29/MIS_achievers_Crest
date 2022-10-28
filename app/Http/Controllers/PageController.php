@@ -35,5 +35,16 @@ class PageController extends Controller
 		return view('admin.reservation.pet.view');
 	}
 
+	//TRANSACTION
+	protected function transaction() {
+		return view('admin.transaction.index');
+	}
+	protected function createTransaction() {
+		return view('admin.Transaction.create');
+	}
+
+	protected function viewTransaction() {
+		return view('admin.transaction.view');
+	}
 	
 }

@@ -50,9 +50,9 @@
 		@if (\Request::is('admin/transaction'))
 		<span class="bg-secondary text-white"><i class="fa-solid fa-money-check-dollar mr-2"></i>Transaction</span>
 		@elseif (\Request::is('admin/transaction/*'))
-		<a class="text-decoration-none text-white bg-secondary aria-link" href="" aria-hidden="false" aria-label="Transaction"><i class="fa-solid fa-money-check-dollar mr-2"></i>Transaction</a>
+		<a class="text-decoration-none text-white bg-secondary aria-link" href="{{route('transaction')}}" aria-hidden="false" aria-label="Transaction"><i class="fa-solid fa-money-check-dollar mr-2"></i>Transaction</a>
 		@else
-		<a class="text-decoration-none text-1 font-weight-bold aria-link" href="" aria-hidden="false" aria-label="Transaction"><i class="fa-solid fa-money-check-dollar mr-2"></i>Transaction</a>
+		<a class="text-decoration-none text-1 font-weight-bold aria-link" href="{{route('transaction')}}" aria-hidden="false" aria-label="Transaction"><i class="fa-solid fa-money-check-dollar mr-2"></i>Transaction</a>
 		@endif
 		{{-- @endif --}}
 

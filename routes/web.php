@@ -52,3 +52,9 @@ Route::post('/authenticate', 'UserController@authenticate')->name('authenticate'
 	Route::get('/create-grooming', 'ServicesController@createGrooming')->name('create-grooming');
 	Route::get('/edit-grooming', 'ServicesController@editGrooming')->name('edit-grooming');
 	Route::get('/view-grooming', 'ServicesController@viewGrooming')->name('view-grooming');
+
+
+	// TRANSACTION
+	Route::get('/transaction', 'PageController@transaction')->name('transaction');
+	Route::get('/create-transaction', 'PageController@createTransaction')->name('create-transaction');
+	Route::get('/view-transaction', 'PageController@viewTransaction')->name('view-transaction');
