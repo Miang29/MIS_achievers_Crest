@@ -20,16 +20,35 @@ Route::post('/authenticate', 'UserController@authenticate')->name('authenticate'
 
 	// Reservation
 	Route::get('/reservation', 'PageController@reservation')->name('reservation');
-	Route::get('/Create-Reservation', 'PageController@createReservation')->name('create-reservation');
-	Route::get('/Edit-Client', 'PageController@editClient')->name('edit-client');
-	Route::get('/View-Client', 'PageController@viewClient')->name('view-client');
-	Route::get('/Edit-Pet', 'PageController@editPet')->name('edit-pet');
-	Route::get('/View-Pet', 'PageController@viewPet')->name('view-pet');
+	Route::get('/create-reservation', 'PageController@createReservation')->name('create-reservation');
+	Route::get('/edit-client', 'PageController@editClient')->name('edit-client');
+	Route::get('/view-client', 'PageController@viewClient')->name('view-client');
+	Route::get('/edit-pet', 'PageController@editPet')->name('edit-pet');
+	Route::get('/view-pet', 'PageController@viewPet')->name('view-pet');
 
-	//SERVICES
+
+	//---------------------SERVICES--------------------------//
+
 	//Consultation
+	Route::get('/consultation', 'ServicesController@consultation')->name('consultation');
+	Route::get('/create-consultation', 'ServicesController@createConsultation')->name('create-consultation');
+	Route::get('/view-consultation', 'ServicesController@viewConsultation')->name('view-consultation');
+	Route::get('/edit-consultation', 'ServicesController@editConsultation')->name('edit-consultation');
 
-	Route::get('/consultation', 'PageController@consultation')->name('consultation');
-	Route::get('/Create-Consultation', 'PageController@createConsultation')->name('create-consultation');
-	Route::get('/View-Consultation', 'PageController@viewConsultation')->name('view-consultation');
-	Route::get('/Edit-Consultation', 'PageController@editConsultation')->name('edit-consultation');
+	//VACCINATION
+	Route::get('/vaccination', 'ServicesController@vaccination')->name('vaccination');
+	Route::get('/create-vaccination', 'ServicesController@createVaccination')->name('create-vaccination');
+	Route::get('/edit-vaccination', 'ServicesController@editVaccination')->name('edit-vaccination');
+	Route::get('/view-vaccination', 'ServicesController@viewVaccination')->name('view-vaccination');
+
+	//PETBOARDING
+	Route::get('/boarding', 'ServicesController@boarding')->name('boarding');
+	Route::get('/create-boarding', 'ServicesController@createBoarding')->name('create-boarding');
+	Route::get('/edit-boarding', 'ServicesController@editBoarding')->name('edit-boarding');
+	Route::get('/view-boarding', 'ServicesController@viewBoarding')->name('view-boarding');
+
+	//PETGROOMING
+	Route::get('/grooming', 'ServicesController@grooming')->name('grooming');
+	Route::get('/create-grooming', 'ServicesController@createGrooming')->name('create-grooming');
+	Route::get('/edit-grooming', 'ServicesController@editGrooming')->name('edit-grooming');
+	Route::get('/view-grooming', 'ServicesController@viewGrooming')->name('view-grooming');

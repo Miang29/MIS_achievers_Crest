@@ -36,9 +36,9 @@
 		<div class="collapse " id="collapseItem">
 			<div class="card card-body">
 				<a class="dropdown-item  font-weight-bold" href="{{route('consultation')}}"><i class="fa-solid fa-stethoscope mr-1"></i>Consultation</a>
-				<a class="dropdown-item font-weight-bold" href="#"><i class="fa-solid fa-syringe mr-1"></i>Vaccination</a>
-				<a class="dropdown-item font-weight-bold" href="#"><i class="fa-solid fa-shield-dog mr-1"></i>Pet Boarding</a>
-				<a class="dropdown-item font-weight-bold" href="#"><i class="fa-solid fa-scissors mr-1"></i>Pet Grooming</a>
+				<a class="dropdown-item font-weight-bold" href="{{route('vaccination')}}"><i class="fa-solid fa-syringe mr-1"></i>Vaccination</a>
+				<a class="dropdown-item font-weight-bold" href="{{route('boarding')}}"><i class="fa-solid fa-shield-dog mr-1"></i>Pet Boarding</a>
+				<a class="dropdown-item font-weight-bold" href="{{route('grooming')}}"><i class="fa-solid fa-scissors mr-1"></i>Pet Grooming</a>
 			</div>
 		</div>
 

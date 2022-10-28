@@ -13,14 +13,23 @@
 				<h5 class="card-header text-center text-white bg-1">Client's Pet Consultation</h5>
 				<div class="card-body d-flex">
 					<div class="form-group col-6 mx-auto w-50">
+
 						<label class="h6" for="petowner">Pet Owner<span class="text-danger">*</span></label>
-						<input class="form-control " type="text" name="petowner" value="{{old('petowner')}}" />
+						<div class="input-group mb-3">
+							<select class="custom-select  text-1" id="inputGroupSelect01">
+								<option selected name="petowner" value="{{old('petowner')}}"></option>
+							</select>
+						</div>
 
 						<label class="h6" for="petname">Pet Name<span class="text-danger">*</span></label>
-						<input class="form-control" type="text" name="petname" value="{{old('petname')}}" />
-
+						<div class="input-group mb-3">
+							<select class="custom-select  text-1" id="inputGroupSelect01">
+								<option selected name="petname" value="{{old('petname')}}"></option>
+							</select>
+						</div>
+							
 						<label class="h6" for="address">Address<span class="text-danger">*</span></label>
-						<input class="form-control" type="text" name="address" value="{{old('address')}}" />
+						<input class="form-control" type="text" name="address" value="{{old('address')}}" readonly />
 
 						<label class="h6" for="telephone">Date<span class="text-danger">*</span></label>
 						<input class="form-control" type="date" name="date" value="{{old('date')}} " />
@@ -30,27 +39,28 @@
 					</div>
 
 					<div class="form-group col-6 mx-auto w-50 ">
-						<label class="h6" for="history">Clinical History<span class="text-danger"></span></label>
-						<input class="form-control " type="text" name="history" value="{{old('history')}}" />
 
 						<label class="h6" for="findings">Findings<span class="text-danger"></span></label>
-						<input class="form-control" type="text" name="findings" value="{{old('findings')}}" />
+						<input class="form-control my-1" type="text" name="findings" value="{{old('findings')}}" />
 
 						<label class="h6" for="treatment">Treatment<span class="text-danger"></span></label>
-						<input class="form-control" type="text" name="treatment" value="{{old('treatment')}}" />
+						<input class="form-control  my-1" type="text" name="treatment" value="{{old('treatment')}}" />
 
 						<label class="h6" for="procedure">Procedure<span class="text-danger"></span></label>
-						<input class="form-control" type="text" name="procedure" value="{{old('procedure')}} " />
+						<input class="form-control  my-1" type="text" name="procedure" value="{{old('procedure')}} " />
 
 						<label class="h6" for="amount">Amount<span class="text-danger">*</span></label>
-						<input class="form-control" type="text" name="amount" value="{{old('amount')}}" />
+						<input class="form-control  my-1" type="text" name="amount" value="{{old('amount')}}" />
+
+						<button class="btn btn-info font-weight-bold text-white mt-4  w-100"><a href="#"></a>View Clinical History</button>
+
 					</div>
 
 				</div>
-				<div class="col-12 my-3 d-flex flex-row">
-						<button class="btn btn-outline-info ml-auto mr-1 w-25"><a href="#"></a>Save</button>
-						<button class="btn btn-outline-danger ml-1 mr-auto w-25"><a href="#"></a>Cancel</button>
-					</div>
+				<div class="col-12 my-2 d-flex flex-row">
+					<button class="btn btn-outline-info ml-auto mr-4 w-25"><a href="#"></a>Save</button>
+					<button class="btn btn-outline-danger ml-1 mr-auto w-25"><a href="#"></a>Cancel</button>
+				</div>
 			</div>
 		</div>
 	</div>

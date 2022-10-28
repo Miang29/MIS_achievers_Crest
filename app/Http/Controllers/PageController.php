@@ -6,10 +6,12 @@ use Illuminate\Http\Request;
 
 class PageController extends Controller
 {
+	//DASHBOARD
 	protected function dashboard() {
 		return view('admin.dashboard');
 	}
 
+	//RESERVATION
 	 protected function reservation() {
 		return view('admin.reservation.index');
 	}
@@ -33,19 +35,5 @@ class PageController extends Controller
 		return view('admin.reservation.pet.view');
 	}
 
-	protected function consultation() {
-		return view('admin.services.consultation.index');
-	}
-
-	protected function createConsultation() {
-		return view('admin.services.consultation.create');
-	}
-
-	protected function viewConsultation() {
-		return view('admin.services.consultation.view');
-	}
-
-	protected function editConsultation() {
-		return view('admin.services.consultation.edit');
-	}
+	
 }

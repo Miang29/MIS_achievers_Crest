@@ -202,8 +202,14 @@
 	-o-animation: 1s cubic-bezier(0.5, 1, 0.5, 1) slideInRight;
 	animation: 1s cubic-bezier(0.5, 1, 0.5, 1) slideInRight;
 }
-/* ADMIN SEARCH END */
 
+/* ADMIN SEARCH END */
+ 
+.important::after{
+	content: " *";
+	color:#dc3545;
+
+}
 /* Text- Sizes */
  .text-title{
 	font-size:2.5rem;

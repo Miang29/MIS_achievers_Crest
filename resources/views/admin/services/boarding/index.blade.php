@@ -7,11 +7,11 @@
 <div class="container-fluid px-2 px-lg-6 py-2 h-100 my-3">
     <div class="row">
         <div class="col-12 col-lg text-center text-lg-left">
-            <h2 class="font-weight-bold text-1">Consultation</h2>
+            <h2 class="font-weight-bold text-1">Pet Boarding</h2>
         </div>
 
         <div class="col-12 col-md-6 col-lg my-2 text-center text-md-left text-lg-right">
-            <a href="{{route('create-consultation')}}" class="btn btn-info bg-1"><i class="fas fa-plus-circle mr-2"></i>Add Consultation</a>
+            <a href="{{route('create-boarding')}}" class="btn btn-info bg-1"><i class="fas fa-plus-circle mr-2"></i>Add Boarding</a>
         </div>
 
         <div class=" col-12 col-md-6 col-lg my-2 text-center text-lg-right">
@@ -29,9 +29,10 @@
             <table class="table table-striped">
                 <thead>
                     <tr>
+                        <th scope="col" class="hr-thick text-1">Pet Owner</th>
                         <th scope="col" class="hr-thick text-1">Pet Name</th>
-                        <th scope="col" class="hr-thick text-1">Treatment</th>
-                        <th scope="col" class="hr-thick text-1">Amount</th>
+                        <th scope="col" class="hr-thick text-1">Time In</th>
+                        <th scope="col" class="hr-thick text-1">Time Out</th>
                         <th>
                     </tr>
                 </thead>
@@ -49,8 +50,8 @@
                                     Action
                                 </button>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown">
-                                    <a href="{{route('view-consultation')}}" class="dropdown-item"><i class="fa-solid fa-eye mr-2"></i>View</a>
-                                    <a href="{{route('edit-consultation')}}" class="dropdown-item"><i class="fa-regular fa-pen-to-square mr-2"></i>Edit</a>
+                                    <a href="{{route('view-boarding')}}" class="dropdown-item"><i class="fa-solid fa-eye mr-2"></i>View</a>
+                                    <a href="{{route('edit-boarding')}}" class="dropdown-item"><i class="fa-regular fa-pen-to-square mr-2"></i>Edit</a>
                                     <a href="" class="dropdown-item"><i class="fa-solid fa-trash mr-2"></i>Delete</a>
                                 </div>
                             </div>
