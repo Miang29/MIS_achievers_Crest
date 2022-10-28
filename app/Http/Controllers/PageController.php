@@ -47,4 +47,22 @@ class PageController extends Controller
 		return view('admin.transaction.view');
 	}
 	
+
+	
+	//INVENTORY
+	protected function inventory() {
+		return view('admin.inventory.index');
+	}
+	protected function createInventory() {
+		return view('admin.inventory.create');
+	}
+
+	protected function viewInventory() {
+		return view('admin.inventory.view');
+	}
+
+	protected function editInventory() {
+		return view('admin.inventory.edit');
+	}
+	
 }

@@ -58,3 +58,12 @@ Route::post('/authenticate', 'UserController@authenticate')->name('authenticate'
 	Route::get('/transaction', 'PageController@transaction')->name('transaction');
 	Route::get('/create-transaction', 'PageController@createTransaction')->name('create-transaction');
 	Route::get('/view-transaction', 'PageController@viewTransaction')->name('view-transaction');
+
+	
+	// INVENTORY
+	Route::get('/inventory', 'PageController@inventory')->name('inventory');
+	Route::get('/create-inventory', 'PageController@createInventory')->name('create-inventory');
+	Route::get('/view-inventory', 'PageController@viewInventory')->name('view-inventory');
+	Route::get('/edit-inventory', 'PageController@editInventory')->name('edit-inventory');
+
+	
