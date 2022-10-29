@@ -14,14 +14,25 @@
 		{{-- @if (Auth::user()->isAdmin()) --}}
 		<hr class="w-100 custom-hr">
 
-		{{-- Reservation --}}
+		{{-- Client Profile --}}
 		{{-- @if (Auth::user()->isAdmin()) --}}
-		@if (\Request::is('admin/reservation'))
-		<span class="bg-secondary text-white"><i class="fa-solid fa-calendar mr-2"></i> Reservation</span>
-		@elseif (\Request::is('admin/reservation/*'))
-		<a class="text-decoration-none aria-link bg-secondary text-white" href="{{route('reservation')}}" aria-hidden="false" aria-label="Reservation"><i class="fa-solid fa-calendar mr-2"></i>Reservation</a>
+		@if (\Request::is('admin/clientprofile'))
+		<span class="bg-secondary text-white"><i class="fas fa-duotone fa-address-card mr-2"></i>Profile</span>
+		@elseif (\Request::is('admin/clientprofile/*'))
+		<a class="text-decoration-none aria-link bg-secondary text-white" href="{{route('client-profile')}}" aria-hidden="false" aria-label="Reservation"><i class="fas fa-duotone fa-address-card mr-2"></i>Profile</a>
 		@else
-		<a class="text-decoration-none text-1 font-weight-bold aria-link" href="{{route('reservation')}}" aria-hidden="false" aria-label="Reservation"><i class="fa-solid fa-calendar mr-2"></i>Reservation</a>
+		<a class="text-decoration-none text-1 font-weight-bold aria-link" href="{{route('client-profile')}}" aria-hidden="false" aria-label="Reservation"><i class="fas fa-duotone fa-address-card mr-2"></i>Profile</a>
+		@endif
+		{{-- @endif --}}
+
+		{{-- Appointment --}}
+		{{-- @if (Auth::user()->isAdmin()) --}}
+		@if (\Request::is('admin/appointment'))
+		<span class="bg-secondary text-white"><i class="fa-solid fa-calendar mr-2"></i> Appointment</span>
+		@elseif (\Request::is('admin/appointment/*'))
+		<a class="text-decoration-none aria-link bg-secondary text-white" href="{{route('appointment')}}" aria-hidden="false" aria-label="Reservation"><i class="fa-solid fa-calendar mr-2"></i>Appointment</a>
+		@else
+		<a class="text-decoration-none text-1 font-weight-bold aria-link" href="{{route('appointment')}}" aria-hidden="false" aria-label="Reservation"><i class="fa-solid fa-calendar mr-2"></i>Appointment</a>
 		@endif
 		{{-- @endif --}}
 

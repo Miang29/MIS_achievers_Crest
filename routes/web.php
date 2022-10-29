@@ -19,12 +19,12 @@ Route::post('/authenticate', 'UserController@authenticate')->name('authenticate'
 	Route::get('/dashboard', 'PageController@dashboard')->name('dashboard');
 
 	// Reservation
-	Route::get('/reservation', 'PageController@reservation')->name('reservation');
-	Route::get('/create-reservation', 'PageController@createReservation')->name('create-reservation');
-	Route::get('/edit-client', 'PageController@editClient')->name('edit-client');
-	Route::get('/view-client', 'PageController@viewClient')->name('view-client');
-	Route::get('/edit-pet', 'PageController@editPet')->name('edit-pet');
-	Route::get('/view-pet', 'PageController@viewPet')->name('view-pet');
+	Route::get('/client-profile', 'PageController@clientprofile')->name('client-profile');
+	Route::get('/create-client-profile', 'PageController@createClientprofile')->name('create-client-profile');
+	Route::get('/edit-client-profile', 'PageController@editClientprofile')->name('edit-client-profile');
+	Route::get('/view-client-profile', 'PageController@viewClientprofile')->name('view-client-profile');
+	Route::get('/edit-pet', 'PageController@editPetprofile')->name('edit-pet');
+	Route::get('/view-pet', 'PageController@viewPetprofile')->name('view-pet');
 
 
 	//---------------------SERVICES--------------------------//
@@ -66,4 +66,9 @@ Route::post('/authenticate', 'UserController@authenticate')->name('authenticate'
 	Route::get('/view-inventory', 'PageController@viewInventory')->name('view-inventory');
 	Route::get('/edit-inventory', 'PageController@editInventory')->name('edit-inventory');
 
+	//APPOINTMENT
+	Route::get('/appointment', 'PageController@appointment')->name('appointment');
+	Route::get('/create-appointment', 'PageController@CreateAppointment')->name('create-appointment');
+	Route::get('/edit-appointment', 'PageController@Edit-Appointment')->name('edit-appointment');
+	
 	

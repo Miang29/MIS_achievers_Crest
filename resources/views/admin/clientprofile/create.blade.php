@@ -1,17 +1,17 @@
 @extends('layouts.admin')
 
-@section('title', 'Reservation')
+@section('title', 'clientprofile')
 
 @section('content')
 <div class="container-fluid m-0">
-	<h2 class="h5 h2-lg text-center text-lg-left mx-0 mx-lg-5 my-4"><a href="{{route('reservation')}}" class="text-decoration-none text-1"><i class="fas fa-chevron-left mr-2"></i>Reservation</a></h2>
+	<h2 class="h5 h2-lg text-center text-lg-left mx-0 mx-lg-5 my-4"><a href="{{route('client-profile')}}" class="text-decoration-none text-1"><i class="fas fa-chevron-left mr-2"></i></a></h2>
 	<hr class="hr-thick" style="border-color: #707070;">
 
 	<form class="form">
 		<div class="row" id="form-area">
 			<div class="col-12">
 				<div class="card my-3 mx-auto">
-					<h5 class="card-header text-center bg-1 text-white">Client Registration</h5>
+					<h5 class="card-header text-center bg-1 text-white">Client Profile</h5>
 					<div class="card-body d-flex">
 						<div class="form-group mx-auto w-50">
 							<label class="h6 font-weight-bold text-1" for="petowner">Pet Owner<span class="text-danger">*</span></label>
@@ -46,7 +46,7 @@
 			{{-- PET REGISTRATION FORM --}}
 			<div class="col-6 my-2 mx-auto">
 				<div class="card mx-auto">
-					<h5 class="card-header text-center bg-1 text-white">Pet Registration</h5>
+					<h5 class="card-header text-center bg-1 text-white">Pet Profile</h5>
 					
 					<div class="card-body d-flex">
 						<div class="row">

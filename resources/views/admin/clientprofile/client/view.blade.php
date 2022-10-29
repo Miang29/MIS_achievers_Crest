@@ -1,9 +1,9 @@
 @extends('layouts.admin')
 
-@section('title', 'Reservation')
+@section('title', 'clientprofile')
 
 @section('content')
-<h2 class="h5 h2-lg text-center text-lg-left mx-0 mx-lg-5 my-4"><a href="{{route('reservation')}}" class="text-decoration-none text-dark"><i class="fas fa-chevron-left mr-2"></i>Reservation</a></h2>
+<h2 class="h5 h2-lg text-center text-lg-left mx-0 mx-lg-5 my-4"><a href="{{route('client-profile')}}" class="text-decoration-none text-dark"><i class="fas fa-chevron-left mr-2"></i></a></h2>
 	<hr class="hr-thick" style="border-color: #707070;">
 
 <div class="row" id="form-area">

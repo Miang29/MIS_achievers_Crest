@@ -12,27 +12,27 @@ class PageController extends Controller
 	}
 
 	//RESERVATION
-	 protected function reservation() {
-		return view('admin.reservation.index');
+	 protected function clientProfile() {
+		return view('admin.clientprofile.index');
 	}
-	protected function createReservation() {
-		return view('admin.reservation.create');
-	}
-
-	protected function editClient() {
-		return view('admin.reservation.client.edit');
+	protected function createClientprofile() {
+		return view('admin.clientprofile.create');
 	}
 
-	protected function viewClient() {
-		return view('admin.reservation.client.view');
+	protected function editClientprofile() {
+		return view('admin.clientprofile.client.edit');
 	}
 
-	protected function EditPet() {
-		return view('admin.reservation.pet.edit');
+	protected function viewClientprofile() {
+		return view('admin.clientprofile.client.view');
 	}
 
-	protected function viewPet() {
-		return view('admin.reservation.pet.view');
+	protected function EditPetprofile() {
+		return view('admin.clientprofile.pet.edit');
+	}
+
+	protected function viewPetprofile() {
+		return view('admin.clientprofile.pet.view');
 	}
 
 	//TRANSACTION
@@ -65,4 +65,16 @@ class PageController extends Controller
 		return view('admin.inventory.edit');
 	}
 	
+	//APPOINTMENT
+	protected function appointment() {
+		return view('admin.appointment.index');
+	}
+	protected function CreateAppointment() {
+		return view('admin.appointment.create');
+	}
+	protected function EditAppointment() {
+		return view('admin.appointment.edit');
+	}
+	
+
 }
