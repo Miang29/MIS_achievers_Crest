@@ -38,11 +38,10 @@
 
 
 		{{-- Services --}}
-	
-			<a class="btn text-decoration-none text-1 font-weight-bold aria-link text-left" aria-label="Services" data-toggle="collapse" href="#collapseItem" role="button" aria-expanded="false" aria-controls="collapseItem">
-				<i class="fas fa-list-check mr-2"></i>Services
-			</a>
-		
+
+		<a class="btn text-decoration-none text-1 font-weight-bold aria-link text-left" aria-label="Services" data-toggle="collapse" href="#collapseItem" role="button" aria-expanded="false" aria-controls="collapseItem">
+			<i class="fas fa-list-check mr-2"></i>Services
+		</a>
 
 		<div class="collapse " id="collapseItem">
 			<div class="card card-body">
@@ -55,17 +54,15 @@
 
 		{{-- @endif --}}
 
-
-		{{-- Transaction --}}
-		{{-- @if (Auth::user()->isAdmin()) --}}
-		@if (\Request::is('admin/transaction'))
-		<span class="bg-secondary text-white"><i class="fa-solid fa-money-check-dollar mr-2"></i>Transaction</span>
-		@elseif (\Request::is('admin/transaction/*'))
-		<a class="text-decoration-none text-white bg-secondary aria-link" href="{{route('transaction')}}" aria-hidden="false" aria-label="Transaction"><i class="fa-solid fa-money-check-dollar mr-2"></i>Transaction</a>
-		@else
-		<a class="text-decoration-none text-1 font-weight-bold aria-link" href="{{route('transaction')}}" aria-hidden="false" aria-label="Transaction"><i class="fa-solid fa-money-check-dollar mr-2"></i>Transaction</a>
-		@endif
-		{{-- @endif --}}
+		<a class="btn text-decoration-none text-1 font-weight-bold aria-link text-left" aria-label="transaction" data-toggle="collapse" href="#collapseItem2" role="button" aria-expanded="false" aria-controls="collapseItem2">
+		<i class="fa-solid fa-money-check-dollar mr-2"></i>Transaction
+		</a>
+		<div class="collapse " id="collapseItem2">
+			<div class="card card-body">
+				<a class="dropdown-item  font-weight-bold" href="{{route('products-order')}}"><i class="fas fa-money-check-dollar mr-1 "></i>Products Order</a>
+				<a class="dropdown-item font-weight-bold" href=""><i class="fas fa-shield-cat mr-1"></i>Services</a>
+			</div>
+		</div>
 
 		{{-- Inventory --}}
 		{{-- @if (Auth::user()->isAdmin()) --}}

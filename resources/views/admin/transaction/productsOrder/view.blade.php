@@ -1,16 +1,16 @@
 @extends('layouts.admin')
 
-@section('title', 'Services')
+@section('title', 'transaction')
 
 @section('content')
 <div class="container-fluid m-0">
-    <h2 class="h5 h2-lg text-center text-lg-left mx-0 mx-lg-5 my-4 "><a href="{{route('transaction')}}" class="text-decoration-none  text-1"><i class="fas fa-chevron-left mr-2"></i>Transaction</a></h2>
+    <h2 class="h5 h2-lg text-center text-lg-left mx-0 mx-lg-5 my-4 "><a href="{{route('products-order')}}" class="text-decoration-none  text-1"><i class="fas fa-chevron-left mr-2"></i></a></h2>
     <hr class="hr-thick" style="border-color: #707070;">
 
     <div class="row" id="form-area">
         <div class="col-12">
             <div class="card my-3 mx-auto">
-                <h5 class="card-header text-center text-white bg-1">View Sales Order</h5>
+                <h5 class="card-header text-center text-white bg-1">View Products Order</h5>
 
 
                 <div class="card-body d-flex mt-1 border-bottom border-secondary">
@@ -45,7 +45,6 @@
                         <input class="form-control" type="text" name="total" value="{{old('total')}} " readonly />
                     </div>
                 </div>
-
             </div>
         </div>
 

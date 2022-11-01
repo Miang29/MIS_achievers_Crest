@@ -7,16 +7,16 @@ use Illuminate\Http\Request;
 class TransactionController extends Controller
 {
     //TRANSACTION
-	//protected function salesOrder() {
-		//return view('admin.transaction.salesorder.index');
-	//}
-	//protected function createSalesOrder() {
-		//return view('admin.Transaction.salesorder.create');
-	//}
+	protected function productsOrder() {
+		return view('admin.transaction.productsOrder.index');
+	}
+	protected function createproductsOrder() {
+		return view('admin.Transaction.productsOrder.create');
+	}
 
-	//protected function viewSalesOrder() {
-		//return view('admin.transaction.salesorder.view');
-	//}
+	protected function viewproductsOrder() {
+		return view('admin.transaction.productsOrder.view');
+	}
 	
 
 }

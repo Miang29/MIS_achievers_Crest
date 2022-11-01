@@ -9,35 +9,35 @@
 
     <div class="row" id="form-area">
         <div class="col-12">
+
             <div class="card my-3 mx-auto">
                 <h5 class="card-header text-center text-white bg-1"></h5>
 
+                <div class="col-6">
+                    <div class="card-body d-flex mt-1 ">
+                        <div class="form-group mx-auto w-100">
 
-                <div class="card-body d-flex mt-1 ">
-                    <div class="form-group  col-6 mx-auto">
+                            <label class="h6 important" for="petowner">Pet Owner</label>
+                            <input class="form-control" type="text" name="petowner" value="{{old('petowner')}} " />
 
-                        <label class="h6 important" for="petowner">Pet Owner</label>
-                        <input class="form-control" type="text" name="petowner" value="{{old('petowner')}} " />
+                            <label class="h6 important" for="email">Email</label>
+                            <input class="form-control" type="email" name="email" value="{{old('email')}} " />
 
-                        <label class="h6 important" for="email">Email</label>
-                        <input class="form-control" type="email" name="email" value="{{old('email')}} " />
+                            <label class="h6 important" for="petname">Pet Name</label>
+                            <input class="form-control" type="text" name="petname" value="{{old('petname')}} " />
 
-                        <label class="h6 important" for="petname">Pet Name</label>
-                        <input class="form-control" type="text" name="petname" value="{{old('petname')}} " />
+                            <label class="h6 important" for="date">Date</label>
+                            <input class="form-control" type="date" name="date" value="{{old('date')}}" min="{{ Carbon\Carbon::now()->timezone('Asia/Manila')->format('Y-m-d') }}" />
 
-                        <label class="h6 important" for="date">Date</label>
-                        <input class="form-control" type="date" name="date" value="{{old('date')}}" min="{{ Carbon\Carbon::now()->timezone('Asia/Manila')->format('Y-m-d') }}" />
+                            <label class="h6 important" for="time">Time</label>
+                            <input class="form-control" type="time" name="time" value="{{old('time')}} " />
 
-                        <label class="h6 important" for="time">Time</label>
-                        <input class="form-control" type="time" name="time" value="{{old('time')}} " />
-
+                        </div>
                     </div>
                 </div>
-
-              
-
+                
                 <div class="col-12 my-2 d-flex flex-row">
-                    <button class="btn btn-outline-info ml-auto mr-4 w-25"><a href="#"></a>Save</button>
+                    <button class="btn btn-outline-info ml-auto mr-4 w-25"><a href="#"></a>Book</button>
                     <button class="btn btn-outline-danger ml-1 mr-auto w-25"><a href="#"></a>Cancel</button>
                 </div>
             </div>
