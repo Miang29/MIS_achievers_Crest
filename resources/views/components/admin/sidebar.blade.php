@@ -55,12 +55,12 @@
 		{{-- @endif --}}
 
 		<a class="btn text-decoration-none text-1 font-weight-bold aria-link text-left" aria-label="transaction" data-toggle="collapse" href="#collapseItem2" role="button" aria-expanded="false" aria-controls="collapseItem2">
-		<i class="fa-solid fa-money-check-dollar mr-2"></i>Transaction
+			<i class="fa-solid fa-money-check-dollar mr-2"></i>Transaction
 		</a>
 		<div class="collapse " id="collapseItem2">
 			<div class="card card-body">
 				<a class="dropdown-item  font-weight-bold" href="{{route('products-order')}}"><i class="fas fa-money-check-dollar mr-1 "></i>Products Order</a>
-				<a class="dropdown-item font-weight-bold" href=""><i class="fas fa-shield-cat mr-1"></i>Services</a>
+				<a class="dropdown-item font-weight-bold" href=""><i class="fas fa-shield-cat mr-1"></i>Services Transaction</a>
 			</div>
 		</div>
 
@@ -92,9 +92,9 @@
 		@if (\Request::is('admin/users'))
 		<span class="bg-secondary text-white"><i class="fas fa-user-alt mr-2"></i>Users</span>
 		@elseif (\Request::is('admin/users/*'))
-		<a class="text-decoration-none text-white bg-secondary aria-link" href="@{{ route('admin.users.index') }}" aria-hidden="false" aria-label="Users"><i class="fas fa-user-alt mr-2"></i>Users</a>
+		<a class="text-decoration-none text-white bg-secondary aria-link" href="{{route('user-account')}}" aria-hidden="false" aria-label="Users"><i class="fas fa-user-alt mr-2"></i>Users</a>
 		@else
-		<a class="text-decoration-none text-1 font-weight-bold aria-link" href="@{{ route('admin.users.index') }}" aria-hidden="false" aria-label="Users"><i class="fas fa-user-alt mr-2"></i>Users</a>
+		<a class="text-decoration-none text-1 font-weight-bold aria-link" href="{{route('user-account')}}" aria-hidden="false" aria-label="Users"><i class="fas fa-user-alt mr-2"></i>Users</a>
 		@endif
 		{{-- @endif --}}
 
@@ -103,9 +103,9 @@
 		@if (\Request::is('admin/settings'))
 		<span class="bg-secondary text-white"><i class="fas fa-gear mr-2"></i>Settings</span>
 		@elseif (\Request::is('admin/settings/*'))
-		<a class="text-decoration-none text-white bg-secondary aria-link" href="@{{ route('admin.settings.index') }}" aria-hidden="false" aria-label="Settings"><i class="fas fa-gear mr-2"></i>Settings</a>
+		<a class="text-decoration-none text-white bg-secondary aria-link" href="{{ route('settings') }}" aria-hidden="false" aria-label="Settings"><i class="fas fa-gear mr-2"></i>Settings</a>
 		@else
-		<a class="text-decoration-none text-1 font-weight-bold aria-link" href="@{{ route('admin.settings.index') }}" aria-hidden="false" aria-label="Settings"><i class="fas fa-gear mr-2"></i>Settings</a>
+		<a class="text-decoration-none text-1 font-weight-bold aria-link" href="{{ route('settings') }}" aria-hidden="false" aria-label="Settings"><i class="fas fa-gear mr-2"></i>Settings</a>
 		@endif
 		{{-- @endif --}}
 		{{-- @endif --}}
@@ -114,5 +114,20 @@
 		<hr class="w-100 custom-hr">
 
 		<a class="text-decoration-none text-1 font-weight-bold aria-link" href="@{{ route('logout') }}" aria-hidden="false" aria-label="Logout"><i class="fas fa-sign-out-alt mr-2"></i>Sign Out</a>
+
+		<hr class="w-100 custom-hr">
+		<!-- DATE - TIME -->
+		<small class="text-center font-weight-bold text-1">{{ \Carbon\Carbon::now()->timezone('Asia/Manila')->format('F d, Y') }} - <span id="time">{{ \Carbon\Carbon::now()->timezone('Asia/Manila')->format('g:i:s A') }}</span></small>
+
+		<!-- SCRIPT -->
+		<script type="text/javascript">
+			$(document).ready(() => {
+				setInterval(() => {
+					$('#time').text(new Date().toLocaleTimeString());
+				}, 500);
+			});
+		</script>
+
 	</div>
+
 </div>

@@ -23,4 +23,17 @@ class UserController extends Controller
 	protected function authentice(Request $req) {
 		
 	}
+
+	protected function userAccount() {
+		return view('admin.useraccount.index');
+	}
+	protected function createuserAccount() {
+		return view('admin.useraccount.create');
+	}
+	
+	protected function edituserAccount() {
+		return view('admin.useraccount.edit');
+	}
+
+
 }

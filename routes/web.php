@@ -65,7 +65,7 @@ Route::post('/authenticate', 'UserController@authenticate')->name('authenticate'
 	Route::get('/create-category', 'PageController@createCategory')->name('create-category');
 	Route::get('/view-category', 'PageController@viewCategory')->name('view-category');
 
-    //product
+    //INventory product
 	//Route::get('/view-product', 'PageController@viewProduct')->name('view-product');
 	Route::get('/create-product', 'PageController@createProduct')->name('create-product');
 	Route::get('/edit-product', 'PageController@editProduct')->name('edit-product');
@@ -77,3 +77,11 @@ Route::post('/authenticate', 'UserController@authenticate')->name('authenticate'
 	
 	//REPORT
 	Route::get('/report', 'PageController@report')->name('report');
+
+	//SETTINGS
+	Route::get('/settings', 'PageController@settings')->name('settings');
+
+	//USERACCOUNT
+	Route::get('/user-account', 'userController@userAccount')->name('user-account');
+	Route::get('/create-user-account', 'userController@createuserAccount')->name('create-user-account');
+	Route::get('/edit-user-account', 'userController@edituserAccount')->name('edit-user-account');

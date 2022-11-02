@@ -7,67 +7,87 @@ use Illuminate\Http\Request;
 class PageController extends Controller
 {
 	//DASHBOARD
-	protected function dashboard() {
+	protected function dashboard()
+	{
 		return view('admin.dashboard');
 	}
 
 	//RESERVATION
-	 protected function clientProfile() {
+	protected function clientProfile()
+	{
 		return view('admin.clientprofile.index');
 	}
-	protected function createClientprofile() {
+	protected function createClientprofile()
+	{
 		return view('admin.clientprofile.create');
 	}
 
-	protected function editClientprofile() {
+	protected function editClientprofile()
+	{
 		return view('admin.clientprofile.client.edit');
 	}
 
-	protected function viewClientprofile() {
+	protected function viewClientprofile()
+	{
 		return view('admin.clientprofile.client.view');
 	}
 
-	protected function EditPetprofile() {
+	protected function EditPetprofile()
+	{
 		return view('admin.clientprofile.pet.edit');
 	}
 
-	protected function viewPetprofile() {
+	protected function viewPetprofile()
+	{
 		return view('admin.clientprofile.pet.view');
 	}
 
 	//INVENTORY
-	protected function category() {
+	protected function category()
+	{
 		return view('admin.inventory.index');
 	}
-	protected function createCategory() {
+	protected function createCategory()
+	{
 		return view('admin.inventory.create');
 	}
-	protected function viewCategory() {
+	protected function viewCategory()
+	{
 		return view('admin.inventory.view');
 	}
 
 	//Products
-	protected function editProduct() {
+	protected function editProduct()
+	{
 		return view('admin.inventory.product.edit');
 	}
-	protected function createProduct() {
+	protected function createProduct()
+	{
 		return view('admin.inventory.product.create');
 	}
-	
+
 	//APPOINTMENT
-	protected function appointment() {
+	protected function appointment()
+	{
 		return view('admin.appointment.index');
 	}
-	protected function CreateAppointment() {
+	protected function CreateAppointment()
+	{
 		return view('admin.appointment.create');
 	}
-	protected function EditAppointment() {
+	protected function EditAppointment()
+	{
 		return view('admin.appointment.edit');
 	}
-	
+
 	//REPORT
-	protected function report() {
+	protected function report()
+	{
 		return view('admin.report.index');
 	}
-
+	//SETTINGS 
+	protected function settings()
+	{
+		return view('admin.settings.index');
+	}
 }

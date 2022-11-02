@@ -13,11 +13,11 @@
 
         <div class="row">
             <div class="col-12 col-md-6 col-lg my-2 text-center text-md-left text-lg-right">
-                <label class="font-weight-bold mr-3">Filter from</label>
+                <label class="font-weight-bold mr-3 text-1">Filter from</label>
                 <input type="date" />
             </div>
             <div class="col-12 col-md-6 col-lg my-2 text-center text-md-left text-lg-right">
-                <label class="font-weight-bold mr-3">To</label>
+                <label class="font-weight-bold mr-3  text-1">To</label>
                 <input type="date" />
             </div>
         </div>
@@ -35,30 +35,30 @@
     <div class="overflow-x-auto h-100 card mb-3">
         <div class="card-header">
             <div class="row">
-                <button class="btn btn-outline-primary btn-sm ml-3 my-2 "><a href="#"></a>Profile</button>
-                <button class="btn btn-outline-primary btn-sm ml-3 my-2  "><a href="#"></a>Appointment</button>
-                <button class="btn btn-outline-primary btn-sm ml-3 my-2  "><a href="#"></a>Inventory</button>
-                <button class="btn btn-outline-primary btn-sm ml-3 my-2  "><a href="#"></a>Users</button>
+                <button class="btn btn-outline-primary btn-sm ml-3 my-2 "><a href="#"></a><i class="fas fa-duotone fa-address-card mr-2"></i>Profile</button>
+                <button class="btn btn-outline-primary btn-sm ml-3 my-2  "><a href="#"></a><i class="fa-solid fa-calendar mr-2"></i>Appointment</button>
+                <button class="btn btn-outline-primary btn-sm ml-3 my-2  "><a href="#"></a><i class="fa-solid fa-warehouse mr-2"></i>Inventory</button>
+                <button class="btn btn-outline-primary btn-sm ml-3 my-2  "><a href="#"></a><i class="fas fa-user-alt mr-2"></i>Users</button>
 
                 <div class="dropdown">
                     <button class="btn btn-outline-primary my-2 ml-3 btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Transaction
+                    <i class="fa-solid fa-money-check-dollar mr-2"></i> Transaction
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="#">Product Order</a>
-                        <a class="dropdown-item" href="#">Services</a>
+                        <a class="dropdown-item" href="#"><i class="fas fa-money-check-dollar mr-1 "></i>Product Order</a>
+                        <a class="dropdown-item" href="#"><i class="fas fa-shield-cat mr-1"></i>Services Transaction</a>
                     </div>
                 </div>
 
                 <div class="dropdown">
                     <button class="btn btn-outline-primary my-2 ml-3 btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Services
+                    <i class="fas fa-list-check mr-2"></i>  Services
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="#">Consultation</a>
-                        <a class="dropdown-item" href="#">Vaccination</a>
-                        <a class="dropdown-item" href="#">Pet Boarding</a>
-                        <a class="dropdown-item" href="#">Pet Grooming</a>
+                        <a class="dropdown-item" href="#"><i class="fa-solid fa-stethoscope mr-1"></i>Consultation</a>
+                        <a class="dropdown-item" href="#"><i class="fa-solid fa-syringe mr-1"></i>Vaccination</a>
+                        <a class="dropdown-item" href="#"><i class="fa-solid fa-shield-dog mr-1"></i>Pet Boarding</a>
+                        <a class="dropdown-item" href="#"><i class="fa-solid fa-scissors mr-1"></i>Pet Grooming</a>
                     </div>
                 </div>
             </div>
