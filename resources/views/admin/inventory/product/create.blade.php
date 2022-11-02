@@ -4,14 +4,14 @@
 
 @section('content')
 <div class="container-fluid m-0">
-    <h2 class="h5 h2-lg text-center text-lg-left mx-0 mx-lg-5 my-4 "><a href="{{route('category')}}" class="text-decoration-none  text-1"><i class="fas fa-chevron-left mr-2"></i>Category List</a></h2>
+    <h2 class="h5 h2-lg text-center text-lg-left mx-0 mx-lg-5 my-4 "><a href="{{route('view-category')}}" class="text-decoration-none  text-1"><i class="fas fa-chevron-left mr-2"></i>Product List</a></h2>
     <hr class="hr-thick" style="border-color: #707070;">
 
     <div class="row" id="form-area">
         <div class="col-12">
 
             <div class="card my-3 mx-auto">
-                <h5 class="card-header text-center text-white bg-1"> Create Category</h5>
+                <h5 class="card-header text-center text-white bg-1">Add Product</h5>
 
                 <div class="row card-body">
                     <div class="col-6">
@@ -46,7 +46,7 @@
                                     </div>
                                 </div>
                                 <label class="h6 important" for="categoryname">Category Name</label>
-                                <input class="form-control" type="text" name="categoryname" value="{{old('categoryname')}} " /><br>
+                                <input class="form-control" type="text" name="categoryname" value="{{old('categoryname')}} " readonly/><br>
 
                                 <label class="h6 important" for="description">Description</label>
                                 <textarea class="form-control not-resizable" name="description" rows="3"></textarea>

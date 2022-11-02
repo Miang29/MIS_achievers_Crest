@@ -61,14 +61,19 @@ Route::post('/authenticate', 'UserController@authenticate')->name('authenticate'
 
 	
 	// INVENTORY
-	Route::get('/inventory', 'PageController@inventory')->name('inventory');
-	Route::get('/create-inventory', 'PageController@createInventory')->name('create-inventory');
-	Route::get('/view-inventory', 'PageController@viewInventory')->name('view-inventory');
-	Route::get('/edit-inventory', 'PageController@editInventory')->name('edit-inventory');
+	Route::get('/category', 'PageController@category')->name('category');
+	Route::get('/create-category', 'PageController@createCategory')->name('create-category');
+	Route::get('/view-category', 'PageController@viewCategory')->name('view-category');
+
+    //product
+	//Route::get('/view-product', 'PageController@viewProduct')->name('view-product');
+	Route::get('/create-product', 'PageController@createProduct')->name('create-product');
+	Route::get('/edit-product', 'PageController@editProduct')->name('edit-product');
 
 	//APPOINTMENT
 	Route::get('/appointment', 'PageController@appointment')->name('appointment');
 	Route::get('/create-appointment', 'PageController@CreateAppointment')->name('create-appointment');
 	Route::get('/edit-appointment', 'PageController@Edit-Appointment')->name('edit-appointment');
 	
-	
+	//REPORT
+	Route::get('/report', 'PageController@report')->name('report');

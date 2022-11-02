@@ -35,34 +35,23 @@ class PageController extends Controller
 		return view('admin.clientprofile.pet.view');
 	}
 
-	//TRANSACTION
-	protected function transaction() {
-		return view('admin.transaction.index');
-	}
-	protected function createTransaction() {
-		return view('admin.Transaction.create');
-	}
-
-	protected function viewTransaction() {
-		return view('admin.transaction.view');
-	}
-	
-
-	
 	//INVENTORY
-	protected function inventory() {
+	protected function category() {
 		return view('admin.inventory.index');
 	}
-	protected function createInventory() {
+	protected function createCategory() {
 		return view('admin.inventory.create');
 	}
-
-	protected function viewInventory() {
+	protected function viewCategory() {
 		return view('admin.inventory.view');
 	}
 
-	protected function editInventory() {
-		return view('admin.inventory.edit');
+	//Products
+	protected function editProduct() {
+		return view('admin.inventory.product.edit');
+	}
+	protected function createProduct() {
+		return view('admin.inventory.product.create');
 	}
 	
 	//APPOINTMENT
@@ -76,5 +65,9 @@ class PageController extends Controller
 		return view('admin.appointment.edit');
 	}
 	
+	//REPORT
+	protected function report() {
+		return view('admin.report.index');
+	}
 
 }

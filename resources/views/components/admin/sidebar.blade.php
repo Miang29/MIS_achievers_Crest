@@ -69,9 +69,9 @@
 		@if (\Request::is('admin/inventory'))
 		<span class="bg-secondary text-white"><i class="fa-solid fa-warehouse mr-2"></i>Inventory</span>
 		@elseif (\Request::is('admin/inventory/*'))
-		<a class="text-decoration-none text-white bg-secondary aria-link" href="" aria-hidden="false" aria-label="Transaction"><i class="fa-solid fa-warehouse mr-2"></i>Inventory</a>
+		<a class="text-decoration-none text-white bg-secondary aria-link" href="{{route('category')}}" aria-hidden="false" aria-label="Transaction"><i class="fa-solid fa-warehouse mr-2"></i>Inventory</a>
 		@else
-		<a class="text-decoration-none text-1 font-weight-bold aria-link" href="" aria-hidden="false" aria-label="Transaction"><i class="fa-solid fa-warehouse mr-2"></i>Inventory</a>
+		<a class="text-decoration-none text-1 font-weight-bold aria-link" href="{{route('category')}}" aria-hidden="false" aria-label="Transaction"><i class="fa-solid fa-warehouse mr-2"></i>Inventory</a>
 		@endif
 		{{-- @endif --}}
 
@@ -80,9 +80,9 @@
 		@if (\Request::is('admin/reports'))
 		<span class="bg-secondary text-white"><i class="fa-solid fa-chart-simple mr-2"></i>Reports</span>
 		@elseif (\Request::is('admin/reports/*'))
-		<a class="text-decoration-none text-white bg-secondary aria-link" href="" aria-hidden="false" aria-label="Reports"><i class="fa-solid fa-chart-simple mr-2"></i>Reports</a>
+		<a class="text-decoration-none text-white bg-secondary aria-link" href="{{ route('report') }}" aria-hidden="false" aria-label="Reports"><i class="fa-solid fa-chart-simple mr-2"></i>Reports</a>
 		@else
-		<a class="text-decoration-none text-1 font-weight-bold aria-link" href="@{{ route('admin.users.index') }}" aria-hidden="false" aria-label="Reports"><i class="fa-solid fa-chart-simple mr-2"></i>Reports</a>
+		<a class="text-decoration-none text-1 font-weight-bold aria-link" href="{{ route('report') }}" aria-hidden="false" aria-label="Reports"><i class="fa-solid fa-chart-simple mr-2"></i>Reports</a>
 		@endif
 		{{-- @endif --}}
 
