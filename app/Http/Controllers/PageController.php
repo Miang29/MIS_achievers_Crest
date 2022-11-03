@@ -55,8 +55,12 @@ class PageController extends Controller
 	{
 		return view('admin.inventory.view');
 	}
+	protected function editCategory()
+	{
+		return view('admin.inventory.edit');
 
 	//Products
+	}
 	protected function editProduct()
 	{
 		return view('admin.inventory.product.edit');

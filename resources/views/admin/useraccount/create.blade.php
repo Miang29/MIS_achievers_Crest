@@ -15,18 +15,18 @@
                 <div class="row">
                     <div class="col-6 col-lg-6 ">
 
-                        <label class="h7 text-1" for="firstname">First Name<span class="text-danger">*</span></label>
+                        <label class="h7 text-1 important" for="firstname">First Name</label>
                         <input class="form-control" type="text" name="firstname[]" />
 
-                        <label class="h7  text-1" for="middlename">Middle Name<span class="text-danger">*</span></label>
+                        <label class="h7  text-1 important" for="middlename">Middle Name</label>
                         <input class="form-control" type="text" name="middlename[]" />
 
-                        <label class="h7  text-1" for="lastname">Last Name<span class="text-danger">*</span></label>
+                        <label class="h7  text-1 important" for="lastname">Last Name</label>
                         <input class="form-control" type="text" name="lastname[]" />
                     </div>
                     <div class="col-6 col-lg-6">
 
-                        <label class="h7  text-1 " for="suffix">Suffix<span class="text-danger">*</span></label>
+                        <label class="h7  text-1 important " for="suffix">Suffix</label>
                         <input class="form-control " type="text" name="suffix[]" />
 
                         <label class="form-label important" for="password">Password</label>
@@ -38,7 +38,7 @@
 								</button>
 						</div>
 
-                        <label class="h7  text-1" for="usertype">User Type<span class="text-danger">*</span></label>
+                        <label class="h7  text-1 important" for="usertype">User Type<span class="text-danger">*</span></label>
                         <div class="input-group mb-3">
                             <select class="custom-select  text-1" id="inputGroupSelect01">
                                 <option selected name="usertype"></option>
@@ -50,8 +50,8 @@
                 </div>
             </div>
         </div>
-        <div class="card-footer">
-            <div class="col-12 d-flex ">
+        <div class="card-footer d-flex">
+            <div class="col-6 mx-auto text-center ">
                 <button class="btn btn-outline-info mx-auto btn-sm  w-25 "><a href="#"></a>Save</button>
                 <button class="btn btn-outline-danger btn-sm  mr-auto  w-25 "><a href="#"></a>Cancel</button>
             </div>

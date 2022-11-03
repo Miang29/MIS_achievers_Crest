@@ -46,7 +46,7 @@
                                     </div>
                                 </div>
                                 <label class="h6 important" for="categoryname">Category Name</label>
-                                <input class="form-control" type="text" name="categoryname" value="{{old('categoryname')}} " /><br>
+                                <input class="form-control" type="text" name="categoryname" value="{{old('categoryname')}} " readonly/><br>
 
                                 <label class="h6 important" for="description">Description</label>
                                 <textarea class="form-control not-resizable" name="description" rows="3"></textarea>

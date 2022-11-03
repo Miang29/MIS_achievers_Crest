@@ -27,12 +27,13 @@
 
                         <label class="h6" for="temparature">Wt. Temparature<span class="text-danger"></span></label>
                         <input class="form-control" type="text" name="temparature" value="{{old('temparature')}}" readonly/>
+
+                        
+                        <label class="h6" for="findings">Findings<span class="text-danger"></span></label>
+                        <input class="form-control" type="text" name="findings" value="{{old('findings')}}" readonly/>
                     </div>
 
                     <div class="form-group col-6 mx-auto w-50 ">
-
-                        <label class="h6" for="findings">Findings<span class="text-danger"></span></label>
-                        <input class="form-control" type="text" name="findings" value="{{old('findings')}}" readonly/>
 
                         <label class="h6" for="treatment">Treatment<span class="text-danger"></span></label>
                         <input class="form-control" type="text" name="treatment" value="{{old('treatment')}}" readonly/>
@@ -42,6 +43,10 @@
 
                         <label class="h6" for="amount">Amount<span class="text-danger"></span></label>
                         <input class="form-control" type="text" name="amount" value="{{old('amount')}}" readonly />
+
+                        <label class="h6" for="remarks">Remarks<span class="text-danger">*</span></label>
+						<textarea class="form-control  my-1" type="text" name="remarks" value="{{old('remarks')}}" rows="4"  readonly></textarea>
+
                         <button class="btn btn-info font-weight-bold text-white mt-4  w-100"><a href="#"></a>View Clinical History</button>
                     </div>
 

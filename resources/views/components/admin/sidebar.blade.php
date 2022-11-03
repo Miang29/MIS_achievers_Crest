@@ -17,11 +17,11 @@
 		{{-- Client Profile --}}
 		{{-- @if (Auth::user()->isAdmin()) --}}
 		@if (\Request::is('admin/clientprofile'))
-		<span class="bg-secondary text-white"><i class="fas fa-duotone fa-address-card mr-2"></i>Profile</span>
+		<span class="bg-secondary text-white"><i class="fas fa-duotone fa-address-card mr-2"></i>Client Profile</span>
 		@elseif (\Request::is('admin/clientprofile/*'))
-		<a class="text-decoration-none aria-link bg-secondary text-white" href="{{route('client-profile')}}" aria-hidden="false" aria-label="Reservation"><i class="fas fa-duotone fa-address-card mr-2"></i>Profile</a>
+		<a class="text-decoration-none aria-link bg-secondary text-white" href="{{route('client-profile')}}" aria-hidden="false" aria-label="Reservation"><i class="fas fa-duotone fa-address-card mr-2"></i>Client Profile</a>
 		@else
-		<a class="text-decoration-none text-1 font-weight-bold aria-link" href="{{route('client-profile')}}" aria-hidden="false" aria-label="Reservation"><i class="fas fa-duotone fa-address-card mr-2"></i>Profile</a>
+		<a class="text-decoration-none text-1 font-weight-bold aria-link" href="{{route('client-profile')}}" aria-hidden="false" aria-label="Reservation"><i class="fas fa-duotone fa-address-card mr-2"></i>Client Profile</a>
 		@endif
 		{{-- @endif --}}
 
@@ -60,7 +60,7 @@
 		<div class="collapse " id="collapseItem2">
 			<div class="card card-body">
 				<a class="dropdown-item  font-weight-bold" href="{{route('products-order')}}"><i class="fas fa-money-check-dollar mr-1 "></i>Products Order</a>
-				<a class="dropdown-item font-weight-bold" href=""><i class="fas fa-shield-cat mr-1"></i>Services Transaction</a>
+				<a class="dropdown-item font-weight-bold" href="{{route('services')}}"><i class="fas fa-shield-cat mr-1"></i>Services Transaction</a>
 			</div>
 		</div>
 
@@ -117,7 +117,7 @@
 
 		<hr class="w-100 custom-hr">
 		<!-- DATE - TIME -->
-		<small class="text-center font-weight-bold text-1">{{ \Carbon\Carbon::now()->timezone('Asia/Manila')->format('F d, Y') }} - <span id="time">{{ \Carbon\Carbon::now()->timezone('Asia/Manila')->format('g:i:s A') }}</span></small>
+		<small class="text-center font-weight-bold text-1">{{ \Carbon\Carbon::now()->timezone('Asia/Manila')->format('M d, Y') }} - <span id="time">{{ \Carbon\Carbon::now()->timezone('Asia/Manila')->format('g:i:s A') }}</span></small>
 
 		<!-- SCRIPT -->
 		<script type="text/javascript">

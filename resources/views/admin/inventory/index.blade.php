@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'appointment')
+@section('title', 'inventory')
 
 @section('content')
 
@@ -48,7 +48,7 @@
                             </button>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown">
                             <a href="{{route('view-category')}}" class="dropdown-item"><i class="fa-solid fa-eye mr-2"></i>View Category</a>
-                            <a href="" class="dropdown-item"><i class="fa-regular fa-pen-to-square mr-2"></i>Edit Category</a>
+                            <a href="{{route('edit-category')}}" class="dropdown-item"><i class="fa-regular fa-pen-to-square mr-2"></i>Edit Category</a>
                             <a href="" class="dropdown-item"><i class="fa-solid fa-trash mr-2"></i>Delete</a>
                             </div>
                     </td>

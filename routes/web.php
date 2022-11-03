@@ -59,11 +59,17 @@ Route::post('/authenticate', 'UserController@authenticate')->name('authenticate'
 	Route::get('/create-products-order', 'transactionController@createproductsOrder')->name('create-products-order');
 	Route::get('/view-products-order', 'transactionController@viewproductsOrder')->name('view-products-order');
 
+	Route::get('/services', 'transactionController@services')->name('services');
+	Route::get('/create-services', 'transactionController@createServices')->name('create-services');
+	Route::get('/view-services', 'transactionController@viewServices')->name('view-services');
+
 	
 	// INVENTORY
 	Route::get('/category', 'PageController@category')->name('category');
 	Route::get('/create-category', 'PageController@createCategory')->name('create-category');
 	Route::get('/view-category', 'PageController@viewCategory')->name('view-category');
+	Route::get('/edit-category', 'PageController@editCategory')->name('edit-category');
+
 
     //INventory product
 	//Route::get('/view-product', 'PageController@viewProduct')->name('view-product');

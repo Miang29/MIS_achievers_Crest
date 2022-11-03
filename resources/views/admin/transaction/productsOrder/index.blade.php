@@ -29,9 +29,7 @@
         <table class="table table-striped ">
             <thead>
                 <tr>
-                    <th scope="col" class="hr-thick text-1">Item No</th>
-                    <th scope="col" class="hr-thick text-1">Item Name</th>
-                    <th scope="col" class="hr-thick text-1">Quantity</th>
+                    <th scope="col" class="hr-thick text-1">Reference No</th>
                     <th scope="col" class="hr-thick text-1">Price</th>
                     <th>
                 </tr>
