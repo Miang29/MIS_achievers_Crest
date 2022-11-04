@@ -29,12 +29,16 @@
 
 	@yield('meta')
 
+	{{-- JQUERY / SWAL2 / FONTAWESOME 6  SUMMERNOTE --}}
+	<link rel="stylesheet" href="{{ asset('css/app.css') }}">
+	<script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
+
 	{{-- jQuery 3.6.0 --}}
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+	<!-- <script src="{{ asset('js/lib/jquery-3.6.1.min.js') }}"></script> -->
 
 	{{-- jQuery UI 1.12.1 --}}
-	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> -->
+	<!-- <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> -->
 
 	{{-- Removes the code that shows up when script is disabled/not allowed/blocked --}}
 	<script type="text/javascript" id="for-js-disabled-js">
@@ -47,27 +51,27 @@
 	</script>
 
 	{{-- popper.js 1.16.0 --}}
-	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+	<!-- <script src="{{ asset('lib/popperjs/popperjs/core/dist/umd/popper.min.js')}}"></script> -->
 
 	{{-- Bootstrap 4.4 --}}
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+	<!-- <link rel="stylesheet" href="{{ asset('lib/bootstrap-4.4.1/bootstrap-4.4.1-dist/css/bootstrap.min.css') }}"> -->
+	<!-- <script src="{{ asset('lib/bootstrap-4.4.1/bootstrap-4.4.1-dist/js/bootstrap.min.js') }}"></script> -->
 
 	{{-- Sweet Alert 2 --}}
-	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+	<!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script> -->
 
 	{{-- Chart.js 3.1.1 --}}
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.1.1/chart.min.js" integrity="sha512-BqNYFBAzGfZDnIWSAEGZSD/QFKeVxms2dIBPfw11gZubWwKUjEgmFUtUls8vZ6xTRZN/jaXGHD/ZaxD9+fDo0A==" crossorigin="anonymous"></script>
 
 	{{-- Fontawesome --}}
-	<script src="https://kit.fontawesome.com/d4492f0e4d.js" crossorigin="anonymous"></script>
+	<!-- <script src="{{ asset('js/lib/fontawesome.js')}}" ></script> -->
 
 	{{-- Input Mask 5.0.5 --}}
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.5/jquery.inputmask.min.js"></script>
 
 	{{-- Bootstrap Select 1.13.18 --}}
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.18/dist/css/bootstrap-select.min.css">
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.18/dist/js/bootstrap-select.min.js"></script>
+	<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.18/dist/css/bootstrap-select.min.css"> -->
+	<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.18/dist/js/bootstrap-select.min.js"></script> -->
 
 	{{-- CSS --}}
 	<link href="{{ asset('css/style.css') }}" rel="stylesheet">

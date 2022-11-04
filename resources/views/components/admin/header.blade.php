@@ -11,7 +11,6 @@
 			{{-- Navbar contents --}}
 			<div class="navbar-collapse" id="navbar">
 				<div class="ml-auto">
-					<img src="@{{ Auth::user()->getAvatar() }}" class="circular-border" width='30' height='30' draggable='false' alt="User" data-fallback-img="@{{ Auth::user()->getAvatar(true) }}"/>
 					<label>
 						<div class="dropdown">
 							<a href='#' role="button" class="nav-link dropdown-toggle text-dark dynamic-size-lg-h6" style="font-size: 1.25rem;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

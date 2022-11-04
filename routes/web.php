@@ -91,3 +91,6 @@ Route::post('/authenticate', 'UserController@authenticate')->name('authenticate'
 	Route::get('/user-account', 'userController@userAccount')->name('user-account');
 	Route::get('/create-user-account', 'userController@createuserAccount')->name('create-user-account');
 	Route::get('/edit-user-account', 'userController@edituserAccount')->name('edit-user-account');
+
+	//CLIENTPANEL
+	Route::get('/user', 'PageController@user')->name('user');

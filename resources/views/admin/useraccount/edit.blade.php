@@ -31,7 +31,7 @@
 
                         <label class="form-label important" for="password">Password</label>
                         <div class="input-group floating-label-group">
-                            <input class="form-control border-secondary  floating-label-input" type="password" name="password" id="password" aria-label="Password" aria-describedby="toggle-show-password" placeholder=" "  />
+                            <input class="form-control  floating-label-input" type="password" name="password" id="password" aria-label="Password" aria-describedby="toggle-show-password" placeholder=" "  />
                             <button type="button" class="btn floating-eye-pass border-dark " id="toggle-show-password" aria-label="Show Password" data-target="#password">
                                 <i class="fas fa-eye d-none" id="show"></i>
                                 <i class="fas fa-eye-slash" id="hide"></i>
@@ -40,7 +40,7 @@
 
                         <label class="form-label important" for="password">Confirm Password</label>
                         <div class="input-group floating-label-group">
-                            <input class="form-control border-secondary  floating-label-input" type="password" name="password" id="password" aria-label="Password" aria-describedby="toggle-show-password" placeholder=" "  />
+                            <input class="form-control  floating-label-input" type="password" name="password" id="password" aria-label="Password" aria-describedby="toggle-show-password" placeholder=" "  />
                             <button type="button" class="btn floating-eye-pass border-dark " id="toggle-show-password" aria-label="Show Password" data-target="#password">
                                 <i class="fas fa-eye d-none" id="show"></i>
                                 <i class="fas fa-eye-slash" id="hide"></i>

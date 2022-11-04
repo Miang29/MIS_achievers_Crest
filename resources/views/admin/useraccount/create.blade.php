@@ -12,8 +12,8 @@
 
         <div class="card-body">
             <div class="form-group ">
-                <div class="row">
-                    <div class="col-6 col-lg-6 ">
+                <div class="row my-2">
+                    <div class=" col-12 col-md-9 col-lg-6 ">
 
                         <label class="h7 text-1 important" for="firstname">First Name</label>
                         <input class="form-control" type="text" name="firstname[]" />
@@ -24,14 +24,14 @@
                         <label class="h7  text-1 important" for="lastname">Last Name</label>
                         <input class="form-control" type="text" name="lastname[]" />
                     </div>
-                    <div class="col-6 col-lg-6">
+                    <div class="col-12 col-md-9 col-lg-6">
 
                         <label class="h7  text-1 important " for="suffix">Suffix</label>
                         <input class="form-control " type="text" name="suffix[]" />
 
                         <label class="form-label important" for="password">Password</label>
 							<div class="input-group floating-label-group">
-								<input class="form-control border-secondary  floating-label-input" type="password" name="password" id="password" aria-label="Password" aria-describedby="toggle-show-password" placeholder=" " readonly/>
+								<input class="form-control   floating-label-input" type="password" name="password" id="password" aria-label="Password" aria-describedby="toggle-show-password" placeholder=" " readonly/>
 								<button type="button" class="btn floating-eye-pass border-dark " id="toggle-show-password" aria-label="Show Password" data-target="#password">
 									<i class="fas fa-eye d-none" id="show"></i>
 									<i class="fas fa-eye-slash" id="hide"></i>
@@ -51,7 +51,7 @@
             </div>
         </div>
         <div class="card-footer d-flex">
-            <div class="col-6 mx-auto text-center ">
+            <div class="col-12 col-lg-6 mx-auto text-center ">
                 <button class="btn btn-outline-info mx-auto btn-sm  w-25 "><a href="#"></a>Save</button>
                 <button class="btn btn-outline-danger btn-sm  mr-auto  w-25 "><a href="#"></a>Cancel</button>
             </div>

@@ -6,4 +6,14 @@
 @import "variables";
 
 // Bootstrap
-@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+@import "node_modules/bootstrap/dist/css/bootstrap.min";
+@import "node_modules/bootstrap-select/dist/css/bootstrap-select.min";
+
+//Sweetallert 2
+@import "node_modules/sweetalert2/dist/sweetalert2.min";
+
+//Fontawesome 6
+// @import "node_modules/@fontawesome/fontawesome-free/css/svg-with-js.min";
+
+//Summernote
+@import "node_modules/summernote/dist/summernote-bs4.min";

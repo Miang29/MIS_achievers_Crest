@@ -1,20 +1,26 @@
+try{
+    //jQuery
+    window.$ = window.jQuery = require('jquery');
 
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
- */
+    //popper.js
+    window.Popper = require('@popperjs/core');
 
-require('./bootstrap');
+    //Bootstrap
+    require('bootstrap/dist/js/bootstrap.min.js');
+    require('bootstrap-select/dist/js/bootstrap-select.min.js');
 
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
+    //Sweetalert 2
+    window.Swal = require('sweetalert2/dist/sweetalert2.all.min');
 
-Vue.component('example', require('./components/Example.vue'));
+    //Fontawesome
+    require('@fortawesome/fontawesome-free/js/solid.min.js');
+    require('@fortawesome/fontawesome-free/js/regular.min.js');
+    require('@fortawesome/fontawesome-free/js/brands.min.js');
+    require('@fortawesome/fontawesome-free/js/fontawesome.min.js');
 
-const app = new Vue({
-    el: '#app'
-});
+    //Summernote
+    require('summernote/dist/summernote-bs4.min.js');
+
+} catch(e){
+    console.error(e)
+}

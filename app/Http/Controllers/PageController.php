@@ -94,4 +94,12 @@ class PageController extends Controller
 	{
 		return view('admin.settings.index');
 	}
+
+	//CLIENTPANEL
+
+	protected function user()
+	{
+		return view('user.components.header');
+	}
+
 }

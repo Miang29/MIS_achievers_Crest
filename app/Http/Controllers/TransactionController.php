@@ -23,7 +23,7 @@ class TransactionController extends Controller
 	}
 	protected function createServices() {
 		return view('admin.Transaction.services-transaction.create');
-	}
+	}  
 
 	protected function viewServices() {
 		return view('admin.transaction.services-transaction.view');

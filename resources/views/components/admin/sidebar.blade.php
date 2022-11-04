@@ -17,11 +17,11 @@
 		{{-- Client Profile --}}
 		{{-- @if (Auth::user()->isAdmin()) --}}
 		@if (\Request::is('admin/clientprofile'))
-		<span class="bg-secondary text-white"><i class="fas fa-duotone fa-address-card mr-2"></i>Client Profile</span>
+		<span class="bg-secondary text-white"><i class="fas fa-address-card mr-2"></i>Client Profile</span>
 		@elseif (\Request::is('admin/clientprofile/*'))
-		<a class="text-decoration-none aria-link bg-secondary text-white" href="{{route('client-profile')}}" aria-hidden="false" aria-label="Reservation"><i class="fas fa-duotone fa-address-card mr-2"></i>Client Profile</a>
+		<a class="text-decoration-none aria-link bg-secondary text-white" href="{{route('client-profile')}}" aria-hidden="false" aria-label="Reservation"><i class="fas fa-address-card mr-2"></i>Client Profile</a>
 		@else
-		<a class="text-decoration-none text-1 font-weight-bold aria-link" href="{{route('client-profile')}}" aria-hidden="false" aria-label="Reservation"><i class="fas fa-duotone fa-address-card mr-2"></i>Client Profile</a>
+		<a class="text-decoration-none text-1 font-weight-bold aria-link" href="{{route('client-profile')}}" aria-hidden="false" aria-label="Reservation"><i class="fas fa-address-card mr-2"></i>Client Profile</a>
 		@endif
 		{{-- @endif --}}
 
@@ -63,6 +63,8 @@
 				<a class="dropdown-item font-weight-bold" href="{{route('services')}}"><i class="fas fa-shield-cat mr-1"></i>Services Transaction</a>
 			</div>
 		</div>
+
+		<hr class="w-100 custom-hr">
 
 		{{-- Inventory --}}
 		{{-- @if (Auth::user()->isAdmin()) --}}
