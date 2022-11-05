@@ -70,6 +70,11 @@ class PageController extends Controller
 		return view('admin.inventory.product.create');
 	}
 
+	protected function viewProduct()
+	{
+		return view('admin.inventory.product.view');
+	}
+
 	//APPOINTMENT
 	protected function appointment()
 	{

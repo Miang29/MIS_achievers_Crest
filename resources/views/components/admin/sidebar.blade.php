@@ -37,34 +37,18 @@
 		{{-- @endif --}}
 
 
-		{{-- Services --}}
-
-		<a class="btn text-decoration-none text-1 font-weight-bold aria-link text-left" aria-label="Services" data-toggle="collapse" href="#collapseItem" role="button" aria-expanded="false" aria-controls="collapseItem">
-			<i class="fas fa-list-check mr-2"></i>Services
-		</a>
-
-		<div class="collapse " id="collapseItem">
-			<div class="card card-body">
-				<a class="dropdown-item  font-weight-bold" href="{{route('consultation')}}"><i class="fa-solid fa-stethoscope mr-1"></i>Consultation</a>
-				<a class="dropdown-item font-weight-bold" href="{{route('vaccination')}}"><i class="fa-solid fa-syringe mr-1"></i>Vaccination</a>
-				<a class="dropdown-item font-weight-bold" href="{{route('boarding')}}"><i class="fa-solid fa-shield-dog mr-1"></i>Pet Boarding</a>
-				<a class="dropdown-item font-weight-bold" href="{{route('grooming')}}"><i class="fa-solid fa-scissors mr-1"></i>Pet Grooming</a>
-			</div>
-		</div>
-
-		{{-- @endif --}}
-
+		{{-- Transaction --}}
 		<a class="btn text-decoration-none text-1 font-weight-bold aria-link text-left" aria-label="transaction" data-toggle="collapse" href="#collapseItem2" role="button" aria-expanded="false" aria-controls="collapseItem2">
 			<i class="fa-solid fa-money-check-dollar mr-2"></i>Transaction
 		</a>
 		<div class="collapse " id="collapseItem2">
 			<div class="card card-body">
-				<a class="dropdown-item  font-weight-bold" href="{{route('products-order')}}"><i class="fas fa-money-check-dollar mr-1 "></i>Products Order</a>
-				<a class="dropdown-item font-weight-bold" href="{{route('services')}}"><i class="fas fa-shield-cat mr-1"></i>Services Transaction</a>
+				<a class="dropdown-item  " href="{{route('products-order')}}"><i class="fas fa-money-check-dollar mr-1 "></i>Products Order</a>
+				<a class="dropdown-item  font-weight-bold" href="{{route('services')}}"><i class="fas fa-shield-cat mr-1"></i>Services Transaction</a>
 			</div>
 		</div>
+		{{-- @endif --}}
 
-		<hr class="w-100 custom-hr">
 
 		{{-- Inventory --}}
 		{{-- @if (Auth::user()->isAdmin()) --}}
@@ -76,6 +60,8 @@
 		<a class="text-decoration-none text-1 font-weight-bold aria-link" href="{{route('category')}}" aria-hidden="false" aria-label="Transaction"><i class="fa-solid fa-warehouse mr-2"></i>Inventory</a>
 		@endif
 		{{-- @endif --}}
+	
+		<hr class="w-100 custom-hr">
 
 		{{-- Reports --}}
 		{{-- @if (Auth::user()->isAdmin()) --}}

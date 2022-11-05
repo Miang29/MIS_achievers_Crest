@@ -26,34 +26,6 @@ Route::post('/authenticate', 'UserController@authenticate')->name('authenticate'
 	Route::get('/edit-pet', 'PageController@editPetprofile')->name('edit-pet');
 	Route::get('/view-pet', 'PageController@viewPetprofile')->name('view-pet');
 
-
-	//---------------------SERVICES--------------------------//
-
-	//Consultation
-	Route::get('/consultation', 'ServicesController@consultation')->name('consultation');
-	Route::get('/create-consultation', 'ServicesController@createConsultation')->name('create-consultation');
-	Route::get('/view-consultation', 'ServicesController@viewConsultation')->name('view-consultation');
-	Route::get('/edit-consultation', 'ServicesController@editConsultation')->name('edit-consultation');
-
-	//VACCINATION
-	Route::get('/vaccination', 'ServicesController@vaccination')->name('vaccination');
-	Route::get('/create-vaccination', 'ServicesController@createVaccination')->name('create-vaccination');
-	Route::get('/edit-vaccination', 'ServicesController@editVaccination')->name('edit-vaccination');
-	Route::get('/view-vaccination', 'ServicesController@viewVaccination')->name('view-vaccination');
-
-	//PETBOARDING
-	Route::get('/boarding', 'ServicesController@boarding')->name('boarding');
-	Route::get('/create-boarding', 'ServicesController@createBoarding')->name('create-boarding');
-	Route::get('/edit-boarding', 'ServicesController@editBoarding')->name('edit-boarding');
-	Route::get('/view-boarding', 'ServicesController@viewBoarding')->name('view-boarding');
-
-	//PETGROOMING
-	Route::get('/grooming', 'ServicesController@grooming')->name('grooming');
-	Route::get('/create-grooming', 'ServicesController@createGrooming')->name('create-grooming');
-	Route::get('/edit-grooming', 'ServicesController@editGrooming')->name('edit-grooming');
-	Route::get('/view-grooming', 'ServicesController@viewGrooming')->name('view-grooming');
-
-
 	// TRANSACTION
 	Route::get('/products-order', 'transactionController@productsOrder')->name('products-order');
 	Route::get('/create-products-order', 'transactionController@createproductsOrder')->name('create-products-order');
@@ -69,10 +41,9 @@ Route::post('/authenticate', 'UserController@authenticate')->name('authenticate'
 	Route::get('/create-category', 'PageController@createCategory')->name('create-category');
 	Route::get('/view-category', 'PageController@viewCategory')->name('view-category');
 	Route::get('/edit-category', 'PageController@editCategory')->name('edit-category');
-
-
-    //INventory product
-	//Route::get('/view-product', 'PageController@viewProduct')->name('view-product');
+	
+    //Inventory product
+	Route::get('/view-product', 'PageController@viewProduct')->name('view-product');
 	Route::get('/create-product', 'PageController@createProduct')->name('create-product');
 	Route::get('/edit-product', 'PageController@editProduct')->name('edit-product');
 
