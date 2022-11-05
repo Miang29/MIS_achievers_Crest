@@ -79,7 +79,8 @@ Route::post('/authenticate', 'UserController@authenticate')->name('authenticate'
 	//APPOINTMENT
 	Route::get('/appointment', 'PageController@appointment')->name('appointment');
 	Route::get('/create-appointment', 'PageController@CreateAppointment')->name('create-appointment');
-	Route::get('/edit-appointment', 'PageController@Edit-Appointment')->name('edit-appointment');
+	Route::get('/edit-appointment', 'PageController@editAppointment')->name('edit-appointment');
+	Route::get('/view-appointment', 'PageController@viewAppointment')->name('view-appointment');
 	
 	//REPORT
 	Route::get('/report', 'PageController@report')->name('report');

@@ -19,6 +19,6 @@ class UsersTableSeeder extends Seeder
                 'email' =>'maleonora.mendenilla@gmail.com',
                 'password' => Hash::make('allinednem29')
             
-            ]);
+            ]); 
     }
 }

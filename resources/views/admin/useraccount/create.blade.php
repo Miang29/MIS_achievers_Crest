@@ -13,7 +13,7 @@
         <div class="card-body">
             <div class="form-group ">
                 <div class="row my-2">
-                    <div class=" col-12 col-md-9 col-lg-6 ">
+                    <div class=" col col-12 col-md-9 col-lg-6 ">
 
                         <label class="h7 text-1 important" for="firstname">First Name</label>
                         <input class="form-control" type="text" name="firstname[]" />
@@ -24,7 +24,7 @@
                         <label class="h7  text-1 important" for="lastname">Last Name</label>
                         <input class="form-control" type="text" name="lastname[]" />
                     </div>
-                    <div class="col-12 col-md-9 col-lg-6">
+                    <div class="col col-12 col-md-9 col-lg-6">
 
                         <label class="h7  text-1 important " for="suffix">Suffix</label>
                         <input class="form-control " type="text" name="suffix[]" />

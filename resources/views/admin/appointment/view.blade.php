@@ -18,19 +18,19 @@
                         <div class="form-group mx-auto w-100">
 
                             <label class="h6 important" for="petowner">Pet Owner</label>
-                            <input class="form-control" type="text" name="petowner" value="{{old('petowner')}} " />
+                            <input class="form-control" type="text" name="petowner" value="{{old('petowner')}} "readonly/>
 
                             <label class="h6 important" for="email">Email</label>
-                            <input class="form-control" type="email" name="email" value="{{old('email')}} " />
+                            <input class="form-control" type="email" name="email" value="{{old('email')}} "readonly/>
 
                             <label class="h6 important" for="petname">Pet Name</label>
-                            <input class="form-control" type="text" name="petname" value="{{old('petname')}} " />
+                            <input class="form-control" type="text" name="petname" value="{{old('petname')}} " readonly/>
 
                             <label class="h6 important" for="date">Date</label>
-                            <input class="form-control" type="date" name="date" value="{{old('date')}}" min="{{ Carbon\Carbon::now()->timezone('Asia/Manila')->format('Y-m-d') }}" />
+                            <input class="form-control" type="date" name="date" value="{{old('date')}}" min="{{ Carbon\Carbon::now()->timezone('Asia/Manila')->format('Y-m-d') }}" readonly/>
 
                             <label class="h6 important" for="time">Time</label>
-                            <input class="form-control" type="time" name="time" value="{{old('time')}} " />
+                            <input class="form-control" type="time" name="time" value="{{old('time')}} " readonly/>
 
                         </div>
                     </div>

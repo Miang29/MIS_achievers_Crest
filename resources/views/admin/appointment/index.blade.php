@@ -43,10 +43,16 @@
                     <td></td>
                       
                     <td>
-                    <div class="col-12 my-1 d-flex flex-row">
-                    <button class="btn btn-outline-info btn-sm ml-auto  w-25"><a href="#"></a>Edit</button>
-                    <button class="btn btn-outline-danger btn-sm ml-1  w-25"><a href="#"></a>Delete</button>
-                </div>
+                    <div class="dropdown">
+                            <button class="btn btn-info bg-1 btn-sm dropdown-toggle mark-affected" type="button" data-toggle="dropdown" id="dropdown" aria-haspopup="true" aria-expanded="false" data-id="$a->id">
+                                Action
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown">
+                            <a href="{{route ('view-appointment')}}" class="dropdown-item"><i class="fa-solid fa-eye mr-2"></i>View Appointment</a>
+                            <a href="{{route ('edit-appointment')}}" class="dropdown-item"><i class="fa-solid fa-pen-to-square mr-2"></i>Edit Appointment</a>
+                            <a href="" class="dropdown-item"><i class="fa-solid fa-trash mr-2"></i>Delete</a>
+                            </div>
+                        </div>
                     </td>
                 </tr>
             </tbody>

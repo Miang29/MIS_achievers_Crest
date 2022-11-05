@@ -9,10 +9,10 @@
 
 	<form class="form">
 		<div class="row" id="form-area">
-			<div class="col-12">
-				<div class="card my-3 mx-auto">
+			<div class="col-12 ">
+				<div class="card my-3 mx-auto  ">
 					<h5 class="card-header text-center bg-1 text-white">Client Profile</h5>
-					<div class="card-body d-flex">
+					<div class="card-body d-flex ">
 						<div class="form-group mx-auto w-50">
 							<label class="h6 font-weight-bold text-1" for="petowner">Pet Owner<span class="text-danger">*</span></label>
 							<input class="form-control " type="text" name="petowner" value="{{old('petowner')}}" />
@@ -108,7 +108,7 @@
 			</div>
 			{{-- PET REGISTRATION FORM END --}}
 			
-			<div class="col-6 my-2 mx-auto">
+			<div class="col-6 my-2 mx-auto ">
 				<button class="card mx-auto w-100 h-100 d-flex" type="button" style="border-style: dashed; border-width: .25rem;" onclick="addForm(this, '#form-area');">
 					<span class="m-auto"><i class="fa-solid fa-circle-plus mr-2">Add Pet</i></span>
 				</button>
@@ -116,7 +116,7 @@
 
 		</div>
 		
-		<div class="row">
+		<div class="row card-footer">
 			<div class="col-12 my-3 d-flex flex-row">
 				<button class="btn btn-outline-info ml-auto mr-1 w-25"><a href="#"></a>Save</button>
 				<button class="btn btn-outline-danger ml-1 mr-auto w-25"><a href="#"></a>Cancel</button>

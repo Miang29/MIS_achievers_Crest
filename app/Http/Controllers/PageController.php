@@ -84,6 +84,12 @@ class PageController extends Controller
 		return view('admin.appointment.edit');
 	}
 
+	protected function viewAppointment()
+	{
+		return view('admin.appointment.view');
+	}
+
+
 	//REPORT
 	protected function report()
 	{

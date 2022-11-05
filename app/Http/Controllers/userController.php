@@ -20,9 +20,21 @@ class UserController extends Controller
 		return view('login');
 	}
 
-	protected function authentice(Request $req) {
-		
-	}
+	function authenticate(Request $req)
+    {
+        $authenticated = Auth::attempt([
+            'username' => $req->username,
+            'password' => $req->password
+        ]);
+
+        if ($authenticated) {
+            return redirect()->intended('/');
+        } else {
+            auth()->logout();
+            return redirect()->back()->with('flash_error', 'Wrong username/password')->withInput($req->all());
+        }
+    }
+
 
 	protected function userAccount() {
 		return view('admin.useraccount.index');
