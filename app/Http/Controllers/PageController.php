@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 class PageController extends Controller
 {
 	//DASHBOARD
+	protected function redirectDashboard() {
+		return redirect()->route('dashboard');
+	}
+
 	protected function dashboard()
 	{
 		return view('admin.dashboard');
@@ -69,26 +73,6 @@ class PageController extends Controller
 	{
 		return view('admin.inventory.product.create');
 	}
-
-	//APPOINTMENT
-	protected function appointment()
-	{
-		return view('admin.appointment.index');
-	}
-	protected function CreateAppointment()
-	{
-		return view('admin.appointment.create');
-	}
-	protected function EditAppointment()
-	{
-		return view('admin.appointment.edit');
-	}
-
-	protected function viewAppointment()
-	{
-		return view('admin.appointment.view');
-	}
-
 
 	//REPORT
 	protected function report()

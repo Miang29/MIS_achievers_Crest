@@ -11,10 +11,18 @@
 |
 */
 
+Route::get('/', function() {
+	return redirect()->route('login');
+})->name('home');
+
 Route::get('/login', 'UserController@login')->name('login');
 Route::post('/authenticate', 'UserController@authenticate')->name('authenticate');
+Route::get('/dashboard', 'PageController@redirectDashboard')->name('dashboard.redirect');
 
-// Route::group('middleware' => ['auth'], function() {
+Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function() {
+	// LOGOUT
+	Route::get('/logout', 'UserController@logout')->name('logout');
+
 	// DASHBOARD
 	Route::get('/dashboard', 'PageController@dashboard')->name('dashboard');
 
@@ -71,16 +79,25 @@ Route::post('/authenticate', 'UserController@authenticate')->name('authenticate'
 	Route::get('/edit-category', 'PageController@editCategory')->name('edit-category');
 
 
-    //INventory product
+    //Inventory product
 	//Route::get('/view-product', 'PageController@viewProduct')->name('view-product');
 	Route::get('/create-product', 'PageController@createProduct')->name('create-product');
 	Route::get('/edit-product', 'PageController@editProduct')->name('edit-product');
 
 	//APPOINTMENT
-	Route::get('/appointment', 'PageController@appointment')->name('appointment');
-	Route::get('/create-appointment', 'PageController@CreateAppointment')->name('create-appointment');
-	Route::get('/edit-appointment', 'PageController@editAppointment')->name('edit-appointment');
-	Route::get('/view-appointment', 'PageController@viewAppointment')->name('view-appointment');
+	Route::group(['prefix' => 'appointments'], function() {
+		// Index
+		Route::get('/', 'AppointmentController@index')->name('appointments.index');
+		
+		// Create
+		Route::get('/create', 'AppointmentController@create')->name('appointments.create');
+		
+		// Edit
+		Route::get('/{id}/edit', 'AppointmentController@edit')->name('appointments.edit');
+		
+		// Show
+		Route::get('/{id}', 'AppointmentController@show')->name('appointments.show');
+	});
 	
 	//REPORT
 	Route::get('/report', 'PageController@report')->name('report');
@@ -89,9 +106,10 @@ Route::post('/authenticate', 'UserController@authenticate')->name('authenticate'
 	Route::get('/settings', 'PageController@settings')->name('settings');
 
 	//USERACCOUNT
-	Route::get('/user-account', 'userController@userAccount')->name('user-account');
-	Route::get('/create-user-account', 'userController@createuserAccount')->name('create-user-account');
-	Route::get('/edit-user-account', 'userController@edituserAccount')->name('edit-user-account');
+	Route::get('/user-account', 'UserController@userAccount')->name('user-account');
+	Route::get('/create-user-account', 'UserController@createuserAccount')->name('create-user-account');
+	Route::get('/edit-user-account', 'UserController@edituserAccount')->name('edit-user-account');
 
 	//CLIENTPANEL
 	Route::get('/user', 'PageController@user')->name('user');
+});
