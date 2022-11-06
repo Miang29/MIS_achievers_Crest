@@ -23,6 +23,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function() {
 	// LOGOUT
 	Route::get('/logout', 'UserController@logout')->name('logout');
 
+
 	// DASHBOARD
 	Route::get('/dashboard', 'PageController@dashboard')->name('dashboard');
 
@@ -69,8 +70,17 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function() {
 		Route::get('/{id}', 'AppointmentController@show')->name('appointments.show');
 	});
 	
+	//SERVICES
+	Route::get('/', 'ServicesController@Services')->name('services.index');
+	Route::get('/create', 'ServicesController@create')->name('services.create');
+	Route::get('/edit', 'ServicesController@edit')->name('services.edit');
+	Route::get('/show', 'ServicesController@show')->name('services.show');
+
+
+
+
 	//REPORT
-	Route::get('/report', ' ReportController@report')->name('report');
+	Route::get('/report', 'ReportController@report')->name('report');
 
 	//SETTINGS
 	Route::get('/settings', 'SettingsController@settings')->name('settings');
