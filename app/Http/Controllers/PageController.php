@@ -10,85 +10,29 @@ class PageController extends Controller
 	protected function redirectDashboard() {
 		return redirect()->route('dashboard');
 	}
-
-	protected function dashboard()
-	{
+	protected function dashboard() {
 		return view('admin.dashboard');
 	}
 
-	//RESERVATION
-	protected function clientProfile()
-	{
-		return view('admin.clientprofile.index');
+	//APPOINTMENT
+	protected function appointment() {
+		return view('admin.appointment.index');
+	
 	}
-	protected function createClientprofile()
-	{
-		return view('admin.clientprofile.create');
+	protected function CreateAppointment() {
+		return view('admin.appointment.create');
+	
 	}
-
-	protected function editClientprofile()
-	{
-		return view('admin.clientprofile.client.edit');
+	protected function EditAppointment() {
+		return view('admin.appointment.edit');
+	
 	}
-
-	protected function viewClientprofile()
-	{
-		return view('admin.clientprofile.client.view');
-	}
-
-	protected function EditPetprofile()
-	{
-		return view('admin.clientprofile.pet.edit');
-	}
-
-	protected function viewPetprofile()
-	{
-		return view('admin.clientprofile.pet.view');
-	}
-
-	//INVENTORY
-	protected function category()
-	{
-		return view('admin.inventory.index');
-	}
-	protected function createCategory()
-	{
-		return view('admin.inventory.create');
-	}
-	protected function viewCategory()
-	{
-		return view('admin.inventory.view');
-	}
-	protected function editCategory()
-	{
-		return view('admin.inventory.edit');
-
-	//Products
-	}
-	protected function editProduct()
-	{
-		return view('admin.inventory.product.edit');
-	}
-	protected function createProduct()
-	{
-		return view('admin.inventory.product.create');
-	}
-
-	//REPORT
-	protected function report()
-	{
-		return view('admin.report.index');
-	}
-	//SETTINGS 
-	protected function settings()
-	{
-		return view('admin.settings.index');
+	protected function viewAppointment() {
+		return view('admin.appointment.view');
 	}
 
 	//CLIENTPANEL
-
-	protected function user()
-	{
+	protected function user() {
 		return view('user.components.header');
 	}
 
