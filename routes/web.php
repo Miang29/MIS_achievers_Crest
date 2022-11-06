@@ -37,14 +37,14 @@ Route::post('/authenticate', 'UserController@authenticate')->name('authenticate'
 
 	
 	// INVENTORY
-	Route::get('/category', ' InventoryController@category')->name('category');
-	Route::get('/create-category', ' InventoryController@createCategory')->name('create-category');
-	Route::get('/view-category', ' InventoryController@viewCategory')->name('view-category');
-	Route::get('/edit-category', ' InventoryController@editCategory')->name('edit-category');
+	Route::get('/category', 'InventoryController@category')->name('category');
+	Route::get('/create-category', 'InventoryController@createCategory')->name('create-category');
+	Route::get('/view-category', 'InventoryController@viewCategory')->name('view-category');
+	Route::get('/edit-category', 'InventoryController@editCategory')->name('edit-category');
     //product
-	Route::get('/view-product', ' InventoryController@viewProduct')->name('view-product');
-	Route::get('/create-product', ' InventoryController@createProduct')->name('create-product');
-	Route::get('/edit-product', ' InventoryController@editProduct')->name('edit-product');
+	Route::get('/view-product', 'InventoryController@viewProduct')->name('view-product');
+	Route::get('/create-product', 'InventoryController@createProduct')->name('create-product');
+	Route::get('/edit-product', 'InventoryController@editProduct')->name('edit-product');
 
 	//APPOINTMENT
 	Route::get('/appointment', 'PageController@appointment')->name('appointment');

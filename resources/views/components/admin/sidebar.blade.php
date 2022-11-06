@@ -28,7 +28,7 @@
 		{{-- Appointment --}}
 		{{-- @if (Auth::user()->isAdmin()) --}}
 		@if (\Request::is('admin/appointment'))
-		<span class="bg-secondary text-white"><i class="fa-solid fa-calendar mr-2"></i> Appointment</span>
+		<span class="bg-secondary text-white"><i class="fa-solid fa-calendar mr-2"></i>Appointment</span>
 		@elseif (\Request::is('admin/appointment/*'))
 		<a class="text-decoration-none aria-link bg-secondary text-white" href="{{route('appointment')}}" aria-hidden="false" aria-label="Reservation"><i class="fa-solid fa-calendar mr-2"></i>Appointment</a>
 		@else
@@ -36,17 +36,16 @@
 		@endif
 		{{-- @endif --}}
 
-
-		{{-- Transaction --}}
-		<a class="btn text-decoration-none text-1 font-weight-bold aria-link text-left" aria-label="transaction" data-toggle="collapse" href="#collapseItem2" role="button" aria-expanded="false" aria-controls="collapseItem2">
-			<i class="fa-solid fa-money-check-dollar mr-2"></i>Transaction
-		</a>
-		<div class="collapse " id="collapseItem2">
-			<div class="card card-body">
-				<a class="dropdown-item  " href="{{route('products-order')}}"><i class="fas fa-money-check-dollar mr-1 "></i>Products Order</a>
-				<a class="dropdown-item  font-weight-bold" href="{{route('services')}}"><i class="fas fa-shield-cat mr-1"></i>Services Transaction</a>
-			</div>
-		</div>
+		
+		{{-- Services --}}
+		{{-- @if (Auth::user()->isAdmin()) --}}
+		@if (\Request::is('admin/services'))
+		<span class="bg-secondary text-white"><i class="fa-solid fa-chart-simple mr-2"></i>Services</span>
+		@elseif (\Request::is('admin/services/*'))
+		<a class="text-decoration-none aria-link bg-secondary text-white" href="#" aria-hidden="false" aria-label="Reservation"><i class="fa-solid fa-chart-simple mr-2"></i>Services</a>
+		@else
+		<a class="text-decoration-none text-1 font-weight-bold aria-link" href="#" aria-hidden="false" aria-label="Reservation"><i class="fa-solid fa-chart-simple mr-2"></i>Services</a>
+		@endif
 		{{-- @endif --}}
 
 
@@ -62,6 +61,20 @@
 		{{-- @endif --}}
 	
 		<hr class="w-100 custom-hr">
+		
+		{{-- Transaction --}}
+		<a class="btn text-decoration-none text-1 font-weight-bold aria-link text-left" aria-label="transaction" data-toggle="collapse" href="#collapseItem2" role="button" aria-expanded="false" aria-controls="collapseItem2">
+			<i class="fa-solid fa-money-check-dollar mr-2"></i>Transaction
+		</a>
+		<div class="collapse  " id="collapseItem2">
+			<div class="card card-body d-flex">
+				<a class="dropdown-item  " href="{{route('products-order')}}"><i class="fas fa-money-check-dollar mr-1 "></i>Products Order</a>
+				<a class="dropdown-item  " href="{{route('services')}}"><i class="fas fa-shield-cat mr-1"></i>Services Transaction</a>
+			</div>
+		</div>
+		{{-- @endif --}}
+
+
 
 		{{-- Reports --}}
 		{{-- @if (Auth::user()->isAdmin()) --}}

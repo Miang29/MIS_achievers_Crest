@@ -7,30 +7,37 @@ use Illuminate\Http\Request;
 class PageController extends Controller
 {
 	//DASHBOARD
-	protected function dashboard() {
+	protected function dashboard()
+	{
 		return view('admin.dashboard');
 	}
 
+	
+
 	//APPOINTMENT
-	protected function appointment() {
+	protected function appointment()
+	{
 		return view('admin.appointment.index');
-	
 	}
-	protected function CreateAppointment() {
+	protected function CreateAppointment()
+	{
 		return view('admin.appointment.create');
-	
 	}
-	protected function EditAppointment() {
+	protected function EditAppointment()
+	{
 		return view('admin.appointment.edit');
-	
 	}
-	protected function viewAppointment() {
+
+	protected function viewAppointment()
+	{
 		return view('admin.appointment.view');
 	}
 
+
 	//CLIENTPANEL
 
-	protected function user() {
+	protected function user()
+	{
 		return view('user.components.header');
 	}
 

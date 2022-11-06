@@ -32,7 +32,7 @@ class InventoryController extends Controller
 		return view('admin.inventory.product.create');
 	
     }
-	protected function viewProduct() {
+	protected function viewProduct(){
 		return view('admin.inventory.product.view');
 	}
 
