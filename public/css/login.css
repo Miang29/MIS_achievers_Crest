@@ -1,5 +1,6 @@
 .floating-label-input,
 .floating-label-input:focus {
+	z-index: -1;
 	background-color: transparent;
 	border: none;
 	border-bottom: solid 1px;
@@ -7,8 +8,15 @@
 	box-shadow: none;
 }
 
+.floating-label-input:-webkit-autofill,
+.floating-label-input:-webkit-autofill:focus {
+	box-shadow: 0 0 0 30px #021f53 inset!important;
+	-webkit-text-fill-color: white;
+}
+
 .floating-label {
 	background-color: #021f53;
+	z-index: 100!important;
 }
 
 .floating-eye-pass,

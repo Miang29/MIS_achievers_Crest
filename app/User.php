@@ -15,11 +15,17 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name',
+        'first_name',
+        'middle_name',
+        'last_name',
+        'suffix',
         'username',
         'email',
         'password',
         'user_type_id',
+        'login_attempts',
+        'locked',
+        'locked_by',
     ];
 
     /**
@@ -28,7 +34,8 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password',
+        'remember_token',
     ];
 
     // Relational Functions

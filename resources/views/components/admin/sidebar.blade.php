@@ -27,12 +27,12 @@
 
 		{{-- Appointment --}}
 		{{-- @if (Auth::user()->isAdmin()) --}}
-		@if (\Request::is('admin/appointment'))
-		<span class="bg-secondary text-white"><i class="fa-solid fa-calendar mr-2"></i>Appointment</span>
-		@elseif (\Request::is('admin/appointment/*'))
-		<a class="text-decoration-none aria-link bg-secondary text-white" href="{{route('appointment')}}" aria-hidden="false" aria-label="Reservation"><i class="fa-solid fa-calendar mr-2"></i>Appointment</a>
+		@if (\Request::is('admin/appointments'))
+		<span class="bg-secondary text-white"><i class="fa-solid fa-calendar mr-2"></i>Appointments</span>
+		@elseif (\Request::is('admin/appointments/*'))
+		<a class="text-decoration-none aria-link bg-secondary text-white" href="{{route('appointments.index')}}" aria-hidden="false" aria-label="Appointments"><i class="fa-solid fa-calendar mr-2"></i>Appointments</a>
 		@else
-		<a class="text-decoration-none text-1 font-weight-bold aria-link" href="{{route('appointment')}}" aria-hidden="false" aria-label="Reservation"><i class="fa-solid fa-calendar mr-2"></i>Appointment</a>
+		<a class="text-decoration-none text-1 font-weight-bold aria-link" href="{{route('appointments.index')}}" aria-hidden="false" aria-label="Appointments"><i class="fa-solid fa-calendar mr-2"></i>Appointments</a>
 		@endif
 		{{-- @endif --}}
 
@@ -114,11 +114,11 @@
 		{{-- SIGNOUT --}}
 		<hr class="w-100 custom-hr">
 
-		<a class="text-decoration-none text-1 font-weight-bold aria-link" href="@{{ route('logout') }}" aria-hidden="false" aria-label="Logout"><i class="fas fa-sign-out-alt mr-2"></i>Sign Out</a>
+		<a class="text-decoration-none text-1 font-weight-bold aria-link" href="{{ route('logout') }}" aria-hidden="false" aria-label="Logout"><i class="fas fa-sign-out-alt mr-2"></i>Sign Out</a>
 
 		<hr class="w-100 custom-hr">
 		<!-- DATE - TIME -->
-		<small class="text-center font-weight-bold text-1">{{ \Carbon\Carbon::now()->timezone('Asia/Manila')->format('M d, Y') }} - <span id="time">{{ \Carbon\Carbon::now()->timezone('Asia/Manila')->format('g:i:s A') }}</span></small>
+		<small class="text-lg-center px-3 font-weight-bold text-1">{{ \Carbon\Carbon::now()->timezone('Asia/Manila')->format('M d, Y') }} - <span id="time">{{ \Carbon\Carbon::now()->timezone('Asia/Manila')->format('g:i:s A') }}</span></small>
 
 		<!-- SCRIPT -->
 		<script type="text/javascript">

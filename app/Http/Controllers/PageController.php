@@ -7,8 +7,10 @@ use Illuminate\Http\Request;
 class PageController extends Controller
 {
 	//DASHBOARD
-	protected function dashboard()
-	{
+	protected function redirectDashboard() {
+		return redirect()->route('dashboard');
+	}
+	protected function dashboard() {
 		return view('admin.dashboard');
 	}
 
@@ -35,9 +37,7 @@ class PageController extends Controller
 
 
 	//CLIENTPANEL
-
-	protected function user()
-	{
+	protected function user() {
 		return view('user.components.header');
 	}
 

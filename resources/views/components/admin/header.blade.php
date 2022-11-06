@@ -18,9 +18,9 @@
 							</a>
 
 							<div class="dropdown-menu dropdown-menu-right">
-								<a class="dropdown-item" href="@{{ route('index') }}">View Page</a>
+								<a class="dropdown-item" href="{{ route('home') }}">View Page</a>
 								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="@{{ route('logout') }}">Sign out</a>
+								<a class="dropdown-item" href="{{ route('logout') }}">Sign out</a>
 							</div>
 						</div>
 					</label>
