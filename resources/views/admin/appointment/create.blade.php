@@ -50,7 +50,7 @@
 						</div>
 
 						<div class="col-12">
-							<div id="scheduler" class="overflow-x-auto"></div>
+							<div id="scheduler"></div>
 						</div>
 					</div>
 				</div>
@@ -67,13 +67,15 @@
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('lib/fullcalendar-5.11.3/lib/main.min.css') }}">
-<style type="text/css3">
+<style type="text/css">
 	@media screen and (max-width:767px) {
 		.fc-toolbar.fc-header-toolbar {
-			flex-direction:column;
+			flex-direction: column;
 		}
 		.fc-toolbar-chunk {
-			display: table-row; text-align:center; padding:5px 0;
+			display: table-row;
+			text-align: center;
+			padding: 5px 0;
 		}
 	}
 </style>
@@ -82,30 +84,45 @@
 @section('scripts')
 <script type="text/javascript" src="{{ asset('lib/fullcalendar-5.11.3/lib/main.min.js') }}"></script>
 <script type="text/javascript">
+	var calendar;
 	$(document).ready((e) => {
 		let calendarEl = document.querySelector('#scheduler');
 
-		let calendar = new FullCalendar.Calendar(calendarEl, {
-				initialView: 'dayGridMonth',
-				headerToolbar: {
-					left: 'prev,next today',
-					center: 'title',
-					right: 'dayGridMonth,timeGridDay'
+		calendar = new FullCalendar.Calendar(calendarEl, {
+			initialView: 'dayGridMonth',
+			customButtons: {
+				back: {
+					text: "Go Back",
+					click: (e) => {
+						console.log(e);
+						calendar.changeView('dayGridMonth', new Date(e.date)) ;
+					}
 				},
-				selectable: true,
-				businessHours: {
-					daysOfWeek: [0,1,2,3,4,5,6],
-					startTime: '08:00',
-					endTime: '20:00',
-				},
-				windowResize: (e) => {
-					calendar.updateSize();
-				},
-				dateClick: (e) => {
-					console.log(e);
+				today: {
+					text: "Today",
+					click: (e) => {
+						calendar.gotoDate(new Date()) ;
+					}
 				}
+			},
+			headerToolbar: {
+				left: 'prev,next today',
+				center: 'title',
+				right: 'back'
+			},
+			selectable: true,
+			businessHours: {
+				daysOfWeek: [0,1,2,3,4,5,6],
+				startTime: '08:00',
+				endTime: '20:00',
+			},
+			windowResize: (e) => {
+				calendar.updateSize();
+			},
+			dateClick: (e) => {
+				calendar.changeView('timeGridDay', e.dateStr);
 			}
-		);
+		});
 		calendar.render();
 	});
 </script>
