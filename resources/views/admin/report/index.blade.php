@@ -35,7 +35,7 @@
     <div class="overflow-x-auto h-100 card mb-3">
         <div class="card-header">
             <div class="row">
-                <button class="btn btn-outline-primary btn-sm ml-3 my-2 "><a href="#"></a><i class="fas fa-duotone fa-address-card mr-2"></i>Profile</button>
+                <button class="btn btn-outline-primary btn-sm ml-3 my-2 "><a href="#"></a><i class="fas fa-address-card mr-2"></i>Profile</button>
                 <button class="btn btn-outline-primary btn-sm ml-3 my-2  "><a href="#"></a><i class="fa-solid fa-calendar mr-2"></i>Appointment</button>
                 <button class="btn btn-outline-primary btn-sm ml-3 my-2  "><a href="#"></a><i class="fa-solid fa-warehouse mr-2"></i>Inventory</button>
                 <button class="btn btn-outline-primary btn-sm ml-3 my-2  "><a href="#"></a><i class="fas fa-user-alt mr-2"></i>Users</button>
@@ -48,19 +48,10 @@
                         <a class="dropdown-item" href="#"><i class="fas fa-money-check-dollar mr-1 "></i>Product Order</a>
                         <a class="dropdown-item" href="#"><i class="fas fa-shield-cat mr-1"></i>Services Transaction</a>
                     </div>
-                </div>
+                </div>   
 
-                <div class="dropdown">
-                    <button class="btn btn-outline-primary my-2 ml-3 btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="fas fa-list-check mr-2"></i>  Services
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="#"><i class="fa-solid fa-stethoscope mr-1"></i>Consultation</a>
-                        <a class="dropdown-item" href="#"><i class="fa-solid fa-syringe mr-1"></i>Vaccination</a>
-                        <a class="dropdown-item" href="#"><i class="fa-solid fa-shield-dog mr-1"></i>Pet Boarding</a>
-                        <a class="dropdown-item" href="#"><i class="fa-solid fa-scissors mr-1"></i>Pet Grooming</a>
-                    </div>
-                </div>
+                <button class="btn btn-outline-primary btn-sm ml-3 my-2  "><a href="#"></a><i class="fa-solid fa-chart-simple mr-2"></i>Services</button>
+
             </div>
         </div>
 

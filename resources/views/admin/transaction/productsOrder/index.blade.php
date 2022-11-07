@@ -11,7 +11,7 @@
         </div>
 
         <div class="col-12 col-md-6 col-lg my-2 text-center text-md-left text-lg-right">
-            <a href="{{route('create-products-order')}}" class="btn btn-info bg-1"><i class="fas fa-plus-circle mr-2"></i>Add transaction</a>
+            <a href="{{route('products.create')}}" class="btn btn-info bg-1"><i class="fas fa-plus-circle mr-2"></i>Add transaction</a>
         </div>
 
         <div class=" col-12 col-md-6 col-lg my-2 text-center text-lg-right">
@@ -48,7 +48,7 @@
                                 Action
                             </button>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown">
-                            <a href="{{route('view-products-order')}}" class="dropdown-item"><i class="fa-solid fa-eye mr-2"></i>View</a>
+                            <a href="{{route('products.view')}}" class="dropdown-item"><i class="fa-solid fa-eye mr-2"></i>View</a>
                             <a href="" class="dropdown-item"><i class="fa-solid fa-trash mr-2"></i>Delete</a>
                             </div>
                         </div>

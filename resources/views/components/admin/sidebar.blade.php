@@ -81,9 +81,9 @@
 		@if (\Request::is('admin/reports'))
 		<span class="bg-secondary text-white"><i class="fa-solid fa-chart-simple mr-2"></i>Reports</span>
 		@elseif (\Request::is('admin/reports/*'))
-		<a class="text-decoration-none text-white bg-secondary aria-link" href="{{ route('report') }}" aria-hidden="false" aria-label="Reports"><i class="fa-solid fa-chart-simple mr-2"></i>Reports</a>
+		<a class="text-decoration-none text-white bg-secondary aria-link" href="{{ route('report.index') }}" aria-hidden="false" aria-label="Reports"><i class="fa-solid fa-chart-simple mr-2"></i>Reports</a>
 		@else
-		<a class="text-decoration-none text-1 font-weight-bold aria-link" href="{{ route('report') }}" aria-hidden="false" aria-label="Reports"><i class="fa-solid fa-chart-simple mr-2"></i>Reports</a>
+		<a class="text-decoration-none text-1 font-weight-bold aria-link" href="{{ route('report.index') }}" aria-hidden="false" aria-label="Reports"><i class="fa-solid fa-chart-simple mr-2"></i>Reports</a>
 		@endif
 		{{-- @endif --}}
 
@@ -104,9 +104,9 @@
 		@if (\Request::is('admin/settings'))
 		<span class="bg-secondary text-white"><i class="fas fa-gear mr-2"></i>Settings</span>
 		@elseif (\Request::is('admin/settings/*'))
-		<a class="text-decoration-none text-white bg-secondary aria-link" href="{{ route('settings') }}" aria-hidden="false" aria-label="Settings"><i class="fas fa-gear mr-2"></i>Settings</a>
+		<a class="text-decoration-none text-white bg-secondary aria-link" href="{{ route('settings.index') }}" aria-hidden="false" aria-label="Settings"><i class="fas fa-gear mr-2"></i>Settings</a>
 		@else
-		<a class="text-decoration-none text-1 font-weight-bold aria-link" href="{{ route('settings') }}" aria-hidden="false" aria-label="Settings"><i class="fas fa-gear mr-2"></i>Settings</a>
+		<a class="text-decoration-none text-1 font-weight-bold aria-link" href="{{ route('settings.index') }}" aria-hidden="false" aria-label="Settings"><i class="fas fa-gear mr-2"></i>Settings</a>
 		@endif
 		{{-- @endif --}}
 		{{-- @endif --}}
