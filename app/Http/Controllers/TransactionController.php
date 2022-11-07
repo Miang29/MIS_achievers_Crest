@@ -18,7 +18,8 @@ class TransactionController extends Controller
 		return view('admin.transaction.productsOrder.view');
 	}
 
-	protected function services() {
+	//
+	protected function Service() {
 		return view('admin.transaction.services-transaction.index');
 	}
 	protected function createServices() {

@@ -9,48 +9,61 @@
 
     <div class="row" id="form-area">
         <div class="col-12">
-            <div class="card my-3 mx-auto">
-                <h5 class="card-header text-center text-white bg-1">View Products Order</h5>
+            <div class="card my-3 mx-auto ">
+                <h3 class="card-header text-center font-weight-bold text-white gbg-1">View Product Order</h3>
+
+                <div class="card-body d-flex ">
+                    <div class="form-group col-8 mx-auto">
+
+                        <div class="row d-flex ">
+                            <div class="col-6 mx-auto"><br>
+                                <label class="h6 important font-weight-bold text-1" for="refno">Reference No</label>
+                                <input class="form-control " type="text" name="refno" value="{{old('refno')}} " readonly/><br>
+                            </div>
+
+                            <div class="col-6 mx-auto"><br>
+                                <label class="h6 important font-weight-bold text-1" for="itemname">Item Name</label>
+                                <input class="form-control " type="text" name="itemname" value="{{old('itemname')}} " readonly/>
+                            </div>
+                        </div>
+
+                        <div class="row d-flex ">
+
+                            <div class="col-6 mx-auto">
+                                <label class="h6 important font-weight-bold text-1" for="itemno">Item No</label>
+                                <input class="form-control" type="text" name="itemno" value="{{old('itemno')}} " readonly />
+                            </div>
+
+                            <div class="col-6 mx-auto ">
+                                <label class="h6 important font-weight-bold text-1" for="itemtype">Item Type</label>
+                                <input class="form-control" type="text" name="itemtype" value="{{old('itemtype')}} " readonly />
+                            </div>
+                        </div>
 
 
-                <div class="card-body d-flex mt-1 border-bottom border-secondary">
-                    <div class="form-group  col-6 mx-auto">
+                        <div class="row d-flex">
+                            <div class="col-4 mx-auto w-25"><br>
+                                <label class="h6 important font-weight-bold text-1" for="price">Price</label>
+                                <input class="form-control" type="text" name="price" value="{{old('price')}} " readonly />
+                            </div>
 
-                        <label class="h6 important" for="refno">Reference No</label>
-                        <input class="form-control" type="text" name="refno" value="{{old('refno')}} " readonly />
+                            <div class="col-4 mx-auto w-25"><br>
+                                <label class="h6 important font-weight-bold text-1" for="qty">Quantity</label>
+                                <input class="form-control" type="number" name="qty" value="{{old('qty')}} "readonly />
+                            </div>
 
-                    </div>
-                </div>
+                            <div class="col-4 mx-auto w-25"><br>
+                                <label class="h6 important font-weight-bold text-1" for="total">Total Price</label>
+                                <input class="form-control" type="text" name="total" value="{{old('total')}} " readonly/>
+                            </div>
+                        </div>
 
-                <div class="card-body d-flex border-bottom border-secondary">
-                    <div class="form-group col-6 mx-auto w-50">
-
-
-                        <label class="h6 important" for="itemname">Item Name</label>
-                        <input class="form-control" type="text" name="itemname" value="{{old('itemname')}} " readonly />
-
-                        <label class="h6 important" for="itemno">Item No</label>
-                        <input class="form-control" type="text" name="itemno" value="{{old('itemno')}} " readonly />
-
-                        <label class="h6 important" for="itemtype">Item Type</label>
-                        <input class="form-control" type="text" name="itemtype" value="{{old('itemtype')}} " readonly />
-
-                        <label class="h6 important" for="price">Price</label>
-                        <input class="form-control" type="text" name="price" value="{{old('price')}} " readonly />
-
-                        <label class="h6 important" for="qty">Quantity</label>
-                        <input class="form-control" type="number" name="qty" value="{{old('qty')}} " readonly />
-
-                        <label class="h6 important" for="total">Total Price</label>
-                        <input class="form-control" type="text" name="total" value="{{old('total')}} " readonly />
                     </div>
                 </div>
             </div>
         </div>
-
     </div>
 </div>
-</div>
-</div>
+
 
 @endsection

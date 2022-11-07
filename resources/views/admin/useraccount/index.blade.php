@@ -7,11 +7,11 @@
 <div class="container-fluid px-2 px-lg-6 py-2 h-100 my-3">
     <div class="row">
         <div class="col-12 col-lg text-center text-lg-left">
-            <h2 class="font-weight-bold text-1">User Account</h2>
+            <h2 class="font-weight-bold text-1">User Account List</h2>
         </div>
 
         <div class="col-12 col-md-6 col-lg my-2 text-center text-md-left text-lg-right">
-            <a href="{{route('user.create')}}" class="btn btn-info bg-1"><i class="fas fa-plus-circle mr-2"></i>Add User</a>
+            <a href="{{route('user.create')}}" class="btn btn-info btn-sm  my-1 bg-1 w-50"><i class="fas fa-plus-circle mr-2"></i>Add User</a>
         </div>
 
         <div class=" col-12 col-md-6 col-lg my-2 text-center text-lg-right">

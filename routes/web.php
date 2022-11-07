@@ -62,15 +62,19 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
 		//Show
 		Route::get('/products.view', 'transactionController@viewproductsOrder')->name('products.view');
+	});
 
+
+	//Service Transaction
+	Route::group(['prefix' => 'service'], function () {
 		//Index
-		Route::get('/services', 'transactionController@services')->name('services');
+		Route::get('/service', 'transactionController@Service')->name('service');
 
 		//Create
-		Route::get('/create', 'transactionController@createServices')->name('services.create');
+		Route::get('/service.create', 'transactionController@createServices')->name('service.create');
 
 		//Show
-		Route::get('/view', 'transactionController@viewServices')->name('services.view');
+		Route::get('/service.view', 'transactionController@viewServices')->name('service.view');
 	});
 
 

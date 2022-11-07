@@ -1,7 +1,7 @@
 /* サイドバールタート */
 .sidebar-toggler {
-	color: rgba(0,0,0,.5);
-	border-color: rgba(0,0,0,.1);
+	color: rgba(0, 0, 0, .5);
+	border-color: rgba(0, 0, 0, .1);
 	padding: .25rem .75rem;
 	font-size: 1.25rem;
 	line-height: 1;
@@ -10,7 +10,8 @@
 	border-radius: .25rem;
 }
 
-.sidebar-toggler:hover, .sidebar-toggler:focus {
+.sidebar-toggler:hover,
+.sidebar-toggler:focus {
 	text-decoration: none;
 }
 
@@ -37,8 +38,8 @@
 	overflow-y: auto;
 	overflow-x: hidden;
 	white-space: nowrap;
-	
-	
+
+
 	-webkit-transition: width 0.5s cubic-bezier(0.25, 0.45, 0.45, 1);
 	-moz-transition: width 0.5s cubic-bezier(0.25, 0.45, 0.45, 1);
 	-ms-transition: width 0.5s cubic-bezier(0.25, 0.45, 0.45, 1);
@@ -49,6 +50,7 @@
 .sidebar.collapse-horizontal.show {
 	width: 100%;
 }
+
 .sidebar.collapse-horizontal {
 	width: 0;
 }
@@ -57,27 +59,30 @@
 	height: 100%;
 }
 
-.sidebar.collapse-horizontal.show~ .content {
+.sidebar.collapse-horizontal.show~.content {
 	width: 0;
 }
-.sidebar.collapse-horizontal~ .content {
+
+.sidebar.collapse-horizontal~.content {
 	width: 100vw;
 }
 
-.sidebar > span, .sidebar > a {
+.sidebar>span,
+.sidebar>a {
 	padding-top: 0.5rem;
 	padding-bottom: 0.5rem;
 	padding-left: 1rem;
 	padding-right: 1rem;
 }
 
-.sidebar > a {
+.sidebar>a {
 	transition: 0.25s;
 }
 
-.sidebar > a:hover {
+.sidebar>a:hover {
 	background-color: #EAEAEA;
 }
+
 /* サイドバールエンドー */
 
 /* HOVER CAM */
@@ -87,18 +92,34 @@
 	position: relative;
 }
 
-.hover-cam > span.icon, .hover-zoom, .hover-zoom-2, .div-hover-zoom > div, .a-hover-zoom > a, .a-fa-hover-zoom > a > svg, .div-hover-zoom-2 > div, .a-hover-zoom-2 > a, .a-fa-hover-zoom-2 > a > svg, .secondary-hover-dark {
+.hover-cam>span.icon,
+.hover-zoom,
+.hover-zoom-2,
+.div-hover-zoom>div,
+.a-hover-zoom>a,
+.a-fa-hover-zoom>a>svg,
+.div-hover-zoom-2>div,
+.a-hover-zoom-2>a,
+.a-fa-hover-zoom-2>a>svg,
+.secondary-hover-dark {
 	transition: 0.25s;
 }
 
-.hover-zoom:hover, .div-hover-zoom > div:hover, .a-hover-zoom > a:hover, .a-fa-hover-zoom > a > svg:hover {
+.hover-zoom:hover,
+.div-hover-zoom>div:hover,
+.a-hover-zoom>a:hover,
+.a-fa-hover-zoom>a>svg:hover {
 	transform: scale(1.0625);
 	-o-transform: scale(1.0625);
 	-ms-transform: scale(1.0625);
 	-moz-transform: scale(1.0625);
 	-webkit-transform: scale(1.0625);
 }
-.hover-zoom-2:hover ,.div-hover-zoom-2 > div:hover, .a-hover-zoom-2 > a:hover, .a-fa-hover-zoom-2 > a > svg:hover {
+
+.hover-zoom-2:hover,
+.div-hover-zoom-2>div:hover,
+.a-hover-zoom-2>a:hover,
+.a-fa-hover-zoom-2>a>svg:hover {
 	transform: scale(1.125);
 	-o-transform: scale(1.125);
 	-ms-transform: scale(1.125);
@@ -106,7 +127,7 @@
 	-webkit-transform: scale(1.125);
 }
 
-.hover-cam > span.icon {
+.hover-cam>span.icon {
 	background-color: rgba(0, 0, 0, 0.5);
 	position: absolute;
 	left: 0;
@@ -116,7 +137,8 @@
 	opacity: 0;
 }
 
-.hover-cam > span.icon > .hover-icon, .hover-cam > span.icon > .hover-icon-2x {
+.hover-cam>span.icon>.hover-icon,
+.hover-cam>span.icon>.hover-icon-2x {
 	top: 50%;
 	left: 50%;
 	position: absolute;
@@ -128,18 +150,19 @@
 	opacity: 0.75;
 }
 
-.hover-cam > span.icon > .hover-icon {
+.hover-cam>span.icon>.hover-icon {
 	font-size: 250%;
 }
 
-.hover-cam > span.icon > .hover-icon-2x {
+.hover-cam>span.icon>.hover-icon-2x {
 	font-size: 500%;
 }
 
-.hover-cam > span.icon:hover,
-.hover-cam > span.icon:focus {
+.hover-cam>span.icon:hover,
+.hover-cam>span.icon:focus {
 	opacity: 1;
 }
+
 /* HOVER CAM END */
 
 .custom-hr {
@@ -204,53 +227,62 @@
 }
 
 /* ADMIN SEARCH END */
- 
-.important::after{
+
+.important::after {
 	content: " *";
-	color:#dc3545;
+	color: #dc3545;
 
 }
+
 /* Text- Sizes */
- .text-title{
-	font-size:2.5rem;
- }
- .btn-dark-blue
- {
-	background-color:#021f53;
- }
+.text-title {
+	font-size: 2.5rem;
+}
+
+.btn-dark-blue {
+	background-color: #021f53;
+}
 
 /* Text color */
-.text-1{
-	color:#021f53;
-}
-/* Background color */
-.bg-1{
-	background-color:#021f53;
-}
-.bg-2{
-	background-color:#60D3C5;
-}
-.bg-3{
-	background-color:#6BC666;
+.text-1 {
+	color: #021f53;
 }
 
-.bg-4{
-	background-color:#CAC049;
+/* Background color */
+.gbg-1 {
+	background: rgb(123, 122, 135);
+	background: linear-gradient(90deg, rgba(123, 122, 135, 1) 0%, rgba(2, 31, 83, 1) 39%, rgba(81, 172, 190, 1) 100%);
 }
-.bg-5{
-	background-color:#F3F3F3;
+
+.bg-1 {
+	background-color: #021f53;
+}
+
+.bg-2 {
+	background-color: #60D3C5;
+}
+
+.bg-3 {
+	background-color: #6BC666;
+}
+
+.bg-4 {
+	background-color: #CAC049;
+}
+
+.bg-5 {
+	background-color: #F3F3F3;
 }
 
 /* Small devices (landscape phones, 576px and up) */
-@media (min-width: 576px) {
-}
+@media (min-width: 576px) {}
 
 /* Medium devices (tablets, 768px and up) */
-@media (min-width: 768px) {
-}
+@media (min-width: 768px) {}
 
 /* Large devices (desktops, 992px and up) */
 @media (min-width: 992px) {
+
 	/* サイドバースタート */
 	.sidebar-toggler {
 		display: none;
@@ -258,27 +290,28 @@
 
 	.sidebar {
 		max-width: 15rem;
-		width: 15rem!important;
+		width: 15rem !important;
 		overflow-y: auto;
 	}
 
-	.sidebar~ .content {
+	.sidebar~.content {
 		max-width: 100%;
 	}
 
-	.sidebar > span, .sidebar > a {
+	.sidebar>span,
+	.sidebar>a {
 		padding-top: 0.5rem;
 		padding-bottom: 0.5rem;
 		padding-left: 1rem;
 		padding-right: 1rem;
 	}
 
-	.sidebar > a:hover {
+	.sidebar>a:hover {
 		background-color: #EAEAEA;
 	}
+
 	/* サイドバーエンドー */
 }
 
 /* Extra large devices (large desktops, 1200px and up) */
-@media (min-width: 1200px) {
-}
+@media (min-width: 1200px) {}

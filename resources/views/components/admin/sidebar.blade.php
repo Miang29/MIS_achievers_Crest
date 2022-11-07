@@ -69,7 +69,7 @@
 		<div class="collapse  " id="collapseItem2">
 			<div class="card card-body d-flex">
 				<a class="dropdown-item  " href="{{route('products-order')}}"><i class="fas fa-money-check-dollar mr-1 "></i>Products Order</a>
-				<a class="dropdown-item  " href="{{route('services.index')}}"><i class="fas fa-shield-cat mr-1"></i>Services Transaction</a>
+				<a class="dropdown-item  " href="{{route('service')}}"><i class="fas fa-shield-cat mr-1"></i>Services Transaction</a>
 			</div>
 		</div>
 		{{-- @endif --}}
@@ -118,7 +118,7 @@
 
 		<hr class="w-100 custom-hr">
 		<!-- DATE - TIME -->
-		<small class="text-lg-center px-3 font-weight-bold text-1">{{ \Carbon\Carbon::now()->timezone('Asia/Manila')->format('M d, Y') }} - <span id="time">{{ \Carbon\Carbon::now()->timezone('Asia/Manila')->format('g:i:s A') }}</span></small>
+		<small class="text-lg-center px-2 font-weight-bold text-1">{{ \Carbon\Carbon::now()->timezone('Asia/Manila')->format('M d, Y') }} - <span id="time">{{ \Carbon\Carbon::now()->timezone('Asia/Manila')->format('g:i:s A') }}</span></small>
 
 		<!-- SCRIPT -->
 		<script type="text/javascript">
