@@ -33,3 +33,11 @@
 	-o-transform: translateY(-50%);
 	transform: translateY(-50%);
 }
+/* Gradient Background color */
+.gbg-1 {
+	background: rgb(123, 122, 135);
+	background: linear-gradient(90deg, rgba(123, 122, 135, 1) 0%, rgba(2, 31, 83, 1) 39%, rgba(81, 172, 190, 1) 100%);
+}
+.btn-outline-custom{
+	outline-color: #021f53;
+}

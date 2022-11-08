@@ -13,7 +13,7 @@
     <div class="row" id="form-area">
         <div class="col-12">
             <div class="card my-3 mx-auto">
-                <h5 class="card-header text-center text-white bg-1">Website Related</h5>
+                <h3 class="card-header font-weight-bold text-white gbg-1">Website Related</h3>
 
                 <div class="card-body ">
                     <div class="form-group ">
