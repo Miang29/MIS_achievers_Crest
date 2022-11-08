@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="container-fluid m-0">
-    <h2 class="h5 h2-lg text-center text-lg-left mx-0 mx-lg-5 my-4 "><a href="{{route('appointment')}}" class="text-decoration-none  text-1"><i class="fas fa-chevron-left mr-2"></i>Appointment</a></h2>
+    <h2 class="h5 h2-lg text-center text-lg-left mx-0 mx-lg-5 my-4 "><a href="{{route('appointments.index')}}" class="text-decoration-none  text-1"><i class="fas fa-chevron-left mr-2"></i>Appointment</a></h2>
     <hr class="hr-thick" style="border-color: #707070;">
 
     <div class="row" id="form-area">
@@ -18,13 +18,13 @@
                         <div class="form-group mx-auto w-100">
 
                             <label class="h6 important" for="petowner">Pet Owner</label>
-                            <input class="form-control" type="text" name="petowner" value="{{old('petowner')}} "readonly/>
+                            <input class="form-control" type="text" name="petowner" value="{{old('petowner')}} " readonly />
 
                             <label class="h6 important" for="email">Email</label>
-                            <input class="form-control" type="email" name="email" value="{{old('email')}} "/>
+                            <input class="form-control" type="email" name="email" value="{{old('email')}} " />
 
                             <label class="h6 important" for="petname">Pet Name</label>
-                            <input class="form-control" type="text" name="petname" value="{{old('petname')}} " readonly/>
+                            <input class="form-control" type="text" name="petname" value="{{old('petname')}} " readonly />
 
                             <label class="h6 important" for="date">Date</label>
                             <input class="form-control" type="date" name="date" value="{{old('date')}}" min="{{ Carbon\Carbon::now()->timezone('Asia/Manila')->format('Y-m-d') }}" />
@@ -35,11 +35,13 @@
                         </div>
                     </div>
                 </div>
-                
-                <div class="col-12 my-2 d-flex flex-row">
-                    <button class="btn btn-outline-info ml-auto mr-4 w-25"><a href="#"></a>Book</button>
-                    <button class="btn btn-outline-danger ml-1 mr-auto w-25"><a href="#"></a>Cancel</button>
+                <div class="card-footer d-flex">
+                    <div class="col-4 mx-auto text-center">
+                        <button class="btn btn-outline-info btn-sm w-50"><a href="#"></a>Book</button>
+                        <button class="btn btn-outline-danger btn-sm w-50"><a href="#"></a>Cancel</button>
+                    </div>
                 </div>
+
             </div>
         </div>
 

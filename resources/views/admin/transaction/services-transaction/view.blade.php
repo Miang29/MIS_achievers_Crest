@@ -10,43 +10,35 @@
     <div class="row" id="form-area">
         <div class="col-12">
             <div class="card my-3 mx-auto">
-                <h5 class="card-header text-center text-white bg-1"></h5>
+                <h5 class="card-header text-center font-weight-bold text-white gbg-1">View Transaction</h5>
 
+                <div class="card-body d-flex ">
+                    <div class="form-group col-6 mx-auto w-50 ">
 
-                <div class="card-body d-flex mt-1 border-bottom border-secondary">
-                    <div class="form-group  col-6 mx-auto">
+                        <label class="h6 important font-weight-bold text-1" for="refno">Reference No</label>
+                        <input class="form-control" type="text" name="refno" value="{{old('refno')}} " readonly /><br>
 
-                        <label class="h6 important" for="refno">Reference No</label>
-                        <input class="form-control" type="text" name="refno" value="{{old('refno')}} "readonly />
+                        <label class="h6 important  font-weight-bold text-1" for="type">Services Type</label>
+                        <input class="form-control" type="text" name="type" value="{{old('type')}} " readonly /><br>
+
+                        <div class="row d-flex">
+                            <div class="col-6  mx-auto ">
+                                <label class="h6 important  font-weight-bold text-1" for="price">Price</label>
+                                <input class="form-control" type="text" name="price" value="{{old('price')}} " readonly /><br>
+                            </div>
+                            <div class="col-6  mx-auto ">
+                                <label class="h6 important  font-weight-bold text-1" for="total">Total Price</label>
+                                <input class="form-control" type="text" name="total" value="{{old('total')}} " readonly /><br>
+                            </div>
+                        </div>
 
                     </div>
-                </div>
-
-                <div class="card-body d-flex border-bottom border-secondary">
-                    <div class="form-group col-6 mx-auto w-50">
-
-                        <label class="h6 important" for="servicetype">Services Type</label>
-                        <input class="form-control" type="text" name="servicetype" value="{{old('servicetype')}} " readonly />
-                       
-
-                        <label class="h6 important" for="price">Price</label>
-                        <input class="form-control" type="text" name="price" value="{{old('price')}} " readonly />
-
-                        <label class="h6 important" for="total">Total Price</label>
-                        <input class="form-control" type="text" name="total" value="{{old('total')}} " readonly />
-                    </div>
-                </div>
-
-                <div class="col-12 my-2 d-flex flex-row">
-                    <button class="btn btn-outline-info btn-sm ml-auto mr-4 w-25"><a href="#"></a>Save</button>
-                    <button class="btn btn-outline-danger btn-sm ml-1 mr-auto w-25"><a href="#"></a>Cancel</button>
                 </div>
             </div>
-        </div>
 
+        </div>
     </div>
 </div>
-</div>
-</div>
+
 
 @endsection

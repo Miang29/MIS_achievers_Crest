@@ -7,11 +7,11 @@
 <div class="container-fluid px-2 px-lg-6 py-2 h-100 my-3">
     <div class="row">
         <div class="col-12 col-lg text-center text-lg-left">
-            <h2 class="font-weight-bold text-1">Product Category List</h2>
+            <h2 class="font-weight-bold text-1">Category List</h2>
         </div>
 
         <div class="col-12 col-md-6 col-lg my-2 text-center text-md-left text-lg-right">
-            <a href="{{route('category.create')}}" class="btn btn-info bg-1"><i class="fas fa-plus-circle mr-2"></i>Add Category</a>
+            <a href="{{route('category.create')}}" class="btn btn-info bg-1 btn-sm my-1"><i class="fas fa-plus-circle mr-2"></i>Add Category</a>
         </div>
 
         <div class=" col-12 col-md-6 col-lg my-2 text-center text-lg-right">

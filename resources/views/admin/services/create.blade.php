@@ -11,7 +11,7 @@
         <div class="col-12">
 
             <div class="card my-3 mx-auto">
-                <h5 class="card-header text-center text-white bg-1"></h5>
+                <h3 class="card-header  text-white gbg-1">CREATE SERVICE CATEGORY</h3>
 
                 <div class="row card-body">
                     <div class="col-12 ">
@@ -20,19 +20,19 @@
 
                                 <div class="row">
                                     <div class="col-6">
-                                        <label class="h6" for="category">Service Category Name</label>
+                                        <label class="h6 important font-weight-bold text-1" for="category">Service Category Name</label>
                                         <input class="form-control" type="text" name="category" value="{{old('category')}} " />
                                     </div>
 
                                     <div class="col-6">
-                                        <label class="h6 " for="productname">Service Name</label>
+                                        <label class="h6 important font-weight-bold text-1" for="productname">Service Name</label>
                                         <input class="form-control" type="text" name="productname" value="{{old('productname')}} " />
                                     </div>
                                 </div>
                                 <br>
                                 <div class="row">
                                     <div class="col-4">
-                                        <label class="h6 important">Price</label>
+                                        <label class="h6 important font-weight-bold text-1">Price</label>
                                         <div class="input-group ">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text">₱</span>
@@ -42,26 +42,26 @@
                                     </div>
 
                                     <div class="col-8 ml-auto">
-                                        <label class="h6 " for="category">Service Variation</label>
+                                        <label class="h6 important font-weight-bold text-1 " for="category">Service Variation</label>
                                         <input class="form-control" type="text" name="category" value="{{old('category')}} " />
                                     </div>
                                 </div>
 
 
-                                <label class="h6" for="remarks">Remarks</label>
+                                <label class="h6 font-weight-bold text-1" for="remarks">Remarks</label>
                                 <textarea class="form-control not-resizable" name="remarks" rows="5"></textarea>
                             </div>
                         </div>
-                        <div class="col d-flex">
-                            <button class="btn btn-outline-info mx-auto btn-sm "><a href="#"></a>Save Changes</button>
-                        </div>
-
                     </div>
+                </div>
 
+                <div class="card-footer d-flex">
+                    <div class="col-4 mx-auto text-center">
+                        <button class="btn btn-outline-info btn-sm w-50"><a href="#"></a>Save</button>
+                    </div>
                 </div>
             </div>
         </div>
-
     </div>
 </div>
 

@@ -11,8 +11,8 @@
         </div>
 
         <div class="col-12 col-md-6 col-lg my-2 text-center text-md-left text-lg-right">
-            <a href="{{route('create.client')}}" class="btn btn-info bg-1"><i class="fas fa-plus-circle mr-2"></i>Add Profile</a>
-            <a href="" class="btn btn-info bg-1"><i class="fa-solid fa-bell mr-2"></i>Notify Clients</a>
+            <a href="{{route('create.client')}}" class="btn btn-info btn-sm my-1 bg-1"><i class="fas fa-plus-circle mr-2"></i>Add Profile</a>
+            <a href="" class="btn btn-info btn-sm my-1 bg-1"><i class="fa-solid fa-bell mr-2"></i>Notify Clients</a>
         </div>
 
         <div class=" col-12 col-md-6 col-lg my-2 text-center text-lg-right">
@@ -33,7 +33,6 @@
                     <th scope="col" class="hr-thick text-1">Pet Owner</th>
                     <th scope="col" class="hr-thick text-1">Email</th>
                     <th scope="col" class="hr-thick text-1">Pet Name</th>
-                    <th scope="col" class="hr-thick text-1">Species</th>
                     <th>
                 </tr>
             </thead>

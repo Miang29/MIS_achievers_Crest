@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'appointment')
+@section('title', 'inventory')
 
 @section('content')
 <div class="container-fluid m-0">
@@ -11,10 +11,10 @@
         <div class="col-12">
 
             <div class="card my-3 mx-auto">
-                <h5 class="card-header text-center text-white bg-1">Edit Product</h5>
+                <h5 class="card-header text-center text-white gbg-1"> Edit Product</h5>
 
-                <div class="row card-body">
-                    <div class="col-6">
+                <div class="card-body d-flex">
+                    <div class="col-6 mx-auto">
                         <div class="d-flex mt-1 ">
                             <div class="form-group mx-auto w-100">
 
@@ -54,20 +54,11 @@
                         </div>
                     </div>
 
-                    <div class="col-6 col-lg-6 d-flex">
-                        <div class="form-group text-center text-lg-left image-input-group mx-auto"><br>
-                            <label class="h4 " for="image">Product Image</label><br>
-                            <img src="{{ asset('images/UI/placeholder.jpg') }}" class="img-fluid cursor-pointer border" style="border-width: 0.25rem!important; max-height: 10rem;" alt="Pet Image">
-                            <br><br>
-                            <input type="file" name="image[]" class="hidden" accept=".jpg,.jpeg,.png"><br>
-                            <small class="text-muted"><b>FORMATS ALLOWED:</b> JPEG, JPG, PNG</small>
-                        </div>
+                </div>
+                <div class="card-footer d-flex">
+                    <div class="col-4 mx-auto text-center">
+                        <button class="btn btn-outline-info  btn-sm w-50"><a href="#"></a>Save Changes</button>
                     </div>
-
-                    <div class="col">
-                        <button class="btn btn-outline-info mr-1 btn-sm "><a href="#"></a>Save Changes</button>
-                    </div>
-
                 </div>
             </div>
         </div>

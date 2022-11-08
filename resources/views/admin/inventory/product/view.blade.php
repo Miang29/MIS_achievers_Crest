@@ -3,64 +3,59 @@
 @section('title', 'inventory')
 
 @section('content')
+<div class="container-fluid m-0">
+    <h2 class="h5 h2-lg text-center text-lg-left mx-0 mx-lg-5 my-4 "><a href="{{route('category.view')}}" class="text-decoration-none  text-1"><i class="fas fa-chevron-left mr-2"></i>Product List</a></h2>
+    <hr class="hr-thick" style="border-color: #707070;">
 
-<div class="container-fluid px-2 px-lg-6 py-2 h-100 my-3">
-    <div class="row">
-        <div class="col-12 col-lg text-center text-lg-left">
-        <h2 class="h5 h2-lg text-center text-lg-left mx-0 mx-lg-5 my-4 "><a href="{{route('category')}}" class="text-decoration-none  text-1"><i class="fas fa-chevron-left mr-2"></i>Category List</a></h2>
-        </div>
+    <div class="row" id="form-area">
+        <div class="col-12">
 
-        <div class="col-12 col-md-6 col-lg my-2 text-center text-md-left text-lg-right">
-            <a href="{{route('create-product')}}" class="btn btn-info bg-1"><i class="fas fa-plus-circle mr-2"></i>Add products</a>
-        </div>
+            <div class="card my-3 mx-auto">
+                <h5 class="card-header text-center text-white gbg-1"> View Product</h5>
 
-        <div class=" col-12 col-md-6 col-lg my-2 text-center text-lg-right">
-            <div class="input-group">
-                <input type="text" class="form-control" name="search" placeholder="Search..." />
-                <div class="input-group-append">
-                    <button type="submit" class="btn btn-secondary"><i class="fas fa-search"></i></button>
+                <div class="card-body d-flex">
+                    <div class="col-6 mx-auto">
+                        <div class="d-flex mt-1 ">
+                            <div class="form-group mx-auto w-100">
+
+                                <label class="h6 important font-weight-bold text-1" for="productname">Product Name</label>
+                                <input class="form-control" type="text" name="productname" value="{{old('productname')}} " readonly />
+
+                                <div class="row">
+                                    <div class="col-4">
+                                        <label class="h6 important  font-weight-bold text-1" for="stocks">Stocks</label>
+                                        <input class="form-control " type="number" name="stocks" value="{{old('stocks')}} " readonly />
+                                    </div>
+
+                                    <div class="col-4">
+                                        <label class="h6 important  font-weight-bold text-1">Price</label>
+                                        <div class="input-group ">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">₱</span>
+                                            </div>
+                                            <input type="number" class="form-control" value min="0.00" step=".01" readonly />
+                                        </div>
+                                    </div>
+
+                                    <div class="col-4">
+                                        <label class="h6 important  font-weight-bold text-1" for="status">Status</label><br>
+                                        <input class="form-control" type="text" name="status" value="{{old('status')}} " readonly /><br>
+
+
+                                    </div>
+                                </div>
+                                <label class="h6 important  font-weight-bold text-1" for="categoryname">Category Name</label>
+                                <input class="form-control" type="text" name="categoryname" value="{{old('categoryname')}} " readonly /><br>
+
+                                <label class="h6 important  font-weight-bold text-1" for="description">Description</label>
+                                <textarea class="form-control not-resizable" name="description" rows="3" readonly></textarea>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-
-    <div class="overflow-x-auto h-100 card">
-        <div class=" card-body h-100 px-0 pt-0 ">
-            <table class="table table-striped ">
-                <thead>
-                    <tr>
-                        <th scope="col" class="hr-thick text-1">Product Name</th>
-                        <th scope="col" class="hr-thick text-1">Stocks</th>
-                        <th scope="col" class="hr-thick text-1">Price</th>
-                        <th scope="col" class="hr-thick text-1">Status</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-
-                        <td>
-                            <div class="dropdown">
-                                <button class="btn btn-info bg-1 btn-sm dropdown-toggle mark-affected" type="button" data-toggle="dropdown" id="dropdown" aria-haspopup="true" aria-expanded="false" data-id="$a->id">
-                                    Action
-                                </button>
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown">
-                                    <a href="" class="dropdown-item"><i class="fa-solid fa-eye mr-2"></i>View Product</a>
-                                    <a href="{{route('edit-product')}}" class="dropdown-item"><i class="fa-regular fa-pen-to-square mr-2"></i>Edit Product</a>
-                                    <a href="" class="dropdown-item"><i class="fa-solid fa-trash mr-2"></i>Delete</a>
-                                </div>
-                        </td>
-                    </tr>
-                </tbody>
-
-            </table>
-        </div>
-    </div>
 </div>
-
 
 @endsection
