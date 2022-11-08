@@ -46,6 +46,7 @@
     {{-- CSS --}}
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/user.css') }}" rel="stylesheet">
 
     {{-- FAVICON --}}
     <link rel="icon" href="{{ App\Settings::getInstance('web-logo')->getImage(!App\Settings::getInstance('web-logo')->is_file) }}">
@@ -59,34 +60,41 @@
 
 <body style="max-height: 100vh; height: 100vh;" class="overflow-y-hidden">
     {{-- SHOWS THIS INSTEAD WHEN JAVASCRIPT IS DISABLED --}}
-    <div style="position: absolute; height: 100vh; width: 100vw; background-color: #ccc;" id="js-disabled">
+	<div style="position: absolute; height: 100vh; width: 100vw; background-color: #ccc;" id="js-disabled">
+		<style type="text/css">
+			/* Make the element disappear if JavaScript isn't allowed */
+			.js-only {
+				display: none !important;
+			}
+		</style>
+		<div class="row h-100">
+			<div class="col-12 col-md-4 offset-md-4 py-5 my-auto">
+				<div class="card shadow my-auto">
+					<h4 class="card-header card-title text-center">Javascript is Disabled</h4>
 
-        <style type="text/css">
-            /* Make the element disappear if JavaScript isn't allowed */
-            .js-only {
-                display: none !important;
-            }
-        </style>
-
-        <div class="d-flex flex-column min-vh-100 js-only">
-            <!-- HEADER -->
-            <header class="header dark-shadow">
-                @include('components.user.header')
-            </header>
-
-            <main class="content-fluid d-flex flex-column flex-fill m-0" id="content">
-			<div class="container-fluid d-flex flex-column flex-grow-1 px-0">
-				<div class="d-flex flex-d-row flex-grow-1 position-relative h-100" style="overflow: hidden;">
-                
-					{{-- CONTENT --}}
-					<div class="container-fluid content flex-fill bg-5 m-0" style="z-index: 1;">
-					@yield('content')
+					<div class="card-body">
+						<p class="card-text">This website required <b>JavaScript</b> to run. Please allow/enable JavaScript and refresh the page.</p>
+						<p class="card-text">If the JavaScript is enabled or allowed, please check your firewall as they might be the one disabling JavaScript.</p>
 					</div>
 				</div>
 			</div>
-		</main>
+		</div>
+	</div>
 
-        </div>
+    <div class="d-flex flex-column min-vh-100 js-only">
+		<!-- HEADER -->
+		<header class="header dark-shadow">
+			@include('components.user.header')
+		</header>
+
+		<!-- CONTENTS -->
+		<main class="content-fluid d-flex  flex-fill m-0" id="content">
+            {{-- CONTENT --}}
+            <div class="container-fluid content flex-fill bg-white m-0" style="z-index: 1;">
+                @yield('content')
+            </div>
+		</main>
+	</div>
 </body>
 
 </html>

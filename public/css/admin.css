@@ -248,11 +248,39 @@
 	color: #021f53;
 }
 
+.btn-outline-custom {
+	border-color: #021f53;
+	border-radius: 1rem;
+	;
+}
+
+.btn-outline-custom:hover {
+	color: #fff;
+	background-color: #021f53;
+	border-color: #021f53;
+
+}
+
+.btn:hover {
+	text-decoration: none;
+}
+
 /* Gradient Background color */
 .gbg-1 {
 	background: rgb(123, 122, 135);
 	background: linear-gradient(90deg, rgba(123, 122, 135, 1) 0%, rgba(2, 31, 83, 1) 39%, rgba(81, 172, 190, 1) 100%);
 }
+
+.gbg-2 {
+	background: rgb(82, 82, 82);
+	background: linear-gradient(90deg, rgba(82, 82, 82, 1) 0%, rgba(2, 31, 83, 1) 39%, rgba(5, 53, 62, 1) 100%);
+}
+
+.gbg-3 {
+	background: rgb(2, 31, 83);
+	background: linear-gradient(90deg, rgba(2, 31, 83, 1) 0%, rgba(2, 31, 83, 1) 39%, rgba(56, 182, 255, 1) 100%);
+}
+
 /* Background color */
 .bg-1 {
 	background-color: #021f53;

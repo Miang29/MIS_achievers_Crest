@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-	return redirect()->route('login');
-})->name('home');
+Route::get('/', 'PageController@user')->name('home');
 
 Route::get('/login', 'UserController@login')->name('login');
 Route::post('/authenticate', 'UserController@authenticate')->name('authenticate');
@@ -68,7 +66,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 	//Service Transaction
 	Route::group(['prefix' => 'service'], function () {
 		//Index
-		Route::get('/service', 'transactionController@Service')->name('service');
+		Route::get('/', 'transactionController@Service')->name('service');
 
 		//Create
 		Route::get('/service.create', 'transactionController@createServices')->name('service.create');
@@ -151,8 +149,4 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 		//Edit
 		Route::get('/user.edit', 'UserController@edituserAccount')->name('user.edit');
 	});
-
-
-	//CLIENTPANEL
-	Route::get('/user', 'PageController@user')->name('user');
 });

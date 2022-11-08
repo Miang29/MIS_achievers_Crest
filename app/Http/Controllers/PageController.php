@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Log;
+
 class PageController extends Controller
 {
 	//DASHBOARD
@@ -38,7 +40,6 @@ class PageController extends Controller
 
 	//CLIENTPANEL
 	protected function user() {
-		return view('user.components.header');
+		return view('index');
 	}
-
 }

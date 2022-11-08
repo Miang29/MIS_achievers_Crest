@@ -1,0 +1,29 @@
+.home-banner {
+    width: 22.5rem;
+    height: 22.5rem;
+    max-width: 22.5rem;
+    max-height: 22.5rem;
+    margin-top: 3.75rem;
+    margin-left: 3.75rem;
+    overflow: hidden;
+    display: flex;
+    border: 0.75rem solid white;
+    border-radius: 25%;
+}
+
+.home-banner > img {
+    margin: auto;
+    max-width: 100%;
+    object-position: center;
+}
+
+.circle {
+	border-radius: 100%;
+	min-width: 35rem;
+	min-height: 35rem;
+	background-image: linear-gradient(135deg, rgba(2, 31, 83, 1) 0%, rgba(2, 31, 83, 1) 39%, rgba(56, 182, 255, 1) 100%);
+    position: absolute;
+    top: -5%;
+    right: -12.5%;
+    z-index: -1;
+}

@@ -95,9 +95,9 @@
 		<div class="card-header text-center gbg-1 ">
 			<h1 class="w-100 w-lg-50 mx-auto  font-weight-bold  text-monospace text-white">LOGIN</h1>
 		</div>
-		<div class="card-body d-flex min-vh-25 ">
+		<div class="card-body d-flex flex-column flex-lg-row min-vh-25 ">
 
-			<div class="col-12 col-lg-4 bg-white d-none  d-lg-flex flex-column">
+			<div class="col-12 col-lg-4 bg-white d-lg-flex flex-column">
 				<div class="my-auto d-flex flex-column">
 					<img src="{{ asset('uploads/settings/banner.png') }}" class="img img-fluid mx-auto my-2 w-75" alt="Nano machines son">
 					<h3 class="w-100 mt-auto font-weight-bold mx-auto text-custom-1 my-5 text-center">VETERINARY CLINIC</h3>
@@ -108,7 +108,7 @@
 				<div class="my-auto">
 
 					{{-- LOGIN FORM START --}}
-					<form action="{{ route('authenticate') }}" method="POST" class="form w-75 w-lg-50 mb-auto mx-auto">
+					<form action="{{ route('authenticate') }}" method="POST" class="form mb-auto mx-auto">
 						{{ csrf_field() }}
 
 						<div class="form-group floating-label-group">
@@ -142,36 +142,23 @@
 	<!-- SCRIPTS -->
 	<script type="text/javascript" src="{{ asset('js/login.js') }}"></script>
 	<script type="text/javascript">
-		@if(Session::has('flash_error'))
-		Swal.fire({
-			{
-				!!Session::has('has_icon') ? "icon: `error`," : ""!!
-			}
-			title: `{{Session::get('flash_error')}}`,
-			{
-				!!Session::has('message') ? 'html: `'.Session::get('message').
-				'`,' : ''!!
-			}
-			position: {
-				!!Session::has('position') ? '`'.Session::get('position').
-				'`' : '`top`'!!
-			},
-			showConfirmButton: false,
-			toast: {
-				!!Session::has('is_toast') ? Session::get('is_toast'): true!!
-			},
-			{
-				!!Session::has('has_timer') ? (Session::get('has_timer') ? (Session::has('duration') ? ('timer: '.Session::get('duration')).
-					',' : `timer: 10000,`) : '') : `timer: 10000,`!!
-			}
-			background: `#dc3545`,
-			customClass: {
-				title: `text-white`,
-				content: `text-white`,
-				popup: `px-3`
-			},
-		});
-		@endif
+		   @if (Session::has('flash_error'))
+                Swal.fire({
+                    {!!Session::has('has_icon') ? "icon: `error`," : ""!!}
+                    title: `{{Session::get('flash_error')}}`,
+                    {!!Session::has('message') ? 'html: `' . Session::get('message') . '`,' : ''!!}
+                    position: {!!Session::has('position') ? '`' . Session::get('position') . '`' : '`top`'!!},
+                    showConfirmButton: false,
+                    toast: {!!Session::has('is_toast') ? Session::get('is_toast') : true!!},
+                    {!!Session::has('has_timer') ? (Session::get('has_timer') ? (Session::has('duration') ? ('timer: ' . Session::get('duration')) . ',' : `timer: 10000,`) : '') : `timer: 10000,`!!}
+                    background: `#dc3545`,
+                    customClass: {
+                        title: `text-white`,
+                        content: `text-white`,
+                        popup: `px-3`
+                    },
+                });
+                @endif
 	</script>
 </body>
 
