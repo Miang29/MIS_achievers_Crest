@@ -4,6 +4,10 @@
 	min-height: 100vh;
 }
 
+p {
+	white-space: break-spaces;
+}
+
 .content {
 	margin-left: 0.8125rem;
 	margin-right: 0.8125rem;

@@ -58,7 +58,7 @@
     <title>@yield('title') - {{ App\Settings::getValue('web-name') }}</title>
 </head>
 
-<body style="max-height: 100vh; height: 100vh;" class="overflow-y-hidden">
+<body style="max-height: 100vh; max-width: 100% ;height: 100vh;" class="overflow-y-hidden">
     {{-- SHOWS THIS INSTEAD WHEN JAVASCRIPT IS DISABLED --}}
 	<div style="position: absolute; height: 100vh; width: 100vw; background-color: #ccc;" id="js-disabled">
 		<style type="text/css">
@@ -90,7 +90,7 @@
 		<!-- CONTENTS -->
 		<main class="content-fluid d-flex  flex-fill m-0" id="content">
             {{-- CONTENT --}}
-            <div class="container-fluid content flex-fill bg-white m-0" style="z-index: 1;">
+            <div class="container-fluid content flex-fill bg-white m-0 px-0" style="z-index: 1;">
                 @yield('content')
             </div>
 		</main>
