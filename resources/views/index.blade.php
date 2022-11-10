@@ -5,7 +5,7 @@
 @section('content')
 
 <div class="row mt-5">
-    <div class="col-12 col-lg-6 mt-5 text-center"><br>
+    <div class="col-12 col-lg-6 mt-5 text-center my-5"><br>
         <img src="{{ asset('uploads/settings/banner.png') }}" class="img img-fluid mx-auto my-2 w-25" alt="Nano machines son">
         <h3 class="mt-auto font-weight-bold mx-auto text-custom-1  ">VETERINARY CLINIC</h3>
         <p class="text-1 mx-auto">Blk. 3 Lot 3 Unit 5 Glendale Village,Brgy. Dolores, Taytay Rizal</p>
@@ -51,13 +51,16 @@
             <img src="{{ asset('uploads/settings/vet.jpg') }}" />
         </div>
     </div>
+    <div class="col-12 bg-white ">
+       
+    </div>
 </div><br>
 
 {{-- ABOUT --}}
-<div class="about mt-5 h-100 bg-light ">
+<div class="about mt-5 h-100 bg-custom ">
     {{-- title --}}
     <div class="col-12 d-flex border-bottom border-secondary  ">
-        <h3 class="title mx-auto "><i class="fa-solid fa-circle-info mr-2"></i>About Us</h3><br>
+        <h3 class="title mx-auto text-white"><i class="fa-solid fa-circle-info mr-2"></i>About Us</h3><br>
     </div>
 
     {{--content --}}
@@ -88,7 +91,7 @@
     </div>
 
     {{-- content --}}
-    <div class="col-12 w-75 mt-5 my-5 mx-auto">
+    <div class="col-12 w-75 mt-5 my-5 mx-auto ">
         <div class="card my-3 mx-auto w-100  border border-secondary">
             <h5 class="card-header text-center bg-white text-1 font-weight-bold  border border-secondary">We would like to hear from you.</h5>
             <div class="card-body d-flex  border border-secondary">

@@ -1,10 +1,10 @@
 {{-- Navigation Bar (TOP) --}}
-<nav class="navbar navbar-expand-lg navbar-light bg-1 position-sticky position-lg-relative dark-shadow py-0 px-3" style="z-index: 1000;">
+<nav class="navbar navbar-expand-lg navbar-light bg-light position-sticky position-lg-relative dark-shadow py-0 px-3" style="z-index: 1000; ">
 	<div class="container-fluid">
 		{{-- Branding --}}
-		<a class="navbar-brand m-2 py-0 font-weight-bold text-white" href="#" style="height: auto;">
-			<img src="{{ asset('uploads/settings/banner-white.png') }}" style="max-height: 2.25rem;" class="m-0 p-0" alt="MIS Nano" data-fallback-img="{{ asset('uploads/settings/default.png') }}" />
-			Veterinary Clinic
+		<a class="navbar-brand my-2 m-2 py-0 font-weight-bold" href="#" style="height: auto;">
+			<img src="{{ asset('uploads/settings/banner.png') }}" style="max-height: 2.25rem;" class="m-0 p-0" alt="MIS Nano" data-fallback-img="{{ asset('uploads/settings/default.png') }}" />
+			<h8  style="font-size:1.5rem; color:#021f53;">Veterinary Clinic</h8>
 		</a>
 
 		<div class="d-flex flex-row">
@@ -16,19 +16,23 @@
 					<ul class="navbar-nav mr-auto">
 
 						<li class="nav-item ">
-							<a class="nav-link font-weight-bold text-white Active " href="#"><i class="fa-solid fa-house mr-2"></i>Home <span class="sr-only">(current)</span></a>
+							<a class="nav-link font-weight-bold Active " href="#"><i class="fa-solid fa-house mr-2"></i>Home <span class="sr-only">(current)</span></a>
 						</li>
 
 						<li class="nav-item">
-							<a class="nav-link font-weight-bold text-white" href="#"><i class="fa-solid fa-circle-info mr-2"></i>About</a>
+							<a class="nav-link font-weight-bold " href="#"><i class="fa-solid fa-circle-info mr-2"></i>About Us</a>
 						</li>
 
 						<li class="nav-item">
-							<a class="nav-link font-weight-bold text-white" href="#"><i class="fa-solid fa-phone mr-2"></i>Contact Us</a>
+							<a class="nav-link font-weight-bold " href="#"><i class="fa-solid fa-phone mr-2"></i>Contact Us</a>
 						</li>
 
 						<li class="nav-item">
-							<a class="nav-link font-weight-bold text-white" href="#"><i class="fa-solid fa-calendar mr-2"></i>Appointment</a>
+							<a class="nav-link font-weight-bold " href="#"><i class="fa-solid fa-calendar mr-2"></i>Appointment</a>
+						</li>
+
+						<li class="nav-item">
+							<a class="nav-link font-weight-bold " href="#"><i class="fa-solid fa-chart-simple mr-2"></i>Services</a>
 						</li>
 
 					</ul>

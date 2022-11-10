@@ -23,7 +23,7 @@
     min-height: 35rem;
     background-image: linear-gradient(135deg, rgba(2, 31, 83, 1) 0%, rgba(2, 31, 83, 1) 39%, rgba(56, 182, 255, 1) 100%);
     position: absolute;
-    top: -2%;
+    top: -3%;
     right: -13.5%;
     z-index: -2;
 }
@@ -31,6 +31,7 @@
 /* About */
 .about {
     max-width: 100%;
+   
 }
 
 .title {
@@ -57,4 +58,8 @@
     font-weight: bold;
     font-size: 2rem;
     color: #021f53;
+}
+
+.bg-custom{
+ background-color: #021f53;
 }

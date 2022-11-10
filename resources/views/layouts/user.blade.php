@@ -88,7 +88,7 @@
 		</header>
 
 		<!-- CONTENTS -->
-		<main class="content-fluid d-flex  flex-fill m-0" id="content">
+		<main class="content-fluid d-flex  flex-fill m-0"  id="content">
             {{-- CONTENT --}}
             <div class="container-fluid content flex-fill bg-white m-0 px-0" style="z-index: 1;">
                 @yield('content')
