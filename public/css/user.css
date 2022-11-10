@@ -11,44 +11,50 @@
     border-radius: 25%;
 }
 
-.home-banner > img {
+.home-banner>img {
     margin: auto;
     max-width: 100%;
     object-position: center;
 }
 
 .circle {
-	border-radius: 100%;
-	min-width: 35rem;
-	min-height: 35rem;
-	background-image: linear-gradient(135deg, rgba(2, 31, 83, 1) 0%, rgba(2, 31, 83, 1) 39%, rgba(56, 182, 255, 1) 100%);
+    border-radius: 100%;
+    min-width: 35rem;
+    min-height: 35rem;
+    background-image: linear-gradient(135deg, rgba(2, 31, 83, 1) 0%, rgba(2, 31, 83, 1) 39%, rgba(56, 182, 255, 1) 100%);
     position: absolute;
     top: -2%;
     right: -13.5%;
     z-index: -2;
 }
+
 /* About */
 .about {
-      max-width: 100% ;
+    max-width: 100%;
 }
 
-.title{
- margin-top: 2.5rem;
- font-weight: bold;
- font-size: 3.5rem;
- color: #021f53 ;
+.title {
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: bold;
+    font-size: 2rem;
+    color: #021f53;
 }
 
-.video{
-     width:25rem;
-     height:20rem;
-     margin-top: 2.5rem;
-    
+.video {
+    width: 25rem;
+    height: 20rem;
+    margin-top: 2.5rem;
+
 }
 
-
-
-
-
-
-
+.contact{
+    max-width: 100%;
+}
+.contact-title{
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: bold;
+    font-size: 2rem;
+    color: #021f53;
+}
