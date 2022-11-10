@@ -52,7 +52,7 @@
         </div>
     </div>
     <div class="col-12 bg-white ">
-       
+
     </div>
 </div><br>
 
@@ -78,6 +78,7 @@
         </div>
 
         <div class=" col-12 col-lg-6 mt-3 d-flex text-center ">
+            <p class="card-text font-italic text-white"></p>
         </div>
     </div>
 </div>

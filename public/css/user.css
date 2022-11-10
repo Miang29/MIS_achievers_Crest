@@ -63,3 +63,10 @@
 .bg-custom{
  background-color: #021f53;
 }
+
+.vertical {
+    border-left: 6px solid black;
+    height: 200px;
+    position:absolute;
+    left: 50%;
+}
