@@ -39,7 +39,7 @@
 
         <div class="row">
             <div class="col-12 d-flex ">
-                <a href="#" class="btn btn-outline-custom mx-auto"><i class="fa-solid fa-arrow-right mr-2"></i>Book Appointment</a>
+                <a href="{{route ('appointment')}}" class="btn btn-outline-custom mx-auto"><i class="fa-solid fa-arrow-right mr-2"></i>Book Appointment</a>
 
             </div>
         </div>
