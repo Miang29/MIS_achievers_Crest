@@ -78,7 +78,7 @@
         </div>
 <br>
         <div class=" col-12 col-lg-6 mt-5 d-flex text-center h-100"style="border-left: solid white;">
-            <p class="card-text font-italic text-white mr-auto mt-3 "><br><br><br>Dr. Silverio E. Nano specializes in the area of Dog and Cat. He is interested in Clinical/Surgical procedures. The Nano Veterinary Clinic was built last September 2015. Our Veterinary Clinic was located in Glendale Village, Brgy. Dolores, Taytay Rizal. If you have concerns for your pets health you can look for Doc. Nano and his staffs. We would loved to accomodate you and your pets, and answers all your questions and inquiries.<br><br><h7 class="font-weight-bold">Our Patients:</h7><br> <h9><i class="fa-solid fa-dog mr-2"></i>Dog</h9> <br><h9><i class="fa-solid fa-cat mr-2"></i>Cat</h9> </p>
+            <p class="card-text font-italic text-white mr-auto mt-3 "><br><br><br>Dr. Silverio E. Nano specializes in the area of Dog and Cat. He is interested in Clinical/Surgical procedures. The Nano Veterinary Clinic was built last September 2015. Our Veterinary Clinic was located in Glendale Village, Brgy. Dolores, Taytay Rizal. If you have concerns for your pets health you can look for Doc. Nano and his staffs. We would love to accomodate you and your pets, and answers all your questions and inquiries.<br><br><h7 class="font-weight-bold">Our Patients:</h7><br> <h9><i class="fa-solid fa-dog mr-2"></i>Dog</h9> <br><h9><i class="fa-solid fa-cat mr-2"></i>Cat</h9> </p>
 
         </div>
     </div>

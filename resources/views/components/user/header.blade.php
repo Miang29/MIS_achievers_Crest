@@ -16,7 +16,7 @@
 					<ul class="navbar-nav mr-auto">
 
 						<li class="nav-item ">
-							<a class="nav-link font-weight-bold Active " href="#"><i class="fa-solid fa-house mr-2"></i>Home <span class="sr-only">(current)</span></a>
+							<a class="nav-link font-weight-bold active " href="#"><i class="fa-solid fa-house mr-2"></i>Home <span class="sr-only">(current)</span></a>
 						</li>
 
 						<li class="nav-item">
@@ -28,11 +28,11 @@
 						</li>
 
 						<li class="nav-item">
-							<a class="nav-link font-weight-bold " href="#"><i class="fa-solid fa-calendar mr-2"></i>Appointment</a>
+							<a class="nav-link font-weight-bold " href="{{route ('appointment')}}"><i class="fa-solid fa-calendar mr-2"></i>Appointment</a>
 						</li>
 
 						<li class="nav-item">
-							<a class="nav-link font-weight-bold " href="#"><i class="fa-solid fa-chart-simple mr-2"></i>Services</a>
+							<a class="nav-link font-weight-bold " href="{{route ('services-offer')}}"><i class="fa-solid fa-chart-simple mr-2"></i>Services</a>
 						</li>
 
 					</ul>
