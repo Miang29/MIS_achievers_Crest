@@ -12,7 +12,7 @@
 */
 
 Route::get('/', 'PageController@user')->name('home');
-Route::get('/appoinment', 'PageController@Appointment')->name('appointment');
+Route::get('/appointment', 'PageController@Appointment')->name('appointment');
 Route::get('/services-offer', 'PageController@ServicesOffer')->name('services-offer');
 
 Route::get('/login', 'UserController@login')->name('login');

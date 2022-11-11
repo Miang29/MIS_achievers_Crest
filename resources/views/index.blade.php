@@ -57,7 +57,7 @@
 </div><br>
 
 {{-- ABOUT --}}
-<div class="about mt-5 h-100 bg-custom ">
+<div class="about mt-5 h-100 bg-custom" id="About">
     {{-- title --}}
     <div class="col-12 d-flex border-bottom border-secondary  ">
         <h3 class="title mx-auto text-white"><i class="fa-solid fa-circle-info mr-2"></i>About Us</h3><br>

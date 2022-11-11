@@ -16,7 +16,11 @@
 					<ul class="navbar-nav mr-auto">
 
 						<li class="nav-item ">
-							<a class="nav-link font-weight-bold active " href="#"><i class="fa-solid fa-house mr-2"></i>Home <span class="sr-only">(current)</span></a>
+							@if (\Request::is('/'))
+							<a class="nav-link font-weight-bold active" href="{{route ('home')}}"><i class="fa-solid fa-house mr-2"></i>Home <span class="sr-only">(current)</span></a>
+							@else
+							<a class="nav-link font-weight-bold" href="{{route ('home')}}"><i class="fa-solid fa-house mr-2"></i>Home</a>
+							@endif
 						</li>
 
 						<li class="nav-item">
@@ -28,11 +32,19 @@
 						</li>
 
 						<li class="nav-item">
+							@if (\Request::is('appointment'))
+							<a class="nav-link font-weight-bold active" href="{{route ('appointment')}}"><i class="fa-solid fa-calendar mr-2"></i>Appointment <span class="sr-only">(current)</span></a>
+							@else
 							<a class="nav-link font-weight-bold " href="{{route ('appointment')}}"><i class="fa-solid fa-calendar mr-2"></i>Appointment</a>
+							@endif
 						</li>
 
 						<li class="nav-item">
+						@if (\Request::is('services-offer'))
+							<a class="nav-link font-weight-bold active " href="{{route ('services-offer')}}"><i class="fa-solid fa-chart-simple mr-2"></i>Services <span class="sr-only">(current)</span></a>
+							@else
 							<a class="nav-link font-weight-bold " href="{{route ('services-offer')}}"><i class="fa-solid fa-chart-simple mr-2"></i>Services</a>
+							@endif
 						</li>
 
 					</ul>
