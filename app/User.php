@@ -42,4 +42,9 @@ class User extends Authenticatable
     protected function userType() {
         return $this->belongsTo('App\UserType');
     }
+
+    // Custom Functions
+    public function getName($include_middle = false) {
+        return $this->first_name . ($include_middle ? (' ' . $this->middle_name . ' ') : ' ') . $this->last_name;
+    }
 }

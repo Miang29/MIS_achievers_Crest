@@ -4,36 +4,107 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use DB;
+use Exception;
+use Log;
+use Mail;
+
 class ClientController extends Controller
 {
-    //CLIENT-PROFILE
-	protected function clientProfile(){
-
+	// CLIENT-PROFILE
+	protected function index() {
 		return view('admin.clientprofile.index');
 	}
 
-	protected function createClientprofile(){
-
+	protected function create() {
 		return view('admin.clientprofile.create');
 	}
 
-	protected function editClientprofile(){
-
+	protected function edit() {
 		return view('admin.clientprofile.client.edit');
 	}
 
-	protected function viewClientprofile(){
-
+	protected function show() {
 		return view('admin.clientprofile.client.view');
 	}
 
-	protected function EditPetprofile(){
-
+	protected function editPetProfile($clientId, $id) {
 		return view('admin.clientprofile.pet.edit');
 	}
 
-	protected function viewPetprofile(){
-        
-		return view('admin.clientprofile.pet.view');
+	protected function showPetProfile($id) {
+		$pets = [
+			[
+				"img" => "aspin_brown.jpg",
+				"name" => "Brownie",
+				"breed" => "Aspin",
+				"species" => "Dog",
+				"colors" => ["goldenrod"],
+				"birthday" => "2022/05/06",
+				"gender" => "Male"
+			],
+			[
+				"img" => "aspin_mocha.webp",
+				"name" => "Siomai",
+				"breed" => "Aspin",
+				"species" => "Dog",
+				"colors" => ["white", "chocolate"],
+				"birthday" => "2021/09/25",
+				"gender" => "Female"
+			],
+			[
+				"img" => "labrador.jpg",
+				"name" => "Siopao",
+				"breed" => "Labrador",
+				"species" => "Dog",
+				"colors" => ["moccasin"],
+				"birthday" => "2022/06/17",
+				"gender" => "Male"
+			],
+			[
+				"img" => "golden_retriever.jpg",
+				"name" => "Voodoo",
+				"breed" => "Golden Retriever",
+				"species" => "Dog",
+				"colors" => ["gold"],
+				"birthday" => "2020/03/11",
+				"gender" => "Female"
+			]
+		];
+
+		return view('admin.clientprofile.pet.index', [
+			'id' => $id,
+			'pets' => $pets
+		]);
+	}
+
+	protected function notifyClient(Request $req) {
+
+		try {
+			DB::beginTransaction();
+
+			// MAILING STUFFS
+			if (random_int(0, 100) <= 50)
+				throw new Exception();
+
+			DB::commit();
+		} catch (Exception $e) {
+			DB::rollback();
+			Log::error($e);
+
+			return response()
+				->json([
+					'success' => false,
+					'title' => 'Something went wrong',
+					'message' => '<p class="m-0 text-center">Something went wrong, please try again later</p>'
+				]);
+		}
+
+		return response()
+			->json([
+				'success' => true,
+				'title' => 'Success',
+				'message' => '<p class="m-0 text-center">Successfully notified all subscribed clients</p>'
+			]);
 	}
 }

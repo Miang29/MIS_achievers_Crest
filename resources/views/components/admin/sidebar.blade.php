@@ -16,9 +16,9 @@
 
 		{{-- Client Profile --}}
 		{{-- @if (Auth::user()->isAdmin()) --}}
-		@if (\Request::is('admin/clientprofile'))
+		@if (\Request::is('admin/client-profile'))
 		<span class="bg-secondary text-white"><i class="fas fa-address-card mr-2"></i>Client Profile</span>
-		@elseif (\Request::is('admin/clientprofile/*'))
+		@elseif (\Request::is('admin/client-profile/*'))
 		<a class="text-decoration-none aria-link bg-secondary text-white" href="{{route('client-profile')}}" aria-hidden="false" aria-label="Reservation"><i class="fas fa-address-card mr-2"></i>Client Profile</a>
 		@else
 		<a class="text-decoration-none text-1 font-weight-bold aria-link" href="{{route('client-profile')}}" aria-hidden="false" aria-label="Reservation"><i class="fas fa-address-card mr-2"></i>Client Profile</a>

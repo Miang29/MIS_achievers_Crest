@@ -32,23 +32,23 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
 	// CLIENT PROFILE
 	Route::group(['prefix' => 'client-profile'], function () {
-		//Index.Client
-		Route::get('/', 'ClientController@clientprofile')->name('client-profile');
+		// Index
+		Route::get('/', 'ClientController@index')->name('client-profile');
 
-		//Create.Client
-		Route::get('/create.client', 'ClientController@createClientprofile')->name('create.client');
+		// Create
+		Route::get('/create', 'ClientController@create')->name('client-profile.create');
 
-		//Edit.Client
-		Route::get('/edit.client', 'ClientController@editClientprofile')->name('edit.client');
+		// Edit
+		Route::get('/edit/{id}', 'ClientController@edit')->name('client-profile.edit');
 
-		//View.Client
-		Route::get('/view.client', 'ClientController@viewClientprofile')->name('view.client');
+		// Show
+		Route::get('/view/{id}', 'ClientController@show')->name('client-profile.show');
 
-		//Edit.Pet
-		Route::get('/edit.pet', 'ClientController@editPetprofile')->name('edit.pet');
+		// Pet Edit
+		Route::get('/view/{clientId}/pet/{id}/edit', 'ClientController@editPetProfile')->name('client-profile.pet.edit');
 
-		//View.Pet
-		Route::get('/view.pet', 'ClientController@viewPetprofile')->name('view.pet');
+		// Pet Show
+		Route::get('/view/{id}/pet', 'ClientController@showPetProfile')->name('client-profile.pet.show');
 	});
 
 
