@@ -11,9 +11,9 @@
 			{{-- Navbar contents --}}
 			<div class="navbar-collapse" id="navbar">
 				<div class="ml-auto">
-					<label>
+					<label class='my-auto'>
 						<div class="dropdown">
-							<a href='#' role="button" class="nav-link dropdown-toggle text-dark dynamic-size-lg-h6" style="font-size: 1.25rem;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							<a href='#' role="button" class="nav-link dropdown-toggle text-dark my-auto" style="font-size: 1.125rem;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 						    Administrator
 							</a>
 

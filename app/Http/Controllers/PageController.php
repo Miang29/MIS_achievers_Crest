@@ -8,16 +8,22 @@ use Log;
 
 class PageController extends Controller
 {
-	//DASHBOARD
+	// DASH BOARD
 	protected function redirectDashboard() {
 		return redirect()->route('dashboard');
 	}
+
 	protected function dashboard() {
-		return view('admin.dashboard');
+		$months = array();
+		$monthly_earnings = array();
+
+		return view('admin.dashboard', [
+			''
+		]);
 	}
 
 
-	//CLIENTPANEL
+	// CLIENT PANEL
 	protected function user() {
 		return view('index');
 	}

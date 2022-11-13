@@ -29,7 +29,7 @@
 
 	@yield('meta')
 
-	{{-- JQUERY / SWAL2 / FONTAWESOME 6 / SUMMERNOTE / FULLCALENDAR --}}
+	{{-- JQUERY / SWAL2 / FONTAWESOME 6 / SUMMERNOTE / FULLCALENDAR / CHART.JS --}}
 	<link rel="stylesheet" href="{{ asset('css/app.css') }}">
 	<script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
 
@@ -42,9 +42,6 @@
 			$('#for-js-disabled-js').remove();
 		});
 	</script>
-
-	{{-- Chart.js 3.1.1 --}}
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.1.1/chart.min.js" integrity="sha512-BqNYFBAzGfZDnIWSAEGZSD/QFKeVxms2dIBPfw11gZubWwKUjEgmFUtUls8vZ6xTRZN/jaXGHD/ZaxD9+fDo0A==" crossorigin="anonymous"></script>
 
 	{{-- Input Mask 5.0.5 --}}
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.5/jquery.inputmask.min.js"></script>
@@ -102,7 +99,7 @@
 					@include('components.admin.sidebar')
 
 					{{-- CONTENT --}}
-					<div class="container-fluid content flex-fill bg-5 m-0" style="z-index: 1;">
+					<div class="container-fluid content d-flex flex-column flex-fill bg-5 m-0" style="z-index: 1;">
 						@yield('content')
 					</div>
 				</div>

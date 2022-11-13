@@ -20,6 +20,9 @@ try{
 
     //Summernote
     require('summernote/dist/summernote-bs4.min.js');
+
+    // Chart.js
+    require('chart.js');
 } catch(e){
     console.error(e)
 }
