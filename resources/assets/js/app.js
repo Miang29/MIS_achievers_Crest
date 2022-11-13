@@ -22,7 +22,7 @@ try{
     require('summernote/dist/summernote-bs4.min.js');
 
     // Chart.js
-    require('chart.js');
+    require('chart.js/dist/chart.min.js');
 } catch(e){
     console.error(e)
 }

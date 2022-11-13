@@ -59,7 +59,8 @@
 		{{-- SECOND ROW --}}
 		<div class="row">
 			{{-- MONTHLY EARNINGS --}}
-			<div class="col-12 col-xl-6 d-flex flex-column my-3 my-xl-0 mx-auto">
+			<!-- MONTHLY EARNINGS -->
+			<div class="col-12 col-lg-6 d-flex flex-column my-3 my-xl-0 mx-auto">
 				<div class="card border rounded dark-shadow h-100">
 					<h5 class="card-header">Monthly Earnings</h5>
 					<div class="card-body d-flex">
@@ -74,6 +75,7 @@
 
 @section('scripts')
 <script type="text/javascript">
+	var myChart;
 	$(document).ready(() => {
 		let target = $('#monthlyEarnings');
 		let labels = [
@@ -88,10 +90,10 @@
 				@endfor
 			],
 			borderColor: '#707070',
-			backgroundColor: '#707070',
+			backgroundColor: '#021f53',
 		}];
 
-		new Chart(target, {
+		myChart = new Chart(target, {
 			type: 'bar',
 			data: {
 				labels: labels,
@@ -100,16 +102,19 @@
 			options: {
 				plugins: {
 					legend: {
-						display: false
+						display: false,
 					}
 				},
 				responsive: true,
-				maintainAspectRatio: false
+				maintainAspectRatio: true,
+				aspectRatio: '1:2'
 			}
 		});
 
+		myChart.resize(1000, 1000);
+
 		window.addEventListener('beforeprint', () => {
-			myChart.resize(600, 600);
+			myChart.resize(1000, 1000);
 		});
 
 		window.addEventListener('afterprint', () => {
