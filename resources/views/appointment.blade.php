@@ -30,16 +30,20 @@
 
                         {{-- DATE --}}
                         <div class="form-group">
-                            <div class="input-group-prepend">
-                                <div class="input-group-text bg-white border-secondary border-right-0">Date</div>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text bg-white border-secondary">Date</span>
+                                </div>
                                 <input class="form-control border-secondary border-left-0" type="date" name="date" value="{{old('date')}}" min="{{ Carbon\Carbon::now()->timezone('Asia/Manila')->format('Y-m-d') }}" />
                             </div>
                         </div>
 
                         {{-- TIME --}}
                         <div class="form-group">
-                            <div class="input-group-prepend">
-                                <div class="input-group-text bg-white border-secondary border-right-0">Time</div>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text bg-white border-secondary">Time</div>
+                                </div>
                                 <input class="form-control border-secondary border-left-0" type="time"  name="time" min="{{ Carbon\Carbon::createFromFormat('H:i', '08:00')->format('H:i') }}" max="{{ Carbon\Carbon::createFromFormat('H:i', '19:00')->format('H:i') }} " />
 
                             </div>

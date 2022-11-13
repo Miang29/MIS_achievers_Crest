@@ -322,6 +322,22 @@ textarea.not-resizable {
 		width: auto!important;
 	}
 
+	.d-sm-none {
+		display: none!important;
+	}
+
+	.d-sm-initial {
+		display: initial!important;
+	}
+
+	.d-sm-block {
+		display: block!important;
+	}
+
+	.d-sm-revert {
+		display: revert!important;
+	}
+
 	.position-sm-static {
 		position: static !important;
 	}
@@ -385,6 +401,22 @@ textarea.not-resizable {
 		width: auto!important;
 	}
 
+	.d-md-none {
+		display: none!important;
+	}
+
+	.d-md-initial: {
+		display: initial!important;
+	}
+
+	.d-md-block {
+		display: block!important;
+	}
+
+	.d-md-revert {
+		display: revert!important;
+	}
+
 	.position-md-static {
 		position: static !important;
 	}
@@ -446,6 +478,22 @@ textarea.not-resizable {
 
 	.w-lg-auto {
 		width: auto!important;
+	}
+
+	.d-lg-none {
+		display: none!important;
+	}
+
+	.d-lg-initial: {
+		display: initial!important;
+	}
+
+	.d-lg-block {
+		display: block!important;
+	}
+
+	.d-lg-revert {
+		display: revert!important;
 	}
 
 	.position-lg-static {
