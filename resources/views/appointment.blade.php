@@ -61,7 +61,7 @@
 
             <div class="card-footer d-flex flex-row">
                 <button class="btn btn-outline-custom ml-auto btn-sm mr-4 w-25" type="submit">Book</button>
-                <a href="{{ route('appointments.index') }}" class="btn btn-outline-danger btn-sm ml-1 mr-auto w-25" style="border-radius:1rem;">Cancel</a>
+                <a href="#" class="btn btn-outline-danger btn-sm ml-1 mr-auto w-25" style="border-radius:1rem;">Cancel</a>
             </div>
         </form>
     </div>

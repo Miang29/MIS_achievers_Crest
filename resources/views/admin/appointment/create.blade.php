@@ -11,25 +11,25 @@
 		<div class="col-12">
 
 			<form class="card my-3 mx-auto">
-				<h5 class="card-header text-center text-white bg-1">Create Appointment</h5>
+				<h3 class="card-header  text-white gbg-1">Create Appointment</h3>
 
 				<div class="card-body">
 					<div class="row">
-						<div class="col-12 col-lg-6">
+						<div class=" col-12 col-lg-6">
 							{{-- OWNER --}}
-							<div class="form-group">
+							<div class="form-group w-75 mx-auto">
 								<label class="h6 important" for="petowner">Pet Owner</label>
 								<input class="form-control" type="text" name="petowner" value="{{old('petowner')}} " />
 							</div>
 
 							{{-- EMAIL --}}
-							<div class="form-group">
+							<div class="form-group w-75 mx-auto">
 								<label class="h6 important" for="email">Email</label>
 								<input class="form-control" type="email" name="email" value="{{old('email')}} " />
 							</div>
 
 							{{-- PET --}}
-							<div class="form-group">
+							<div class="form-group w-75 mx-auto">
 								<label class="h6 important" for="petname">Pet Name</label>
 								<input class="form-control" type="text" name="petname" value="{{old('petname')}} " />
 							</div>
@@ -37,93 +37,27 @@
 
 						<div class="col-12 col-lg-6 form-group">
 							{{-- DATE --}}
-							<div class="form-group">
-								<label class="h6 important" for="date">date</label>
+							<div class="form-group w-75 mx-auto">
+								<label class="h6 important" for="date">Date</label>
 								<input class="form-control" type="date" name="date" value="{{old('date')}}" min="{{ Carbon\Carbon::now()->timezone('Asia/Manila')->format('Y-m-d') }}" />
 							</div>
 
 							{{-- TIME --}}
-							<div class="form-group">
-								<label class="h6 important" for="time">time</label>
+							<div class="form-group w-75 mx-auto">
+								<label class="h6 important" for="time">Time</label>
 								<input class="form-control" type="time" name="time" min="{{ Carbon\Carbon::createFromFormat('H:i', '08:00')->format('H:i') }}" max="{{ Carbon\Carbon::createFromFormat('H:i', '19:00')->format('H:i') }} " />
 							</div>
 						</div>
 
-						<div class="col-12">
-							<div id="scheduler"></div>
-						</div>
 					</div>
 				</div>
 				
 				<div class="card-footer d-flex flex-row">
-					<button class="btn btn-outline-info ml-auto mr-4 w-25" type="submit">Book</button>
-					<a href="{{ route('appointments.index') }}" class="btn btn-outline-danger ml-1 mr-auto w-25">Cancel</a>
+					<button class="btn btn-outline-custom ml-auto mr-4 w-25" type="submit">Book</button>
+					<a href="{{ route('appointments.index') }}" class="btn btn-outline-danger ml-1 mr-auto w-25" style="border-radius:1rem;">Cancel</a>
 				</div>
 			</form>
 		</div>
 	</div>
 </div>
-@endsection
-
-@section('css')
-<link rel="stylesheet" href="{{ asset('lib/fullcalendar-5.11.3/lib/main.min.css') }}">
-<style type="text/css">
-	@media screen and (max-width:767px) {
-		.fc-toolbar.fc-header-toolbar {
-			flex-direction: column;
-		}
-		.fc-toolbar-chunk {
-			display: table-row;
-			text-align: center;
-			padding: 5px 0;
-		}
-	}
-</style>
-@endsection
-
-@section('scripts')
-<script type="text/javascript" src="{{ asset('lib/fullcalendar-5.11.3/lib/main.min.js') }}"></script>
-<script type="text/javascript">
-	var calendar;
-	$(document).ready((e) => {
-		let calendarEl = document.querySelector('#scheduler');
-
-		calendar = new FullCalendar.Calendar(calendarEl, {
-			initialView: 'dayGridMonth',
-			customButtons: {
-				back: {
-					text: "Go Back",
-					click: (e) => {
-						console.log(e);
-						calendar.changeView('dayGridMonth', new Date(e.date)) ;
-					}
-				},
-				today: {
-					text: "Today",
-					click: (e) => {
-						calendar.gotoDate(new Date()) ;
-					}
-				}
-			},
-			headerToolbar: {
-				left: 'prev,next today',
-				center: 'title',
-				right: 'back'
-			},
-			selectable: true,
-			businessHours: {
-				daysOfWeek: [0,1,2,3,4,5,6],
-				startTime: '08:00',
-				endTime: '20:00',
-			},
-			windowResize: (e) => {
-				calendar.updateSize();
-			},
-			dateClick: (e) => {
-				calendar.changeView('timeGridDay', e.dateStr);
-			}
-		});
-		calendar.render();
-	});
-</script>
 @endsection
