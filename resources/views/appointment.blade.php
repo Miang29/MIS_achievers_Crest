@@ -7,7 +7,7 @@
 <div class="row" id="form-area">
     <div class="col-12 mt-5 ">
 
-        <form class="card w-50 my-3 mt-3 mx-auto">
+        <form class="card w-50 my-3 mt-3 mx-auto w-lg-50 w-md-50 w-xs-100">
             <h2 class="card-header font-weight-bold  text-center text-white gbg-2"><i class="fa-solid fa-paw mr-3"></i>Create Appointment<i class="fa-solid fa-paw ml-3"></i></h2>
 
             <div class="card-body">
@@ -50,7 +50,7 @@
                         </div>
                     </div>
 
-                    <div class="col-12 col-lg-6 form-group">
+                    <div class="col-12 col-lg-6 form-group position-relative d-none d-lg-block">
 
                     <img src="{{ asset('uploads/settings/pet-banner.png') }}" class="img img-fluid mx-auto my-2 w-100  position-overflow" alt="Nano machines son">
                     </div>
@@ -59,9 +59,9 @@
                 </div>
             </div>
 
-            <div class="card-footer d-flex flex-row">
-                <button class="btn btn-outline-custom ml-auto btn-sm mr-4 w-25" type="submit">Book</button>
-                <a href="#" class="btn btn-outline-danger btn-sm ml-1 mr-auto w-25" style="border-radius:1rem;">Cancel</a>
+            <div class="card-footer  d-flex flex-row">
+                <button class="btn btn-outline-custom ml-auto btn-sm w-lg-25 w-25" type="submit">Book</button>
+                <a href="#" class="btn btn-outline-danger btn-sm ml-1 w-lg-25 mr-auto w-25" style="border-radius:1rem;">Cancel</a>
             </div>
         </form>
     </div>
