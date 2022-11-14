@@ -35,40 +35,48 @@ class ClientController extends Controller
 	protected function showPetProfile($id) {
 		$pets = [
 			[
+				"id" => 1,
 				"img" => "aspin_brown.jpg",
 				"name" => "Brownie",
 				"breed" => "Aspin",
 				"species" => "Dog",
 				"colors" => ["goldenrod"],
 				"birthday" => "2022/05/06",
-				"gender" => "Male"
+				"gender" => "Male",
+				"type" => "tamed"
 			],
 			[
+				"id" => 2,
 				"img" => "aspin_mocha.webp",
 				"name" => "Siomai",
 				"breed" => "Aspin",
 				"species" => "Dog",
 				"colors" => ["white", "chocolate"],
 				"birthday" => "2021/09/25",
-				"gender" => "Female"
+				"gender" => "Female",
+				"type" => "tamed"
 			],
 			[
+				"id" => 3,
 				"img" => "labrador.jpg",
 				"name" => "Siopao",
 				"breed" => "Labrador",
 				"species" => "Dog",
 				"colors" => ["moccasin"],
 				"birthday" => "2022/06/17",
-				"gender" => "Male"
+				"gender" => "Male",
+				"type" => "tamed"
 			],
 			[
+				"id" => 4,
 				"img" => "golden_retriever.jpg",
 				"name" => "Voodoo",
 				"breed" => "Golden Retriever",
 				"species" => "Dog",
 				"colors" => ["gold"],
 				"birthday" => "2020/03/11",
-				"gender" => "Female"
+				"gender" => "Female",
+				"type" => "tamed"
 			]
 		];
 

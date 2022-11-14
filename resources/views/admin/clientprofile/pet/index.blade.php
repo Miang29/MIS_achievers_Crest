@@ -33,7 +33,7 @@
 						<div class="col-12 col-lg-6 d-flex flex-column">
 							{{-- IMAGE --}}
 							<div class="text-center text-lg-right">
-								<img src="{{ asset("uploads/clients/{$id}/pets/" . $p["img"]) }}" class="img-fluid border mb-3" style="border-width: 0.25rem!important; max-height: 16.25rem;" alt="{{ $p["name"] }}">
+								<img src="{{ asset("uploads/clients/{$id}/pets/" . $p["img"]) }}" class="img-fluid border mb-3 cursor-pointer" style="border-width: 0.25rem!important; max-height: 16.25rem;" alt="{{ $p["name"] }}" data-toggle="modal" data-target="#{{ "{$p['name']}-{$p['id']}" }}" id="img-{{ "{$p['name']}-{$p['id']}" }}">
 							</div>
 						</div>
 
@@ -56,7 +56,7 @@
 							</div>
 
 							{{-- COLORS --}}
-							<div>
+							<div class="text-wrap">
 								<span class="p font-weight-bold">Colors: </span>
 								@foreach($p["colors"] as $c)
 								<span class="mx-2"><i class="fas fa-circle mr-2 border" style="color: {{ $c }}; border-radius: 50%; border-width: 0.125rem!important;"></i>{{ ucfirst($c) }}</span>
@@ -78,7 +78,7 @@
 							{{-- TYPES --}}
 							<div>
 								<span class="p font-weight-bold">Types: </span>
-								<span class="p text-wrap">Supposedly types... awaiting information</span>
+								<span class="p text-wrap">{{ ucfirst($p["type"]) }}</span>
 							</div>
 
 							{{-- HISTORY --}}
@@ -97,4 +97,28 @@
 
 @section('scripts')
 <script type="text/javascript" src="{{ asset('js/util/confirm-leave.js') }}"></script>
+
+@foreach($pets as $p)
+<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="img-{{ "{$p['name']}-{$p['id']}" }}" aria-hidden="true" id="{{ "{$p['name']}-{$p['id']}" }}">
+	<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">{{ $p["name"] }} ({{ $p["breed"] }})</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+	
+			<div class="modal-body text-center">
+				<img src="{{ asset("uploads/clients/{$id}/pets/" . $p["img"]) }}" class="img-fluid border mb-3 h-100" style="border-width: 0.25rem!important;" alt="{{ $p["name"] }}">
+			</div>
+			
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-primary">Save changes</button>
+			</div>
+		</div>
+	</div>
+</div>
+@endforeach
 @endsection
