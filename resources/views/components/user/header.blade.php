@@ -36,7 +36,6 @@
 
 					@if (Request::is('/'))
 					<li class="nav-item">
-					<li class="nav-item">
 						<a class="nav-link font-weight-bold " href="#contact"><i class="fa-solid fa-phone mr-2"></i>Contact Us</a>
 					</li>
 					@else

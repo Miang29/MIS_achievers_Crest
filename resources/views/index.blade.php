@@ -73,8 +73,8 @@
             </div>
         </div>
 
-        <div class=" col-12 col-lg-6 mt-5 d-flex text-center h-100"style="border-left: solid white;">
-            <p class="card-text font-italic text-white mr-auto mt-3 "><br><br><br>Dr. Silverio E. Nano specializes in the area of Dog and Cat. He is interested in Clinical/Surgical procedures. The Nano Veterinary Clinic was built last September 2015. Our Veterinary Clinic was located in Glendale Village, Brgy. Dolores, Taytay Rizal. If you have concerns for your pets health you can look for Doc. Nano and his staffs. We would love to accomodate you and your pets, and answers all your questions and inquiries.<br><br><h7 class="font-weight-bold">Our Patients:</h7><br> <h9><i class="fa-solid fa-dog mr-2"></i>Dog</h9> <br><h9><i class="fa-solid fa-cat mr-2"></i>Cat</h9> </p>
+        <div class=" col-12 col-md-12 col-lg-6  mt-5 d-flex text-center h-100"style="border-left: solid white;">
+            <p class="card-text font-italic text-white mr-auto mt-3 ">Dr. Silverio E. Nano specializes in the area of Dog and Cat. He is interested in Clinical/Surgical procedures. The Nano Veterinary Clinic was built last September 2015. Our Veterinary Clinic was located in Glendale Village, Brgy. Dolores, Taytay Rizal. If you have concerns for your pets health you can look for Doc. Nano and his staffs. We would love to accomodate you and your pets, and answers all your questions and inquiries.<br><br><h7 class="font-weight-bold">Our Patients:</h7><br> <h9><i class="fa-solid fa-dog mr-2"></i>Dog</h9> <br><h9><i class="fa-solid fa-cat mr-2"></i>Cat</h9> </p>
         </div>
     </div>
 </div>
@@ -88,14 +88,14 @@
     </div>
 
     {{-- Content --}}
-    <div class="col-12 w-75 mt-5 my-5 mx-auto ">
+    <div class="col-12 w-75 mt-5 my-5 mx-auto   w-md-75 w-lg-75  w-xs-100 ">
         <div class="card my-3 mx-auto w-100  border border-secondary">
             <h5 class="card-header text-center bg-white text-1 font-weight-bold  border border-secondary">We would like to hear from you.</h5>
             <div class="card-body d-flex  border border-secondary">
-                <div class="form-group mx-auto w-75">
-                    <div class="col-12 ">
-                        <div class="row d-flex">
-                            <div class="col-6"><br>
+                <div class="form-group mx-auto  w-xs-100">
+                    <div class="col-12">
+                        <div class="row ">
+                            <div class="order-1 order-lg-0 col-12 col-lg-6">
                                 <input class="form-control my-2 border border-secondary " type="text" name="petowner" value="{{old('petowner')}}" placeholder="Name" />
 
                                 <input class="form-control my-2  border border-secondary" type="email" name="email" value="{{old('email')}}" placeholder="Email" />
@@ -112,7 +112,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-6 mx-auto text-center"><br>
+                            <div class="order-0 order-lg-1 col-12 col-lg-6 mx-auto text-center"><br>
                                 <img src="{{ asset('uploads/settings/banner.png') }}" class="img img-fluid mx-auto my-2 w-50" alt="Nano machines son">
                                 <h3 class="mt-auto font-weight-bold mx-auto text-custom-1  ">VETERINARY CLINIC</h3>
                                 <p class="text-1 mx-auto font-italic font-weight-bold">for more details and inquiries</p>
