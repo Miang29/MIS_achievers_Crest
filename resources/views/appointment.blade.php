@@ -52,7 +52,7 @@
 
                     <div class="col-12 col-lg-6 form-group position-relative d-none d-lg-block">
 
-                    <img src="{{ asset('uploads/settings/pet-banner.png') }}" class="img img-fluid mx-auto my-2 w-100  position-overflow" alt="Nano machines son">
+                    <img src="{{ asset('uploads/settings/pet-care.jpg') }}" class="img img-fluid mx-auto my-2 w-100  position-overflow" alt="Nano machines son">
                     </div>
 
 

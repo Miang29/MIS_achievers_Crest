@@ -27,42 +27,42 @@
     <div class="col-12">
         <div class="row">
             <div class=" col-6 col-md-4 col-lg-4 my-5 ">
-                <div class="card bg-1 ml-auto w-100">
+                <div class="card bg-1 ml-auto w-100 w-lg-75">
                     <i class="fa-solid fa-user-doctor mt-5 h-25 text-white"></i>
                     <h3 class="card-title text-white text-center ">Consultation</h3>
                 </div>
             </div>
 
             <div class="col-6 col-md-4 col-lg-4 my-5">
-                <div class="card bg-1 mx-auto w-100 ">
+                <div class="card bg-1 mx-auto w-100 w-lg-75">
                     <i class="fa-solid fa-house-chimney mt-5 h-25 text-white"></i>
                     <h3 class="card-title text-white text-center">Home Service</h3>
                 </div>
             </div>
 
             <div class="col-6 col-md-4 col-lg- my-5">
-                <div class="card bg-1  w-100">
+                <div class="card bg-1 w-100 w-lg-75">
                     <i class="fa-solid fa-shield-dog mt-5 h-25 text-white"></i>
                     <h3 class="card-title text-white text-center">Pet Boarding</h3>
                 </div>
             </div>
 
             <div class="col-6 col-md-4 col-lg-4 my-5">
-                <div class="card bg-1 ml-auto w-100">
+                <div class="card bg-1 ml-auto w-100 w-lg-75">
                     <i class="fa-solid fa-scissors mt-5 h-25 text-white"></i>
                     <h3 class="card-title text-white text-center ">Pet Grooming</h3>
                 </div>
             </div>
 
             <div class="col-6 col-md-4 col-lg-4 my-5">
-                <div class="card bg-1 mx-auto w-100">
+                <div class="card bg-1 mx-auto w-100 w-lg-75">
                     <i class="fa-solid fa-syringe mt-5 h-25 text-white"></i>
                     <h3 class="card-title text-white text-center">Vaccination</h3>
                 </div>
             </div>
 
             <div class="col-6 col-md-4 col-lg-4 my-5">
-                <div class="card bg-1 mx-auto w-100">
+                <div class="card bg-1 mr-auto w-100 w-lg-75">
                     <i class="fa-solid fa-kit-medical mt-5 h-25 text-white"></i>
                     <h8 class="card-text text-white text-center font-weight-bold">Medicine, Vitamins, <br>Treats and Accessories</h8>
                 </div>
