@@ -53,28 +53,31 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
 
 	// TRANSACTION
-	Route::group(['prefix' => 'products-order'], function () {
-		//Index
-		Route::get('/', 'transactionController@productsOrder')->name('products-order');
+	Route::group(['prefix' => 'transaction'], function() {
+		// TRANSACTION - PRODUCT
+		Route::group(['prefix' => 'products-order'], function () {
+			//Index
+			Route::get('/', 'transactionController@productsOrder')->name('products-order');
 
-		//Create
-		Route::get('/products.create', 'transactionController@createproductsOrder')->name('products.create');
+			//Create
+			Route::get('/products.create', 'transactionController@createproductsOrder')->name('products.create');
 
-		//Show
-		Route::get('/products.view', 'transactionController@viewproductsOrder')->name('products.view');
-	});
+			//Show
+			Route::get('/products.view', 'transactionController@viewproductsOrder')->name('products.view');
+		});
 
 
-	//Service Transaction
-	Route::group(['prefix' => 'service'], function () {
-		//Index
-		Route::get('/', 'transactionController@Service')->name('service');
+		// TRANSACTION - SERVICES
+		Route::group(['prefix' => 'service'], function () {
+			//Index
+			Route::get('/', 'transactionController@Service')->name('service');
 
-		//Create
-		Route::get('/service.create', 'transactionController@createServices')->name('service.create');
+			//Create
+			Route::get('/service.create', 'transactionController@createServices')->name('service.create');
 
-		//Show
-		Route::get('/service.view', 'transactionController@viewServices')->name('service.view');
+			//Show
+			Route::get('/service.view', 'transactionController@viewServices')->name('service.view');
+		});
 	});
 
 
@@ -111,17 +114,20 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 		// Create
 		Route::get('/create', 'AppointmentController@create')->name('appointments.create');
 
+		// Delete
+		Route::get('/{id}/delete', 'AppointmentController@delete')->name('appointments.delete');
+
 		// Edit
-		Route::get('/{id}/edit', 'AppointmentController@edit')->name('appointments.edit');
+		Route::get('/{id}/{petId}/edit', 'AppointmentController@edit')->name('appointments.edit');
 
 		// Show
-		Route::get('/{id}', 'AppointmentController@show')->name('appointments.show');
+		Route::get('/{id}/{petId}', 'AppointmentController@show')->name('appointments.show');
 	});
 
 	//SERVICES
 	Route::group(['prefix' => 'services'], function () {
 		//Index
-		Route::get('/', 'ServicesController@Services')->name('services.index');
+		Route::get('/', 'ServicesController@index')->name('services.index');
 
 		//Create
 		Route::get('/create', 'ServicesController@create')->name('services.create');
