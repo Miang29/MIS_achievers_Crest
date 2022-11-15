@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'clientprofile')
+@section('title', 'Pet Profile')
 
 @section('content')
 <h2 class="h5 h2-lg text-center text-lg-left mx-0 mx-lg-5 my-4"><a href="{{ route('client-profile') }}" class="text-decoration-none text-1"><i class="fas fa-chevron-left mr-2"></i></a></h2>

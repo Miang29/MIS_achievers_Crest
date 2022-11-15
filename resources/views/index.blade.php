@@ -81,14 +81,14 @@
 
 
 {{-- Contact Us--}}
-<div class="contact bg-white min-vh-100" id="contact">
+<div class="contact bg-white mt-5 min-vh-100" id="contact">
     {{-- Title --}}
-    <div class="col-12 d-flex mt-3  border-bottom border-secondary">
+    <div class="col-12 d-flex border-bottom border-secondary">
         <h3 class="contact-title mx-auto "><i class="fa-solid fa-phone mr-2"></i>Contact Us</h3><br>
     </div>
 
     {{-- Content --}}
-    <div class="col-12 w-75 mt-5 my-5 mx-auto   w-md-75 w-lg-75  w-xs-100 ">
+    <div class="col-12 w-75 my-5 mx-auto   w-md-75 w-lg-75  w-xs-100 ">
         <div class="card my-3 mx-auto w-100  border border-secondary">
             <h5 class="card-header text-center bg-white text-1 font-weight-bold  border border-secondary">We would like to hear from you.</h5>
             <div class="card-body d-flex  border border-secondary">

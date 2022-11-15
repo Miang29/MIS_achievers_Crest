@@ -1,6 +1,6 @@
 @extends('layouts.user')
 
-@section('title', 'Home')
+@section('title', 'Services Offered')
 @section('content')
 
 <h1 class="mt-5 text-1 text-center font-weight-bold"><i class="fa-solid fa-paw mr-3"></i>Our Services<i class="fa-solid fa-paw ml-3"></i></h1>
