@@ -17,6 +17,11 @@
 				@foreach($pets as $p)
 				<div class="col-12 col-lg-6 d-flex">
 					<div class="row my-3 mx-1 border rounded p-3 shadow flex-fill position-relative">
+						{{-- PARTY POPPER --}}
+						@if (Carbon\Carbon::parse($p["birthday"])->format("M d") === Carbon\Carbon::now()->timezone("Asia/Manila")->format("M d"))
+						<span class="position-absolute" style="top: -2rem; left: -1.5rem; font-size: 2.5rem;" title="Birthday Today!" data-toggle="tooltip" data-placement="right">🎂</span>
+						@endif
+
 						{{-- MODIFIERS --}}
 						<div class="position-absolute border rounded input m-0" style="top: -1rem; right: -1rem;">
 							<div class="input-group">

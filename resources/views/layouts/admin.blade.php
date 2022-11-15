@@ -165,6 +165,8 @@
 				$(".col-a").click(function() {
 					$('.collapse.show').collapse('hide');
 				});
+
+				$("[data-toggle=tooltip]").tooltip();
 			});
 		</script>
 
