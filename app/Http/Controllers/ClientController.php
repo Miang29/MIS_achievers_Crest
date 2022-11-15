@@ -77,6 +77,29 @@ class ClientController extends Controller
 				"birthday" => "2020/03/11",
 				"gender" => "Female",
 				"type" => "tamed"
+			],
+			[
+				"id" => 5,
+				"img" => "tabby.jpg",
+				"name" => "Oreo",
+				"breed" => "Tabby",
+				"species" => "Cat",
+				"colors" => ["gray", "dimgray", "white"],
+				"birthday" => "2021/11/15",
+				"gender" => "Male",
+				"type" => "tamed"
+			],
+			[
+				"id" => 6,
+				"img" => "bombay.jpg",
+				"name" => "Kisses",
+				"breed" => "Bombay",
+				"species" => "Cat",
+				"colors" => ["black"],
+				"birthday" => "2021/12/15",
+				"gender" => "Female",
+				"type" => "tamed"
+
 			]
 		];
 

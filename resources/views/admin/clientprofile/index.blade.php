@@ -41,7 +41,7 @@
 					<tr>
 						<td class="text-center">Joseph Polio</td>
 						<td class="text-center">joseph.polio@gmail.com</td>
-						<td class="text-center text-truncate">Brownie, Siomai, Siopao, Voodoo</td>
+						<td class="text-center text-truncate">Brownie, Siomai, Siopao, Voodoo, Oreo, Bombay</td>
 					  
 						<td class="text-center">
 							<div class="dropdown">
