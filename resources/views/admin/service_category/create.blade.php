@@ -15,6 +15,8 @@
 
 				<form class="card-body">
 					{{ csrf_field() }}
+
+					<div class="form-group">
 				</form>
 
 				<div class="card-footer d-flex">
@@ -26,5 +28,4 @@
 		</div>
 	</div>
 </div>
-
 @endsection

@@ -7,7 +7,7 @@
 <div class="container-fluid px-2 px-lg-6 py-2 h-100 my-3">
     <div class="row">
         <div class="col-12 col-lg text-center text-lg-left">
-            <h2 class="font-weight-bold text-1">Services List</h2>
+            <a href="{{ route('services.index') }}"><h2 class="font-weight-bold text-1"><i class="fas fa-chevron-left mr-2"></i>Services List</h2></a>
         </div>
 
         <div class="col-12 col-md-6 col-lg my-2 text-center text-md-left text-lg-right">
