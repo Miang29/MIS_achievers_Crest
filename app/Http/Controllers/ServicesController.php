@@ -6,10 +6,7 @@ use Illuminate\Http\Request;
 
 class ServicesController extends Controller
 {
-    	//SERVICES
-
-		
-	protected function Services() {
+	protected function index() {
 		return view('admin.services.index');
 	}
 

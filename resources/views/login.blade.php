@@ -91,7 +91,7 @@
 		</div>
 	</div>
 <br><br><br>
-	<main class="card mt-5 w-50 h-50 mx-auto js-only" id="content">
+	<main class="card mt-5 w-50 h-50 mx-auto js-only w-lg-50 w-md-50 w-xs-75" id="content">
 		<div class="card-header text-center gbg-1 ">
 			<h1 class="w-100 w-lg-50 mx-auto  font-weight-bold  text-monospace text-white">LOGIN</h1>
 		</div>
@@ -105,7 +105,7 @@
 			</div>
 
 			<div class="col-12 col-lg-8 d-flex  flex-column">
-				<div class="my-auto">
+				<div class="my-auto ">
 
 					{{-- LOGIN FORM START --}}
 					<form action="{{ route('authenticate') }}" method="POST" class="form mb-auto mx-auto">

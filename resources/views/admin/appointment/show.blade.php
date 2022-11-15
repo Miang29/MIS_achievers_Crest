@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'appointment')
+@section('title', 'Appointment')
 
 @section('content')
 <div class="container-fluid m-0">
@@ -18,13 +18,13 @@
                         <div class="form-group mx-auto w-100">
 
                             <label class="h6 important" for="petowner">Pet Owner</label>
-                            <input class="form-control" type="text" name="petowner" value="{{ $appointment['owner'] }} " readonly />
+                            <input class="form-control" type="text" name="petowner" value="{{ $appointment["owner"] }}" readonly />
 
                             <label class="h6 important" for="email">Email</label>
-                            <input class="form-control" type="email" value="{{ $appointment['email'] }} " readonly />
+                            <input class="form-control" type="email" value="{{ $appointment['email'] }}" readonly />
 
                             <label class="h6 important" for="petname">Pet Name</label>
-                            <input class="form-control" type="text" value="{{ $appointment['pet'] }} " readonly />
+                            <input class="form-control" type="text" value="{{ $appointment['pet'] }}" readonly />
 
                             <label class="h6 important" for="date">Date</label>
                             <input class="form-control" type="text" value="{{ $appointment['appointment_schedule']->format('F d, Y') }}" readonly />

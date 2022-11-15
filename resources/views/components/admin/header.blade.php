@@ -4,7 +4,6 @@
 		{{-- Branding --}}
 		<a class="navbar-brand m-0 py-0 font-weight-bold text-1" href="{{route('dashboard')}}" style="height: auto;">
 			<img src="{{ asset('uploads/settings/banner.png') }}" style="max-height: 2.25rem;" class="m-0 p-0" alt="MIS Nano" data-fallback-img="{{ asset('uploads/settings/default.png') }}" />
-		Veterinary Clinic
 		</a>
 
 		<div class="d-flex flex-row">
@@ -13,8 +12,8 @@
 				<div class="ml-auto">
 					<label class='my-auto'>
 						<div class="dropdown">
-							<a href='#' role="button" class="nav-link dropdown-toggle text-dark my-auto" style="font-size: 1.125rem;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						    Administrator
+							<a href='#' role="button" class="nav-link dropdown-toggle text-dark my-auto" style="font-size: 1.25rem;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								{{ Auth::user()->getName() }}
 							</a>
 
 							<div class="dropdown-menu dropdown-menu-right">

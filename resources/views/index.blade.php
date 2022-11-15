@@ -61,13 +61,13 @@
 
     {{-- Content --}}
     <div class="row w-100 mb-2 " >
-        <div class=" col-12 col-lg-6 mt-5 text-center ">
+        <div class=" col-12 col-lg-6 w-md-100 mt-5 text-center position-relative d-none d-lg-block ">
             <div class="card w-50 h-75 mx-auto">
                 <div class="w-100 overflow-hidden mx-auto h-75">
                     <img src="{{ asset('uploads/settings/doc.jpg') }}" class="img img-fluid m-auto " style="object-position: center; transform: translateY(-15%);">
                 </div>
 
-                <h5 class="card-title mt-2">Silverio E. Nano, D.V.M </h5>
+                <h5 class="card-title mt-2 ">Silverio E. Nano, D.V.M </h5>
                 <h4 class="card-text">Veterinarian</h4>
                 <p class="card-text font-italic">since 2006</p>
             </div>

@@ -32,49 +32,52 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
 	// CLIENT PROFILE
 	Route::group(['prefix' => 'client-profile'], function () {
-		//Index.Client
-		Route::get('/', 'ClientController@clientprofile')->name('client-profile');
+		// Index
+		Route::get('/', 'ClientController@index')->name('client-profile');
 
-		//Create.Client
-		Route::get('/create.client', 'ClientController@createClientprofile')->name('create.client');
+		// Create
+		Route::get('/create', 'ClientController@create')->name('client-profile.create');
 
-		//Edit.Client
-		Route::get('/edit.client', 'ClientController@editClientprofile')->name('edit.client');
+		// Edit
+		Route::get('/edit/{id}', 'ClientController@edit')->name('client-profile.edit');
 
-		//View.Client
-		Route::get('/view.client', 'ClientController@viewClientprofile')->name('view.client');
+		// Show
+		Route::get('/view/{id}', 'ClientController@show')->name('client-profile.show');
 
-		//Edit.Pet
-		Route::get('/edit.pet', 'ClientController@editPetprofile')->name('edit.pet');
+		// Pet Edit
+		Route::get('/view/{clientId}/pet/{id}/edit', 'ClientController@editPetProfile')->name('client-profile.pet.edit');
 
-		//View.Pet
-		Route::get('/view.pet', 'ClientController@viewPetprofile')->name('view.pet');
+		// Pet Show
+		Route::get('/view/{id}/pet', 'ClientController@showPetProfile')->name('client-profile.pet.show');
 	});
 
 
 	// TRANSACTION
-	Route::group(['prefix' => 'products-order'], function () {
-		//Index
-		Route::get('/', 'transactionController@productsOrder')->name('products-order');
+	Route::group(['prefix' => 'transaction'], function() {
+		// TRANSACTION - PRODUCT
+		Route::group(['prefix' => 'products-order'], function () {
+			//Index
+			Route::get('/', 'transactionController@productsOrder')->name('products-order');
 
-		//Create
-		Route::get('/products.create', 'transactionController@createproductsOrder')->name('products.create');
+			//Create
+			Route::get('/products.create', 'transactionController@createproductsOrder')->name('products.create');
 
-		//Show
-		Route::get('/products.view', 'transactionController@viewproductsOrder')->name('products.view');
-	});
+			//Show
+			Route::get('/products.view', 'transactionController@viewproductsOrder')->name('products.view');
+		});
 
 
-	//Service Transaction
-	Route::group(['prefix' => 'service'], function () {
-		//Index
-		Route::get('/', 'transactionController@Service')->name('service');
+		// TRANSACTION - SERVICES
+		Route::group(['prefix' => 'service'], function () {
+			//Index
+			Route::get('/', 'transactionController@Service')->name('service');
 
-		//Create
-		Route::get('/service.create', 'transactionController@createServices')->name('service.create');
+			//Create
+			Route::get('/service.create', 'transactionController@createServices')->name('service.create');
 
-		//Show
-		Route::get('/service.view', 'transactionController@viewServices')->name('service.view');
+			//Show
+			Route::get('/service.view', 'transactionController@viewServices')->name('service.view');
+		});
 	});
 
 
@@ -111,17 +114,20 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 		// Create
 		Route::get('/create', 'AppointmentController@create')->name('appointments.create');
 
+		// Delete
+		Route::get('/{id}/delete', 'AppointmentController@delete')->name('appointments.delete');
+
 		// Edit
-		Route::get('/{id}/edit', 'AppointmentController@edit')->name('appointments.edit');
+		Route::get('/{id}/{petId}/edit', 'AppointmentController@edit')->name('appointments.edit');
 
 		// Show
-		Route::get('/{id}', 'AppointmentController@show')->name('appointments.show');
+		Route::get('/{id}/{petId}', 'AppointmentController@show')->name('appointments.show');
 	});
 
 	//SERVICES
 	Route::group(['prefix' => 'services'], function () {
 		//Index
-		Route::get('/', 'ServicesController@Services')->name('services.index');
+		Route::get('/', 'ServicesController@index')->name('services.index');
 
 		//Create
 		Route::get('/create', 'ServicesController@create')->name('services.create');

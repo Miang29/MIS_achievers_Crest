@@ -15,7 +15,7 @@
             </p>
         </div>
 
-        <div class=" col-12 col-lg-6 mt-5  text-center ">
+        <div class=" col-12 col-lg-6 w-xs-100 w-lg-100  mt-5  text-center ">
             <div class="embed-responsive embed-responsive-21by9">
                 <video class="embed-responsive-item" controls autoplay muted>
                     <source src="{{ asset('uploads/settings/pet-video.mp4') }}" type="video/mp4">
