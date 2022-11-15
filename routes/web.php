@@ -126,18 +126,34 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
 	//SERVICES
 	Route::group(['prefix' => 'services'], function () {
-		//Index
-		Route::get('/', 'ServicesController@index')->name('services.index');
+		//Index - Category
+		Route::get('/', 'ServiceCategoryController@index')->name('services.index');
 
 		//Create
-		Route::get('/create', 'ServicesController@create')->name('services.create');
+		Route::get('/create', 'ServiceCategoryController@create')->name('services.create');
 
 		//Edit
-		Route::get('/edit', 'ServicesController@edit')->name('services.edit');
+		Route::get('/edit', 'ServiceCategoryController@edit')->name('services.edit');
 
-		//Show
-		Route::get('/show', 'ServicesController@show')->name('services.show');
+		// Show - Category / Index - Service
+		Route::get('/{id}', 'ServiceCategoryController@show')->name('services.show');
+
+		//Create - Service
+		Route::get("/{id}/create", "ServicesController@create")->name('services.show.create');
+
+		//Edit - Service
+		Route::get("/{id}/edit", "ServicesController@edit")->name('services.show.edit');
+
+		//Show - Service / Index - Variation
+		Route::get("/{id}/view", "ServicesController@view")->name('services.show.view');
+
+		
+
+
 	});
+
+
+
 
 	//REPORT
 	Route::get('/report', 'ReportController@report')->name('report.index');

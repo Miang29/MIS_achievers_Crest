@@ -6,20 +6,17 @@ use Illuminate\Http\Request;
 
 class ServicesController extends Controller
 {
-	protected function index() {
-		return view('admin.services.index');
-	}
+protected function create() {
+	return view('admin.service_category.services.create');
+}
 
-	protected function create() {
-		return view('admin.services.create');
-	}
+protected function edit() {
+	return view('admin.service_category.services.edit');
+}
 
-	protected function edit() {
-		return view('admin.services.edit');
-	
-	}
+protected function view() {
+	return view('admin.service_category.services.view');
+}
 
-	protected function show() {
-		return view('admin.services.show');
-	}
+
 }
