@@ -133,7 +133,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 		Route::get('/create', 'ServiceCategoryController@create')->name('services.create');
 
 		//Edit
-		Route::get('/edit', 'ServiceCategoryController@edit')->name('services.edit');
+		Route::post('/update/{id}', 'ServiceCategoryController@update')->name('services.update');
+		
+		//Delete
+		Route::get('/delete/{id}', 'ServiceCategoryController@delete')->name('services.delete');
 
 		// Show - Category / Index - Service
 		Route::get('/{id}', 'ServiceCategoryController@show')->name('services.show');

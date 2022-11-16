@@ -21,9 +21,9 @@ $(document).ready(() => {
 		// 		<label class="form-label d-none" for="${fieldName}">${field}</label>
 		// 		<div class="input-group">`;
 		if (useTextArea)
-			html +=		`<textarea class="form-control border-secondary not-resizable" rows="5" name="${fieldName}" id="${fieldName}" aria-label="${field}" placeholder="${field}"></textarea>`;
+			html +=		`<textarea class="form-control border-secondary my-2 not-resizable" rows="5" name="${fieldName}" id="${fieldName}" aria-label="${field}" placeholder="${field}"></textarea>`;
 		else
-			html +=		`<input class="form-control border-secondary" type="text" name="${fieldName}" id="${fieldName}" aria-label="${field}" placeholder="${field}" />`;
+			html +=		`<input class="form-control border-secondary my-2" type="text" name="${fieldName}" id="${fieldName}" aria-label="${field}" placeholder="${field}" />`;
 
 		// html +=	`</div>
 		// 	</div>
@@ -45,7 +45,7 @@ $(document).ready(() => {
 				const fieldValue = Swal.getPopup().querySelector(`#${fieldName}`).value;
 
 				if (fieldValue.length <= 0)
-					Swal.showValidationMessage(`${fieldName} is required`);
+					Swal.showValidationMessage(`${field} is required`);
 
 				return {
 					inputVal: fieldValue

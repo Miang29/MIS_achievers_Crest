@@ -14,9 +14,23 @@ class ServiceCategoryController extends Controller
 		return view('admin.service_category.create');
 	}
 
-	protected function edit() {
-		return view('admin.service_category.edit');
-	
+	// protected function edit() {
+	// 	return view('admin.service_category.edit');
+	// }
+
+	protected function update($id) {
+		return response()
+			->json([
+				'success' => true,
+				'title' => 'Success',
+				'message' => 'Successfully updated category name'
+			]);
+	}
+
+	protected function delete($id) {
+		return redirect()
+			->route('services.index')
+			->with('flash_success', 'Successfully removed entire category and all its items');
 	}
 
 	protected function show() {
