@@ -7,6 +7,7 @@
 .floating-label-input:focus {
 	z-index: 2;
 	color: white;
+	background-color: transparent;
 }
 
 .floating-label {
@@ -34,4 +35,5 @@
 	left: 0.5rem;
 
 	font-size: 75%;
+	z-index: 100!important;
 }

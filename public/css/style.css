@@ -268,13 +268,33 @@ textarea.not-resizable {
 
 /* COLORS */
 .bg-custom-1 {
-	background-color: #021f53;
+	background-color: #021f53!important;
 }
 
 .text-custom-1 {
-	color: #021f53;
+	color: #021f53!important;
+}
+
+.border-color-1 {
+	border-color: #021f53!important;
 }
 /* COLORS END */
+
+.border-dashed {
+	border-style: dashed!important;
+}
+
+.border-width-thin {
+	border-width: thin!important;
+}
+
+.border-width-medium {
+	border-width: medium!important;
+}
+
+.border-width-thick {
+	border-width: thick!important;
+}
 
 /* ANIMATION RELATED */
 .enlarge-on-hover {
