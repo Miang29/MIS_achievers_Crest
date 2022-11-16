@@ -21,23 +21,88 @@
                 </div>
 
                 <div class="card-body d-flex border-bottom border-secondary">
-                    <div class="form-group col-6 mx-auto w-50">
-
-                        <label class="h6 important  font-weight-bold text-1" for="itemname">Services Type</label>
-                        <div class="input-group mb-3">
-                            <select class="custom-select  text-1" id="inputGroupSelect01">
-                                <option selected name="itemname" value="{{old('itemname')}}"></option>
-                            </select>
-                        </div>
-
-                        <div class="row d-flex">
-                            <div class="col-6  mx-auto ">
-                                <label class="h6 important  font-weight-bold text-1" for="price">Price</label>
-                                <input class="form-control" type="text" name="price" value="{{old('price')}} " readonly />
+                    <div class="form-group col-12 mx-auto w-50">
+                        <div class="col-8 mx-auto">
+                            <label class="h6 important  font-weight-bold text-1" for="itemname">Services Type</label>
+                            <div class="input-group mb-3">
+                                <select class="custom-select  text-1" id="inputGroupSelect01">
+                                    <option selected name="itemname" value="{{old('itemname')}}"></option>
+                                </select>
                             </div>
-                            <div class="col-6  mx-auto ">
-                                <label class="h6 important  font-weight-bold text-1" for="total">Total Price</label>
-                                <input class="form-control" type="text" name="total" value="{{old('total')}} " />
+
+                            <div class="row">
+                                <div class="col-6  mx-auto ">
+                                    <label for="price[]" class="form-label important text-1 font-weight-bold">Price</label>
+                                    <div class="input-group flex-nowrap">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">₱</span>
+                                        </div>
+                                        <div class="input-group-append flex-fill">
+                                            <div class="input-group">
+                                                <input type="number" data-type="currency" name="price[]" class="form-control" readonly>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-6  mx-auto ">
+                                    <label class="h6 important  font-weight-bold text-1" for="total">Additional Price</label>
+                                    <div class="input-group flex-nowrap">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">₱</span>
+                                        </div>
+                                        <div class="input-group-append flex-fill">
+                                            <div class="input-group">
+                                                <input type="number" data-type="currency" name="additionalprice[]" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-6">
+                                    <label class="h6 important font-weight-bold my-2 text-1" for="date">Date</label>
+                                    <input class="form-control" type="date" name="date" value="{{old('date')}} " />
+                                </div>
+
+                                <div class="col-6">
+                                    <label class="h6 important font-weight-bold my-2 text-1" for="time">Time</label>
+                                    <input class="form-control" type="time" name="time" value="{{old('time')}} " />
+                                </div>
+                            </div>
+
+
+                            <label class="h6 important font-weight-bold my-2 text-1" for="name">Pet Name</label>
+                            <div class="input-group mb-3">
+                                <select class="custom-select  text-1" id="inputGroupSelect01">
+                                    <option selected name="itemname" value="{{old('itemname')}}"></option>
+                                </select>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-6">
+                                    <label class="h6 important font-weight-bold my-2 text-1" for="weight">Weight</label>
+                                    <input class="form-control" type="text" name="weight" value="{{old('weight')}} " />
+                                </div>
+
+                                <div class="col-6">
+                                    <label class="h6 important font-weight-bold my-2 text-1" for="temp">Temparature</label>
+                                    <input class="form-control" type="text" name="tem" value="{{old('temp')}} " />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4 ml-auto">
+                                <label class="h6 important font-weight-bold my-2 text-1" for="history">Clinical History</label>
+                                <textarea class="form-control my-2 not-resizable  border border-secondary" name="history" rows="5" placeholder=""></textarea>
+
+                            </div>
+
+                            <div class="col-4 mr-auto">
+                                <label class="h6 important font-weight-bold my-2 text-1" for="treatment">Treatment</label>
+                                <textarea class="form-control my-2 not-resizable  border border-secondary" name="treatment" rows="5" placeholder=""></textarea>
+
                             </div>
                         </div>
 
@@ -53,17 +118,15 @@
                 </div>
 
                 <div class="card-footer d-flex">
-                <div class="col-4 my-2 mx-auto text-center">
-                    <button class="btn btn-outline-info btn-sm w-25"><a href="#"></a>Save</button>
-                   <a href="#" class="btn btn-outline-danger btn-sm w-25" >Cancel</a>
+                    <div class="col-4 my-2 mx-auto text-center">
+                        <button class="btn btn-outline-info btn-sm w-25"><a href="#"></a>Save</button>
+                        <a href="#" class="btn btn-outline-danger btn-sm w-25">Cancel</a>
+                    </div>
                 </div>
-
             </div>
         </div>
-
     </div>
 </div>
-</div>
-</div>
+
 
 @endsection

@@ -48,7 +48,6 @@
 								<input class="form-control" type="time" name="time" min="{{ Carbon\Carbon::createFromFormat('H:i', '08:00')->format('H:i') }}" max="{{ Carbon\Carbon::createFromFormat('H:i', '19:00')->format('H:i') }} " />
 							</div>
 						</div>
-
 					</div>
 				</div>
 				

@@ -32,7 +32,7 @@
 						<th scope="col" class="hr-thick text-1 text-center">Pet Owner</th>
 						<th scope="col" class="hr-thick text-1 text-center">Pet Name</th>
 						<th scope="col" class="hr-thick text-1 text-center">Appointment Date</th>
-						<th></th>
+						
 					</tr>
 				</thead>
 
