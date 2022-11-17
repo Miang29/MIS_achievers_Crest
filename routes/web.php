@@ -97,19 +97,28 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 		//Update
 		Route::post('/{id}/update', 'InventoryController@updateCategory')->name('category.update');
 
+		// Delete
+		Route::get('/{id}/delete/', 'InventoryController@deleteCategory')->name('category.delete');
+
 		//INVENTORY-PRODUCT
 		Route::group(['prefix' => '{id}'], function() {
 			//Index
-			Route::get('/', 'InventoryController@viewCategory')->name('category.view');
+			Route::get('/product', 'InventoryController@index')->name('category.view');
 
 			//Create
-			Route::get('/product/create', 'InventoryController@createProduct')->name('product.create');
+			Route::get('/product/create', 'InventoryController@create')->name('product.create');
 
 			//View
-			Route::get('/product/{prodId}', 'InventoryController@viewProduct')->name('product.view');
+			Route::get('/product/{prodId}', 'InventoryController@view')->name('product.view');
 
 			//Edit
-			Route::get('/product/{prodId}/edit', 'InventoryController@editProduct')->name('product.edit');
+			Route::get('/product/{prodId}/edit', 'InventoryController@edit')->name('product.edit');
+
+			//Update
+			Route::post('/product/{prodId}/update', 'InventoryController@update')->name('product.update');
+
+			// Delete
+			Route::get('/product/{prodId}/delete/', 'InventoryController@delete')->name('product.delete');
 		});
 	});
 

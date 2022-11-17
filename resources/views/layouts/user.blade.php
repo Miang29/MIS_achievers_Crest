@@ -92,7 +92,7 @@
 			<!-- CONTENTS -->
 			<main class="content-fluid d-flex flex-fill m-0" id="content">
 				{{-- CONTENT --}}
-				<div class="container-fluid content flex-fill bg-white m-0 px-0" style="z-index: 1;" data-spy="scroll" data-target="#navbar">
+				<div class="container-fluid content flex-fill bg-white m-0 px-0" style="z-index: 1;" data-spy="scroll" data-target="#navbar" data-offset="56.3">
 					@yield('content')
 				</div>
 			</main>

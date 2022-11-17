@@ -35,22 +35,30 @@
 				</thead>
 
 				<tbody>
+					@forelse ($categories as $k => $c)
 					<tr>
-						<td>Pet Food</td>
-						<td>1</td>
+						<td>{{ $c['name'] }}</td>
+						<td>{{ $c['pc'] }}</td>
 
 						<td>
 							<div class="dropdown">
 								<button class="btn btn-info bg-1 btn-sm dropdown-toggle mark-affected" type="button" data-toggle="dropdown" id="dropdown" aria-haspopup="true" aria-expanded="false" data-id="$a->id">
 									Action
 								</button>
+								
 								<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown">
-								<a href="{{ route('category.view', [1]) }}" class="dropdown-item"><i class="fa-solid fa-eye mr-2"></i>View Category</a>
-								<button data-scf="Category Name" data-scf-name="category_name" data-scf-target-uri="{{ route('category.update', [1]) }}" data-scf-label="This will also move all the content of this category to the same category if it already exists." class="dropdown-item"><i class="fa-regular fa-pen-to-square mr-2"></i>Edit Category</button>
-								<a href="" class="dropdown-item"><i class="fa-solid fa-trash mr-2"></i>Delete</a>
+									<a href="{{ route('category.view', [$k]) }}" class="dropdown-item"><i class="fa-solid fa-eye mr-2"></i>View Category</a>
+									<button data-scf="Category Name" data-scf-name="category_name" data-scf-target-uri="{{ route('category.update', [$k]) }}" data-scf-label="This will also move all the content of this category to the same category if it already exists." class="dropdown-item"><i class="fa-regular fa-pen-to-square mr-2"></i>Edit Category</button>
+									<a href="javascript:void(0);" onclick="confirmLeave('{{ route("category.delete", [$k]) }}', undefined, 'Are you sure you want to remove this category? This will <b>remove all the items</b> encoded within this category.');" class="dropdown-item"><i class="fa-solid fa-trash mr-2"></i>Delete</a>
+								</div>
 							</div>
 						</td>
 					</tr>
+					@empty
+					<tr>
+						<td colspan="3">Nothing to show~</td>
+					</tr>
+					@endforelse
 				</tbody>
 			</table>
 		</div>
@@ -58,6 +66,11 @@
 </div>
 @endsection
 
+@section('meta')
+<meta name="csrf-token" content="{{ csrf_token() }}">
+@endsection
+
 @section('scripts')
 <script type="text/javascript" src="{{ asset('js/util/swal-change-field.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/util/confirm-leave.js') }}"></script>
 @endsection

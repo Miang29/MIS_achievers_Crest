@@ -1,62 +1,62 @@
 .home-banner {
-    width: 22.5rem;
-    height: 22.5rem;
-    max-width: 22.5rem;
-    max-height: 22.5rem;
-    margin-top: 3.75rem;
-    margin-left: 3.75rem;
-    overflow: hidden;
-    display: flex;
-    border: 0.75rem solid white;
-    border-radius: 25%;
+	width: 22.5rem;
+	height: 22.5rem;
+	max-width: 22.5rem;
+	max-height: 22.5rem;
+	margin-top: 3.75rem;
+	margin-left: 3.75rem;
+	overflow: hidden;
+	display: flex;
+	border: 0.75rem solid white;
+	border-radius: 25%;
 }
 
 .home-banner>img {
-    margin: auto;
-    max-width: 100%;
-    object-position: center;
+	margin: auto;
+	max-width: 100%;
+	object-position: center;
 }
 
 .circle {
-    border-radius: 100%;
-    min-width: 35rem;
-    min-height: 35rem;
-    background-image: linear-gradient(135deg, rgba(2, 31, 83, 1) 0%, rgba(2, 31, 83, 1) 39%, rgba(56, 182, 255, 1) 100%);
-    position: absolute;
-    top: -2%;
-    right: -13.5%;
-    z-index: -5;
+	border-radius: 100%;
+	min-width: 35rem;
+	min-height: 35rem;
+	background-image: linear-gradient(135deg, rgba(2, 31, 83, 1) 0%, rgba(2, 31, 83, 1) 39%, rgba(56, 182, 255, 1) 100%);
+	position: absolute;
+	top: -2%;
+	right: -13.5%;
+	z-index: -5;
 }
 
 /* About */
 .about {
-    max-width: 100%;
+	max-width: 100%;
 }
 
 .title {
-    margin-top: 1.5rem;
-    margin-bottom: 1.5rem;
-    font-weight: bold;
-    font-size: 2rem;
-    color: #021f53;
+	margin-top: 1.5rem;
+	margin-bottom: 1.5rem;
+	font-weight: bold;
+	font-size: 2rem;
+	color: #021f53;
 }
 
 .video {
-    width: 25rem;
-    height: 20rem;
-    margin-top: 2.5rem;
+	width: 25rem;
+	height: 20rem;
+	margin-top: 2.5rem;
 
 }
 
 .contact{
-    max-width: 100%;
+	max-width: 100%;
 }
 .contact-title{
-    margin-top: 1.5rem;
-    margin-bottom: 1.5rem;
-    font-weight: bold;
-    font-size: 2rem;
-    color: #021f53;
+	margin-top: 1.5rem;
+	margin-bottom: 1.5rem;
+	font-weight: bold;
+	font-size: 2rem;
+	color: #021f53;
 }
 
 .bg-custom{
@@ -64,8 +64,8 @@
 }
 
 .vertical {
-    border-left: 6px solid black;
-    height: 200px;
-    position:absolute;
-    left: 50%;
+	border-left: 6px solid black;
+	height: 200px;
+	position:absolute;
+	left: 50%;
 }

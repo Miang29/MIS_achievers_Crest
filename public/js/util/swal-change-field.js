@@ -67,7 +67,7 @@ $(document).ready(() => {
 
 				const dataPacket = {
 					"_token": $('meta[name="csrf-token"]').attr('content'),
-					[fieldName]: response.value.fieldVal
+					[fieldName]: response.value.inputVal
 				};
 
 				console.log(dataPacket);

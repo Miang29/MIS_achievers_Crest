@@ -3,8 +3,8 @@
 @section('title', 'Home')
 
 @section('content')
-{{-- ---------------------------HOME--------------------------------- --}}
-<div class="row mt-5 min-vh-100" id="home">
+{{-- ============================================= HOME ============================================= --}}
+<div class="row pt-5 min-vh-100" id="home">
     <div class="col-12 col-lg-6 mt-5 text-center my-5">
             <img src="{{ asset('uploads/settings/banner.png') }}" class="img img-fluid mx-auto my-2 w-25" alt="Nano machines son">
                 <h3 class="mt-auto font-weight-bold mx-auto text-custom-1  ">VETERINARY CLINIC</h3>
@@ -52,7 +52,7 @@
         </div>  
 </div>  
 
-{{-- --------------------------------------ABOUT------------------------------------------ --}}
+{{-- ============================================= ABOUT ============================================= --}}
 <div class="about mt-5 h-100 bg-custom min-vh-100" id="about">
     {{-- Title --}}
         <div class="col-12 d-flex border-bottom border-secondary  ">
@@ -83,7 +83,7 @@
 </div>
 
 
-{{-- ---------------------------------------Contact Us------------------------------------------ --}}
+{{-- ============================================= CONTACT US ============================================= --}}
 <div class="contact bg-white mt-5 min-vh-100" id="contact">
     {{-- Title --}}
     <div class="col-12 d-flex border-bottom border-secondary">
