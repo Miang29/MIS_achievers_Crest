@@ -49,7 +49,7 @@
                             </button>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown">
                             <a href="{{route ('services.show.view', [1] )}}" class="dropdown-item"><i class="fa-solid fa-eye mr-2"></i>View Variation</a>
-                            <a href="{{route ('services.edit', [1] )}}" class="dropdown-item"><i class="fa-regular fa-pen-to-square mr-2"></i>Edit Service</a>
+                            <a href="{{route ('services.show.edit', [1] )}}" class="dropdown-item"><i class="fa-regular fa-pen-to-square mr-2"></i>Edit Service</a>
                             <a href="" class="dropdown-item"><i class="fa-solid fa-trash mr-2"></i>Delete</a>
                             </div>
                     </td>
