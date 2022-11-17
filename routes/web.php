@@ -82,28 +82,33 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
 
 	// INVENTORY
-	Route::group(['prefix' => 'category'], function () {
+	Route::group(['prefix' => 'inventory/category'], function () {
 		//Index
 		Route::get('/', 'InventoryController@category')->name('category');
 
 		//Create
-		Route::get('/category.create', 'InventoryController@createCategory')->name('category.create');
-
-		//View
-		Route::get('/category.view', 'InventoryController@viewCategory')->name('category.view');
+		Route::get('/create', 'InventoryController@createCategory')->name('category.create');
 
 		//Edit
-		Route::get('/category.edit', 'InventoryController@editCategory')->name('category.edit');
+		// Route::get('/{id}/edit', 'InventoryController@editCategory')->name('category.edit');
+		
+		//Update
+		Route::post('/{id}/update', 'InventoryController@updateCategory')->name('category.update');
 
 		//INVENTORY-PRODUCT
-		//Index
-		Route::get('/product.view', 'InventoryController@viewProduct')->name('product.view');
+		Route::group(['prefix' => '{id}'], function() {
+			//Index
+			Route::get('/', 'InventoryController@viewCategory')->name('category.view');
 
-		//Create
-		Route::get('/product.create', 'InventoryController@createProduct')->name('product.create');
+			//Create
+			Route::get('/product/create', 'InventoryController@createProduct')->name('product.create');
 
-		//Edit
-		Route::get('/product.edit', 'InventoryController@editProduct')->name('product.edit');
+			//View
+			Route::get('/product/{prodId}', 'InventoryController@viewProduct')->name('product.view');
+
+			//Edit
+			Route::get('/product/{prodId}/edit', 'InventoryController@editProduct')->name('product.edit');
+		});
 	});
 
 	// APPOINTMENT

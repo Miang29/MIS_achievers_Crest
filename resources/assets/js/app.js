@@ -2,6 +2,9 @@ try{
     //jQuery
     window.$ = window.jQuery = require('jquery');
 
+    // jQuery UI
+    require('jquery-ui/dist/jquery-ui.min.js');
+
     //popper.js
     window.Popper = require('@popperjs/core');
 
