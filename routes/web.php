@@ -11,6 +11,8 @@
 |
 */
 
+use Symfony\Component\HttpKernel\Client;
+
 Route::get('/', 'PageController@user')->name('home');
 Route::get('/appointment', 'PageController@Appointment')->name('appointment');
 Route::get('/services-offer', 'PageController@ServicesOffer')->name('services-offer');
@@ -42,7 +44,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 		Route::get('/edit/{id}', 'ClientController@edit')->name('client-profile.edit');
 
 		// Show
-		Route::get('/view/{id}', 'ClientController@show')->name('client-profile.show');
+		Route::get('/view/{id}/client', 'ClientController@viewClientProfile')->name('client-profile.show');
 
 		// Pet Edit
 		Route::get('/view/{clientId}/pet/{id}/edit', 'ClientController@editPetProfile')->name('client-profile.pet.edit');

@@ -12,27 +12,45 @@ use Mail;
 class ClientController extends Controller
 {
 	// CLIENT-PROFILE
-	protected function index() {
+	protected function index()
+	{
 		return view('admin.clientprofile.index');
 	}
 
-	protected function create() {
+	protected function create()
+	{
 		return view('admin.clientprofile.create');
 	}
 
-	protected function edit() {
+	protected function edit()
+	{
 		return view('admin.clientprofile.client.edit');
 	}
 
-	protected function show() {
-		return view('admin.clientprofile.client.view');
+	protected function viewClientProfile($id)
+	{
+		
+		$client = [
+			[
+			"id" => 1,
+			"name" => "Joseph Polio",
+			"email" => "joseph.polio@gmail.com",
+			"telephone" => "678-4421",
+			"mobile" => "09267789945",
+			"address" => "11 Maharlika St. San Francisco Village Muzon Taytay Rizal",
+			"type" => "new"
+			]
+		];
+		return view('admin.clientprofile.client.view', [
+			'id' => $id,
+			'client' => $client
+		]);
+
+		
 	}
 
-	protected function editPetProfile($clientId, $id) {
-		return view('admin.clientprofile.pet.edit');
-	}
-
-	protected function showPetProfile($id) {
+	protected function showPetProfile($id)
+	{
 		$pets = [
 			[
 				"id" => 1,
@@ -109,7 +127,8 @@ class ClientController extends Controller
 		]);
 	}
 
-	protected function notifyClient(Request $req) {
+	protected function notifyClient(Request $req)
+	{
 
 		try {
 			DB::beginTransaction();

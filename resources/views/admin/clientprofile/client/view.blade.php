@@ -3,57 +3,55 @@
 @section('title', 'Client Profile')
 
 @section('content')
-<h2 class="h5 h2-lg text-center text-lg-left mx-0 mx-lg-5 my-4"><a href="{{route('client-profile')}}" class="text-decoration-none text-dark"><i class="fas fa-chevron-left mr-2"></i></a></h2>
-<hr class="hr-thick" style="border-color: #707070;">
+<div class="container-fluid m-0 ">
+    <h2 class="h5 h2-lg text-center text-lg-left mx-0 mx-lg-5 my-4"><a href="{{route('client-profile')}}" class="text-decoration-none text-dark"><i class="fas fa-chevron-left mr-2"></i></a>Client Profile List</h2>
+    <hr class="hr-thick" style="border-color: #707070;">
+    <h2 class="font-weight-bold text-1">Client Information</h2>
+    <div class="w-50 row col-12 h-50 mx-auto my-5">
 
-<div class="row" id="form-area">
-    <div class="col-12">
-        <div class="card my-3 mx-auto">
-            <h5 class="card-header text-center text-white bg-1">View Client Information</h5>
-            <div class="card-body d-flex">
-                <div class="form-group mx-auto w-75">
-                    <div class="col-12  ">
-
-                        <div class="row ">
-                            <div class="col-4"><br>
-                                <label class="h6 font-weight-bold text-1 important" for="petowner">Pet Owner</label>
-                                <input class="form-control " type="text" name="petowner" value="{{old('petowner')}}" readonly/>
-                            </div>
-
-                            <div class="col-8">
-                                <label class="h6 font-weight-bold text-1  important" for="address">Address</label>
-                                <textarea class="form-control not-resizable" name="address" rows="3" readonly> </textarea><br>
-                            </div>
-                        </div>
-
-                        <div class="row ">
-                            <div class="col-4 ">
-                                <label class="h6 font-weight-bold text-1" for="telephone">Telephone No</label>
-                                <input class="form-control" type="text" name="telephone" value="{{old('telephone')}}" readonly/>
-                            </div>
-
-                            <div class="col-8">
-                                <label class="h6 font-weight-bold text-1  important" for="email">Email</label>
-                                <input class="form-control" type="email" name="email" value="{{old('email')}}" readonly/><br>
-                            </div>
-                        </div>
-
-                        <div class="row ">
-                            <div class="col-4 ">
-                                <label class="h6 font-weight-bold text-1" for="mobile">Mobile No</label>
-                                <input class="form-control" type="text" name="mobile" value="{{old('mobile')}}" readonly/>
-                            </div>
-
-                            <div class="col-8 ">
-                                <label class="h6 font-weight-bold text-1  important" for="type">Type</label>
-                                <input class="form-control" type="text" name="type" value="{{old('type')}}" readonly/>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
+        <div class="card card-body position-relative">
+            @php ($i = 1)
+            @foreach($client as $c)
+            <div class="position-absolute border border-secondary bg-1 text-white text-center" style="top: -1.8rem; left:1.5rem; width:50%; height:4rem;">
+                {{-- CLIENT NAME  --}}
+                <span class="h2 my-0  text-wrap">{{ $c["name"] }}</span>
             </div>
-        </div>
-    </div>
 
-    @endsection
+            <div>
+                <div class=" mt-4">
+                    {{-- EMAIL --}}
+                    <button class="btn btn-info mr-2" data-toggle="tooltip" data-placement="left" title="Email"><i class="fa-solid fa-envelope"></i></button>
+                    <span class="h5 my-0 text-wrap">{{ $c["email"] }}</span>
+                </div>
+
+                <div class="mt-3">
+                    {{-- TELEPHONE  --}}
+                    <button class="btn btn-info mr-2" data-toggle="tooltip" data-placement="left" title="Telephone"><i class="fa-solid fa-phone"></i></button>
+                    <span class="h5 my-0 text-wrap">{{ $c["telephone"] }}</span>
+                </div>
+
+                <div class="mt-3">
+                {{-- MOBILE  --}}
+                  <button class="btn btn-info mr-2" data-toggle="tooltip" data-placement="left" title="Mobile No"><i class="fa-solid fa-mobile-button"></i></button>
+                <span class="h5 my-0 text-wrap">{{ $c["mobile"] }}</span>
+            </div>
+
+            {{-- TYPES --}}
+            <div class="mt-3">
+            <button class="btn btn-info mr-2" data-toggle="tooltip" data-placement="left" title="Types"><i class="fa-solid fa-check-to-slot"></i></button>
+                <span class="h5 my-0 text-wrap">{{ ucfirst($c["type"]) }}</span>
+            </div>
+
+            <div class="mt-3">
+                {{-- ADDRESS  --}}
+                <button class="btn btn-info mr-2" data-toggle="tooltip" data-placement="left" title="Address"><i class="fa-solid fa-address-book"></i></button>
+                <span class="h5 my-0 text-wrap">{{ $c["address"] }}</span>
+            </div>
+
+        </div>
+        @endforeach
+    </div>
+</div>
+</div>
+
+@endsection
