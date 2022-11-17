@@ -106,6 +106,7 @@
 							</div>
 							@endif
 
+							{{-- Add Button --}}
 							<div class="card col-12 col-md-4 p-3 border-0 cursor-pointer" id="addVar">
 								<div class="card-body d-flex border-dashed border-width-medium border-color-1">
 									<i class="fas fa-circle-plus fa-2x m-auto text-1"></i>

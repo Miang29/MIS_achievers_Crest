@@ -8,6 +8,7 @@ $(document).ready(() => {
 		let customTitle = obj.attr('data-scf-custom-title');
 		let disableButton = obj.attr('data-scf-disable-button');
 		let useTextArea = obj.attr('data-scf-use-textarea');
+		let label = obj.attr('data-scf-label');
 
 		fieldName = (typeof fieldName == 'undefined' ? field : fieldName);
 		customTitle = (typeof customTitle == 'undefined' ? `Update ${field}` : customTitle);
@@ -15,20 +16,25 @@ $(document).ready(() => {
 		useTextArea = (typeof useTextArea == 'undefined' ? false : (useTextArea.toLowerCase() === 'true'));
 
 		html = '';
-		// html = `
-		// <div class="row">
-		// 	<div class="col-12 my-2">
-		// 		<label class="form-label d-none" for="${fieldName}">${field}</label>
-		// 		<div class="input-group">`;
+
+		if (typeof label != 'undefined')
+			html = `
+			<div class="row">
+				<div class="col-12 my-2">
+					<label class="form-label" for="${fieldName}">${label}</label>
+					<div class="input-group">`;
+		
 		if (useTextArea)
 			html +=		`<textarea class="form-control border-secondary my-2 not-resizable" rows="5" name="${fieldName}" id="${fieldName}" aria-label="${field}" placeholder="${field}"></textarea>`;
 		else
 			html +=		`<input class="form-control border-secondary my-2" type="text" name="${fieldName}" id="${fieldName}" aria-label="${field}" placeholder="${field}" />`;
 
-		// html +=	`</div>
-		// 	</div>
-		// </div>
-		// `;
+		
+		if (typeof label != 'undefined')
+			html +=	`</div>
+				</div>
+			</div>
+			`;
 
 		obj.prop('disabled', disableButton);
 
@@ -63,6 +69,8 @@ $(document).ready(() => {
 					"_token": $('meta[name="csrf-token"]').attr('content'),
 					[fieldName]: response.value.fieldVal
 				};
+
+				console.log(dataPacket);
 
 				$.post(
 					targetURI,
