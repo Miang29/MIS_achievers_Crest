@@ -87,7 +87,7 @@
                                 </div>
 
                                 <div class="col-6">
-                                    <label class="h6 important font-weight-bold my-2 text-1" for="temp">Temparature</label>
+                                    <label class="h6 important font-weight-bol d my-2 text-1" for="temp">Temparature</label>
                                     <input class="form-control" type="text" name="tem" value="{{old('temp')}} " />
                                 </div>
                             </div>

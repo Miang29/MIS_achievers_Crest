@@ -3,11 +3,11 @@
 @section('title', 'Client Profile')
 
 @section('content')
-<div class="container-fluid m-0">
+<div class="container-fluid m-0 ">
 	<h2 class="h5 h2-lg text-center text-lg-left mx-0 mx-lg-5 my-4"><a href="{{route('client-profile')}}" class="text-decoration-none text-1"><i class="fas fa-chevron-left mr-2"></i></a></h2>
 	<hr class="hr-thick" style="border-color: #707070;">
 
-	<form class="form">
+	<form class="form bg-white">
 		<div class="row" id="form-area">
 			<div class="col-12 ">
 				<div class="card my-3 mx-auto  ">
@@ -142,7 +142,7 @@
 
 		</div>
 
-		<div class="row card-footer">
+		<div class="row">
 			<div class="col-12 my-3 d-flex flex-row">
 				<button class="btn btn-outline-info ml-auto mr-1 w-25"><a href="#"></a>Save</button>
 				<a href="{{ route('client-profile') }}" class="btn btn-outline-danger ml-1 mr-auto w-25">Cancel</a>
