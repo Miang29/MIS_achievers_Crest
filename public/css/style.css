@@ -275,6 +275,10 @@ textarea.not-resizable {
 	color: #021f53!important;
 }
 
+.form-border {
+	border: 1px solid #ced4da;
+}
+
 .border-color-1 {
 	border-color: #021f53!important;
 }

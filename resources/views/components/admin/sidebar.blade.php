@@ -93,9 +93,9 @@
 		@if (\Request::is('admin/users'))
 		<span class="bg-secondary text-white"><i class="fas fa-user-alt mr-2"></i>Users</span>
 		@elseif (\Request::is('admin/users/*'))
-		<a class="text-decoration-none text-white bg-secondary aria-link" href="{{route('user-account')}}" aria-hidden="false" aria-label="Users"><i class="fas fa-user-alt mr-2"></i>Users</a>
+		<a class="text-decoration-none text-white bg-secondary aria-link" href="{{route('user.index')}}" aria-hidden="false" aria-label="Users"><i class="fas fa-user-alt mr-2"></i>Users</a>
 		@else
-		<a class="text-decoration-none text-1 font-weight-bold aria-link" href="{{route('user-account')}}" aria-hidden="false" aria-label="Users"><i class="fas fa-user-alt mr-2"></i>Users</a>
+		<a class="text-decoration-none text-1 font-weight-bold aria-link" href="{{route('user.index')}}" aria-hidden="false" aria-label="Users"><i class="fas fa-user-alt mr-2"></i>Users</a>
 		@endif
 		{{-- @endif --}}
 

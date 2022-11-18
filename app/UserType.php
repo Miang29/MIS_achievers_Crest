@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class UserTypes extends Model
+class UserType extends Model
 {
 	protected $fillable = [
 		'name'

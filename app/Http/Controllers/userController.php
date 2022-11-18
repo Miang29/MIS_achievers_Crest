@@ -2,20 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
 use App\User;
+use App\UserType;
 
 use Auth;
 use DB;
 use Exception;
+use Hash;
 use Log;
 use Validator;
-use Hash;
 
 class UserController extends Controller
 {
-	// AUTHENTICATION
+	// AUTHENTICATION FUNCTIONS
 	protected function login() {
 		return view('login');
 	}
@@ -98,15 +100,148 @@ class UserController extends Controller
 		return redirect()->route('admin.dashboard')->with('flash_error', 'Something went wrong, please try again.');
     }
 
-	protected function userAccount() {
-		return view('admin.useraccount.index');
+    // RESOURCE FUNCTIONS
+	protected function index() {
+		$users = User::get();
+		
+		return view('admin.useraccount.index', [
+			'user' => $users
+		]);
 	}
 
-	protected function createuserAccount() {
-		return view('admin.useraccount.create');
+	protected function create() {
+		$password = str_shuffle(Str::random(25) . str_pad(rand(0, 99999), 5, '0', STR_PAD_LEFT));
+		$types = UserType::get();
+
+		return view('admin.useraccount.create', [
+			'password' => $password,
+			'types' => $types
+		]);
+	}
+
+	protected function store(Request $req) {
+		$validator = Validator::make($req->all(), [
+			'first_name' => 'required|min:2|max:255|string',
+			'middle_name' => 'nullable|min:2|max:255|string',
+			'last_name' => 'required|min:2|max:255|string',
+			'suffix' => 'nullable|min:2|max:255|string',
+			'email' => 'required|unique:users,email|min:2|max:255|email',
+			'username' => 'required|unique:users,username|min:2|max:255|string',
+			'user_type' => 'required|exists:user_types,id|numeric',
+			'password' => array('required', 'string', 'min:8', 'max:255', 'regex:/^[a-zA-Z0-9!@#$%^&*()_+\-=\[\]{};\':"\\|,.<>\/?]*$/'),
+		]);
+
+		if ($validator->fails())
+			return redirect()
+				->back()
+				->withErrors($validator)
+				->withInput();
+		
+		try {
+			DB::beginTransaction();
+
+			$user = User::create([
+				'first_name' => $req->first_name,
+				'middle-Name' => $req->middle_name,
+				'last_name' => $req->last_name,
+				'suffix' => $req->suffix,
+				'email' => $req->email,
+				'username' => $req->username,
+				'user_type_id' => $req->user_type,
+				'password' => Hash::make($req->password),
+			]);
+
+			// MAILER SHIT
+
+			DB::commit();
+		} catch (Exception $e) {
+			DB::rollback();
+			Log::error($e);
+
+			return redirect()
+				->route('user.index')
+				->with('flash_error', 'Something went wrong, please try again later');
+		}
+
+		return redirect()
+			->route('user.index')
+			->with('flash_success', "Successfully added {$user->getName()} as {$user->userType->name}");
+	}
+
+	protected function view($id) {
+		$user = User::find($id);
+
+		if ($user == null) 
+			return redirect()
+				->route('user.index')
+				->with('flash_error', 'User already removed. Please refresh your browser if it is still visible');
+
+		return view('admin.useraccount.view', [
+			'user' => $user
+		]);
+	}
+
+	protected function edit($id) {
+		$user = User::find($id);
+
+		if ($user == null) 
+			return redirect()
+				->route('user.index')
+				->with('flash_error', 'User already removed. Please refresh your browser if it is still visible');
+
+		return view('admin.useraccount.edit', [
+			'user' => $user
+		]);
 	}
 	
-	protected function edituserAccount() {
-		return view('admin.useraccount.edit');
+	protected function update() {
+		$user = User::find($id);
+
+		if ($user == null) 
+			return redirect()
+				->route('user.index')
+				->with('flash_error', 'User already removed. Please refresh your browser if it is still visible');
+
+		return redirect()
+			->route('user.index')
+			->with('flash_success', 'Successfully updated user information');
+	}
+
+	protected function delete($id) {
+		$user = User::find($id);
+
+		if ($user == null) 
+			return redirect()
+				->route('user.index')
+				->with('flash_error', 'User already removed. Please refresh your browser if it is still visible');
+
+		$isDeleted = false;
+
+		try {
+			DB::beginTransaction();
+
+			if (Auth::check() && (Auth::user()->email != $user->email)) {
+				$user->delete();
+				$isDeleted = true;
+			}
+
+			DB::commit();
+		} catch (Exception $e) {
+			DB::rollback();
+			Log::error($e);
+
+			return redirect()
+				->route('user.index')
+				->with('flash_error', 'Something went wrong, please try again later');
+		}
+
+		if ($isDeleted)
+			return redirect()
+				->route('user.index')
+				->with('flash_success', 'Successfully removed user from table');
+
+		return redirect()
+			->route('user.index')
+			->with('flash_info', 'Cannot delete your own account while active');
 	}
 }

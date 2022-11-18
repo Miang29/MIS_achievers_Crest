@@ -165,14 +165,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
 		//Show - Service / Index - Variation
 		Route::get("/{id}/view", "ServicesController@view")->name('services.show.view');
-
-		
-
-
 	});
-
-
-
 
 	//REPORT
 	Route::get('/report', 'ReportController@report')->name('report.index');
@@ -181,15 +174,27 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 	Route::get('/settings', 'SettingsController@settings')->name('settings.index');
 
 
-	//USERACCOUNT
-	Route::group(['prefix' => 'usersaccount'], function () {
+	//USER ACCOUNT
+	Route::group(['prefix' => 'users'], function () {
 		//Index
-		Route::get('/', 'UserController@userAccount')->name('user-account');
+		Route::get('/', 'UserController@index')->name('user.index');
+
+		//Store
+		Route::post('/store', 'UserController@store')->name('user.store');
 
 		//Create
-		Route::get('/user.create', 'UserController@createuserAccount')->name('user.create');
+		Route::get('/create', 'UserController@create')->name('user.create');
+
+		//View
+		Route::get('/{id}', 'UserController@view')->name('user.view');
 
 		//Edit
-		Route::get('/user.edit', 'UserController@edituserAccount')->name('user.edit');
+		Route::get('/{id}/edit', 'UserController@edit')->name('user.edit');
+
+		//Update
+		Route::post('/{id}/update', 'UserController@update')->name('user.update');
+		
+		//Delete
+		Route::get('/{id}/delete', 'UserController@delete')->name('user.delete');
 	});
 });
