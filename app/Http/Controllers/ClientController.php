@@ -11,27 +11,9 @@ use Mail;
 
 class ClientController extends Controller
 {
-	// CLIENT-PROFILE
-	protected function index()
-	{
-		return view('admin.clientprofile.index');
-	}
-
-	protected function create()
-	{
-		return view('admin.clientprofile.create');
-	}
-
-	protected function edit()
-	{
-		return view('admin.clientprofile.client.edit');
-	}
-
-	protected function viewClientProfile($id)
-	{
-		
-		$client = [
-			[
+	// TEMP VAR
+	private $clients = [
+		[
 			"id" => 1,
 			"name" => "Joseph Polio",
 			"email" => "joseph.polio@gmail.com",
@@ -39,19 +21,11 @@ class ClientController extends Controller
 			"mobile" => "09267789945",
 			"address" => "11 Maharlika St. San Francisco Village Muzon Taytay Rizal",
 			"type" => "new"
-			]
-		];
-		return view('admin.clientprofile.client.view', [
-			'id' => $id,
-			'client' => $client
-		]);
+		]
+	];
 
-		
-	}
-
-	protected function showPetProfile($id)
-	{
-		$pets = [
+	private $pets = [
+		"1" =>	[
 			[
 				"id" => 1,
 				"img" => "aspin_brown.jpg",
@@ -119,17 +93,44 @@ class ClientController extends Controller
 				"type" => "tamed"
 
 			]
-		];
+		]
+	];
 
-		return view('admin.clientprofile.pet.index', [
-			'id' => $id,
-			'pets' => $pets
+	// CLIENT-PROFILE
+	protected function index() {
+		return view('admin.clientprofile.index', [
+			'clients' => $this->clients,
+			'pets' => $this->pets
 		]);
 	}
 
-	protected function notifyClient(Request $req)
-	{
+	protected function create() {
+		return view('admin.clientprofile.create');
+	}
 
+	protected function edit() {
+		return view('admin.clientprofile.client.edit');
+	}
+
+	protected function viewClientProfile($id) {
+		$client = $this->clients[$id-1];
+		
+		return view('admin.clientprofile.client.view', [
+			'id' => $id,
+			'client' => $client
+		]);
+
+		
+	}
+
+	protected function showPets($id) {
+		return view('admin.clientprofile.pet.index', [
+			'id' => $id,
+			'pets' => $this->pets["{$id}"]
+		]);
+	}
+
+	protected function notifyClient(Request $req) {
 		try {
 			DB::beginTransaction();
 

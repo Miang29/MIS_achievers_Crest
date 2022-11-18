@@ -50,7 +50,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 		Route::get('/view/{clientId}/pet/{id}/edit', 'ClientController@editPetProfile')->name('client-profile.pet.edit');
 
 		// Pet Show
-		Route::get('/view/{id}/pet', 'ClientController@showPetProfile')->name('client-profile.pet.show');
+		Route::get('/view/{id}/pet', 'ClientController@showPets')->name('client-profile.pet.show');
 	});
 
 

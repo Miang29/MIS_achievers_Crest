@@ -38,26 +38,40 @@
 				</thead>
 
 				<tbody>
+					@forelse ($clients as $c)
 					<tr>
-						<td class="text-center">Joseph Polio</td>
-						<td class="text-center">joseph.polio@gmail.com</td>
-						<td class="text-center text-truncate">Brownie, Siomai, Siopao, Voodoo, Oreo, Bombay</td>
+						<td class="text-center">{{ $c['name'] }}</td>
+						<td class="text-center">{{ $c['email'] }}</td>
+						<td class="text-center text-truncate">
+							@php
+							$arr = [];
+							foreach ($pets["{$c['id']}"] as $p)
+								array_push($arr, $p['name']);
+							
+							echo implode(', ', $arr);
+							@endphp
+						</td>
 					  
 						<td class="text-center">
 							<div class="dropdown">
-								<button class="btn btn-info bg-1 btn-sm dropdown-toggle mark-affected" type="button" data-toggle="dropdown" id="dropdown" aria-haspopup="true" aria-expanded="false" data-id="$a->id">
+								<button class="btn btn-info bg-1 btn-sm dropdown-toggle mark-affected" type="button" data-toggle="dropdown" id="dropdown" aria-haspopup="true" aria-expanded="false">
 									Action
 								</button>
 
 								<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown">
-									<a href="{{route('client-profile.show', [1])}}" class="dropdown-item"><i class="fa-solid fa-eye mr-2"></i>View Client</a>
-									<a href="{{route('client-profile.edit', [1])}}" class="dropdown-item"><i class="fa-regular fa-pen-to-square mr-2"></i>Edit Client</a>
-									<a href="{{route('client-profile.pet.show', [1])}}" class="dropdown-item"><i class="fa-solid fa-eye mr-2"></i>View Pet</a>
+									<a href="{{route('client-profile.show', [$c['id']])}}" class="dropdown-item"><i class="fa-solid fa-eye mr-2"></i>View Client</a>
+									<a href="{{route('client-profile.edit', [$c['id']])}}" class="dropdown-item"><i class="fa-regular fa-pen-to-square mr-2"></i>Edit Client</a>
+									<a href="{{route('client-profile.pet.show', [$c['id']])}}" class="dropdown-item"><i class="fa-solid fa-eye mr-2"></i>View Pet</a>
 									<a href="#" class="dropdown-item"><i class="fa-solid fa-trash mr-2"></i>Delete</a>
 								</div>
 							</div>
 						</td>
 					</tr>
+					@empty
+					<tr>
+						<td colspan="4" class="text-center">Nothing to show~</td>
+					</tr>
+					@endforelse
 				</tbody>
 			</table>
 		</div>
