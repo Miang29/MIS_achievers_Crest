@@ -76,8 +76,9 @@
 			</table>
 		</div>
 
-		<div class="card-footer d-flex">
-			<a href="{{ route('report.print', ['output' => 'print', 't' => $type, 'from' => $from, 'to' => $to]) }}" target="_new" class="btn btn-outline-primary btn-sm mx-auto"><i class="fa-solid fa-print mr-2"></i>Print Report</a>
+		<div class="card-footer d-flex justify-content-center flex-wrap">
+			<a href="{{ route('report.print', ['output' => 'print', 't' => $type, 'from' => $from, 'to' => $to]) }}" target="_new" class="btn btn-outline-primary btn-sm mx-2"><i class="fa-solid fa-print mr-2"></i>Print Report</a>
+			<a href="{{ route('report.print', ['output' => 'pdf', 't' => $type, 'from' => $from, 'to' => $to]) }}" target="_new" class="btn btn-outline-primary btn-sm mx-2"><i class="fa-solid fa-file-pdf mr-2"></i>Download Report (PDF)</a>
 		</div>
 	</div>
 </div>

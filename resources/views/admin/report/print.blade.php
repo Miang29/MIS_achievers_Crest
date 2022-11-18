@@ -75,9 +75,24 @@
 		<script type="text/javascript">
 			$(document).ready(() => {
 				@if ($output == 'print')
-				window.onload = () => { window.print() };
+				window.onload = () => { 
+					window.print();
+				};
+
+				window.onafterprint = () => {
+					window.close();
+				}
 				@elseif ($output == 'pdf')
-				html2pdf().from($('html').html()).save("Report for {{ ucfirst($type) }} ({{ $from->format('M d, Y') }} - {{ $to->format('M d, Y') }})");
+
+				let isConverted = html2pdf().from($('html').html()).save("Report for {{ ucfirst($type) }} ({{ $from->format('M d, Y') }} - {{ $to->format('M d, Y') }})");
+
+				let interval = setInterval(() => {
+					if (isConverted._state == 1) {
+						console.log("Finished...");
+						clearInterval(interval);
+						window.close();
+					}
+				}, 0);
 				@endif
 			});
 		</script>
