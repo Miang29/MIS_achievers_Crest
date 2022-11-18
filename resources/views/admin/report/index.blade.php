@@ -77,7 +77,7 @@
 		</div>
 
 		<div class="card-footer d-flex">
-			<a class="btn btn-outline-primary btn-sm mx-auto"><i class="fa-solid fa-print mr-2"></i>Print Report</a>
+			<a href="{{ route('report.print', ['output' => 'print', 't' => $type, 'from' => $from, 'to' => $to]) }}" target="_new" class="btn btn-outline-primary btn-sm mx-auto"><i class="fa-solid fa-print mr-2"></i>Print Report</a>
 		</div>
 	</div>
 </div>

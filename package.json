@@ -16,6 +16,7 @@
         "bootstrap-select": "^1.13.18",
         "chart.js": "^3.9.1",
         "cross-env": "^7.0.3",
+        "html2pdf.js": "^0.10.1",
         "jquery": "^3.6.1",
         "jquery-ui": "^1.13.2",
         "laravel-mix": "^6.0.49",

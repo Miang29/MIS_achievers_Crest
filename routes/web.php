@@ -168,7 +168,13 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 	});
 
 	//REPORT
-	Route::get('/report', 'ReportController@report')->name('report.index');
+	Route::group(['prefix' => 'report'], function () {
+		//Index
+		Route::get('/', 'ReportController@report')->name('report.index');
+
+		//Print
+		Route::get('/print', 'ReportController@print')->name('report.print');
+	});
 
 	//SETTINGS
 	Route::get('/settings', 'SettingsController@settings')->name('settings.index');
