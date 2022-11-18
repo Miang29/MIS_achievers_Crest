@@ -15,7 +15,7 @@
 		<td>{{ $u->username }}</td>
 		<td>{{ $u->getName() }}</td>
 		<td>{{ $u->email }}</td>
-		<td>{{ $u->userType->name </td>
+		<td>{{ $u->userType->name }} </td>
 		<td>{{ Carbon\Carbon::parse($u->created_at)->timezone('Asia/Manila')->format('M d, Y h:i A') }}</td>
 		<td>{{ Carbon\Carbon::parse($u->updated_at)->timezone('Asia/Manila')->format('M d, Y h:i A') }}</td>
 	</tr>

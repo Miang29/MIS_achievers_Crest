@@ -38,9 +38,9 @@
    
             <tbody>
                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td class="text-center">Antipolo</td>
+                    <td class="text-center">300</td>
+                    <td class="text-center"></td>
                     <td></td>
                       
                     <td>
@@ -49,7 +49,8 @@
                                 Action
                             </button>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown">
-                            <a href="#" class="dropdown-item"><i class="fa-regular fa-pen-to-square mr-2"></i>Edit Category</a>
+                            <a href="{{route ('services.show.show', [1]) }}" class="dropdown-item"><i class="fa-regular fa-eye mr-2"></i>Show</a>
+                            <a href="" class="dropdown-item"><i class="fa-regular fa-pen-to-square mr-2"></i>Edit</a>
                             <a href="" class="dropdown-item"><i class="fa-solid fa-trash mr-2"></i>Delete</a>
                             </div>
                     </td>

@@ -27,7 +27,7 @@ class ServiceCategoryController extends Controller
 			]);
 	}
 
-	protected function delete($id) {
+	protected function deletecategory($id) {
 		return redirect()
 			->route('services.index')
 			->with('flash_success', 'Successfully removed entire category and all its items');

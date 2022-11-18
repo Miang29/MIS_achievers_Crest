@@ -157,8 +157,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 		//Edit
 		Route::post('/update/{id}', 'ServiceCategoryController@update')->name('services.update');
 		
-		//Delete
-		Route::get('/delete/{id}', 'ServiceCategoryController@delete')->name('services.delete');
+	    //Delete
+		Route::get('/{id}/delete', 'ServiceCategoryController@deletecategory')->name('services.delete');
 
 		// Show - Category / Index - Service
 		Route::get('/{id}', 'ServiceCategoryController@show')->name('services.show');
@@ -167,10 +167,19 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 		Route::get("/{id}/create", "ServicesController@create")->name('services.show.create');
 
 		//Edit - Service
-		Route::get("/{id}/edit", "ServicesController@edit")->name('services.show.edit');
+		Route::get("/update/{id}", "ServicesController@update")->name('services.show.update');
 
 		//Show - Service / Index - Variation
 		Route::get("/{id}/view", "ServicesController@view")->name('services.show.view');
+	
+		
+		//Show - Service / Index - Variation
+		Route::get("/{id}/show", "ServicesController@show")->name('services.show.show');
+
+		//Delete
+		Route::get('/delete/{id}', 'ServicesController@deleteservice')->name('services.show.delete');
+
+	
 	});
 
 	//REPORT
