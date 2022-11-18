@@ -36,7 +36,7 @@
 		@endif
 		{{-- @endif --}}
 
-		
+
 		{{-- Services --}}
 		{{-- @if (Auth::user()->isAdmin()) --}}
 		@if (\Request::is('admin/services'))
@@ -59,9 +59,8 @@
 		<a class="text-decoration-none text-1 font-weight-bold aria-link" href="{{route('category')}}" aria-hidden="false" aria-label="Transaction"><i class="fa-solid fa-warehouse mr-2"></i>Inventory</a>
 		@endif
 		{{-- @endif --}}
-	
-		<hr class="w-100 custom-hr">
-		
+
+
 		{{-- Transaction --}}
 		<a class="btn text-decoration-none text-1 font-weight-bold aria-link text-left" aria-label="transaction" data-toggle="collapse" href="#collapseItem2" role="button" aria-expanded="false" aria-controls="collapseItem2">
 			<i class="fa-solid fa-money-check-dollar mr-2"></i>Transaction
@@ -74,13 +73,14 @@
 		</div>
 		{{-- @endif --}}
 
+		<hr class="w-100 custom-hr">
 
 
 		{{-- Reports --}}
 		{{-- @if (Auth::user()->isAdmin()) --}}
-		@if (\Request::is('admin/reports'))
+		@if (\Request::is('admin/report'))
 		<span class="bg-secondary text-white"><i class="fa-solid fa-chart-simple mr-2"></i>Reports</span>
-		@elseif (\Request::is('admin/reports/*'))
+		@elseif (\Request::is('admin/report/*'))
 		<a class="text-decoration-none text-white bg-secondary aria-link" href="{{ route('report.index') }}" aria-hidden="false" aria-label="Reports"><i class="fa-solid fa-chart-simple mr-2"></i>Reports</a>
 		@else
 		<a class="text-decoration-none text-1 font-weight-bold aria-link" href="{{ route('report.index') }}" aria-hidden="false" aria-label="Reports"><i class="fa-solid fa-chart-simple mr-2"></i>Reports</a>
