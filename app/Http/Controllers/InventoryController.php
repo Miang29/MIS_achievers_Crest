@@ -116,7 +116,9 @@ class InventoryController extends Controller
     }
 	
 	protected function create($cid) {
-		return view('admin.inventory.product.create');
+		return view('admin.inventory.product.create', [
+			'cid' => $cid
+		]);
     }
 	
 	protected function view($cid, $id) {

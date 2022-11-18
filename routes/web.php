@@ -59,26 +59,32 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 		// TRANSACTION - PRODUCT
 		Route::group(['prefix' => 'products-order'], function () {
 			//Index
-			Route::get('/', 'transactionController@productsOrder')->name('products-order');
+			Route::get('/', 'TransactionController@productsOrder')->name('transaction.products-order');
 
 			//Create
-			Route::get('/products.create', 'transactionController@createproductsOrder')->name('products.create');
+			Route::get('/products/create', 'TransactionController@createproductsOrder')->name('transaction.products.create');
 
 			//Show
-			Route::get('/products.view', 'transactionController@viewproductsOrder')->name('products.view');
+			Route::get('/products/view', 'TransactionController@viewproductsOrder')->name('transaction.products.view');
+
+			//Delete
+			Route::get('/delete', 'TransactionController@deleteproducstOrder')->name('transaction.products.delete');
 		});
 
 
 		// TRANSACTION - SERVICES
 		Route::group(['prefix' => 'service'], function () {
 			//Index
-			Route::get('/', 'transactionController@Service')->name('service');
+			Route::get('/', 'TransactionController@Service')->name('transaction.service');
 
 			//Create
-			Route::get('/service.create', 'transactionController@createServices')->name('service.create');
+			Route::get('/create', 'TransactionController@createServices')->name('transaction.service.create');
 
 			//Show
-			Route::get('/service.view', 'transactionController@viewServices')->name('service.view');
+			Route::get('/view', 'TransactionController@viewServices')->name('transaction.service.view');
+
+			//Delete
+			Route::get('/delete', 'TransactionController@deleteService')->name('transaction.service.delete');
 		});
 	});
 

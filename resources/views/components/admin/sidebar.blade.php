@@ -68,8 +68,8 @@
 		</a>
 		<div class="collapse  " id="collapseItem2">
 			<div class="card card-body d-flex">
-				<a class="dropdown-item  " href="{{route('products-order')}}"><i class="fas fa-money-check-dollar mr-1 "></i>Products Order</a>
-				<a class="dropdown-item  " href="{{route('service')}}"><i class="fas fa-shield-cat mr-1"></i>Services</a>
+				<a class="dropdown-item  " href="{{route('transaction.products-order')}}"><i class="fas fa-money-check-dollar mr-1 "></i>Products Order</a>
+				<a class="dropdown-item  " href="{{route('transaction.service')}}"><i class="fas fa-shield-cat mr-1"></i>Services</a>
 			</div>
 		</div>
 		{{-- @endif --}}
