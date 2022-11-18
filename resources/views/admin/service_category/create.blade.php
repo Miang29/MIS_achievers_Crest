@@ -11,7 +11,7 @@
 		<div class="col-12">
 
 			<div class="card my-3 mx-auto">
-				<h3 class="card-header  text-white gbg-1">CREATE SERVICE CATEGORY</h3>
+				<h3 class="card-header  text-white gbg-1"><i class="fa-solid fa-square-plus mr-2"></i>CREATE SERVICE CATEGORY</h3>
 
 				<form class="card-body" action="#" method="GET" enctype="multipart/form-data" class="form">
 					{{ csrf_field() }}

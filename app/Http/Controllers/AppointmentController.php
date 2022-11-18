@@ -32,8 +32,9 @@ class AppointmentController extends Controller
 				'owner' => 'Joseph Polio',
 				'email' => 'joseph.polio@gmail.com',
 				'pet' => array("Brownie", "Siomai", "Siopao", "Voodoo")[$petId],
-				'appointment_schedule' => Carbon::now()->timezone('Asia/Manila')
-			])
+				'appointment_schedule' => Carbon::now()->timezone('Asia/Manila'),
+			    'service' => 'Consultation'
+				])
 		]);
 	}
 
@@ -44,7 +45,8 @@ class AppointmentController extends Controller
 				'owner' => 'Joseph Polio',
 				'email' => 'joseph.polio@gmail.com',
 				'pet' => ["Brownie", "Siomai", "Siopao", "Voodoo"][$petId],
-				'appointment_schedule' => Carbon::now()->timezone('Asia/Manila')
+				'appointment_schedule' => Carbon::now()->timezone('Asia/Manila'),
+				'service' => 'Consultation'
 			])
 		]);
 	}

@@ -4,14 +4,14 @@
 
 @section('content')
 <div class="container-fluid m-0">
-	<h2 class="mt-3"><a href="{{route('appointments.index')}}" class="text-decoration-none  text-1"><i class="fas fa-chevron-left mr-2"></i>Appointment</a></h2>
+	<h3 class="mt-3"><a href="{{route('appointments.index')}}" class="text-decoration-none  text-1"><i class="fas fa-chevron-left mr-2"></i>Appointment List</a></h3>
 	<hr class="hr-thick" style="border-color: #707070;">
 
 	<div class="row" id="form-area">
 		<div class="col-12">
 
 			<form class="card my-3 mx-auto">
-				<h3 class="card-header  text-white gbg-1">Create Appointment</h3>
+				<h3 class="card-header font-weight-bold text-white gbg-1"><i class="fa-solid fa-square-plus mr-2"></i>Create Appointment</h3>
 
 				<div class="card-body">
 					<div class="row">
@@ -53,7 +53,7 @@
 				
 				<div class="card-footer d-flex flex-row">
 					<button class="btn btn-outline-custom ml-auto mr-4 w-25" type="submit">Book</button>
-					<a href="{{ route('appointments.index') }}" class="btn btn-outline-danger ml-1 mr-auto w-25" style="border-radius:1rem;">Cancel</a>
+					<a href="{{ route('appointments.create') }}" class="btn btn-outline-danger ml-1 mr-auto w-25" style="border-radius:1rem;">Cancel</a>
 				</div>
 			</form>
 		</div>

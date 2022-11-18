@@ -4,28 +4,30 @@
 
 @section('content')
 <div class="container-fluid m-0 ">
-	<h2 class="h5 h2-lg text-center text-lg-left mx-0 mx-lg-5 my-4"><a href="{{route('client-profile')}}" class="text-decoration-none text-1"><i class="fas fa-chevron-left mr-2"></i></a>Client & Pet Profile List</h2>
+	<h3 class="text-center text-lg-left mx-0 mx-lg-5 my-3">
+		<a href="{{route('client-profile')}}" class="text-decoration-none text-1"><i class="fas fa-chevron-left mr-2"></i>Profile List</a>
+	</h3>
 	<hr class="hr-thick" style="border-color: #707070;">
 
-	<form class="form bg-white">
+	<form class="form ">
 		<div class="row" id="form-area">
 			<div class="col-12 ">
 				<div class="card my-3 mx-auto  ">
-					<h5 class="card-header text-center bg-1 text-white">Client Profile</h5>
+					<h2 class="card-header font-weight-bold gbg-1 text-white"><i class="fa-solid fa-address-card mr-2"></i>Client Profile</h2>
 					<div class="card-body d-flex ">
 
 						<div class="form-group mx-auto w-75">
 							<div class="col-12  ">
 
 								<div class="row ">
-									<div class="col-4"><br>
+									<div class="col-4">
 										<label class="h6 font-weight-bold text-1 important" for="petowner">Pet Owner</label>
 										<input class="form-control " type="text" name="petowner" value="{{old('petowner')}}" />
 									</div>
 
 									<div class="col-8">
 										<label class="h6 font-weight-bold text-1  important" for="address">Address</label>
-										<textarea class="form-control not-resizable" name="address" rows="3"></textarea><br>
+										<textarea class="form-control not-resizable" name="address" rows="3"></textarea>
 									</div>
 								</div>
 
@@ -37,7 +39,7 @@
 
 									<div class="col-8">
 										<label class="h6 font-weight-bold text-1  important" for="email">Email</label>
-										<input class="form-control" type="email" name="email" value="{{old('email')}}" /><br>
+										<input class="form-control" type="email" name="email" value="{{old('email')}}" />
 									</div>
 								</div>
 
@@ -58,10 +60,8 @@
 										</div>
 									</div>
 								</div>
-								
 							</div>
 						</div>
-
 					</div>
 				</div>
 			</div>
@@ -69,7 +69,7 @@
 			{{-- PET REGISTRATION FORM --}}
 			<div class="col-6 my-2 mx-auto">
 				<div class="card mx-auto">
-					<h5 class="card-header text-center bg-1 text-white">Pet Profile</h5>
+					<h3 class="card-header font-weight-bold text-center bg-1 text-white"><i class="fa-solid fa-dog mr-2"></i>Pet Registration<i class="fa-solid fa-cat ml-2"></i></h3>
 
 					<div class="card-body d-flex">
 						<div class="row">
@@ -78,7 +78,7 @@
 									<label class="h2 ml-5" for="image">Pet Image</label><br>
 									<img src="{{ asset('images/UI/placeholder.jpg') }}" class="img-fluid cursor-pointer border" style="border-width: 0.25rem!important; max-height: 16.25rem;" alt="Pet Image">
 									<br><br>
-									<input type="file" name="image[]" class="hidden" accept=".jpg,.jpeg,.png"><br>
+									<input type="file" name="image[]" class="d-none" accept=".jpg,.jpeg,.png"><br>
 									<small class="text-muted"><b>FORMATS ALLOWED:</b> JPEG, JPG, PNG</small>
 								</div>
 
@@ -161,7 +161,7 @@
 		const form = $(`
 		<div class="col-6 my-2 mx-auto">
 			<div class="card mx-auto">
-				<h5 class="card-header text-center position-relative bg-1 text-white">Pet Registration<span class="position-absolute" style="top: 0.125rem; right: 0.5rem; cursor: pointer;" onclick="$(this).parent().parent().parent().remove();"><i class="fas fa-multiply"></i></span></h5>
+				<h3 class="card-header text-center position-relative bg-1 text-white"><i class="fa-solid fa-dog mr-2"></i>Pet Registration<i class="fa-solid fa-cat ml-2"></i><span class="position-absolute" style="top: 0.125rem; right: 0.5rem; cursor: pointer;" onclick="$(this).parent().parent().parent().remove();"><i class="fas fa-multiply"></i></span></h3>
 				
 				<div class="card-body d-flex">
 					<div class="row">

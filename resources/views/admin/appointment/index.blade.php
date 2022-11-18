@@ -26,23 +26,25 @@
 
 	<div class="overflow-x-auto h-100 card">
 		<div class=" card-body h-100 px-0 pt-0 ">
-			<table class="table table-striped ">
+			<table class="table table-striped text-center ">
 				<thead>
 					<tr>
 						<th scope="col" class="hr-thick text-1 text-center">Pet Owner</th>
 						<th scope="col" class="hr-thick text-1 text-center">Pet Name</th>
 						<th scope="col" class="hr-thick text-1 text-center">Appointment Date</th>
+						<th scope="col" class="hr-thick text-1 text-center">Service</th>
+						
 						
 					</tr>
 				</thead>
 
 				<tbody>
 					<tr>
-						@php ($petId = random_int(0, 3))
 						<td class="text-center">Joseph Polio</td>
-						<td class="text-center">{{ array("Brownie", "Siomai", "Siopao", "Voodoo")[$petId] }}</td>
+						<td class="text-center">Brownie</td>
 						<td class="text-center">{{ \Carbon\Carbon::now()->timezone('Asia/Manila')->format('M d, Y g:i A') }}</td>
-						  
+						<td class="text-center">Consultation</td>
+					
 						<td class="text-center">
 							<div class="dropdown">
 								<button class="btn btn-info bg-1 btn-sm dropdown-toggle mark-affected" type="button" data-toggle="dropdown" id="dropdown" aria-haspopup="true" aria-expanded="false" data-id="$a->id">
@@ -50,8 +52,8 @@
 								</button>
 
 								<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown">
-									<a href="{{route ('appointments.show', [1, $petId])}}" class="dropdown-item"><i class="fa-solid fa-eye mr-2"></i>View Appointment</a>
-									<a href="{{route ('appointments.edit', [1, $petId])}}" class="dropdown-item"><i class="fa-solid fa-pen-to-square mr-2"></i>Edit Appointment</a>
+									<a href="{{route ('appointments.show', [1, 1])}}" class="dropdown-item"><i class="fa-solid fa-eye mr-2"></i>View Appointment</a>
+									<a href="{{route ('appointments.edit', [1, 1])}}" class="dropdown-item"><i class="fa-solid fa-pen-to-square mr-2"></i>Edit Appointment</a>
 									<a href="javascript:void(0);" onclick="confirmLeave('{{ route("appointments.delete", [1]) }}', undefined, 'Are you sure you want to remove this?');" class="dropdown-item"><i class="fa-solid fa-trash mr-2"></i>Delete</a>
 								</div>
 							</div>

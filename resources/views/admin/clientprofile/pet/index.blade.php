@@ -3,9 +3,9 @@
 @section('title', 'Pet Profile')
 
 @section('content')
-<h2 class="text-center text-lg-left mx-0 mx-lg-5 my-3">
+<h3 class="text-center text-lg-left mx-0 mx-lg-5 my-3">
 	<a href="{{route('client-profile')}}" class="text-decoration-none text-1"><i class="fas fa-chevron-left mr-2"></i>Client Profile</a>
-</h2>
+</h3>
 
 <div class="col-12 my-2 mx-auto">
 	<div class="card mx-auto">

@@ -4,13 +4,15 @@
 
 @section('content')
 <div class="container-fluid m-0">
-    <h2 class="h5 h2-lg text-center text-lg-left mx-0 mx-lg-5 my-4 "><a href="{{route('appointments.index')}}" class="text-decoration-none  text-1"><i class="fas fa-chevron-left mr-2"></i>Appointment</a></h2>
+    <h3 class="text-center text-lg-left  mx-lg-5 my-4 ">
+        <a href="{{route('appointments.index')}}" class="text-decoration-none  text-1"><i class="fas fa-chevron-left mr-2"></i>Appointment List</a>
+    </h3>
     <hr class="hr-thick" style="border-color: #707070;">
 
-    <div class="col-12">
+    <div class="col-12 mx-auto">
 
         <div class="card my-3 mx-auto">
-            <h5 class="card-header text-center text-white gbg-1"> Edit Appointment</h5>
+            <h2 class="card-header font-weight-bold text-white gbg-1"><i class="fa-solid fa-pen-to-square mr-2"></i>Edit Appointment</h2>
 
             <div class=" col-12 col-md-9 col-lg-6 mx-auto">
                 <div class="card-body d-flex mt-1 ">
@@ -31,13 +33,16 @@
                         <label class="h6 important" for="time">Time</label>
                         <input class="form-control" type="time" name="time" value="{{ $appointment["appointment_schedule"]->format("H:i") }}" />
 
+                        <label class="h6 important" for="service">Service Type</label>
+                        <input class="form-control" type="text" name="service" value="{{ $appointment["service"] }}" />
+
                     </div>
                 </div>
             </div>
             <div class="card-footer d-flex">
                 <div class="col-4 mx-auto text-center">
-                    <button class="btn btn-outline-info btn-sm w-50"><a href="#"></a>Book</button>
-                    <button class="btn btn-outline-danger btn-sm w-50"><a href="#"></a>Cancel</button>
+                    <button class="btn btn-outline-info btn-sm w-50">Save</button>
+                    <a href="#"class="btn btn-outline-danger btn-sm w-50">Cancel</a>
                 </div>
             </div>
 
