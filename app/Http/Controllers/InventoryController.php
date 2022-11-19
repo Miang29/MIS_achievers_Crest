@@ -55,10 +55,6 @@ class InventoryController extends Controller
 		1 => [
 			"name" => "Pet Food",
 			"pc" => 2
-		],
-		2 => [
-			"name" => "Pet Grooming",
-			"pc" => 2
 		]
 	];
 

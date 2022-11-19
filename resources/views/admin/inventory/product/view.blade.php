@@ -4,68 +4,63 @@
 
 @section('content')
 <div class="container-fluid m-0">
-	<h2 class="h5 h2-lg text-center text-lg-left mx-0 mx-lg-5 my-4 "><a href="{{route('category.view', [$cid])}}" class="text-decoration-none  text-1"><i class="fas fa-chevron-left mr-2"></i>Product List</a></h2>
+	<h3 class="text-center text-lg-left mx-0 mx-lg-5 my-3">
+		<a href="{{route('category.view', [$cid])}}" class="text-decoration-none  text-1"><i class="fas fa-chevron-left mr-2"></i>Product List</a>
+	</h3>
 	<hr class="hr-thick" style="border-color: #707070;">
 
+	<h2 class="font-weight-bold text-1 text-center">View Product Information</h2>
 	<div class="row" id="form-area">
-		<div class="col-12">
+		<div class="col-8 mx-auto my-5 ">
 
-			<div class="card my-3 mx-auto">
-				<h5 class="card-header text-center text-white gbg-1"> View Product</h5>
+			<div class="card card-body position-relative shadow p-3 mb-5 border-primary w-lg-100 w-xs-100 w-md-100">
+				{{ csrf_field() }}
 
-				<div class="card-body d-flex">
-					<div class="col-6 mx-auto">
-						<div class="d-flex mt-1 ">
-							<div class="mx-auto w-100">
-								{{ csrf_field() }}
-
-								<div class="form-group">
-									<label class="h6 important" for="product_name">Product Name</label>
-									<input class="form-control" type="text" name="product_name" value="{{ $product['name'] }}" disabled />
-								</div>
-
-								<div class="row">
-									<div class="col-12 col-lg-4 form-group">
-										<label class="h6 important" for="stocks">Stocks</label>
-										<input class="form-control" type="number" name="stocks" value="{{ $product['stocks'] }}" disabled />
-									</div>
-
-									<div class="col-12 col-lg-4 form-group">
-										<label class="h6 important">Price</label>
-										<div class="input-group ">
-											<div class="input-group-prepend">
-												<span class="input-group-text">₱</span>
-											</div>
-
-											<input type="text" class="form-control" value="{{ number_format($product['price']) }}" disabled />
-										</div>
-									</div>
-
-									<div class="col-12 col-lg-4 form-group">
-										<label class="h6 important" for="status">Status</label><br>
-										
-										<select class="custom-select" name="status" disabled>
-											<option value="active" {{ $product['status'] ? 'checked' : '' }}>Active</option>
-											<option value="inactive" {{ $product['status'] ? '' : 'checked' }}>Inactive</option>
-										</select>
-									</div>
-								</div>
-
-								<div class="form-group">
-									<label class="h6 important" for="categoryname">Category Name</label>
-									<input class="form-control" type="text" name="categoryname" value="{{ $category['name'] }}" disabled />
-								</div>
-
-								<div class="form-group">
-									<label class="h6 important" for="description">Description</label>
-									<textarea class="form-control not-resizable" name="description" rows="3" disabled>{{ $product['description'] }}</textarea>
-								</div>
-							</div>
-						</div>
-					</div>
+				<div class="position-absolute border-secondary bg-1 text-white text-center d-flex w-75 w-lg-50 text-wrap" style="top: -1.8rem; left:1.5rem; min-height:4rem; max-height: 4rem; border-radius:0.5rem;">
+					{{-- PRODUCT NAME --}}
+					<button class="btn" data-toggle="tooltip" data-placement="left" title="{{ $product['name'] }}"></button>
+					<span class="h2 m-auto text-truncate">{{ $product["name"] }}</span>
 				</div>
+
+				{{-- STOCKS --}}
+				<div class="mt-5 border-secondary border-bottom w-lg-50 mx-auto">
+					<button class="btn font-weight-bold" data-toggle="tooltip" data-placement="left" title="Stocks"><i class="fa-solid fa-arrow-trend-up mr-2"></i>Stocks</button>
+					<span class="h5 m-auto text-wrap text-1">{{ $product['stocks'] }}</span>
+				</div>
+
+				{{-- PRICE --}}
+				<div class="mt-3 border-secondary border-bottom w-lg-50 mx-auto">
+					<button class="btn  font-weight-bold" data-toggle="tooltip" data-placement="left" title="Price"><i class="fa-solid fa-tag mr-2"></i>Price</button>
+					<span class="h5 m-auto text-wrap text-1">{{ number_format($product['price']) }}</span>
+				</div>
+
+				{{-- STATUS --}}
+				<div class="mt-3 border-secondary border-bottom w-lg-50 mx-auto">
+					<button class="btn  font-weight-bold" data-toggle="tooltip" data-placement="left" title="Status"><i class="fa-solid fa-circle-half-stroke mr-2"></i>Status</button>
+					<span class="h5 m-auto text-wrap text-1" value="active" {{ $product['status'] ? 'Checked' : '' }}> Active</span>
+				</div>
+
+				{{-- CATEGORY NAME --}}
+				<div class="mt-3 border-secondary border-bottom w-lg-50 mx-auto">
+					<button class="btn  font-weight-bold" data-toggle="tooltip" data-placement="left" title="Category Name"><i class="fa-solid fa-shield-cat mr-2"></i>Category Name</button>
+					<span class="h5 m-auto text-wrap text-1">{{ $category['name'] }}</span>
+				</div>
+
+
+				{{-- DESCRIPTION --}}
+				<div class="mt-3 border-secondary border-bottom w-lg-50 mx-auto">
+					<button class="btn  font-weight-bold" data-toggle="tooltip" data-placement="left" title="Description"><i class="fa-solid fa-note-sticky mr-2"></i>Description</button>
+					<span class="h5 m-auto text-wrap text-1">{{ $product['description'] }}</span>
+				</div>
+
+
+
 			</div>
+
+
 		</div>
 	</div>
 </div>
+
+
 @endsection
