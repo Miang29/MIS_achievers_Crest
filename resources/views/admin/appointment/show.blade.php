@@ -19,7 +19,7 @@
                     <button class="btn" data-toggle="tooltip" data-placement="left" title="{{ $appointment['owner'] }}"></button>
                     <span class="h2 m-auto text-truncate">{{ $appointment["owner"] }}</span>
                 </div>
-
+                
                 <div>
                     {{-- Email --}}
                     <div class="mt-5 border-secondary border-bottom w-lg-50 mx-auto">
