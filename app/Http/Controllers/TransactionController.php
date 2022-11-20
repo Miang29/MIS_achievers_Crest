@@ -48,48 +48,40 @@ class TransactionController extends Controller
 	];
 
 	//TRANSACTIONS
-
-	protected function viewProductsOrder($id)
-	{
+	protected function viewProductsOrder($id) {
 		$order = $this->order[$id - 1];
-
+		
 		return view('admin.transaction.productsOrder.view', [
 			'id' => $id,
 			'order' => $order
 		]);
 	}
 
-	protected function productsOrder()
-	{
+	protected function productsOrder() {
 		return view('admin.transaction.productsOrder.index');
 	}
 
-	protected function createproductsOrder()
-	{
+	protected function createproductsOrder() {
 		return view('admin.transaction.productsOrder.create');
 	}
 
 
-	protected function deleteproductsOrder($id)
-	{
+	protected function deleteproductsOrder($id) {
 		return redirect()
 			->route('transaction.products-order')
 			->with('flash_success', 'Successfully removed transaction from table');
 	}
 
 	//SERVICES
-	protected function Service()
-	{
+	protected function Service() {
 		return view('admin.transaction.services-transaction.index');
 	}
 
-	protected function createServices()
-	{
+	protected function createServices() {
 		return view('admin.transaction.services-transaction.create');
 	}
 
-	protected function show($id)
-	{
+	protected function show($id) {
 		$services = $this->services[$id - 1];
 		return view('admin.transaction.services-transaction.view', [
 			'id' => $id,
@@ -97,8 +89,7 @@ class TransactionController extends Controller
 		]);
 	}
 
-	protected function deleteServices($id)
-	{
+	protected function deleteServices($id) {
 		return redirect()
 			->route('transaction.service')
 			->with('flash_success', 'Successfully removed transaction from table');
