@@ -3,7 +3,6 @@
 @section('title', 'Services')
 
 @section('content')
-
 <div class="container-fluid px-2 px-lg-6 py-2 h-100 my-3">
 	<div class="row">
 		<div class="col-12 col-lg text-center text-lg-left">
@@ -17,6 +16,7 @@
 		<div class=" col-12 col-md-6 col-lg my-2 text-center text-lg-right">
 			<div class="input-group">
 				<input type="text" class="form-control" name="search" placeholder="Search..." />
+				
 				<div class="input-group-append">
 					<button type="submit" class="btn btn-secondary"><i class="fas fa-search"></i></button>
 				</div>

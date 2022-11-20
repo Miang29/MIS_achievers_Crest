@@ -146,7 +146,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 		Route::get('/{id}/{petId}', 'AppointmentController@show')->name('appointments.show');
 	});
 
-	//SERVICES
+	//SERVICES CATEGORY
 	Route::group(['prefix' => 'services'], function () {
 		//Index - Category
 		Route::get('/', 'ServiceCategoryController@index')->name('services.index');
@@ -155,31 +155,34 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 		Route::get('/create', 'ServiceCategoryController@create')->name('services.create');
 
 		//Edit
-		Route::post('/update/{id}', 'ServiceCategoryController@update')->name('services.update');
+		Route::post('/{id}/update', 'ServiceCategoryController@update')->name('services.update');
 		
 	    //Delete
 		Route::get('/{id}/delete', 'ServiceCategoryController@deletecategory')->name('services.delete');
 
-		// Show - Category / Index - Service
-		Route::get('/{id}', 'ServiceCategoryController@show')->name('services.show');
+		// SERVICES
+		Route::group(['prefix' => '{id}'], function () {
+			// Show - Category / Index - Service
+			Route::get('/', 'ServiceCategoryController@show')->name('services.show');
 
-		//Create - Service
-		Route::get("/{id}/create", "ServicesController@create")->name('services.show.create');
+			//Create - Service
+			Route::get("create", "ServicesController@create")->name('services.show.create');
 
-		//Edit - Service
-		Route::get("/update/{id}", "ServicesController@update")->name('services.show.update');
+			//Update - Service
+			Route::get("update", "ServicesController@update")->name('services.show.update');
 
-		//Show - Service / Index - Variation
-		Route::get("/{id}/view", "ServicesController@view")->name('services.show.view');
-	
-		
-		//Show - Service / Index - Variation
-		Route::get("/{id}/show", "ServicesController@show")->name('services.show.show');
+			// VARIATIONS
+			Route::group(['prefix' => 'variations/{id}'], function() {
+				//Show - Service / Index - Variation
+				Route::get("/", "ServicesController@view")->name('services.show.view');
+				
+				//Show - Variation
+				Route::get("/show", "ServicesController@show")->name('services.show.show');
 
-		//Delete
-		Route::get('/delete/{id}', 'ServicesController@deleteservice')->name('services.show.delete');
-
-	
+				//Delete - Variation
+				Route::get('/delete', 'ServicesController@deleteservice')->name('services.show.delete');
+			});
+		});
 	});
 
 	//REPORT
