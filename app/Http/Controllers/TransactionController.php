@@ -65,7 +65,7 @@ class TransactionController extends Controller
 
 	protected function createproductsOrder()
 	{
-		return view('admin.Transaction.productsOrder.create');
+		return view('admin.transaction.productsOrder.create');
 	}
 
 
@@ -84,7 +84,7 @@ class TransactionController extends Controller
 
 	protected function createServices()
 	{
-		return view('admin.Transaction.services-transaction.create');
+		return view('admin.transaction.services-transaction.create');
 	}
 
 	protected function show($id)

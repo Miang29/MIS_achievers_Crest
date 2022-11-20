@@ -65,7 +65,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 			Route::get('/products/create', 'TransactionController@createproductsOrder')->name('transaction.products.create');
 
 			//Show
-			Route::get('/view{$id}/product-order', 'TransactionController@viewProductsOrder')->name('transaction.products.view');
+			Route::get('/view/{$id}', 'TransactionController@viewProductsOrder')->name('transaction.products.view');
 
 			//Delete
 			Route::get('/delete', 'TransactionController@deleteproducstOrder')->name('transaction.products.delete');
@@ -81,7 +81,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 			Route::get('/create', 'TransactionController@createServices')->name('transaction.service.create');
 
 			//Show
-			Route::get('/view/{$id}/service', 'TransactionController@show')->name('transaction.service.view');
+			Route::get('/view/{$id}', 'TransactionController@show')->name('transaction.service.view');
 
 			//Delete
 			Route::get('/delete', 'TransactionController@deleteService')->name('transaction.service.delete');

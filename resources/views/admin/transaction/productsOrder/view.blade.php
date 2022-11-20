@@ -22,46 +22,46 @@
 
                 {{-- REFERENCE NO --}}
                 <div class="mt-5 border-secondary border-bottom w-lg-50 mx-auto">
-                    <button class="btn mr-2" data-toggle="tooltip" data-placement="left" title="Reference No"><i class="fa-solid fa-envelope"></i></button>
+                    <button class="btn mr-2" data-toggle="tooltip" data-placement="left" title="Reference No"></button>
                     <span class="h5 m-auto text-wrap text-1">{{ $order['reference'] }}</span>
                 </div>
 
                 {{-- MODE OF PAYMENT --}}
                 <div class="mt-3 border-secondary border-bottom w-lg-50 mx-auto">
-                    <button class="btn mr-2" data-toggle="tooltip" data-placement="left" title="Mode of Payment"><i class="fa-solid fa-envelope"></i></button>
+                    <button class="btn mr-2" data-toggle="tooltip" data-placement="left" title="Mode of Payment"></button>
                     <span class="h5 m-auto text-wrap text-1">{{ $order['mode'] }}</span>
                 </div>
 
 
                 {{-- PRODUCT NO --}}
                 <div class="mt-3 border-secondary border-bottom w-lg-50 mx-auto">
-                    <button class="btn mr-2" data-toggle="tooltip" data-placement="left" title="Product No"><i class="fa-solid fa-envelope"></i></button>
+                    <button class="btn mr-2" data-toggle="tooltip" data-placement="left" title="Product No"></button>
                     <span class="h5 m-auto text-wrap text-1">{{ $order['no'] }}</span>
                 </div>
 
 
                 {{-- CATEGORY TYPE --}}
                 <div class="mt-3 border-secondary border-bottom w-lg-50 mx-auto">
-                    <button class="btn mr-2" data-toggle="tooltip" data-placement="left" title="category Type"><i class="fa-solid fa-envelope"></i></button>
+                    <button class="btn mr-2" data-toggle="tooltip" data-placement="left" title="category Type"></button>
                     <span class="h5 m-auto text-wrap text-1">{{ $order['type'] }}</span>
                 </div>
 
 
                 {{-- PRICE --}}
                 <div class="mt-3 border-secondary border-bottom w-lg-50 mx-auto">
-                    <button class="btn mr-2" data-toggle="tooltip" data-placement="left" title="Price"><i class="fa-solid fa-envelope"></i></button>
+                    <button class="btn mr-2" data-toggle="tooltip" data-placement="left" title="Price"></button>
                     <span class="h5 m-auto text-wrap text-1">{{ $order['price'] }}</span>
                 </div>
 
                 {{-- QUANTITY --}}
                 <div class="mt-3 border-secondary border-bottom w-lg-50 mx-auto">
-                    <button class="btn mr-2" data-toggle="tooltip" data-placement="left" title="Quantity"><i class="fa-solid fa-envelope"></i></button>
+                    <button class="btn mr-2" data-toggle="tooltip" data-placement="left" title="Quantity"></button>
                     <span class="h5 m-auto text-wrap text-1">{{ $order['qty'] }}</span>
                 </div>
 
                 {{-- TOTAL --}}
                 <div class="mt-3 border-secondary border-bottom w-lg-50 mx-auto">
-                    <button class="btn mr-2" data-toggle="tooltip" data-placement="left" title="Total"><i class="fa-solid fa-envelope"></i></button>
+                    <button class="btn mr-2" data-toggle="tooltip" data-placement="left" title="Total"></button>
                     <span class="h5 m-auto text-wrap text-1">{{ $order['total'] }}</span>
                 </div>
             </div>
