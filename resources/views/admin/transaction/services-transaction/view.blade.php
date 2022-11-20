@@ -15,8 +15,8 @@
             <div class="card card-body position-relative shadow p-3 mb-5 border-primary w-lg-100 w-xs-100 w-md-100">
                 <div class="position-absolute border-secondary bg-1 text-white text-center d-flex w-75 w-lg-50 text-wrap" style="top: -1.8rem; left:1.5rem; min-height:4rem; max-height: 4rem; border-radius:0.5rem;">
                     {{-- PET NAME  --}}
-                    <button class="btn" data-toggle="tooltip" data-placement="left" title="{{ $services ['petname']}}"></button>
-                    <span class="h2 m-auto text-truncate">{{ $services ["petname"]}}</span>
+                    <button class="btn" data-toggle="tooltip" data-placement="left" title="{{ $services['petname']}}"></button>
+                    <span class="h2 m-auto text-truncate">{{ $services["petname"]}}</span>
                 </div>
 
                     {{-- REFERENCE NO --}}

@@ -13,7 +13,7 @@ class TransactionController extends Controller
 
 	//TEMP VAR
 	protected $order = [
-		[
+		"1" => [
 			'id' => 1,
 			'reference' => "#081478",
 			'mode' => "Gcash",
@@ -28,28 +28,26 @@ class TransactionController extends Controller
 
 	protected $services = [
 		"1" => [
-			[
-				'id' => 1,
-				'reference' => "#081479",
-				'mode' => "Gcash",
-				'type' => "Home Service",
-				'price' => "300",
-				'additional' => "200",
-				'date' => "",
-				'time' => "",
-				'petname' => "",
-				'Weight' => "",
-				'temparature' => "",
-				'history' => "",
-				'treatment' => "",
-				'total' => "500"
-			]
+			'id' => 1,
+			'reference' => "#081479",
+			'mode' => "Gcash",
+			'type' => "Home Service",
+			'price' => "300",
+			'additional' => "200",
+			'date' => "",
+			'time' => "",
+			'petname' => "",
+			'weight' => "",
+			'temparature' => "",
+			'history' => "",
+			'treatment' => "",
+			'total' => "500"
 		]
 	];
 
 	//TRANSACTIONS
 	protected function viewProductsOrder($id) {
-		$order = $this->order[$id - 1];
+		$order = $this->order[$id];
 		
 		return view('admin.transaction.productsOrder.view', [
 			'id' => $id,
@@ -82,7 +80,8 @@ class TransactionController extends Controller
 	}
 
 	protected function show($id) {
-		$services = $this->services[$id - 1];
+		$services = $this->services[$id];
+
 		return view('admin.transaction.services-transaction.view', [
 			'id' => $id,
 			'services' => $services
