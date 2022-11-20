@@ -1,64 +1,68 @@
 @extends('layouts.admin')
 
-@section('title', 'Product Order Transaction')
+@section('title', 'View Product Order')
 
 @section('content')
 <div class="container-fluid m-0">
-    <h2 class="h5 h2-lg text-center text-lg-left mx-0 mx-lg-5 my-4 "><a href="{{route('transaction.products-order')}}" class="text-decoration-none  text-1"><i class="fas fa-chevron-left mr-2"></i></a></h2>
+    <h3 class="text-center text-lg-left mx-0 mx-lg-5 my-3">
+        <a href="{{route('transaction.products-order')}}" class="text-decoration-none  text-1"><i class="fas fa-chevron-left mr-2"></i>Product Transaction List</a>
+    </h3>
     <hr class="hr-thick" style="border-color: #707070;">
 
+    <h2 class="font-weight-bold text-1 text-center">View Product Order Transaction</h2>
     <div class="row" id="form-area">
-        <div class="col-12">
-            <div class="card my-3 mx-auto ">
-                <h3 class="card-header text-center font-weight-bold text-white gbg-1">View Product Order</h3>
+        <div class="col-8 mx-auto my-5 ">
 
-                <div class="card-body d-flex ">
-                    <div class="form-group col-8 mx-auto">
+            <div class="card card-body position-relative shadow p-3 mb-5 border-primary w-lg-100 w-xs-100 w-md-100">
+                <div class="position-absolute border-secondary bg-1 text-white text-center d-flex w-75 w-lg-50 text-wrap" style="top: -1.8rem; left:1.5rem; min-height:4rem; max-height: 4rem; border-radius:0.5rem;">
+                    {{-- PRODUCT NAME --}}
+                    <button class="btn" data-toggle="tooltip" data-placement="left" title="{{ $order['name'] }}"></button>
+                    <span class="h2 m-auto text-truncate">{{ $order["name"] }}</span>
+                </div>
 
-                        <div class="row d-flex ">
-                            <div class="col-6 mx-auto"><br>
-                                <label class="h6 important font-weight-bold text-1" for="refno">Reference No</label>
-                                <input class="form-control " type="text" name="refno" value="{{old('refno')}} " readonly/><br>
-                            </div>
+                {{-- REFERENCE NO --}}
+                <div class="mt-5 border-secondary border-bottom w-lg-50 mx-auto">
+                    <button class="btn mr-2" data-toggle="tooltip" data-placement="left" title="Reference No"></button>
+                    <span class="h5 m-auto text-wrap text-1">{{ $order['reference'] }}</span>
+                </div>
 
-                            <div class="col-6 mx-auto"><br>
-                                <label class="h6 important font-weight-bold text-1" for="itemname">Item Name</label>
-                                <input class="form-control " type="text" name="itemname" value="{{old('itemname')}} " readonly/>
-                            </div>
-                        </div>
-
-                        <div class="row d-flex ">
-
-                            <div class="col-6 mx-auto">
-                                <label class="h6 important font-weight-bold text-1" for="itemno">Item No</label>
-                                <input class="form-control" type="text" name="itemno" value="{{old('itemno')}} " readonly />
-                            </div>
-
-                            <div class="col-6 mx-auto ">
-                                <label class="h6 important font-weight-bold text-1" for="itemtype">Item Type</label>
-                                <input class="form-control" type="text" name="itemtype" value="{{old('itemtype')}} " readonly />
-                            </div>
-                        </div>
+                {{-- MODE OF PAYMENT --}}
+                <div class="mt-3 border-secondary border-bottom w-lg-50 mx-auto">
+                    <button class="btn mr-2" data-toggle="tooltip" data-placement="left" title="Mode of Payment"></button>
+                    <span class="h5 m-auto text-wrap text-1">{{ $order['mode'] }}</span>
+                </div>
 
 
-                        <div class="row d-flex">
-                            <div class="col-4 mx-auto w-25"><br>
-                                <label class="h6 important font-weight-bold text-1" for="price">Price</label>
-                                <input class="form-control" type="text" name="price" value="{{old('price')}} " readonly />
-                            </div>
+                {{-- PRODUCT NO --}}
+                <div class="mt-3 border-secondary border-bottom w-lg-50 mx-auto">
+                    <button class="btn mr-2" data-toggle="tooltip" data-placement="left" title="Product No"></button>
+                    <span class="h5 m-auto text-wrap text-1">{{ $order['no'] }}</span>
+                </div>
 
-                            <div class="col-4 mx-auto w-25"><br>
-                                <label class="h6 important font-weight-bold text-1" for="qty">Quantity</label>
-                                <input class="form-control" type="number" name="qty" value="{{old('qty')}} "readonly />
-                            </div>
 
-                            <div class="col-4 mx-auto w-25"><br>
-                                <label class="h6 important font-weight-bold text-1" for="total">Total Price</label>
-                                <input class="form-control" type="text" name="total" value="{{old('total')}} " readonly/>
-                            </div>
-                        </div>
+                {{-- CATEGORY TYPE --}}
+                <div class="mt-3 border-secondary border-bottom w-lg-50 mx-auto">
+                    <button class="btn mr-2" data-toggle="tooltip" data-placement="left" title="category Type"></button>
+                    <span class="h5 m-auto text-wrap text-1">{{ $order['type'] }}</span>
+                </div>
 
-                    </div>
+
+                {{-- PRICE --}}
+                <div class="mt-3 border-secondary border-bottom w-lg-50 mx-auto">
+                    <button class="btn mr-2" data-toggle="tooltip" data-placement="left" title="Price"></button>
+                    <span class="h5 m-auto text-wrap text-1">{{ $order['price'] }}</span>
+                </div>
+
+                {{-- QUANTITY --}}
+                <div class="mt-3 border-secondary border-bottom w-lg-50 mx-auto">
+                    <button class="btn mr-2" data-toggle="tooltip" data-placement="left" title="Quantity"></button>
+                    <span class="h5 m-auto text-wrap text-1">{{ $order['qty'] }}</span>
+                </div>
+
+                {{-- TOTAL --}}
+                <div class="mt-3 border-secondary border-bottom w-lg-50 mx-auto">
+                    <button class="btn mr-2" data-toggle="tooltip" data-placement="left" title="Total"></button>
+                    <span class="h5 m-auto text-wrap text-1">{{ $order['total'] }}</span>
                 </div>
             </div>
         </div>

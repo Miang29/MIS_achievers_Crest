@@ -81,7 +81,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 			Route::get('/create', 'TransactionController@createServices')->name('transaction.service.create');
 
 			//Show
-			Route::get('/view', 'TransactionController@viewServices')->name('transaction.service.view');
+			Route::get('/view/{$id}', 'TransactionController@show')->name('transaction.service.view');
 
 			//Delete
 			Route::get('/delete', 'TransactionController@deleteService')->name('transaction.service.delete');

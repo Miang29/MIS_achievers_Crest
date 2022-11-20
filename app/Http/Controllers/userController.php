@@ -119,6 +119,7 @@ class UserController extends Controller
 		]);
 	}
 
+
 	protected function store(Request $req) {
 		$validator = Validator::make($req->all(), [
 			'first_name' => 'required|min:2|max:255|string',
@@ -140,7 +141,8 @@ class UserController extends Controller
 		try {
 			DB::beginTransaction();
 
-			$user = User::create([
+			$user = User::create
+			([
 				'first_name' => $req->first_name,
 				'middle-Name' => $req->middle_name,
 				'last_name' => $req->last_name,
@@ -183,6 +185,8 @@ class UserController extends Controller
 
 	protected function edit($id) {
 		$user = User::find($id);
+		$types = UserType::get();
+		$password = str_shuffle(Str::random(25) . str_pad(rand(0, 99999), 5, '0', STR_PAD_LEFT));
 
 		if ($user == null) 
 			return redirect()
@@ -190,7 +194,9 @@ class UserController extends Controller
 				->with('flash_error', 'User already removed. Please refresh your browser if it is still visible');
 
 		return view('admin.useraccount.edit', [
-			'user' => $user
+			'user' => $user,
+			'types' => $types,
+			'password' => $password
 		]);
 	}
 	

@@ -49,7 +49,7 @@
 								</button>
 								
 								<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown">
-									<a href="{{route ('transaction.products.view', [1]) }}" class="dropdown-item"><i class="fa-solid fa-eye mr-2"></i>View Transaction</a>
+									<a href="{{route ('transaction.products.view', [1])}}" class="dropdown-item"><i class="fa-solid fa-eye mr-2"></i>View Transaction</a>
 									<a href="javascript:void();" onclick="confirmLeave('{{ route('transaction.products.delete', [1]) }}', undefined, 'Are you sure you want to delete this transaction?');" class="dropdown-item"><i class="fa-solid fa-trash mr-2"></i>Delete</a>
 								</div>
 							</div>
