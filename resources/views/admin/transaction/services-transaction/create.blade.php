@@ -15,17 +15,28 @@
                 <h3 class="card-header font-weight-bold text-white gbg-1">CREATE TRANSACTION</h3>
 
 
-                <div class="card-body d-flex ">
-                    <div class="form-group  col-4 ml-auto">
-                        <label class="h6 important font-weight-bold text-1" for="refno">Reference No</label>
+                <div class="card-body row">
+                    <div class="form-group col-4 ml-auto">
+                        <label class="important font-weight-bold text-1" for="refno">Reference No</label>
                         <input class="form-control" type="text" name="refno" value="{{old('refno')}} " />
+                    </div>
+
+                    <div class="form-group col-4 mr-auto">
+                        <label class="important font-weight-bold text-1" for="select">Mode of Payment</label>
+                        <select id="select" class="form-control">
+                            <option>Select mode of payment</option>
+                            <option>Cash</option>
+                            <option>Paymaya</option>
+                            <option>Gcash</option>
+                            <option>Credit Card</option>
+                        </select>
                     </div>
                 </div>
 
                 <div class="card-body d-flex border-bottom border-secondary">
                     <div class="form-group col-12 mx-auto w-50">
                         <div class="col-8 mx-auto">
-                            <label class="h6 important  font-weight-bold text-1" for="itemname">Services Type</label>
+                            <label class="important  font-weight-bold text-1" for="itemname">Services Type</label>
                             <div class="input-group mb-3">
                                 <select class="custom-select  text-1" id="inputGroupSelect01">
                                     <option selected name="itemname" value="{{old('itemname')}}"></option>
@@ -48,7 +59,7 @@
                                 </div>
 
                                 <div class="col-6  mx-auto ">
-                                    <label class="h6 important  font-weight-bold text-1" for="total">Additional Price</label>
+                                    <label class="important  font-weight-bold text-1" for="total">Additional Price</label>
                                     <div class="input-group flex-nowrap">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">₱</span>
@@ -64,12 +75,12 @@
 
                             <div class="row">
                                 <div class="col-6">
-                                    <label class="h6 important font-weight-bold my-2 text-1" for="date">Date</label>
+                                    <label class="important font-weight-bold my-2 text-1" for="date">Date</label>
                                     <input class="form-control" type="date" name="date" value="{{old('date')}} " />
                                 </div>
 
                                 <div class="col-6">
-                                    <label class="h6 important font-weight-bold my-2 text-1" for="time">Time</label>
+                                    <label class="important font-weight-bold my-2 text-1" for="time">Time</label>
                                     <input class="form-control" type="time" name="time" value="{{old('time')}} " />
                                 </div>
                             </div>
@@ -84,25 +95,25 @@
 
                             <div class="row">
                                 <div class="col-6">
-                                    <label class="h6 important font-weight-bold my-2 text-1" for="weight">Weight</label>
+                                    <label class="important font-weight-bold my-2 text-1" for="weight">Weight</label>
                                     <input class="form-control" type="text" name="weight" value="{{old('weight')}} " />
                                 </div>
 
                                 <div class="col-6">
-                                    <label class="h6 important font-weight-bol d my-2 text-1" for="temp">Temparature</label>
+                                    <label class="important font-weight-bold my-2 text-1" for="temp">Temparature</label>
                                     <input class="form-control" type="text" name="tem" value="{{old('temp')}} " />
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-4 ml-auto">
-                                <label class="h6 important font-weight-bold my-2 text-1" for="history">Clinical History</label>
+                                <label class="important font-weight-bold my-2 text-1" for="history">Clinical History</label>
                                 <textarea class="form-control my-2 not-resizable  border border-secondary" name="history" rows="5" placeholder=""></textarea>
 
                             </div>
 
                             <div class="col-4 mr-auto">
-                                <label class="h6 important font-weight-bold my-2 text-1" for="treatment">Treatment</label>
+                                <label class="important font-weight-bold my-2 text-1" for="treatment">Treatment</label>
                                 <textarea class="form-control my-2 not-resizable  border border-secondary" name="treatment" rows="5" placeholder=""></textarea>
 
                             </div>
