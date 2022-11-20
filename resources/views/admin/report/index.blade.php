@@ -44,6 +44,8 @@
 			<div class="d-flex flex-row flex-wrap justify-content-center justify-content-md-start">
 				<a href="{{ route('report.index', ['t' => 'users', 'from' => $from, 'to' => $to]) }}" class="btn btn-outline-primary btn-sm m-1 {{ $type == 'users' ? 'active' : '' }}"><i class="fas fa-user-alt mr-2"></i>Users</a>
 				<a href="{{ route('report.index', ['t' => 'clients', 'from' => $from, 'to' => $to]) }}" class="btn btn-outline-primary btn-sm m-1 {{ $type == 'clients' ? 'active' : '' }}"><i class="fas fa-address-card mr-2"></i>Client</a>
+				<a href="{{ route('report.index', ['t' => 'pets', 'from' => $from, 'to' => $to]) }}" class="btn btn-outline-primary btn-sm m-1 {{ $type == 'pets' ? 'active' : '' }}"><i class="fa-solid fa-dog mr-2"></i>Pets</a>
+			
 				<a href="{{ route('report.index', ['t' => 'appointments', 'from' => $from, 'to' => $to]) }}" class="btn btn-outline-primary btn-sm m-1 {{ $type == 'appointments' ? 'active' : '' }}"><i class="fa-solid fa-calendar mr-2"></i>Appointment</a>
 				<a href="{{ route('report.index', ['t' => 'inventory', 'from' => $from, 'to' => $to]) }}" class="btn btn-outline-primary btn-sm m-1 {{ $type == 'inventory' ? 'active' : '' }}"><i class="fa-solid fa-warehouse mr-2"></i>Inventory</a>
 
@@ -64,7 +66,7 @@
 
 		<div class="card-body">
 			<table class="table table-striped text-center">
-				@if (in_array($type, ['users', 'clients', 'appointments', 'inventory', 'transaction-sales', 'transaction-services', 'services']))
+				@if (in_array($type, ['users', 'clients', 'pets', 'appointments', 'inventory', 'transaction-sales', 'transaction-services', 'services']))
 				@include("admin.report.types.{$type}", ['data' => $data])
 				@else
 				<tbody>

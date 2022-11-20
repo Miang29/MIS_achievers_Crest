@@ -59,7 +59,7 @@
 
 			{{-- TABLE START --}}
 			<table class="table table-striped m-0 p-0 text-center">
-				@if (in_array($type, ['users', 'clients', 'appointments', 'inventory', 'transaction-sales', 'transaction-services', 'services']))
+				@if (in_array($type, ['users', 'clients', 'pets', 'appointments', 'inventory', 'transaction-sales', 'transaction-services', 'services']))
 					@include("admin.report.types.{$type}", ['data' => $data])
 				@else
 				<tbody>

@@ -42,13 +42,13 @@
                 {{-- COST --}}
                 <div class="mt-3 border-secondary border-bottom w-lg-75 mx-auto">
                     <button class="btn font-weight-bold" data-toggle="tooltip" data-placement="left" title="Cost"><i class="fa-solid fa-tag mr-2 fa-lg"></i>Cost</button>
-                    <span class="h5 m-auto text-wrap text-1">{{ $services['price'] }}</span>
+                    <span class="h5 m-auto text-wrap text-1">₱{{ $services['price'] }}.00</span>
                 </div>
 
                 {{-- ADDITIONAL COST --}}
                 <div class="mt-3 border-secondary border-bottom w-lg-75 mx-auto">
                     <button class="btn font-weight-bold" data-toggle="tooltip" data-placement="left" title="Additional Cost"><i class="fa-solid fa-tag  mr-2 fa-lg"></i>Additional Cost</button>
-                    <span class="h5 m-auto text-wrap text-1">{{ $services['additional'] }}</span>
+                    <span class="h5 m-auto text-wrap text-1">₱{{ $services['additional'] }}.00</span>
                 </div>
 
                 {{-- DATE --}}
@@ -95,7 +95,7 @@
                 {{-- TOTAL COST --}}
                 <div class="mt-3 border-secondary border-bottom w-lg-75 mx-auto">
                     <button class="btn font-weight-bold" data-toggle="tooltip" data-placement="left" title="Total Cost"><i class="fa-solid fa-dollar mr-2 fa-lg"></i>Total Cost</button>
-                    <span class="h5 m-auto text-wrap text-1">{{ $services['total'] }}</span>
+                    <span class="h5 m-auto text-wrap text-1">₱{{ $services['total'] }}.00</span>
                 </div>
 
 
