@@ -14,10 +14,6 @@ class ServiceCategoryController extends Controller
 		return view('admin.service_category.create');
 	}
 
-	// protected function edit() {
-	// 	return view('admin.service_category.edit');
-	// }
-
 	protected function update($id) {
 		return response()
 			->json([
@@ -27,13 +23,9 @@ class ServiceCategoryController extends Controller
 			]);
 	}
 
-	protected function deletecategory($id) {
+	protected function delete($id) {
 		return redirect()
-			->route('services.index')
+			->route('service_category.index')
 			->with('flash_success', 'Successfully removed entire category and all its items');
-	}
-
-	protected function show() {
-		return view('admin.service_category.show');
 	}
 }

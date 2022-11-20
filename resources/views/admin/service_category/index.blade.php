@@ -10,7 +10,7 @@
 		</div>
 
 		<div class="col-12 col-md-6 col-lg my-2 text-center text-md-left text-lg-right">
-			<a href="{{ route('services.create') }}" class="btn btn-info bg-1 btn-sm my-1"><i class="fas fa-plus-circle mr-2"></i>Add Category</a>
+			<a href="{{ route('service_category.create') }}" class="btn btn-info bg-1 btn-sm my-1"><i class="fas fa-plus-circle mr-2"></i>Add Category</a>
 		</div>
 
 		<div class=" col-12 col-md-6 col-lg my-2 text-center text-lg-right">
@@ -45,10 +45,12 @@
 								<button class="btn btn-info bg-1 btn-sm dropdown-toggle mark-affected" type="button" data-toggle="dropdown" id="dropdown" aria-haspopup="true" aria-expanded="false" data-id="$a->id">
 									Action
 								</button>
+
 								<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown">
-								<a href="{{ route('services.show', [1]) }}" class="dropdown-item"><i class="fa-solid fa-eye mr-2"></i>View Service</a>
-								<button data-scf="Service Category Name" data-scf-name="service_category_name" data-scf-target-uri="{{ route('services.update', [1]) }}" class="dropdown-item"><i class="fa-regular fa-pen-to-square mr-2"></i>Edit Category</button>
-								<a href="javascript:void(0);" onclick="confirmLeave('{{ route("services.delete", [1]) }}', undefined, 'Are you sure you want to remove this category? This will <b>remove all the services and variations</b> encoded within this category.');" class="dropdown-item"><i class="fa-solid fa-trash mr-2"></i>Delete</a>
+									<a href="{{ route('service.index', [1]) }}" class="dropdown-item"><i class="fa-solid fa-eye mr-2"></i>View Service</a>
+									<button data-scf="Service Category Name" data-scf-name="service_category_name" data-scf-target-uri="{{ route('service_category.update', [1]) }}" class="dropdown-item"><i class="fa-regular fa-pen-to-square mr-2"></i>Edit Category</button>
+									<button onclick="confirmLeave('{{ route("service_category.delete", [1]) }}', undefined, 'Are you sure you want to remove this category? This will <b>remove all the services and variations</b> encoded within this category.');" class="dropdown-item"><i class="fa-solid fa-trash mr-2"></i>Delete</button>
+								</div>
 							</div>
 						</td>
 					</tr>

@@ -39,12 +39,12 @@
 
 		{{-- Services --}}
 		{{-- @if (Auth::user()->isAdmin()) --}}
-		@if (\Request::is('admin/services'))
+		@if (\Request::is('admin/service-category'))
 		<span class="bg-secondary text-white"><i class="fa-solid fa-chart-simple mr-2"></i>Services</span>
-		@elseif (\Request::is('admin/services/*'))
-		<a class="text-decoration-none aria-link bg-secondary text-white" href="{{route('services.index')}}" aria-hidden="false" aria-label="Reservation"><i class="fa-solid fa-chart-simple mr-2"></i>Services</a>
+		@elseif (\Request::is('admin/service-category/*'))
+		<a class="text-decoration-none aria-link bg-secondary text-white" href="{{route('service_category.index')}}" aria-hidden="false" aria-label="Reservation"><i class="fa-solid fa-chart-simple mr-2"></i>Services</a>
 		@else
-		<a class="text-decoration-none text-1 font-weight-bold aria-link" href="{{route('services.index')}}" aria-hidden="false" aria-label="Reservation"><i class="fa-solid fa-chart-simple mr-2"></i>Services</a>
+		<a class="text-decoration-none text-1 font-weight-bold aria-link" href="{{route('service_category.index')}}" aria-hidden="false" aria-label="Reservation"><i class="fa-solid fa-chart-simple mr-2"></i>Services</a>
 		@endif
 		{{-- @endif --}}
 

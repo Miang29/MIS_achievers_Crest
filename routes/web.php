@@ -145,41 +145,50 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 		Route::get('/{id}/{petId}', 'AppointmentController@show')->name('appointments.show');
 	});
 
-	//SERVICES CATEGORY
-	Route::group(['prefix' => 'services'], function () {
-		//Index - Category
-		Route::get('/', 'ServiceCategoryController@index')->name('services.index');
+	// SERVICES CATEGORY
+	Route::group(['prefix' => 'service-category'], function() {
+		// Index
+		Route::get('/', 'ServiceCategoryController@index')->name('service_category.index');
 
-		//Create
-		Route::get('/create', 'ServiceCategoryController@create')->name('services.create');
+		// Create
+		Route::get('/create', 'ServiceCategoryController@create')->name('service_category.create');
 
-		//Edit
-		Route::post('/{id}/update', 'ServiceCategoryController@update')->name('services.update');
+		// Edit
+		Route::post('/{id}/update', 'ServiceCategoryController@update')->name('service_category.update');
 		
-	    //Delete
-		Route::get('/{id}/delete', 'ServiceCategoryController@deletecategory')->name('services.delete');
+	    // Delete
+		Route::get('/{id}/delete', 'ServiceCategoryController@delete')->name('service_category.delete');
 
 		// SERVICES
-		Route::group(['prefix' => '{id}'], function () {
+		Route::group(['prefix' => '{id}/service'], function() {
 			// Show - Category / Index - Service
-			Route::get('/', 'ServiceCategoryController@show')->name('services.show');
+			Route::get('/', 'ServiceController@index')->name('service.index');
 
-			//Create - Service
-			Route::get("create", "ServicesController@create")->name('services.show.create');
+			// Create
+			Route::get("/create", "ServiceController@create")->name('service.create');
 
-			//Update - Service
-			Route::get("update", "ServicesController@update")->name('services.show.update');
+			// Update
+			Route::post("/update/{serviceId}", "ServiceController@update")->name('service.update');
+
+			// Delete
+			Route::get('/delete/{serviceId}', 'ServiceController@delete')->name('service.delete');
 
 			// VARIATIONS
-			Route::group(['prefix' => 'variations/{variationId}'], function() {
-				//Show - Service / Index - Variation
-				Route::get("/", "ServicesController@view")->name('services.show.view');
-				
-				//Show - Variation
-				Route::get("/show", "ServicesController@show")->name('services.show.show');
+			Route::group(['prefix' => '{serviceId}/variations'], function() {
+				// Index
+				Route::get("/", "ServiceVariationController@index")->name('service_variation.index');
 
-				//Delete - Variation
-				Route::get('/delete', 'ServicesController@deleteservice')->name('services.show.delete');
+				// Create
+				Route::get("/create", "ServiceVariationController@create")->name('service_variation.create');
+				
+				// Show
+				Route::get("/{variationId}", "ServiceVariationController@show")->name('service_variation.show');
+
+				// Edit
+				Route::get("/{variationId}/edit", "ServiceVariationController@edit")->name('service_variation.edit');
+
+				// Delete
+				Route::get('/{variationId}/delete', 'ServiceVariationController@delete')->name('service_variation.delete');
 			});
 		});
 	});

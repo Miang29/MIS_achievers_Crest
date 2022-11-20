@@ -6,13 +6,13 @@
 <div class="container-fluid px-2 px-lg-6 py-2 h-100 my-3">
 	<div class="row">
 		<div class="col-12 col-lg text-center text-lg-left">
-			<a href="{{ route('services.index') }}">
+			<a href="{{ route('service.index', [1]) }}">
 				<h2 class="font-weight-bold text-1"><i class="fas fa-chevron-left mr-2"></i>Services List</h2>
 			</a>
 		</div>
 
 		<div class="col-12 col-md-6 col-lg my-2 text-center text-md-left text-lg-right">
-			<a href="{{route('services.show.create', [1])}}" class="btn btn-info bg-1 btn-sm my-1"><i class="fas fa-plus-circle mr-2"></i>Add Service</a>
+			<a href="{{ route('service_variation.create', [1, 1]) }}" class="btn btn-info bg-1 btn-sm my-1"><i class="fas fa-plus-circle mr-2"></i>Add Service</a>
 		</div>
 
 		<div class=" col-12 col-md-6 col-lg my-2 text-center text-lg-right">
@@ -31,30 +31,36 @@
 			<table class="table table-striped text-center ">
 				<thead>
 					<tr>
-						<th scope="col" class="hr-thick text-1">Service Name</th>
-						<th scope="col" class="hr-thick text-1">Total No. of Services</th>
+						<th scope="col" class="hr-thick text-1">Variation</th>
+						<th scope="col" class="hr-thick text-1">Price</th>
+						<th scope="col" class="hr-thick text-1">Remarks</th>
 						<th scope="col" class="hr-thick text-1"></th>
 					</tr>
 				</thead>
 
 				<tbody>
+					@forelse ($variations as $v)
 					<tr>
-						<td>Home Service</td>
-						<td>4</td>
+						<td>{{ $v['variation_name'] }}</td>
+						<td>₱{{ number_format($v['price'], 2) }}</td>
+						<td>{{ $v['remarks'] }}</td>
 
 						<td>
 							<div class="dropdown">
-								<button class="btn btn-info bg-1 btn-sm dropdown-toggle mark-affected" type="button" data-toggle="dropdown" id="dropdown" aria-haspopup="true" aria-expanded="false" data-id="$a->id">
+								<button class="btn btn-info bg-1 btn-sm dropdown-toggle mark-affected" type="button" data-toggle="dropdown" id="dropdown" aria-haspopup="true" aria-expanded="false">
 									Action
 								</button>
+								
 								<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown">
-									<a href="{{route ('services.show.view', [1] )}}" class="dropdown-item"><i class="fa-solid fa-eye mr-2"></i>View Variation</a>
-									<button data-scf="Service Name" data-scf-name="service_name" data-scf-targer-uri="{{route ('services.show.update', [1]) }}" class="dropdown-item"><i class="fa-regular fa-pen-to-square mr-2"></i>Edit Service Name</button>
-									<a href="javascript:void(0);" onclick="confirmLeave('{{ route("services.show.delete",[1]) }}', undefined, 'Are you sure you want to remove this service? This will <b>remove all the category and variations encoded within this service.');" class="dropdown-item"><i class="fa-solid fa-trash mr-2"></i>Delete</a>
+									<a href="{{route ('service_variation.show', [1, 1, $v['id']] )}}" class="dropdown-item"><i class="fa-solid fa-eye mr-2"></i>View Variation</a>
+									<a href="{{ route('service_variation.edit', [1, 1, $v['id']]) }}" class="dropdown-item"><i class="fa-regular fa-pen-to-square mr-2"></i>Edit Variation</a>
+									<button onclick="confirmLeave('{{ route("service_variation.delete",[1, 1, $v['id']]) }}', undefined, 'Are you sure you want to remove this variation? This will <b>remove all the variations</b>');" class="dropdown-item"><i class="fa-solid fa-trash mr-2"></i>Delete</button>
 								</div>
 							</div>
 						</td>
 					</tr>
+					@empty
+					@endforelse
 				</tbody>
 			</table>
 		</div>
@@ -62,11 +68,6 @@
 </div>
 @endsection
 
-@section('meta')
-<meta name="csrf-token" content="{{ csrf_token() }}">
-@endsection
-
 @section('scripts')
 <script type="text/javascript" src="{{ asset('js/util/confirm-leave.js') }}"></script>
-<script type="text/javascript" src="{{ asset('js/util/swal-change-field.js') }}"></script>
 @endsection

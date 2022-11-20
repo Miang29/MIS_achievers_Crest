@@ -70,8 +70,6 @@ $(document).ready(() => {
 					[fieldName]: response.value.inputVal
 				};
 
-				console.log(dataPacket);
-
 				$.post(
 					targetURI,
 					dataPacket

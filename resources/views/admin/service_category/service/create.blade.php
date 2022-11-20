@@ -4,14 +4,14 @@
 
 @section('content')
 <div class="container-fluid m-0">
-	<h2 class="my-3"><a href="{{route('services.show', [1])}}" class="text-decoration-none  text-1"><i class="fas fa-chevron-left mr-2"></i>Services</a></h2>
+	<h2 class="my-3"><a href="{{ route('service.index', [1]) }}" class="text-decoration-none  text-1"><i class="fas fa-chevron-left mr-2"></i>Services</a></h2>
 	<hr class="hr-thick" style="border-color: #707070;">
 
 	<div class="row" id="form-area">
 		<div class="col-12">
 
 			<div class="card my-3 mx-auto">
-				<h3 class="card-header  text-white gbg-1"><i class="fa-solid fa-square-plus mr-2"></i>CREATE SERVICE CATEGORY</h3>
+				<h3 class="card-header  text-white gbg-1"><i class="fa-solid fa-square-plus mr-2"></i>CREATE SERVICE</h3>
 
 				<form class="card-body" action="#" method="GET" enctype="multipart/form-data" class="form">
 					{{ csrf_field() }}

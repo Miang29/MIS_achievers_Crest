@@ -4,14 +4,13 @@
 
 @section('content')
 <div class="container-fluid m-0">
-	<h2 class="my-3"><a href="{{route('service_category.index')}}" class="text-decoration-none  text-1"><i class="fas fa-chevron-left mr-2"></i>Services Category List</a></h2>
+	<h2 class="my-3"><a href="{{ route('service_variation.index', [1, 1]) }}" class="text-decoration-none  text-1"><i class="fas fa-chevron-left mr-2"></i>Services Variation List</a></h2>
 	<hr class="hr-thick" style="border-color: #707070;">
 
 	<div class="row" id="form-area">
 		<div class="col-12">
-
 			<div class="card my-3 mx-auto">
-				<h3 class="card-header  text-white gbg-1"><i class="fa-solid fa-square-plus mr-2"></i>CREATE SERVICE CATEGORY</h3>
+				<h3 class="card-header  text-white gbg-1"><i class="fa-solid fa-square-plus mr-2"></i>CREATE SERVICE VARIATION</h3>
 
 				<form class="card-body" action="#" method="POST" enctype="multipart/form-data" class="form">
 					{{ csrf_field() }}
@@ -20,7 +19,7 @@
 						<div class="col-12 col-md-6">
 							<div class="form-group">
 								<label class="form-label important" for="category">Category Name</label>
-								<input type="text" name="category" id="category" class="form-control">
+								<input type="text" name="category" id="category" class="form-control" value="{{ $category }}" readonly>
 								<span class="text-danger">{{ $errors->first('category') }}</span>
 							</div>
 						</div>
@@ -28,7 +27,7 @@
 						<div class="col-12 col-md-6">
 							<div class="form-group">
 								<label class="form-label important" for="service">Service Name</label>
-								<input type="text" name="service" id="service" class="form-control">
+								<input type="text" name="service" id="service" class="form-control" value="{{ $service }}" readonly>
 								<span class="text-danger">{{ $errors->first('service') }}</span>
 							</div>
 						</div>
