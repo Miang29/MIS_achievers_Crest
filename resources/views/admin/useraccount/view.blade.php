@@ -33,7 +33,7 @@
 					{{-- USERTYPE --}}
 					<div class="mt-3 border-secondary border-bottom w-lg-75 mx-auto">
 						<button class="btn mr-2" data-toggle="tooltip" data-placement="left" name ="user_type" title="User Type"><i class="fa-solid fa-users"></i></button>
-						<span class="h5 m-auto text-wrap text-1">{{$user ['user_type'] }}</span>
+						<span class="h5 m-auto text-wrap text-1">{{ucfirst($user->userType->name)}}</span>
 					</div>
 
 

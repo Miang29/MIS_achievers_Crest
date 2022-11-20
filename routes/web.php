@@ -88,7 +88,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 		});
 	});
 
-
 	// INVENTORY
 	Route::group(['prefix' => 'inventory/category'], function () {
 		//Index

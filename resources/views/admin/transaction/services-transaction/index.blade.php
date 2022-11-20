@@ -30,16 +30,16 @@
                 <thead>
                     <tr>
                         <th scope="col" class="hr-thick text-1">Reference No</th>
+                        <th scope="col" class="hr-thick text-1">Mode of Payment</th>
                         <th scope="col" class="hr-thick text-1">Total</th>
-                        <th scope="col" class="hr-thick"></th>
                     </tr>
                 </thead>
 
                 <tbody>
                     <tr>
                         <td scope="row">#{{ str_pad(rand(0, 999999), 6, '0', STR_PAD_LEFT) }}</td>
+                        <td>Gcash</td>
                         <td>₱{{ number_format(str_pad(rand(0, 9999), 4, '0', STR_PAD_LEFT), 2) }}</td>
-
                         <td>
                             <div class="dropdown">
                                 <button class="btn btn-info bg-1 btn-sm dropdown-toggle mark-affected" type="button" data-toggle="dropdown" id="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -47,14 +47,14 @@
                                 </button>
                                 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown">
-                                    <a href="{{route('transaction.service.view',[1]) }}" class="dropdown-item"><i class="fa-solid fa-eye mr-2"></i>View</a>
-                                    <a href="javascript:void(0);" onclick="confirmLeave('{{ route('transaction.service.delete', [1]) }}', undefined, 'Are you sure you want to delete this transaction?');" class="dropdown-item"><i class="fa-solid fa-trash mr-2"></i>Delete</a>
+                                    <a href="{{route('transaction.service.view',[1]) }}" class="dropdown-item"><i class="fa-solid fa-eye mr-2"></i>View Transaction</a>
+                                    <a href="javascript:void(0);" onclick="confirmLeave('{{ route('transaction.service.delete', [1]) }}', undefined, 'Are you sure you want to delete this transaction?');" class="dropdown-item"><i class="fa-solid fa-trash mr-2"></i>Delete Transaction</a>
                                 </div>
                             </div>
                         </td>
                     </tr>
                 </tbody>
-
+                
             </table>
         </div>
     </div>
