@@ -41,7 +41,8 @@ class TransactionController extends Controller
 				'Weight' => "",
 				'temparature' => "",
 				'history' => "",
-				'treatment' => ""
+				'treatment' => "",
+				'total' => "500"
 			]
 		]
 	];
