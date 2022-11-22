@@ -9,7 +9,7 @@
 
 <div class="col-12 my-2 mx-auto">
 	<form action="{{ route('user.store') }}" method="POST" class="card mx-auto border border-white" enctype="multipart/form-data">
-		<h3 class="card-header gbg-1 font-weight-bold text-white">CREATE ACCOUNT</h3>
+		<h3 class="card-header gbg-1 font-weight-bold text-white"><i class="fa-solid fa-user-plus mr-2 fa-lg"></i>CREATE ACCOUNT</h3>
 		{{ csrf_field() }}
 
 		<div class="card-body d-flex">

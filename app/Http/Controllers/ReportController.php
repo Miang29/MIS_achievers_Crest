@@ -36,6 +36,10 @@ class ReportController extends Controller
 				$data = $this->getAppointments($from, $to);
 				break;
 
+			case 'pets':
+				$data = $this->getPets($from, $to);
+				break;
+
 			case 'clients':
 				$data = $this->getClients($from, $to);
 				break;
@@ -103,6 +107,10 @@ class ReportController extends Controller
 				$data = $this->getAppointments($from, $to);
 				break;
 
+		  	case 'pets':
+				$data = $this->getPets($from, $to);
+				break;
+
 			case 'clients':
 				$data = $this->getClients($from, $to);
 				break;
@@ -140,6 +148,10 @@ class ReportController extends Controller
 
 	// GETTERS
 	private function getAppointments($from, $to) {
+		return [];
+	}
+
+	private function getPets($from, $to) {
 		return [];
 	}
 

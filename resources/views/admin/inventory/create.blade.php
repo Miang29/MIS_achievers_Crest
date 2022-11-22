@@ -11,7 +11,7 @@
 		<div class="col-12">
 
 			<form class="card my-3 mx-auto">
-				<h3 class="card-header font-weight-bold text-white gbg-1">CREATE CATEGORY</h3>
+				<h3 class="card-header font-weight-bold text-white gbg-1"><i class="fa-solid fa-cart-plus mr-2 fa-lg"></i>CREATE CATEGORY</h3>
 
 				<div class="card-body d-flex">
 					<div class="form-group mx-auto w-100">

@@ -12,7 +12,7 @@
 	<div class="row">
 		<div class="col-12">
 			<div class="card my-3 mx-auto">
-				<h3 class="card-header font-weight-bold text-white gbg-1">CREATE TRANSACTION</h3>
+				<h3 class="card-header font-weight-bold text-white gbg-1"><i class="fa-solid fa-square-plus mr-2 fa-lg"></i>CREATE TRANSACTION</h3>
 
 					{{-- REFERENCE NO --}}
 				<div class="card-body row">

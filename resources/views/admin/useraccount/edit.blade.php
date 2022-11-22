@@ -11,7 +11,7 @@
 
 	<div class="col-12 my-2 mx-auto">
 		<div class="card mx-auto">
-			<h5 class="card-header text-center text-white gbg-1"> Edit User Account</h5>
+			<h3 class="card-header text-white gbg-1"><i class="fa-solid fa-user-pen mr-2 fa-lg"></i>Edit User Account</h3>
 
 			<div class="card-body d-flex">
 				<div class="form-group mx-auto w-75 ">
@@ -22,7 +22,7 @@
 							<div class="col-4 col-md-9 col-lg-6 mx-auto">
 								<div class="form-group">
 									<label class="important font-weight-bold text-1 important">First Name</label>
-									<input class="form-control" type="text" name="first_name" value="{{ old('first_name') }}" />
+									<input class="form-control" type="text" name="first_name" value="{{ $user ["first_name"] }}" />
 									<small class="text-danger small">{{ $errors->first('first_name') }}</small>
 								</div>
 							</div>
@@ -31,7 +31,7 @@
 							<div class="col-4 col-md-9 col-lg-6 mx-auto">
 								<div class="form-group">
 									<label class="font-weight-bold text-1">Middle Name</label>
-									<input class="form-control" type="text" name="middle_name" value="{{ old('middle_name') }}" />
+									<input class="form-control" type="text" name="middle_name" value="{{ $user ["middle_name"] }}" />
 									<small class="text-danger small">{{ $errors->first('middle_name') }}</small>
 								</div>
 							</div>
@@ -41,7 +41,7 @@
 							<div class="col-4 col-md-9 col-lg-6 mx-auto">
 								<div class="form-group">
 									<label class="important font-weight-bold text-1 important">Last Name</label>
-									<input class="form-control" type="text" name="last_name" value="{{ old('last_name') }}" />
+									<input class="form-control" type="text" name="last_name" value="{{  $user ["last_name"] }}" />
 									<small class="text-danger small">{{ $errors->first('last_name') }}</small>
 								</div>
 							</div>
@@ -51,7 +51,7 @@
 							<div class="col-4 col-md-9 col-lg-6 mx-auto">
 								<div class="form-group">
 									<label class="font-weight-bold text-1">Suffix</label>
-									<input class="form-control" type="text" name="suffix" value="{{ old('suffix') }}" />
+									<input class="form-control" type="text" name="suffix" value="{{  $user ["suffix"] }}" />
 									<small class="text-danger small">{{ $errors->first('suffix') }}</small>
 								</div>
 							</div>
@@ -61,7 +61,7 @@
 								{{-- EMAIL --}}
 								<div class="col-12 col-md-9 col-lg-4  form-group">
 									<label class="important font-weight-bold text-1">E-mail</label>
-									<input class="form-control" type="email" name="email" value="{{ old('email') }}" />
+									<input class="form-control" type="email" name="email" value="{{  $user ["email"] }}" />
 									<small class="text-danger small">{{ $errors->first('email') }}</small>
 								</div>
 
@@ -81,7 +81,7 @@
 								{{-- USERNAME --}}
 								<div class="col-12 col-md-9 col-lg-4 form-group">
 									<label class="important font-weight-bold text-1">Username</label>
-									<input class="form-control" type="text" name="username" value="{{ old('username') }}" />
+									<input class="form-control" type="text" name="username" value="{{  $user ["username"] }}" />
 									<small class="text-danger small">{{ $errors->first('username') }}</small>
 								</div>
 							</div>
@@ -91,7 +91,7 @@
 							<div class="col-4 col-md-9 col-lg-6 mx-auto">
 								<label class="important font-weight-bold text-1">Password</label>
 								<div class="input-group">
-									<input class="form-control" type="password" name="password" id="password" aria-label="Password" aria-describedby="toggle-show-password" value="{{ old('password') ? old('password') : $password }}" />
+									<input class="form-control" type="password" name="password" id="password" aria-label="Password" aria-describedby="toggle-show-password" value="{{  $user ["password"] }} ? $user["password"] : $password }}" />
 
 									<div class="input-group-append">
 										<button type="button" class="btn btn-light form-border border-left-0 floating-eye-pass" id="toggle-show-password" aria-label="Show Password" data-target="#password">
@@ -107,7 +107,7 @@
 							<div class="col-4 col-md-9 col-lg-6 ml-auto">
 								<label class="important font-weight-bold text-1 my-2">Confirm Password</label>
 								<div class="input-group">
-									<input class="form-control" type="password" name="password_confirmation" id="password_confirmation" aria-label="Password_Confirmation" aria-describedby="toggle-show-password" value="{{ old('password') ? old('password') : $password }}" />
+									<input class="form-control" type="password" name="password_confirmation" id="password_confirmation" aria-label="Password_Confirmation" aria-describedby="toggle-show-password" value="{{  $user ["password"] }} ? $user["password"] : $password }}" />
 
 									<div class="input-group-append">
 										<button type="button" class="btn btn-light form-border border-left-0 floating-eye-pass" id="toggle-show-password" aria-label="Show Password" data-target="#password_confirmation">

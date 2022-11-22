@@ -144,7 +144,7 @@ class UserController extends Controller
 			$user = User::create
 			([
 				'first_name' => $req->first_name,
-				'middle-Name' => $req->middle_name,
+				'middle_name' => $req->middle_name,
 				'last_name' => $req->last_name,
 				'suffix' => $req->suffix,
 				'email' => $req->email,

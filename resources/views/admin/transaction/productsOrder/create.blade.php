@@ -12,7 +12,7 @@
 	<div class="row">
 		<div class="col-12">
 			<div class="card my-3 mx-auto ">
-				<h3 class="card-header font-weight-bold text-white gbg-2">Products Order</h3>
+				<h3 class="card-header font-weight-bold text-white gbg-2"><i class="fa-solid fa-square-plus mr-2 fa-lg"></i>Products Order</h3>
 
 				<div class="card-body">
 					<div class="row">
