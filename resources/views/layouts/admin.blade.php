@@ -93,7 +93,7 @@
 			<!-- CONTENTS -->
 			<main class="content-fluid d-flex flex-column flex-fill m-0" id="content">
 				<div class="container-fluid d-flex flex-column flex-grow-1 px-0">
-					<div class="d-flex flex-d-row flex-grow-1 position-relative h-100" style="overflow: hidden;">
+					<div class="d-flex flex-d-row flex-grow-1 position-relative h-100 " style="overflow: hidden;">
 						{{-- SIDEBAR --}}
 						@include('components.admin.sidebar')
 

@@ -8,7 +8,7 @@
 <div class="container-fluid px-2 px-lg-6 py-2 h-100 my-3">
 	<div class="row">
 		<div class="col-12 col-lg text-center text-lg-left">
-			<h2 class="font-weight-bold text-1">Reports</h2>
+			<h2 class="text-1">REPORTS</h2>
 		</div>
 	</div>
 

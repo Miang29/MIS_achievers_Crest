@@ -7,7 +7,7 @@
 <div class="container-fluid px-2 px-lg-6 py-2 h-100 my-3">
 	<div class="row">
 		<div class="col-12 col-lg text-center text-lg-left">
-			<h2 class="font-weight-bold text-1">User Account List</h2>
+			<h3 class="text-1">USERS LIST</h3>
 		</div>
 
 		<div class="col-12 col-md-6 col-lg my-2 text-center text-md-left text-lg-right">

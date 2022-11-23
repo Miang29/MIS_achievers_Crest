@@ -3,10 +3,10 @@
 @section('title', 'Dashboard')
 
 @section('content')
-<div class=" card flex-fill mt-3 mb-3">
+<div class=" card flex-fill mt-3 mb-3 shadow-sm p-3 bg-white rounded">
 	<div class="card-body h-100 px-0 pt-0">
 		<div class="col-12 col-lg text-center text-lg-left my-2 ">
-			<h2 class="font-weight-bold text-1 ml-2">Dashboard</h2>
+			<h2 class="text-1 ml-2">DASHBOARD</h2>
 		</div>
 
 		{{-- FIRST ROW --}}
