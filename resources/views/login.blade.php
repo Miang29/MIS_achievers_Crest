@@ -91,9 +91,9 @@
 		</div>
 	</div>
 <br><br><br>
-	<main class="card mt-5 w-50 h-50 mx-auto js-only w-lg-50 w-md-50 w-xs-75" id="content">
-		<div class="card-header text-center gbg-1 ">
-			<h1 class="w-100 w-lg-50 mx-auto  font-weight-bold  text-monospace text-white">LOGIN</h1>
+	<main class="card mt-5 w-50 h-50 mx-auto js-only w-lg-50 w-md-50 w-xs-75 shadow mb-5 bg-white rounded" id="content">
+		<div class="card-header text-center bg-light ">
+			<h1 class="w-100 w-lg-50 mx-auto text-monospace" style ="color:#021f53; font-weight:Bold; font-size: 3.5rem;">LOGIN</h1>
 		</div>
 		<div class="card-body d-flex flex-column flex-lg-row min-vh-25 ">
 
