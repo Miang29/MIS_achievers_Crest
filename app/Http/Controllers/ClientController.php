@@ -109,8 +109,18 @@ class ClientController extends Controller
 	}
 
 	protected function edit() {
-		return view('admin.clientprofile.client.edit');
+		return view('admin.clientprofile.client.edit', [
+			'client' => collect([
+				"name" => "Joseph Polio",
+				"email" => "joseph.polio@gmail.com",
+				"telephone" => "678-4421",
+				"mobile" => "09267789945",
+				"address" => "11 Maharlika St. San Francisco Village Muzon Taytay Rizal",
+				"type" => "new"
+			])
+		]);
 	}
+
 
 	protected function viewClientProfile($id) {
 		$client = $this->clients[$id-1];
@@ -128,6 +138,11 @@ class ClientController extends Controller
 			'id' => $id,
 			'pets' => $this->pets["{$id}"]
 		]);
+	}
+
+	protected function editPet($id) {
+		return view('admin.clientprofile.pet.edit');
+		
 	}
 
 	protected function notifyClient(Request $req) {

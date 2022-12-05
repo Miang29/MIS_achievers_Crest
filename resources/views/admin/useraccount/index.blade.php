@@ -26,7 +26,7 @@
 
 	<div class="overflow-x-auto h-100 card">
 		<div class=" card-body h-100 px-0 pt-0 ">
-			<table class="table table-striped text-center">
+			<table class="table table-striped text-center" id="table-content">
 				<thead>
 					<tr>
 						<th scope="col" class="hr-thick text-1">Name</th>

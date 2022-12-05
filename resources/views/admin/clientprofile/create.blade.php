@@ -4,52 +4,52 @@
 
 @section('content')
 <div class="container-fluid m-0 ">
-	<h3 class="text-center text-lg-left mx-0 mx-lg-5 my-3">
-		<a href="{{route('client-profile')}}" class="text-decoration-none text-1"><i class="fas fa-chevron-left mr-2"></i>Profile List</a>
+	<h3 class="text-center text-lg-left text-sm-left mx-0 mx-lg-5 my-3">
+		<a href="{{route('client-profile')}}" class="text-decoration-none text-1 "><i class="fas fa-chevron-left mr-2"></i>Profile List</a>
 	</h3>
 	<hr class="hr-thick" style="border-color: #707070;">
 
 	<form class="form ">
 		<div class="row" id="form-area">
-			<div class="col-12 ">
-				<div class="card my-3 mx-auto  ">
+			<div class="col-12 col-md-12">
+				<div class="card my-3 mx-auto">
 					<h2 class="card-header font-weight-bold gbg-1 text-white"><i class="fa-solid fa-address-card mr-2"></i>Client Profile</h2>
 					<div class="card-body d-flex ">
 
-						<div class="form-group mx-auto w-75">
-							<div class="col-12  ">
+						<div class="form-group mx-auto w-lg-75 w-md-75 w-xs-100">
+							<div class="col-12">
 
 								<div class="row ">
-									<div class="col-4">
+									<div class="col-lg-6 col-md-8 col-sm-12">
 										<label class="h6 font-weight-bold text-1 important" for="petowner">Pet Owner</label>
 										<input class="form-control " type="text" name="petowner" value="{{old('petowner')}}" />
 									</div>
 
-									<div class="col-8">
+									<div class="col-lg-6 col-md-8 col-sm-12">
 										<label class="h6 font-weight-bold text-1  important" for="address">Address</label>
 										<textarea class="form-control not-resizable" name="address" rows="3"></textarea>
 									</div>
 								</div>
 
 								<div class="row ">
-									<div class="col-4 ">
+									<div class="col-lg-6 col-md-8 col-sm-12 ">
 										<label class="h6 font-weight-bold text-1" for="telephone">Telephone No</label>
 										<input class="form-control" type="text" name="telephone" value="{{old('telephone')}}" />
 									</div>
 
-									<div class="col-8">
+									<div class="col-lg-6 col-md-8 col-sm-12">
 										<label class="h6 font-weight-bold text-1  important" for="email">Email</label>
 										<input class="form-control" type="email" name="email" value="{{old('email')}}" />
 									</div>
 								</div>
 
 								<div class="row ">
-									<div class="col-4 ">
+									<div class="col-lg-6 col-md-8 col-sm-12 ">
 										<label class="h6 font-weight-bold text-1" for="mobile">Mobile No</label>
 										<input class="form-control" type="text" name="mobile" value="{{old('mobile')}}" />
 									</div>
 
-									<div class="col-8 ">
+									<div class="col-lg-6 col-md-8 col-sm-12 ">
 										<label class="h6 font-weight-bold text-1  important" for="type">Type</label>
 										<div class="input-group ">
 											<select class="custom-select" id="inputGroupSelect01">
@@ -67,25 +67,23 @@
 			</div>
 
 			{{-- PET REGISTRATION FORM --}}
-			<div class="col-6 my-2 mx-auto">
+			<div class="col-lg-6 col-md-8 col-sm-12 my-2 mx-auto">
 				<div class="card mx-auto">
 					<h3 class="card-header font-weight-bold text-center bg-1 text-white"><i class="fa-solid fa-dog mr-2"></i>Pet Registration<i class="fa-solid fa-cat ml-2"></i></h3>
-
 					<div class="card-body d-flex">
 						<div class="row">
-							<div class="col-6 col-lg-6">
-								<div class="form-group text-center text-lg-left w-100 image-input-group" style="max-height: 20rem;">
-									<label class="h2 ml-5" for="image">Pet Image</label><br>
+							<div class="col-6 col-lg-6 mx-auto">
+								<div class="form-group text-center text-lg-left w-lg-100 w-md-75 w-xs-100 image-input-group" style="max-height: 20rem;">
+									<label class="h5" for="image">Pet Image</label><br>
 									<img src="{{ asset('images/UI/placeholder.jpg') }}" class="img-fluid cursor-pointer border" style="border-width: 0.25rem!important; max-height: 16.25rem;" alt="Pet Image">
 									<br><br>
-									<input type="file" name="image[]" class="d-none" accept=".jpg,.jpeg,.png"><br>
+									<input type="file" name="image[]" class="hidden" accept=".jpg,.jpeg,.png"><br>
 									<small class="text-muted"><b>FORMATS ALLOWED:</b> JPEG, JPG, PNG</small>
 								</div>
-
-
 							</div>
 
-							<div class="col-6 col-lg-6">
+							<div class="col-12 col-lg-12 col-md-12 ">
+								
 								<div class="form-group ">
 
 									<label class="h6 font-weight-bold text-1  important" for="petname">Pet Name</label>
@@ -144,8 +142,8 @@
 
 		<div class="row">
 			<div class="col-12 my-3 d-flex flex-row">
-				<button class="btn btn-outline-info ml-auto mr-1 w-25"><a href="#"></a>Save</button>
-				<a href="{{ route('client-profile') }}" class="btn btn-outline-danger ml-1 mr-auto w-25">Cancel</a>
+				<button class="btn btn-outline-info ml-auto mr-1 w-25 mb-5"><a href="#"></a>Save</button>
+				<a href="{{ route('client-profile') }}" class="btn btn-outline-danger ml-1 mr-auto w-25 mb-5">Cancel</a>
 			</div>
 		</div>
 	</form>
@@ -159,14 +157,14 @@
 		let target = $(targetR);
 
 		const form = $(`
-		<div class="col-6 my-2 mx-auto">
+		<div class="col-lg-6 col-md-8 col-sm-12 my-2 mx-auto">
 			<div class="card mx-auto">
 				<h3 class="card-header text-center position-relative bg-1 text-white"><i class="fa-solid fa-dog mr-2"></i>Pet Registration<i class="fa-solid fa-cat ml-2"></i><span class="position-absolute" style="top: 0.125rem; right: 0.5rem; cursor: pointer;" onclick="$(this).parent().parent().parent().remove();"><i class="fas fa-multiply"></i></span></h3>
 				
 				<div class="card-body d-flex">
 					<div class="row">
-						<div class="col-6 col-lg-6">
-							<div class="form-group text-center text-lg-left w-100 image-input-group" style="max-height: 20rem;">
+						<div class="col-6 col-lg-6 mx-auto">
+							<div class="form-group text-center text-lg-left w-lg-100 w-md-75 w-xs-100 image-input-group" style="max-height: 20rem;">
 								<label class="h5 " for="image">Pet Image</label><br>
 								<img src="{{ asset('images/UI/placeholder.jpg') }}" class="img-fluid cursor-pointer border" style="border-width: 0.25rem!important; max-height: 16.25rem;" alt="Pet Image">
 								<br><br>
@@ -175,7 +173,7 @@
 							</div>
 						</div>
 
-						<div class="col-6 col-lg-6">
+						<div class="col-12 col-lg-12 col-md-12 ">
 							<div class="form-group ">
 								<label class="h6 font-weight-bold text-1  important" for="petname">Pet Name</label>
 								<input class="form-control" type="text" name="petname[]"/>

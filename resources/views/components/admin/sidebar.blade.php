@@ -118,7 +118,7 @@
 
 		<hr class="w-100 custom-hr">
 		<!-- DATE - TIME -->
-		<small class="text-lg-center px-2 text-1">{{ \Carbon\Carbon::now()->timezone('Asia/Manila')->format('M d, Y') }} - <span id="time">{{ \Carbon\Carbon::now()->timezone('Asia/Manila')->format('g:i:s A') }}</span></small>
+		<small class="text-lg-center font-weight-bold px-2 text-1">{{ \Carbon\Carbon::now()->timezone('Asia/Manila')->format('M d, Y') }} - <span id="time">{{ \Carbon\Carbon::now()->timezone('Asia/Manila')->format('g:i:s A') }}</span></small>
 
 		<!-- SCRIPT -->
 		<script type="text/javascript">

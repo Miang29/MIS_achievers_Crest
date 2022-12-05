@@ -89,9 +89,9 @@
 						<div class="row">
 							{{-- PASSWORD --}}
 							<div class="col-4 col-md-9 col-lg-6 mx-auto">
-								<label class="important font-weight-bold text-1">Password</label>
+								<label class="important font-weight-bold text-1 my-2">Password</label>
 								<div class="input-group">
-									<input class="form-control" type="password" name="password" id="password" aria-label="Password" aria-describedby="toggle-show-password" value="{{  $user ["password"] }} ? $user["password"] : $password }}" />
+									<input class="form-control" type="password" name="password" id="password" aria-label="Password" aria-describedby="toggle-show-password"/>
 
 									<div class="input-group-append">
 										<button type="button" class="btn btn-light form-border border-left-0 floating-eye-pass" id="toggle-show-password" aria-label="Show Password" data-target="#password">
@@ -107,7 +107,7 @@
 							<div class="col-4 col-md-9 col-lg-6 ml-auto">
 								<label class="important font-weight-bold text-1 my-2">Confirm Password</label>
 								<div class="input-group">
-									<input class="form-control" type="password" name="password_confirmation" id="password_confirmation" aria-label="Password_Confirmation" aria-describedby="toggle-show-password" value="{{  $user ["password"] }} ? $user["password"] : $password }}" />
+									<input class="form-control" type="password" name="password_confirmation" id="password_confirmation" aria-label="Password_Confirmation" aria-describedby="toggle-show-password"/>
 
 									<div class="input-group-append">
 										<button type="button" class="btn btn-light form-border border-left-0 floating-eye-pass" id="toggle-show-password" aria-label="Show Password" data-target="#password_confirmation">

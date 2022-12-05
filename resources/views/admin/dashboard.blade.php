@@ -25,9 +25,9 @@
 			{{-- VACCINATED --}}
 			<div class="col-12 col-md-6 col-lg-3  my-3">
 				<div class="total-block bg-2 text-white dark-shadow invisiborder rounded">
-					<i class="fas fa-syringe fa-5x mx-2 mt-2"></i>
+				<i class="fa-solid fa-chart-simple fa-5x mx-2 mt-2"></i>
 					<div class="d-flex flex-d-col flex-grow-1 text-right ml-3">
-						<h6 class="my-auto">Vaccinated</h6>
+						<h6 class="my-auto">Sales</h6>
 						<h6 class="my-auto"></h6>
 					</div>
 				</div>

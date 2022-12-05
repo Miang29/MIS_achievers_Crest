@@ -65,7 +65,7 @@
 		</div>
 
 		<div class="card-body">
-			<table class="table table-striped text-center">
+			<table class="table table-striped text-center" id="table-content">
 				@if (in_array($type, ['users', 'clients', 'pets', 'appointments', 'inventory', 'transaction-sales', 'transaction-services', 'services']))
 				@include("admin.report.types.{$type}", ['data' => $data])
 				@else
