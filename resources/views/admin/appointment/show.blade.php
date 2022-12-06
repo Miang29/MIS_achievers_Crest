@@ -4,14 +4,13 @@
 
 @section('content')
 <div class="container-fluid m-0">
-    <h3 class="text-center text-lg-left mx-0 mx-lg-5 my-3">
-        <a href="{{route('appointments.index')}}" class="text-decoration-none  text-1"><i class="fas fa-chevron-left mr-2"></i>Appointment</a>
-    </h3>
+<h3 class="mt-3"><a href="{{route('appointments.index')}}" class="text-decoration-none  text-1"><i class="fas fa-chevron-left mr-2"></i>Appointment List</a></h3>
+
     <hr class="hr-thick" style="border-color: #707070;">
 
     <h2 class="font-weight-bold text-1 text-center">View Client Appointment </h2>
     <div class="row" id="form-area">
-        <div class="col-8 mx-auto my-5 ">
+        <div class="col-lg-8 col-md-12 col-12 mx-auto my-5 ">
 
             <div class="card card-body position-relative shadow p-3 mb-5 border-primary w-lg-100 w-xs-100 w-md-100">
                 <div class="position-absolute border-secondary bg-1 text-white text-center d-flex w-75 w-lg-50 text-wrap" style="top: -1.8rem; left:1.5rem; min-height:4rem; max-height: 4rem; border-radius:0.5rem;">

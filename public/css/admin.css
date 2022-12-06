@@ -228,6 +228,8 @@
 
 /* ADMIN SEARCH END */
 
+.header-username { max-width: 17rem; }
+
 .important::after {
 	content: " *";
 	color: #dc3545;
@@ -303,13 +305,18 @@
 }
 
 /* Small devices (landscape phones, 576px and up) */
-@media (min-width: 576px) {}
+@media (min-width: 576px) {
+	.header-username { max-width: 17rem ; }
+}
 
 /* Medium devices (tablets, 768px and up) */
-@media (min-width: 768px) {}
+@media (min-width: 768px) {
+	.header-username { max-width: 17rem; }
+}
 
 /* Large devices (desktops, 992px and up) */
 @media (min-width: 992px) {
+	.header-username { max-width: 17rem; }
 
 	/* サイドバースタート */
 	.sidebar-toggler {

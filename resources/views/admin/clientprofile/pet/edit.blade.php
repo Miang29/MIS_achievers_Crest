@@ -4,11 +4,9 @@
 
 @section('content')
 <div class="container-fluid px-2 px-lg-6 py-2 h-100 my-3">
-    <h2 class="text-center text-lg-left mx-0 mx-lg-5 my-4">
-        <a href="{{route('client-profile.pet.show', [1] )}}" class="text-decoration-none text-1"><i class="fas fa-chevron-left mr-2"></i>Pet Profile</a>
-    </h2>
+<h3 class="mt-3"><a href="{{route('client-profile.pet.show', [1] )}}
+" class="text-decoration-none  text-1"><i class="fas fa-chevron-left mr-2"></i>Pet List</a></h3>
     <hr class="hr-thick" style="border-color: #707070;">
-
     <div class="col-12 my-2 mx-auto">
         <div class="card mx-auto">
             <h5 class="card-header text-center text-white bg-1"> Edit Pet Information</h5>

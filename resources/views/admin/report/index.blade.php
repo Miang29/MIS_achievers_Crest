@@ -34,7 +34,7 @@
 		</div>
 
 		{{-- SUBMIT --}}
-		<div class="col-3 my-2 text-center text-md-left ">
+		<div class="col-12 col-lg-3 col-md-3 my-2 text-center text-md-left ">
 			<button type="submit" class="btn btn-success" data-action="filter">Filter</button>
 		</div>
 	</form>

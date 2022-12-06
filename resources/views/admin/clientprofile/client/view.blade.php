@@ -4,9 +4,7 @@
 
 @section('content')
 <div class="container-fluid m-0 ">
-	<h3 class="text-center text-lg-left  text-sm-left mx-0 mx-lg-5 my-3">
-		<a href="{{route('client-profile')}}" class="text-decoration-none text-1"><i class="fas fa-chevron-left mr-2"></i>Profile List</a>
-	</h3>
+<h3 class="mt-3"><a href="{{route('client-profile')}}" class="text-decoration-none  text-1"><i class="fas fa-chevron-left mr-2"></i>Profile List</a></h3>
 
 	<hr class="hr-thick" style="border-color: #707070;">
 

@@ -4,9 +4,8 @@
 
 @section('content')
 <div class="container-fluid m-0">
-	<h3 class="text-center text-lg-left mx-0 mx-lg-5 my-3">
-		<a href="{{route ('transaction.products-order') }}" class="text-decoration-none  text-1"><i class="fas fa-chevron-left mr-2"></i>Product Order List</a>
-	</h3>
+<h3 class="mt-3"><a href="{{route ('transaction.products-order') }}" class="text-decoration-none  text-1"><i class="fas fa-chevron-left mr-2"></i>Product Order List</a></h3>
+
 	<hr class="hr-thick" style="border-color: #707070;">
 
 	<div class="row">
@@ -16,12 +15,12 @@
 
 				<div class="card-body">
 					<div class="row">
-						<div class="form-group col-4 ml-auto">
+						<div class="form-group col-lg-4 col-md-4 col-6 ml-auto">
 							<label class="important font-weight-bold text-1" for="refno">Reference No</label>
 							<input class="form-control " type="text" name="refno" value="{{old('refno')}} " />
 						</div>
 
-						<div class="form-group col-4 mr-auto">
+						<div class="form-group col-lg-4 col-md-4 col-6 mr-auto">
 							<label class="important font-weight-bold text-1" for="select">Mode of Payment</label>
 							<select id="select" class="form-control">
 								<option>Select mode of payment</option>
@@ -91,7 +90,7 @@
 				</div>
 
 				<div class="card-footer d-flex flex-column">
-					<div class="form-group col-6 mx-auto">
+					<div class="form-group col-lg-6 col-12 col-md-8 mx-auto">
 						<button class="card mx-auto w-100 h-100 d-flex" type="button" style="border-style: dashed; border-width: .25rem;" id="addTrans">
 							<span class="m-auto  font-weight-bold text-1"><i class="fa-solid fa-circle-plus mr-2"></i>Add Product Field</span>
 						</button>

@@ -11,7 +11,7 @@
     </div>
 
     <div class="row" id="form-area">
-        <div class="col-12">
+        <div class="col-12 col-lg-12 col-md-12">
             <div class="card my-3 mx-auto">
                 <h3 class="card-header font-weight-bold text-white gbg-1">Website Related</h3>
 
@@ -19,7 +19,7 @@
                     <div class="form-group ">
 
                         <div class="row ">
-                            <div class="col-6 col-lg-6">
+                            <div class="col-12 col-md-6 col-lg-6">
                                 <div class="card border-secondary w-100 ">
                                     <div class="col-12 col-lg-6 mx-auto "><br>
                                         <div class="form-group text-center text-lg-left image-input-group">
@@ -32,7 +32,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-6 col-lg-6 ">
+                            <div class="col-12 col-md-6 col-lg-6 ">
                                 <label class="h7  text-1 important font-weight-bold " for="webname">Website Name</label>
                                 <input class="form-control " type="text" name="webname[]" /><br>
 
@@ -44,7 +44,7 @@
                         <br>
 
                         <div class="card-body d-flex mt-1  border-top border-secondary">
-                            <div class="form-group mx-auto col-6">
+                            <div class="form-group mx-auto col-12 col-lg-6 col-md-6">
                                 <h4 class="text-1 font-weight-bold text-center">Reaching Out</h4>
                                 <br>
                                 <label class="h6 important" for="address">Veterinary Clinic Address</label>
@@ -62,7 +62,7 @@
                 </div>
 
                 <div class="card-footer d-flex">
-                       <div class="col-6 mx-auto  text-center ">
+                       <div class="col-12 col-lg-6 col-md-6 mx-auto  text-center ">
                             <button class="btn btn-outline-info my-2 btn-sm w-25"><a href="#"></a>Save</button>
                             <button class="btn btn-outline-danger my-2 btn-sm  w-25"><a href="#"></a>Cancel</button>
                         </div>

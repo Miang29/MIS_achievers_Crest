@@ -4,9 +4,7 @@
 
 @section('content')
 <div class="container-fluid m-0">
-    <h3 class="text-center text-lg-left  mx-lg-5 my-4 ">
-        <a href="{{route('appointments.index')}}" class="text-decoration-none  text-1"><i class="fas fa-chevron-left mr-2"></i>Appointment List</a>
-    </h3>
+<h3 class="mt-3"><a href="{{route('appointments.index')}}" class="text-decoration-none  text-1"><i class="fas fa-chevron-left mr-2"></i>Appointment List</a></h3>
     <hr class="hr-thick" style="border-color: #707070;">
 
     <div class="col-12 mx-auto">
@@ -40,7 +38,7 @@
                 </div>
             </div>
             <div class="card-footer d-flex">
-                <div class="col-4 mx-auto text-center">
+                <div class="col-lg-4 col-md-4 col-8 mx-auto text-center">
                     <button class="btn btn-outline-info btn-sm w-50">Save</button>
                     <a href="#"class="btn btn-outline-danger btn-sm w-50">Cancel</a>
                 </div>

@@ -4,25 +4,24 @@
 
 @section('content')
 <div class="container-fluid m-0">
-	<h3 class="text-center text-lg-left mx-0 mx-lg-5 my-4 ">
-		<a href="{{route('transaction.service')}}" class="text-decoration-none  text-1"><i class="fas fa-chevron-left mr-2"></i>Service Transaction List</a>
-	</h3>
+<h3 class="mt-3"><a href="{{route('transaction.service')}}" class="text-decoration-none  text-1"><i class="fas fa-chevron-left mr-2"></i>Service Transaction List</a></h3>
+
 	<hr class="hr-thick" style="border-color: #707070;">
 
 	<div class="row">
-		<div class="col-12">
+		<div class="col-12 col-lg-12 col-md-12">
 			<div class="card my-3 mx-auto">
 				<h3 class="card-header font-weight-bold text-white gbg-1"><i class="fa-solid fa-square-plus mr-2 fa-lg"></i>CREATE TRANSACTION</h3>
 
 					{{-- REFERENCE NO --}}
 				<div class="card-body row">
-					<div class="form-group col-4 ml-auto">
+					<div class="form-group col-6 col-lg-4 col-md-4 ml-auto">
 						<label class="important font-weight-bold text-1" for="refno">Reference No</label>
 						<input class="form-control" type="text" name="refno" value="{{old('refno')}} " />
 					</div>
 
 					 {{-- MODE OF PAYMENT --}}
-					<div class="form-group col-4 mr-auto">
+					<div class="form-group col-6 col-lg-4 col-md-4 mr-auto">
 						<label class="important font-weight-bold text-1" for="select">Mode of Payment</label>
 						<select id="select" class="form-control">
 							<option>Select mode of payment</option>
@@ -48,7 +47,7 @@
 
 								<div class="row">
 									{{-- COST --}}
-									<div class="col-4  mx-auto ">
+									<div class="col-12 col-lg-4 col-md-4 mx-auto ">
 										<label for="cost[]" class="form-label important text-1 font-weight-bold">Cost</label>
 										<div class="input-group flex-nowrap">
 											<div class="input-group-prepend">
@@ -63,7 +62,7 @@
 									</div>
 
 									{{-- ADDITIONAL COST --}}
-									<div class="col-4  mx-auto ">
+									<div class="col-12 col-lg-4 col-md-4 mx-auto ">
 										<label class="important  font-weight-bold text-1" for="addcost[]">Additional Cost</label>
 										<div class="input-group flex-nowrap">
 											<div class="input-group-prepend">
@@ -78,7 +77,7 @@
 									</div>
 
 									{{-- TOTAL COST --}}
-									<div class="col-4  mx-auto ">
+									<div class="col-12 col-lg-4 col-md-4 mx-auto ">
 										<label class="important  font-weight-bold text-1" for="total[]">Total Cost</label>
 										<div class="input-group flex-nowrap">
 											<div class="input-group-prepend">
@@ -95,13 +94,13 @@
 
 								<div class="row">
 									{{-- DATE --}}
-									<div class="col-6">
+									<div class="col-lg-6 col-6 col-md-6">
 										<label class="important font-weight-bold my-2 text-1" for="date">Date</label>
 										<input class="form-control" type="date" name="date" value="{{old('date')}}" />
 									</div>
 
 									{{-- TIME --}}
-									<div class="col-6">
+									<div class="col-lg-6 col-6 col-md-6">
 										<label class="important font-weight-bold my-2 text-1" for="time">Time</label>
 										<input class="form-control" type="time" name="time" value="{{old('time')}}" />
 									</div>
@@ -117,13 +116,13 @@
 
 								{{-- WEIGHT --}}
 								<div class="row">
-									<div class="col-6">
+									<div class="col-lg-6 col-6 col-md-6">
 										<label class="important font-weight-bold my-2 text-1" for="weight">Weight</label>
 										<input class="form-control" type="text" name="weight" value="{{old('weight')}}" />
 									</div>
 
 									{{-- TEMPARATURE --}}
-									<div class="col-6">
+									<div class="col-lg-6 col-6 col-md-6">
 										<label class="important font-weight-bold my-2 text-1" for="temp">Temparature</label>
 										<input class="form-control" type="text" name="tem" value="{{old('temp')}} " />
 									</div>
@@ -131,13 +130,13 @@
 								
 								<div class="row">
 								  {{-- CLINICAL HISTORY --}}
-									<div class="col-6 ml-auto">
+									<div class="col-12 col-lg-6 col-md-6 ml-auto">
 										<label class="important font-weight-bold my-2 text-1" for="history">Clinical History</label>
 										<textarea class="form-control my-2 not-resizable  border border-secondary" name="history" rows="5" placeholder=""></textarea>
 									</div>
 
 								  {{-- TREATMENT --}}
-									<div class="col-6 mr-auto">
+									<div class="col-12 col-lg-6 col-md-6 mr-auto">
 										<label class="important font-weight-bold my-2 text-1" for="treatment">Treatment</label>
 										<textarea class="form-control my-2 not-resizable  border border-secondary" name="treatment" rows="5" placeholder=""></textarea>
 									</div>
