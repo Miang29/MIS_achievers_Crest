@@ -20,7 +20,7 @@ class ClientController extends Controller
 			"telephone" => "678-4421",
 			"mobile" => "09267789945",
 			"address" => "11 Maharlika St. San Francisco Village Muzon Taytay Rizal",
-			"type" => "new"
+			"type" => "New"
 		]
 	];
 
@@ -116,7 +116,7 @@ class ClientController extends Controller
 				"telephone" => "678-4421",
 				"mobile" => "09267789945",
 				"address" => "11 Maharlika St. San Francisco Village Muzon Taytay Rizal",
-				"type" => "new"
+				"type" => "New"
 			])
 		]);
 	}
@@ -128,9 +128,7 @@ class ClientController extends Controller
 		return view('admin.clientprofile.client.view', [
 			'id' => $id,
 			'client' => $client
-		]);
-
-		
+		]);	
 	}
 
 	protected function showPets($id) {

@@ -13,6 +13,7 @@ use DB;
 use Exception;
 use Hash;
 use Log;
+use Mail;
 use Validator;
 
 class UserController extends Controller
@@ -153,7 +154,19 @@ class UserController extends Controller
 				'password' => Hash::make($req->password),
 			]);
 
+			
 			// MAILER SHIT
+			Mail::send(
+				'layouts.emails.creation',
+				[
+					'req' =>$req,
+				],
+				function($mail) use ($user) {
+					$mail->to($user->email)
+						->from("nano.mis@technical.com") // MIS Nano Vet Clinic
+						->subject("Account Created");
+				}
+			);
 
 			DB::commit();
 		} catch (Exception $e) {

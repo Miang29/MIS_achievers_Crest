@@ -23,7 +23,7 @@
 
                                 <div class="col-lg-12 col-md-8 col-12">
                                     <label class="h6 font-weight-bold text-1  important my-2" for="address">Address</label>
-                                    <textarea class="form-control not-resizable" name="address" rows="3" value="{{$client ["address"] }}"> </textarea>
+                                    <textarea class="form-control not-resizable" name="address" rows="3"> {{ $client ["address"] }} </textarea>
                                 </div>
                             </div>
 
@@ -47,12 +47,11 @@
 
                                 <div class="col-lg-6 col-md-8 col-12 ">
                                     <label class="h6 font-weight-bold text-1 important  my-2" for="type">Type</label>
-                                    <div class="input-group ">
-                                        <select class="custom-select" id="inputGroupSelect01">
-                                            <option selected name="type"></option>
-                                            <option value="1">Old</option>
-                                            <option value="2">New</option>
-                                        </select>
+                                    <div class="input-group">
+                                        <select class="custom-select" name="type">
+                                            <option value="old" {{$client ['type'] ? 'checked' : '' }}>Old</option>
+                                            <option value="new" {{$client ['type'] ? '' : 'checked' }}>New</option>
+										</select>
                                     </div>
                                 </div>
                             </div>

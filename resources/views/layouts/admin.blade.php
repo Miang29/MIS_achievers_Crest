@@ -119,7 +119,7 @@
 				position: {!!Session::has('position') ? '`'.Session::get('position').'`' : '`top`'!!},
 				showConfirmButton: false,
 				toast: {!!Session::has('is_toast') ? Session::get('is_toast'): true!!},
-				{!!Session::has('has_timer') ? (Session::get('has_timer') ? (Session::has('duration') ? ('timer: '.Session::get('duration')).',' : `timer: 10000,`) : '') : `timer: 10000,`!!}
+				{!!Session::has('has_timer') ? (Session::get('has_timer') ? (Session::has('duration') ? ('timer: '.Session::get('duration')).',' : `timer: 10000,`) : 'timer: 5000,') : `timer: 10000,`!!}
 				background: `#dc3545`,
 				customClass: {
 					title: `text-white`,
@@ -135,7 +135,7 @@
 				position: {!!Session::has('position') ? '`'.Session::get('position').'`' : '`top`'!!},
 				showConfirmButton: false,
 				toast: {!!Session::has('is_toast') ? Session::get('is_toast'): true!!},
-				{!!Session::has('has_timer') ? (Session::get('has_timer') ? (Session::has('duration') ? ('timer: '.Session::get('duration')).',' : `timer: 10000,`) : '') : `timer: 10000,`!!}
+				{!!Session::has('has_timer') ? (Session::get('has_timer') ? (Session::has('duration') ? ('timer: '.Session::get('duration')).',' : `timer: 10000,`) : 'timer: 5000,') : `timer: 10000,`!!}
 				background: `#17a2b8`,
 				customClass: {
 					title: `text-white`,
@@ -151,7 +151,7 @@
 				position: {!!Session::has('position') ? '`'.Session::get('position').'`' : '`top`'!!},
 				showConfirmButton: false,
 				toast: {!!Session::has('is_toast') ? Session::get('is_toast'): true!!},
-				{!!Session::has('has_timer') ? (Session::get('has_timer') ? (Session::has('duration') ? ('timer: '.Session::get('duration')).',' : `timer: 10000,`) : '') : `timer: 10000,`!!}
+				{!!Session::has('has_timer') ? (Session::get('has_timer') ? (Session::has('duration') ? ('timer: '.Session::get('duration')).',' : `timer: 10000,`) : 'timer: 5000,') : `timer: 10000,`!!}
 				background: `#28a745`,
 				customClass: {
 					title: `text-white`,

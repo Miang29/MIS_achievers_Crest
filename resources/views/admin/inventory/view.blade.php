@@ -11,11 +11,11 @@
         </div>
 
 
-        <div class="col-12 col-md-6 col-lg my-2 text-center text-md-left text-lg-right">
+        <div class="col-12 col-md-6 col-lg-12 my-2 text-center text-md-left text-lg-right">
             <a href="{{route('product.create', [$id])}}" class="btn btn-info bg-1  btn-sm my-1"><i class="fas fa-plus-circle mr-2"></i>Add products</a>
         </div>
 
-        <div class=" col-12 col-md-6 col-lg my-2 text-center text-lg-right">
+        <div class=" col-12 col-md-6 col-lg-12 my-2 text-center text-lg-right">
             <div class="input-group">
                 <input type="text" class="form-control" name="search" placeholder="Search..." />
                 <div class="input-group-append">
