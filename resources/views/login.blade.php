@@ -127,6 +127,10 @@
 								</button>
 							</div>
 						</div>
+						
+						<div class="d-flex col-lg-12">
+							<a href="{{route ("forgot-password") }}" class="text-center mx-auto mb-2">Forgot Password</a>
+						</div>
 
 						<div class="form-group text-center">
 							<button type="submit" class="btn btn-outline-dark w-100 font-weight-bold">LOGIN</button>

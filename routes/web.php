@@ -21,12 +21,17 @@ Route::get('/login', 'UserController@login')->name('login');
 Route::post('/authenticate', 'UserController@authenticate')->name('authenticate');
 Route::get('/dashboard', 'PageController@redirectDashboard')->name('dashboard.redirect');
 
+// FORGOT PASSWORD
+Route::get('/forgot-password', 'PasswordController@forgotPassword')->name('forgot-password');
+
+// FORGOT PASSWORD
+Route::get('/new-password', 'PasswordController@newPassword')->name('new-password');
+
 Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 	Route::get('/', 'PageController@redirectDashboard')->name('dashboard.redirect');
 
 	// LOGOUT
 	Route::get('/logout', 'UserController@logout')->name('logout');
-
 
 	// DASHBOARD
 	Route::get('/dashboard', 'PageController@dashboard')->name('dashboard');
@@ -52,6 +57,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 		// Pet Show
 		Route::get('/view/{id}/pet', 'ClientController@showPets')->name('client-profile.pet.show');
 	});
+
 
 
 	// TRANSACTION

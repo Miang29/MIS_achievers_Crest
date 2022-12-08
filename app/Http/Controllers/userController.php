@@ -93,6 +93,7 @@ class UserController extends Controller
 		}
     }
 
+	
     protected function logout() {
     	if (Auth::check()) {
 			auth()->logout();
@@ -167,6 +168,32 @@ class UserController extends Controller
 						->subject("Account Created");
 				}
 			);
+
+			// //Mail::send(
+			// 	'layouts.emails.change-password',
+		
+			// 	function($mail) use ($user) {
+			// 		$mail->to($user->email)
+			// 			->from("nano.mis@technical.com") // MIS Nano Vet Clinic
+			// 			->subject("Change Password");
+			// 	}
+			// );
+
+			// Mail::send(
+			// 	'layouts.emails.new-password',
+			// 	[
+			// 		'req' =>$req,
+			// 	],
+			// 	function($mail) use ($user) {
+			// 		$mail->to($user->email)
+			// 			->from("nano.mis@technical.com") // MIS Nano Vet Clinic
+			// 			->subject("Successfully Changed Password");
+			// 	}
+			// );
+
+			
+
+
 
 			DB::commit();
 		} catch (Exception $e) {

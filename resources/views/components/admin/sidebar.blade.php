@@ -1,6 +1,6 @@
 <div class="d-flex flex-row dark-shadow position-absolute position-lg-relative h-100 w-100 w-lg-auto" style="overflow: hidden;">
 	{{-- Navigation Bar (SIDE) --}}
-	<div class="sidebar dark-shadow custom-scroll d-flex flex-column py-3 px-0 collapse-horizontal overflow-y-auto h-100 bg-white" id="sidebar" aria-labelledby="sidebar-toggler" aria-expanded="false">
+	<div class="sidebar shadow p-2 bg-white custom-scroll d-flex flex-column py-3 px-0 collapse-horizontal overflow-y-auto h-100 bg-white" id="sidebar" aria-labelledby="sidebar-toggler" aria-expanded="false">
 		{{-- DASHBOARD --}}
 		@if (\Request::is('dashboard'))
 		<span class="bg-1 text-white"><i class="fas fa-tachometer-alt  mr-3 fa-lg"></i>Dashboard</span>
@@ -12,7 +12,7 @@
 
 		{{-- ADMIN SETTING AREA --}}
 		{{-- @if (Auth::user()->isAdmin()) --}}
-		<hr class="w-100 custom-hr">
+		
 
 		{{-- Client Profile --}}
 		{{-- @if (Auth::user()->isAdmin()) --}}
