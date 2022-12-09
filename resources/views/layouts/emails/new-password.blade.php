@@ -10,7 +10,7 @@ Hello!
     You have successfully change your password!
 </p>
 
-<p>To access your account, go to the <a href="{{route ('login') }}">login</a> page and enter the credentials below:</p>
+<p>To access your account, go to the <a href="{{route ('login') }}">Login</a> page and enter the credentials below:</p>
 
 <code style="font-size:large;">
     <span style="font-family: Arial;">Username:</span> {{ $req->username }}<br>

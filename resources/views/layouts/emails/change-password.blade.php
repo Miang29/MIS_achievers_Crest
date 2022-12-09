@@ -11,7 +11,7 @@ Hello!
 </p>
 
 <div class="form-group text-center">
-    <button href="{{route ('new-password') }}" class="btn btn-outline-custom w-25 btn-sm font-weight-bold">Set a new password</button>
+    <button href="{{route ('new-password') }}" class="btn btn-outline-custom w-50 btn-sm font-weight-bold">Set a new password</button>
 </div>
 
 <p>

@@ -3,7 +3,7 @@
 @section('title', 'Forgot Password')
 
 @section('content')
-<form  class="col-lg-12 col-12 col-md-8" style="margin-top:8rem;" >
+<form method="POST" action="{{ route('send-notification') }}"  class="col-lg-12 col-12 col-md-8" style="margin-top:8rem;" >
     <div class="card dark-shadow w-lg-50 w-mb-50 w-100 m-auto">
     {{ csrf_field() }}
     <i class="fa-solid fa-lock fa-lg mt-5"></i>
@@ -13,7 +13,8 @@
             <div class="input-group-prepend">
                 <span class="input-group-text bg-white" id="basic-addon1"><i class="fa-solid fa-envelope"></i></span>
             </div>
-            <input type="text" class="form-control" placeholder="Enter your email" aria-label="Username" aria-describedby="basic-addon1">
+            <input type="text" class="form-control" name="email" placeholder="Enter your email" aria-label="Username" aria-describedby="basic-addon1">
+            <small class="text-danger small">{{ $errors->first('email') }}</small>
         </div>
 
         <div class="form-group text-center">

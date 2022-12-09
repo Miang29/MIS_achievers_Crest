@@ -23,9 +23,12 @@ Route::get('/dashboard', 'PageController@redirectDashboard')->name('dashboard.re
 
 // FORGOT PASSWORD
 Route::get('/forgot-password', 'PasswordController@forgotPassword')->name('forgot-password');
+Route::post('/send-notification', 'PasswordController@sendNotification')->name('send-notification');
+Route::post('/fuckyou', 'PasswordController@fuckYou')->name('fuckyou');
 
-// FORGOT PASSWORD
+// NEW PASSWORD
 Route::get('/new-password', 'PasswordController@newPassword')->name('new-password');
+
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 	Route::get('/', 'PageController@redirectDashboard')->name('dashboard.redirect');

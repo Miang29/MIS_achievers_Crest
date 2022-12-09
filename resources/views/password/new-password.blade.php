@@ -34,7 +34,7 @@
                     <input class="form-control" type="password" name="password_confirmation" id="password_confirmation" aria-label="Password_Confirmation" aria-describedby="toggle-show-password" />
 
                     <div class="input-group-append">
-                        <button type="button" class="btn btn-light form-border border-left-0 floating-eye-pass" aria-label="Show Password" data-target="#password_confirmation">
+                        <button type="button" class="btn btn-light form-borde border-left-0 floating-eye-pass" id=" toggle-show-password" aria-label="Show Password" data-target="#password_confirmation">
                             <i class="fas fa-eye d-none" id="show"></i>
                             <i class="fas fa-eye-slash" id="hide"></i>
                         </button>
