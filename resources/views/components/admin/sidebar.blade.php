@@ -1,4 +1,4 @@
-<div class="d-flex flex-row dark-shadow position-absolute position-lg-relative h-100 w-100 w-lg-auto" style="overflow: hidden;">
+<div class="d-flex flex-row dark-shadow position-absolute position-lg-relative h-100 w-100 w-lg-auto" style="overflow: hidden; z-index:3;">
 	{{-- Navigation Bar (SIDE) --}}
 	<div class="sidebar shadow p-2 bg-white custom-scroll d-flex flex-column py-3 px-0 collapse-horizontal overflow-y-auto h-100 bg-white" id="sidebar" aria-labelledby="sidebar-toggler" aria-expanded="false">
 		{{-- DASHBOARD --}}

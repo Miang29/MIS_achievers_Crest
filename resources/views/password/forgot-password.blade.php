@@ -3,7 +3,7 @@
 @section('title', 'Forgot Password')
 
 @section('content')
-<form class="col-lg-12 col-12 col-md-8" style="margin-top:8rem;" >
+<form  class="col-lg-12 col-12 col-md-8" style="margin-top:8rem;" >
     <div class="card dark-shadow w-lg-50 w-mb-50 w-100 m-auto">
     {{ csrf_field() }}
     <i class="fa-solid fa-lock fa-lg mt-5"></i>

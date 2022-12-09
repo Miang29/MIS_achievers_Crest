@@ -31,7 +31,7 @@ class TransactionController extends Controller
 			'id' => 1,
 			'reference' => "#081479",
 			'mode' => "Gcash",
-			'type' => "Home Service - Antipolo",
+			'type' => "Consultation",
 			'price' => "300",
 			'additional' => "200",
 			'date' => "11/20/2022",
@@ -76,13 +76,13 @@ class TransactionController extends Controller
 	}
 
 	protected function createServices() {
-		return view('admin.transaction.services-transaction.create');
+		return view('admin.transaction.services-transaction.consultation.create');
 	}
 
 	protected function show($id) {
 		$services = $this->services[$id];
 
-		return view('admin.transaction.services-transaction.view', [
+		return view('admin.transaction.services-transaction.consultation.view', [
 			'id' => $id,
 			'services' => $services
 		]);

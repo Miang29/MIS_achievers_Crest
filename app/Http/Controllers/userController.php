@@ -132,6 +132,7 @@ class UserController extends Controller
 			'username' => 'required|unique:users,username|min:2|max:255|string',
 			'user_type' => 'required|exists:user_types,id|numeric',
 			'password' => array('required', 'string', 'min:8', 'max:255', 'regex:/^[a-zA-Z0-9!@#$%^&*()_+\-=\[\]{};\':"\\|,.<>\/?]*$/'),
+			'password_confirmation' => array('required', 'string', 'min:8', 'max:255', 'regex:/^[a-zA-Z0-9!@#$%^&*()_+\-=\[\]{};\':"\\|,.<>\/?]*$/'),
 		]);
 
 		if ($validator->fails())
@@ -168,30 +169,6 @@ class UserController extends Controller
 						->subject("Account Created");
 				}
 			);
-
-			// //Mail::send(
-			// 	'layouts.emails.change-password',
-		
-			// 	function($mail) use ($user) {
-			// 		$mail->to($user->email)
-			// 			->from("nano.mis@technical.com") // MIS Nano Vet Clinic
-			// 			->subject("Change Password");
-			// 	}
-			// );
-
-			// Mail::send(
-			// 	'layouts.emails.new-password',
-			// 	[
-			// 		'req' =>$req,
-			// 	],
-			// 	function($mail) use ($user) {
-			// 		$mail->to($user->email)
-			// 			->from("nano.mis@technical.com") // MIS Nano Vet Clinic
-			// 			->subject("Successfully Changed Password");
-			// 	}
-			// );
-
-			
 
 
 
