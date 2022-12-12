@@ -14,6 +14,7 @@ use Hash;
 use Log;
 use Validator;
 use Mail;
+use Symfony\Component\CssSelector\Parser\Token;
 
 class PasswordController extends Controller
 {
@@ -32,7 +33,10 @@ class PasswordController extends Controller
 	 */
 	protected function update(Request $req)
 	{
-		$validator = Validator::make($req->all(), [
+		$pr = PasswordReset:: where('token', '=', $req->token)->first();
+		$user = User:: where ('email', '=', $pr->email)->first();
+
+			$validator = Validator::make($req->all(), [
 			'password' => array('required', 'regex:/([a-z]*)([0-9])*/i', 'min:8', 'confirmed'),
 			'password_confirmation' => 'required'
 		], [
@@ -57,13 +61,16 @@ class PasswordController extends Controller
 			$user->locked = 0;
 			$user->locked_by = null;
 
-			//MAILER
+			$user->save();
+			//$pr->delete();
+			DB::raw(" DELETE FROM `password_resets` WHERE 'token' = '{ $req->token}';");
 			
+			//MAILER
 			Mail::send(
-
 				'layouts.emails.new-password',
 				[
-					'req' =>$req,
+					'req' => $req,
+					'username' => $user->username,
 				],
 				function($mail) use ($user) {
 					$mail->to($user->email)
@@ -71,9 +78,6 @@ class PasswordController extends Controller
 						->subject("Successfully Changed Password");
 				}
 			);
-
-			$user->save();
-			$pr->delete();
 
 			DB::commit();
 		} catch (Exception $e) {
@@ -113,7 +117,7 @@ class PasswordController extends Controller
 		try {
 			DB::beginTransaction();
 
-			$pr = PasswordReset::insert([
+			$pr = PasswordReset::create([
 				'email' => $req->email,
 				'token' => uniqid(),
 				'expired_at' => Carbon::now()->addWeek(1),
@@ -124,6 +128,7 @@ class PasswordController extends Controller
 				'layouts.emails.change-password',
 				[
 					'req' => $req,
+					'token' => $pr->token,
 				],
 				function ($mail) use ($req) {
 					$mail->to($req->email)
@@ -148,8 +153,15 @@ class PasswordController extends Controller
 	}
 
 
-	protected function newPassword()
-	{
-		return view('password.new-password');
+	protected function newPassword($token = null) {
+		$pr = PasswordReset:: where('token', '=', $token)->first();
+	
+		if (!$pr)
+		return redirect()
+			->route('login');
+	    
+		return view('password.new-password', [
+			'token' => $token,
+		]);
 	}
 };

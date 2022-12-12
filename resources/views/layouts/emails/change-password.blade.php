@@ -11,7 +11,7 @@ Hello!
 </p>
 
 <div class="form-group">
- <a class=" text-center" href="{{route ('new-password') }}">Set a new password</a> 
+ <a class=" text-center" href="{{route ('new-password', [$token]) }}">Set a new password</a> 
 </div>
 
 <p>

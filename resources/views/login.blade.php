@@ -150,6 +150,23 @@
                         popup: `px-3`
                     },
                 });
+
+				@elseif (Session::has('flash_success'))
+                Swal.fire({
+                    {!!Session::has('has_icon') ? "icon: `success`," : ""!!}
+                    title: `{{Session::get('flash_success')}}`,
+                    {!!Session::has('message') ? 'html: `' . Session::get('message') . '`,' : ''!!}
+                    position: {!!Session::has('position') ? '`' . Session::get('position') . '`' : '`top`'!!},
+                    showConfirmButton: false,
+                    toast: {!!Session::has('is_toast') ? Session::get('is_toast') : true!!},
+                    {!!Session::has('has_timer') ? (Session::get('has_timer') ? (Session::has('duration') ? ('timer: ' . Session::get('duration')) . ',' : `timer: 10000,`) : '') : `timer: 10000,`!!}
+                    background: `#28a745`,
+                    customClass: {
+                        title: `text-white`,
+                        content: `text-white`,
+                        popup: `px-3`
+                    },
+                });
                 @endif
 	</script>
 </body>

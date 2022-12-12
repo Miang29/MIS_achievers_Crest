@@ -132,7 +132,6 @@ class UserController extends Controller
 			'username' => 'required|unique:users,username|min:2|max:255|string',
 			'user_type' => 'required|exists:user_types,id|numeric',
 			'password' => array('required', 'string', 'min:8', 'max:255', 'regex:/^[a-zA-Z0-9!@#$%^&*()_+\-=\[\]{};\':"\\|,.<>\/?]*$/'),
-			'password_confirmation' => array('required', 'string', 'min:8', 'max:255', 'regex:/^[a-zA-Z0-9!@#$%^&*()_+\-=\[\]{};\':"\\|,.<>\/?]*$/'),
 		]);
 
 		if ($validator->fails())
