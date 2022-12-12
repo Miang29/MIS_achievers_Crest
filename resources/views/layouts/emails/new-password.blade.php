@@ -6,6 +6,7 @@ Hello!
 
 @section('content')
 
+
 <p>
     You have successfully change your password!
 </p>

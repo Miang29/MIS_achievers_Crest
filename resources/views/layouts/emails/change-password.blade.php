@@ -7,11 +7,11 @@ Hello!
 @section('content')
 
 <p>
-    We're sending you this email because you requested a password reset. Click on the button below to create a new password:
+    We're sending you this email because you requested a password reset. Click on the link below to create a new password:
 </p>
 
-<div class="form-group text-center">
-    <button href="{{route ('new-password') }}" class="btn btn-outline-custom w-50 btn-sm font-weight-bold">Set a new password</button>
+<div class="form-group">
+ <a class=" text-center" href="{{route ('new-password') }}">Set a new password</a> 
 </div>
 
 <p>

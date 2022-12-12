@@ -3,9 +3,10 @@
 @section('title', 'New Password')
 
 @section('content')
-<form class="col-lg-12 col-12 col-md-12 " style="margin-top:5rem;">
+<form method ="POST" action ="{{ route('update') }}" class="col-lg-12 col-12 col-md-12 " style="margin-top:5rem;" enctype="multipart/form-data">
+{{ csrf_field() }}
     <div class="card dark-shadow w-100 w-lg-50 w-md-50 m-auto" style="height:100%;">
-    {{ csrf_field() }}
+  
     <i class="fa-solid fa-unlock fa-lg mt-5"></i>
         <h3 class="mx-auto text-1">Set new password</h3>
         <p class="mx-auto">Your new password must be different to previously used password.</p>

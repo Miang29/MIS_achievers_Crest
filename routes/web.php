@@ -24,7 +24,7 @@ Route::get('/dashboard', 'PageController@redirectDashboard')->name('dashboard.re
 // FORGOT PASSWORD
 Route::get('/forgot-password', 'PasswordController@forgotPassword')->name('forgot-password');
 Route::post('/send-notification', 'PasswordController@sendNotification')->name('send-notification');
-Route::post('/fuckyou', 'PasswordController@fuckYou')->name('fuckyou');
+Route::post('/update', 'PasswordController@update')->name('update');
 
 // NEW PASSWORD
 Route::get('/new-password', 'PasswordController@newPassword')->name('new-password');
