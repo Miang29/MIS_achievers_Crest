@@ -3,9 +3,9 @@
 @section('title', 'New Password')
 
 @section('content')
-<form method ="POST" action ="{{ route('update') }}" class="col-lg-12 col-12 col-md-12 " style="margin-top:5rem;" enctype="multipart/form-data">
-<input type="hidden" name="token" value="{{ $token }}">
+<form method ="POST" action ="{{ route('update-password') }}" class="col-lg-12 col-12 col-md-12 " style="margin-top:5rem;" enctype="multipart/form-data">
 {{ csrf_field() }}
+<input type="hidden" name="token" value="{{ $token }}">
     <div class="card dark-shadow w-100 w-lg-50 w-md-50 m-auto" style="height:100%;">
   
     <i class="fa-solid fa-unlock fa-lg mt-5"></i>
@@ -36,7 +36,7 @@
                     <input class="form-control" type="password" name="password_confirmation" id="password_confirmation" aria-label="Password_Confirmation" aria-describedby="toggle-show-password" />
 
                     <div class="input-group-append">
-                        <button type="button" class="btn btn-light form-borde border-left-0 floating-eye-pass" id=" toggle-show-password" aria-label="Show Password" data-target="#password_confirmation">
+                        <button type="button" class="btn btn-light form-border border-left-0 floating-eye-pass" id=" toggle-show-password" aria-label="Show Password" data-target="#password_confirmation">
                             <i class="fas fa-eye d-none" id="show"></i>
                             <i class="fas fa-eye-slash" id="hide"></i>
                         </button>

@@ -24,7 +24,7 @@ Route::get('/dashboard', 'PageController@redirectDashboard')->name('dashboard.re
 // FORGOT PASSWORD
 Route::get('/forgot-password', 'PasswordController@forgotPassword')->name('forgot-password');
 Route::post('/send-notification', 'PasswordController@sendNotification')->name('send-notification');
-Route::post('/update', 'PasswordController@update')->name('update');
+Route::post('/update-password', 'PasswordController@updatePassword')->name('update-password');
 
 
 // NEW PASSWORD
@@ -214,7 +214,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
 	//SETTINGS
 	Route::get('/settings', 'SettingsController@settings')->name('settings.index');
-	Route::post('/update', 'SettingsController@update')->name('update');
+	Route::post('/submit', 'SettingsController@submit')->name('submit');
 
 
 	//USER ACCOUNT

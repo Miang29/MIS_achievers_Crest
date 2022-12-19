@@ -31,7 +31,7 @@ class PasswordController extends Controller
 	/**
 	 * === update ===
 	 */
-	protected function update(Request $req)
+	protected function updatePassword(Request $req)
 	{
 		$pr = PasswordReset:: where('token', '=', $req->token)->first();
 		$user = User:: where ('email', '=', $pr->email)->first();
@@ -46,7 +46,7 @@ class PasswordController extends Controller
 			'password.confirmed' => 'You must confirm your password first',
 			'password_confirmation.required' => 'You must confirm your password first'
 		]);
-
+       
 		if ($validator->fails()) {
 			return redirect()
 				->back()
@@ -88,7 +88,6 @@ class PasswordController extends Controller
 				->back()
 				->with('flash_error', 'Something went wrong, please try again later.');
 		}
-
 		return redirect()
 			->route('login')
 			->with('flash_success', "Succesfully updated password");

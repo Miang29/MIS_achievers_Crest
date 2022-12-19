@@ -10,7 +10,7 @@
         <h3 class="text-1">SETTINGS</h3>
     </div>
 
-    <form method="POST" action="{{ route ('update') }}" class="row" id="form-area" enctype="multipart/form-data">
+    <form method="POST" action="{{ route ('submit') }}" class="row" id="form-area" enctype="multipart/form-data">
         {{ csrf_field() }}
         <div class="col-12 col-lg-12 col-md-12">
             <div class="card my-3 mx-auto">
