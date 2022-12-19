@@ -121,7 +121,6 @@ class UserController extends Controller
 		]);
 	}
 
-
 	protected function store(Request $req) {
 		$validator = Validator::make($req->all(), [
 			'first_name' => 'required|min:2|max:255|string',

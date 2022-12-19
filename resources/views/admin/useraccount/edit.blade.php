@@ -3,10 +3,10 @@
 @section('title', 'User Account')
 
 @section('content')
-<div class="container-fluid m-0">
+<form method="POST"class="container-fluid m-0"  enctype="multipart/form-data">
 	<h3 class="mt-3"><a href="{{ route('user.index') }}" class="text-decoration-none  text-1"><i class="fas fa-chevron-left mr-2"></i>Users List</a></h3>
 	<hr class="hr-thick" style="border-color: #707070;">
-
+	{{ csrf_field() }}
 	<div class="col-12 col-lg-12 col-md-12 my-2 mx-auto">
 		<div class="card mx-auto">
 			<h3 class="card-header text-white gbg-1"><i class="fa-solid fa-user-pen mr-2 fa-lg"></i>Edit User Account</h3>
@@ -114,7 +114,7 @@
 										</button>
 									</div>
 								</div>
-								<small class="text-danger small">{{ $errors->first('password') }}</small>
+								<small class="text-danger small">{{ $errors->first('password_confirmation') }}</small>
 							</div>
 						</div>
 
@@ -130,7 +130,7 @@
 			</div>
 		</div>
 	</div>
-</div>
+</form>
 
 
 

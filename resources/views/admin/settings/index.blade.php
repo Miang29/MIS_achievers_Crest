@@ -57,7 +57,7 @@
 								<small class="text-danger small mx-auto">{{ $errors->first('web-name') }}</small><br>
 
 								<label class="h6 important text-1 font-weight-bold " for="webdescription">Website Description</label>
-								<textarea class="form-control not-resizable" name="web-desc" rows="6">{{ App\Settings::getValue('web-desc') }}</textarea>
+								<textarea class="form-control not-resizable" name="web-desc" rows="3">{{ App\Settings::getValue('web-desc') }}</textarea>
 								<small class="text-danger small mx-auto">{{ $errors->first('web-desc') }}</small>
 							</div>
 						</div>
@@ -65,23 +65,23 @@
 						<br>
 
 						<div class="card-body mt-1 border-top border-secondary">
-							<h4 class="text-1 font-weight-bold text-center">Reaching Out</h4>
+							<h4 class="text-1 font-weight-bold text-center mb-3">Reaching Out</h4>
 							
 							<div class="row">
-								<div class="form-group mx-auto col-12 col-lg-6 col-md-6">
+								<div class="form-group ml-auto col-12 col-lg-4 col-md-6">
 									<label class="h6 important" for="number">Mobile Number</label>
 									<input class="form-control" type="text" name="mobile-no" value="{{ App\Settings::getValue('mobile-no') }}" />
 									<small class="text-danger small mx-auto">{{ $errors->first('mobile-no') }}</small>
 								</div>
 
-								<div class="form-group mx-auto col-12 col-lg-6 col-md-6">
+								<div class="form-group mr-auto col-12 col-lg-4 col-md-6">
 									<label class="h6 important" for="email">Email Address</label>
 									<input class="form-control" type="email" name="email" value="{{ App\Settings::getValue('email') }}"/>
 									<small class="text-danger small mx-auto">{{ $errors->first('email') }}</small>
 								</div>
 
 								<div class="form-group mx-auto col-12 col-lg-6 col-md-6">
-									<label class="h6 important" for="address">Veterinary Clinic Address</label>
+									<label class="h6 important mt-3" for="address">Veterinary Clinic Address</label>
 									<textarea class="form-control not-resizable" name="address" rows="2">{{ App\Settings::getValue('address') }}</textarea>
 									<small class="text-danger small mx-auto">{{ $errors->first('address') }}</small>
 								</div>
