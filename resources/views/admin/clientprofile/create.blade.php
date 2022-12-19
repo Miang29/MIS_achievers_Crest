@@ -14,7 +14,7 @@
 					<h2 class="card-header font-weight-bold gbg-1 text-white text-center"><i class="fa-solid fa-address-card mr-2"></i>Client Profile</h2>
 					<div class="card-body d-flex ">
 
-						<div class="form-group mx-auto w-lg-75 w-md-75 w-xs-100">
+						<div class="form-group mx-auto w-lg-50 w-md-75 w-xs-100">
 							<div class="col-12">
 
 								<div class="row">

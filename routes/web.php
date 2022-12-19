@@ -26,6 +26,7 @@ Route::get('/forgot-password', 'PasswordController@forgotPassword')->name('forgo
 Route::post('/send-notification', 'PasswordController@sendNotification')->name('send-notification');
 Route::post('/update', 'PasswordController@update')->name('update');
 
+
 // NEW PASSWORD
 Route::get('/new-password/{token?}', 'PasswordController@newPassword')->name('new-password');
 
@@ -213,6 +214,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
 	//SETTINGS
 	Route::get('/settings', 'SettingsController@settings')->name('settings.index');
+	Route::post('/update', 'SettingsController@update')->name('update');
 
 
 	//USER ACCOUNT

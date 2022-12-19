@@ -76,13 +76,13 @@ class TransactionController extends Controller
 	}
 
 	protected function createServices() {
-		return view('admin.transaction.services-transaction.consultation.create');
+		return view('admin.transaction.services-transaction.create');
 	}
 
 	protected function show($id) {
 		$services = $this->services[$id];
 
-		return view('admin.transaction.services-transaction.consultation.view', [
+		return view('admin.transaction.services-transaction.view', [
 			'id' => $id,
 			'services' => $services
 		]);

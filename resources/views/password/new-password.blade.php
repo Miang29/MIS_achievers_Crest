@@ -4,9 +4,8 @@
 
 @section('content')
 <form method ="POST" action ="{{ route('update') }}" class="col-lg-12 col-12 col-md-12 " style="margin-top:5rem;" enctype="multipart/form-data">
-{{ csrf_field() }}
 <input type="hidden" name="token" value="{{ $token }}">
-
+{{ csrf_field() }}
     <div class="card dark-shadow w-100 w-lg-50 w-md-50 m-auto" style="height:100%;">
   
     <i class="fa-solid fa-unlock fa-lg mt-5"></i>

@@ -35,7 +35,7 @@ class PasswordController extends Controller
 	{
 		$pr = PasswordReset:: where('token', '=', $req->token)->first();
 		$user = User:: where ('email', '=', $pr->email)->first();
-
+       
 			$validator = Validator::make($req->all(), [
 			'password' => array('required', 'regex:/([a-z]*)([0-9])*/i', 'min:8', 'confirmed'),
 			'password_confirmation' => 'required'
@@ -63,7 +63,7 @@ class PasswordController extends Controller
 
 			$user->save();
 			//$pr->delete();
-			DB::raw(" DELETE FROM `password_resets` WHERE 'token' = '{ $req->token}';");
+			DB::raw("DELETE FROM `password_resets` WHERE 'token' = '{$req->token}';");
 			
 			//MAILER
 			Mail::send(
@@ -93,6 +93,7 @@ class PasswordController extends Controller
 			->route('login')
 			->with('flash_success', "Succesfully updated password");
 	}
+
 
 	/**
 	 * Sends an email to notify user that they've requested a password reset

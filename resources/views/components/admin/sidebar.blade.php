@@ -1,6 +1,6 @@
 <div class="d-flex flex-row dark-shadow position-absolute position-lg-relative h-100 w-100 w-lg-auto" style="overflow: hidden; z-index:3;">
 	{{-- Navigation Bar (SIDE) --}}
-	<div class="sidebar shadow p-2 bg-white custom-scroll d-flex flex-column py-3 px-0 collapse-horizontal overflow-y-auto h-100 bg-white" id="sidebar" aria-labelledby="sidebar-toggler" aria-expanded="false">
+	<div class="sidebar dark-shadow p-2 bg-white custom-scroll d-flex flex-column py-3 px-0 collapse-horizontal overflow-y-auto h-100 bg-white" id="sidebar" aria-labelledby="sidebar-toggler" aria-expanded="false">
 		{{-- DASHBOARD --}}
 		@if (\Request::is('dashboard'))
 		<span class="bg-1 text-white"><i class="fas fa-tachometer-alt  mr-3 fa-lg"></i>Dashboard</span>
@@ -65,10 +65,10 @@
 		<a class="btn text-decoration-none text-1 aria-link text-left" aria-label="transaction" data-toggle="collapse" href="#collapseItem2" role="button" aria-expanded="false" aria-controls="collapseItem2">
 			<i class="fa-solid fa-money-check-dollar  mr-2 fa-lg"></i>Transaction
 		</a>
-		<div class="collapse  " id="collapseItem2">
-			<div class="card card-body d-flex">
-				<a class="dropdown-item  " href="{{route('transaction.products-order')}}"><i class="fas fa-money-check-dollar mr-2 fa-lg "></i>Products Order</a>
-				<a class="dropdown-item  " href="{{route('transaction.service')}}"><i class="fas fa-shield-cat mr-2 fa-lg"></i>Services</a>
+		<div class="collapse" id="collapseItem2">
+			<div class="card">
+				<a class="dropdown-item" href="{{route('transaction.products-order')}}"><i class="fas fa-money-check-dollar mr-2 fa-lg "></i>Products Order</a>
+				<a class="dropdown-item" href="{{route('transaction.service')}}"><i class="fas fa-shield-cat mr-2 fa-lg"></i>Services</a>
 			</div>
 		</div>
 		{{-- @endif --}}

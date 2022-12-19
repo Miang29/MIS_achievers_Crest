@@ -21,7 +21,7 @@ class SettingsTableSeeder extends Seeder
 
 		Settings::create([
 			'name' => 'web-name',
-			'value' => 'MIS Nano'
+			'value' => 'Nano Veterinary Clinic'
 		]);
 
 		Settings::create([
@@ -41,7 +41,12 @@ class SettingsTableSeeder extends Seeder
 
 		Settings::create([
 			'name' => 'email',
-			'value' => 'N/A'
+			'value' => 'nanovetclinic2015@gmail.com'
+		]);
+
+		Settings::create([
+			'name' => 'mobile-no',
+			'value' => '09267785622'
 		]);
 	}
 }

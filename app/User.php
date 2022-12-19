@@ -47,4 +47,18 @@ class User extends Authenticatable
     public function getName($include_middle = false) {
         return $this->first_name . ($include_middle ? (' ' . $this->middle_name . ' ') : ' ') . $this->last_name;
     }
+
+    // Static Functions
+	public static function getIP() {
+		$ip = request()->ip();
+
+		if (!empty($_SERVER['HTTP_CLIENT_IP']))
+			$ip = $_SERVER['HTTP_CLIENT_IP'];
+		else if (!empty($_SERVER['HTTP_X_FORWARDED_FOR']))
+			$ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+		else
+			$ip = $_SERVER['REMOTE_ADDR'];
+
+		return $ip;
+	}
 }

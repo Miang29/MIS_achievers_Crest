@@ -10,20 +10,10 @@
             <h3 class="text-1">SERVICES TRANSACTION LIST</h3>
         </div>
 
-        <div class="col-12 col-md-6 col-lg my-2 text-center text-md-left text-lg-right">
-
-            <div class="dropdown">
-                <button class="btn btn-info btn-sm bg-1 my-1 dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="fas fa-plus-circle mr-2"></i> Add Transaction
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="{{route('transaction.service.create')}}">Consultation</a>
-                    <a class="dropdown-item" href="#">Home Service</a>
-                    <a class="dropdown-item" href="#">Pet Grooming</a>
-                    <a class="dropdown-item" href="#">Pet Boarding</a>
-                </div>
-            </div>
-        </div>
+        
+		<div class="col-12 col-md-6 col-lg my-2 text-center text-md-left text-lg-right">
+			<a href="{{route('transaction.service.create')}}" class="btn btn-info bg-1 btn-sm my-1"><i class="fas fa-plus-circle mr-2"></i>Add Apointment</a>
+		</div>
 
         <div class=" col-12 col-md-6 col-lg my-2 text-center text-lg-right">
             <div class="input-group">
