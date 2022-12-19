@@ -30,7 +30,6 @@ Route::post('/update-password', 'PasswordController@updatePassword')->name('upda
 // NEW PASSWORD
 Route::get('/new-password/{token?}', 'PasswordController@newPassword')->name('new-password');
 
-
 Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 	Route::get('/', 'PageController@redirectDashboard')->name('dashboard.redirect');
 
@@ -214,7 +213,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
 	//SETTINGS
 	Route::get('/settings', 'SettingsController@settings')->name('settings.index');
-	Route::post('/submit', 'SettingsController@submit')->name('submit');
+	Route::post('/update', 'SettingsController@update')->name('settings.update');
+	Route::post('/remove-logo', 'SettingsController@removeLogo')->name('settings.remove-logo');
 
 
 	//USER ACCOUNT

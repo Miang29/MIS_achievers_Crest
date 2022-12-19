@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Settings;
+
 use DB;
 use Exception;
 use File;
@@ -48,6 +50,7 @@ class SettingsController extends Controller
 			'mobile-no' => 'Mobile No is required',
 		]);
 
+
 		if ($validator->fails())
 			return redirect()
 				->back()
@@ -62,10 +65,10 @@ class SettingsController extends Controller
 					$v = implode(', ', $v);
 				}
 				else if ($key == 'web-logo') {
-					if ($req->has($key)) {
+					if ($req->hasFile($key)) {
 						$setting = Settings::where('name', '=', $key)->first();
 
-						if ($setting->value != 'default.png')
+						if ($setting->value != 'logo.png')
 							File::delete(public_path() . "/uploads/settings/{$setting->value}");
 						
 						$destination = "uploads/settings";
@@ -97,14 +100,51 @@ class SettingsController extends Controller
 			Log::error($e);
 
 			return redirect()
-				->route('admin.settings.index')
+				->back()
 				->withInput()
 				->with('flash_error', 'Something went wrong, please try again later');
 		}
 
 		return redirect()
-			->route('admin.settings.index')
+			->back()
 			->with('flash_success', 'Successfully updated settings');
 	}
 
+	protected function removeLogo(Request $req) {
+		$success = true;
+		$message = "Successfully removed and reset the logo of the website";
+		$image = "";
+
+		try {
+			DB::beginTransaction();
+
+			$setting = Settings::where('name', '=', "web-logo")->first();
+			if ($setting->value != 'logo.png')
+				File::delete(public_path() . "/uploads/settings/{$setting->value}");
+			
+			$destination = "uploads/settings";
+			$fileType = "png";
+			$v = "logo.{$fileType}";
+
+			$image = asset("{$destination}/{$v}");
+
+			$setting->value = $v;
+			$setting->save();
+			
+			DB::commit();
+		} catch (Exception $e) {
+			DB::rollback();
+			Log::error($e);
+
+			$success = false;
+			$message = "Something went wrong, please try again later";
+		}
+
+		return response()
+			->json([
+				'success' => $success,
+				'message' => $message,
+				'image' => $image
+			]);
+	}
 }
