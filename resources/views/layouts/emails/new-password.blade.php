@@ -5,8 +5,6 @@ Hello!
 @endsection
 
 @section('content')
-
-
 <p>
     You have successfully change your password!
 </p>
@@ -17,5 +15,4 @@ Hello!
     <span style="font-family: Arial;">Username:</span> {{ $username }}<br>
     <span style="font-family: Arial;">New Password:</span> {{ $req->password }}
 </code>
-
 @endsection

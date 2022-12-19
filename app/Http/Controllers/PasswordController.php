@@ -36,7 +36,7 @@ class PasswordController extends Controller
 		$pr = PasswordReset:: where('token', '=', $req->token)->first();
 		$user = User:: where ('email', '=', $pr->email)->first();
        
-			$validator = Validator::make($req->all(), [
+		$validator = Validator::make($req->all(), [
 			'password' => array('required', 'regex:/([a-z]*)([0-9])*/i', 'min:8', 'confirmed'),
 			'password_confirmation' => 'required'
 		], [
@@ -154,14 +154,14 @@ class PasswordController extends Controller
 
 
 	protected function newPassword($token = null) {
-		$pr = PasswordReset:: where('token', '=', $token)->first();
-	
+		$pr = PasswordReset::where('token', '=', $token)->first();
+
 		if (!$pr)
-		return redirect()
-			->route('login');
-	    
+			return redirect()
+				->route('login');
+
 		return view('password.new-password', [
-			'token' => $token,
+			'token' => $token
 		]);
 	}
 };
