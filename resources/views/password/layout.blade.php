@@ -31,7 +31,8 @@
 		{{-- JQUERY / SWAL2 / FONTAWESOME 6  SUMMERNOTE --}}
 		<link rel="stylesheet" href="{{ asset('css/app.css') }}">
 		<script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
-
+		
+		
 		{{-- Removes the code that shows up when script is disabled/not allowed/blocked --}}
 		<script type="text/javascript" id="for-js-disabled-js">
 			$('head').append('<style id="for-js-disabled">#js-disabled { display: none; }</style>');

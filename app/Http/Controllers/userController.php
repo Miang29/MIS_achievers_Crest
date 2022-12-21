@@ -322,7 +322,7 @@ class UserController extends Controller
 
 	protected function submitPassword(Request $req, $id)
 	{
-		$user = User:: where ('email', '=', $user->email)->first();
+		$user = User::find($id);
        
 		$validator = Validator::make($req->all(), [
 			'password' => array('required', 'regex:/([a-z]*)([0-9])*/i', 'min:8', 'confirmed'),
