@@ -11,6 +11,7 @@
 |
 */
 
+// use Illuminate\Routing\Route;
 use Symfony\Component\HttpKernel\Client;
 
 Route::get('/', 'PageController@user')->name('home');
@@ -235,9 +236,15 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 		Route::get('/{id}/edit', 'UserController@edit')->name('user.edit');
 
 		//Update
-		Route::post('/{id}/update', 'UserController@update')->name('user.update');
+		Route::post('/{id}/update-user', 'UserController@updateUser')->name('update-user');
 		
 		//Delete
 		Route::get('/{id}/delete', 'UserController@delete')->name('user.delete');
+
+		//Change Password
+		Route::get('/edit-password', 'UserController@editPassword')->name('user.edit-password');
+
+		Route::post('/submit-password', 'UserController@submitPassword')->name('submit-password');
+	
 	});
 });

@@ -19,12 +19,14 @@ use Validator;
 class UserController extends Controller
 {
 	// AUTHENTICATION FUNCTIONS
-	protected function login() {
+	protected function login()
+	{
 		return view('login');
 	}
 
-	protected function authenticate(Request $req) {
-        $user = User::where('username', '=', $req->username)->first();
+	protected function authenticate(Request $req)
+	{
+		$user = User::where('username', '=', $req->username)->first();
 
 		if ($user == null)
 			return redirect()
@@ -38,15 +40,15 @@ class UserController extends Controller
 				'password' => $req->password
 			]);
 		}
-		
+
 		if ($authenticated) {
 			if ($user) {
 				try {
 					DB::beginTransaction();
-			
+
 					$user->login_attempts = 0;
 					$user->save();
-			
+
 					DB::commit();
 				} catch (Exception $e) {
 					DB::rollback();
@@ -57,8 +59,7 @@ class UserController extends Controller
 			return redirect()
 				->intended(route('dashboard'))
 				->with('flash_success', 'Logged In!');
-		}
-		else {
+		} else {
 			if ($user) {
 				try {
 					DB::beginTransaction();
@@ -66,8 +67,7 @@ class UserController extends Controller
 					if ($user->login_attempts < 5) {
 						$user->login_attempts = $user->login_attempts + 1;
 						$msg = 'Wrong username/password!';
-					}
-					else {
+					} else {
 						if ($user->locked == 0) {
 							// DO THE MAILING HERE. THIS IS TO SEND AN EMAIL ONLY ONCE
 						}
@@ -77,7 +77,7 @@ class UserController extends Controller
 						$msg = 'Exceeded 5 tries, account locked';
 					}
 					$user->save();
-					
+
 					DB::commit();
 				} catch (Exception $e) {
 					DB::rollback();
@@ -91,27 +91,30 @@ class UserController extends Controller
 				->with('flash_error', $msg)
 				->withInput(array('username' => $req->username));
 		}
-    }
+	}
 
-	
-    protected function logout() {
-    	if (Auth::check()) {
+
+	protected function logout()
+	{
+		if (Auth::check()) {
 			auth()->logout();
 			return redirect(route('home'))->with('flash_success', 'Logged out!');
 		}
 		return redirect()->route('admin.dashboard')->with('flash_error', 'Something went wrong, please try again.');
-    }
+	}
 
-    // RESOURCE FUNCTIONS
-	protected function index() {
+	// RESOURCE FUNCTIONS
+	protected function index()
+	{
 		$users = User::get();
-		
+
 		return view('admin.useraccount.index', [
 			'user' => $users
 		]);
 	}
 
-	protected function create() {
+	protected function create()
+	{
 		$password = str_shuffle(Str::random(25) . str_pad(rand(0, 99999), 5, '0', STR_PAD_LEFT));
 		$types = UserType::get();
 
@@ -121,7 +124,8 @@ class UserController extends Controller
 		]);
 	}
 
-	protected function store(Request $req) {
+	protected function store(Request $req)
+	{
 		$validator = Validator::make($req->all(), [
 			'first_name' => 'required|min:2|max:255|string',
 			'middle_name' => 'nullable|min:2|max:255|string',
@@ -138,30 +142,29 @@ class UserController extends Controller
 				->back()
 				->withErrors($validator)
 				->withInput();
-		
+
 		try {
 			DB::beginTransaction();
 
-			$user = User::create
-			([
-				'first_name' => $req->first_name,
-				'middle_name' => $req->middle_name,
-				'last_name' => $req->last_name,
-				'suffix' => $req->suffix,
-				'email' => $req->email,
-				'username' => $req->username,
-				'user_type_id' => $req->user_type,
-				'password' => Hash::make($req->password),
-			]);
+			$user = User::create([
+					'first_name' => $req->first_name,
+					'middle_name' => $req->middle_name,
+					'last_name' => $req->last_name,
+					'suffix' => $req->suffix,
+					'email' => $req->email,
+					'username' => $req->username,
+					'user_type_id' => $req->user_type,
+					'password' => Hash::make($req->password),
+				]);
 
-			
+
 			// MAILER SHIT
 			Mail::send(
 				'layouts.emails.creation',
 				[
-					'req' =>$req,
+					'req' => $req,
 				],
-				function($mail) use ($user) {
+				function ($mail) use ($user) {
 					$mail->to($user->email)
 						->from("nano.mis@technical.com") // MIS Nano Vet Clinic
 						->subject("Account Created");
@@ -183,10 +186,11 @@ class UserController extends Controller
 			->with('flash_success', "Successfully added {$user->getName()} as {$user->userType->name}");
 	}
 
-	protected function view($id) {
+	protected function view($id)
+	{
 		$user = User::find($id);
 
-		if ($user == null) 
+		if ($user == null)
 			return redirect()
 				->route('user.index')
 				->with('flash_error', 'User already removed. Please refresh your browser if it is still visible');
@@ -196,12 +200,12 @@ class UserController extends Controller
 		]);
 	}
 
-	protected function edit($id) {
+	protected function edit($id)
+	{
 		$user = User::find($id);
 		$types = UserType::get();
-		$password = str_shuffle(Str::random(25) . str_pad(rand(0, 99999), 5, '0', STR_PAD_LEFT));
 
-		if ($user == null) 
+		if ($user == null)
 			return redirect()
 				->route('user.index')
 				->with('flash_error', 'User already removed. Please refresh your browser if it is still visible');
@@ -209,27 +213,79 @@ class UserController extends Controller
 		return view('admin.useraccount.edit', [
 			'user' => $user,
 			'types' => $types,
-			'password' => $password
 		]);
 	}
-	
-	protected function update() {
+
+	//UPDATE USER
+	protected function updateUser(Request $req, $id)
+	{
 		$user = User::find($id);
 
-		if ($user == null) 
+		if ($user == null){
 			return redirect()
-				->route('user.index')
-				->with('flash_error', 'User already removed. Please refresh your browser if it is still visible');
+			->route('user.index')
+			->with('flash_error', 'User either does not exists or is already deleted.');
+		}
 
+		$validator = Validator::make($req->all(), [
+			'first_name' => 'required|min:2|max:255|string',
+			'middle_name' => 'nullable|min:2|max:255|string',
+			'last_name' => 'required|min:2|max:255|string',
+			'suffix' => 'nullable|min:2|max:255|string',
+			'email' => 'required|unique:users,email|min:2|max:255|email',
+			'username' => 'required|unique:users,username|min:2|max:255|string',
+			'user_type' => 'required|exists:user_types,id|numeric',
+			
+		], [
+			'first_name.required' => 'Firstname is required',
+			'last_name.required' => 'Lastname is required',
+			'username.required' => 'Username is required',
+			'usertype.required' => 'Usertype is required',
+			'email.email' => 'Please provide a proper email address',
+			'email.max' => 'Please provide a proper email address',
+			
+		]);
+
+		if ($validator->fails()) {
+			return redirect()
+				->back()
+				->withErrors($validator);
+		}
+
+		try {
+			DB::beginTransaction();
+
+			$user->first_name = $req->first_name;
+			$user->middle_name = $req->middle_name;
+			$user->last_name = $req->last_name;
+			$user->suffix = $req->suffix;
+			$user->email = $req->email;
+			$user->username = $req->username;
+			$user->user_type_id = $req->user_type;
+			$user->save();
+			
+			DB::commit();
+		} catch (Exception $e) {
+			DB::rollback();
+			Log::error($e);
+
+			if ($user == null)
+				return redirect()
+					->route('user.index')
+					->with('flash_error', 'User already removed. Please refresh your browser if it is still visible');
+		}
 		return redirect()
 			->route('user.index')
 			->with('flash_success', 'Successfully updated user information');
 	}
 
-	protected function delete($id) {
+
+
+	protected function delete($id)
+	{
 		$user = User::find($id);
 
-		if ($user == null) 
+		if ($user == null)
 			return redirect()
 				->route('user.index')
 				->with('flash_error', 'User already removed. Please refresh your browser if it is still visible');
@@ -262,5 +318,64 @@ class UserController extends Controller
 		return redirect()
 			->route('user.index')
 			->with('flash_info', 'Cannot delete your own account while active');
+	}
+
+	protected function submitPassword()
+	{
+		$user = User:: where ('email', '=', $user->email)->first();
+       
+		$validator = Validator::make($req->all(), [
+			'password' => array('required', 'regex:/([a-z]*)([0-9])*/i', 'min:8', 'confirmed'),
+			'password_confirmation' => 'required'
+		], [
+			'password.required' => 'The new password is required',
+			'password.regex' => 'Password must contain at least 1 letter and 1 number',
+			'password.min' => 'Password should be at least 8 characters',
+			'password.confirmed' => 'You must confirm your password first',
+			'password_confirmation.required' => 'You must confirm your password first'
+		]);
+       
+		if ($validator->fails()) {
+			return redirect()
+				->back()
+				->withErrors($validator);
+		}
+		
+		try {
+			DB::beginTransaction();
+
+			$user->password = Hash::make($req->password);
+			$user->login_attempts = 0;
+			$user->locked = 0;
+			$user->locked_by = null;
+
+			$user->save();
+		
+			DB::commit();
+		} catch (Exception $e) {
+			DB::rollback();
+			Log::error($e);
+
+			return redirect()
+				->back()
+				->with('flash_error', 'Something went wrong, please try again later.');
+		}
+		return redirect()
+			->route('user.index')
+			->with('flash_success', "Succesfully updated password");
+	}
+
+		
+	protected function editPassword($email = null) {
+		$user = User:: where('email', '=', $email)->first();
+
+		if (!$user)
+			return redirect()
+				->route('user.index');
+		
+		return view('admin.useraccount.change_password', [
+			'user' => $user
+		]);
+
 	}
 }
