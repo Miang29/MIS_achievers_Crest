@@ -3,9 +3,8 @@
 @section('title', 'Change Password')
 
 @section('content')
-<form method="POST" action="{{route ('submit-password') }}" class="col-lg-12 col-12 col-md-12 " style="margin-top:5rem;" enctype="multipart/form-data">
+<form method="POST" action="{{route ('submit-password', [$user->id]) }}" class="col-lg-12 col-12 col-md-12 " style="margin-top:5rem;" enctype="multipart/form-data">
     {{ csrf_field() }}
-    <input type="hidden" name="email" value="{{ $email }}">
 
     <div class="card dark-shadow w-100 w-lg-50 w-md-50 m-auto" style="height:100%;">
 

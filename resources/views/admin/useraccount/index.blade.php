@@ -52,7 +52,7 @@
 								<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown">
 									<a href="{{ route('user.view', [$u->id]) }}" class="dropdown-item"><i class="fas fa-eye mr-2"></i>View</a>
 									<a href="{{ route('user.edit', [$u->id]) }}" class="dropdown-item"><i class="fas fa-pen-to-square mr-2"></i>Edit</a>
-									<a href="{{ route('user.edit-password') }}" class="dropdown-item"><i class="fa-solid fa-lock mr-2"></i>Change Password</a>
+									<a href="{{ route('user.edit-password', [$u->id]) }}" class="dropdown-item"><i class="fa-solid fa-lock mr-2"></i>Change Password</a>
 									<a href="javascript:void(0);" onclick="confirmLeave('{{ route('user.delete', [$u->id]) }}', undefined, 'Are you sure you want to delete this user? <b>It cannot be undone.</b>');" class="dropdown-item"><i class="fa-solid fa-trash mr-2"></i>Delete</a>
 								</div>
 							</div>

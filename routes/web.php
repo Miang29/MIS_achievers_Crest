@@ -242,9 +242,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 		Route::get('/{id}/delete', 'UserController@delete')->name('user.delete');
 
 		//Change Password
-		Route::get('/edit-password', 'UserController@editPassword')->name('user.edit-password');
+		Route::get('/{id}/edit-password', 'UserController@editPassword')->name('user.edit-password');
 
-		Route::post('/submit-password', 'UserController@submitPassword')->name('submit-password');
+		Route::post('/{id}/submit-password', 'UserController@submitPassword')->name('submit-password');
 	
 	});
 });

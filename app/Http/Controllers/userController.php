@@ -320,7 +320,7 @@ class UserController extends Controller
 			->with('flash_info', 'Cannot delete your own account while active');
 	}
 
-	protected function submitPassword()
+	protected function submitPassword(Request $req, $id)
 	{
 		$user = User:: where ('email', '=', $user->email)->first();
        
@@ -366,8 +366,8 @@ class UserController extends Controller
 	}
 
 		
-	protected function editPassword($email = null) {
-		$user = User:: where('email', '=', $email)->first();
+	protected function editPassword($id) {
+		$user = User::find($id);
 
 		if (!$user)
 			return redirect()
