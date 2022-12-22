@@ -73,7 +73,7 @@
 
     <div class="card-footer  d-flex flex-row">
         <button type="submit" class="btn btn-outline-custom ml-auto btn-sm w-lg-25 w-25" data-type="submit">Book</button>
-        <a href="javascript:void(0);" onclick="confirmLeave('{{ route('appointment') }}');" class="btn btn-outline-danger btn-sm ml-1 w-lg-25 mr-auto w-25" style="border-radius:1rem;">Cancel</a>
+        <a href="javascript:void(0);" onclick="confirmLeave('{{ route('appointments') }}');" class="btn btn-outline-danger btn-sm ml-1 w-lg-25 mr-auto w-25" style="border-radius:1rem;">Cancel</a>
     </div>
 </form>
 

@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Appointment;
 use App\Appointments;
 use Carbon\Carbon;
 

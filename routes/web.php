@@ -11,12 +11,11 @@
 |
 */
 
-// use Illuminate\Routing\Route;
 use Symfony\Component\HttpKernel\Client;
 
 Route::get('/', 'PageController@user')->name('home');
 Route::get('/appointment', 'PageController@Appointment')->name('appointment');
-Route::post('/submit-appoinments', 'PageController@submitAppointments')->name('submit-appointments');
+Route::post('/submit-appointments', 'PageController@submitAppointments')->name('submit-appointments');
 Route::get('/services-offer', 'PageController@ServicesOffer')->name('services-offer');
 
 Route::get('/login', 'UserController@login')->name('login');
@@ -154,6 +153,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
 		// Show
 		Route::get('/{id}/{petId}', 'AppointmentController@show')->name('appointments.show');
+		
+		Route::post('/save-appointments', 'AppointmentController@saveAppointments')->name('save-appointments');
+
 	});
 
 	// SERVICES CATEGORY
