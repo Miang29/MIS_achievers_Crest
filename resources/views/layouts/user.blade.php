@@ -31,6 +31,7 @@
 		{{-- JQUERY / SWAL2 / FONTAWESOME 6  SUMMERNOTE --}}
 		<link rel="stylesheet" href="{{ asset('css/app.css') }}">
 		<script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('js/util/confirm-leave.js') }}"></script>
 
 		{{-- Removes the code that shows up when script is disabled/not allowed/blocked --}}
 		<script type="text/javascript" id="for-js-disabled-js">
@@ -98,6 +99,65 @@
 			</main>
 		</div>
 
+		<script type="text/javascript">
+			@if(Session::has('flash_error'))
+			Swal.fire({
+				{!!Session::has('has_icon') ? "icon: `error`," : ""!!}
+				title: `{{Session::get('flash_error')}}`,
+				{!!Session::has('message') ? 'html: `'.Session::get('message').'`,' : ''!!}
+				position: {!!Session::has('position') ? '`'.Session::get('position').'`' : '`top`'!!},
+				showConfirmButton: false,
+				toast: {!!Session::has('is_toast') ? Session::get('is_toast'): true!!},
+				{!!Session::has('has_timer') ? (Session::get('has_timer') ? (Session::has('duration') ? ('timer: '.Session::get('duration')).',' : `timer: 10000,`) : 'timer: 5000,') : `timer: 10000,`!!}
+				background: `#dc3545`,
+				customClass: {
+					title: `text-white`,
+					content: `text-white`,
+					popup: `px-3`
+				},
+			});
+			@elseif(Session::has('flash_info'))
+			Swal.fire({
+				{!!Session::has('has_icon') ? "icon: `info`," : ""!!}
+				title: `{{Session::get('flash_info')}}`,
+				{!!Session::has('message') ? 'html: `'.Session::get('message').'`,' : ''!!}
+				position: {!!Session::has('position') ? '`'.Session::get('position').'`' : '`top`'!!},
+				showConfirmButton: false,
+				toast: {!!Session::has('is_toast') ? Session::get('is_toast'): true!!},
+				{!!Session::has('has_timer') ? (Session::get('has_timer') ? (Session::has('duration') ? ('timer: '.Session::get('duration')).',' : `timer: 10000,`) : 'timer: 5000,') : `timer: 10000,`!!}
+				background: `#17a2b8`,
+				customClass: {
+					title: `text-white`,
+					content: `text-white`,
+					popup: `px-3`
+				},
+			});
+			@elseif(Session::has('flash_success'))
+			Swal.fire({
+				{!!Session::has('has_icon') ? "icon: `success`," : ""!!}
+				title: `{{Session::get('flash_success')}}`,
+				{!!Session::has('message') ? 'html: `'.Session::get('message').'`,' : ''!!}
+				position: {!!Session::has('position') ? '`'.Session::get('position').'`' : '`top`'!!},
+				showConfirmButton: false,
+				toast: {!!Session::has('is_toast') ? Session::get('is_toast'): true!!},
+				{!!Session::has('has_timer') ? (Session::get('has_timer') ? (Session::has('duration') ? ('timer: '.Session::get('duration')).',' : `timer: 10000,`) : 'timer: 5000,') : `timer: 10000,`!!}
+				background: `#28a745`,
+				customClass: {
+					title: `text-white`,
+					content: `text-white`,
+					popup: `px-3`
+				},
+			});
+			@endif
+
+			$(document).ready(function() {
+				$(".col-a").click(function() {
+					$('.collapse.show').collapse('hide');
+				});
+
+				$("[data-toggle=tooltip]").tooltip();
+			});
+		</script>
 		@yield('pre-script')
 		@yield('post-script')
 	</body>

@@ -4,7 +4,7 @@
 
 @section('content')
 {{-- ============================================= HOME ============================================= --}}
-<div class="row pt-5 min-vh-100" id="home">
+<div class="row mt-3 min-vh-100" id="home">
     <div class="col-12 col-lg-6 mt-5 text-center my-5">
         <img src="{{ asset('uploads/settings/banner.png') }}" id="logo" data-count="1" data-url="{{route ('login') }}" class="img img-fluid mx-auto my-2 w-25" alt="Nano machines son">
         <h3 class="mt-auto font-weight-bold mx-auto text-custom-1  ">VETERINARY CLINIC</h3>
@@ -64,7 +64,7 @@
         <div class=" col-12 col-lg-6 w-md-100 mt-5 text-center position-relative d-none d-lg-block ">
             <div class="card w-50 h-75 mx-auto">
                 <div class="w-100 overflow-hidden mx-auto h-75">
-                    <img src="{{ asset('uploads/settings/doc.jpg') }}" class="img img-fluid m-auto " style="object-position: center; transform: translateY(-15%);">
+                    <img src="{{ asset('uploads/settings/doc-nano.jpg') }}" class="img img-fluid mt-5" style="object-position: center; transform: translateY(-15%);">
                 </div>
                 <h5 class="card-title mt-2 ">Silverio E. Nano, D.V.M </h5>
                 <h4 class="card-text">Veterinarian</h4>
