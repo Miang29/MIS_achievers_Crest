@@ -97,11 +97,7 @@
 		</div>
 	</div>
 </form>
-
-
-
 @endsection
-
 @section('scripts')
 <script type="text/javascript" src="{{ asset('js/login.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/util/confirm-leave.js') }}"></script>

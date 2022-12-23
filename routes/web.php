@@ -149,12 +149,16 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 		Route::get('/{id}/delete', 'AppointmentController@delete')->name('appointments.delete');
 
 		// Edit
-		Route::get('/{id}/{petId}/edit', 'AppointmentController@edit')->name('appointments.edit');
+		Route::get('/{id}}/edit', 'AppointmentController@edit')->name('appointments.edit');
 
 		// Show
-		Route::get('/{id}/{petId}', 'AppointmentController@show')->name('appointments.show');
+		Route::get('/{id}show', 'AppointmentController@show')->name('appointments.show');
 		
+		//Save
 		Route::post('/save-appointments', 'AppointmentController@saveAppointments')->name('save-appointments');
+
+		//Update
+		Route::post('{id}/update-appointments','AppointmentController@updateAppointments')->name('update-appointments');
 
 	});
 

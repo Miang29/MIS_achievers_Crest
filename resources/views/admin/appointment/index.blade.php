@@ -51,8 +51,8 @@
 								</button>
 
 								<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown">
-									<a href="{{route ('appointments.show', [1, 1])}}" class="dropdown-item"><i class="fa-solid fa-eye mr-2"></i>View Appointment</a>
-									<a href="{{route ('appointments.edit', [1, 1])}}" class="dropdown-item"><i class="fa-solid fa-pen-to-square mr-2"></i>Edit Appointment</a>
+									<a href="{{route ('appointments.show', [$ap->id]) }}" class="dropdown-item"><i class="fa-solid fa-eye mr-2"></i>View Appointment</a>
+									<a href="{{route ('appointments.edit', [$ap->id]) }}" class="dropdown-item"><i class="fa-solid fa-pen-to-square mr-2"></i>Edit Appointment</a>
 									<a href="javascript:void(0);" onclick="confirmLeave('{{ route('appointments.delete', [$ap->id]) }}', undefined, 'Are you sure you want to delete this schedule? <b>It cannot be undone.</b>');" class="dropdown-item"><i class="fa-solid fa-trash mr-2"></i>Delete</a>
 								</div>
 							</div>

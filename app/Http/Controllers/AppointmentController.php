@@ -89,38 +89,88 @@ class AppointmentController extends Controller
 	}
 
 
-
-	protected function edit($id, $petId)
+	protected function updateAppointments(Request $req, $id)
 	{
-		// $appointment = Appointment::find($id);
+		$appointments = Appointments::find($id);
+
+		if ($appointments == null) {
+			return redirect()
+				->route('appointments.index')
+				->with('flash_error', 'Client either does not exists or is already deleted.');
+		}
+
+		$validator = Validator::make($req->all(), [
+
+			'pet_owner' => 'required|min:2|max:255|string',
+			'pet_name' => 'required|min:2|max:255|string',
+			'email' => 'required|min:2|max:255|email',
+			'date' => 'required|min:2|max:255|date',
+			'time' =>  'required|min:2|max:255|string',
+			'service_type' => 'required|unique:users,username|min:2|max:255|string',
+
+		]);
+
+		if ($validator->fails()) {
+			return redirect()
+				->back()
+				->withErrors($validator);
+		}
+
+		try {
+			DB::beginTransaction();
+			$appointments->pet_owner = $req->pet_owner;
+			$appointments->pet_name = $req->pet_name;
+			$appointments->email = $req->email;
+			$appointments->date = $req->date;
+			$appointments->time = $req->time;
+			$appointments->service_type = $req->service_type;
+			$appointments->save();
+
+			DB::commit();
+		} catch (Exception $e) {
+			DB::rollback();
+			Log::error($e);
+
+			if ($appointments == null)
+				return redirect()
+					->route('appointments.index')
+					->with('flash_error', 'Clients already removed. Please refresh your browser if it is still visible.');
+		}
+		return redirect()
+			->route('appointments.index')
+			->with('flash_success', 'Successfully updated clients scheduled appointments.');
+	}
+
+	protected function edit($id)
+	{
+		$appointments = Appointments::find($id);
+
+		if (!$appointments)
+			return redirect()
+				->route('appointments.index')
+				->with('flash_error', 'Something went wrong, please try again later');
+
 		return view('admin.appointment.edit', [
-			// 'appointment' => $appointment
-			// 'appointment' => Appointment::find($id)
-			'appointment' => collect([
-				'owner' => 'Joseph Polio',
-				'email' => 'joseph.polio@gmail.com',
-				'pet' => array("Brownie", "Siomai", "Siopao", "Voodoo")[$petId],
-				'appointment_schedule' => Carbon::now()->timezone('Asia/Manila'),
-			    'service' => 'Consultation'
-				])
+			'appointments' => $appointments
 		]);
 	}
 
-	protected function show($id, $petId)
+	protected function show($id)
 	{
+		$appointments = Appointments::find($id);
+
+		if ($appointments == null)
+			return redirect()
+				->route('appointments.index')
+				->route('flash_errors', 'Clients already removed. Please refresh your browser if it is still visible');
+
 		return view('admin.appointment.show', [
-			'appointment' => collect([
-				'owner' => 'Joseph Polio',
-				'email' => 'joseph.polio@gmail.com',
-				'pet' => ["Brownie", "Siomai", "Siopao", "Voodoo"][$petId],
-				'appointment_schedule' => Carbon::now()->timezone('Asia/Manila'),
-				'service' => 'Consultation'
-			])
+			'appointments' => $appointments
 		]);
 	}
 
 	protected function delete($id)
-	 {
+	{
 		$appointments = Appointments::find($id);
 		try {
 			DB::beginTransaction();
@@ -141,6 +191,5 @@ class AppointmentController extends Controller
 		return redirect()
 			->route('appointments.index')
 			->with('flash_success', 'Successfully removed scheduled appointments from table');
-
 	}
 }
