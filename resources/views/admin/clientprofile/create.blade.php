@@ -72,8 +72,7 @@
 						<div class="row">
 							<div class="col-6 col-lg-6 mx-auto">
 								<div class="form-group text-center text-lg-left w-lg-100 w-md-75 w-xs-100 image-input-group" style="max-height: 20rem;">
-									<label class="h5" for="image">Pet Image</label><br>
-									<img src="{{ asset('images/UI/placeholder.jpg') }}" class="img-fluid cursor-pointer border" style="border-width: 0.25rem!important; max-height: 16.25rem;" alt="Pet Image">
+									<img src="{{ asset('images/UI/placeholder.jpg') }}" class="img-fluid cursor-pointer border ml-4" style="border-width: 0.25rem!important; max-height: 10rem;" alt="Pet Image">
 									<br><br>
 									<input type="file" name="image[]" class="hidden" accept=".jpg,.jpeg,.png"><br>
 									<small class="text-muted"><b>FORMATS ALLOWED:</b> JPEG, JPG, PNG</small>
@@ -163,8 +162,7 @@
 					<div class="row">
 						<div class="col-6 col-lg-6 mx-auto">
 							<div class="form-group text-center text-lg-left w-lg-100 w-md-75 w-xs-100 image-input-group" style="max-height: 20rem;">
-								<label class="h5 " for="image">Pet Image</label><br>
-								<img src="{{ asset('images/UI/placeholder.jpg') }}" class="img-fluid cursor-pointer border" style="border-width: 0.25rem!important; max-height: 16.25rem;" alt="Pet Image">
+								<img src="{{ asset('images/UI/placeholder.jpg') }}" class="img-fluid cursor-pointer border ml-4" style="border-width: 0.25rem!important; max-height: 10rem;" alt="Pet Image">
 								<br><br>
 								<input type="file" name="image[]" class="hidden" accept=".jpg,.jpeg,.png"><br>
 								<small class="text-muted"><b>FORMATS ALLOWED:</b> JPEG, JPG, PNG</small>
