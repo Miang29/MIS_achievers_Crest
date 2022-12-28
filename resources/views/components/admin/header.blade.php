@@ -14,8 +14,8 @@
 		<div class="d-flex flex-row">
 			{{-- Navbar contents --}}
 			<div class="navbar-collapse" id="navbar">
-				<div class="ml-auto">
-					<label class='my-auto'>
+				<div class="ml-auto" >
+					<label class="my-auto">
 						<div class="dropdown">
 							<a href='#' role="button" class="nav-link dropdown-toggle text-dark my-auto font-weight-bold header-username" style="font-size: 1.2rem;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 								{{ Auth::user()->getName() }}
@@ -32,7 +32,7 @@
 			</div>
 
 			{{-- Navbar Toggler --}}
-			<button class="sidebar-toggler" type="button" data-toggle="sidebar-collapse" data-target="#sidebar" aria-controls="sidebar" aria-label="Toggle Sidebar" id="sidebar-toggler">
+			<button class="sidebar-toggler" style="margin-left:10rem;" type="button" data-toggle="sidebar-collapse" data-target="#sidebar" aria-controls="sidebar" aria-label="Toggle Sidebar" id="sidebar-toggler">
 				<span class="navbar-toggler-icon"></span>
 			</button>
 		</div>

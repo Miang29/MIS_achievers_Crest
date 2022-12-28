@@ -4,27 +4,24 @@
 
 @section('content')
 
-<div class="container-fluid px-2 px-lg-6 py-2 h-100 my-3">
-    <div class="row">
-        <div class="col-12 col-lg text-center text-lg-left">
-            <h4 class=" h2-lg text-center text-lg-left mx-0 mx-lg-5 my-4 "><a href="{{route('category')}}" class="text-decoration-none  text-1"><i class="fas fa-chevron-left mr-2"></i>Category List</a></h4>
-        </div>
+<div class="container-fluid m-0">
+    <h2 class="mx-0 mx-lg-5 my-4"><a href="javascript:void(0);" onclick="confirmLeave('{{route('category')}}');" class="text-decoration-none  text-1"><i class="fas fa-chevron-left mr-2"></i>Category List</a></h2>
+    <hr class="hr-thick" style="border-color: #707070;">
+    
+    <div class="col-12 col-md-6 col-lg-12 my-2 text-center text-md-left text-lg-right">
+        <a href="{{route('product.create', [$id])}}" class="btn btn-info bg-1  btn-sm my-1"><i class="fas fa-plus-circle mr-2"></i>Add products</a>
+    </div>
 
-
-        <div class="col-12 col-md-6 col-lg-12 my-2 text-center text-md-left text-lg-right">
-            <a href="{{route('product.create', [$id])}}" class="btn btn-info bg-1  btn-sm my-1"><i class="fas fa-plus-circle mr-2"></i>Add products</a>
-        </div>
-
-        <div class=" col-12 col-md-6 col-lg-12 my-2 text-center text-lg-right">
-            <div class="input-group">
-                <input type="text" class="form-control" name="search" placeholder="Search..." />
-                <div class="input-group-append">
-                    <button type="submit" class="btn btn-secondary"><i class="fas fa-search"></i></button>
-                </div>
+    <div class=" col-12 col-md-6 col-lg-6 my-2 ml-auto text-center text-lg-right">
+        <div class="input-group">
+            <input type="text" class="form-control" name="search" placeholder="Search..." />
+            <div class="input-group-append">
+                <button type="submit" class="btn btn-secondary"><i class="fas fa-search"></i></button>
             </div>
         </div>
     </div>
-    <hr class="hr-thick" style="border-color: #707070;">
+
+
     <div class="col-12 col-lg text-center text-lg-left">
         <h2 class="font-weight-bold text-1">Product List</h2>
     </div>
@@ -49,7 +46,7 @@
                         <td>{{ $p['name'] }}</td>
                         <td>{{ $p['stocks'] }}</td>
                         <td>₱{{ number_format($p['price'], 2) }}</td>
-                        
+
                         <td>
                             @if ($p['status'])
                             <i class="fas fa-circle text-success mr-2"></i>Active
