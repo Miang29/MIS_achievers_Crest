@@ -7,3 +7,5 @@ Homestead.json
 Homestead.yaml
 .env
 mailer.env
+*.sql
+db-management.sh
