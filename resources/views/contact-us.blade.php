@@ -1,0 +1,59 @@
+@extends('layouts.user')
+
+@section('title', 'Home')
+
+@section('content')
+
+
+{{-- ============================================= CONTACT US ============================================= --}}
+<div class="contact bg-white mt-5 min-vh-100">
+    {{-- Title --}}
+    <div class="col-12 d-flex">
+        <h3 class="contact-title mx-auto "><i class="fa-solid fa-phone mr-2"></i>Contact Us</h3><br>
+    </div>
+
+    {{-- Content --}}
+    <div class="col-12 w-75 my-5 mx-auto   w-md-75 w-lg-75  w-xs-100 ">
+        <div class="card my-3 mx-auto w-100  border border-secondary">
+            <h5 class="card-header text-center bg-white text-1 font-weight-bold  border border-secondary">We would like to hear from you.</h5>
+            <div class="card-body d-flex  border border-secondary">
+                <div class="form-group mx-auto  w-xs-100">
+                    <div class="col-12">
+                        <div class="row ">
+                            <div class="order-1 order-lg-0 col-12 col-lg-6">
+                                <input class="form-control my-2 border border-secondary " type="text" name="petowner" value="{{old('petowner')}}" placeholder="Name" />
+                                <input class="form-control my-2  border border-secondary" type="email" name="email" value="{{old('email')}}" placeholder="Email" />
+                                <input class="form-control my-2  border border-secondary" type="text" name="mobile" value="{{old('mobile')}}" placeholder="Mobile No" />
+                                <textarea class="form-control my-2 not-resizable  border border-secondary" name="message" rows="3" placeholder="Message"></textarea>
+
+                                <div class="row d-flex">
+                                    <div class=" col-6 mx-auto">
+                                        <button class="btn btn-outline-custom btn-sm w-50" style="border-radius: 1rem;"><a href="#"></a>Send</button>
+                                        <a href="#" class="btn btn-outline-danger btn-sm w-50 " style="border-radius: 1rem;">Cancel</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="order-0 order-lg-1 col-12 col-lg-6 mx-auto text-center"><br>
+                                <img src="{{ asset('uploads/settings/banner.png') }}" class="img img-fluid mx-auto my-2 w-50" alt="Nano machines son">
+                                <h3 class="mt-auto font-weight-bold mx-auto text-custom-1  ">VETERINARY CLINIC</h3>
+                                <p class="text-1 mx-auto font-weight-bold">for more details and inquiries:</p>
+                                <p class="text-1 mx-auto font-italic"><i class="fa-solid fa-envelope mr-2"></i>nanovetclinic2015@gmail.com</p>
+                                <div class="row d-flex">
+                                    <div class="col-6 mx-auto ">
+                                        <p class="ml-auto text-1"><i class="fa-solid fa-phone mr-2"></i>8650-1153</p>
+                                    </div>
+                                    <div class="col-6 d-flex">
+                                        <p class="mr-auto text-1"><i class="fa-solid fa-mobile mr-2"></i>0948-513-0788</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@endsection

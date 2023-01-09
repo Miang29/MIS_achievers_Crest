@@ -17,8 +17,12 @@ Route::get('/', 'PageController@user')->name('home');
 Route::get('/appointment', 'PageController@Appointment')->name('appointment');
 Route::post('/submit-appointments', 'PageController@submitAppointments')->name('submit-appointments');
 Route::get('/services-offer', 'PageController@ServicesOffer')->name('services-offer');
+Route::get('/about-us', 'PageController@aboutUs')->name('about-us');
+Route::get('/contact-us', 'PageController@contactUs')->name('contact-us');
+
 
 Route::get('/login', 'UserController@login')->name('login');
+Route::get('/sign-up', 'UserController@SignUp')->name('sign-up');
 Route::post('/authenticate', 'UserController@authenticate')->name('authenticate');
 Route::get('/dashboard', 'PageController@redirectDashboard')->name('dashboard.redirect');
 

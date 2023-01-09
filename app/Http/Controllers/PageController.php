@@ -50,9 +50,17 @@ class PageController extends Controller
 
 
 	// CLIENT PANEL
-	protected function user()
-	{
-		return view('index');
+
+	protected function user() {
+		return view('home');
+	}
+
+	protected function aboutUs() {
+		return view('about-us');
+	}
+
+	protected function contactUs() {
+		return view('contact-us');
 	}
 
 	protected function Appointment()

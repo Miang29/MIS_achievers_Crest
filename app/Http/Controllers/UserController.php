@@ -24,6 +24,11 @@ class UserController extends Controller
 		return view('login');
 	}
 
+	protected function SignUp()
+	{
+		return view('sign-up');
+	}
+
 	protected function authenticate(Request $req)
 	{
 		$user = User::where('username', '=', $req->username)->first();

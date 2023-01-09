@@ -11,10 +11,6 @@
     <div class="card-body">
         <div class="row">
 
-            <div class="col-12 col-lg-6 form-group mx-auto position-relative d-none d-lg-block">
-                <img src="{{ asset('uploads/settings/pet-care.jpg') }}" class="img img-fluid mx-auto my-2 w-100  position-overflow" alt="Nano machines son">
-            </div>
-
             <div class="col-12 col-lg-8 mx-auto">
                 {{-- OWNER --}}
                 <div class="form-group">
