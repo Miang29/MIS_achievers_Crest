@@ -6,14 +6,14 @@
 
 
 {{-- ============================================= CONTACT US ============================================= --}}
-<div class="contact bg-white mt-5 min-vh-100">
+<div class="contact bg-white mt-2 min-vh-100">
     {{-- Title --}}
     <div class="col-12 d-flex">
         <h3 class="contact-title mx-auto "><i class="fa-solid fa-phone mr-2"></i>Contact Us</h3><br>
     </div>
 
     {{-- Content --}}
-    <div class="col-12 w-75 my-5 mx-auto   w-md-75 w-lg-75  w-xs-100 ">
+    <div class="col-12 w-75 mx-auto   w-md-75 w-lg-75  w-xs-100 ">
         <div class="card my-3 mx-auto w-100  border border-secondary">
             <h5 class="card-header text-center bg-white text-1 font-weight-bold  border border-secondary">We would like to hear from you.</h5>
             <div class="card-body d-flex  border border-secondary">
@@ -21,16 +21,21 @@
                     <div class="col-12">
                         <div class="row ">
                             <div class="order-1 order-lg-0 col-12 col-lg-6">
-                                <input class="form-control my-2 border border-secondary " type="text" name="petowner" value="{{old('petowner')}}" placeholder="Name" />
-                                <input class="form-control my-2  border border-secondary" type="email" name="email" value="{{old('email')}}" placeholder="Email" />
-                                <input class="form-control my-2  border border-secondary" type="text" name="mobile" value="{{old('mobile')}}" placeholder="Mobile No" />
-                                <textarea class="form-control my-2 not-resizable  border border-secondary" name="message" rows="3" placeholder="Message"></textarea>
 
-                                <div class="row d-flex">
-                                    <div class=" col-6 mx-auto">
-                                        <button class="btn btn-outline-custom btn-sm w-50" style="border-radius: 1rem;"><a href="#"></a>Send</button>
-                                        <a href="#" class="btn btn-outline-danger btn-sm w-50 " style="border-radius: 1rem;">Cancel</a>
-                                    </div>
+                                <div class="form-group">
+                                    <input class="form-control my-2 border border-secondary " type="text" name="petowner" value="{{old('petowner')}}" placeholder="Name" />
+                                </div>
+
+                                <div class="form-group">
+                                    <input class="form-control my-2  border border-secondary" type="email" name="email" value="{{old('email')}}" placeholder="Email" />
+                                </div>
+
+                                <div class="form-group">
+                                    <input class="form-control my-2  border border-secondary" type="text" name="mobile" value="{{old('mobile')}}" placeholder="Mobile No" />
+                                </div>
+
+                                <div class="form-group">
+                                    <textarea class="form-control my-2 not-resizable  border border-secondary" name="message" rows="3" placeholder="Message"></textarea>
                                 </div>
                             </div>
 
@@ -52,8 +57,20 @@
                     </div>
                 </div>
             </div>
+            <div class="card-footer">
+
+                <div class="d-flex">
+                    <button class="btn btn-outline-primary btn-sm w-25  mr-2 ml-auto">Send</button>
+                    <a href="#" class="btn btn-outline-danger btn-sm w-25 mr-auto">Cancel</a>
+                </div>
+
+            </div>
         </div>
     </div>
+
+</div>
+<div class="card-footer col-lg-12 text-center cite" style="background-color:#021f53; color:white;">
+    Copyright <i class="fa-solid fa-copyright"></i> Nano Vet 2015
 </div>
 
 @endsection

@@ -79,24 +79,17 @@
         </div>
     </div>
     <br><br><br>
-    <main class="card mt-3 w-50 h-50 mx-auto js-only w-lg-50 w-md-50 w-xs-75 shadow mb-5 bg-white rounded border-info" id="content">
-        <div class="card-header text-center bg-light ">
-            <h1 class="w-100 w-lg-75 mx-auto text-monospace" style="color:#021f53; font-weight:Bold; font-size: 2.6rem;">Create Your Account</h1>
+    <main class="card  h-50 mx-auto js-only w-50 w-lg-50 w-md-50 w-xs-75 shadow mb-5 bg-white rounded border-info" id="content">
+        <div class="card-header text-center d-flex flex-column" style="background-color:#021f53;">
+            <h1 class="w-100 w-lg-75 mx-auto text-monospace" style="color:white; font-weight:Bold; font-size: 2.6rem;">Create Your Account</h1>
         </div>
         <div class="card-body d-flex flex-column flex-lg-row min-vh-25 ">
 
-            <div class="col-12 col-lg-4 bg-white d-lg-flex flex-column">
-                <div class="my-auto d-flex flex-column">
-                    <img src="{{ asset('uploads/settings/banner.png') }}" class="img img-fluid mx-auto my-2 w-75" alt="Nano machines son">
-                    <h3 class="w-100 mt-auto font-weight-bold mx-auto text-custom-1 my-5 text-center">VETERINARY CLINIC</h3>
-                </div>
-            </div>
-
-            <div class="col-12 col-lg-8 d-flex flex-column ">
+            <div class="col-12 col-lg-8 mx-auto">
                 <div class="my-auto">
 
-                    {{-- LOGIN FORM START --}}
-                    <form method="POST" class="form mb-auto mx-auto">
+                    {{-- SIGN UP FORM START --}}
+                    <form method="POST" class="form mx-auto">
                         {{ csrf_field() }}
 
                         <div class="form-group floating-label-group">
@@ -138,7 +131,12 @@
                             </div>
                         </div>
 
-                        <div class="form-group text-center">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="customCheck1">
+                            <label class="custom-control-label text-justify" for="customCheck1">By checking this you accept the terms of use and handling of your data by this website in accordance with our <a href="#">Privacy Policy.</a></label>
+                        </div>
+
+                        <div class="form-group text-center my-3">
                             <button type="submit" class="btn btn-outline-dark w-100 font-weight-bold">Register</button>
                         </div>
 

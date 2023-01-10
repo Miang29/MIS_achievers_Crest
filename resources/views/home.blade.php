@@ -51,7 +51,20 @@
         </div>
     </div>
 </div>
-        <div class="card-body bg-white text-center" style="height:30rem;"></div>
-<div class="card-footer col-lg-12 text-center cite" style="background-color:#021f53; color:white;">Copyright <i class="fa-solid fa-copyright"></i> Nano Vet 2015</div>
+
+
+<div class="card-body text-center" style="height:31rem; background-color:#C2E0D8 ;">
+
+</div>
+
+<div class="d-flex my-2">
+<a href="#" class="ml-auto">Terms of Service</a>
+<div class="border-right ml-2 border-dark"></div>
+<a href="#" class="mr-auto ml-2" >Privacy Policy</a>
+</div>
+
+<div class="card-footer col-lg-12 text-center cite" style="background-color:#021f53; color:white;">
+    Copyright <i class="fa-solid fa-copyright"></i> Nano Vet 2015
+</div>
 
 @endsection

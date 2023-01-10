@@ -3,7 +3,7 @@
 @section('title', 'Services Offered')
 @section('content')
 
-<h1 class="mt-5 text-1 text-center font-weight-bold"><i class="fa-solid fa-paw mr-3"></i>Our Services<i class="fa-solid fa-paw ml-3"></i></h1>
+<h1 class="mt-5 text-1 text-center font-weight-bold">S E R V I C E S</h1>
 <div class="col-12">
 
 
@@ -70,6 +70,9 @@
 
         </div>
     </div>
+</div>
+<div class="card-footer col-lg-12 text-center cite" style="background-color:#021f53; color:white;">
+    Copyright <i class="fa-solid fa-copyright"></i> Nano Vet 2015
 </div>
 
 @endsection
