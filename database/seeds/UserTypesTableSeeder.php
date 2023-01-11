@@ -20,7 +20,17 @@ class UserTypesTableSeeder extends Seeder
 
 		UserType::create([
 			'id' => 2,
+			'name' => 'Veterinarian'
+		]);
+
+		UserType::create([
+			'id' => 3,
 			'name' => 'Staff'
+		]);
+
+		UserType::create([
+			'id' => 4,
+			'name' => 'Client'
 		]);
 	}
 }

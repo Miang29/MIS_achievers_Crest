@@ -20,11 +20,17 @@ class PageController extends Controller
 	// DASH BOARD
 	protected function redirectDashboard()
 	{
+       if (Auth::user()->user_type_id == 4)
+	    return redirect()->back();
+		
 		return redirect()->route('dashboard');
 	}
 
 	protected function dashboard()
 	{
+		if (Auth::user()->user_type_id == 4)
+	    return redirect()->back();
+		
 		$months = array();
 		$monthly_earnings = array();
 

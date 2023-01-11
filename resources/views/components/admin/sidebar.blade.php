@@ -11,9 +11,12 @@
 		@endif
 
 		{{-- ADMIN SETTING AREA --}}
-		{{-- @if (Auth::user()->isAdmin()) --}}
 		
-
+		{{-- @if (Auth::user()->user_type_id == 1) --}}
+		{{-- // Open admin side --}}
+		{{-- @elseif  (Auth::user()->user_type_id == 2) --}}
+		
+		
 		{{-- Client Profile --}}
 		{{-- @if (Auth::user()->isAdmin()) --}}
 		@if (\Request::is('admin/client-profile'))

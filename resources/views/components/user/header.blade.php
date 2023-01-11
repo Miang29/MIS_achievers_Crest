@@ -36,6 +36,17 @@
 					</li>
 					@endif
 
+
+					@if (\Request::is('appointment'))
+					<li class="nav-item active">
+						<span class="nav-link font-weight-bold active" style="color:#021f53; border-bottom: #4D6C85 solid;"><i class="fa-solid fa-calendar-check mr-2 "></i>Appointment<span class="sr-only">(current)</span></span>
+					</li>
+					@else
+					<li class="nav-item">
+						<a class="nav-link font-weight-bold" href="{{ route('appointment') }}"><i class="fa-solid fa-calendar-check mr-2"></i>Appointment</a>
+					</li>
+					@endif
+
 					@if (Request::is('about-us'))
 					<li class="nav-item active">
 						<span class="nav-link font-weight-bold active" style="color:#021f53; border-bottom: #4D6C85 solid;"><i class="fa-solid fa-circle-info mr-2"></i>About Us <span class="sr-only">(current)</span></span>
@@ -56,24 +67,26 @@
 					</li>
 					@endif
 
-					@if (\Request::is('appointment'))
-					<li class="nav-item active">
-						<span class="nav-link font-weight-bold active" href="{{ route('appointment') }}"><i class="fa-solid fa-calendar-check ml-5"></i></span>
-					</li>
+					{{-- LOGIN --}}
+					@if(!Auth::check())
+					<a class="nav-link font-weight-bold" style="color:#021f53;" data-toggle="tooltip" data-placement="top" title="Login" href="{{ route('login') }}"><i class="fa-solid fa-right-to-bracket ml-5"></i></a>
 					@else
-					<li class="nav-item active">
-						<a class="nav-link font-weight-bold" style="color:#021f53;" data-toggle="tooltip" data-placement="top" title="Book Appointment" href="{{ route('appointment') }}"><i class="fa-solid fa-calendar-check ml-5"></i></a>
-					</li>
-					@endif
-
-					@if (\Request::is('login'))
-					<li class="nav-item active">
-						<span class="nav-link font-weight-bold"> <i class="fa-solid fa-right-to-bracket ml-5"></i><span class="sr-only">(current)</span></span>
-					</li>
-					@else
-					<li class="nav-item active">
-						<a class="nav-link font-weight-bold" style="color:#021f53;" data-toggle="tooltip" data-placement="top" title="Login" href="{{ route('login') }}"><i class="fa-solid fa-right-to-bracket mr-5"></i></a>
-					</li>
+					{{-- PROFILE --}}
+					<div class="dropdown ml-5">
+						<a class="btn dropdown-toggle font-weight-bold" type="button" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						{{ Auth::user()->getName() }}
+						</a>
+						<div class="dropdown-menu" aria-labelledby="dropdownMenu">
+							<a class="dropdown-item" href="#"><i class="fa-solid fa-user mr-2"></i>My Profile</a>
+							<div class="dropdown-divider"></div>
+							@if(Auth::user()->user_type_id != 4)
+							<a class="dropdown-item" href="#"><i class="fa-solid fa-chart-simple mr-2"></i>Dashboard</a>
+							<div class="dropdown-divider"></div>
+							@endif
+							{{-- LOGOUT --}}
+					        <a class="dropdown-item" href="{{ route('logout') }}"><i class="fa-solid fa-right-from-bracket mr-2"></i>Logout</a>
+						</div>
+					</div>
 					@endif
 
 				</ul>

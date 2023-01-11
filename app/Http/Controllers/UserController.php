@@ -62,7 +62,7 @@ class UserController extends Controller
 			}
 
 			return redirect()
-				->intended(route('dashboard'))
+				->intended(route('home'))
 				->with('flash_success', 'Logged In!');
 		} else {
 			if ($user) {
