@@ -3,10 +3,9 @@
 @section('title', 'Home')
 
 @section('content')
-
 <div class="col-lg-12 col-md-8 col-12 bg-white h-100 min-vh-100">
     {{-- Title --}}
-    <div class="col-12 d-flex border-bottom border-secondary  ">
+    <div class="col-12 d-flex border-bottom border-secondary">
         <h1 class="title mx-auto"><i class="fa-solid fa-house-chimney-medical mr-2"></i>Our Clinic</h1><br>
     </div>
 
@@ -23,15 +22,8 @@
                 </div>
             </div>
         </div>
-
-
-    </div>
-
-    <div class="card-body">
-        <p> </p>
     </div>
 </div>
-
 {{-- ============================================= ABOUT ============================================= --}}
 <div class="about h-100 bg-custom min-vh-100">
     {{-- Title --}}
@@ -94,4 +86,4 @@
 <div class="card-footer col-lg-12 text-center cite" style="background-color:#021f53; color:white;">
     Copyright <i class="fa-solid fa-copyright"></i> Nano Vet 2015
 </div>
-@endsection>
+@endsection
