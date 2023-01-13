@@ -24,10 +24,96 @@ class UserController extends Controller
 		return view('login');
 	}
 
+	protected function profile($id)
+	{
+		$user = User::find($id);
+
+		if ($user == null)
+			return redirect()
+				->route('home')
+				->with('flash_error', 'User already removed. Please refresh your browser if it is still visible');
+
+		return view('profile', [
+			'user' => $user
+		]);
+	}
+
 	protected function SignUp()
 	{
-		return view('sign-up');
+
+		$types = UserType::get();
+
+		return view('sign-up', [
+			'types' => $types
+		]);
 	}
+
+	protected function save(Request $req)
+	{
+		$validator = Validator::make($req->all(), [
+			'first_name' => 'required|min:2|max:255|string',
+			'middle_name' => 'nullable|min:2|max:255|string',
+			'last_name' => 'required|min:2|max:255|string',
+			'suffix' => 'nullable|min:2|max:255|string',
+			'email' => 'required|unique:users,email|min:2|max:255|email',
+			'username' => 'required|unique:users,username|min:2|max:255|string',
+			'user_type' => 'required|exists:user_types,id|numeric',
+			'password' => array('required', 'string', 'min:8', 'max:255', 'regex:/^[a-zA-Z0-9!@#$%^&*()_+\-=\[\]{};\':"\\|,.<>\/?]*$/'),
+			'checkbox' => 'required'
+		],[
+			'checkbox.required' => 'You need to agree and accept the terms of service.',
+		]);
+
+		if ($validator->fails())
+			return redirect()
+				->back()
+				->withErrors($validator)
+				->withInput();
+
+		try {
+			DB::beginTransaction();
+
+			$user = User::create([
+					'first_name' => $req->first_name,
+					'middle_name' => $req->middle_name,
+					'last_name' => $req->last_name,
+					'suffix' => $req->suffix,
+					'email' => $req->email,
+					'username' => $req->username,
+					'user_type_id' => $req->user_type,
+					'password' => Hash::make($req->password),
+					
+				],);
+
+			// MAILER SHIT
+			// _Mail::send(
+			// 	'layouts.emails.creation',
+			// 	[
+			// 		'req' => $req,
+			// 	],
+			// 	function ($mail) use ($user) {
+			// 		$mail->to($user->email)
+			// 			->from("nano.mis@technical.com") // MIS Nano Vet Clinic
+			// 			->subject("Account Created");
+			// 	}
+			// );
+			
+
+			DB::commit();
+		} catch (Exception $e) {
+			DB::rollback();
+			Log::error($e);
+
+			return redirect()
+				->route('sign-up')
+				->with('flash_error', 'Something went wrong, please try again later');
+		}
+
+		return redirect()
+			->route('home')
+			->with('flash_success', "Successfully created {$user->getName()} as {$user->userType->name}");
+	}
+
 
 	protected function authenticate(Request $req)
 	{
@@ -191,6 +277,7 @@ class UserController extends Controller
 			->with('flash_success', "Successfully added {$user->getName()} as {$user->userType->name}");
 	}
 
+	
 	protected function view($id)
 	{
 		$user = User::find($id);

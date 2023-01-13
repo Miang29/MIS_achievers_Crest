@@ -43,7 +43,11 @@
 					</li>
 					@else
 					<li class="nav-item">
+						@if(Auth::check())
 						<a class="nav-link font-weight-bold" href="{{ route('appointment') }}"><i class="fa-solid fa-calendar-check mr-2"></i>Appointment</a>
+						@else
+						<a class="nav-link font-weight-bold" href="{{ route('login') }}"><i class="fa-solid fa-calendar-check mr-2"></i>Appointment</a>
+						@endif
 					</li>
 					@endif
 
@@ -71,24 +75,24 @@
 					@if(!Auth::check())
 					<a class="nav-link font-weight-bold" style="color:#021f53;" data-toggle="tooltip" data-placement="top" title="Login" href="{{ route('login') }}"><i class="fa-solid fa-right-to-bracket ml-5"></i></a>
 					@else
+
 					{{-- PROFILE --}}
 					<div class="dropdown ml-5">
 						<a class="btn dropdown-toggle font-weight-bold" type="button" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						{{ Auth::user()->getName() }}
+							{{ Auth::user()->getName() }}
 						</a>
 						<div class="dropdown-menu" aria-labelledby="dropdownMenu">
-							<a class="dropdown-item" href="#"><i class="fa-solid fa-user mr-2"></i>My Profile</a>
+							<a class="dropdown-item" href="{{ route('profile', [1]) }}"><i class="fa-solid fa-user mr-2"></i>My Profile</a>
 							<div class="dropdown-divider"></div>
 							@if(Auth::user()->user_type_id != 4)
-							<a class="dropdown-item" href="#"><i class="fa-solid fa-chart-simple mr-2"></i>Dashboard</a>
+							<a class="dropdown-item" href="{{ route('dashboard')}}"><i class="fa-solid fa-chart-simple mr-2"></i>Dashboard</a>
 							<div class="dropdown-divider"></div>
 							@endif
 							{{-- LOGOUT --}}
-					        <a class="dropdown-item" href="{{ route('logout') }}"><i class="fa-solid fa-right-from-bracket mr-2"></i>Logout</a>
+							<a class="dropdown-item" href="{{ route('logout') }}"><i class="fa-solid fa-right-from-bracket mr-2"></i>Logout</a>
 						</div>
 					</div>
 					@endif
-
 				</ul>
 			</div>
 		</div>

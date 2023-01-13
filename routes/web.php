@@ -21,8 +21,10 @@ Route::get('/about-us', 'PageController@aboutUs')->name('about-us');
 Route::get('/contact-us', 'PageController@contactUs')->name('contact-us');
 
 
+Route::get('/profile{id}', 'UserController@profile')->name('profile');
 Route::get('/login', 'UserController@login')->name('login');
 Route::get('/sign-up', 'UserController@SignUp')->name('sign-up');
+Route::post('/save', 'UserController@save')->name('save');
 Route::post('/authenticate', 'UserController@authenticate')->name('authenticate');
 Route::get('/dashboard', 'PageController@redirectDashboard')->name('dashboard.redirect');
 

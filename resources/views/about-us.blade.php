@@ -64,12 +64,34 @@
 
 <div class="col-lg-12 col-md-8 col-12 bg-white h-100 min-vh-100">
     {{-- Title --}}
-    <div class="col-12 d-flex border-bottom border-secondary  ">
+    <div class="col-12 d-flex">
         <h1 class="title mx-auto"><i class="fa-solid fa-map-pin mr-2"></i>Our Location</h1><br>
+    </div>
+    <div class="" style="border:#021f53 solid">
+        <div class="mapouter mx-auto">
+            <div class="gmap_canvas"><iframe width="1000" height="450" id="gmap_canvas" src="https://maps.google.com/maps?q=Blk.%203%20Lot%203%20Unit%205%20Glendale%20Village,Brgy.%20Dolores,%20Taytay%20Rizal&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><a href="https://www.whatismyip-address.com/divi-discount/">divi discount</a><br>
+                <style>
+                    .mapouter {
+                        position: relative;
+                        text-align: right;
+                        height: 450px;
+                        width: 1000px;
+                    }
+                </style><a href="https://www.embedgooglemap.net">map embed iframe</a>
+                <style>
+                    .gmap_canvas {
+                        overflow: hidden;
+                        background: none !important;
+                        height: 450px;
+                        width: 1000px;
+                    }
+                </style>
+            </div>
+        </div>
     </div>
 </div>
 
 <div class="card-footer col-lg-12 text-center cite" style="background-color:#021f53; color:white;">
     Copyright <i class="fa-solid fa-copyright"></i> Nano Vet 2015
 </div>
-@endsection
+@endsection>

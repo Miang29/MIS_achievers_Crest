@@ -85,59 +85,99 @@
         </div>
         <div class="card-body d-flex flex-column flex-lg-row min-vh-25 ">
 
-            <div class="col-12 col-lg-8 mx-auto">
+            <div class="col-12 col-lg-12 mx-auto">
                 <div class="my-auto">
 
                     {{-- SIGN UP FORM START --}}
-                    <form method="POST" class="form mx-auto">
+                    <form action="{{ route('save') }}" method="POST" class="form mx-auto" enctype="multipart/form-data">
                         {{ csrf_field() }}
-
-                        <div class="form-group floating-label-group">
-                            <input class="form-control border-secondary text-dark floating-label-input" type="text" name="name" value="{{ old('name') }}" aria-label="Name" placeholder=" " />
-                            <label class="form-label text-dark bg-transparent floating-label" for="name">Name</label>
-                        </div>
-
-                        <div class="form-group floating-label-group">
-                            <input class="form-control border-secondary text-dark floating-label-input" type="text" name="email" value="{{ old('email') }}" aria-label="Email" placeholder=" " />
-                            <label class="form-label text-dark bg-transparent floating-label" for="email">Email</label>
-                        </div>
-
-                        <div class="form-group floating-label-group">
-                            <input class="form-control border-secondary text-dark floating-label-input" type="text" name="username" value="{{ old('username') }}" aria-label="Username" placeholder=" " />
-                            <label class="form-label text-dark bg-transparent floating-label" for="username">Username</label>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="input-group floating-label-group">
-                                <input class="form-control border-secondary text-dark floating-label-input" type="password" name="password" id="password" aria-label="Password" aria-describedby="toggle-show-password" placeholder=" " />
-                                <label class="form-label text-dark bg-transparent floating-label" for="password">Password</label>
-
-                                <button type="button" class="btn text-dark floating-eye-pass p-1" id="toggle-show-password" aria-label="Show Password" data-target="#password">
-                                    <i class="fas fa-eye d-none" id="show"></i>
-                                    <i class="fas fa-eye-slash" id="hide"></i>
-                                </button>
+                        <div class="row">
+                            {{-- FIRST NAME --}}
+                            <div class="col-12 col-md-9 col-lg-6 mx-auto">
+                                <div class="form-group">
+                                    <input class="form-control border-secondary text-dark" type="text" name="first_name" value="{{ old('first_name') }}" placeholder="First Name" />
+                                    <small class="text-danger small">{{ $errors->first('first_name') }}</small>
+                                </div>
                             </div>
+
+                            {{-- MIDDLE NAME --}}
+                            <div class="col-12 col-md-9 col-lg-6 mx-auto">
+                                <div class="form-group">
+                                    <input class="form-control border-secondary text-dark" type="text" name="middle_name" value="{{ old('middle_name') }}" placeholder="Middle Name" />
+                                    <small class="text-danger small">{{ $errors->first('middle_name') }}</small>
+                                </div>
+                            </div>
+
+                            {{-- LAST NAME --}}
+                            <div class="col-12 col-md-9 col-lg-6 mx-auto">
+                                <div class="form-group">
+                                    <input class="form-control border-secondary text-dark" type="text" name="last_name" value="{{ old('last_name') }}" placeholder="Last Name" />
+                                    <small class="text-danger small">{{ $errors->first('last_name') }}</small>
+                                </div>
+                            </div>
+
+                            {{-- SUFFIX --}}
+                            <div class="col-12 col-md-9 col-lg-6 mx-auto">
+                                <div class="form-group">
+                                    <input class="form-control border-secondary text-dark" type="text" name="suffix" value="{{ old('suffix') }}" placeholder="Suffix" />
+                                    <small class="text-danger small">{{-- $errors->first('suffix') --}}</small>
+                                </div>
+                            </div>
+
+                            {{-- Email --}}
+                            <div class="col-12 col-md-9 col-lg-6 mx-auto">
+                                <div class="form-group">
+                                    <input class="form-control border-secondary text-dark" type="text" name="email" value="{{ old('email') }}" placeholder="Email" />
+                                    <small class="text-danger small">{{ $errors->first('email') }}</small>
+                                </div>
+                            </div>
+
+
+                            {{-- USER TYPE --}}
+                            <div class="col-12 col-md-9 col-lg-6 mx-auto form-group">
+                                <select class="form-control custom-select text-1 border-secondary text-dark" name="user_type">
+                                    @forelse ($types as $t)
+                                    <option value="{{ $t->id }}" {{ old('user_type') == $t->id ? 'selected' : '' }}>{{ $t->name }}</option>
+                                    @empty
+                                    <option selected>-- NO OPTION --</option>
+                                    @endforelse
+                                </select><br>
+                                <small class="text-danger small">{{ $errors->first('user_type') }}</small>
+                            </div>
+
                         </div>
 
-                        <div class="form-group">
-                            <div class="input-group floating-label-group">
-                                <input class="form-control border-secondary text-dark floating-label-input" type="password" name="password_confirmation" id="password_confirmation" aria-label="Password_confirmation" aria-describedby="toggle-show-password" placeholder=" " />
-                                <label class="form-label text-dark bg-transparent floating-label" for="password_confirmation">Confirm Password</label>
+                        <div class="row">
+                            {{-- USERNAME --}}
+                            <div class="form-group col-12 col-md-9 col-lg-6 mx-auto">
+                                <input class="form-control border-secondary text-dark" type="text" name="username" value="{{ old('username') }}" placeholder="Username" />
+                                <small class="text-danger small">{{ $errors->first('username') }}</small>
+                            </div>
 
-                                <button type="button" class="btn text-dark floating-eye-pass p-1" id="toggle-show-password" aria-label="Show Password" data-target="#password_confirmation">
-                                    <i class="fas fa-eye d-none" id="show"></i>
-                                    <i class="fas fa-eye-slash" id="hide"></i>
-                                </button>
+                            {{-- Password --}}
+                            <div class="form-group col-12 col-md-9 col-lg-6 mx-auto">
+                                <div class="input-group">
+                                    <input class="form-control border-secondary text-dark" type="password" name="password" id="password" aria-label="Password" aria-describedby="toggle-show-password" placeholder="Password" />
+
+                                    <div class="input-group-append">
+                                        <button type="button" class="btn btn-light form-border border-left-0 border-secondary text-dark floating-eye-pass" id="toggle-show-password" aria-label="Show Password" data-target="#password">
+                                            <i class="fas fa-eye d-none" id="show"></i>
+                                            <i class="fas fa-eye-slash" id="hide"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <small class="text-danger small">{{ $errors->first('password') }}</small>
                             </div>
                         </div>
 
                         <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="customCheck1">
-                            <label class="custom-control-label text-justify" for="customCheck1">By checking this you accept the terms of use and handling of your data by this website in accordance with our <a href="#">Privacy Policy.</a></label>
+                            <input type="checkbox" class="custom-control-input" name="checkbox" id="checkbox">
+                            <label class="custom-control-label text-justify" for="checkbox">By checking this you accept the <a href="#">Terms of Use</a> and handling of your data by this website in accordance with our <a href="#">Privacy Policy.</a></label>
                         </div>
+                        <small class="text-danger small">{{ $errors->first('checkbox') }}</small>
 
                         <div class="form-group text-center my-3">
-                            <button type="submit" class="btn btn-outline-dark w-100 font-weight-bold">Register</button>
+                            <button type="submit" class="btn btn-outline-dark w-100 font-weight-bold" data-type="submit">Register</button>
                         </div>
 
                         <h6 class="text-center">Already registered? <a href="{{ route('login') }}">Login</a></h6>
@@ -145,7 +185,6 @@
                     {{-- LOGIN FORM END --}}
                 </div>
             </div>
-
         </div>
     </main>
 
