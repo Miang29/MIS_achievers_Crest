@@ -85,18 +85,18 @@ class UserController extends Controller
 					
 				],);
 
-			// MAILER SHIT
-			// _Mail::send(
-			// 	'layouts.emails.creation',
-			// 	[
-			// 		'req' => $req,
-			// 	],
-			// 	function ($mail) use ($user) {
-			// 		$mail->to($user->email)
-			// 			->from("nano.mis@technical.com") // MIS Nano Vet Clinic
-			// 			->subject("Account Created");
-			// 	}
-			// );
+			//MAILER SHIT
+			Mail::send(
+				'layouts.emails.creation',
+				[
+					'req' => $req,
+				],
+				function ($mail) use ($user) {
+					$mail->to($user->email)
+						->from("nano.mis@technical.com") // MIS Nano Vet Clinic
+						->subject("Account Created");
+				}
+			);
 			
 
 			DB::commit();
@@ -110,7 +110,7 @@ class UserController extends Controller
 		}
 
 		return redirect()
-			->route('home')
+			->route('login')
 			->with('flash_success', "Successfully created {$user->getName()} as {$user->userType->name}");
 	}
 

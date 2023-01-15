@@ -62,9 +62,9 @@
 </div>
 
 <div class="d-flex my-2">
-<a href="#" class="ml-auto">Terms of Service</a>
+<a href="{{ route('terms-of-service')}}" class="ml-auto">Terms of Service</a>
 <div class="border-right ml-2 border-dark"></div>
-<a href="#" class="mr-auto ml-2" >Privacy Policy</a>
+<a href="{{ route('privacy-policy')}}" class="mr-auto ml-2" >Privacy Policy</a>
 </div>
 
 <div class="card-footer col-lg-12 text-center cite" style="background-color:#021f53; color:white;">

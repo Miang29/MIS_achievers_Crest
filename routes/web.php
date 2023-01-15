@@ -19,6 +19,9 @@ Route::post('/submit-appointments', 'PageController@submitAppointments')->name('
 Route::get('/services-offer', 'PageController@ServicesOffer')->name('services-offer');
 Route::get('/about-us', 'PageController@aboutUs')->name('about-us');
 Route::get('/contact-us', 'PageController@contactUs')->name('contact-us');
+Route::get('/privacy-policy', 'PageController@privacyPolicy')->name('privacy-policy');
+Route::get('/terms-of-service', 'PageController@termsOfService')->name('terms-of-service');
+
 
 
 Route::get('/profile{id}', 'UserController@profile')->name('profile');

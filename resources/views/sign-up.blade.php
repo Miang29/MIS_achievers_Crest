@@ -53,7 +53,7 @@
     <link rel="mask-icon" href="{{ App\Settings::getInstance('web-logo')->getImage(!App\Settings::getInstance('web-logo')->is_file) }}">
 
     {{-- TITLE --}}
-    <title>User Login-Nano Management Information System, Taytay Rizal</title>
+    <title>User Sign Up-Nano Management Information System, Taytay Rizal</title>
 </head>
 
 <body>
@@ -172,7 +172,7 @@
 
                         <div class="custom-control custom-checkbox">
                             <input type="checkbox" class="custom-control-input" name="checkbox" id="checkbox">
-                            <label class="custom-control-label text-justify" for="checkbox">By checking this you accept the <a href="#">Terms of Use</a> and handling of your data by this website in accordance with our <a href="#">Privacy Policy.</a></label>
+                            <label class="custom-control-label text-justify" for="checkbox">By checking this you accept the <a href="{{ route('terms-of-service') }}">Terms of Service</a> and handling of your data by this website in accordance with our <a href="{{ route('privacy-policy')}}">Privacy Policy.</a></label>
                         </div>
                         <small class="text-danger small">{{ $errors->first('checkbox') }}</small>
 

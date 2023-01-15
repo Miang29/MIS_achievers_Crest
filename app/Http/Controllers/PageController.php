@@ -69,6 +69,14 @@ class PageController extends Controller
 		return view('contact-us');
 	}
 
+	protected function privacyPolicy() {
+		return view('privacy-policy');
+	}
+
+	protected function termsOfService() {
+		return view('terms-of-service');
+	}
+
 	protected function Appointment()
 	{
 
