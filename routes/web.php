@@ -25,7 +25,7 @@ Route::get('/dashboard', 'PageController@redirectDashboard')->name('dashboard.re
 
 
 
-Route::get('/profile{id}', 'UserController@profile')->name('profile');
+Route::get('/profile/{id}', 'UserController@profile')->name('profile');
 Route::get('/login', 'UserController@login')->name('login');
 Route::post('/authenticate', 'UserController@authenticate')->name('authenticate');
 Route::get('/sign-up', 'ClientController@SignUp')->name('sign-up');

@@ -74,6 +74,7 @@
 					{{-- LOGIN --}}
 					@if(!Auth::check())
 					<a class="nav-link font-weight-bold" style="color:#021f53;" data-toggle="tooltip" data-placement="top" title="Login" href="{{ route('login') }}"><i class="fa-solid fa-right-to-bracket ml-5"></i></a>
+					<a class="nav-link font-weight-bold" style="color:#021f53;" data-toggle="tooltip" data-placement="top" title="Login" href="{{ route('sign-up') }}"><i class="fa-solid fa-user-plus ml-5"></i></a>
 					@else
 
 					{{-- PROFILE --}}
@@ -82,7 +83,7 @@
 							{{ Auth::user()->getName() }}
 						</a>
 						<div class="dropdown-menu" aria-labelledby="dropdownMenu">
-							<a class="dropdown-item" href="{{ route('profile', [1]) }}"><i class="fa-solid fa-user mr-2"></i>My Profile</a>
+							<a class="dropdown-item" href="{{ route('profile', [Auth::user()->id]) }}"><i class="fa-solid fa-user mr-2"></i>My Profile</a>
 							<div class="dropdown-divider"></div>
 							@if(Auth::user()->user_type_id != 4)
 							<a class="dropdown-item" href="{{ route('dashboard')}}"><i class="fa-solid fa-chart-simple mr-2"></i>Dashboard</a>
