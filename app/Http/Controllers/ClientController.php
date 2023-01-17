@@ -4,13 +4,92 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\User;
+use App\UserType;
+
+use Auth;
 use DB;
 use Exception;
+use Hash;
 use Log;
 use Mail;
+use Validator;
 
 class ClientController extends Controller
 {
+	
+	protected function SignUp()
+	{
+
+		return view('sign-up');
+	}
+
+	protected function save(Request $req)
+	{
+	$validator = Validator::make($req->all(), [
+			'first_name' => 'required|min:2|max:255|string',
+			'middle_name' => 'nullable|min:2|max:255|string',
+			'last_name' => 'required|min:2|max:255|string',
+			'suffix' => 'nullable|min:2|max:255|string',
+			'email' => 'required|unique:users,email|min:2|max:255|email',
+			'username' => 'required|unique:users,username|min:2|max:255|string',
+			'password' => array('required', 'string', 'min:8', 'max:255', 'regex:/^[a-zA-Z0-9!@#$%^&*()_+\-=\[\]{};\':"\\|,.<>\/?]*$/'),
+			'checkbox' => 'required'
+		],[
+			'checkbox.required' => 'You need to agree and accept the terms of service and read Privacy policy.',
+		]);
+
+		if ($validator->fails())
+			return redirect()
+				->back()
+				->withErrors($validator)
+				->withInput();
+		try {
+			
+			DB::beginTransaction();
+
+			$type = UserType::where('name', '=', 'Client')->first();
+			
+			$user = User::create([
+					'first_name' => $req->first_name,
+					'middle_name' => $req->middle_name,
+					'last_name' => $req->last_name,
+					'suffix' => $req->suffix,
+					'email' => $req->email,
+					'username' => $req->username,
+					'user_type_id' => $type->id,
+					'password' => Hash::make($req->password),
+					
+				],);
+
+			//MAILER SHIT
+			Mail::send(
+				'layouts.emails.creation',
+				[
+					'req' => $req,
+				],
+				function ($mail) use ($user) {
+					$mail->to($user->email)
+						->from("nano.mis@technical.com") // MIS Nano Vet Clinic
+						->subject("Account Created");
+				}
+			);
+
+			DB::commit();
+		} catch (Exception $e) {
+			DB::rollback();
+			Log::error($e);
+
+			return redirect()
+				->route('sign-up')
+				->with('flash_error', 'Something went wrong, please try again later');
+		}
+
+		return redirect()
+			->route('login')
+			->with('flash_success', "Successfully created {$user->getName()} as {$user->userType->name}");
+	}
+
 	// TEMP VAR
 	private $clients = [
 		[

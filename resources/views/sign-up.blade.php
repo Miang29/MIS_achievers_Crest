@@ -125,24 +125,11 @@
                             </div>
 
                             {{-- Email --}}
-                            <div class="col-12 col-md-9 col-lg-6 mx-auto">
+                            <div class="col-12 col-md-9 col-lg-12 mx-auto">
                                 <div class="form-group">
                                     <input class="form-control border-secondary text-dark" type="text" name="email" value="{{ old('email') }}" placeholder="Email" />
                                     <small class="text-danger small">{{ $errors->first('email') }}</small>
                                 </div>
-                            </div>
-
-
-                            {{-- USER TYPE --}}
-                            <div class="col-12 col-md-9 col-lg-6 mx-auto form-group">
-                                <select class="form-control custom-select text-1 border-secondary text-dark" name="user_type">
-                                    @forelse ($types as $t)
-                                    <option value="{{ $t->id }}" {{ old('user_type') == $t->id ? 'selected' : '' }}>{{ $t->name }}</option>
-                                    @empty
-                                    <option selected>-- NO OPTION --</option>
-                                    @endforelse
-                                </select><br>
-                                <small class="text-danger small">{{ $errors->first('user_type') }}</small>
                             </div>
 
                         </div>
@@ -191,66 +178,66 @@
     <!-- SCRIPTS -->
     <script type="text/javascript" src="{{ asset('js/login.js') }}"></script>
     <script type="text/javascript">
-        @if(Session::has('flash_error'))
-        Swal.fire({
-            {
-                !!Session::has('has_icon') ? "icon: `error`," : ""!!
-            }
-            title: `{{Session::get('flash_error')}}`,
-            {
-                !!Session::has('message') ? 'html: `'.Session::get('message').
-                '`,' : ''!!
-            }
-            position: {
-                !!Session::has('position') ? '`'.Session::get('position').
-                '`' : '`top`'!!
-            },
-            showConfirmButton: false,
-            toast: {
-                !!Session::has('is_toast') ? Session::get('is_toast'): true!!
-            },
-            {
-                !!Session::has('has_timer') ? (Session::get('has_timer') ? (Session::has('duration') ? ('timer: '.Session::get('duration')).
-                    ',' : `timer: 10000,`) : '') : `timer: 10000,`!!
-            }
-            background: `#dc3545`,
-            customClass: {
-                title: `text-white`,
-                content: `text-white`,
-                popup: `px-3`
-            },
-        });
-        @elseif(Session::has('flash_success'))
-        Swal.fire({
-            {
-                !!Session::has('has_icon') ? "icon: `success`," : ""!!
-            }
-            title: `{{Session::get('flash_success')}}`,
-            {
-                !!Session::has('message') ? 'html: `'.Session::get('message').
-                '`,' : ''!!
-            }
-            position: {
-                !!Session::has('position') ? '`'.Session::get('position').
-                '`' : '`top`'!!
-            },
-            showConfirmButton: false,
-            toast: {
-                !!Session::has('is_toast') ? Session::get('is_toast'): true!!
-            },
-            {
-                !!Session::has('has_timer') ? (Session::get('has_timer') ? (Session::has('duration') ? ('timer: '.Session::get('duration')).
-                    ',' : `timer: 10000,`) : 'timer: 5000,') : `timer: 10000,`!!
-            }
-            background: `#28a745`,
-            customClass: {
-                title: `text-white`,
-                content: `text-white`,
-                popup: `px-3`
-            },
-        });
-        @endif
-    </script>
+		@if(Session::has('flash_error'))
+		Swal.fire({
+			{
+				!!Session::has('has_icon') ? "icon: `error`," : ""!!
+			}
+			title: `{{Session::get('flash_error')}}`,
+			{
+				!!Session::has('message') ? 'html: `'.Session::get('message').
+				'`,' : ''!!
+			}
+			position: {
+				!!Session::has('position') ? '`'.Session::get('position').
+				'`' : '`top`'!!
+			},
+			showConfirmButton: false,
+			toast: {
+				!!Session::has('is_toast') ? Session::get('is_toast'): true!!
+			},
+			{
+				!!Session::has('has_timer') ? (Session::get('has_timer') ? (Session::has('duration') ? ('timer: '.Session::get('duration')).
+					',' : `timer: 10000,`) : '') : `timer: 10000,`!!
+			}
+			background: `#dc3545`,
+			customClass: {
+				title: `text-white`,
+				content: `text-white`,
+				popup: `px-3`
+			},
+		});
+		@elseif(Session::has('flash_success'))
+		Swal.fire({
+			{
+				!!Session::has('has_icon') ? "icon: `success`," : ""!!
+			}
+			title: `{{Session::get('flash_success')}}`,
+			{
+				!!Session::has('message') ? 'html: `'.Session::get('message').
+				'`,' : ''!!
+			}
+			position: {
+				!!Session::has('position') ? '`'.Session::get('position').
+				'`' : '`top`'!!
+			},
+			showConfirmButton: false,
+			toast: {
+				!!Session::has('is_toast') ? Session::get('is_toast'): true!!
+			},
+			{
+				!!Session::has('has_timer') ? (Session::get('has_timer') ? (Session::has('duration') ? ('timer: '.Session::get('duration')).
+					',' : `timer: 10000,`) : 'timer: 5000,') : `timer: 10000,`!!
+			}
+			background: `#28a745`,
+			customClass: {
+				title: `text-white`,
+				content: `text-white`,
+				popup: `px-3`
+			},
+		});
+		@endif
+	</script>
 </body>
 
 </html>
