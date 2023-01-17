@@ -7,7 +7,7 @@
 <div class="col-12">
 
 
-    <div class="row">
+    <div class="row" style=" background-color:#C2E0D8;">
 
         <div class=" col-12 col-lg-6 w-lg-100 w-md-100 w-xs-100   text-center ">
             <h4 class="mt-5 ml-4 text-1" style=" font-size: 2.5rem; ">What we offer?</h4>
@@ -15,7 +15,7 @@
             </p>
         </div>
 
-        <div class=" col-12 col-lg-6 w-xs-100 w-lg-100  mt-5  text-center ">
+        <div class=" col-12 col-lg-6 w-xs-100 w-lg-100 my-5 text-center ">
             <div class="embed-responsive embed-responsive-21by9">
                 <video class="embed-responsive-item" controls autoplay muted>
                     <source src="{{ asset('uploads/settings/pet-video.mp4') }}" type="video/mp4">

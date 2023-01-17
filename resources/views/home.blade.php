@@ -41,8 +41,8 @@
             <div class="col-12 d-flex ">
                 @if(Auth::check())
                 <a href="{{route ('appointment')}}" class="btn btn-outline-custom mx-auto"><i class="fa-solid fa-arrow-right mr-2"></i>Book Appointment</a>
-                 @else
-                 <a href="{{route ('login')}}" class="btn btn-outline-custom mx-auto"><i class="fa-solid fa-arrow-right mr-2"></i>Book Appointment</a>
+                @else
+                <a href="{{route ('login')}}" class="btn btn-outline-custom mx-auto"><i class="fa-solid fa-arrow-right mr-2"></i>Book Appointment</a>
                 @endif
             </div>
         </div>
@@ -57,14 +57,25 @@
 </div>
 
 
-<div class="card-body text-center" style="height:31rem; background-color:#C2E0D8 ;">
+<div class="card-body text-center" style="height:31rem; background-color:#C2E0D8;">
 
+    <div class="row h-75 mt-4">
+        <div class="card col-lg-3 mx-auto border-success" style="border-radius:2.5rem;">
+            <img src="{{ asset('uploads/settings/vet-img1.jpg') }}" class="card-img-top my-5">
+        </div>
+        <div class="card col-lg-3 mx-auto border-primary"  style="border-radius:2.5rem;">
+            <img src="{{ asset('uploads/settings/vet-img3.jpg') }}" class="card-img-top my-5">
+        </div>
+        <div class="card col-lg-3 mx-auto border-info"  style="border-radius:2.5rem;">
+            <img src="{{ asset('uploads/settings/vet-img.jpg') }}" class="card-img-top my-5">
+        </div>
+    </div>
 </div>
 
 <div class="d-flex my-2">
-<a href="{{ route('terms-of-service')}}" class="ml-auto">Terms of Service</a>
-<div class="border-right ml-2 border-dark"></div>
-<a href="{{ route('privacy-policy')}}" class="mr-auto ml-2" >Privacy Policy</a>
+    <a href="{{ route('terms-of-service')}}" class="ml-auto">Terms of Service</a>
+    <div class="border-right ml-2 border-dark"></div>
+    <a href="{{ route('privacy-policy')}}" class="mr-auto ml-2">Privacy Policy</a>
 </div>
 
 <div class="card-footer col-lg-12 text-center cite" style="background-color:#021f53; color:white;">

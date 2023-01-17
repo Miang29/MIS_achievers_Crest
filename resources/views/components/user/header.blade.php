@@ -74,7 +74,7 @@
 					{{-- LOGIN --}}
 					@if(!Auth::check())
 					<a class="nav-link font-weight-bold" style="color:#021f53;" data-toggle="tooltip" data-placement="top" title="Login" href="{{ route('login') }}"><i class="fa-solid fa-right-to-bracket ml-5"></i></a>
-					<a class="nav-link font-weight-bold" style="color:#021f53;" data-toggle="tooltip" data-placement="top" title="Login" href="{{ route('sign-up') }}"><i class="fa-solid fa-user-plus ml-5"></i></a>
+					<a class="nav-link font-weight-bold" style="color:#021f53;" data-toggle="tooltip" data-placement="top" title="Sign Up" href="{{ route('sign-up') }}"><i class="fa-solid fa-user-plus ml-5"></i></a>
 					@else
 
 					{{-- PROFILE --}}
