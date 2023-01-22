@@ -9,7 +9,7 @@
         <h1 class="title mx-auto"><i class="fa-solid fa-house-chimney-medical mr-2"></i>Our Clinic</h1><br>
     </div>
 
-    <div class="row w-100 mx-auto">
+    <div class="row w-100 mx-auto border border-secondary" style="border-radius: 1rem;">
 
         <div class=" col-12 col-md-12 col-lg-6 d-flex text-center h-100" style="margin-top:8rem;">
             <p class="card-text font-italic mr-auto mt-5">Nano Veterinary Clinic is located in Taytay, Rizal. Nano Veterinary Clinic is working in Veterinarians & animal hospitals, Animal and pet stores activities. The Nano Veterinary Clinic was built last September 2015.<br><br></p>
@@ -27,7 +27,7 @@
 {{-- ============================================= ABOUT ============================================= --}}
 <div class="about h-100 bg-custom min-vh-100">
     {{-- Title --}}
-    <div class="col-12 d-flex border-bottom border-secondary  ">
+    <div class="col-12 d-flex border-bottom border-secondary">
         <h1 class="title mx-auto text-white mt-5"><i class="fa-solid fa-user-doctor mr-2"></i>Our Veterinarian</h1><br>
     </div>
 
@@ -59,7 +59,7 @@
     <div class="col-12 d-flex">
         <h1 class="title mx-auto"><i class="fa-solid fa-map-pin mr-2"></i>Our Location</h1><br>
     </div>
-    <div class="" style="border:#021f53 solid">
+    <div class="" style="border:#021f53 solid; border-radius: 1rem;">
         <div class="mapouter mx-auto">
             <div class="gmap_canvas"><iframe width="1000" height="450" id="gmap_canvas" src="https://maps.google.com/maps?q=Blk.%203%20Lot%203%20Unit%205%20Glendale%20Village,Brgy.%20Dolores,%20Taytay%20Rizal&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><a href="https://www.whatismyip-address.com/divi-discount/">divi discount</a><br>
                 <style>

@@ -58,8 +58,8 @@
 
 
 <div class="card-body text-center" style="height:31rem; background-color:#C2E0D8;">
-
-    <div class="row h-75 mt-4">
+        <h1 style="font-family:fantasy; font-weight:bolder;">WE VALUE YOUR PETS</h1>
+    <div class="row h-75 mt-3">
         <div class="card col-lg-3 mx-auto border-success" style="border-radius:2.5rem;">
             <img src="{{ asset('uploads/settings/vet-img1.jpg') }}" class="card-img-top my-5">
         </div>
