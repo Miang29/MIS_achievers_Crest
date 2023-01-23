@@ -7,11 +7,11 @@
 <div class="container-fluid px-2 px-lg-6 py-2 h-100 my-3">
 	<div class="row">
 		<div class="col-12 col-lg-6 text-center text-lg-left">
-			<h2 class=" text-1">PROFILE LIST</h2>
+			<h2 class=" text-1">Pet Information</h2>
 		</div>
 
 		<div class="col-12 col-md-6 col-lg my-2 text-center text-md-left text-lg-right">
-			<a href="{{ route('client-profile.create') }}" class="btn btn-info btn-sm my-1 bg-1"><i class="fas fa-plus-circle mr-2"></i>Add Profile</a>
+			<a href="{{ route('client-profile.create') }}" class="btn btn-info btn-sm my-1 bg-1"><i class="fas fa-plus-circle mr-2"></i>Pet Registration</a>
 			<button class="btn btn-info btn-sm my-1 bg-1" id="clientNotify" data-scf="Message" data-scf-name="message" data-scf-target-uri="{{ route('clients.notify') }}" data-scf-custom-title="Notification Message" data-scf-use-textarea="true" data-scf-disable-button="true"><i class="fa-solid fa-bell mr-2"></i>Notify Clients</a>
 		</div>
 
@@ -59,10 +59,8 @@
 								</button>
 
 								<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown">
-									<a href="{{route('client-profile.show', [$c['id']])}}" class="dropdown-item"><i class="fa-solid fa-eye mr-2"></i>View Client</a>
-									<a href="{{route('client-profile.edit', [$c['id']])}}" class="dropdown-item"><i class="fa-regular fa-pen-to-square mr-2"></i>Edit Client</a>
-									<a href="{{route('client-profile.pet.show', [$c['id']])}}" class="dropdown-item"><i class="fa-solid fa-eye mr-2"></i>View Pet</a>
-									<a href="#" class="dropdown-item"><i class="fa-solid fa-trash mr-2"></i>Delete</a>
+									<a href="{{route('client-profile.pet.show', [$c['id']])}}" class="dropdown-item"><i class="fa-solid fa-eye mr-2"></i>View Pets Information</a>
+									<a href="#" class="dropdown-item"><i class="fa-solid fa-trash mr-2"></i>Archive</a>
 								</div>
 							</div>
 						</td>

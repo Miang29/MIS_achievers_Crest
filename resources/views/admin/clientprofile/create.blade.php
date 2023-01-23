@@ -4,65 +4,35 @@
 
 @section('content')
 <div class="container-fluid m-0 ">
-<h3 class="mt-3"><a href="{{route('client-profile')}}" class="text-decoration-none  text-1"><i class="fas fa-chevron-left mr-2"></i>Profile List</a></h3>
+	<h3 class="mt-3"><a href="{{route('client-profile')}}" class="text-decoration-none  text-1"><i class="fas fa-chevron-left mr-2"></i>Pet Information</a></h3>
 	<hr class="hr-thick" style="border-color: #707070;">
-	
+
 	<form class="form ">
 		<div class="row" id="form-area">
 			<div class="col-12 col-md-12">
-				<div class="card my-3 mx-auto">
-					<h2 class="card-header font-weight-bold gbg-1 text-white text-center"><i class="fa-solid fa-address-card mr-2"></i>Client Profile</h2>
-					<div class="card-body d-flex ">
-
-						<div class="form-group mx-auto w-lg-50 w-md-75 w-xs-100">
-							<div class="col-12">
-
-								<div class="row">
-									<div class="col-lg-12 col-md-8 col-12">
-										<label class="h6 font-weight-bold text-1 important" for="petowner">Pet Owner</label>
-										<input class="form-control " type="text" name="petowner" value="{{old('petowner')}}" />
-									</div>
-
-									<div class="col-lg-12 col-md-8 col-12">
-										<label class="h6 font-weight-bold text-1  important" for="address">Address</label>
-										<textarea class="form-control not-resizable" name="address" rows="3"></textarea>
-									</div>
-								</div>
-
-								<div class="row ">
-									<div class="col-lg-6 col-md-8 col-sm-12 ">
-										<label class="h6 font-weight-bold text-1" for="telephone">Telephone No</label>
-										<input class="form-control" type="text" name="telephone" value="{{old('telephone')}}" />
-									</div>
-
-									<div class="col-lg-6 col-md-8 col-sm-12">
-										<label class="h6 font-weight-bold text-1  important" for="email">Email</label>
-										<input class="form-control" type="email" name="email" value="{{old('email')}}" />
-									</div>
-								</div>
-
-								<div class="row ">
-									<div class="col-lg-6 col-md-8 col-sm-12 ">
-										<label class="h6 font-weight-bold text-1" for="mobile">Mobile No</label>
-										<input class="form-control" type="text" name="mobile" value="{{old('mobile')}}" />
-									</div>
-
-									<div class="col-lg-6 col-md-8 col-sm-12 ">
-										<label class="h6 font-weight-bold text-1  important" for="type">Type</label>
-										<div class="input-group ">
-											<select class="custom-select" id="inputGroupSelect01">
-												<option selected name="type"></option>
-												<option value="1">Old</option>
-												<option value="2">New</option>
-											</select>
-										</div>
-									</div>
-								</div>
-							</div>
+				<div class="row">
+					<div class="input-group mb-3 col-lg-6">
+						<div class="input-group-prepend">
+							<label class="input-group-text font-weight-bold bg-white" for="inputGroupSelect01">Client Name</label>
 						</div>
+						<select class="custom-select" id="inputGroupSelect01">
+							<option selected>Choose a registered client</option>
+							<option value="1">One</option>
+							<option value="2">Two</option>
+							<option value="3">Three</option>
+						</select>
+					</div>
+
+					<div class="input-group mb-3 col-lg-6">
+						<div class="input-group-prepend">
+							<span class="input-group-text font-weight-bold bg-white" id="inputGroup-sizing-default">Email</span>
+						</div>
+						<input type="text" class="form-control bg-light" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" readonly>
 					</div>
 				</div>
 			</div>
+
+
 
 			{{-- PET REGISTRATION FORM --}}
 			<div class="col-lg-6 col-md-8 col-sm-12 my-2 mx-auto">
@@ -80,7 +50,7 @@
 							</div>
 
 							<div class="col-12 col-lg-12 col-md-12 ">
-								
+
 								<div class="form-group ">
 
 									<label class="h6 font-weight-bold text-1  important" for="petname">Pet Name</label>
