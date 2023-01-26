@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Client Profile')
+@section('title', 'Pet Information')
 
 @section('content')
 
@@ -11,7 +11,7 @@
 		</div>
 
 		<div class="col-12 col-md-6 col-lg my-2 text-center text-md-left text-lg-right">
-			<a href="{{ route('client-profile.create') }}" class="btn btn-info btn-sm my-1 bg-1"><i class="fas fa-plus-circle mr-2"></i>Pet Registration</a>
+			<a href="{{ route('pet-information.create') }}" class="btn btn-info btn-sm my-1 bg-1"><i class="fas fa-plus-circle mr-2"></i>Pet Registration</a>
 			<button class="btn btn-info btn-sm my-1 bg-1" id="clientNotify" data-scf="Message" data-scf-name="message" data-scf-target-uri="{{ route('clients.notify') }}" data-scf-custom-title="Notification Message" data-scf-use-textarea="true" data-scf-disable-button="true"><i class="fa-solid fa-bell mr-2"></i>Notify Clients</a>
 		</div>
 
@@ -33,7 +33,7 @@
 						<th scope="col" class="hr-thick text-1 text-center">Pet Owner</th>
 						<th scope="col" class="hr-thick text-1 text-center">Email</th>
 						<th scope="col" class="hr-thick text-1 text-center">Pet(s)</th>
-						<th scope="col" class="hr-thick text-1 text-center"></th>
+						<th scope="col" class="hr-thick text-1 text-center">Action</th>
 					</tr>
 				</thead>
 
@@ -46,23 +46,18 @@
 							@php
 							$arr = [];
 							foreach ($pets["{$c['id']}"] as $p)
-								array_push($arr, $p['name']);
-							
+							array_push($arr, $p['name']);
+
 							echo implode(', ', $arr);
 							@endphp
 						</td>
-					  
-						<td class="text-center">
-							<div class="dropdown">
-								<button class="btn btn-info bg-1 btn-sm dropdown-toggle mark-affected" type="button" data-toggle="dropdown" id="dropdown" aria-haspopup="true" aria-expanded="false">
-									Action
-								</button>
 
-								<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown">
-									<a href="{{route('client-profile.pet.show', [$c['id']])}}" class="dropdown-item"><i class="fa-solid fa-eye mr-2"></i>View Pets Information</a>
-									<a href="#" class="dropdown-item"><i class="fa-solid fa-trash mr-2"></i>Archive</a>
-								</div>
+						<td class="text-center">
+							<div class="row">
+								<a class="border-right border-secondary" href="{{route('pet-information.pet.show', [$c['id']])}}"><i class="fa-solid fa-eye  ml-5 mr-2 text-dark"></i></a>
+								<a href="#"><i class="fa-solid fa-box-archive ml-2 text-info"></i></a>
 							</div>
+
 						</td>
 					</tr>
 					@empty

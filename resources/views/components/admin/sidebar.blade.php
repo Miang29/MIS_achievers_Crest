@@ -19,12 +19,12 @@
 		
 		{{-- Client Profile --}}
 		{{-- @if (Auth::user()->isAdmin()) --}}
-		@if (\Request::is('admin/client-profile'))
+		@if (\Request::is('admin/pet-information'))
 		<span class="bg-secondary text-white"><i class="fas fa-address-card  mr-3 fa-lg"></i>Pet Information</span>
-		@elseif (\Request::is('admin/client-profile/*'))
-		<a class="text-decoration-none aria-link bg-secondary text-white" href="{{route('client-profile')}}" aria-hidden="false" aria-label="Reservation"><i class="fas fa-address-card  mr-3 fa-lg"></i>Pet Information</a>
+		@elseif (\Request::is('admin/pet-information/*'))
+		<a class="text-decoration-none aria-link bg-secondary text-white" href="{{route('pet-information')}}" aria-hidden="false" aria-label="Reservation"><i class="fas fa-address-card  mr-3 fa-lg"></i>Pet Information</a>
 		@else
-		<a class="text-decoration-none text-1 aria-link" href="{{route('client-profile')}}" aria-hidden="false" aria-label="Reservation"><i class="fas fa-address-card  mr-3 fa-lg"></i>Pet Information</a>
+		<a class="text-decoration-none text-1 aria-link" href="{{route('pet-information')}}" aria-hidden="false" aria-label="Reservation"><i class="fas fa-address-card  mr-3 fa-lg"></i>Pet Information</a>
 		@endif
 		{{-- @endif --}}
 

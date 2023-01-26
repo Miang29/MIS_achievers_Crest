@@ -7,7 +7,7 @@
 <div class="container-fluid px-2 px-lg-6 py-2 h-100 my-3">
 	<div class="row border-bottom border-secondary">
 		<div class="col-12 col-lg-6 text-center text-lg-left ">
-			<h3 class="mt-3"><a href="{{route('client-profile')}}" class="text-decoration-none  text-1"><i class="fas fa-chevron-left mr-2"></i>Pet Information</a></h3>
+			<h3 class="mt-3"><a href="{{route('pet-information')}}" class="text-decoration-none  text-1"><i class="fas fa-chevron-left mr-2"></i>Pet Information</a></h3>
 		</div>
 
 		<div class=" col-12 col-md-6 col-lg-6 my-2 text-center text-lg-right">
@@ -20,9 +20,9 @@
 		</div>
 	</div>
 	<div class="card mx-auto mt-4">
-		<h5 class="card-header text-center text-white bg-1 font-weight-bold ">P E T S <br>I N F O R M A T I O N</h5>
+		<h5 class="card-header text-center text-white bg-1 font-weight-bold text-justify" style=" word-spacing: 3px;">P E T  <p>L I S T  I N F O R M A T I O N</h5>
 		<div class="position-absolute border rounded input m-0" style="top: -1rem; right: -1rem;">
-			<a href="#" class="btn btn-md bg-white border-light"><i class="fa-solid fa-plus text-black"></i></a>
+			<a href="{{ route('pet-information.pet.add')}}" class="btn btn-md bg-white border-light"><i class="fa-solid fa-plus text-black"></i></a>
 
 		</div>
 		<div class="card-body">
@@ -40,11 +40,11 @@
 						<div class="position-absolute border rounded input m-0" style="top: -1rem; right: -1rem;">
 							<div class="input-group">
 								<div class="input-group-prepend bg-white border-right">
-									<a href="{{ route("client-profile.pet.edit", [1, $i++]) }}" class="btn btn-white"><i class="fas fa-pencil text-black"></i></a>
+									<a href="{{ route("pet-information.pet.edit", [1, $i++]) }}" class="btn btn-white"><i class="fas fa-pencil text-black"></i></a>
 								</div>
 
 								<div class="input-group-append bg-white border-left">
-									<a href="javascript:void(0);" onclick="confirmLeave('{{route('client-profile.pet.show', [1])}}', undefined, 'Are you sure you want to remove this pet?');" class="btn btn-white"><i class="fas fa-trash text-danger"></i></a>
+									<a href="javascript:void(0);" onclick="confirmLeave('{{route('pet-information.pet.show', [1])}}', undefined, 'Are you sure you want to remove this pet?');" class="btn btn-white"><i class="fas fa-trash text-danger"></i></a>
 								</div>
 							</div>
 						</div>

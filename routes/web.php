@@ -51,30 +51,27 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
 
 	// CLIENT PROFILE
-	Route::group(['prefix' => 'client-profile'], function () {
+	Route::group(['prefix' => 'pet-information'], function () {
 		// Index
-		Route::get('/', 'ClientController@index')->name('client-profile');
+		Route::get('/', 'ClientController@index')->name('pet-information');
 
 		// Create
-		Route::get('/create', 'ClientController@create')->name('client-profile.create');
+		Route::get('/create', 'ClientController@create')->name('pet-information.create');
 
-		// Edit
-		Route::get('/edit/{id}', 'ClientController@edit')->name('client-profile.edit');
-
-		// Show
-		Route::get('/view/{id}/client', 'ClientController@viewClientProfile')->name('client-profile.show');
+		// Add
+		Route::get('/add', 'ClientController@add')->name('pet-information.pet.add');
 
 		// Pet Edit
-		Route::get('/view/{clientId}/pet/{id}/edit', 'ClientController@editPet')->name('client-profile.pet.edit');
+		Route::get('/view/{clientId}/pet/{id}/edit', 'ClientController@editPet')->name('pet-information.pet.edit');
 
 		// Pet Show
-		Route::get('/view/{id}/pet', 'ClientController@showPets')->name('client-profile.pet.show');
+		Route::get('/view/{id}/pet', 'ClientController@showPets')->name('pet-information.pet.show');
 	});
 
 
 
 	// TRANSACTION
-	Route::group(['prefix' => 'transaction'], function() {
+	Route::group(['prefix' => 'transaction'], function () {
 		// TRANSACTION - PRODUCT
 		Route::group(['prefix' => 'products-order'], function () {
 			//Index
@@ -117,7 +114,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
 		//Edit
 		// Route::get('/{id}/edit', 'InventoryController@editCategory')->name('category.edit');
-		
+
 		//Update
 		Route::post('/{id}/update', 'InventoryController@updateCategory')->name('category.update');
 
@@ -125,7 +122,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 		Route::get('/{id}/delete/', 'InventoryController@deleteCategory')->name('category.delete');
 
 		//INVENTORY-PRODUCT
-		Route::group(['prefix' => '{id}'], function() {
+		Route::group(['prefix' => '{id}'], function () {
 			//Index
 			Route::get('/product', 'InventoryController@index')->name('category.view');
 
@@ -162,17 +159,16 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
 		// Show
 		Route::get('/{id}show', 'AppointmentController@show')->name('appointments.show');
-		
+
 		//Save
 		Route::post('/save-appointments', 'AppointmentController@saveAppointments')->name('save-appointments');
 
 		//Update
-		Route::post('{id}/update-appointments','AppointmentController@updateAppointments')->name('update-appointments');
-
+		Route::post('{id}/update-appointments', 'AppointmentController@updateAppointments')->name('update-appointments');
 	});
 
 	// SERVICES CATEGORY
-	Route::group(['prefix' => 'service-category'], function() {
+	Route::group(['prefix' => 'service-category'], function () {
 		// Index
 		Route::get('/', 'ServiceCategoryController@index')->name('service_category.index');
 
@@ -181,12 +177,12 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
 		// Edit
 		Route::post('/{id}/update', 'ServiceCategoryController@update')->name('service_category.update');
-		
-	    // Delete
+
+		// Delete
 		Route::get('/{id}/delete', 'ServiceCategoryController@delete')->name('service_category.delete');
 
 		// SERVICES
-		Route::group(['prefix' => '{id}/service'], function() {
+		Route::group(['prefix' => '{id}/service'], function () {
 			// Show - Category / Index - Service
 			Route::get('/', 'ServiceController@index')->name('service.index');
 
@@ -200,13 +196,13 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 			Route::get('/delete/{serviceId}', 'ServiceController@delete')->name('service.delete');
 
 			// VARIATIONS
-			Route::group(['prefix' => '{serviceId}/variations'], function() {
+			Route::group(['prefix' => '{serviceId}/variations'], function () {
 				// Index
 				Route::get("/", "ServiceVariationController@index")->name('service_variation.index');
 
 				// Create
 				Route::get("/create", "ServiceVariationController@create")->name('service_variation.create');
-				
+
 				// Show
 				Route::get("/{variationId}", "ServiceVariationController@show")->name('service_variation.show');
 
@@ -229,9 +225,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 	});
 
 	//SETTINGS
-	Route::get('/settings', 'SettingsController@settings')->name('settings.index');
-	Route::post('/update', 'SettingsController@update')->name('settings.update');
-	Route::post('/remove-logo', 'SettingsController@removeLogo')->name('settings.remove-logo');
+		Route::get('/settings', 'SettingsController@settings')->name('settings.index');
+		Route::post('/update', 'SettingsController@update')->name('settings.update');
+		Route::post('/remove-logo', 'SettingsController@removeLogo')->name('settings.remove-logo');
+	
 
 
 	//USER ACCOUNT
@@ -253,7 +250,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
 		//Update
 		Route::post('/{id}/update-user', 'UserController@updateUser')->name('update-user');
-		
+
 		//Delete
 		Route::get('/{id}/delete', 'UserController@delete')->name('user.delete');
 
@@ -261,6 +258,5 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 		Route::get('/{id}/edit-password', 'UserController@editPassword')->name('user.edit-password');
 
 		Route::post('/{id}/submit-password', 'UserController@submitPassword')->name('submit-password');
-	
 	});
 });

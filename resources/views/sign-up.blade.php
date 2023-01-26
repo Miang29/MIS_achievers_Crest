@@ -175,9 +175,9 @@
         </div>
     </main>
 
-    <!-- SCRIPTS -->
-    <script type="text/javascript" src="{{ asset('js/login.js') }}"></script>
-    <script type="text/javascript">
+	<!-- SCRIPTS -->
+	<script type="text/javascript" src="{{ asset('js/login.js') }}"></script>
+	<script type="text/javascript">
 		@if(Session::has('flash_error'))
 		Swal.fire({
 			{
@@ -239,5 +239,4 @@
 		@endif
 	</script>
 </body>
-
 </html>

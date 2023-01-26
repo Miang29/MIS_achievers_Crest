@@ -20,7 +20,6 @@ class ClientController extends Controller
 	
 	protected function SignUp()
 	{
-
 		return view('sign-up');
 	}
 
@@ -87,7 +86,7 @@ class ClientController extends Controller
 
 		return redirect()
 			->route('login')
-			->with('flash_success', "Successfully created {$user->getName()} as {$user->userType->name}");
+			->with('flash_success', "Successfully created {$user->getName()}");
 	}
 
 	// TEMP VAR
@@ -177,48 +176,29 @@ class ClientController extends Controller
 
 	// CLIENT-PROFILE
 	protected function index() {
-		return view('admin.clientprofile.index', [
+		return view('admin.pet-information.index', [
 			'clients' => $this->clients,
 			'pets' => $this->pets
 		]);
 	}
 
 	protected function create() {
-		return view('admin.clientprofile.create');
+		return view('admin.pet-information.create');
 	}
-
-	protected function edit() {
-		return view('admin.clientprofile.client.edit', [
-			'client' => collect([
-				"name" => "Joseph Polio",
-				"email" => "joseph.polio@gmail.com",
-				"telephone" => "678-4421",
-				"mobile" => "09267789945",
-				"address" => "11 Maharlika St. San Francisco Village Muzon Taytay Rizal",
-				"type" => "New"
-			])
-		]);
-	}
-
-
-	protected function viewClientProfile($id) {
-		$client = $this->clients[$id-1];
-		
-		return view('admin.clientprofile.client.view', [
-			'id' => $id,
-			'client' => $client
-		]);	
+	
+	protected function add() {
+		return view('admin.pet-information.pet.add');
 	}
 
 	protected function showPets($id) {
-		return view('admin.clientprofile.pet.index', [
+		return view('admin.pet-information.pet.index', [
 			'id' => $id,
 			'pets' => $this->pets["{$id}"]
 		]);
 	}
 
 	protected function editPet($id) {
-		return view('admin.clientprofile.pet.edit');
+		return view('admin.pet-information.pet.edit');
 		
 	}
 
