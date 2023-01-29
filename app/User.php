@@ -43,6 +43,10 @@ class User extends Authenticatable
         return $this->belongsTo('App\UserType');
     }
 
+    protected function petsInformations() {
+        return $this->hasMany('App\PetsInformation', 'pet_owner', 'id');
+    }
+
     // Custom Functions
     public function getName($include_middle = false) {
         return $this->first_name . ($include_middle ? (' ' . $this->middle_name . ' ') : ' ') . $this->last_name;

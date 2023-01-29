@@ -29,7 +29,7 @@
 											<div class="col-12 col-md-6 text-md-right">
 												<div class="hover-cam mx-auto avatar rounded overflow-hidden">
 													<img src="{{ App\Settings::getInstance('web-logo')->getImage(!App\Settings::getInstance('web-logo')->is_file) }}" class="hover-zoom img-fluid avatar" id="web-logo-container" alt="Website Logo" data-default-src="{{ asset('uploads/settings/default.png') }}">
-													<span class="icon text-center image-input-float" id="web-logo" tabindex="0">
+													<span class="icon text-center image-input-float" id="web-logo" tabindex="0" data-target="#web-logo-container">
 														<i class="fas fa-camera text-white hover-icon-2x"></i>
 													</span>
 												</div>

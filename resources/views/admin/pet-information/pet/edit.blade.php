@@ -25,47 +25,68 @@
 
                     <div class="col-12 col-lg-6">
                         <div class="form-group ">
-                            <label class="important text-1" for="petname">Pet Name</label>
-                            <input class="form-control" type="text" name="petname[]" />
-
-                            <label class="important text-1" for="breed">Breed</label>
-                            <input class="form-control" type="text" name="breed[]" />
-
-                            <label class="important text-1" for="color">Color/s</label>
-                            <input class="form-control" type="text" name="color[]" />
-
-                            <label class="important text-1 my-2" for="bday">Birthdate</label>
-                            <input class="form-control " type="date" name="bday[]" />
-
-                            <label class="important text-1 my-2" for="species">Species</label>
-                            <div class="input-group mb-3">
-                                <select class="custom-select  text-1" id="inputGroupSelect01">
-                                    <option selected name="species"></option>
-                                    <option value="1">Cat</option>
-                                    <option value="2">Dog</option>
-                                </select>
+                            <div class="col-12 col-md-9 col-lg-12 mx-auto">
+                                <label class="important text-1" for="petname">Pet Name</label>
+                                <input class="form-control" type="text" name="petname[]" />
                             </div>
 
-                            <label class="important text-1 " for="species">Gender</label>
-                            <div class="input-group mb-3">
-                                <select class="custom-select  text-1" id="inputGroupSelect01">
-                                    <option selected name="gender[]"></option>
-                                    <option value="1">Female</option>
-                                    <option value="2">Male</option>
-                                </select>
+                            <div class="col-12 col-md-9 col-lg-12 mx-auto">
+                                <label class="important text-1" for="breed">Breed</label>
+                                <input class="form-control" type="text" name="breed[]" />
                             </div>
 
-                            <label class="important text-1" for="species">Type</label>
-                            <div class="input-group mb-3">
-                                <select class="custom-select  text-1" id="inputGroupSelect01">
-                                    <option selected name="types"></option>
-                                    <option value="1">Tame</option>
-                                    <option value="2">Wild</option>
-                                </select>
+                            <div class="row d-flex justify-content-center">
+                                <div class="col-md-9 col-lg-11 col-12 my-3 mx-auto">
+                                    <label class="h6 font-weight-bold text-1 important" for="colors">Colors</label>
+                                    <select name="colors[]" id="choices-multiple-remove-button" placeholder="Select Pet color" multiple>
+                                        <option value="#FFFff">White</option>
+                                        <option value="#00000">Black</option>
+                                        <option value="#C1C1C1">Ash Gray</option>
+                                        <option value="#FFFDD0">Cream</option>
+                                        <option value="#D2691E">Cinnamon</option>
+                                        <option value="#E5AA70">Fawn</option>
+                                        <option value="#964B00">Brown</option>
+                                    </select>
+                                </div>
+                                <small class="text-danger small">{{ $errors->first('colors') }}</small>
                             </div>
-                            <div class="col-12 my-3 d-flex flex-row">
-                                <button class="btn btn-outline-info ml-auto mr-1 w-50"><a href="#"></a>Save</button>
-                                <button class="btn btn-outline-danger ml-auto mr-1 w-50"><a href="#"></a>Cancel</button>
+
+                            <div class="col-12 col-md-9 col-lg-12 mx-auto">
+                                <label class="important text-1 my-2" for="bday">Birthdate</label>
+                                <input class="form-control " type="date" name="bday[]" />
+                            </div>
+
+                            <div class="col-12 col-md-9 col-lg-12 mx-auto">
+                                <label class="important text-1 my-2" for="species">Species</label>
+                                <div class="input-group mb-3">
+                                    <select class="custom-select  text-1" id="inputGroupSelect01">
+                                        <option selected name="species"></option>
+                                        <option value="1">Cat</option>
+                                        <option value="2">Dog</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-md-9 col-lg-12 mx-auto">
+                                <label class="important text-1 " for="species">Gender</label>
+                                <div class="input-group mb-3">
+                                    <select class="custom-select  text-1" id="inputGroupSelect01">
+                                        <option selected name="gender[]"></option>
+                                        <option value="1">Female</option>
+                                        <option value="2">Male</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-md-9 col-lg-12 mx-auto">
+                                <label class="important text-1" for="species">Type</label>
+                                <div class="input-group mb-3">
+                                    <select class="custom-select  text-1" id="inputGroupSelect01">
+                                        <option selected name="types"></option>
+                                        <option value="1">Tame</option>
+                                        <option value="2">Wild</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -74,5 +95,13 @@
         </div>
     </div>
 </div>
+@endsection
 
+@section('scripts')
+<script type="text/javascript" src="{{ asset('js/util/select.js') }}"></script>
+@endsection
+
+@section('css')
+<link rel="stylesheet" type="text/css" href="{{ asset('css/util/admin.css') }}" />
+<link rel="stylesheet" type="text/css" href="{{ asset('css/util/image-input.css') }}" />
 @endsection

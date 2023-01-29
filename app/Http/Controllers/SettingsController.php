@@ -64,6 +64,7 @@ class SettingsController extends Controller
 				if ($key == 'contacts' || $key == 'emails') {
 					$v = implode(', ', $v);
 				}
+				// LOGO HANDLIMG
 				else if ($key == 'web-logo') {
 					if ($req->hasFile($key)) {
 						$setting = Settings::where('name', '=', $key)->first();
@@ -79,6 +80,7 @@ class SettingsController extends Controller
 					else
 						continue;
 				}
+				// logo handling end
 
 				$setting = Settings::where('name', '=', $key)->first();
 

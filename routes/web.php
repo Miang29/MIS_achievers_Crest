@@ -50,7 +50,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 	Route::get('/dashboard', 'PageController@dashboard')->name('dashboard');
 
 
-	// CLIENT PROFILE
+	// Pet Information
 	Route::group(['prefix' => 'pet-information'], function () {
 		// Index
 		Route::get('/', 'ClientController@index')->name('pet-information');
@@ -60,6 +60,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
 		// Add
 		Route::get('/add', 'ClientController@add')->name('pet-information.pet.add');
+
+		// POST
+		Route::post('/submit-pet', 'ClientController@submitPet')->name('submit-pet');
 
 		// Pet Edit
 		Route::get('/view/{clientId}/pet/{id}/edit', 'ClientController@editPet')->name('pet-information.pet.edit');

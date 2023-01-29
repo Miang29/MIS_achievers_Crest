@@ -40,13 +40,13 @@
 				<tbody>
 					@forelse ($clients as $c)
 					<tr>
-						<td class="text-center">{{ $c['name'] }}</td>
-						<td class="text-center">{{ $c['email'] }}</td>
+						<td class="text-center">{{ $c->name }}</td>
+						<td class="text-center">{{ $c->email }}</td>
 						<td class="text-center text-truncate">
 							@php
 							$arr = [];
-							foreach ($pets["{$c['id']}"] as $p)
-							array_push($arr, $p['name']);
+							foreach ($c->petsInformations as $p)
+							array_push($arr, $p->pet_name);
 
 							echo implode(', ', $arr);
 							@endphp
@@ -54,8 +54,8 @@
 
 						<td class="text-center">
 							<div class="row">
-								<a class="border-right border-secondary" href="{{route('pet-information.pet.show', [$c['id']])}}"><i class="fa-solid fa-eye  ml-5 mr-2 text-dark"></i></a>
-								<a href="#"><i class="fa-solid fa-box-archive ml-2 text-info"></i></a>
+								<a class="border-right border-secondary" href="{{route('pet-information.pet.show', [$c->id])}}"><i class="fa-solid fa-eye mr-2 text-dark" style="margin-left:8.5rem;"></i></a>
+								<a href="javascript:void(0);" onclick="confirmLeave('{{ route('pet-information') }}', undefined, 'Are you sure you want to archive?');"><i class="fa-solid fa-box-archive ml-2 text-info"></i></a>
 							</div>
 
 						</td>
@@ -78,4 +78,5 @@
 
 @section('scripts')
 <script type="text/javascript" src="{{ asset('js/util/swal-change-field.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/util/confirm-leave.js') }}"></script>
 @endsection

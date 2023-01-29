@@ -1,5 +1,5 @@
 function openInput(obj) {
-	$("input[name=" + obj.attr("id") + "]:not([readonly])").trigger("click");
+	$(`input[data-target-image-container="${obj.attr("data-target")}"]:not([readonly])`).trigger("click");
 }
 
 function swapImgFile(obj) {
@@ -32,19 +32,19 @@ $($('.image-input-scope input[type=file]').attr('data-target-image-container')).
 
 $(document).ready(function() {
 	// Profile Image Changing
-	$(".image-input-scope .image-input-float").on("click", function(e) {
-		openInput($(this));
+	$(document).on("click", ".image-input-scope .image-input-float", function(e) {
+		openInput($(e.currentTarget));
 	});
 
-	$(".image-input-scope .image-input-float").on("keydown", function(e) {
+	$(document).on("keydown", ".image-input-scope .image-input-float", function(e) {
 		if (e.keyCode == 32) {
 			e.preventDefault();
-			openInput($(this));
+			openInput($(e.currentTarget));
 		}
 	});
 
-	$(".image-input-scope .image-input input[type=file]").on("change", function(e) {
-		swapImgFile(this);
+	$(document).on("change", ".image-input-scope .image-input input[type=file]", function(e) {
+		swapImgFile(e.currentTarget);
 	});
 
 	$(".image-input-scope .image-input input[type=text]").on("change, keyup", function(e) {

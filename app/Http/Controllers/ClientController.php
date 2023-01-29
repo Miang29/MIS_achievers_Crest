@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\PetsInformation;
 use Illuminate\Http\Request;
 
 use App\User;
@@ -15,26 +16,28 @@ use Log;
 use Mail;
 use Validator;
 
+
 class ClientController extends Controller
 {
-	
+
 	protected function SignUp()
 	{
 		return view('sign-up');
 	}
 
+	// CLIENT REGISTRATION SAVE
 	protected function save(Request $req)
 	{
-	$validator = Validator::make($req->all(), [
+		$validator = Validator::make($req->all(), [
 			'first_name' => 'required|min:2|max:255|string',
 			'middle_name' => 'nullable|min:2|max:255|string',
-			'last_name' => 'required|min:2|max:255|string',
+			'last_name' => 'required|min:2|max:255|stSring',
 			'suffix' => 'nullable|min:2|max:255|string',
 			'email' => 'required|unique:users,email|min:2|max:255|email',
 			'username' => 'required|unique:users,username|min:2|max:255|string',
 			'password' => array('required', 'string', 'min:8', 'max:255', 'regex:/^[a-zA-Z0-9!@#$%^&*()_+\-=\[\]{};\':"\\|,.<>\/?]*$/'),
 			'checkbox' => 'required'
-		],[
+		], [
 			'checkbox.required' => 'You need to agree and accept the terms of service and read Privacy policy.',
 		]);
 
@@ -44,22 +47,22 @@ class ClientController extends Controller
 				->withErrors($validator)
 				->withInput();
 		try {
-			
+
 			DB::beginTransaction();
 
 			$type = UserType::where('name', '=', 'Client')->first();
-			
+
 			$user = User::create([
-					'first_name' => $req->first_name,
-					'middle_name' => $req->middle_name,
-					'last_name' => $req->last_name,
-					'suffix' => $req->suffix,
-					'email' => $req->email,
-					'username' => $req->username,
-					'user_type_id' => $type->id,
-					'password' => Hash::make($req->password),
-					
-				],);
+				'first_name' => $req->first_name,
+				'middle_name' => $req->middle_name,
+				'last_name' => $req->last_name,
+				'suffix' => $req->suffix,
+				'email' => $req->email,
+				'username' => $req->username,
+				'user_type_id' => $type->id,
+				'password' => Hash::make($req->password),
+
+			],);
 
 			//MAILER SHIT
 			Mail::send(
@@ -88,6 +91,87 @@ class ClientController extends Controller
 			->route('login')
 			->with('flash_success', "Successfully created {$user->getName()}");
 	}
+
+	//PET INFORMATION SUBMIT
+	protected function submitPet(Request $req)
+	{	
+		$validator = Validator::make($req->all(), [
+			"pet_owner" => 'required|numeric|exists:users,id',
+			"pet_name" => 'required|array',
+			"pet_name.*" => 'required|string|max:255',
+			"breed" => 'required|array',
+			"breed.*" => 'required|string|max:255',
+			"colors" => 'required|array',
+			"colors.*" => 'required|array|max:3',
+			"colors.*.*" => 'required|string|max:255',
+			"birthdate" => 'required|array',
+			"birthdate.*" => 'required|date',
+			"species" => 'required|array',
+			"species.*" => 'required|string|max:255',
+			"gender" => 'required|array',
+			"gender.*" => 'required|string|max:255',
+			"types" => 'required|array',
+			"types.*" => 'required|string|max:255',
+			"pet_image.*" => 'max:5120|mimes:jpeg,jpg,png,webp|nullable',
+		]);
+
+		// dd($validator->messages());
+
+		if ($validator->fails()) {
+			return redirect()
+				->back()
+				->withErrors($validator)
+				->withInput();
+		}
+
+		try {
+			DB::beginTransaction();
+
+			$colorKeys = array_keys($req->colors);
+			for ($i = 0; $i < count($req->pet_name); $i++) {
+
+				$imagename = "";
+				if ($req->hasFile("pet_image.$i")) {
+					
+					$destination = "uploads/clients/$req->pet_owner/pets";
+					$fileType = $req->file("pet_image.$i")->getClientOriginalExtension();
+					$imagename = strtolower(preg_replace("/s+/", "_", $req->pet_name[$i])) . ".$fileType";
+					$req->file("pet_image.$i")->move($destination, $imagename);
+				}
+
+				$pi = PetsInformation::create([
+					'pet_owner' => $req->pet_owner,
+					'pet_name' => $req->pet_name[$i],
+					'breed' => $req->breed[$i],
+					'colors' => implode	(", ", $req->colors[$i]),
+					'birthdate' => $req->birthdate[$i],
+					'species' => $req->species[$i],
+					'gender' => $req->gender[$i],
+					'types' => $req->types[$i],
+					'pet_image' => $imagename,
+
+				]);
+			}
+
+			
+			DB::commit();
+		} catch (Exception $e) {
+			DB::rollback();
+			Log::error($e);
+
+
+			return redirect()
+				->route('pet-information.create')
+				->with('flash_error', 'Something went wrong, please try again later');
+		}
+
+		return redirect()
+			->route('pet-information')
+			->with('flash_success', "Successfully registered!");
+			dd();
+	}
+
+
 
 	// TEMP VAR
 	private $clients = [
@@ -175,34 +259,47 @@ class ClientController extends Controller
 	];
 
 	// CLIENT-PROFILE
-	protected function index() {
+	protected function index()
+	{
+		$clients = User::select(DB::raw('id, CONCAT(first_name, " ", last_name) as name, email'))
+			->where('user_type_id', '=', '4')->get();
+
 		return view('admin.pet-information.index', [
-			'clients' => $this->clients,
-			'pets' => $this->pets
+			'clients' => $clients
 		]);
 	}
 
-	protected function create() {
-		return view('admin.pet-information.create');
+	protected function create()
+	{
+		$user =  User::select(DB::raw('CONCAT(first_name, " ", last_name) as name,id'))->where("user_type_id", "=", 4)->get();
+		$pi = PetsInformation::get();
+
+		return view('admin.pet-information.create', [
+			'petsinformation' => $pi,
+			'users' => $user,
+		]);
 	}
-	
-	protected function add() {
+
+	protected function add()
+	{
 		return view('admin.pet-information.pet.add');
 	}
-
-	protected function showPets($id) {
+	protected function showPets($id)
+	{
+		$pi = PetsInformation::where('pet_owner', '=', $id)->get();
 		return view('admin.pet-information.pet.index', [
-			'id' => $id,
-			'pets' => $this->pets["{$id}"]
+			'pets' => $pi,
+			'id' => $id
 		]);
 	}
 
-	protected function editPet($id) {
+	protected function editPet($id)
+	{
 		return view('admin.pet-information.pet.edit');
-		
 	}
 
-	protected function notifyClient(Request $req) {
+	protected function notifyClient(Request $req)
+	{
 		try {
 			DB::beginTransaction();
 

@@ -7,30 +7,23 @@
 	<h3 class="mt-3"><a href="{{route('pet-information')}}" class="text-decoration-none  text-1"><i class="fas fa-chevron-left mr-2"></i>Pet Information</a></h3>
 	<hr class="hr-thick" style="border-color: #707070;">
 
-	<form class="form ">
+	<form method="POST" action="{{ route('submit-pet')}}" class="form" enctype="multipart/form-data">
+		<input type="hidden" name="_token" value="{{ csrf_token() }}">
 		<div class="row" id="form-area">
 			<div class="col-12 col-md-12">
-				<div class="row">
-					<div class="input-group mb-3 col-lg-6">
-						<div class="input-group-prepend">
-							<label class="input-group-text font-weight-bold bg-white" for="inputGroupSelect01">Client Name</label>
-						</div>
-						<select class="custom-select" id="inputGroupSelect01">
-							<option selected>Choose a registered client</option>
-							<option value="1">One</option>
-							<option value="2">Two</option>
-							<option value="3">Three</option>
-						</select>
+				<div class="input-group mb-3 col-lg-12">
+					<div class="input-group-prepend">
+						<label class="input-group-text font-weight-bold bg-white" for="inputGroupSelect01">Client Name</label>
 					</div>
 
-					<div class="input-group mb-3 col-lg-6">
-						<div class="input-group-prepend">
-							<span class="input-group-text font-weight-bold bg-white" id="inputGroup-sizing-default">Email</span>
-						</div>
-						<input type="text" class="form-control bg-light" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" readonly>
-					</div>
+					<select class="custom-select" id="inputGroupSelect01" name="pet_owner">
+						@foreach ($users as $u)
+						<option  value="{{ $u->id}}">{{ $u->name }}</option>
+						@endforeach
+					</select>
 				</div>
 			</div>
+
 			{{-- PET REGISTRATION FORM --}}
 			<div class="col-lg-6 col-md-8 col-12 my-2 mx-auto">
 				<div class="card mx-auto">
@@ -39,29 +32,28 @@
 						<div class="row">
 							<div class="col-12 col-md-6 col-lg-12">
 								{{-- IMAGE INPUT --}}
-								<div class="image-input-scope" id="web-logo-scope" data-settings="#image-input-settings" data-fallback-img="{{ asset('uploads/settings/default.png') }}">
+								<div class="image-input-scope" id="pet-image-scope_0" data-settings="#image-input-settings_0" data-fallback-img="{{ asset('uploads/settings/default.png') }}">
 									{{-- FILE IMAGE --}}
-									<div class="form-group text-center image-input collapse show avatar_holder" id="web-logo-image-input-wrapper">
+									<div class="form-group text-center image-input collapse show avatar_holder" id="pet-image-image-input-wrapper_0">
 										<div class="row border rounded border-secondary-light py-2 mx-1">
 											<div class="col-12 col-md-6 text-md-right">
 												<div class="hover-cam mx-auto avatar rounded overflow-hidden">
-													<img src="{{ App\Settings::getInstance('web-logo')->getImage(!App\Settings::getInstance('web-logo')->is_file) }}" class="hover-zoom img-fluid avatar" id="web-logo-container" alt="Website Logo" data-default-src="{{ asset('uploads/settings/default.png') }}">
-													<span class="icon text-center image-input-float" id="web-logo" tabindex="0">
+													<img src="{{ asset('uploads/settings/default.png') }}" class="hover-zoom img-fluid avatar" id="pet-image-container_0" alt="Pet Image" data-default-src="{{ asset('uploads/settings/default.png') }}">
+													<span class="icon text-center image-input-float" id="pet-image_0" tabindex="0" data-target="#pet-image-container_0">
 														<i class="fas fa-camera text-white hover-icon-2x"></i>
 													</span>
 												</div>
-												<input type="file" name="web-logo" class="d-none" accept=".jpg,.jpeg,.png,.webp" data-role="image-input" data-target-image-container="#web-logo-container" data-target-name-container="#web-logo-name">
-												<h6 id="web-logo-name" class="text-truncate w-50 mx-auto text-center" data-default-name="{{ App\Settings::getInstance('web-logo')->getImage(!App\Settings::getInstance('web-logo')->is_file, false) }}">{{ App\Settings::getInstance('web-logo')->getImage(!App\Settings::getInstance('web-logo')->is_file, false) }}</h6>
+												<input type="file" name="pet_image[]" class="d-none" accept=".jpg,.jpeg,.png,.webp" data-role="image-input" data-target-image-container="#pet-image-container_0" data-target-name-container="#pet-image-name_0">
 											</div>
 
 											<div class="col-12 col-md-6 text-md-left">
-												<label class="form-label font-weight-bold" for="web-logo">Pet Image</label><br>
+												<label class="form-label font-weight-bold" for="pet-image">Pet Image</label><br>
 												<small class="text-muted pb-0 mb-0">
 													<b>FORMATS ALLOWED:</b>
 													<br>JPEG, JPG, PNG, WEBP
 												</small><br>
 												<small class="text-muted pt-0 mt-0"><b>MAX SIZE:</b> 5MB</small><br>
-												<button class="btn btn-secondary" type="button" id="reset-logo">Remove Image</button><br>
+												<button class="btn btn-secondary reset-image" type="button" data-reset-id="0">Remove Image</button><br>
 											</div>
 										</div>
 									</div>
@@ -71,43 +63,75 @@
 							<div class="col-12 col-lg-12 col-md-12 ">
 								<div class="form-group ">
 
-									<label class="h6 font-weight-bold text-1  important" for="petname">Pet Name</label>
-									<input class="form-control" type="text" name="petname[]" />
-
-									<label class="h6 font-weight-bold text-1  important" for="breed">Breed</label>
-									<input class="form-control" type="text" name="breed[]" />
-
-									<label class="h6 font-weight-bold text-1 important" for="color">Color/s</label>
-									<input class="form-control" type="text" name="color[]" />
-
-									<label class="h6 font-weight-bold text-1  important" for="bday">Birthdate</label>
-									<input class="form-control" type="date" name="bday[]" />
-
-									<label class="h6 font-weight-bold text-1  important" for="species">Species</label>
-									<div class="input-group mb-3 ">
-										<select class="custom-select" id="inputGroupSelect01">
-											<option selected name="species[]"></option>
-											<option value="1">Cat</option>
-											<option value="2">Dog</option>
-										</select>
+									<div class="col-12 col-md-9 col-lg-12 mx-auto">
+										<label class="h6 font-weight-bold text-1 important" for="pet_name">Pet Name</label>
+										<input class="form-control" type="text" name="pet_name[]" />
+										<small class="text-danger small">{{ $errors->first('pet_name') }}</small>
 									</div>
 
-									<label class="h7 font-weight-bold text-1  important" for="gender">Gender</label>
-									<div class="input-group mb-3 ">
-										<select class="custom-select" id="inputGroupSelect01">
-											<option selected name="gender[]"></option>
-											<option value="1">Female</option>
-											<option value="2">Male</option>
-										</select>
+									<div class="col-12 col-md-9 col-lg-12 mx-auto">
+										<label class="h6 font-weight-bold text-1  important" for="breed">Breed</label>
+										<input class="form-control" type="text" name="breed[]" ('breed') }}" />
+										<small class="text-danger small">{{ $errors->first('breed') }}</small>
 									</div>
 
-									<label class="h6 font-weight-bold text-1 important" for="types">Types</label>
-									<div class="input-group mb-3 ">
-										<select class="custom-select" id="inputGroupSelect01">
-											<option selected name="types[]"></option>
-											<option value="1">Tame</option>
-											<option value="2">Wild</option>
-										</select>
+									<div class="row d-flex justify-content-center">
+										<div class="col-md-9 col-lg-11 col-12 my-3 mx-auto">
+											<label class="h6 font-weight-bold text-1 important" for="colors">Colors</label>
+											<select class="select-choices" name="colors[0][]" placeholder="Select Pet color" multiple notInstantiated>
+												<option value="#FFFff">White</option>
+												<option value="#00000">Black</option>
+												<option value="#C1C1C1">Ash Gray</option>
+												<option value="#FFFDD0">Cream</option>
+												<option value="#D2691E">Cinnamon</option>
+												<option value="#E5AA70">Fawn</option>
+												<option value="#964B00">Brown</option>
+											</select>
+										</div>
+										<small class="text-danger small">{{ $errors->first('colors') }}</small>
+									</div>
+
+
+									<div class="col-12 col-md-9 col-lg-12 mx-auto">
+										<label class="h6 font-weight-bold text-1  important" for="birthdate">Birthdate</label>
+										<input class="form-control" type="date" name="birthdate[]"/>
+										<small class="text-danger small">{{ $errors->first('birthdate') }}</small>
+									</div>
+
+									<div class="col-12 col-md-9 col-lg-12 mx-auto">
+										<label class="h6 font-weight-bold text-1  important" for="species">Species</label>
+										<div class="input-group mb-3 ">
+											<select class="custom-select" id="inputGroupSelect01" name="species[]">
+												<option selected value="">Choose species..</option>
+												<option value="cat">Cat</option>
+												<option value="dog">Dog</option>
+											</select>
+										</div>
+										<small class="text-danger small">{{ $errors->first('species') }}</small>
+									</div>
+
+									<div class="col-12 col-md-9 col-lg-12 mx-auto">
+										<label class="h7 font-weight-bold text-1  important" for="gender">Gender</label>
+										<div class="input-group mb-3 ">
+											<select class="custom-select" id="inputGroupSelect01" name="gender[]">
+												<option selected value="">Choose gender..</option>
+												<option value="female">Female</option>
+												<option value="male">Male</option>
+											</select>
+										</div>
+										<small class="text-danger small">{{ $errors->first('species') }}</small>
+									</div>
+
+									<div class="col-12 col-md-9 col-lg-12 mx-auto">
+										<label class="h6 font-weight-bold text-1 important" for="types">Types</label>
+										<div class="input-group mb-3 ">
+											<select class="custom-select" id="inputGroupSelect01" name="types[]">
+												<option selected value="">Choose types..</option>
+												<option value="tame">Tame</option>
+												<option value="wild">Wild</option>
+											</select>
+										</div>
+										<small class="text-danger small">{{ $errors->first('species') }}</small>
 									</div>
 								</div>
 							</div>
@@ -127,7 +151,7 @@
 
 		<div class="row">
 			<div class="col-12 my-3 d-flex flex-row">
-				<button class="btn btn-outline-info ml-auto mr-1 w-25 mb-5">Save</button>
+				<button type="submit" class="btn btn-outline-info ml-auto mr-1 w-25 mb-5" data-type="submit">Save</button>
 				<a href="{{ route('pet-information') }}" class="btn btn-outline-danger ml-1 mr-auto w-25 mb-5">Cancel</a>
 			</div>
 		</div>
@@ -141,88 +165,131 @@
 
 @section('scripts')
 <script type="text/javascript">
+	var __iterator = 1;
+	const instantiateSelect = () => {
+		new Choices('.select-choices[notInstantiated]', {
+			removeItemButton: true,
+			maxItemCount: 3,
+			searchResultLimit: 7,
+			renderChoiceLimit: 7
+		});
+
+		$(".select-choices[notInstantiated]").removeAttr("notInstantiated");
+	}
+
 	const addForm = (listener, targetR) => {
 		let obj = $(listener);
 		let target = $(targetR);
 
 		const form = $(`
-		<div class="col-lg-6 col-md-8 col-sm-12 my-2 mx-auto">
-			<div class="card mx-auto">
+		<div class="col-lg-6 col-md-8 col-12 my-2 mx-auto"> 
+				<div class="card mx-auto">
 				<h3 class="card-header text-center position-relative bg-1 text-white"><i class="fa-solid fa-dog mr-2"></i>Pet Registration<i class="fa-solid fa-cat ml-2"></i><span class="position-absolute" style="top: 0.125rem; right: 0.5rem; cursor: pointer;" onclick="$(this).parent().parent().parent().remove();"><i class="fas fa-multiply"></i></span></h3>
-				
 				<div class="card-body d-flex">
-					<div class="row">
-					<div class="col-12 col-md-6 col-lg-12">
+						<div class="row">
+							<div class="col-12 col-md-6 col-lg-12">
 							{{-- IMAGE INPUT --}}
-								<div class="image-input-scope" id="web-logo-scope" data-settings="#image-input-settings" data-fallback-img="{{ asset('uploads/settings/default.png') }}">
+								<div class="image-input-scope" id="pet-image-scope_${__iterator}" data-settings="#image-input-settings_${__iterator}" data-fallback-img="{{ asset('uploads/settings/default.png') }}">
 									{{-- FILE IMAGE --}}
-									<div class="form-group text-center image-input collapse show avatar_holder" id="web-logo-image-input-wrapper">
+									<div class="form-group text-center image-input collapse show avatar_holder" id="pet-image-image-input-wrapper_${__iterator}">
 										<div class="row border rounded border-secondary-light py-2 mx-1">
 											<div class="col-12 col-md-6 text-md-right">
 												<div class="hover-cam mx-auto avatar rounded overflow-hidden">
-													<img src="{{ App\Settings::getInstance('web-logo')->getImage(!App\Settings::getInstance('web-logo')->is_file) }}" class="hover-zoom img-fluid avatar" id="web-logo-container" alt="Website Logo" data-default-src="{{ asset('uploads/settings/default.png') }}">
-													<span class="icon text-center image-input-float" id="web-logo" tabindex="0">
+													<img src="{{ asset('uploads/settings/default.png') }}" class="hover-zoom img-fluid avatar" id="pet-image-container_${__iterator}" alt="Pet Image" data-default-src="{{ asset('uploads/settings/default.png') }}">
+													<span class="icon text-center image-input-float" id="pet-image_${__iterator}" tabindex="0" data-target="#pet-image-container_${__iterator}">
 														<i class="fas fa-camera text-white hover-icon-2x"></i>
 													</span>
 												</div>
-												<input type="file" name="web-logo" class="d-none" accept=".jpg,.jpeg,.png,.webp" data-role="image-input" data-target-image-container="#web-logo-container" data-target-name-container="#web-logo-name" >
-												<h6 id="web-logo-name" class="text-truncate w-50 mx-auto text-center" data-default-name="{{ App\Settings::getInstance('web-logo')->getImage(!App\Settings::getInstance('web-logo')->is_file, false) }}">{{ App\Settings::getInstance('web-logo')->getImage(!App\Settings::getInstance('web-logo')->is_file, false) }}</h6>
+												<input type="file" name="pet_image[]" class="d-none" accept=".jpg,.jpeg,.png,.webp" data-role="image-input" data-target-image-container="#pet-image-container_${__iterator}" data-target-name-container="#pet-image-name_${__iterator}">
 											</div>
 
 											<div class="col-12 col-md-6 text-md-left">
-												<label class="form-label font-weight-bold" for="web-logo">Pet Image</label><br>
+												<label class="form-label font-weight-bold" for="pet-image">Pet Image</label><br>
 												<small class="text-muted pb-0 mb-0">
 													<b>FORMATS ALLOWED:</b>
 													<br>JPEG, JPG, PNG, WEBP
 												</small><br>
 												<small class="text-muted pt-0 mt-0"><b>MAX SIZE:</b> 5MB</small><br>
-												<button class="btn btn-secondary" type="button" id="reset-logo">Remove Image</button><br>
+												<button class="btn btn-secondary reset-image" type="button" data-reset-id="${__iterator}">Remove Image</button><br>
 											</div>
 										</div>
 									</div>
 								</div>
-							</div>
 
-						<div class="col-12 col-lg-12 col-md-12 ">
-							<div class="form-group ">
-								<label class="h6 font-weight-bold text-1  important" for="petname">Pet Name</label>
-								<input class="form-control" type="text" name="petname[]"/>
+							<div class="col-12 col-lg-12 col-md-12 ">
+								<div class="form-group ">
 
-								<label class="h6 font-weight-bold text-1  important" for="breed">Breed</label>
-								<input class="form-control" type="text" name="breed[]"/>
-
-								<label class="h6 font-weight-bold text-1  important" for="color">Color/s</label>
-								<input class="form-control" type="text" name="color[]"/>
-
-								<label class="h6 font-weight-bold text-1  important" for="bday">Birthdate</label>
-								<input class="form-control" type="date" name="bday[]"/>
-
-								<label class="h6 font-weight-bold text-1  important" for="species">Species</label>
-									<div class="input-group mb-3">
-										<select class="custom-select" id="inputGroupSelect01">
-											<option selected name="species[]"></option>
-											<option value="1">Cat</option>
-											<option value="2">Dog</option>
-										</select>
+								    <div class="col-12 col-md-9 col-lg-12 mx-auto">
+										<label class="h6 font-weight-bold text-1 important" for="pet_name">Pet Name</label>
+										<input class="form-control" type="text" name="pet_name[]"/>
+										<small class="text-danger small">{{ $errors->first('pet_name') }}</small>
 									</div>
 
-									<label class="h6 font-weight-bold text-1  important" for="gender">Gender</label>
-									<div class="input-group mb-3 ">
-										<select class="custom-select" id="inputGroupSelect01">
-											<option selected name="gender[]">Choose gender..</option>
-											<option value="1">Female</option>
-											<option value="2">Male</option>
-										</select>
+									<div class="col-12 col-md-9 col-lg-12 mx-auto">
+										<label class="h6 font-weight-bold text-1  important" for="breed">Breed</label>
+										<input class="form-control" type="text" name="breed[]" value="{{ old('breed') }}" />
+										<small class="text-danger small">{{ $errors->first('breed') }}</small>
 									</div>
 
-									<label class="h6 font-weight-bold text-1  important" for="types">Types</label>
-									<div class="input-group mb-3 ">
-										<select class="custom-select" id="inputGroupSelect01">
-											<option selected name="types[]">Choose types..</option>
-											<option value="1">Tame</option>
-											<option value="2">Wild</option>
-										</select>
+									{{-- COLORS --}}
+									<div class="row d-flex justify-content-center">
+										<div class="col-md-9 col-lg-11 col-12 my-3 mx-auto">
+											<label class="h6 font-weight-bold text-1  important" for="colors">Colors</label>
+											<select class="select-choices" name="colors[${__iterator++}][]" placeholder="Select Pet color" multiple notInstantiated>
+												<option value="#FFFff">White</option>
+												<option value="#00000">Black</option>
+												<option value="#D269C1">Ash Gray</option>
+												<option value="#C1C10">Cream</option>
+												<option value="#FFFDD1E">Cinnamon</option>
+												<option value="#E5AA70">Fawn</option>
+												<option value="#964B00">Brown</option>
+											</select>
+										</div>
+										<small class="text-danger small">{{ $errors->first('colors') }}</small>
 									</div>
+
+									<div class="col-12 col-md-9 col-lg-12 mx-auto">
+										<label class="h6 font-weight-bold text-1  important" for="birthdate">Birthdate</label>
+										<input class="form-control" type="date" name="birthdate[]"/>
+										<small class="text-danger small">{{ $errors->first('birthdate') }}</small>
+									</div>
+
+									<div class="col-12 col-md-9 col-lg-12 mx-auto">
+										<label class="h6 font-weight-bold text-1  important" for="species">Species</label>
+										<div class="input-group mb-3 ">
+											<select class="custom-select" id="inputGroupSelect01" name="species[]">
+												<option selected value="">Choose species..</option>
+												<option value="cat">Cat</option>
+												<option value="dog">Dog</option>
+											</select>
+										</div>
+										<small class="text-danger small">{{ $errors->first('species') }}</small>
+									</div>
+
+									<div class="col-12 col-md-9 col-lg-12 mx-auto">
+										<label class="h7 font-weight-bold text-1  important" for="gender">Gender</label>
+										<div class="input-group mb-3 ">
+											<select class="custom-select" id="inputGroupSelect01" name="gender[]">
+												<option selected value="">Choose gender..</option>
+												<option value="female">Female</option>
+												<option value="male">Male</option>
+											</select>
+										</div>
+										<small class="text-danger small">{{ $errors->first('species') }}</small>
+									</div>
+
+									<div class="col-12 col-md-9 col-lg-12 mx-auto">
+										<label class="h6 font-weight-bold text-1 important" for="types">Types</label>
+										<div class="input-group mb-3 ">
+											<select class="custom-select" id="inputGroupSelect01" name="types[]">
+												<option selected value="">Choose types..</option>
+												<option value="tame">Tame</option>
+												<option value="wild">Wild</option>
+											</select>
+										</div>
+										<small class="text-danger small">{{ $errors->first('species') }}</small>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -234,49 +301,17 @@
 			.append(obj.parent());
 
 		form.find('img').on('error', fallbackImageOnErrorReplace);
+
+		instantiateSelect();
 	};
 </script>
 <script type="text/javascript" src="{{ asset('js/util/image-input.js') }}"></script>
 <script type="text/javascript">
 	$(document).ready(() => {
-		$("#reset-logo").on('click', (e) => {
-			$.post("{{ route('settings.remove-logo') }}", {
-				_token: $(`meta[name="csrf"]`).attr('content')
-			}).done((response) => {
-				console.log(response);
-				if (response.success) {
-					Swal.fire({
-						title: `${response.message}`,
-						position: `top`,
-						showConfirmButton: false,
-						toast: true,
-						timer: 5000,
-						background: `#28a745`,
-						customClass: {
-							title: `text-white`,
-							content: `text-white`,
-							popup: `px-3`
-						},
-					});
-
-					$("#web-logo-container").attr('src', `${response.image}`);
-				} else {
-					Swal.fire({
-						title: `${response.message}`,
-						position: `top`,
-						showConfirmButton: false,
-						toast: true,
-						timer: 5000,
-						background: `#dc3545`,
-						customClass: {
-							title: `text-white`,
-							content: `text-white`,
-							popup: `px-3`
-						},
-					});
-				}
-			});
+		$(document).on('click', ".reset-image", (e) => {
+			$(e.currentTarget).closest(".image-input").find(`#pet-image-container_${$(e.currentTarget).attr('data-reset-id')}`).attr('src', `{{ asset('uploads/settings/default.png') }}`);
 		});
+		instantiateSelect();
 	});
 </script>
 @endsection
