@@ -28,10 +28,11 @@ class ClientController extends Controller
 	// CLIENT REGISTRATION SAVE
 	protected function save(Request $req)
 	{
+
 		$validator = Validator::make($req->all(), [
 			'first_name' => 'required|min:2|max:255|string',
 			'middle_name' => 'nullable|min:2|max:255|string',
-			'last_name' => 'required|min:2|max:255|stSring',
+			'last_name' => 'required|min:2|max:255|string',
 			'suffix' => 'nullable|min:2|max:255|string',
 			'email' => 'required|unique:users,email|min:2|max:255|email',
 			'username' => 'required|unique:users,username|min:2|max:255|string',
@@ -65,17 +66,17 @@ class ClientController extends Controller
 			],);
 
 			//MAILER SHIT
-			Mail::send(
-				'layouts.emails.creation',
-				[
-					'req' => $req,
-				],
-				function ($mail) use ($user) {
-					$mail->to($user->email)
-						->from("nano.mis@technical.com") // MIS Nano Vet Clinic
-						->subject("Account Created");
-				}
-			);
+			// Mail::send(
+			// 	'layouts.emails.creation',
+			// 	[
+			// 		'req' => $req,
+			// 	],
+			// 	function ($mail) use ($user) {
+			// 		$mail->to($user->email)
+			// 			->from("nano.mis@technical.com") // MIS Nano Vet Clinic
+			// 			->subject("Account Created");
+			// 	}
+			// );
 
 			DB::commit();
 		} catch (Exception $e) {
@@ -89,16 +90,16 @@ class ClientController extends Controller
 
 		return redirect()
 			->route('login')
-			->with('flash_success', "Successfully created {$user->getName()}");
+			->with('flash_success', "Your account has successfully created");
 	}
 
 	//PET INFORMATION SUBMIT
 	protected function submitPet(Request $req)
-	{	
+	{
 		$validator = Validator::make($req->all(), [
 			"pet_owner" => 'required|numeric|exists:users,id',
 			"pet_name" => 'required|array',
-			"pet_name.*" => 'required|string|max:255',
+			"pet_name.*" => 'required|max:255|string',
 			"breed" => 'required|array',
 			"breed.*" => 'required|string|max:255',
 			"colors" => 'required|array',
@@ -113,6 +114,17 @@ class ClientController extends Controller
 			"types" => 'required|array',
 			"types.*" => 'required|string|max:255',
 			"pet_image.*" => 'max:5120|mimes:jpeg,jpg,png,webp|nullable',
+		], [
+
+			'pet_owner.required' => 'Please select client name.',
+			'pet_name.*.required' => 'Pet name is required.',
+			'breed.*.required' => 'Breed is required',
+			'colors.*.required' => 'Please select pet color.',
+			'birthdate.*.required' => 'Birthdate is required',
+			'species.*.required' => 'Please select a species',
+			'gender.*.required' => 'Please select a gender ',
+			'types.*.required' => 'Please select a type.',
+
 		]);
 
 		// dd($validator->messages());
@@ -132,7 +144,7 @@ class ClientController extends Controller
 
 				$imagename = "";
 				if ($req->hasFile("pet_image.$i")) {
-					
+
 					$destination = "uploads/clients/$req->pet_owner/pets";
 					$fileType = $req->file("pet_image.$i")->getClientOriginalExtension();
 					$imagename = strtolower(preg_replace("/s+/", "_", $req->pet_name[$i])) . ".$fileType";
@@ -143,7 +155,7 @@ class ClientController extends Controller
 					'pet_owner' => $req->pet_owner,
 					'pet_name' => $req->pet_name[$i],
 					'breed' => $req->breed[$i],
-					'colors' => implode	(", ", $req->colors[$i]),
+					'colors' => implode(", ", $req->colors[$i]),
 					'birthdate' => $req->birthdate[$i],
 					'species' => $req->species[$i],
 					'gender' => $req->gender[$i],
@@ -153,7 +165,7 @@ class ClientController extends Controller
 				]);
 			}
 
-			
+
 			DB::commit();
 		} catch (Exception $e) {
 			DB::rollback();
@@ -168,101 +180,139 @@ class ClientController extends Controller
 		return redirect()
 			->route('pet-information')
 			->with('flash_success', "Successfully registered!");
-			dd();
 	}
 
+	protected function addPet(Request $req, $id)
+	{
+
+		// dd($req);
+		$validator = Validator::make($req->all(), [
+			"pet_name" => 'required|string|max:255',
+			"birthdate" => 'required|string|max:255',
+			"breed" => 'required|string|max:255',
+			"colors" => 'required|array|max:3',
+			"species" => 'required|string|max:255',
+			"gender" => 'required|string|max:255',
+			"types" => 'required|string|max:255',
+			"pet_image" => 'max:5120|mimes:jpeg,jpg,png,webp|nullable',
+		], [
+
+			'pet_name.required' => 'Pet name is required.',
+			'breed.required' => 'Breed is required',
+			'colors.required' => 'Please select pet color.',
+			'birthdate.required' => 'Birthdate is required',
+			'species.required' => 'Please select a species',
+			'gender.required' => 'Please select a gender ',
+			'types.required' => 'Please select a type.',
+		]);
 
 
-	// TEMP VAR
-	private $clients = [
-		[
-			"id" => 1,
-			"name" => "Joseph Polio",
-			"email" => "joseph.polio@gmail.com",
-			"telephone" => "678-4421",
-			"mobile" => "09267789945",
-			"address" => "11 Maharlika St. San Francisco Village Muzon Taytay Rizal",
-			"type" => "New"
-		]
-	];
 
-	private $pets = [
-		"1" =>	[
-			[
-				"id" => 1,
-				"img" => "aspin_brown.jpg",
-				"name" => "Brownie",
-				"breed" => "Aspin",
-				"species" => "Dog",
-				"colors" => ["goldenrod"],
-				"birthday" => "2022/05/06",
-				"gender" => "Male",
-				"type" => "tamed"
-			],
-			[
-				"id" => 2,
-				"img" => "aspin_mocha.webp",
-				"name" => "Siomai",
-				"breed" => "Aspin",
-				"species" => "Dog",
-				"colors" => ["white", "chocolate"],
-				"birthday" => "2021/09/25",
-				"gender" => "Female",
-				"type" => "tamed"
-			],
-			[
-				"id" => 3,
-				"img" => "labrador.jpg",
-				"name" => "Siopao",
-				"breed" => "Labrador",
-				"species" => "Dog",
-				"colors" => ["moccasin"],
-				"birthday" => "2022/06/17",
-				"gender" => "Male",
-				"type" => "tamed"
-			],
-			[
-				"id" => 4,
-				"img" => "golden_retriever.jpg",
-				"name" => "Voodoo",
-				"breed" => "Golden Retriever",
-				"species" => "Dog",
-				"colors" => ["gold"],
-				"birthday" => "2020/03/11",
-				"gender" => "Female",
-				"type" => "tamed"
-			],
-			[
-				"id" => 5,
-				"img" => "tabby.jpg",
-				"name" => "Oreo",
-				"breed" => "Tabby",
-				"species" => "Cat",
-				"colors" => ["gray", "dimgray", "white"],
-				"birthday" => "2021/11/15",
-				"gender" => "Male",
-				"type" => "tamed"
-			],
-			[
-				"id" => 6,
-				"img" => "bombay.jpg",
-				"name" => "Kisses",
-				"breed" => "Bombay",
-				"species" => "Cat",
-				"colors" => ["black"],
-				"birthday" => "2021/12/15",
-				"gender" => "Female",
-				"type" => "tamed"
+		if ($validator->fails()) {
+			return redirect()
+				->back()
+				->withErrors($validator)
+				->withInput();
+		}
 
-			]
-		]
-	];
+		try {
+			DB::beginTransaction();
+			$colors = implode(', ', $req->colors);
+			$imagename = "";
+			if ($req->hasFile("pet_image")) {
+
+				$destination = "uploads/clients/$req->pet_owner/pets";
+				$fileType = $req->file("pet_image")->getClientOriginalExtension();
+				$imagename = strtolower(preg_replace("/s+/", "_", $req->pet_name)) . ".$fileType";
+				$req->file("pet_image")->move($destination, $imagename);
+			}
+
+			$pi = PetsInformation::create([
+				'pet_owner' => $id,
+				'pet_name' => $req->pet_name,
+				'breed' => $req->breed,
+				'colors' => $colors,
+				'birthdate' => $req->birthdate,
+				'species' => $req->species,
+				'gender' => $req->gender,
+				'types' => $req->types,
+				'pet_image' => $imagename,
+			]);
+
+
+			DB::commit();
+		} catch (Exception $e) {
+			DB::rollback();
+			Log::error($e);
+
+
+			return redirect()
+				->route('pet-information')
+				->with('flash_error', 'Something went wrong, please try again later');
+		}
+
+		return redirect()
+			->route('pet-information')
+			->with('flash_success', "Added a pet successfully!");
+	}
+
+	protected function updatePet(Request $req, $id)
+	{
+		$pi = PetsInformation::find($id);
+
+		$validator = Validator::make($req->all(), [
+			"pet_name" => 'required|string|max:255',
+			"birthdate" => 'required|string|max:255',
+			"breed" => 'required|string|max:255',
+			"colors" => 'required|array|max:3',
+			"species" => 'required|string|max:255',
+			"gender" => 'required|string|max:255',
+			"types" => 'required|string|max:255',
+			"pet_image" => 'max:5120|mimes:jpeg,jpg,png,webp|nullable',
+		]);
+
+		if ($validator->fails()) {
+			return redirect()
+				->back()
+				->withErrors($validator)
+				->withInput();
+		}
+	
+		try {
+				DB::beginTransaction();
+					$pi->pet_owner = $id;
+					$pi->pet_name = $req->pet_name;
+					$pi->birthdate = $req->birthdate;
+					$pi->breed = $req->breed;
+					$pi->colors = $req->colors;
+					$pi->service_type = $req->service_type;
+					$pi->save();
+	
+
+					DB::commit();
+				} catch (Exception $e) {
+					DB::rollback();
+					Log::error($e);
+		
+		
+					return redirect()
+						->route('pet-information')
+						->with('flash_error', 'Something went wrong, please try again later');
+				}
+		
+				return redirect()
+					->route('pet-information')
+					->with('flash_success', "Pet Information has been updated successfully");
+	}
 
 	// CLIENT-PROFILE
 	protected function index()
 	{
-		$clients = User::select(DB::raw('id, CONCAT(first_name, " ", last_name) as name, email'))
-			->where('user_type_id', '=', '4')->get();
+		$clients = User::has('petsInformations', '>', 0)
+			->select(DB::raw('id, CONCAT(first_name, " ", last_name) as name, email'))
+			->where('user_type_id', '=', '4')
+			->get();
+
 
 		return view('admin.pet-information.index', [
 			'clients' => $clients
@@ -280,9 +330,16 @@ class ClientController extends Controller
 		]);
 	}
 
-	protected function add()
+	protected function add($id)
 	{
-		return view('admin.pet-information.pet.add');
+		$pi = PetsInformation::get();
+		return view(
+			'admin.pet-information.pet.add',
+			[
+				'petsinformation' => $pi,
+				'id' => $id
+			]
+		);
 	}
 	protected function showPets($id)
 	{
@@ -295,7 +352,14 @@ class ClientController extends Controller
 
 	protected function editPet($id)
 	{
-		return view('admin.pet-information.pet.edit');
+		$clients = PetsInformation::where('pet_owner', '=', $id)->get();
+		return view(
+			'admin.pet-information.pet.edit',
+			[
+				'clients' => $clients,
+				'id' => $id
+			]
+		);
 	}
 
 	protected function notifyClient(Request $req)

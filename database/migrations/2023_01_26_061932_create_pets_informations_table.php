@@ -15,7 +15,7 @@ class CreatePetsInformationsTable extends Migration
     {
         Schema::create('pets_informations', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('pet_owner');
+            $table->integer('pet_owner')->unsigned();
             $table->string('pet_image')->nullable();
             $table->string('pet_name');
             $table->string('breed');  
@@ -25,6 +25,8 @@ class CreatePetsInformationsTable extends Migration
             $table->string('gender');
             $table->string('types');
             $table->timestamps();
+
+            $table->foreign('pet_owner')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

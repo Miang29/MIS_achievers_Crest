@@ -59,10 +59,16 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 		Route::get('/create', 'ClientController@create')->name('pet-information.create');
 
 		// Add
-		Route::get('/add', 'ClientController@add')->name('pet-information.pet.add');
+		Route::get('/add/{clientId}', 'ClientController@add')->name('pet-information.pet.add');
 
-		// POST
+		// POST // addPet
+		Route::post('/add-pet/{clientId}', 'ClientController@addPet')->name('add-pet');
+
+		// POST //SubmitPet
 		Route::post('/submit-pet', 'ClientController@submitPet')->name('submit-pet');
+
+		// POST //UpdatePet
+		Route::post('/update-pet/{id}', 'ClientController@updatePet')->name('update-pet');
 
 		// Pet Edit
 		Route::get('/view/{clientId}/pet/{id}/edit', 'ClientController@editPet')->name('pet-information.pet.edit');
@@ -228,10 +234,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 	});
 
 	//SETTINGS
-		Route::get('/settings', 'SettingsController@settings')->name('settings.index');
-		Route::post('/update', 'SettingsController@update')->name('settings.update');
-		Route::post('/remove-logo', 'SettingsController@removeLogo')->name('settings.remove-logo');
-	
+	Route::get('/settings', 'SettingsController@settings')->name('settings.index');
+	Route::post('/update', 'SettingsController@update')->name('settings.update');
+	Route::post('/remove-logo', 'SettingsController@removeLogo')->name('settings.remove-logo');
+
 
 
 	//USER ACCOUNT

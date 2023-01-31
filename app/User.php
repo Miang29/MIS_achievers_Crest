@@ -43,7 +43,7 @@ class User extends Authenticatable
         return $this->belongsTo('App\UserType');
     }
 
-    protected function petsInformations() {
+    public function petsInformations() {
         return $this->hasMany('App\PetsInformation', 'pet_owner', 'id');
     }
 

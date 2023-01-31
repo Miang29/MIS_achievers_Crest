@@ -7,7 +7,7 @@
 <div class="container-fluid px-2 px-lg-6 py-2 h-100 my-3">
 	<div class="row">
 		<div class="col-12 col-lg-6 text-center text-lg-left">
-			<h2 class=" text-1">Pet Information</h2>
+			<h2 class=" text-1">Pet List</h2>
 		</div>
 
 		<div class="col-12 col-md-6 col-lg my-2 text-center text-md-left text-lg-right">
@@ -54,7 +54,7 @@
 
 						<td class="text-center">
 							<div class="row">
-								<a class="border-right border-secondary" href="{{route('pet-information.pet.show', [$c->id])}}"><i class="fa-solid fa-eye mr-2 text-dark" style="margin-left:8.5rem;"></i></a>
+								<a class="border-right border-secondary" href="{{route('pet-information.pet.show', [$c->id])}}"><i class="fa-solid fa-eye mr-2 text-dark"></i></a>
 								<a href="javascript:void(0);" onclick="confirmLeave('{{ route('pet-information') }}', undefined, 'Are you sure you want to archive?');"><i class="fa-solid fa-box-archive ml-2 text-info"></i></a>
 							</div>
 

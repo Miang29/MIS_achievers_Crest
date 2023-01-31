@@ -4,35 +4,56 @@
 
 @section('content')
 <div class="container-fluid px-2 px-lg-6 py-2 h-100 my-3">
-<h3 class="mt-3"><a href="{{route('pet-information.pet.show', [1] )}}
+    <h3 class="mt-3"><a href="{{route('pet-information.pet.show',[$id] )}}
 " class="text-decoration-none  text-1"><i class="fas fa-chevron-left mr-2"></i>Pet List</a></h3>
     <hr class="hr-thick" style="border-color: #707070;">
     <div class="col-12 my-2 mx-auto">
-        <div class="card mx-auto">
+        <form class="card mx-auto">
             <h5 class="card-header text-center text-white bg-1"> Edit Pet Information</h5>
 
             <div class="card-body">
                 <div class="row">
-                    <div class="col-12 col-lg-6 d-flex">
-                        <div class="form-group text-center text-lg-left mx-auto image-input-group">
-                            <label class="h2  text-1  ml-5" for="image">Pet Image</label><br>
-                            <img src="{{ asset('images/UI/placeholder.jpg') }}" class="img-fluid cursor-pointer border" style="border-width: 0.25rem!important; max-height: 16.25rem;" alt="Pet Image">
-                            <br><br>
-                            <input type="file" name="image[]" class="hidden" accept=".jpg,.jpeg,.png"><br>
-                            <small class="text-muted"><b>FORMATS ALLOWED:</b> JPEG, JPG, PNG</small>
+                    <div class="col-12 col-lg-8 mx-auto">
+                        {{-- IMAGE INPUT --}}
+                        <div class="image-input-scope" id="pet-image-scope_0" data-settings="#image-input-settings_0" data-fallback-img="{{ asset('uploads/settings/default.png') }}">
+                            {{-- FILE IMAGE --}}
+                            <div class="form-group text-center image-input collapse show avatar_holder" id="pet-image-image-input-wrapper_0">
+                                <div class="row border rounded border-secondary-light py-2 mx-1">
+                                    <div class="col-12 col-md-6 text-md-right">
+                                        <div class="hover-cam mx-auto avatar rounded overflow-hidden">
+                                            <img src="{{ asset('uploads/settings/default.png') }}" class="hover-zoom img-fluid avatar" id="pet-image-container_0" alt="Pet Image" data-default-src="{{ asset('uploads/settings/default.png') }}">
+                                            <span class="icon text-center image-input-float" id="pet-image_0" tabindex="0" data-target="#pet-image-container_0">
+                                                <i class="fas fa-camera text-white hover-icon-2x"></i>
+                                            </span>
+                                        </div>
+                                        <input type="file" name="pet_image" class="d-none" accept=".jpg,.jpeg,.png,.webp" data-role="image-input" data-target-image-container="#pet-image-container_0" data-target-name-container="#pet-image-name_0">
+                                    </div>
+
+                                    <div class="col-12 col-md-6 text-md-left">
+                                        <label class="form-label font-weight-bold" for="pet-image">Pet Image</label><br>
+                                        <small class="text-muted pb-0 mb-0">
+                                            <b>FORMATS ALLOWED:</b>
+                                            <br>JPEG, JPG, PNG, WEBP
+                                        </small><br>
+                                        <small class="text-muted pt-0 mt-0"><b>MAX SIZE:</b> 5MB</small><br>
+                                        <button class="btn btn-secondary reset-image" type="button" data-reset-id="0">Remove Image</button><br>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-
-                    <div class="col-12 col-lg-6">
+                    <div class="col-12 col-lg-8 mx-auto">
                         <div class="form-group ">
                             <div class="col-12 col-md-9 col-lg-12 mx-auto">
-                                <label class="important text-1" for="petname">Pet Name</label>
-                                <input class="form-control" type="text" name="petname[]" />
+                                <label class="h6 font-weight-bold text-1 important" for="pet_name">Pet Name</label>
+                                <input class="form-control" type="text" name="pet_name" />
+                                <small class="text-danger small">{{ $errors->first('pet_name') }}</small>
                             </div>
 
                             <div class="col-12 col-md-9 col-lg-12 mx-auto">
-                                <label class="important text-1" for="breed">Breed</label>
-                                <input class="form-control" type="text" name="breed[]" />
+                                <label class="h6 font-weight-bold text-1  important" for="breed">Breed</label>
+                                <input class="form-control" type="text" name="breed" ('breed') }}" />
+                                <small class="text-danger small">{{ $errors->first('breed') }}</small>
                             </div>
 
                             <div class="row d-flex justify-content-center">
@@ -52,54 +73,74 @@
                             </div>
 
                             <div class="col-12 col-md-9 col-lg-12 mx-auto">
-                                <label class="important text-1 my-2" for="bday">Birthdate</label>
-                                <input class="form-control " type="date" name="bday[]" />
+                                <label class="h6 font-weight-bold text-1  important" for="birthdate">Birthdate</label>
+                                <input class="form-control" type="date" name="birthdate" />
+                                <small class="text-danger small">{{ $errors->first('birthdate') }}</small>
                             </div>
 
                             <div class="col-12 col-md-9 col-lg-12 mx-auto">
-                                <label class="important text-1 my-2" for="species">Species</label>
-                                <div class="input-group mb-3">
-                                    <select class="custom-select  text-1" id="inputGroupSelect01">
-                                        <option selected name="species"></option>
-                                        <option value="1">Cat</option>
-                                        <option value="2">Dog</option>
+                                <label class="h6 font-weight-bold text-1  important" for="species">Species</label>
+                                <div class="input-group mb-3 ">
+                                    <select class="custom-select" id="inputGroupSelect01" name="species">
+                                        <option selected value="">Choose species..</option>
+                                        <option value="cat">Cat</option>
+                                        <option value="dog">Dog</option>
                                     </select>
                                 </div>
+                                <small class="text-danger small">{{ $errors->first('species') }}</small>
                             </div>
 
                             <div class="col-12 col-md-9 col-lg-12 mx-auto">
-                                <label class="important text-1 " for="species">Gender</label>
-                                <div class="input-group mb-3">
-                                    <select class="custom-select  text-1" id="inputGroupSelect01">
-                                        <option selected name="gender[]"></option>
-                                        <option value="1">Female</option>
-                                        <option value="2">Male</option>
+                                <label class="h7 font-weight-bold text-1  important" for="gender">Gender</label>
+                                <div class="input-group mb-3 ">
+                                    <select class="custom-select" id="inputGroupSelect01" name="gender">
+                                        <option selected value="">Choose gender..</option>
+                                        <option value="female">Female</option>
+                                        <option value="male">Male</option>
                                     </select>
                                 </div>
+                                <small class="text-danger small">{{ $errors->first('gender') }}</small>
                             </div>
 
                             <div class="col-12 col-md-9 col-lg-12 mx-auto">
-                                <label class="important text-1" for="species">Type</label>
-                                <div class="input-group mb-3">
-                                    <select class="custom-select  text-1" id="inputGroupSelect01">
-                                        <option selected name="types"></option>
-                                        <option value="1">Tame</option>
-                                        <option value="2">Wild</option>
+                                <label class="h6 font-weight-bold text-1 important" for="types">Types</label>
+                                <div class="input-group mb-3 ">
+                                    <select class="custom-select" id="inputGroupSelect01" name="types">
+                                        <option selected value="">Choose types..</option>
+                                        <option value="tame">Tame</option>
+                                        <option value="wild">Wild</option>
                                     </select>
                                 </div>
+                                <small class="text-danger small">{{ $errors->first('types') }}</small>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+            <div class="card-footer d-flex">
+                <div class="col-lg-4 col-md-4 col-8 mx-auto text-center">
+                    <button type="submit" class="btn btn-outline-info  btn-md  w-25  mb-3" data-type="submit">Save</button>
+                    <a href="{{ route('pet-information') }}" class="btn btn-outline-danger btn-md w-25 mb-3">Cancel</a>
+                </div>
+            </div>
+        </form>
     </div>
 </div>
 @endsection
 
 @section('scripts')
 <script type="text/javascript" src="{{ asset('js/util/select.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/util/image-input.js') }}"></script>
+<script type="text/javascript">
+    $(document).ready(() => {
+        $(document).on('click', ".reset-image", (e) => {
+            $(e.currentTarget).closest(".image-input").find(`#pet-image-container_${$(e.currentTarget).attr('data-reset-id')}`).attr('src', `{{ asset('uploads/settings/default.png') }}`);
+        });
+        instantiateSelect();
+    });
+</script>
 @endsection
+
 
 @section('css')
 <link rel="stylesheet" type="text/css" href="{{ asset('css/util/admin.css') }}" />

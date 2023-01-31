@@ -18,9 +18,10 @@
 
 					<select class="custom-select" id="inputGroupSelect01" name="pet_owner">
 						@foreach ($users as $u)
-						<option  value="{{ $u->id}}">{{ $u->name }}</option>
+						<option value="{{ $u->id}}">{{ $u->name }}</option>
 						@endforeach
 					</select>
+					<small class="text-danger small">{{ $errors->first('pet_owner') }}</small>
 				</div>
 			</div>
 
@@ -65,73 +66,73 @@
 
 									<div class="col-12 col-md-9 col-lg-12 mx-auto">
 										<label class="h6 font-weight-bold text-1 important" for="pet_name">Pet Name</label>
-										<input class="form-control" type="text" name="pet_name[]" />
-										<small class="text-danger small">{{ $errors->first('pet_name') }}</small>
+										<input class="form-control" type="text" name="pet_name[]" value="{{ old('pet_name[]') }}" />
+										<small class="text-danger small">{{ $errors->first('pet_name.*') }}</small>
 									</div>
 
 									<div class="col-12 col-md-9 col-lg-12 mx-auto">
 										<label class="h6 font-weight-bold text-1  important" for="breed">Breed</label>
-										<input class="form-control" type="text" name="breed[]" ('breed') }}" />
-										<small class="text-danger small">{{ $errors->first('breed') }}</small>
-									</div>
-
-									<div class="row d-flex justify-content-center">
-										<div class="col-md-9 col-lg-11 col-12 my-3 mx-auto">
-											<label class="h6 font-weight-bold text-1 important" for="colors">Colors</label>
-											<select class="select-choices" name="colors[0][]" placeholder="Select Pet color" multiple notInstantiated>
-												<option value="#FFFff">White</option>
-												<option value="#00000">Black</option>
-												<option value="#C1C1C1">Ash Gray</option>
-												<option value="#FFFDD0">Cream</option>
-												<option value="#D2691E">Cinnamon</option>
-												<option value="#E5AA70">Fawn</option>
-												<option value="#964B00">Brown</option>
-											</select>
-										</div>
-										<small class="text-danger small">{{ $errors->first('colors') }}</small>
+										<input class="form-control" type="text" name="breed[]" value="{{ old('breed[]') }}" />
+										<small class="text-danger small">{{ $errors->first('breed.*') }}</small>
 									</div>
 
 
 									<div class="col-12 col-md-9 col-lg-12 mx-auto">
+										<label class="h6 font-weight-bold text-1 important" for="colors">Colors</label>
+										<select class="select-choices" name="colors[0][]" placeholder="Select Pet color" multiple notInstantiated>
+											<option value="#FFFFF">White</option>
+											<option value="#00000">Black</option>
+											<option value="#C1C1C1">Ash Gray</option>
+											<option value="#FFFDD0">Cream</option>
+											<option value="#D2691E">Cinnamon</option>
+											<option value="#E5AA70">Fawn</option>
+											<option value="#964B00">Brown</option>
+										</select>
+										<small class="text-danger small">{{ $errors->first('colors') }}</small>
+									</div>
+
+
+
+									<div class="col-12 col-md-9 col-lg-12 mx-auto">
 										<label class="h6 font-weight-bold text-1  important" for="birthdate">Birthdate</label>
-										<input class="form-control" type="date" name="birthdate[]"/>
-										<small class="text-danger small">{{ $errors->first('birthdate') }}</small>
+										<input class="form-control" type="date" name="birthdate[]" value="{{ old('brithdate[]') }}" />
+										<small class="text-danger small">{{ $errors->first('birthdate.*') }}</small>
 									</div>
 
 									<div class="col-12 col-md-9 col-lg-12 mx-auto">
 										<label class="h6 font-weight-bold text-1  important" for="species">Species</label>
 										<div class="input-group mb-3 ">
-											<select class="custom-select" id="inputGroupSelect01" name="species[]">
+											<select class="custom-select" id="inputGroupSelect01" name="species[]" value="{{ old('species[]') }}">
 												<option selected value="">Choose species..</option>
 												<option value="cat">Cat</option>
 												<option value="dog">Dog</option>
 											</select>
 										</div>
-										<small class="text-danger small">{{ $errors->first('species') }}</small>
+										<small class="text-danger small">{{ $errors->first('species.*') }}</small>
 									</div>
 
 									<div class="col-12 col-md-9 col-lg-12 mx-auto">
 										<label class="h7 font-weight-bold text-1  important" for="gender">Gender</label>
 										<div class="input-group mb-3 ">
-											<select class="custom-select" id="inputGroupSelect01" name="gender[]">
+											<select class="custom-select" id="inputGroupSelect01" name="gender[]" value="{{ old('gender[]') }}">
 												<option selected value="">Choose gender..</option>
 												<option value="female">Female</option>
 												<option value="male">Male</option>
 											</select>
 										</div>
-										<small class="text-danger small">{{ $errors->first('species') }}</small>
+										<small class="text-danger small">{{ $errors->first('gender.*') }}</small>
 									</div>
 
 									<div class="col-12 col-md-9 col-lg-12 mx-auto">
 										<label class="h6 font-weight-bold text-1 important" for="types">Types</label>
 										<div class="input-group mb-3 ">
-											<select class="custom-select" id="inputGroupSelect01" name="types[]">
+											<select class="custom-select" id="inputGroupSelect01" name="types[]" value="{{ old('types[]') }}">
 												<option selected value="">Choose types..</option>
 												<option value="tame">Tame</option>
 												<option value="wild">Wild</option>
 											</select>
 										</div>
-										<small class="text-danger small">{{ $errors->first('species') }}</small>
+										<small class="text-danger small">{{ $errors->first('types.*') }}</small>
 									</div>
 								</div>
 							</div>
@@ -185,7 +186,7 @@
 		<div class="col-lg-6 col-md-8 col-12 my-2 mx-auto"> 
 				<div class="card mx-auto">
 				<h3 class="card-header text-center position-relative bg-1 text-white"><i class="fa-solid fa-dog mr-2"></i>Pet Registration<i class="fa-solid fa-cat ml-2"></i><span class="position-absolute" style="top: 0.125rem; right: 0.5rem; cursor: pointer;" onclick="$(this).parent().parent().parent().remove();"><i class="fas fa-multiply"></i></span></h3>
-				<div class="card-body d-flex">
+				<div class="card-body d-flex col-lg-12">
 						<div class="row">
 							<div class="col-12 col-md-6 col-lg-12">
 							{{-- IMAGE INPUT --}}
@@ -215,25 +216,23 @@
 										</div>
 									</div>
 								</div>
-
+							</div>
+	
 							<div class="col-12 col-lg-12 col-md-12 ">
 								<div class="form-group ">
 
 								    <div class="col-12 col-md-9 col-lg-12 mx-auto">
 										<label class="h6 font-weight-bold text-1 important" for="pet_name">Pet Name</label>
 										<input class="form-control" type="text" name="pet_name[]"/>
-										<small class="text-danger small">{{ $errors->first('pet_name') }}</small>
 									</div>
 
 									<div class="col-12 col-md-9 col-lg-12 mx-auto">
 										<label class="h6 font-weight-bold text-1  important" for="breed">Breed</label>
-										<input class="form-control" type="text" name="breed[]" value="{{ old('breed') }}" />
-										<small class="text-danger small">{{ $errors->first('breed') }}</small>
+										<input class="form-control" type="text" name="breed[]" value="{{ old('breed[]') }}" />
 									</div>
 
 									{{-- COLORS --}}
-									<div class="row d-flex justify-content-center">
-										<div class="col-md-9 col-lg-11 col-12 my-3 mx-auto">
+										<div class="col-12 col-md-9 col-lg-12 mx-auto">
 											<label class="h6 font-weight-bold text-1  important" for="colors">Colors</label>
 											<select class="select-choices" name="colors[${__iterator++}][]" placeholder="Select Pet color" multiple notInstantiated>
 												<option value="#FFFff">White</option>
@@ -245,8 +244,7 @@
 												<option value="#964B00">Brown</option>
 											</select>
 										</div>
-										<small class="text-danger small">{{ $errors->first('colors') }}</small>
-									</div>
+										
 
 									<div class="col-12 col-md-9 col-lg-12 mx-auto">
 										<label class="h6 font-weight-bold text-1  important" for="birthdate">Birthdate</label>
@@ -263,7 +261,6 @@
 												<option value="dog">Dog</option>
 											</select>
 										</div>
-										<small class="text-danger small">{{ $errors->first('species') }}</small>
 									</div>
 
 									<div class="col-12 col-md-9 col-lg-12 mx-auto">
@@ -275,7 +272,6 @@
 												<option value="male">Male</option>
 											</select>
 										</div>
-										<small class="text-danger small">{{ $errors->first('species') }}</small>
 									</div>
 
 									<div class="col-12 col-md-9 col-lg-12 mx-auto">
@@ -287,7 +283,6 @@
 												<option value="wild">Wild</option>
 											</select>
 										</div>
-										<small class="text-danger small">{{ $errors->first('species') }}</small>
 									</div>
 								</div>
 							</div>
