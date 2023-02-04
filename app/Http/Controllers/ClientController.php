@@ -2,18 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\PetsInformation;
 use Illuminate\Http\Request;
 
+use App\PetsInformation;
 use App\User;
 use App\UserType;
 
-use Auth;
 use DB;
 use Exception;
+use File;
 use Hash;
 use Log;
-use Mail;
 use Validator;
 
 
@@ -221,7 +220,7 @@ class ClientController extends Controller
 			$imagename = "";
 			if ($req->hasFile("pet_image")) {
 
-				$destination = "uploads/clients/$req->pet_owner/pets";
+				$destination = "uploads/clients/$id/pets";
 				$fileType = $req->file("pet_image")->getClientOriginalExtension();
 				$imagename = strtolower(preg_replace("/s+/", "_", $req->pet_name)) . ".$fileType";
 				$req->file("pet_image")->move($destination, $imagename);
@@ -256,9 +255,16 @@ class ClientController extends Controller
 			->with('flash_success', "Added a pet successfully!");
 	}
 
-	protected function updatePet(Request $req, $id)
+	protected function updatePet(Request $req, $clientId, $id)
 	{
+		// dd($req);
 		$pi = PetsInformation::find($id);
+		if ($pi == null) {
+			return redirect()
+				->back()
+				->route('pet-information')
+				->with('flash_error', "No such pet information exists");
+		}
 
 		$validator = Validator::make($req->all(), [
 			"pet_name" => 'required|string|max:255',
@@ -277,32 +283,49 @@ class ClientController extends Controller
 				->withErrors($validator)
 				->withInput();
 		}
-	
-		try {
-				DB::beginTransaction();
-					$pi->pet_owner = $id;
-					$pi->pet_name = $req->pet_name;
-					$pi->birthdate = $req->birthdate;
-					$pi->breed = $req->breed;
-					$pi->colors = $req->colors;
-					$pi->service_type = $req->service_type;
-					$pi->save();
-	
 
-					DB::commit();
-				} catch (Exception $e) {
-					DB::rollback();
-					Log::error($e);
-		
-		
-					return redirect()
-						->route('pet-information')
-						->with('flash_error', 'Something went wrong, please try again later');
-				}
-		
-				return redirect()
-					->route('pet-information')
-					->with('flash_success', "Pet Information has been updated successfully");
+		try {
+			DB::beginTransaction();
+			$colors = implode(', ', $req->colors);
+
+			$imagename = "";
+			if ($req->hasFile("pet_image")) {
+				if ($pi->pet_image != null)
+					File::delete(public_path() . "/uploads/clients/{$clientId}/pets/{$pi->pet_image}");
+
+				$destination = "uploads/clients/$clientId/pets";
+				$fileType = $req->file("pet_image")->getClientOriginalExtension();
+				$imagename = strtolower(preg_replace("/s+/", "_", $req->pet_name)) . ".$fileType";
+				$req->file("pet_image")->move($destination, $imagename);
+				
+				$pi->pet_image = $imagename;
+			}
+
+			$pi->pet_owner = $clientId;
+			$pi->pet_name = $req->pet_name;
+			$pi->birthdate = $req->birthdate;
+			$pi->breed = $req->breed;
+			$pi->colors = $colors;
+			$pi->species = $req->species;
+			$pi->gender = $req->gender;
+			$pi->types = $req->types;
+			$pi->save();
+
+			DB::commit();
+		} catch (Exception $e) {
+			DB::rollback();
+			Log::error($e);
+
+
+
+			return redirect()
+				->route('pet-information')
+				->with('flash_error', 'Something went wrong, please try again later');
+		}
+
+		return redirect()
+			->route('pet-information', [$clientId])
+			->with('flash_success', "Pet Information has been updated successfully");
 	}
 
 	// CLIENT-PROFILE
@@ -325,7 +348,7 @@ class ClientController extends Controller
 		$pi = PetsInformation::get();
 
 		return view('admin.pet-information.create', [
-			'petsinformation' => $pi,
+			'PetsInformation' => $pi,
 			'users' => $user,
 		]);
 	}
@@ -336,7 +359,7 @@ class ClientController extends Controller
 		return view(
 			'admin.pet-information.pet.add',
 			[
-				'petsinformation' => $pi,
+				'PetsInformation' => $pi,
 				'id' => $id
 			]
 		);
@@ -350,14 +373,14 @@ class ClientController extends Controller
 		]);
 	}
 
-	protected function editPet($id)
+	protected function editPet($clientId, $id)
 	{
-		$clients = PetsInformation::where('pet_owner', '=', $id)->get();
+		$pet = PetsInformation::find($id);
 		return view(
 			'admin.pet-information.pet.edit',
 			[
-				'clients' => $clients,
-				'id' => $id
+				'clientId' => $clientId,
+				'pet' => $pet
 			]
 		);
 	}

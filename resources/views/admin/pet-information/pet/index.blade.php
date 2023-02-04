@@ -65,11 +65,7 @@
 							<div>
 								<span class="p font-weight-bold">Species:</span>
 								<span class="mx-2">
-									@if ($p->species == "Dog")
-									<i class="fas fa-dog fa-lg mr-2"></i>{{ ucfirst($p->species) }}
-									@else ($p->species == "Cat")
-									<i class="fas fa-cat fa-lg mr-2"></i>{{ ucfirst($p->species) }}
-									@endif
+									<i class="fas fa-{{ $p->species }} fa-lg mr-2"></i>{{ ucfirst($p->species) }}
 								</span>
 							</div>
 
@@ -85,9 +81,9 @@
 							<div>
 								<span class="p font-weight-bold">Gender: </span>
 								<span class="mx-2">
-									@if ($p->gender == "Male")
+									@if ($p->gender == "male")
 									<i class="fas fa-mars fa-lg mr-2 text-primary"></i>{{ ucfirst($p->gender) }}
-									@else
+									@elseif ($p->gender == "female")
 									<i class="fas fa-venus fa-lg mr-2" style="color: pink;"></i>{{ ucfirst($p->gender) }}
 									@endif
 								</span>

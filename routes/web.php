@@ -68,7 +68,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 		Route::post('/submit-pet', 'ClientController@submitPet')->name('submit-pet');
 
 		// POST //UpdatePet
-		Route::post('/update-pet/{id}', 'ClientController@updatePet')->name('update-pet');
+		Route::post('/update-pet/{clientId}/pet/{id}/update', 'ClientController@updatePet')->name('update-pet');
 
 		// Pet Edit
 		Route::get('/view/{clientId}/pet/{id}/edit', 'ClientController@editPet')->name('pet-information.pet.edit');

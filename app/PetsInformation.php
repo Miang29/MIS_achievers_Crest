@@ -21,4 +21,8 @@ class PetsInformation extends Model
     protected function user() {
         return $this->belongsTo('App\User');
     }
+
+    public function getImage($getFull = true) {
+        return $getFull ? asset("uploads/clients/{$this->pet_owner}/pets/{$this->pet_image}") : $this->pet_image;
+    }
 }

@@ -80,8 +80,8 @@
 									<div class="col-12 col-md-9 col-lg-12 mx-auto">
 										<label class="h6 font-weight-bold text-1 important" for="colors">Colors</label>
 										<select class="select-choices" name="colors[0][]" placeholder="Select Pet color" multiple notInstantiated>
-											<option value="#FFFFF">White</option>
-											<option value="#00000">Black</option>
+											<option value="#FFFFFF">White</option>
+											<option value="#000000">Black</option>
 											<option value="#C1C1C1">Ash Gray</option>
 											<option value="#FFFDD0">Cream</option>
 											<option value="#D2691E">Cinnamon</option>

@@ -54,7 +54,7 @@
 
                             <div class="col-12 col-md-9 col-lg-12 mx-auto">
                                 <label class="h6 font-weight-bold text-1  important" for="breed">Breed</label>
-                                <input class="form-control" type="text" name="breed" ('breed') }}" />
+                                <input class="form-control" type="text" name="breed"/>
                                 <small class="text-danger small">{{ $errors->first('breed') }}</small>
                             </div>
 
@@ -62,8 +62,8 @@
                                 <div class="col-md-9 col-lg-11 col-12 my-3 mx-auto">
                                     <label class="h6 font-weight-bold text-1 important" for="colors">Colors</label>
                                     <select name="colors[]" id="choices-multiple-remove-button" placeholder="Select Pet color" multiple>
-                                        <option value="#FFFff">White</option>
-                                        <option value="#00000">Black</option>
+                                        <option value="#FFFFFF">White</option>
+                                        <option value="#000000">Black</option>
                                         <option value="#C1C1C1">Ash Gray</option>
                                         <option value="#FFFDD0">Cream</option>
                                         <option value="#D2691E">Cinnamon</option>
