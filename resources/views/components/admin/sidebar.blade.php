@@ -57,9 +57,9 @@
 		@if (\Request::is('admin/inventory'))
 		<span class="bg-secondary text-white"><i class="fa-solid fa-warehouse  mr-2 fa-lg"></i>Inventory</span>
 		@elseif (\Request::is('admin/inventory/*'))
-		<a class="text-decoration-none text-white bg-secondary aria-link" href="{{route('category')}}" aria-hidden="false" aria-label="Transaction"><i class="fa-solid fa-warehouse mr-3 fa-lg"></i>Inventory</a>
+		<a class="text-decoration-none text-white bg-secondary aria-link" href="{{route('inventory')}}" aria-hidden="false" aria-label="Transaction"><i class="fa-solid fa-warehouse mr-3 fa-lg"></i>Inventory</a>
 		@else
-		<a class="text-decoration-none text-1 aria-link" href="{{route('category')}}" aria-hidden="false" aria-label="Transaction"><i class="fa-solid fa-warehouse  mr-2 fa-lg"></i>Inventory</a>
+		<a class="text-decoration-none text-1 aria-link" href="{{route('inventory')}}" aria-hidden="false" aria-label="Transaction"><i class="fa-solid fa-warehouse  mr-2 fa-lg"></i>Inventory</a>
 		@endif
 		{{-- @endif --}}
 

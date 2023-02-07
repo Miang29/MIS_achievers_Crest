@@ -114,12 +114,13 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 	});
 
 	// INVENTORY
-	Route::group(['prefix' => 'inventory/category'], function () {
+	Route::group(['prefix' => 'inventory'], function () {
 		//Index
-		Route::get('/', 'InventoryController@category')->name('category');
+		Route::get('/', 'InventoryController@indexCategory')->name('inventory');
 
 		//Create
-		Route::get('/create', 'InventoryController@createCategory')->name('category.create');
+		Route::get('/create', 'InventoryController@create')->name('category.create');
+		Route::post('submit-products', 'InventoryController@submitProducts')->name('submit-products');
 
 		//Edit
 		// Route::get('/{id}/edit', 'InventoryController@editCategory')->name('category.edit');
@@ -130,13 +131,18 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 		// Delete
 		Route::get('/{id}/delete/', 'InventoryController@deleteCategory')->name('category.delete');
 
+		//CATEGORY
+		//Create
+		Route::get('/create-category', 'InventoryController@createCty')->name('create-category');
+		Route::post('/submit-category', 'InventoryController@submitCty')->name('submit-category');
+
 		//INVENTORY-PRODUCT
 		Route::group(['prefix' => '{id}'], function () {
 			//Index
 			Route::get('/product', 'InventoryController@index')->name('category.view');
 
 			//Create
-			Route::get('/product/create', 'InventoryController@create')->name('product.create');
+			Route::get('/product/create', 'InventoryController@createProduct')->name('product.create');
 
 			//View
 			Route::get('/product/{prodId}', 'InventoryController@view')->name('product.view');

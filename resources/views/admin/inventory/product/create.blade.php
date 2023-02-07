@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="container-fluid m-0">
-    <h2 class="h5 h2-lg text-center text-lg-left mx-0 mx-lg-5 my-4 "><a href="{{route('category.view', [$cid])}}" class="text-decoration-none  text-1"><i class="fas fa-chevron-left mr-2"></i>Product List</a></h2>
+    <h2 class="my-4 "><a href="{{route('category.view', [$cid])}}" class="text-decoration-none  text-1"><i class="fas fa-chevron-left mr-2"></i>Product List</a></h2>
     <hr class="hr-thick" style="border-color: #707070;">
 
     <div class="row" id="form-area">

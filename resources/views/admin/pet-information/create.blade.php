@@ -63,7 +63,6 @@
 
 							<div class="col-12 col-lg-12 col-md-12 ">
 								<div class="form-group ">
-
 									<div class="col-12 col-md-9 col-lg-12 mx-auto">
 										<label class="h6 font-weight-bold text-1 important" for="pet_name">Pet Name</label>
 										<input class="form-control" type="text" name="pet_name[]" value="{{ old('pet_name[]') }}" />
@@ -75,7 +74,6 @@
 										<input class="form-control" type="text" name="breed[]" value="{{ old('breed[]') }}" />
 										<small class="text-danger small">{{ $errors->first('breed.*') }}</small>
 									</div>
-
 
 									<div class="col-12 col-md-9 col-lg-12 mx-auto">
 										<label class="h6 font-weight-bold text-1 important" for="colors">Colors</label>
@@ -90,8 +88,6 @@
 										</select>
 										<small class="text-danger small">{{ $errors->first('colors') }}</small>
 									</div>
-
-
 
 									<div class="col-12 col-md-9 col-lg-12 mx-auto">
 										<label class="h6 font-weight-bold text-1  important" for="birthdate">Birthdate</label>
@@ -135,6 +131,7 @@
 										<small class="text-danger small">{{ $errors->first('types.*') }}</small>
 									</div>
 								</div>
+
 							</div>
 						</div>
 					</div>
@@ -245,7 +242,6 @@
 											</select>
 										</div>
 										
-
 									<div class="col-12 col-md-9 col-lg-12 mx-auto">
 										<label class="h6 font-weight-bold text-1  important" for="birthdate">Birthdate</label>
 										<input class="form-control" type="date" name="birthdate[]"/>

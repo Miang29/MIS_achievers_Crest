@@ -5,22 +5,21 @@
 @section('content')
 
 <div class="container-fluid m-0">
-    <h2 class="mx-0 mx-lg-5 my-4"><a href="javascript:void(0);" onclick="confirmLeave('{{route('category')}}');" class="text-decoration-none  text-1"><i class="fas fa-chevron-left mr-2"></i>Category List</a></h2>
-    <hr class="hr-thick" style="border-color: #707070;">
-    
-    <div class="col-12 col-md-6 col-lg-12 my-2 text-center text-md-left text-lg-right">
-        <a href="{{route('product.create', [$id])}}" class="btn btn-info bg-1  btn-sm my-1"><i class="fas fa-plus-circle mr-2"></i>Add products</a>
-    </div>
-
-    <div class=" col-12 col-md-6 col-lg-6 my-2 ml-auto text-center text-lg-right">
-        <div class="input-group">
-            <input type="text" class="form-control" name="search" placeholder="Search..." />
-            <div class="input-group-append">
-                <button type="submit" class="btn btn-secondary"><i class="fas fa-search"></i></button>
+    <div class="row">
+       <h2 class="mt-5"><a href="javascript:void(0);" onclick="confirmLeave('{{route('inventory')}}');" class="text-decoration-none  text-1"><i class="fas fa-chevron-left mr-2"></i>Inventory List</a></h2>
+        <div class="col-12 col-md-6 col-lg mt-5 text-center text-md-left text-lg-right">
+            <a href="{{route('product.create', [$id])}}" class="btn btn-info bg-1 btn-sm my-1"><i class="fas fa-plus-circle mr-2"></i>Add products</a>
+        </div>
+        <div class="ccol-12 col-md-6 col-lg-6 mt-5 text-center text-lg-right ml-auto">
+            <div class="input-group">
+                <input type="text" class="form-control" name="search" placeholder="Search..." />
+                <div class="input-group-append">
+                    <button type="submit" class="btn btn-secondary"><i class="fas fa-search"></i></button>
+                </div>
             </div>
         </div>
     </div>
-
+    <hr class="hr-thick" style="border-color: #707070;">
 
     <div class="col-12 col-lg text-center text-lg-left">
         <h2 class="font-weight-bold text-1">Product List</h2>

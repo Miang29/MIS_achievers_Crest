@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\ProductCategory;
+use App\Products;
 use Illuminate\Http\Request;
 
 use DB;
@@ -58,19 +60,84 @@ class InventoryController extends Controller
 		]
 	];
 
-    // INVENTORY
-	protected function category() {
+    // --------------- INVENTORY --------------- //
+
+
+	protected function indexCategory() {
+		$prd = ProductCategory::has('products')->get();
 		return view('admin.inventory.index', [
-			'categories' => $this->categories
+			'categories' => $prd,
 		]);
 	}
 
-	protected function createCategory() {
+	// -------------- CREATION OF PRODUCTS ----------------- //
+	
+	protected function create() {
+		$pcty = ProductCategory::get();
         return view('admin.inventory.create', [
-        	'existing_categories' => 'Pet Food'
+        	'existing_categories' => 'Pet Food',
+			'productCty' => $pcty,
         ]);
 	}
 
+	protected function submitProducts(Request $req){
+
+		
+		$validator = Validator::make($req->all(), [
+			'category' => 'required|exists:product_categories,id|numeric',
+			'product_name' => 'required|array',
+			'product_name.*' => 'required|min:2|max:355|string',
+			'stocks' => 'required|array',
+			'stocks.*' => 'required|numeric',
+			'price' => 'required|array',
+			'price.*' => 'required|numeric',
+			'status' => 'required|array',
+			'status.*' => 'required|min:2|max:355|string',
+			'description' => 'nullable|array',
+			'description.*' => 'nullable|min:2|max:355|string',
+		],[
+			'product_name.*' => 'The product name is required.',
+			'stocks.*' => 'The stock is required.', 
+			'price.*' => 'The price is required.',
+			'status.*' => 'Please select status',
+			
+		]);
+		// dd($validator->messages());
+		if ($validator->fails())
+			return redirect()
+				->back()
+				->withErrors($validator)
+				->withInput();
+		try {
+
+			DB::beginTransaction();
+			for ($i = 0; $i < count($req->product_name); $i++) {
+			
+				$prd = Products::create([
+					'category_id' => $req->category,
+					'product_name' => $req->product_name[$i],
+					'stocks' => $req->stocks[$i],
+					'price' =>  $req->price[$i],
+					'status' => $req->status[$i],
+					'description' => $req->description[$i],
+				]);
+			}
+			DB::commit();
+		} catch (Exception $e) {
+			DB::rollback();
+			Log::error($e);
+
+
+			return redirect()
+				->route('category.create')
+				->with('flash_error', 'Something went wrong, please try again later');
+		}
+
+		return redirect()
+			->route('inventory')
+			->with('flash_success', "Successfully added in product inventory.");
+	}
+	
 	protected function updateCategory($id) {
 		return response()
 			->json([
@@ -78,16 +145,15 @@ class InventoryController extends Controller
 				'title' => 'Success',
 				'message' => 'Successfully updated category name'
 			]);
-		// return view('admin.inventory.edit');
 	}
 
 	protected function deleteCategory($id) {
 		return redirect()
 			->route('category')
 			->with('flash_success', 'Successfully removed entire category and all its items');
-	}
+	} 
 
-	// PRODUCT
+	// ------------------- PRODUCT --------------------------//
 	protected function index($id) {
 		return view('admin.inventory.view', [
 			'id' => $id,
@@ -111,7 +177,7 @@ class InventoryController extends Controller
     		->with('flash_success', "Successfully updated item");
     }
 	
-	protected function create($cid) {
+	protected function createProduct($cid) {
 		return view('admin.inventory.product.create', [
 			'cid' => $cid
 		]);
@@ -132,4 +198,50 @@ class InventoryController extends Controller
 			->route('category.view', $id)
 			->with('flash_success', 'Successfully removed item');
 	}
+
+		// ---------------- CREATION OF CATEGORY NAME ------------------ //
+	protected function submitCty(Request $req)
+	{
+		$validator = Validator::make($req->all(), [
+			'category_name' => 'required|min:2|max:255|string',
+		]);
+
+		if ($validator->fails())
+			return redirect()
+				->back()
+				->withErrors($validator)
+				->withInput();
+		try {
+
+			DB::beginTransaction();
+			$pc = ProductCategory::create([
+				'category_name' => $req->category_name,
+			]);
+
+			DB::commit();
+		} catch (Exception $e) {
+			DB::rollback();
+			Log::error($e);
+			dd($e);
+
+			return redirect()
+				->route('create-category')
+				->with('flash_error', 'Something went wrong, please try again later');
+		}
+
+		return redirect()
+		->route('inventory')
+		->with('flash_success', "Successfully Added");
+	}
+
+protected function createCty() {
+
+	$pc = ProductCategory::get();
+	return view('admin.inventory.category.create',[
+		'productCategory' => $pc,
+			]);
+	}
+
 }
+
+

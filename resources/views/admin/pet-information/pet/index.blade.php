@@ -51,7 +51,7 @@
 						<div class="col-12 col-lg-6 d-flex flex-column">
 							{{-- IMAGE --}}
 							<div class="text-center text-lg-right">
-								<img src='{{ asset("uploads/clients/{$id}/pets/" . $p->pet_image) }}' class="img-fluid border mb-3 cursor-pointer" style="border-width: 0.25rem!important; max-height: 16.25rem;" alt="{{ $p->pet_name }}" data-toggle="modal" data-target='#{{ "{$p->pet_name}-{$p->$id}" }}" id= "img-{{ "{$p->pet_name }-{$p->id}" }}" }}'>
+								<img src='{{ asset("uploads/clients/{$id}/pets/" . $p->pet_image) }}' class="img-fluid border mb-3 cursor-pointer" style="border-width: 0.25rem!important; max-height: 16.25rem;" alt="{{ $p->pet_name }}" data-toggle="modal" data-target='#{{ "{$p->pet_name}-{$p->id}" }}' id='img-{{ "{$p->pet_name }-{$p->id}" }}'>
 							</div>
 						</div>
 
@@ -112,7 +112,7 @@
 @section('scripts')
 <script type="text/javascript" src="{{ asset('js/util/confirm-leave.js') }}"></script>
 @foreach($pets as $p)
-<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="img-{{ "{$p->pet_name }-{$p->id}" }}" aria-hidden="true" id="{{ "{$p->pet_name}-{$p->id}" }}">
+<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby='img-{{ "{$p->pet_name }-{$p->id}" }}' aria-hidden="true" id='{{ "{$p->pet_name}-{$p->id}" }}'>
 	<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -126,10 +126,6 @@
 				<img src="{{ asset("uploads/clients/{$id}/pets/" . $p->pet_image) }}" class="img-fluid border mb-3 h-100" style="border-width: 0.25rem!important;" alt="{{ $p->pet_name }}">
 			</div>
 
-			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-				<button type="button" class="btn btn-primary">Save changes</button>
-			</div>
 		</div>
 	</div>
 </div>

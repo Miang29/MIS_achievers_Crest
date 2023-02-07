@@ -31,5 +31,25 @@ class UsersTableSeeder extends Seeder
 			'password' => Hash::make('client123'),
 			'user_type_id' => 4
 		]);
+
+		User::create ([
+			'first_name' => 'Alex',
+			'middle_name' => 'Dizon',
+			'last_name' => 'Gonzaga',
+			'username'=> 'alex123',
+			'email' =>'alex.gonzaga@gmail.com',
+			'password' => Hash::make('alex123'),
+			'user_type_id' => 4
+		]);
+
+		User::create ([
+			'first_name' => 'Kathryn',
+			'middle_name' => 'Bernardo',
+			'last_name' => 'Padilla',
+			'username'=> 'kath123',
+			'email' =>'kath.padilla@gmail.com',
+			'password' => Hash::make('kath123'),
+			'user_type_id' => 4
+		]);
 	}
 }
