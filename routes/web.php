@@ -122,9 +122,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 		Route::get('/create', 'InventoryController@create')->name('category.create');
 		Route::post('submit-products', 'InventoryController@submitProducts')->name('submit-products');
 
-		//Edit
-		// Route::get('/{id}/edit', 'InventoryController@editCategory')->name('category.edit');
-
 		//Update
 		Route::post('/{id}/update', 'InventoryController@updateCategory')->name('category.update');
 
@@ -137,24 +134,24 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 		Route::post('/submit-category', 'InventoryController@submitCty')->name('submit-category');
 
 		//INVENTORY-PRODUCT
-		Route::group(['prefix' => '{id}'], function () {
+		Route::group(['prefix' => 'product'], function () {
 			//Index
-			Route::get('/product', 'InventoryController@index')->name('category.view');
-
-			//Create
-			Route::get('/product/create', 'InventoryController@createProduct')->name('product.create');
+			Route::get('/{id}', 'InventoryController@index')->name('category.view');
+			//Create - may error pa
+			Route::get('/{id}/create', 'InventoryController@createProduct')->name('product.create');
+			Route::post('/save-product/{id}', 'InventoryController@saveProduct')->name('save-product');
 
 			//View
-			Route::get('/product/{prodId}', 'InventoryController@view')->name('product.view');
+			Route::get('/{id}/view/product', 'InventoryController@viewProduct')->name('product.view');
 
 			//Edit
-			Route::get('/product/{prodId}/edit', 'InventoryController@edit')->name('product.edit');
+			Route::get('/view/{cid}/product/{id}/edit', 'InventoryController@edit')->name('product.edit');
 
 			//Update
-			Route::post('/product/{prodId}/update', 'InventoryController@update')->name('product.update');
+			Route::post('/product/update', 'InventoryController@update')->name('product.update');
 
 			// Delete
-			Route::get('/product/{prodId}/delete/', 'InventoryController@delete')->name('product.delete');
+			Route::get('/product/delete/', 'InventoryController@delete')->name('product.delete');
 		});
 	});
 

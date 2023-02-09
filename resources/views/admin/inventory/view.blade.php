@@ -40,14 +40,14 @@
                 </thead>
 
                 <tbody>
-                    @forelse ($products as $k => $p)
+                    @forelse ($products as $p)
                     <tr>
-                        <td>{{ $p['name'] }}</td>
-                        <td>{{ $p['stocks'] }}</td>
-                        <td>₱{{ number_format($p['price'], 2) }}</td>
+                        <td>{{ $p->product_name }}</td>
+                        <td>{{ $p->stocks }}</td>
+                        <td>₱{{ number_format($p->price, 2) }}</td>
 
                         <td>
-                            @if ($p['status'])
+                            @if ($p->status)
                             <i class="fas fa-circle text-success mr-2"></i>Active
                             @else
                             <i class="fas fa-circle text-danger mr-2"></i>Inactive
@@ -61,9 +61,9 @@
                                 </button>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown">
-                                    <a href="{{route ('product.view', [$id, $k])}}" class="dropdown-item"><i class="fa-solid fa-eye mr-2"></i>View Product</a>
-                                    <a href="{{route('product.edit', [$id, $k])}}" class="dropdown-item"><i class="fa-regular fa-pen-to-square mr-2"></i>Edit Product</a>
-                                    <a href="javascript:void(0);" onclick="confirmLeave('{{ route('product.delete', [$id, $k]) }}', undefined, 'Are you sure you want to remove this item?');" class="dropdown-item"><i class="fa-solid fa-trash mr-2"></i>Delete</a>
+                                    <a href="{{route ('product.view', [$id, $p])}}" class="dropdown-item"><i class="fa-solid fa-eye mr-2"></i>View Product</a>
+                                    <a href="{{route('product.edit', [$id, $p])}}" class="dropdown-item"><i class="fa-regular fa-pen-to-square mr-2"></i>Edit Product</a>
+                                    <a href="javascript:void(0);" onclick="confirmLeave('{{ route('product.delete', [$id, $p]) }}', undefined, 'Are you sure you want to remove this item?');" class="dropdown-item"><i class="fa-solid fa-trash mr-2"></i>Delete</a>
                                 </div>
                             </div>
                         </td>

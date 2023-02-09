@@ -4,14 +4,14 @@
 
 @section('content')
 <div class="container-fluid m-0">
-	<h3 class="mt-3"><a href="{{route('category.view', [$cid])}}" class="text-decoration-none  text-1"><i class="fas fa-chevron-left mr-2"></i>Product List</a></h3>
+	<h3 class="mt-3"><a href="{{route('category.view', [$cid]) }}" class="text-decoration-none  text-1"><i class="fas fa-chevron-left mr-2"></i>Product List</a></h3>
 
 	<hr class="hr-thick" style="border-color: #707070;">
 
 	<div class="row" id="form-area">
 		<div class="col-12">
 
-			<form action="{{ route('product.update', [$cid, $product['id']]) }}" method="POST" class="card my-3 mx-auto" enctype="multipart/form-data">
+			<form action="" method="POST" class="card my-3 mx-auto" enctype="multipart/form-data">
 				<h5 class="card-header text-center text-white gbg-1">Edit Product</h5>
 
 				<div class="card-body d-flex">
@@ -22,7 +22,7 @@
 
 								<div class="form-group">
 									<label class="h6 important" for="product_name">Product Name</label>
-									<input class="form-control" type="text" name="product_name" value="{{ $product['name'] }}" />
+									<input class="form-control" type="text" name="product_name" value="{{ $product['product_name'] }}" />
 								</div>
 
 								<div class="row">
@@ -51,11 +51,6 @@
 											</select>
 										</div>
 									</div>
-								</div>
-
-								<div class="form-group">
-									<label class="h6 important" for="categoryname">Category Name</label>
-									<input class="form-control" type="text" name="categoryname" value="{{ $category['name'] }}" readonly />
 								</div>
 
 								<div class="form-group">

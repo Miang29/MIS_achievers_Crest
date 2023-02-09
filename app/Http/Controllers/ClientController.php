@@ -183,7 +183,6 @@ class ClientController extends Controller
 
 	protected function addPet(Request $req, $id)
 	{
-
 		// dd($req);
 		$validator = Validator::make($req->all(), [
 			"pet_name" => 'required|string|max:255',
@@ -341,7 +340,6 @@ class ClientController extends Controller
 			'clients' => $clients
 		]);
 	}
-
 	protected function create()
 	{
 		$user =  User::select(DB::raw('CONCAT(first_name, " ", last_name) as name,id'))->where("user_type_id", "=", 4)->get();

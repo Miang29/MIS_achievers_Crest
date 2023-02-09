@@ -10,7 +10,7 @@
 	<div class="row" id="form-area">
 		<div class="col-12">
 
-			<form method ="POST" Action=" {{ route('submit-products') }} "class="card my-3 mx-auto" enctype="multipart/form-data">
+			<form method ="POST" Action="{{ route('submit-products') }}"class="card my-3 mx-auto" enctype="multipart/form-data">
 			<input type="hidden" name="_token" value="{{ csrf_token() }}">	
 			<h3 class="card-header font-weight-bold text-white gbg-1"><i class="fa-solid fa-cart-plus mr-2 fa-lg"></i>CREATE CATEGORY</h3>
 
@@ -39,14 +39,14 @@
 									<div class="form-group">
 										<label class="important" for="productname">Product Name</label>
 										<input class="form-control" type="text" name="product_name[]" value="{{ old("product_name.{$i}") }}" />
-										<small class="text-danger small">{{-- $errors->first('product_name.*') --}}</small>
+										<small class="text-danger small">{{ $errors->first('product_name.*') }}</small>
 									</div>
 
 									<div class="row">
 										<div class="col-12 col-lg-4 form-group">
 											<label class="important" for="stocks">Stocks</label>
 											<input class="form-control" type="number" name="stocks[]" min="0" value="{{ old("stocks.{$i}") ? old("stocks.{$i}") : 0 }}" />
-											<small class="text-danger small">{{-- $errors->first('stocks.*') --}}</small>
+											<small class="text-danger small">{{ $errors->first('stocks.*') }}</small>
 										</div>
 
 										<div class="col-12 col-lg-4 form-group">
@@ -57,7 +57,7 @@
 												</div>
 												<input type="number" class="form-control" name="price[]" value="{{ old("price.{$i}") ? old("price.{$i}") : 0 }}" min="0" step="1" />
 											</div>
-											<small class="text-danger small">{{-- $errors->first('price.*') --}}</small>
+											<small class="text-danger small">{{ $errors->first('price.*') }}</small>
 										</div>
 
 										<div class="col-12 col-lg-4 form-group">
@@ -66,7 +66,7 @@
 												<option value="active" {{ old("status.{$i}") == 'active' ? 'selected' : '' }}>Active</option>
 												<option value="inactive" {{ old("status.{$i}") == 'inactive' ? 'selected' : '' }}>Inactive</option>
 											</select>
-											<small class="text-danger small">{{-- $errors->first('status.*') --}}</small>
+											<small class="text-danger small">{{ $errors->first('status.*') }}</small>
 										</div>
 									</div>
 
@@ -83,14 +83,14 @@
 								<div class="form-group">
 									<label class="important" for="productname">Product Name</label>
 									<input class="form-control" type="text" name="product_name[]" value="{{ old('product_name.0') }}" />
-									<small class="text-danger small">{{-- $errors->first('product_name.*') --}}</small>
+									<small class="text-danger small">{{ $errors->first('product_name.*') }}</small>
 								</div>
 
 								<div class="row">
 									<div class="col-12 col-lg-4 form-group">
 										<label class="important" for="stocks">Stocks</label>
 										<input class="form-control" type="number" name="stocks[]" min="0" value="{{ old('stocks.0') ? old('stocks.0') : 0 }}" />
-										<small class="text-danger small">{{-- $errors->first('stocks.*') --}}</small>
+										<small class="text-danger small">{{ $errors->first('stocks.*') }}</small>
 									</div>
 
 									<div class="col-12 col-lg-4 form-group">
@@ -101,7 +101,7 @@
 											</div>
 											<input type="number" class="form-control" name="price[]" value="{{ old('price.0') ? old('price.0') : 0 }}" min="0.00" step=".01" />
 										</div>
-										<small class="text-danger small">{{-- $errors->first('price.*') --}}</small>
+										<small class="text-danger small">{{ $errors->first('price.*') }}</small>
 									</div>
 
 									<div class="col-12 col-lg-4 form-group">
@@ -110,7 +110,7 @@
 											<option value="active" {{ old("status.0") == 'active' ? 'selected' : '' }}>Active</option>
 											<option value="inactive" {{ old("status.0") == 'inactive' ? 'selected' : '' }}>Inactive</option>
 										</select>
-										<small class="text-danger small">{{-- $errors->first('status.*') --}}</small>
+										<small class="text-danger small">{{ $errors->first('status.*') }}</small>
 									</div>
 								</div>
 
