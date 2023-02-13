@@ -15,7 +15,7 @@
 
 		<form method="GET" action="{{ route('appointments.index') }}" class=" col-12 col-md-6 col-lg my-2 text-center text-lg-right">
 			<div class="input-group">
-				<input type="text" class="form-control" name="search" placeholder="Search..." />
+				<input type="text" class="form-control" value="{{ request()->search }}" name="search" placeholder="Search..." />
 
 				<div class="input-group-append">
 					<button type="submit" class="btn btn-secondary"><i class="fas fa-search"></i></button>
@@ -30,7 +30,7 @@
 				<thead>
 					<tr>
 						<th scope="col" class="hr-thick text-1 text-center">Pet Owner</th>
-						<th scope="col" class="hr-thick text-1 text-center">Pet Name</th>
+						<th scope="col" class="hr-thick text-1 text-center">Email</th>
 						<th scope="col" class="hr-thick text-1 text-center">Appointment Date</th>
 						<th scope="col" class="hr-thick text-1 text-center">Service Type</th>
 					</tr>

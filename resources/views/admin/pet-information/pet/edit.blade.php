@@ -117,8 +117,8 @@
                 </div>
             </div>
             <div class="card-footer d-flex">
-                <div class="col-lg-4 col-md-4 col-8 mx-auto text-center">
-                    <button type="submit" class="btn btn-outline-info  btn-md  w-25  mb-3" data-type="submit">Save</button>
+                <div class="col-lg-6 col-md-4 col-8 mx-auto text-center">
+                    <button type="submit" data-action ="update" class="btn btn-outline-info  btn-md  w-25  mb-3" data-type="submit">Update</button>
                     <a href="{{ route('pet-information') }}" class="btn btn-outline-danger btn-md w-25 mb-3">Cancel</a>
                 </div>
             </div>
@@ -130,6 +130,7 @@
 @section('scripts')
 <script type="text/javascript" src="{{ asset('js/util/select.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/util/image-input.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/util/disable-on-submit.js') }}"></script>
 <script type="text/javascript">
     $(document).ready(() => {
         $(document).on('click', ".reset-image", (e) => {

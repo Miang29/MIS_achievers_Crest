@@ -135,7 +135,7 @@
 
 		<div class="card-footer d-flex">
 			<div class="col-4 mx-auto text-center">
-				<button class="btn btn-outline-info mr-1 btn-sm w-50" type="submit" data-type="submit">Save</button>
+				<button class="btn btn-outline-info mr-1 btn-sm w-50" data-action ="submit" type="submit" data-type="submit">Save</button>
 			</div>
 		</div>
 		</form>
@@ -146,6 +146,7 @@
 
 @section('scripts')
 <script type="text/javascript" src="{{ asset('js/util/confirm-leave.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/util/disable-on-submit.js') }}"></script>
 <script type="text/javascript">
 	$(document).ready(() => {
 		// Adding and Removing Variations

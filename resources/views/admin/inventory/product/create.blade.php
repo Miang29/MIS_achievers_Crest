@@ -34,7 +34,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">₱</span>
                                     </div>
-                                    <input type="number" class="form-control" value="{{ old('price') ? old('price') : 0 }}" min="0" step="1" />
+                                    <input type="number" name="price" class="form-control" value="{{ old('price') ? old('price') : 0 }}" min="0" step="1" />
                                 </div>
                                 <small class="text-danger small">{{ $errors->first('price') }}</small>
                             </div>

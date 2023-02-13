@@ -94,11 +94,11 @@
 		{{-- USERS --}}
 		{{-- @if (Auth::user()->isAdmin()) --}}
 		@if (\Request::is('admin/users'))
-		<span class="bg-secondary text-white"><i class="fas fa-user-alt  mr-3 fa-lg"></i>Users</span>
+		<span class="bg-secondary text-white"><i class="fas fa-user-alt  mr-3 fa-lg"></i>User Account</span>
 		@elseif (\Request::is('admin/users/*'))
-		<a class="text-decoration-none text-white bg-secondary aria-link" href="{{route('user.index')}}" aria-hidden="false" aria-label="Users"><i class="fas fa-user-alt mr-3 fa-lg"></i>Users</a>
+		<a class="text-decoration-none text-white bg-secondary aria-link" href="{{route('user.index')}}" aria-hidden="false" aria-label="Users"><i class="fas fa-user-alt mr-3 fa-lg"></i>User Account</a>
 		@else
-		<a class="text-decoration-none text-1 aria-link" href="{{route('user.index')}}" aria-hidden="false" aria-label="Users"><i class="fas fa-user-alt  mr-3 fa-lg"></i>Users</a>
+		<a class="text-decoration-none text-1 aria-link" href="{{route('user.index')}}" aria-hidden="false" aria-label="Users"><i class="fas fa-user-alt  mr-3 fa-lg"></i>User Account</a>
 		@endif
 		{{-- @endif --}}
 

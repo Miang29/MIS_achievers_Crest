@@ -28,7 +28,7 @@
 
     <div class="overflow-x-auto h-100 card">
         <div class=" card-body h-100 px-0 pt-0 ">
-            <table class="table table-striped text-center">
+            <table class="table table-striped text-center" >
                 <thead>
                     <tr>
                         <th scope="col" class="hr-thick text-1">Product Name</th>
@@ -47,9 +47,9 @@
                         <td>₱{{ number_format($p->price, 2) }}</td>
 
                         <td>
-                            @if ($p->status)
+                            @if ($p->status == "active")
                             <i class="fas fa-circle text-success mr-2"></i>Active
-                            @else
+                            @elseif ($p->status == "inactive")
                             <i class="fas fa-circle text-danger mr-2"></i>Inactive
                             @endif
                         </td>
@@ -61,9 +61,10 @@
                                 </button>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown">
-                                    <a href="{{route ('product.view', [$id, $p])}}" class="dropdown-item"><i class="fa-solid fa-eye mr-2"></i>View Product</a>
-                                    <a href="{{route('product.edit', [$id, $p])}}" class="dropdown-item"><i class="fa-regular fa-pen-to-square mr-2"></i>Edit Product</a>
-                                    <a href="javascript:void(0);" onclick="confirmLeave('{{ route('product.delete', [$id, $p]) }}', undefined, 'Are you sure you want to remove this item?');" class="dropdown-item"><i class="fa-solid fa-trash mr-2"></i>Delete</a>
+                                    <a href="{{route ('product.view', [$id, $p->id])}}" class="dropdown-item"><i class="fa-solid fa-eye mr-2"></i>View Product</a>
+                                    <a href="{{route('product.edit', [$id, $p->id])}}" class="dropdown-item"><i class="fa-regular fa-pen-to-square mr-2"></i>Edit Product</a>
+                                    <a href="javascript:void(0);" onclick="confirmLeave('{{ route('product.delete', [$id, $p]) }}', undefined, 'Are you sure you want to archive this item?');" class="dropdown-item"><i class="fa-solid fa-box-archive mr-2"></i>Archive</a>
+                                    <a href="{{ route('product.add.stock', [$id, $p->id]) }}" class="dropdown-item"><i class="fa-solid fa-plus mr-2"></i>Add Stocks</a>
                                 </div>
                             </div>
                         </td>

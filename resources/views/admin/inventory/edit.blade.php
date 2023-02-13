@@ -10,7 +10,7 @@
 	<div class="row" id="form-area">
 		<div class="col-12">
 
-			<div class="card my-3 mx-auto">
+			<form class="card my-3 mx-auto">
 				<h5 class="card-header text-center text-white gbg-1"> Edit Category</h5>
 
 				<div class="card-body d-flex">
@@ -46,7 +46,7 @@
 									</div>
 								</div>
 								<label class="h6 important" for="categoryname">Category Name</label>
-								<input class="form-control" type="text" name="categoryname" value="{{old('categoryname')}} "  /><br>
+								<input class="form-control" type="text" name="categoryname" value="{{old('categoryname')}} " /><br>
 
 								<label class="h6 important" for="description">Description</label>
 								<textarea class="form-control not-resizable" name="description" rows="3"></textarea>
@@ -57,13 +57,14 @@
 				</div>
 				<div class="card-footer d-flex">
 					<div class="col-4 mx-auto text-center">
-						<button class="btn btn-outline-info  btn-sm w-50"><a href="#"></a>Save Changes</button>
+						<button data-action="update" class="btn btn-outline-info  btn-sm w-50">Update</button>
 					</div>
 				</div>
-			</div>
+			</form>
 		</div>
-
 	</div>
 </div>
-
+@endsection
+@section('scripts')
+<script type="text/javascript" src="{{ asset('js/util/disable-on-submit.js') }}"></script>
 @endsection

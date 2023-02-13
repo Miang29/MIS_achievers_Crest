@@ -17,17 +17,16 @@ use Validator;
 
 
 class ClientController extends Controller
-{
-
+{ 
+	// -------------- SIGN UP INDEX ------------------ //
 	protected function SignUp()
 	{
 		return view('sign-up');
 	}
 
-	// CLIENT REGISTRATION SAVE
+	//---------------- CLIENT REGISTRATION SAVE ------------------- //
 	protected function save(Request $req)
 	{
-
 		$validator = Validator::make($req->all(), [
 			'first_name' => 'required|min:2|max:255|string',
 			'middle_name' => 'nullable|min:2|max:255|string',
@@ -61,9 +60,7 @@ class ClientController extends Controller
 				'username' => $req->username,
 				'user_type_id' => $type->id,
 				'password' => Hash::make($req->password),
-
-			],);
-
+			]);
 			//MAILER SHIT
 			// Mail::send(
 			// 	'layouts.emails.creation',
@@ -76,7 +73,6 @@ class ClientController extends Controller
 			// 			->subject("Account Created");
 			// 	}
 			// );
-
 			DB::commit();
 		} catch (Exception $e) {
 			DB::rollback();
@@ -91,8 +87,7 @@ class ClientController extends Controller
 			->route('login')
 			->with('flash_success', "Your account has successfully created");
 	}
-
-	//PET INFORMATION SUBMIT
+	// ---------=----------- PET INFORMATION SUBMIT ------------------------- //
 	protected function submitPet(Request $req)
 	{
 		$validator = Validator::make($req->all(), [
@@ -114,7 +109,6 @@ class ClientController extends Controller
 			"types.*" => 'required|string|max:255',
 			"pet_image.*" => 'max:5120|mimes:jpeg,jpg,png,webp|nullable',
 		], [
-
 			'pet_owner.required' => 'Please select client name.',
 			'pet_name.*.required' => 'Pet name is required.',
 			'breed.*.required' => 'Breed is required',
@@ -125,31 +119,24 @@ class ClientController extends Controller
 			'types.*.required' => 'Please select a type.',
 
 		]);
-
 		// dd($validator->messages());
-
 		if ($validator->fails()) {
 			return redirect()
 				->back()
 				->withErrors($validator)
 				->withInput();
 		}
-
 		try {
 			DB::beginTransaction();
-
 			$colorKeys = array_keys($req->colors);
 			for ($i = 0; $i < count($req->pet_name); $i++) {
-
 				$imagename = "";
 				if ($req->hasFile("pet_image.$i")) {
-
 					$destination = "uploads/clients/$req->pet_owner/pets";
 					$fileType = $req->file("pet_image.$i")->getClientOriginalExtension();
 					$imagename = strtolower(preg_replace("/s+/", "_", $req->pet_name[$i])) . ".$fileType";
 					$req->file("pet_image.$i")->move($destination, $imagename);
 				}
-
 				$pi = PetsInformation::create([
 					'pet_owner' => $req->pet_owner,
 					'pet_name' => $req->pet_name[$i],
@@ -160,16 +147,12 @@ class ClientController extends Controller
 					'gender' => $req->gender[$i],
 					'types' => $req->types[$i],
 					'pet_image' => $imagename,
-
 				]);
 			}
-
-
 			DB::commit();
 		} catch (Exception $e) {
 			DB::rollback();
 			Log::error($e);
-
 
 			return redirect()
 				->route('pet-information.create')
@@ -180,7 +163,7 @@ class ClientController extends Controller
 			->route('pet-information')
 			->with('flash_success', "Successfully registered!");
 	}
-
+	// ----------------- ADD/REGISTER NEW PET ------------------- //
 	protected function addPet(Request $req, $id)
 	{
 		// dd($req);
@@ -203,16 +186,12 @@ class ClientController extends Controller
 			'gender.required' => 'Please select a gender ',
 			'types.required' => 'Please select a type.',
 		]);
-
-
-
 		if ($validator->fails()) {
 			return redirect()
 				->back()
 				->withErrors($validator)
 				->withInput();
 		}
-
 		try {
 			DB::beginTransaction();
 			$colors = implode(', ', $req->colors);
@@ -224,7 +203,6 @@ class ClientController extends Controller
 				$imagename = strtolower(preg_replace("/s+/", "_", $req->pet_name)) . ".$fileType";
 				$req->file("pet_image")->move($destination, $imagename);
 			}
-
 			$pi = PetsInformation::create([
 				'pet_owner' => $id,
 				'pet_name' => $req->pet_name,
@@ -236,13 +214,10 @@ class ClientController extends Controller
 				'types' => $req->types,
 				'pet_image' => $imagename,
 			]);
-
-
 			DB::commit();
 		} catch (Exception $e) {
 			DB::rollback();
 			Log::error($e);
-
 
 			return redirect()
 				->route('pet-information')
@@ -253,7 +228,7 @@ class ClientController extends Controller
 			->route('pet-information')
 			->with('flash_success', "Added a pet successfully!");
 	}
-
+    // ----------------------- UPDATE PET INFORMATION ------------------------- //
 	protected function updatePet(Request $req, $clientId, $id)
 	{
 		// dd($req);
@@ -264,7 +239,6 @@ class ClientController extends Controller
 				->route('pet-information')
 				->with('flash_error', "No such pet information exists");
 		}
-
 		$validator = Validator::make($req->all(), [
 			"pet_name" => 'required|string|max:255',
 			"birthdate" => 'required|string|max:255',
@@ -275,18 +249,15 @@ class ClientController extends Controller
 			"types" => 'required|string|max:255',
 			"pet_image" => 'max:5120|mimes:jpeg,jpg,png,webp|nullable',
 		]);
-
 		if ($validator->fails()) {
 			return redirect()
 				->back()
 				->withErrors($validator)
 				->withInput();
 		}
-
 		try {
 			DB::beginTransaction();
 			$colors = implode(', ', $req->colors);
-
 			$imagename = "";
 			if ($req->hasFile("pet_image")) {
 				if ($pi->pet_image != null)
@@ -299,7 +270,6 @@ class ClientController extends Controller
 				
 				$pi->pet_image = $imagename;
 			}
-
 			$pi->pet_owner = $clientId;
 			$pi->pet_name = $req->pet_name;
 			$pi->birthdate = $req->birthdate;
@@ -315,8 +285,6 @@ class ClientController extends Controller
 			DB::rollback();
 			Log::error($e);
 
-
-
 			return redirect()
 				->route('pet-information')
 				->with('flash_error', 'Something went wrong, please try again later');
@@ -327,7 +295,7 @@ class ClientController extends Controller
 			->with('flash_success', "Pet Information has been updated successfully");
 	}
 
-	// CLIENT-PROFILE
+	// -------------------- PET INFORMATION INDEX ---------------------- //
 	protected function index()
 	{
 		$clients = User::has('petsInformations', '>', 0)
@@ -335,11 +303,11 @@ class ClientController extends Controller
 			->where('user_type_id', '=', '4')
 			->get();
 
-
 		return view('admin.pet-information.index', [
 			'clients' => $clients
 		]);
 	}
+	// ------------------ CREATE PET INFORMATION -------------------------- //
 	protected function create()
 	{
 		$user =  User::select(DB::raw('CONCAT(first_name, " ", last_name) as name,id'))->where("user_type_id", "=", 4)->get();
@@ -350,7 +318,7 @@ class ClientController extends Controller
 			'users' => $user,
 		]);
 	}
-
+    // -------------------- ADD NEW PET ----------------------- //
 	protected function add($id)
 	{
 		$pi = PetsInformation::get();
@@ -362,6 +330,7 @@ class ClientController extends Controller
 			]
 		);
 	}
+	// ------------------ SHOW PET INFORMATION ----------------- //
 	protected function showPets($id)
 	{
 		$pi = PetsInformation::where('pet_owner', '=', $id)->get();
@@ -370,24 +339,22 @@ class ClientController extends Controller
 			'id' => $id
 		]);
 	}
-
+ // ------------------ EDIT PET INFORMATION --------------------- //
 	protected function editPet($clientId, $id)
 	{
 		$pet = PetsInformation::find($id);
 		return view(
-			'admin.pet-information.pet.edit',
-			[
+			'admin.pet-information.pet.edit', [
 				'clientId' => $clientId,
 				'pet' => $pet
 			]
 		);
 	}
-
+	// --------------- NOTIFICATION MESSAGE ------------------ //
 	protected function notifyClient(Request $req)
 	{
 		try {
 			DB::beginTransaction();
-
 			// MAILING STUFFS
 			if (random_int(0, 100) <= 50)
 				throw new Exception();
@@ -404,7 +371,6 @@ class ClientController extends Controller
 					'message' => '<p class="m-0 text-center">Something went wrong, please try again later</p>'
 				]);
 		}
-
 		return response()
 			->json([
 				'success' => true,

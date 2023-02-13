@@ -137,18 +137,21 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 		Route::group(['prefix' => 'product'], function () {
 			//Index
 			Route::get('/{id}', 'InventoryController@index')->name('category.view');
-			//Create - may error pa
+			//Create 
 			Route::get('/{id}/create', 'InventoryController@createProduct')->name('product.create');
 			Route::post('/save-product/{id}', 'InventoryController@saveProduct')->name('save-product');
 
 			//View
-			Route::get('/{id}/view/product', 'InventoryController@viewProduct')->name('product.view');
+			Route::get('/{id}/view/product/{pid}', 'InventoryController@viewProduct')->name('product.view');
+            //Add Stock
+			Route::get('/add/{id}/stocks/{pid}','InventoryController@addStock')->name('product.add.stock');
+			Route::post('/update/{id}/stocks/{pid}', 'InventoryController@updateStock')->name('update-stocks');
 
 			//Edit
 			Route::get('/view/{cid}/product/{id}/edit', 'InventoryController@edit')->name('product.edit');
 
 			//Update
-			Route::post('/product/update', 'InventoryController@update')->name('product.update');
+			Route::post('/product/{id}/update/{pid}', 'InventoryController@updateProducts')->name('product.update');
 
 			// Delete
 			Route::get('/product/delete/', 'InventoryController@delete')->name('product.delete');

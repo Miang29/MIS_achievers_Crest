@@ -27,7 +27,8 @@ class AppointmentController extends Controller
 		$search = "%{$req->search}%";
 
 		if ($req->search)
-			$appointments = $appointments->where('pet_owner', 'LIKE', $search);
+			$appointments = $appointments->where('pet_owner', 'LIKE', $search)
+				->orWhere('email', 'LIKE', $search);
 
 		return view('admin.appointment.index', [
 			'appointments' => $appointments->get()

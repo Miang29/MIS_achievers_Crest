@@ -11,7 +11,7 @@
 
 		<div class="dropdown col-12 col-md-6 col-lg my-1 text-center text-md-left text-lg-right">
 			<button class="btn btn-info bg-1 btn-sm my-1 dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-			<i class="fas fa-plus-circle mr-2"></i>Add Category with Product
+				<i class="fas fa-plus-circle mr-2"></i>Create Category and Product
 			</button>
 			<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
 				<a class="dropdown-item" href="{{ route('create-category') }}"><i class="fa-solid fa-sitemap mr-2"></i> Category</a>
@@ -20,14 +20,14 @@
 			</div>
 		</div>
 
-		<div class="col-12 col-md-6 col-lg my-2 text-center text-lg-right">
+		<form method="GET" action="{{ route('inventory') }}" class="col-12 col-md-6 col-lg my-2 text-center text-lg-right">
 			<div class="input-group">
-				<input type="text" class="form-control" name="search" placeholder="Search..." />
+				<input type="text" class="form-control" value="{{ request()->search }}" name="search" placeholder="Search..." />
 				<div class="input-group-append">
 					<button type="submit" class="btn btn-secondary"><i class="fas fa-search"></i></button>
 				</div>
 			</div>
-		</div>
+		</form>
 	</div>
 
 	<div class="overflow-x-auto h-100 card">
@@ -56,7 +56,6 @@
 								<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown">
 									<a href="{{ route('category.view', [$c->id]) }}" class="dropdown-item"><i class="fa-solid fa-eye mr-2"></i>View Category</a>
 									<button data-scf="Category Name" data-scf-name="category_name" data-scf-target-uri="{{ route('category.update', [$c->id]) }}" data-scf-label="This will also move all the content of this category to the same category if it already exists." class="dropdown-item"><i class="fa-regular fa-pen-to-square mr-2"></i>Edit Category</button>
-									<a href="javascript:void(0);" onclick="confirmLeave('{{ route("category.delete", [$c->id]) }}', undefined, 'Are you sure you want to remove this category? This will <b>remove all the items</b> encoded within this category.');" class="dropdown-item"><i class="fa-solid fa-trash mr-2"></i>Delete</a>
 								</div>
 							</div>
 						</td>

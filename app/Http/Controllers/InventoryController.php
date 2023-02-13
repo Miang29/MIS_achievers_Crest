@@ -13,49 +13,156 @@ use Validator;
 
 class InventoryController extends Controller
 {
-	//--------------------- WALA PANG BACK END -------------------------//
-	protected function edit($cid, $id) {
+	// ------------------ ADD STOCKS ------------------- //
+	protected function addStock($id, $pid)
+	{
+		$product = Products::find($pid);
+		return view('admin.inventory.product.stock', [
+			'id' => $id,
+			'prod' => $product
+		]);
+	}
+	// ----------------- UPDATE STOCK ------------------- //
+	protected function updateStock(Request $req, $id, $pid)
+	{
+		$prd = Products::find($pid);
+		if ($prd == null) {
+			return redirect()
+				->back()
+				->route('inventory')
+				->with('flash_error', "No such product exists");
+		}
+		$validator = Validator::make($req->all(), [
+			'add_stocks' => 'required|numeric',
+		],[
+			'add_stocks.required' => 'This field is required. Please input stock.'
+		]);
+
+		if ($validator->fails())
+			return redirect()
+				->back()
+				->withErrors($validator)
+				->withInput();
+
+		try {
+			DB::beginTransaction();
+			$prd->stocks += $req->add_stocks;
+			$prd->save();
+
+			DB::commit();
+		} catch (Exception $e) {
+			DB::rollback();
+			Log::error($e);
+
+			return redirect()
+				->route('product.add.stock', [$id, $prd->id])
+				->with('flash_error', 'Something went wrong, please try again later');
+		}
+
+		return redirect()
+			->route('category.view', [$id])
+			->with('flash_success', "Product stock has been updated successfully");
+	}
+
+	//--------------------- EDIT PRODUCTS -------------------------//
+	protected function edit($cid, $id)
+	{
 		$prod = Products::find($id);
 		return view('admin.inventory.product.edit', [
-			'cid' => $cid,
+			'id' => $cid,
 			'product' => $prod,
 		]);
-    }
+	}
+	// --------------------- UPDATE PRODUCTS ---------------------- //
+	protected function updateProducts(Request $req, $id, $pid)
+	{
 
-    protected function update(Request $req, $cid, $id) {
-    	return redirect()
-    		->route('category.view', [$cid])
-    		->with('flash_success', "Successfully updated item");
-    }
-	
-	protected function delete($id) {
+		$prd = Products::find($pid);
+		if ($prd == null) {
+			return redirect()
+				->back()
+				->route('inventory')
+				->with('flash_error', "No such product exists");
+		}
+		// dd($req);
+		$validator = Validator::make($req->all(), [
+			'product_name' => 'required|min:2|max:355|string',
+			'stocks' => 'required|numeric',
+			'price' => 'numeric',
+			'status' => 'required|min:2|max:355|string',
+			'description' => 'nullable|min:2|max:355|string',
+		]);
+
+		if ($validator->fails())
+			return redirect()
+				->back()
+				->withErrors($validator)
+				->withInput();
+
+		try {
+			DB::beginTransaction();
+			$prd->category_id = $id;
+			$prd->product_name = $req->product_name;
+			$prd->stocks = $req->stocks;
+			$prd->price = $req->price;
+			$prd->status = $req->status;
+			$prd->description = $req->description;
+			$prd->save();
+
+			DB::commit();
+		} catch (Exception $e) {
+			DB::rollback();
+			Log::error($e);
+
+			return redirect()
+				->route('product.edit', [$id])
+				->with('flash_error', 'Something went wrong, please try again later');
+		}
+
+		return redirect()
+			->route('category.view', [$id])
+			->with('flash_success', "Product has been updated successfully");
+	}
+    // ----------------- DELETE NO BACKEND ---------------------- //
+	protected function delete($id)
+	{
 		return redirect()
 			->route('category.view', $id)
 			->with('flash_success', 'Successfully removed item');
 	}
-
-	protected function deleteCategory($id) {
+  // ---------------- DELETE CATEGORY NO BACK END ---------------------- //
+	protected function deleteCategory($id)
+	{
 		return redirect()
-			->route('category')
+			->route('inventory')
 			->with('flash_success', 'Successfully removed entire category and all its items');
-	} 
+	}
 
-    // --------------- INDEX OF INVENTORY --------------- //
-	protected function indexCategory() {
+	// --------------- INDEX OF INVENTORY --------------- //
+	protected function indexCategory(Request $req)
+	{
+		$prd = ProductCategory::query();
+		$search = "%{$req->search}%";
+
+		if ($req->search)
+			$prd = $prd->where('category_name', 'LIKE', $search);
+			
 		$prd = ProductCategory::has('products')->get();
 		return view('admin.inventory.index', [
 			'categories' => $prd,
 		]);
 	}
 	// -------------- CREATION OF PRODUCTS ----------------- //
-	protected function create() {
+	protected function create()
+	{
 		$pcty = ProductCategory::get();
-        return view('admin.inventory.create', [
+		return view('admin.inventory.create', [
 			'productCty' => $pcty,
-        ]);
+		]);
 	}
-     // ----------------- SUBMITTION OF PRODUCTS ----------------------- //
-	protected function submitProducts(Request $req){	
+	// ----------------- SUBMITTION OF PRODUCTS ----------------------- //
+	protected function submitProducts(Request $req)
+	{
 		$validator = Validator::make($req->all(), [
 			'category' => 'required|exists:product_categories,id|numeric',
 			'product_name' => 'required|array',
@@ -68,12 +175,12 @@ class InventoryController extends Controller
 			'status.*' => 'required|min:2|max:355|string',
 			'description' => 'nullable|array',
 			'description.*' => 'nullable|min:2|max:355|string',
-		],[
+		], [
 			'product_name.*' => 'The product name is required.',
-			'stocks.*' => 'The stock is required.', 
+			'stocks.*' => 'The stock is required.',
 			'price.*' => 'The price is required.',
 			'status.*' => 'Please select status',
-			
+
 		]);
 		// dd($validator->messages());
 		if ($validator->fails())
@@ -85,7 +192,7 @@ class InventoryController extends Controller
 
 			DB::beginTransaction();
 			for ($i = 0; $i < count($req->product_name); $i++) {
-			
+
 				$prd = Products::create([
 					'category_id' => $req->category,
 					'product_name' => $req->product_name[$i],
@@ -109,8 +216,9 @@ class InventoryController extends Controller
 			->route('inventory')
 			->with('flash_success', "Successfully added in product inventory.");
 	}
-	
-	protected function updateCategory($id) {
+
+	protected function updateCategory($id)
+	{
 		return response()
 			->json([
 				'success' => true,
@@ -119,34 +227,38 @@ class InventoryController extends Controller
 			]);
 	}
 
-		// ----------------- P R O D U C T S---------------//
+	// ----------------- P R O D U C T S---------------//
 	// ------------------- INDEX OF PRODUCTS -------------------- //
-	protected function index($id) {
-		$product = Products::where('category_id', '=' , $id)->get();
+	protected function index($id)
+	{
+		$product = Products::where('category_id', '=', $id)->get();
 		return view('admin.inventory.view', [
 			'id' => $id,
 			'products' => $product
 		]);
 	}
-  // ------------------ VIEW PRODUCT --------------------- //
-	protected function viewProduct($id) {
-		$product = Products::find($id);
+	// ------------------ VIEW PRODUCT --------------------- //
+	protected function viewProduct($id, $pid)
+	{
+		$product = Products::find($pid);
 		return view('admin.inventory.product.view', [
-		'id' => $id,
-		'products' => $product,
-		]);	
+			'id' => $id,
+			'products' => $product,
+		]);
 	}
 	// ----------------- CREATION OF NEW PRODUCTS --------------- //
-	protected function createProduct($id) {
-		$prcty = Products::where('category_id', '=' , $id)->get();
+	protected function createProduct($id)
+	{
+		$prcty = Products::where('category_id', '=', $id)->get();
 		return view('admin.inventory.product.create', [
-		'productCategory' => $prcty,
-		'id' => $id,
+			'productCategory' => $prcty,
+			'id' => $id,
 		]);
-    }
-		 // ------------------- FOR FIX ---------------------- //
+	}
+	// ------------------- FOR FIX ---------------------- //
 	// -----------------SAVING OF NEW PRODUCTS ------------------- //
-	protected function saveProduct(Request $req, $id){
+	protected function saveProduct(Request $req, $id)
+	{
 		// dd($req);
 		$validator = Validator::make($req->all(), [
 			'product_name' => 'required|min:2|max:355|string',
@@ -158,23 +270,22 @@ class InventoryController extends Controller
 
 		// dd($validator->messages());
 		if ($validator->fails())
-		return redirect()
-			->back()
-			->withErrors($validator)
-			->withInput();
-		
-			try {
-				DB::beginTransaction();
-				$prcty = Products::create()([
-					'category_id' => $id,
-					'product_name' => $req->product_name,
-					'stocks' => $req->stocks,
-					'price' =>  $req->price,
-					'status' => $req->status,
-					'description' => $req->description,
-				]);
+			return redirect()
+				->back()
+				->withErrors($validator)
+				->withInput();
 
-			dd($req->price);
+		try {
+			DB::beginTransaction();
+			$prcty = Products::create([
+				'category_id' => $id,
+				'product_name' => $req->product_name,
+				'stocks' => $req->stocks,
+				'price' =>  $req->price,
+				'status' => $req->status,
+				'description' => $req->description,
+			]);
+
 			DB::commit();
 		} catch (Exception $e) {
 			DB::rollback();
@@ -182,25 +293,26 @@ class InventoryController extends Controller
 			// dd($e);
 
 			return redirect()
-				->route('product.create',[$id])
+				->route('product.create', [$id])
 				->with('flash_error', 'Something went wrong, please try again later');
 		}
 
 		return redirect()
 			->route('inventory')
-				->with('flash_success', "Successfully added in product inventory.");
+			->with('flash_success', "Successfully added in product inventory.");
 	}
 
-			// ------------------C A T E G O R Y --------------------//
-		// ---------------- CREATION OF CATEGORY NAME ------------------ //
-		
-	protected function createCty() {
-			$pc = ProductCategory::get();
-			return view('admin.inventory.category.create',[
-				'productCategory' => $pc,
-					]);
-			}
-		// -------------- SUBMIT OF CATEGORY NAME -------------- //
+	// ------------------C A T E G O R Y --------------------//
+	// ---------------- CREATION OF CATEGORY NAME ------------------ //
+
+	protected function createCty()
+	{
+		$pc = ProductCategory::get();
+		return view('admin.inventory.category.create', [
+			'productCategory' => $pc,
+		]);
+	}
+	// -------------- SUBMIT OF CATEGORY NAME -------------- //
 	protected function submitCty(Request $req)
 	{
 		$validator = Validator::make($req->all(), [
@@ -231,10 +343,7 @@ class InventoryController extends Controller
 		}
 
 		return redirect()
-		->route('inventory')
-		->with('flash_success', "Successfully Added");
+			->route('inventory')
+			->with('flash_success', "Successfully Added");
 	}
-
 }
-
-
