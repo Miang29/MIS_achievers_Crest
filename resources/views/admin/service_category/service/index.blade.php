@@ -7,7 +7,7 @@
 	<div class="row">
 		<div class="col-12 col-lg text-center text-lg-left">
 			<a href="{{ route('service_category.index') }}">
-				<h2 class="font-weight-bold text-1"><i class="fas fa-chevron-left mr-2"></i>Services List</h2>
+				<h2 class="font-weight-bold text-1"><i class="fas fa-chevron-left mr-2"></i>Services Category List</h2>
 			</a>
 		</div>
 
@@ -32,15 +32,16 @@
 				<thead>
 					<tr>
 						<th scope="col" class="hr-thick text-1">Service Name</th>
-						<th scope="col" class="hr-thick text-1">Total No. of Services</th>
+						<th scope="col" class="hr-thick text-1">Total No. of Variation</th>
 						<th scope="col" class="hr-thick text-1"></th>
 					</tr>
 				</thead>
 
 				<tbody>
+				@forelse ($serviceVar as $sv)
 					<tr>
-						<td>Home Service</td>
-						<td>4</td>
+						<td>{{ $sv->service_name }}</td>
+						<td>{{-- $sv->variations()->count() --}}</td>
 
 						<td>
 							<div class="dropdown">
@@ -56,6 +57,11 @@
 							</div>
 						</td>
 					</tr>
+					@empty
+					<tr>
+						<td colspan="2">Nothing to show~</td>
+					</tr>
+					@endforelse
 				</tbody>
 			</table>
 		</div>

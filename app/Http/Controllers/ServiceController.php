@@ -2,29 +2,28 @@
 
 namespace App\Http\Controllers;
 
+use App\Services;
+use App\ServicesCategory;
+use App\ServicesVariation;
 use Illuminate\Http\Request;
 
 class ServiceController extends Controller
 {
-	// TEMPORARY VAR
-	private $services = [
-		"1" => [
-			"id" => 1,
-			"category_name" => "Proffessional Services",
-			"service_name" => "Home Service",
-			"variation_name" => "Antipolo",
-			"price" => "300",
-			"remarks" => "No remarks"
-		]
-	];
 
-	protected function index($id) {
-		return view('admin.service_category.service.index');
+ // ----------------- INDEX SERVICES ------------------ //
+	protected function index( $scid) {
+		$sv = Services::where('service_category_id', '=' , $scid)->get();
+		return view('admin.service_category.service.index',[
+			'serviceVar' => $sv,
+		
+		]);
 	}
 
-	protected function create($id) {
+	// ----------- CREATE SERVICE ---------------- //
+	protected function create() {
+		$service = Services::get();
 		return view('admin.service_category.service.create', [
-			'category' => 'Professional Services'
+			'services' => $service,
 		]);
 	}
 

@@ -9,15 +9,9 @@
 			<h3 class=" text-1">INVENTORY LIST</h3>
 		</div>
 
-		<div class="dropdown col-12 col-md-6 col-lg my-1 text-center text-md-left text-lg-right">
-			<button class="btn btn-info bg-1 btn-sm my-1 dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-				<i class="fas fa-plus-circle mr-2"></i>Create Category and Product
-			</button>
-			<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-				<a class="dropdown-item" href="{{ route('create-category') }}"><i class="fa-solid fa-sitemap mr-2"></i> Category</a>
-				<div class="dropdown-divider"></div>
-				<a class="dropdown-item" href="{{route('category.create')}}"><i class="fa-solid fa-boxes-stacked mr-2"></i> Products</a>
-			</div>
+
+		<div class="col-12 col-md-6 col-lg mt-2 text-center text-md-left text-lg-right">
+			<a class="btn btn-sm btn-info my-1 bg-1" href="{{route('category.create')}}"><i class="fa-solid fa-boxes-stacked mr-2"></i>Create Products</a>
 		</div>
 
 		<form method="GET" action="{{ route('inventory') }}" class="col-12 col-md-6 col-lg my-2 text-center text-lg-right">

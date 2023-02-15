@@ -182,13 +182,19 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 		Route::post('{id}/update-appointments', 'AppointmentController@updateAppointments')->name('update-appointments');
 	});
 
-	// SERVICES CATEGORY
-	Route::group(['prefix' => 'service-category'], function () {
+	// -------------------- SERVICES CATEGORY ------------------------ //
+	Route::group(['prefix' => '/service-category'], function () {
 		// Index
 		Route::get('/', 'ServiceCategoryController@index')->name('service_category.index');
 
 		// Create
 		Route::get('/create', 'ServiceCategoryController@create')->name('service_category.create');
+
+		// Submit service in services create
+		Route::post('/submit-service', 'ServiceCategoryController@submitService')->name('submit-service');
+
+		// POST - to settings blade
+		Route::post('/submit', 'ServiceCategoryController@submitServiceCategory')->name('submit-service-category');
 
 		// Edit
 		Route::post('/{id}/update', 'ServiceCategoryController@update')->name('service_category.update');
@@ -196,13 +202,13 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 		// Delete
 		Route::get('/{id}/delete', 'ServiceCategoryController@delete')->name('service_category.delete');
 
-		// SERVICES
+		// ----------------------- SERVICES ----------------------- //
 		Route::group(['prefix' => '{id}/service'], function () {
 			// Show - Category / Index - Service
 			Route::get('/', 'ServiceController@index')->name('service.index');
 
 			// Create
-			Route::get("/create", "ServiceController@create")->name('service.create');
+			Route::get('/create', "ServiceController@create")->name('service.create');
 
 			// Update
 			Route::post("/update/{serviceId}", "ServiceController@update")->name('service.update');
@@ -210,7 +216,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 			// Delete
 			Route::get('/delete/{serviceId}', 'ServiceController@delete')->name('service.delete');
 
-			// VARIATIONS
+			// --------------------  VARIATIONS -------------------- //
 			Route::group(['prefix' => '{serviceId}/variations'], function () {
 				// Index
 				Route::get("/", "ServiceVariationController@index")->name('service_variation.index');

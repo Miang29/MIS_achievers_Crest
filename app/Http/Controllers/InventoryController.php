@@ -343,7 +343,7 @@ class InventoryController extends Controller
 		}
 
 		return redirect()
-			->route('inventory')
-			->with('flash_success', "Successfully Added");
+			->route('settings.index')
+			->with('flash_success', "Successfully added a product category");
 	}
 }

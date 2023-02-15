@@ -49,7 +49,7 @@ class UsersTableSeeder extends Seeder
 			'username'=> 'kath123',
 			'email' =>'kath.padilla@gmail.com',
 			'password' => Hash::make('kath123'),
-			'user_type_id' => 4
+			'user_type_id' => 2
 		]);
 	}
 }

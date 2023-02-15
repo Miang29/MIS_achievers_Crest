@@ -49,7 +49,16 @@
     </div>
 
     <div class="col-12 col-lg-6 position-relative d-none d-lg-block">
-        <div class="circle"> </div>
+        <div style="
+        border-radius: 100%;
+        margin-top: 1rem;
+        min-width: 35rem;
+        min-height: 35rem;
+        background: #021f53;
+        position: absolute;
+        top: -1%;
+        right: -13.5%;
+        z-index: -5;"> </div>
         <div class="home-banner">
             <img src="{{ asset('uploads/settings/vet.jpg') }} " />
         </div>
@@ -58,15 +67,15 @@
 
 
 <div class="card-body text-center" style="height:31rem; background-color:#C2E0D8;">
-        <h1 style="font-family:fantasy; font-weight:bolder;">WE VALUE YOUR PETS</h1>
+    <h1 style="font-family:fantasy; font-weight:bolder;">WE VALUE YOUR PETS</h1>
     <div class="row h-75 mt-3">
         <div class="card col-lg-3 mx-auto border-success" style="border-radius:2.5rem;">
             <img src="{{ asset('uploads/settings/vet-img1.jpg') }}" class="card-img-top my-5">
         </div>
-        <div class="card col-lg-3 mx-auto border-primary"  style="border-radius:2.5rem;">
+        <div class="card col-lg-3 mx-auto border-primary" style="border-radius:2.5rem;">
             <img src="{{ asset('uploads/settings/vet-img3.jpg') }}" class="card-img-top my-5">
         </div>
-        <div class="card col-lg-3 mx-auto border-info"  style="border-radius:2.5rem;">
+        <div class="card col-lg-3 mx-auto border-info" style="border-radius:2.5rem;">
             <img src="{{ asset('uploads/settings/vet-img.jpg') }}" class="card-img-top my-5">
         </div>
     </div>
@@ -82,4 +91,7 @@
     Copyright <i class="fa-solid fa-copyright"></i> Nano Vet 2015
 </div>
 
+@endsection
+@section('pre-css')
+<link href="{{ asset('css/user.css') }}" rel="stylesheet">
 @endsection

@@ -8,7 +8,7 @@
     <div class="row">
        <h2 class="mt-5"><a href="javascript:void(0);" onclick="confirmLeave('{{route('inventory')}}');" class="text-decoration-none  text-1"><i class="fas fa-chevron-left mr-2"></i>Inventory List</a></h2>
         <div class="col-12 col-md-6 col-lg mt-5 text-center text-md-left text-lg-right">
-            <a href="{{route('product.create', [$id])}}" class="btn btn-info bg-1 btn-sm my-1"><i class="fas fa-plus-circle mr-2"></i>Add products</a>
+            <a href="{{route('product.create', [$id])}}" class="btn btn-info bg-1 btn-sm my-1"><i class="fas fa-plus-circle mr-2"></i>Add New Products</a>
         </div>
         <div class="ccol-12 col-md-6 col-lg-6 mt-5 text-center text-lg-right ml-auto">
             <div class="input-group">

@@ -82,7 +82,7 @@
 						<a class="btn dropdown-toggle font-weight-bold text-white" type="button" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 							{{ Auth::user()->getName() }}
 						</a>
-						<div class="dropdown-menu" aria-labelledby="dropdownMenu">
+						<div class="dropdown-menu dropdown-menu-lg-right" aria-labelledby="dropdownMenu">
 							<a class="dropdown-item" href="{{ route('profile', [Auth::user()->id]) }}"><i class="fa-solid fa-user mr-2"></i>My Profile</a>
 							<div class="dropdown-divider"></div>
 							@if(Auth::user()->user_type_id != 4)
