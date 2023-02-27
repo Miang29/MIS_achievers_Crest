@@ -7,14 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 class ServicesVariation extends Model
 {
     protected $fillable = [
-        'service_category_name',
-        'service_name',
+        'service_id',
         'variation_name',
         'price',
         'remarks'
     ];
 
     public function services() {
-        return $this->hasMany('App\Services', 'service_category_id', 'service_id');
+        return $this->belongsTo('App\Services', 'service_id');
     }
+
+   
 }

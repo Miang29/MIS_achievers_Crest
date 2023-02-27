@@ -48,7 +48,7 @@
 								</button>
 
 								<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown">
-									<a href="{{ route('service.index', [$sc->id]) }}" class="dropdown-item"><i class="fa-solid fa-eye mr-2"></i>View Service</a>
+									<a href="{{ route('service.index',[$sc->id]) }}" class="dropdown-item"><i class="fa-solid fa-eye mr-2"></i>View Service</a>
 									<button data-scf="Service Category Name" data-scf-name="service_category_name" data-scf-target-uri="{{ route('service_category.update', [1]) }}" class="dropdown-item"><i class="fa-regular fa-pen-to-square mr-2"></i>Edit Category</button>
 									<button onclick="confirmLeave('{{ route("service_category.delete", [1]) }}', undefined, 'Are you sure you want to remove this category? This will <b>remove all the services and variations</b> encoded within this category.');" class="dropdown-item"><i class="fa-solid fa-trash mr-2"></i>Delete</button>
 								</div>

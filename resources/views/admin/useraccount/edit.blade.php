@@ -53,6 +53,15 @@
 									<small class="text-danger small">{{ $errors->first('suffix') }}</small>
 								</div>
 							</div>
+
+							{{-- ADDRESS --}}
+							<div class="col-12 col-md-9 col-lg-12 mx-auto">
+								<div class="form-group">
+									<label class="font-weight-bold text-1">Address</label>
+									<input class="form-control" type="text" name="address" value="{{  $user->address }}" />
+									<small class="text-danger small">{{ $errors->first('address') }}</small>
+								</div>
+							</div>
 						</div>
 
 						<div class="row">

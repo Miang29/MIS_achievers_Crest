@@ -132,6 +132,14 @@
                                 </div>
                             </div>
 
+                            {{-- Address --}}
+                            <div class="col-12 col-md-9 col-lg-12 mx-auto">
+                                <div class="form-group">
+                                    <input class="form-control border-secondary text-dark" type="text" name="address" value="{{ old('address') }}" placeholder="Address" />
+                                    <small class="text-danger small">{{ $errors->first('address') }}</small>
+                                </div>
+                            </div>
+
                         </div>
 
                         <div class="row">

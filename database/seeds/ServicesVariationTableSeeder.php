@@ -13,7 +13,6 @@ class ServicesVariationTableSeeder extends Seeder
     public function run()
     {
         ServicesVariation::create([
-			'service_category_id' => 1,
             'service_id' => 1,
             'variation_name' => 'Taytay',
             'price' => '100',
@@ -21,7 +20,6 @@ class ServicesVariationTableSeeder extends Seeder
 		]);
 
         ServicesVariation::create([
-			'service_category_id' => 1,
             'service_id' => 1,
             'variation_name' => 'Cainta',
             'price' => '100',
@@ -29,11 +27,12 @@ class ServicesVariationTableSeeder extends Seeder
 		]);
 
         ServicesVariation::create([
-			'service_category_id' => 1,
             'service_id' => 1,
             'variation_name' => 'Antipolo',
             'price' => '100',
             'remarks' => ''
 		]);
+
+    
     }
 }

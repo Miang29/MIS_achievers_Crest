@@ -75,6 +75,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
 		// Pet Show
 		Route::get('/view/{id}/pet', 'ClientController@showPets')->name('pet-information.pet.show');
+
+		// Pet History
+		Route::get('/view/{id}/history', 'ClientController@petHistory')->name('pet-information.pet.history');
 	});
 
 
@@ -209,7 +212,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
 			// Create
 			Route::get('/create', "ServiceController@create")->name('service.create');
-
+			Route::post('/submit', 'ServiceController@submitServiceVar')->name('submit-service-variation');
 			// Update
 			Route::post("/update/{serviceId}", "ServiceController@update")->name('service.update');
 
@@ -222,7 +225,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 				Route::get("/", "ServiceVariationController@index")->name('service_variation.index');
 
 				// Create
-				Route::get("/create", "ServiceVariationController@create")->name('service_variation.create');
+				Route::get("/create/{variationId}", "ServiceVariationController@create")->name('service_variation.create');
 
 				// Show
 				Route::get("/{variationId}", "ServiceVariationController@show")->name('service_variation.show');

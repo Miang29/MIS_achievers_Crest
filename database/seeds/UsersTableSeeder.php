@@ -18,6 +18,7 @@ class UsersTableSeeder extends Seeder
 			'last_name' => 'Mendenilla',
 			'username'=> 'admin',
 			'email' =>'maleonora.mendenilla@gmail.com',
+			'address' =>'',
 			'password' => Hash::make('admin123'),
 			'user_type_id' => 1
 		]);
@@ -28,6 +29,7 @@ class UsersTableSeeder extends Seeder
 			'last_name' => 'Dizon',
 			'username'=> 'client',
 			'email' =>'ryza.dizon@gmail.com',
+			'address' =>'Muzon Taytay Rizal',
 			'password' => Hash::make('client123'),
 			'user_type_id' => 4
 		]);
@@ -38,6 +40,7 @@ class UsersTableSeeder extends Seeder
 			'last_name' => 'Gonzaga',
 			'username'=> 'alex123',
 			'email' =>'alex.gonzaga@gmail.com',
+			'address' =>'',
 			'password' => Hash::make('alex123'),
 			'user_type_id' => 4
 		]);
@@ -48,6 +51,7 @@ class UsersTableSeeder extends Seeder
 			'last_name' => 'Padilla',
 			'username'=> 'kath123',
 			'email' =>'kath.padilla@gmail.com',
+			'address' =>'',
 			'password' => Hash::make('kath123'),
 			'user_type_id' => 2
 		]);

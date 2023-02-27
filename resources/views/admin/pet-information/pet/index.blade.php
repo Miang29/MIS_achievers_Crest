@@ -97,7 +97,7 @@
 
 							{{-- HISTORY --}}
 							<div class="mt-2">
-								<button type="button" class="btn btn-info btn-sm bg-1"><i class="fa-regular fa-eye mr-2"></i>View History</button>
+								<a type="button" href="{{ route('pet-information.pet.history',[$id])}}" class="btn btn-info btn-sm bg-1"><i class="fa-regular fa-eye mr-2"></i>View History</a>
 							</div>
 						</div>
 					</div>

@@ -146,6 +146,7 @@ class UserController extends Controller
 			'last_name' => 'required|min:2|max:255|string',
 			'suffix' => 'nullable|min:2|max:255|string',
 			'email' => 'required|unique:users,email|min:2|max:255|email',
+			'address' => 'nullable|min:2|max:255|string',
 			'username' => 'required|unique:users,username|min:2|max:255|string',
 			'user_type' => 'required|exists:user_types,id|numeric',
 			'password' => array('required', 'string', 'min:8', 'max:255', 'regex:/^[a-zA-Z0-9!@#$%^&*()_+\-=\[\]{};\':"\\|,.<>\/?]*$/'),
@@ -166,6 +167,7 @@ class UserController extends Controller
 					'last_name' => $req->last_name,
 					'suffix' => $req->suffix,
 					'email' => $req->email,
+					'address' => $req->address,
 					'username' => $req->username,
 					'user_type_id' => $req->user_type,
 					'password' => Hash::make($req->password),
@@ -248,6 +250,7 @@ class UserController extends Controller
 			'last_name' => 'required|min:2|max:255|string',
 			'suffix' => 'nullable|min:2|max:255|string',
 			'email' => 'required|unique:users,email|min:2|max:255|email',
+			'address' => 'nullable|min:2|max:255|string',
 			'username' => 'required|unique:users,username|min:2|max:255|string',
 			'user_type' => 'required|exists:user_types,id|numeric',
 			
@@ -275,6 +278,7 @@ class UserController extends Controller
 			$user->last_name = $req->last_name;
 			$user->suffix = $req->suffix;
 			$user->email = $req->email;
+			$user->address = $req->address;
 			$user->username = $req->username;
 			$user->user_type_id = $req->user_type;
 			$user->save();

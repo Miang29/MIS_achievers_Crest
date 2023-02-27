@@ -22,21 +22,26 @@
 				<div>
 					{{-- EMAIL --}}
 					<div class="mt-5 border-secondary border-bottom w-lg-75 mx-auto">
-						<button class="btn mr-2" data-toggle="tooltip" data-placement="left" title="Email"><i class="fa-solid fa-envelope"></i></button>
+						<button class="btn mr-2 font-weight-bold" data-toggle="tooltip" data-placement="left" title="Email"><i class="fa-solid fa-envelope mr-2"></i>Email</button>
 						<span class="h5 m-auto text-wrap text-1">{{$user ['email']}}</span>
 					</div>
 
+					{{-- ADDRESS --}}
+					<div class="mt-3 border-secondary border-bottom w-lg-75 mx-auto">
+						<button class="btn mr-2 font-weight-bold" data-toggle="tooltip" data-placement="left" title="Address"><i class="fa-solid fa-location-dot mr-2"></i>Address</button>
+						<span class="h5 m-auto text-wrap text-1">{{$user ['address']}}</span>
+					</div>
 
 					{{-- USERTYPE --}}
 					<div class="mt-3 border-secondary border-bottom w-lg-75 mx-auto">
-						<button class="btn mr-2" data-toggle="tooltip" data-placement="left" name="user_type" title="User Type"><i class="fa-solid fa-users"></i></button>
+						<button class="btn mr-2 font-weight-bold" data-toggle="tooltip" data-placement="left" name="user_type" title="User Type"><i class="fa-solid fa-users mr-2"></i>User Type</button>
 						<span class="h5 m-auto text-wrap text-1">{{ucfirst($user->userType->name)}}</span>
 					</div>
 
 
 					{{-- USERNAME --}}
 					<div class="mt-3 border-secondary border-bottom w-lg-75 mx-auto">
-						<button class="btn mr-2" data-toggle="tooltip" data-placement="left" title="User Name"><i class="fa-solid fa-user"></i></button>
+						<button class="btn mr-2 font-weight-bold" data-toggle="tooltip" data-placement="left" title="User Name"><i class="fa-solid fa-user mr-2"></i>User Name</button>
 						<span class="h5 m-auto text-wrap text-1">{{$user ['username']}}</span>
 					</div>
 

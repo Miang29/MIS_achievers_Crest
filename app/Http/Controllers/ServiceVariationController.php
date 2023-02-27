@@ -2,7 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\ServicesVariation;
 use Illuminate\Http\Request;
+
+
+use DB;
+use Exception;
+use Log;
+use Validator;
 
 class ServiceVariationController extends Controller
 {
@@ -26,22 +33,29 @@ class ServiceVariationController extends Controller
 		]
 	];
 
-	protected function index($id, $serviceId) {
-		$variations = $this->variations;
-
+	// -------------- INDEX OF SERVICE VARIATION --------------- //
+	protected function index($id, $serviceId)
+	{
+		$variations = ServicesVariation::where('service_id', '=', $serviceId)->get();
 		return view('admin.service_category.service.service_variation.index', [
-			'variations' => $variations
+			'variations' => $variations,
+			'id' => $id,
+			'serviceId' => $serviceId
 		]);
 	}
-
-	protected function create($id, $serviceId) {
+	// ---------------- CREATE SERVICE VARIATIONS --------------- //
+	protected function create($id, $serviceId,$variationId){
+		$var = ServicesVariation::where('service_id', '=', $serviceId)->get();
 		return view('admin.service_category.service.service_variation.create', [
-			'category' => 'Professional Services',
-			'service' => 'Home Service'
+			'variation' => $var,
+			'id' => $id,
+			'serviceId' => $serviceId,
+			'vId' => $variationId
 		]);
 	}
 
-	protected function show($id, $serviceId, $variationId) {
+	protected function show($id, $serviceId, $variationId)
+	{
 		$variation = $this->variations[$variationId];
 
 		return view('admin.service_category.service.service_variation.show', [
@@ -49,15 +63,17 @@ class ServiceVariationController extends Controller
 		]);
 	}
 
-	protected function edit($id, $serviceId, $variationId) {
+	protected function edit($id, $serviceId, $variationId)
+	{
 		$variation = $this->variations[$variationId];
-		
+
 		return view('admin.service_category.service.service_variation.edit', [
 			'variation' => $variation
 		]);
 	}
 
-	protected function delete($id, $serviceId, $variationId) {
+	protected function delete($id, $serviceId, $variationId)
+	{
 		return redirect()
 			->route('service_variation.index', [1, 1])
 			->with('flash_success', 'Successfully removed variation');

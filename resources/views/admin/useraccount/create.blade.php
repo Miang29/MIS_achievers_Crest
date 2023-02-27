@@ -14,13 +14,12 @@
 
 			<div class="card-body d-flex">
 				<div class="form-group mx-auto w-100 w-lg-75">
-					<div class="col-12  ">
+					<div class="col-12 col-lg-12">
 						<div class="row">
 							{{-- FIRST NAME --}}
 							<div class="col-12 col-md-9 col-lg-6 mx-auto">
 								<div class="form-group">
-									<label class="important font-weight-bold text-1 important">First Name</label>
-									<input class="form-control" type="text" name="first_name" value="{{ old('first_name') }}" />
+									<input class="form-control important" type="text" name="first_name" value="{{ old('first_name') }}" placeholder="First Name" />
 									<small class="text-danger small">{{ $errors->first('first_name') }}</small>
 								</div>
 							</div>
@@ -28,8 +27,7 @@
 							{{-- MIDDLE NAME --}}
 							<div class="col-12 col-md-9 col-lg-6 mx-auto">
 								<div class="form-group">
-									<label class="font-weight-bold text-1">Middle Name</label>
-									<input class="form-control" type="text" name="middle_name" value="{{ old('middle_name') }}" />
+									<input class="form-control" type="text" name="middle_name" value="{{ old('middle_name') }}" placeholder="Middle Name" />
 									<small class="text-danger small">{{ $errors->first('middle_name') }}</small>
 								</div>
 							</div>
@@ -37,8 +35,7 @@
 							{{-- LAST NAME --}}
 							<div class="col-12 col-md-9 col-lg-6 mx-auto">
 								<div class="form-group">
-									<label class="important font-weight-bold text-1 important">Last Name</label>
-									<input class="form-control" type="text" name="last_name" value="{{ old('last_name') }}" />
+									<input class="form-control important" type="text" name="last_name" value="{{ old('last_name') }}" placeholder="Last Name" />
 									<small class="text-danger small">{{ $errors->first('last_name') }}</small>
 								</div>
 							</div>
@@ -46,9 +43,16 @@
 							{{-- SUFFIX --}}
 							<div class="col-12 col-md-9 col-lg-6 mx-auto">
 								<div class="form-group">
-									<label class="font-weight-bold text-1">Suffix</label>
-									<input class="form-control" type="text" name="suffix" value="{{ old('suffix') }}" />
+									<input class="form-control" type="text" name="suffix" value="{{ old('suffix') }}" placeholder="Suffix"/>
 									<small class="text-danger small">{{ $errors->first('suffix') }}</small>
+								</div>
+							</div>
+
+							{{-- Address --}}
+							<div class="col-12 col-md-9 col-lg-12 mx-auto">
+								<div class="form-group">
+									<input class="form-control" type="text" name="address" value="{{ old('address') }}" placeholder="Address"/>
+									<small class="text-danger small">{{ $errors->first('address') }}</small>
 								</div>
 							</div>
 						</div>
@@ -56,15 +60,14 @@
 						<div class="row">
 							{{-- EMAIL --}}
 							<div class="col-12 col-md-9 col-lg-6 mx-auto form-group">
-								<label class="important font-weight-bold text-1 important">E-mail</label>
-								<input class="form-control" type="email" name="email" value="{{ old('email') }}" />
+								<input class="form-control important" type="email" name="email" value="{{ old('email') }}" placeholder="Email"/>
 								<small class="text-danger small">{{ $errors->first('email') }}</small>
 							</div>
 
 							{{-- USER TYPE --}}
 							<div class="col-12 col-md-9 col-lg-6 mx-auto form-group">
-								<label class="important font-weight-bold text-1 important">User Type</label><br>
 								<select class="form-control custom-select text-1" name="user_type">
+								<option value="0">Select User Type</option>
 									@forelse ($types as $t)
 									<option value="{{ $t->id }}" {{ old('user_type') == $t->id ? 'selected' : '' }}>{{ $t->name }}</option>
 									@empty

@@ -11,12 +11,10 @@ class Services extends Model
         'service_name'
     ];
 
+    public function variations() {
+        return $this->hasMany('App\ServicesVariation', 'service_id');
+    }
     protected function servicesCategory() {
         return $this->belongsTo('App\ServicesCategory');
-    }
-
-    protected function variations() {
-        return $this->belongsTo('App\ServicesVariation');
-    }
-    
+    }  
 }

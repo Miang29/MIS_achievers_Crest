@@ -18,6 +18,16 @@ use Validator;
 
 class ClientController extends Controller
 { 
+	// -------------- HISTORY INDEX ------------------ //
+	protected function petHistory($id)
+	{
+		$pi = PetsInformation::where('pet_owner', '=', $id)->get();
+		return view('admin.pet-information.pet.history', [
+			'pets' => $pi,
+			'id' => $id
+		]);
+	}
+
 	// -------------- SIGN UP INDEX ------------------ //
 	protected function SignUp()
 	{
@@ -33,6 +43,7 @@ class ClientController extends Controller
 			'last_name' => 'required|min:2|max:255|string',
 			'suffix' => 'nullable|min:2|max:255|string',
 			'email' => 'required|unique:users,email|min:2|max:255|email',
+			'address' => 'nullable|min:2|max:255',
 			'username' => 'required|unique:users,username|min:2|max:255|string',
 			'password' => array('required', 'string', 'min:8', 'max:255', 'regex:/^[a-zA-Z0-9!@#$%^&*()_+\-=\[\]{};\':"\\|,.<>\/?]*$/'),
 			'checkbox' => 'required'
@@ -57,6 +68,7 @@ class ClientController extends Controller
 				'last_name' => $req->last_name,
 				'suffix' => $req->suffix,
 				'email' => $req->email,
+				'address' => $req->address,
 				'username' => $req->username,
 				'user_type_id' => $type->id,
 				'password' => Hash::make($req->password),

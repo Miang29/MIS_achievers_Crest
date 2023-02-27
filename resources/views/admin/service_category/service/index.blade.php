@@ -12,7 +12,7 @@
 		</div>
 
 		<div class="col-12 col-md-6 col-lg my-2 text-center text-md-left text-lg-right">
-			<a href="{{ route('service.create', [1]) }}" class="btn btn-info bg-1 btn-sm my-1"><i class="fas fa-plus-circle mr-2"></i>Add Service</a>
+			<a href="{{ route('service.create',[$id]) }}" class="btn btn-info bg-1 btn-sm my-1"><i class="fas fa-plus-circle mr-2"></i>Add Service</a>
 		</div>
 
 		<div class=" col-12 col-md-6 col-lg my-2 text-center text-lg-right">
@@ -41,7 +41,7 @@
 				@forelse ($serviceVar as $sv)
 					<tr>
 						<td>{{ $sv->service_name }}</td>
-						<td>{{-- $sv->variations()->count() --}}</td>
+						<td>{{ $sv->variations()->count() }}</td>
 
 						<td>
 							<div class="dropdown">
@@ -50,7 +50,7 @@
 								</button>
 								
 								<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown">
-									<a href="{{route ('service_variation.index', [1, 1, 1] )}}" class="dropdown-item"><i class="fa-solid fa-eye mr-2"></i>View Variation</a>
+									<a href="{{route ('service_variation.index', [$id, $sv->id] )}}" class="dropdown-item"><i class="fa-solid fa-eye mr-2"></i>View Variation</a>
 									<button data-scf="Service Name" data-scf-name="service_name" data-scf-target-uri="{{ route('service.update', [1, 1]) }}" class="dropdown-item"><i class="fa-regular fa-pen-to-square mr-2"></i>Edit Service Name</button>
 									<button onclick="confirmLeave('{{ route("service.delete",[1, 1]) }}', undefined, 'Are you sure you want to remove this service? This will <b>remove all the variations</b> encoded within this service.');" class="dropdown-item"><i class="fa-solid fa-trash mr-2"></i>Delete</button>
 								</div>
@@ -59,7 +59,7 @@
 					</tr>
 					@empty
 					<tr>
-						<td colspan="2">Nothing to show~</td>
+						<td colspan="3">Nothing to show~</td>
 					</tr>
 					@endforelse
 				</tbody>

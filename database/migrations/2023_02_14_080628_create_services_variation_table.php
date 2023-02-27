@@ -15,12 +15,13 @@ class CreateServicesVariationTable extends Migration
     {
         Schema::create('services_variations', function(Blueprint $table){
             $table->increments('id');
-            $table->integer('service_category_id');
-            $table->integer('service_id');
-            $table->string('variation_name');
+            $table->integer('service_id')->unsigned();
+            $table->string('variation_name')->default('Default');
             $table->integer('price');
             $table->string('remarks')->nullable();
             $table->timestamps();
+
+            $table->foreign('service_id')->references('id')->on('services')->onDelete('cascade');
 
         });
     }

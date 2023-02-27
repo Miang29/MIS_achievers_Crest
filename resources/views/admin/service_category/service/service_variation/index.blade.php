@@ -6,13 +6,9 @@
 <div class="container-fluid px-2 px-lg-6 py-2 h-100 my-3">
 	<div class="row">
 		<div class="col-12 col-lg text-center text-lg-left">
-			<a href="{{ route('service.index', [1]) }}">
+			<a href="{{ route('service.index', [$id]) }}">
 				<h2 class="font-weight-bold text-1"><i class="fas fa-chevron-left mr-2"></i>Services List</h2>
 			</a>
-		</div>
-
-		<div class="col-12 col-md-6 col-lg my-2 text-center text-md-left text-lg-right">
-			<a href="{{ route('service_variation.create', [1, 1]) }}" class="btn btn-info bg-1 btn-sm my-1"><i class="fas fa-plus-circle mr-2"></i>Add Service</a>
 		</div>
 
 		<div class=" col-12 col-md-6 col-lg my-2 text-center text-lg-right">
@@ -51,9 +47,10 @@
 									Action
 								</button>
 								
-								<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown">
-									<a href="{{route ('service_variation.show', [1, 1, $v['id']] )}}" class="dropdown-item"><i class="fa-solid fa-eye mr-2"></i>View Variation</a>
-									<a href="{{ route('service_variation.edit', [1, 1, $v['id']]) }}" class="dropdown-item"><i class="fa-regular fa-pen-to-square mr-2"></i>Edit Variation</a>
+								<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown">	
+									<a href="{{route ('service_variation.create', [$id, $serviceId, $v->id] )}}" class="dropdown-item"><i class="fa-solid fa-plus mr-2"></i>Add Variation</a>
+									<a href="{{route ('service_variation.show', [$id, $serviceId, $v->id] )}}" class="dropdown-item"><i class="fa-solid fa-eye mr-2"></i>View Variation</a>
+									<a href="{{route('service_variation.edit', [$id, $serviceId, $v->id]) }}" class="dropdown-item"><i class="fa-regular fa-pen-to-square mr-2"></i>Edit Variation</a>
 									<button onclick="confirmLeave('{{ route("service_variation.delete",[1, 1, $v['id']]) }}', undefined, 'Are you sure you want to remove this variation? This will <b>remove all the variations</b>');" class="dropdown-item"><i class="fa-solid fa-trash mr-2"></i>Delete</button>
 								</div>
 							</div>

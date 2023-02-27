@@ -21,6 +21,7 @@ class User extends Authenticatable
         'suffix',
         'username',
         'email',
+        'address',
         'password',
         'user_type_id',
         'login_attempts',

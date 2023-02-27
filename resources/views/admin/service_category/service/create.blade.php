@@ -4,11 +4,11 @@
 
 @section('content')
 <div class="container-fluid m-0">
-	<h2 class="my-3"><a href="{{ route('service.index', [1]) }}" class="text-decoration-none  text-1"><i class="fas fa-chevron-left mr-2"></i>Services List</a></h2>
+	<h2 class="my-3"><a href="{{ route('service.index', [$id]) }}" class="text-decoration-none  text-1"><i class="fas fa-chevron-left mr-2"></i>Services List</a></h2>
 	<hr class="hr-thick" style="border-color: #707070;">
 
 	<div class="row" id="form-area">
-		<form class="form col-12 col-lg-12 col-md-12"  action="#" method="GET" enctype="multipart/form-data" >
+		<form class="form col-12 col-lg-12 col-md-12"  action="{{ route('submit-service-variation',[$id])}}" method="POST" enctype="multipart/form-data" >
 			<div class="card my-3 mx-auto">
 			<input type="hidden" name="_token" value="{{ csrf_token() }}">	
 				<h3 class="card-header  text-white gbg-1"><i class="fa-solid fa-square-plus mr-2"></i>CREATE SERVICE</h3>
@@ -20,7 +20,7 @@
 								<div class="input-group-prepend">
 									<label class="input-group-text font-weight-bold bg-white" for="inputGroupSelect01">Service Name</label>
 								</div>
-								<select class="custom-select" name="category_name">
+								<select class="custom-select" name="service_name">
 									@foreach ($services as $s)
 									<option value="{{ $s->id }}">{{ $s->service_name }}</option>
 									@endforeach
@@ -36,7 +36,7 @@
 									<div class="form-group">
 										<label for="variation[]" class="form-label important">Variation</label>
 										<input type="text" name="variation[]" class="form-control" value="{{ old("variation.{$i}") }}">
-										<span class="text-danger">{{ $errors->first("variation.{$i}") }}</span>
+										<small class="text-danger">{{ $errors->first("variation.*") }}</small>
 									</div>
 
 									<div class="form-group">
@@ -56,11 +56,12 @@
 												</div>
 											</div>
 										</div>
+										<small class="text-danger">{{ $errors->first('price.*') }}</small>
 									</div>
 
 									<div class="form-group">
-										<label class="form-label" name="remarks[]">Remarks</label>
-										<textarea name="remarks[]" id="" rows="5" class="form-control not-resizable">{{ old("remarks.{$i}") }}</textarea>
+										<label class="form-label" for="remarks[]">Remarks</label>
+										<textarea name="remarks[]" id="" rows="5" class="form-control not-resizable">{{ old("remarks.*") }}</textarea>
 									</div>
 								</div>
 						</div>
@@ -70,7 +71,8 @@
 							<div class="card-body border rounded border-width-medium border-color-1">
 								<div class="form-group">
 									<label for="variation[]" class="form-label important">Variation</label>
-									<input type="text" name="variation[]" class="form-control" value="{{ old("variation.1") }}">
+									<input type="text" name="variation[]" class="form-control" value="{{ old("variation.0") }}">
+									<small class="text-danger">{{ $errors->first('variation.*') }}</small>
 								</div>
 
 								<div class="form-group">
@@ -82,19 +84,20 @@
 
 										<div class="input-group-append flex-fill">
 											<div class="input-group">
-												<input type="number" data-type="currency" name="price[]" class="form-control" min="0.00" max="4294967295.00" step="0.25" value="{{ old("price.1") ? old("price.1") :  0 }}">
-												<div class="input-group-append">
+											<input type="number" class="form-control" name="price[]" value="{{ old('price.0') ? old('price.0') : 0 }}" min="0.00" step=".01" />
+											<div class="input-group-append">
 													<button type="button" class="btn btn-secondary quantity-increment"><i class="fas fa-plus"></i></button>
 													<button type="button" class="btn btn-secondary quantity-decrement"><i class="fas fa-minus"></i></button>
 												</div>
 											</div>
 										</div>
 									</div>
+									<small class="text-danger">{{ $errors->first('price.*') }}</small>
 								</div>
 
 								<div class="form-group">
 									<label class="form-label" name="remarks[]">Remarks</label>
-									<textarea name="remarks[]" id="" rows="5" class="form-control not-resizable">{{ old("remarks.1") }}</textarea>
+									<textarea name="remarks[]" id="" rows="5" class="form-control not-resizable">{{ old("remarks.0") }}</textarea>
 								</div>
 							</div>
 						</div>

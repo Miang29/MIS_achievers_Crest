@@ -14,12 +14,10 @@ use Validator;
 class ServiceCategoryController extends Controller
 {
     protected function index() {
-
 		$sc = ServicesCategory::has('services')->get();
 		return view('admin.service_category.index',[
 			'servicesCategory' => $sc,
-		
-
+			
 		]);
 	}
 // --------------- CREATE BLADE ---------------- //
