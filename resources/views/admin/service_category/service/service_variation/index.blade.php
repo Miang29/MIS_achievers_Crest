@@ -48,7 +48,6 @@
 								</button>
 								
 								<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown">	
-									<a href="{{route ('service_variation.create', [$id, $serviceId, $v->id] )}}" class="dropdown-item"><i class="fa-solid fa-plus mr-2"></i>Add Variation</a>
 									<a href="{{route ('service_variation.show', [$id, $serviceId, $v->id] )}}" class="dropdown-item"><i class="fa-solid fa-eye mr-2"></i>View Variation</a>
 									<a href="{{route('service_variation.edit', [$id, $serviceId, $v->id]) }}" class="dropdown-item"><i class="fa-regular fa-pen-to-square mr-2"></i>Edit Variation</a>
 									<button onclick="confirmLeave('{{ route("service_variation.delete",[1, 1, $v['id']]) }}', undefined, 'Are you sure you want to remove this variation? This will <b>remove all the variations</b>');" class="dropdown-item"><i class="fa-solid fa-trash mr-2"></i>Delete</button>

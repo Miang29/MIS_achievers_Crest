@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="container-fluid m-0 ">
-<h3 class="mt-3"><a href="{{route('service_variation.index', [1, 1]) }}" class="text-decoration-none  text-1"><i class="fas fa-chevron-left mr-2"></i>Variation List</a></h3>
+<h3 class="mt-3"><a href="{{route('service_variation.index', [$id, $serviceId]) }}" class="text-decoration-none  text-1"><i class="fas fa-chevron-left mr-2"></i>Variation List</a></h3>
 
 	<hr class="hr-thick" style="border-color: #707070;">
 	<h2 class="font-weight-bold text-1 text-center">Services Information</h2>

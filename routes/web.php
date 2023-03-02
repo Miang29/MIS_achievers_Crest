@@ -216,6 +216,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 			// Update
 			Route::post("/update/{serviceId}", "ServiceController@update")->name('service.update');
 
+			// ADD new variation
+			Route::get("/create/{serviceId}", "ServiceController@addVariation")->name('service_variation.create');
+			Route::post("/submit/{serviceId}","ServiceController@submitVariation")->name('submit-variation');
+
 			// Delete
 			Route::get('/delete/{serviceId}', 'ServiceController@delete')->name('service.delete');
 
@@ -224,10 +228,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 				// Index
 				Route::get("/", "ServiceVariationController@index")->name('service_variation.index');
 
-				// Create
-				Route::get("/create/{variationId}", "ServiceVariationController@create")->name('service_variation.create');
-
-				// Show
+				//Show
 				Route::get("/{variationId}", "ServiceVariationController@show")->name('service_variation.show');
 
 				// Edit

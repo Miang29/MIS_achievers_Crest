@@ -43,26 +43,20 @@ class ServiceVariationController extends Controller
 			'serviceId' => $serviceId
 		]);
 	}
-	// ---------------- CREATE SERVICE VARIATIONS --------------- //
-	protected function create($id, $serviceId,$variationId){
-		$var = ServicesVariation::where('service_id', '=', $serviceId)->get();
-		return view('admin.service_category.service.service_variation.create', [
-			'variation' => $var,
-			'id' => $id,
-			'serviceId' => $serviceId,
-			'vId' => $variationId
-		]);
-	}
-
+	
+		// -------------------- SHOW VARIATION --------------------- //
 	protected function show($id, $serviceId, $variationId)
 	{
-		$variation = $this->variations[$variationId];
-
+		$variations = ServicesVariation::find($id);
 		return view('admin.service_category.service.service_variation.show', [
-			'variation' => $variation
+			'variation' => $variations,
+			'id' => $id,
+			'serviceId' => $serviceId,
+			'variationId' =>$variationId
+		    
 		]);
 	}
-
+		// --------------- EDIT VARIATION ----------------- //
 	protected function edit($id, $serviceId, $variationId)
 	{
 		$variation = $this->variations[$variationId];
@@ -71,7 +65,7 @@ class ServiceVariationController extends Controller
 			'variation' => $variation
 		]);
 	}
-
+		// ------------------- ARCHIVE VARIATION ------------------ //
 	protected function delete($id, $serviceId, $variationId)
 	{
 		return redirect()

@@ -83,6 +83,57 @@ class ServiceController extends Controller
 			->with('flash_success', "Successfully added a services category");
 	}
 
+	// ---------------- ADD NEW SERVICE VARIATIONS --------------- //
+	protected function addVariation($id, $serviceId){
+		$var = ServicesVariation::where('service_id', '=', $serviceId)->get();
+		return view('admin.service_category.service.service_variation.create', [
+			'variation' => $var,
+			'id' => $id,
+			'serviceId' => $serviceId,
+		]);
+	}
+
+	//--------------- SUBMIT ADDED VARIATION --------------------- //
+	protected function submitVariation(Request $req,$id,$serviceId)
+	{
+		$validator = Validator::make($req->all(), [
+			'variation' => 'nullable|min:2|max:255|string',
+			'price' => 'required|numeric',
+			'remarks.' => 'nullable|min:2|max:255|string',
+		],[
+			'price' => 'The price field is required',
+		]);
+
+		if ($validator->fails())
+			return redirect()
+				->back()
+				->withErrors($validator)
+				->withInput();
+
+		try {
+				DB::beginTransaction(); 
+				$serVar = ServicesVariation::create([
+					'service_id' => $serviceId,
+					'variation' => $req->variation,
+					'price' => $req->price,
+					'remarks' => $req->remarks,
+				]);
+			
+			DB::commit();
+		} catch (Exception $e) {
+			DB::rollback();
+			Log::error($e);
+			
+
+			return redirect()
+				->route('service_variation.create',[$id])
+				->with('flash_error', 'Something went wrong, please try again later');
+		}
+		return redirect()
+			->route('service.index',[$id])
+			->with('flash_success', "Successfully added a variation");
+	}
+
 	protected function update($id, $serviceId) {
 		return response()
 			->json([

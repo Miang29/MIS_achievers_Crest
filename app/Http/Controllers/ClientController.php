@@ -21,10 +21,9 @@ class ClientController extends Controller
 	// -------------- HISTORY INDEX ------------------ //
 	protected function petHistory($id)
 	{
-		$pi = PetsInformation::where('pet_owner', '=', $id)->get();
+		$pi = PetsInformation::find($id);
 		return view('admin.pet-information.pet.history', [
-			'pets' => $pi,
-			'id' => $id
+			'pet' => $pi
 		]);
 	}
 

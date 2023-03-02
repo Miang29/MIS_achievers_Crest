@@ -90,7 +90,7 @@
 									</div>
 
 									<div class="col-12 col-md-9 col-lg-12 mx-auto">
-										<label class="h6 font-weight-bold text-1  important" for="birthdate">Birthdate</label>
+										<label class="h6 font-weight-bold text-1 important" for="birthdate">Birthdate</label>
 										<input class="form-control" type="date" name="birthdate[]" value="{{ old('brithdate[]') }}" />
 										<small class="text-danger small">{{ $errors->first('birthdate.*') }}</small>
 									</div>
@@ -217,7 +217,6 @@
 	
 							<div class="col-12 col-lg-12 col-md-12 ">
 								<div class="form-group ">
-
 								    <div class="col-12 col-md-9 col-lg-12 mx-auto">
 										<label class="h6 font-weight-bold text-1 important" for="pet_name">Pet Name</label>
 										<input class="form-control" type="text" name="pet_name[]"/>
@@ -243,7 +242,7 @@
 										</div>
 										
 									<div class="col-12 col-md-9 col-lg-12 mx-auto">
-										<label class="h6 font-weight-bold text-1  important" for="birthdate">Birthdate</label>
+										<label class="h6 font-weight-bold text-1 important" for="birthdate">Birthdate</label>
 										<input class="form-control" type="date" name="birthdate[]"/>
 										<small class="text-danger small">{{ $errors->first('birthdate') }}</small>
 									</div>

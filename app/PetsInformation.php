@@ -18,8 +18,8 @@ class PetsInformation extends Model
         'types',
     ];
 
-    protected function user() {
-        return $this->belongsTo('App\User');
+    public function user() {
+        return $this->belongsTo('App\User', 'pet_owner');
     }
 
     public function getImage($getFull = true) {

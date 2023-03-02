@@ -50,7 +50,8 @@
 								</button>
 								
 								<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown">
-									<a href="{{route ('service_variation.index', [$id, $sv->id] )}}" class="dropdown-item"><i class="fa-solid fa-eye mr-2"></i>View Variation</a>
+								<a href="{{route ('service_variation.create', [$id, $sv->id] )}}" class="dropdown-item"><i class="fa-solid fa-plus mr-2"></i>Add Variation</a>	
+								<a href="{{route ('service_variation.index', [$id, $sv->id] )}}" class="dropdown-item"><i class="fa-solid fa-eye mr-2"></i>View Variation</a>
 									<button data-scf="Service Name" data-scf-name="service_name" data-scf-target-uri="{{ route('service.update', [1, 1]) }}" class="dropdown-item"><i class="fa-regular fa-pen-to-square mr-2"></i>Edit Service Name</button>
 									<button onclick="confirmLeave('{{ route("service.delete",[1, 1]) }}', undefined, 'Are you sure you want to remove this service? This will <b>remove all the variations</b> encoded within this service.');" class="dropdown-item"><i class="fa-solid fa-trash mr-2"></i>Delete</button>
 								</div>
