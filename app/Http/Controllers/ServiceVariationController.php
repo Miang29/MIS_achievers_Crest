@@ -13,26 +13,6 @@ use Validator;
 
 class ServiceVariationController extends Controller
 {
-	// TEMPORARY VAR
-	private $variations = [
-		"1" => [
-			"id" => 1,
-			"category_name" => "Proffessional Services",
-			"service_name" => "Home Service",
-			"variation_name" => "Antipolo",
-			"price" => "300",
-			"remarks" => "No remarks"
-		],
-		"2" => [
-			"id" => 2,
-			"category_name" => "Proffessional Services",
-			"service_name" => "Home Service",
-			"variation_name" => "Quezon City",
-			"price" => "500",
-			"remarks" => "No remarks"
-		]
-	];
-
 	// -------------- INDEX OF SERVICE VARIATION --------------- //
 	protected function index($id, $serviceId)
 	{
@@ -47,7 +27,7 @@ class ServiceVariationController extends Controller
 		// -------------------- SHOW VARIATION --------------------- //
 	protected function show($id, $serviceId, $variationId)
 	{
-		$variations = ServicesVariation::find($id);
+		$variations = ServicesVariation::find($variationId);
 		return view('admin.service_category.service.service_variation.show', [
 			'variation' => $variations,
 			'id' => $id,
@@ -59,12 +39,65 @@ class ServiceVariationController extends Controller
 		// --------------- EDIT VARIATION ----------------- //
 	protected function edit($id, $serviceId, $variationId)
 	{
-		$variation = $this->variations[$variationId];
-
+		$variation =ServicesVariation::find($variationId);
 		return view('admin.service_category.service.service_variation.edit', [
-			'variation' => $variation
+			'variation' => $variation,
+			'id' => $id,
+			'variationId' =>$variationId,
+			'serviceId' => $serviceId
 		]);
 	}
+
+	// ---------------------- UPDATE VARIATION ------------------------- //
+	protected function updateVar(Request $req, $id, $serviceId, $variationId){
+
+		$var = ServicesVariation::find($variationId);
+		if ($var == null) {
+			return redirect()
+				->back()
+				->route('service_variation.index',[$id, $serviceId])
+				->with('flash_error', "No such services exists");
+		}
+
+		$validator = Validator::make($req->all(), [
+			'variation' => 'nullable|min:2|max:255|string',
+			'price' => 'required|numeric',
+			'remarks.' => 'nullable|min:2|max:255|string',
+		],[
+			'price' => 'The price field is required',
+		]);
+
+		if ($validator->fails())
+			return redirect()
+				->back()
+				->withErrors($validator)
+				->withInput();
+
+		try {
+				DB::beginTransaction(); 
+				$var->service_id = $serviceId;
+				$var->variation_name = $req->variation_name;
+				$var->price = $req->price;
+				$var->remarks = $req->remarks;
+				$var->save();
+
+				DB::commit();
+			} catch (Exception $e) {
+				DB::rollback();
+				Log::error($e);
+				
+	
+				return redirect()
+					->route('service_variation.edit',[$id, $serviceId, $variationId])
+					->with('flash_error', 'Something went wrong, please try again later');
+			}
+			return redirect()
+				->route('service_variation.index',[$id, $serviceId])
+				->with('flash_success', "Successfully updated variation");
+
+	}
+
+
 		// ------------------- ARCHIVE VARIATION ------------------ //
 	protected function delete($id, $serviceId, $variationId)
 	{

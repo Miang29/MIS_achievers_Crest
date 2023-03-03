@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="container-fluid m-0">
-	<h2 class="my-3"><a href="{{route('service_variation.index', [1, 1]) }}" class="text-decoration-none  text-1"><i class="fas fa-chevron-left mr-2"></i>Services Variation List</a></h2>
+	<h2 class="my-3"><a href="{{route('service_variation.index', [$id, $serviceId]) }}" class="text-decoration-none  text-1"><i class="fas fa-chevron-left mr-2"></i>Services Variation List</a></h2>
 	<hr class="hr-thick" style="border-color: #707070;">
 
 	<div class="row" id="form-area">
@@ -20,7 +20,7 @@
 								<div class="card-body border rounded border-width-medium border-color-1">
 									<div class="form-group">
 										<label for="variation" class="form-label important">Variation</label>
-										<input type="text" name="variation" class="form-control">
+										<input type="text" name="variation_name" class="form-control">
 									</div>
 
 									<div class="form-group">

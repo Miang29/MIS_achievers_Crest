@@ -15,6 +15,6 @@ class Services extends Model
         return $this->hasMany('App\ServicesVariation', 'service_id');
     }
     protected function servicesCategory() {
-        return $this->belongsTo('App\ServicesCategory');
+        return $this->belongsTo('App\ServicesCategory','service_category_id');
     }  
 }

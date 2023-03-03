@@ -4,17 +4,17 @@
 
 @section('content')
 <div class="container-fluid m-0">
-	<h2 class="my-3"><a href="{{ route('service_variation.index', [1, 1]) }}" class="text-decoration-none  text-1"><i class="fas fa-chevron-left mr-2"></i>Services Variation List</a></h2>
+	<h2 class="my-3"><a href="{{ route('service_variation.index', [$id, $serviceId]) }}" class="text-decoration-none  text-1"><i class="fas fa-chevron-left mr-2"></i>Services Variation List</a></h2>
 	<hr class="hr-thick" style="border-color: #707070;">
 
 	<div class="row" id="form-area">
 		<div class="col-12">
-			<div class="card my-3 mx-auto">
-				<h3 class="card-header  text-white gbg-1"><i class="fa-solid fa-square-plus mr-2"></i>EDIT SERVICE VARIATION ({{ $variation["service_name"] }})</h3>
+			<form class="card my-3 mx-auto" action="{{ route('update-variation', [$id, $serviceId, $variationId]) }}" method="POST" enctype="multipart/form-data" class="form">
+			<input type="hidden" name="_token" value="{{ csrf_token() }}">		
+			<h3 class="card-header  text-white gbg-1"><i class="fa-solid fa-square-plus mr-2"></i>EDIT SERVICE VARIATION ({{ $variation->services->service_name }})</h3>
 
-				<form class="card-body" action="#" method="POST" enctype="multipart/form-data" class="form">
-					{{ csrf_field() }}
-
+				<div class="card-body" >
+					
 					<div class="row">
 						<div class="col-12 row" id="varContainer">
 							{{-- DATA ITERATION (Printing old values) --}}
@@ -22,7 +22,7 @@
 								<div class="card-body border rounded border-width-medium border-color-1">
 									<div class="form-group">
 										<label for="variation" class="form-label important">Variation</label>
-										<input type="text" name="variation" class="form-control" value="{{ $variation["variation_name"] }}">
+										<input type="text" name="variation_name" class="form-control" value="{{ $variation["variation_name"] }}">
 									</div>
 
 									<div class="form-group">
@@ -45,21 +45,20 @@
 									</div>
 
 									<div class="form-group">
-										<label class="form-label" name="remarks[]">Remarks</label>
-										<textarea name="remarks[]" id="" rows="5" class="form-control not-resizable">{{ $variation["remarks"] }}</textarea>
+										<label class="form-label" for="remarks">Remarks</label>
+										<textarea name="remarks" id="remarks" rows="5" class="form-control not-resizable">{{ $variation["remarks"] }}</textarea>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-				</form>
-
+				</div>
 				<div class="card-footer d-flex">
 					<div class="col-4 mx-auto text-center">
-						<button class="btn btn-outline-info btn-sm w-50" type="submit">Save</button>
+						<button class="btn btn-outline-info btn-sm w-50" type="submit" data-type="submit" data-action="update">Save</button>
 					</div>
 				</div>
-			</div>
+			</form>
 		</div>
 	</div>
 </div>
@@ -89,7 +88,9 @@
 			$(e.currentTarget).parent().parent().find('[name="price[]"]').trigger('change', ['-', elm]);
 		}).on('mousedown', '.quantity-decrement:not(.disabled)', (e) => {
 			let obj = $(e.currentTarget);
-			let id = setInterval(() => {obj.trigger('click', [obj])}, 100);
+			let id = setInterval(() => {
+				obj.trigger('click', [obj])
+			}, 100);
 			obj.attr('data-id', id);
 		}).on('mouseup mouseleave', '.quantity-decrement:not(.disabled)', (e) => {
 			let obj = $(e.currentTarget);
@@ -102,9 +103,11 @@
 			$(e.currentTarget).parent().parent().find('[name="price[]"]').trigger('change', ['+', elm]);
 		}).on('mousedown', '.quantity-increment:not(.disabled)', (e) => {
 			let obj = $(e.currentTarget);
-			let id = setInterval(() => {obj.trigger('click', [obj])}, 100);
+			let id = setInterval(() => {
+				obj.trigger('click', [obj])
+			}, 100);
 			obj.attr('data-id', id);
-		}).on('mouseup mouseleave', '.quantity-increment:not(.disabled)',  (e) => {
+		}).on('mouseup mouseleave', '.quantity-increment:not(.disabled)', (e) => {
 			let obj = $(e.currentTarget);
 			let id = parseInt(obj.attr('data-id'));
 			clearInterval(id);
@@ -118,8 +121,7 @@
 			if (val < 4294967295.0 && operation == '+') {
 				val += 0.25;
 				obj.val(val);
-			}
-			else if (val > 0.0 && operation == '-') {
+			} else if (val > 0.0 && operation == '-') {
 				val -= 0.25;
 				obj.val(val);
 			}
@@ -128,13 +130,12 @@
 			if (val >= 4294967295) {
 				$(obj.parent().find('.quantity-increment')).addClass('disabled');
 				obj.val(4294967295.0);
-				
+
 				if (typeof elm != 'undefined') {
 					let id = parseInt(elm.attr('data-id'));
 					clearInterval(id);
 				}
-			}
-			else
+			} else
 				$(obj.parent().find('.quantity-increment')).removeClass('disabled');
 
 			// Decrement
@@ -146,8 +147,7 @@
 					let id = parseInt(elm.attr('data-id'));
 					clearInterval(id);
 				}
-			}
-			else
+			} else
 				$(obj.parent().find('.quantity-decrement')).removeClass('disabled');
 		}).trigger('change');
 	});

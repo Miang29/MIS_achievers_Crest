@@ -233,6 +233,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
 				// Edit
 				Route::get("/{variationId}/edit", "ServiceVariationController@edit")->name('service_variation.edit');
+				Route::post('update/{variationId}', 'ServiceVariationController@updateVar')->name('update-variation');
 
 				// Delete
 				Route::get('/{variationId}/delete', 'ServiceVariationController@delete')->name('service_variation.delete');

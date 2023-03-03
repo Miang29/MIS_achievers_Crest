@@ -38,31 +38,36 @@ class ServiceController extends Controller
 	
 	protected function submitServiceVar(Request $req,$id)
 	{
-		// dd($req);
-		$validator = Validator::make($req->all(), [
+		$priceRule = array();
+		$priceMsg = array();
+		foreach ($req->price as $i => $o) {
+			$priceRule["price.$i"] = "required_unless:variation.$i,null|numeric";
+			$priceMsg["price.$i.required_unless"] = "The price field is required {$i}";
+		}
+
+		$validator = Validator::make($req->all(), array_merge([
 			'service_name' => 'required|numeric|exists:services,id',
 			'variation' => 'nullable|array',
 			'variation.*' => 'nullable|min:2|max:255|string',
 			'price' => 'required|array',
-			'price.*' => 'required|numeric',
 			'remarks' => 'nullable|array',
 			'remarks.*' => 'nullable|min:2|max:255|string',
-		],[
-			'price.*' => 'The price field is required',
-		]);
+		], $priceRule), $priceMsg);
 
-		if ($validator->fails())
+		if ($validator->fails()) {
 			return redirect()
 				->back()
 				->withErrors($validator)
 				->withInput();
+		}
 		try {
 			DB::beginTransaction(); 
-			for ($i = 0; $i < count($req->variation); $i++) {
 
+			for ($i = 0; $i < count($req->variation); $i++) {
+				// dd($req->variation[$i]);
 				$serVar = ServicesVariation::create([
 					'service_id' => $req->service_name,
-					'variation' => $req->variation[$i],
+					'variation_name' => $req->variation[$i],
 					'price' => $req->price[$i],
 					'remarks' => $req->remarks[$i],
 				]);
@@ -96,6 +101,7 @@ class ServiceController extends Controller
 	//--------------- SUBMIT ADDED VARIATION --------------------- //
 	protected function submitVariation(Request $req,$id,$serviceId)
 	{
+		dd("TEST");
 		$validator = Validator::make($req->all(), [
 			'variation' => 'nullable|min:2|max:255|string',
 			'price' => 'required|numeric',
@@ -114,7 +120,7 @@ class ServiceController extends Controller
 				DB::beginTransaction(); 
 				$serVar = ServicesVariation::create([
 					'service_id' => $serviceId,
-					'variation' => $req->variation,
+					'variation_name' => $req->variation_name,
 					'price' => $req->price,
 					'remarks' => $req->remarks,
 				]);
