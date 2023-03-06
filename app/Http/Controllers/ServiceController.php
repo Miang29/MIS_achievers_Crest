@@ -18,7 +18,7 @@ class ServiceController extends Controller
 
  // ----------------- INDEX SERVICES ------------------ //
 	protected function index($scid) {
-		$sv = Services::has("variations")->where("service_category_id", '=', $scid)->get();
+		$sv = Services::has("variations", '>', 0)->where("service_category_id", '=', $scid)->get();
 
 		return view('admin.service_category.service.index',[
 			'serviceVar' => $sv,
