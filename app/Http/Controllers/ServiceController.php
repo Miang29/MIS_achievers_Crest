@@ -19,7 +19,6 @@ class ServiceController extends Controller
  // ----------------- INDEX SERVICES ------------------ //
 	protected function index($scid) {
 		$sv = Services::has("variations", '>', 0)->where("service_category_id", '=', $scid)->get();
-
 		return view('admin.service_category.service.index',[
 			'serviceVar' => $sv,
 			'id' =>$scid
@@ -101,7 +100,7 @@ class ServiceController extends Controller
 	//--------------- SUBMIT ADDED VARIATION --------------------- //
 	protected function submitVariation(Request $req,$id,$serviceId)
 	{
-		dd("TEST");
+		// dd("TEST");
 		$validator = Validator::make($req->all(), [
 			'variation' => 'nullable|min:2|max:255|string',
 			'price' => 'required|numeric',

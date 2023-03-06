@@ -350,9 +350,9 @@
 	}
 	body
 	{
-		background: #00B4DB;background: -webkit-linear-gradient(to right, #0083B0, #00B4DB);
-		background: linear-gradient(to right, #0083B0, #00B4DB);
-		color: #514B64;min-height: 100vh}
+		color: #514B64;
+		min-height: 100vh;
+	}
 	/* サイドバーエンドー */
 }
 
