@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="container-fluid m-0">
-<h3 class="mt-3"><a href="{{route ('transaction.products-order') }}" class="text-decoration-none  text-1"><i class="fas fa-chevron-left mr-2"></i>Product Order List</a></h3>
+	<h3 class="mt-3"><a href="{{route ('transaction.products-order') }}" class="text-decoration-none  text-1"><i class="fas fa-chevron-left mr-2"></i>Product Order List</a></h3>
 
 	<hr class="hr-thick" style="border-color: #707070;">
 
@@ -15,77 +15,72 @@
 
 				<div class="card-body">
 					<div class="row">
-						<div class="form-group col-lg-4 col-md-4 col-6 ml-auto">
+						<div class="form-group col-lg-6 col-md-4 col-6 ml-auto">
 							<label class="important font-weight-bold text-1" for="refno">Reference No</label>
 							<input class="form-control " type="text" name="refno" value="{{old('refno')}} " />
 						</div>
 
-						<div class="form-group col-lg-4 col-md-4 col-6 mr-auto">
+						<div class="form-group col-lg-6 col-md-4 col-6 mr-auto">
 							<label class="important font-weight-bold text-1" for="select">Mode of Payment</label>
 							<select id="select" class="form-control">
-								<option>Select mode of payment</option>
+								<option value="">Select mode of payment</option>
 								<option>Cash</option>
 								<option>Paymaya</option>
 								<option>Gcash</option>
-								<option>Credit Card</option>
 							</select>
 						</div>
 					</div>
 
 					{{-- FORM AREA --}}
 					<div class="row" id="form-area">
-						<div class="col-12 col-lg-6 position-relative my-2" id="orig">
+						<div class="col-12 col-lg-12 position-relative my-2" id="orig">
 							<div class="card">
 								<div class="card-body form-group col-12">
 									<div class="row">
+										{{-- PRODUCT NO. --}}
+										<div class="col-lg-2 col-md-4 col-4">
+											<label class="important font-weight-bold text-1" for="itemno">No.</label>
+											<input class="form-control bg-light" type="text" name="itemno" value="{{old('itemno')}}" readonly />
+										</div>
+
 										{{-- PRODUCT NAME --}}
-										<div class="col-6 mx-auto">
+										<div class="col-lg-4 col-md-6 col-6">
 											<label class="important font-weight-bold text-1" for="itemname">Product Name</label>
 											<div class="input-group mb-3">
-												<select class="custom-select  text-1" id="inputGroupSelect01">
+												<select class="custom-select text-1" id="inputGroupSelect01">
 													<option selected name="itemname" value="{{old('itemname')}}"></option>
 												</select>
 											</div>
 										</div>
 
-										{{-- PRODUCT NO. --}}
-										<div class="col-6 mx-auto">
-											<label class="important font-weight-bold text-1" for="itemno">Product No</label>
-											<input class="form-control" type="text" name="itemno" value="{{old('itemno')}}" readonly />
-										</div>
-									</div>
-
-
-									<div class="row">
-										{{-- CATEGORY TYPE --}}
-										<div class="col-6 mx-auto ">
-											<label class="important font-weight-bold text-1" for="itemtype">Category Type</label>
-											<input class="form-control" type="text" name="itemtype" value="{{old('itemtype')}}" readonly />
-										</div>
-
 										{{-- PRICE --}}
-										<div class="col-6 mx-auto w-25">
+										<div class="col-lg-2 col-md-4 col-4">
 											<label class="important font-weight-bold text-1" for="price">Price</label>
-											<input class="form-control" type="text" name="price" value="{{old('price')}}" readonly />
+											<input class="form-control bg-light" type="text" name="price" value="{{old('price')}}" readonly />
 										</div>
-									</div>
-
-									<div class="row d-flex">
 										{{-- QUANTITY --}}
-										<div class="col-6 mx-auto w-25">
+										<div class="col-lg-2 col-md-4 col-4">
 											<label class="important font-weight-bold text-1" for="qty">Quantity</label>
 											<input class="form-control" type="number" name="qty" value="{{old('qty')}}" />
 										</div>
-
 										{{-- TOTAL --}}
-										<div class="col-6 mx-auto w-25">
-											<label class="important font-weight-bold text-1" for="total">Total Price</label>
-											<input class="form-control" type="text" name="total" value="{{old('total')}}" readonly/>
+										<div class="col-lg-2 col-md-4 col-4">
+											<label class="important font-weight-bold text-1" for="price">Total</label>
+											<input class="form-control bg-light" type="text" name="total" value="{{old('total')}}" readonly />
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
+					</div>
+				</div>
+				<div class="col-lg-12">
+					{{-- TOTAL PRICE --}}
+					<div class="input-group mb-3 col-lg-4 col-md-6 col-6 ml-auto ">
+						<div class="input-group-prepend">
+							<span class="input-group-text font-weight-bold" id="price">Total Price</span>
+						</div>
+						<input type="text" class="form-control bg-light" aria-label="total_price" aria-describedby="price" readonly>
 					</div>
 				</div>
 
