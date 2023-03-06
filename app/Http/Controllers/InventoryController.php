@@ -147,7 +147,7 @@ class InventoryController extends Controller
 		if ($req->search)
 			$prd = $prd->where('category_name', 'LIKE', $search);
 			
-		$prd = ProductCategory::has('products')->get();
+		$prd = ProductCategory::has('products', '>', 0)->get();
 		return view('admin.inventory.index', [
 			'categories' => $prd,
 		]);
