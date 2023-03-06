@@ -14,7 +14,7 @@ use Validator;
 class ServiceCategoryController extends Controller
 {
     protected function index() {
-		$sc = ServicesCategory::has('services')->get();
+		$sc = ServicesCategory::has('services', '>', 0)->get();
 		return view('admin.service_category.index',[
 			'servicesCategory' => $sc,
 			
