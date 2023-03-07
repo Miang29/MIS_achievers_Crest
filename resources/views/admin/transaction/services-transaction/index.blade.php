@@ -12,7 +12,7 @@
 
         
 		<div class="col-12 col-md-6 col-lg my-2 text-center text-md-left text-lg-right">
-			<a href="{{route('transaction.service.create')}}" class="btn btn-info bg-1 btn-sm my-1"><i class="fas fa-plus-circle mr-2"></i>Add Apointment</a>
+			<a href="{{route('transaction.service.create')}}" class="btn btn-info bg-1 btn-sm my-1"><i class="fas fa-plus-circle mr-2"></i>Create Transaction</a>
 		</div>
 
         <div class=" col-12 col-md-6 col-lg my-2 text-center text-lg-right">

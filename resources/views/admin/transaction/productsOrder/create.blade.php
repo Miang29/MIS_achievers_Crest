@@ -75,10 +75,10 @@
 					</div>
 				</div>
 				<div class="col-lg-12">
-					{{-- TOTAL PRICE --}}
+					{{-- TOTAL AMOUNT --}}
 					<div class="input-group mb-3 col-lg-4 col-md-6 col-6 ml-auto ">
 						<div class="input-group-prepend">
-							<span class="input-group-text font-weight-bold" id="price">Total Price</span>
+							<span class="input-group-text font-weight-bold" id="price">Total Amount</span>
 						</div>
 						<input type="text" class="form-control bg-light" aria-label="total_price" aria-describedby="price" readonly>
 					</div>
