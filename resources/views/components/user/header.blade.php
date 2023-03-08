@@ -74,7 +74,7 @@
 					{{-- LOGIN --}}
 					@if(!Auth::check())
 					<a class="nav-link font-weight-bold text-white"  href="{{ route('login') }}"><i class="fa-solid fa-right-to-bracket ml-5 mr-2"></i>Login</a>
-					<a class="nav-link font-weight-bold text-white"  href="{{ route('sign-up') }}"><i class="fa-solid fa-user-plus ml-5 mr-2"></i> Sign Up</a>
+					<a class="nav-link font-weight-bold text-white"  href="{{ route('sign-up') }}"><i class="fa-solid fa-user-plus ml-5 mr-2"></i>Register</a>
 					@else
 
 					{{-- PROFILE --}}
