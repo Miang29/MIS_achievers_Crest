@@ -77,14 +77,20 @@ class PageController extends Controller
 		return view('terms-of-service');
 	}
 
-	protected function Appointment()
+	protected function dateSched()
 	{
 
 		$appointments = Appointments::get();
 
-		return view('appointment', [
+		return view('client-appointment.date-scheduler', [
 			'appointments' => $appointments
 		]);
+	}
+
+	
+	protected function appointmentsCreate()
+	{
+		return view('client-appointment.appointment-form');
 	}
 
 	protected function submitAppointments(Request $req)

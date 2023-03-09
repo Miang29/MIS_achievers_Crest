@@ -40,7 +40,7 @@
         <div class="row">
             <div class="col-12 d-flex ">
                 @if(Auth::check())
-                <a href="{{route ('appointment')}}" class="btn btn-outline-custom mx-auto"><i class="fa-solid fa-arrow-right mr-2"></i>Book Appointment</a>
+                <a href="{{route ('schedule-date')}}" class="btn btn-outline-custom mx-auto"><i class="fa-solid fa-arrow-right mr-2"></i>Book Appointment</a>
                 @else
                 <a href="{{route ('login')}}" class="btn btn-outline-custom mx-auto"><i class="fa-solid fa-arrow-right mr-2"></i>Book Appointment</a>
                 @endif

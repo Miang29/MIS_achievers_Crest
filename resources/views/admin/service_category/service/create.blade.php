@@ -8,9 +8,9 @@
 	<hr class="hr-thick" style="border-color: #707070;">
 
 	<div class="row" id="form-area">
-		<form class="form col-12 col-lg-12 col-md-12"  action="{{ route('submit-service-variation',[$id])}}" method="POST" enctype="multipart/form-data" >
+		<form class="form col-12 col-lg-12 col-md-12" action="{{ route('submit-service-variation',[$id])}}" method="POST" enctype="multipart/form-data">
 			<div class="card my-3 mx-auto">
-				<input type="hidden" name="_token" value="{{ csrf_token() }}">	
+				<input type="hidden" name="_token" value="{{ csrf_token() }}">
 				<h3 class="card-header text-white gbg-1"><i class="fa-solid fa-square-plus mr-2"></i>CREATE SERVICE</h3>
 
 				<div class="card-body">
@@ -32,8 +32,7 @@
 						<div class="col-12 row" id="varContainer">
 							{{-- DATA ITERATION (Printing old values) --}}
 							@if (old('variation') != null && count(old('variation')) > 1)
-							@for ($i = 0; $i < count(old('variation')); $i++)
-							<div class="card col-12 col-md-4 p-3 border-0 position-relative" id="varOg">
+							@for ($i = 0; $i < count(old('variation')); $i++) <div class="card col-12 col-md-4 p-3 border-0 position-relative" id="varOg">
 								<div class="card-body border rounded border-width-medium border-color-1">
 									<div class="form-group">
 										<label for="variation[]" class="form-label important">Variation</label>
@@ -72,63 +71,62 @@
 									<i class="fas fa-circle-xmark fa-lg p-2 text-custom-1"></i>
 								</span>
 								@endif
-							</div>
-							@endfor
-							@else
-							<div class="card col-12 col-md-4 p-3 border-0 position-relative" id="varOg">
-								<div class="card-body border rounded border-width-medium border-color-1">
-									<div class="form-group">
-										<label for="variation[]" class="form-label important">Variation</label>
-										<input type="text" name="variation[]" class="form-control" value="{{ old("variation.0") }}">
-										<small class="text-danger">{{ $errors->first('variation.*') }}</small>
-									</div>
+						</div>
+						@endfor
+						@else
+						<div class="card col-12 col-md-4 p-3 border-0 position-relative" id="varOg">
+							<div class="card-body border rounded border-width-medium border-color-1">
+								<div class="form-group">
+									<label for="variation[]" class="form-label important">Variation</label>
+									<input type="text" name="variation[]" class="form-control" value="{{ old("variation.0") }}">
+									<small class="text-danger">{{ $errors->first('variation.*') }}</small>
+								</div>
 
-									<div class="form-group">
-										<label for="price[]" class="form-label important">Price</label>
-										<div class="input-group flex-nowrap">
-											<div class="input-group-prepend">
-												<span class="input-group-text">₱</span>
-											</div>
+								<div class="form-group">
+									<label for="price[]" class="form-label important">Price</label>
+									<div class="input-group flex-nowrap">
+										<div class="input-group-prepend">
+											<span class="input-group-text">₱</span>
+										</div>
 
-											<div class="input-group-append flex-fill">
-												<div class="input-group">
-													<input type="number" class="form-control" name="price[]" value="{{ old('price.0') ? old('price.0') : 0 }}" min="0.00" step=".01" />
-													<div class="input-group-append">
-														<button type="button" class="btn btn-secondary quantity-increment"><i class="fas fa-plus"></i></button>
-														<button type="button" class="btn btn-secondary quantity-decrement"><i class="fas fa-minus"></i></button>
-													</div>
+										<div class="input-group-append flex-fill">
+											<div class="input-group">
+												<input type="number" class="form-control" name="price[]" value="{{ old('price.0') ? old('price.0') : 0 }}" min="0.00" step=".01" />
+												<div class="input-group-append">
+													<button type="button" class="btn btn-secondary quantity-increment"><i class="fas fa-plus"></i></button>
+													<button type="button" class="btn btn-secondary quantity-decrement"><i class="fas fa-minus"></i></button>
 												</div>
 											</div>
 										</div>
-										<small class="text-danger">{{ $errors->first('price.*') }}</small>
 									</div>
+									<small class="text-danger">{{ $errors->first('price.*') }}</small>
+								</div>
 
-									<div class="form-group">
-										<label class="form-label" name="remarks[]">Remarks</label>
-										<textarea name="remarks[]" id="" rows="5" class="form-control not-resizable">{{ old("remarks.0") }}</textarea>
-									</div>
+								<div class="form-group">
+									<label class="form-label" name="remarks[]">Remarks</label>
+									<textarea name="remarks[]" id="" rows="5" class="form-control not-resizable">{{ old("remarks.0") }}</textarea>
 								</div>
 							</div>
-							@endif
+						</div>
+						@endif
 
-							{{-- Add Button --}}
-							<div class="card col-12 col-md-4 p-3 border-0 cursor-pointer" id="addVar">
-								<div class="card-body d-flex border-dashed border-width-medium border-color-1">
-									<i class="fas fa-circle-plus fa-2x m-auto text-1"></i>
-								</div>
+						{{-- Add Button --}}
+						<div class="card col-12 col-md-4 p-3 border-0 cursor-pointer" id="addVar">
+							<div class="card-body d-flex border-dashed border-width-medium border-color-1">
+								<i class="fas fa-circle-plus fa-2x m-auto text-1"></i>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-
 			<div class="card-footer d-flex">
 				<div class="col-4 mx-auto text-center">
 					<button class="btn btn-outline-info btn-sm w-50" type="submit" data-type="submit" data-action="submit">Save</button>
 				</div>
 			</div>
-		</form>
 	</div>
+	</form>
+</div>
 </div>
 @endsection
 

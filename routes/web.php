@@ -14,7 +14,8 @@
 use Symfony\Component\HttpKernel\Client;
 
 Route::get('/', 'PageController@user')->name('home');
-Route::get('/appointment', 'PageController@Appointment')->name('appointment');
+Route::get('/schedule/date', 'PageController@dateSched')->name('schedule-date');
+Route::get('/create/appointment', 'PageController@appointmentsCreate')->name('create-appointment');
 Route::post('/submit-appointments', 'PageController@submitAppointments')->name('submit-appointments');
 Route::get('/services-offer', 'PageController@ServicesOffer')->name('services-offer');
 Route::get('/about-us', 'PageController@aboutUs')->name('about-us');

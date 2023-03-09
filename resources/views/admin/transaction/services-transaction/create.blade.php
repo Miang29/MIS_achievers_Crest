@@ -416,6 +416,26 @@
 							</div>
 						</div>
 						<div class="row">
+							{{-- Service Type  --}}
+							<div class="col-lg-4 col-md-12 col-12 ml-auto ">
+								<label class="important font-weight-bold text-1" for="service_type">Service Type</label>
+								<div class="input-group mb-3">
+									<select class="custom-select text-1" id="inputGroupSelect01">
+										<option selected name="service_type" value="{{old('service_type')}}"></option>
+									</select>
+								</div>
+							</div>
+							{{-- VARIATION NAME  --}}
+							<div class="col-lg-4 col-md-12 col-12 mr-auto ">
+								<label class="important font-weight-bold text-1" for="variation">Variation</label>
+								<div class="input-group mb-3">
+									<select class="custom-select text-1" id="inputGroupSelect01">
+										<option selected name="variation" value="{{old('variation')}}"></option>
+									</select>
+								</div>
+							</div>
+						</div>
+						<div class="row">
 							{{-- BOARDING START --}}
 							<div class="form-group col-12 col-lg-4 col-md-6 ml-auto">
 								<label class="important font-weight-bold text-1" for="boarding_start">Boarding Start</label>
@@ -443,7 +463,7 @@
 							{{-- PRICE --}}
 							<div class="form-group col-12 col-lg-8 col-md-6 mx-auto">
 								<label class="important font-weight-bold text-1" for="price">Price</label>
-								<input class="form-control" type="number" name="price" value="{{old('price')}} " />
+								<input class="form-control bg-light" type="number" name="price" value="{{old('price')}}" readonly />
 							</div>
 						</div>
 					</div>
