@@ -92,6 +92,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
 			//Create
 			Route::get('/create', 'TransactionController@createproductsOrder')->name('transaction.products.create');
+			Route::post('/submit/order','TransactionController@submitOrder')->name('transaction.submit.order');
 
 			//Show
 			Route::get('/view/{id}', 'TransactionController@viewProductsOrder')->name('transaction.products.view');

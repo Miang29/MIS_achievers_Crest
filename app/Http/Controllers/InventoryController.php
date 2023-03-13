@@ -166,15 +166,15 @@ class InventoryController extends Controller
 		$validator = Validator::make($req->all(), [
 			'category' => 'required|exists:product_categories,id|numeric',
 			'product_name' => 'required|array',
-			'product_name.*' => 'required|min:2|max:355|string',
+			'product_name.*' => 'required|min:2|max:255|string',
 			'stocks' => 'required|array',
 			'stocks.*' => 'required|numeric',
 			'price' => 'required|array',
 			'price.*' => 'required|numeric',
 			'status' => 'required|array',
-			'status.*' => 'required|min:2|max:355|string',
+			'status.*' => 'required|min:2|max:255|string',
 			'description' => 'nullable|array',
-			'description.*' => 'nullable|min:2|max:355|string',
+			'description.*' => 'nullable|min:2|max:255|string',
 		], [
 			'product_name.*' => 'The product name is required.',
 			'stocks.*' => 'The stock is required.',

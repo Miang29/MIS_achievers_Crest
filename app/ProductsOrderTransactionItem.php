@@ -4,22 +4,20 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Products extends Model
+class ProductsOrderTransactionItem extends Model
 {
     protected $fillable = [
-        'category_id',
+        'transaction_id',
         'product_name',
-        'stocks',
         'price',
-        'status',
-        'description'
+        'quantity',
+        'total'
     ];
 
-    protected function productCategory() {
-        return $this->belongsTo('App\ProductCategory');
-    }
+    protected $table = "products_order_transactions_item";
 
     protected function productOrderTransaction() {
         return $this->belongsTo('App\ProductsOrderTransaction');
     }
+
 }

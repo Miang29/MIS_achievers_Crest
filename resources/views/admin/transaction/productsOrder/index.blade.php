@@ -25,36 +25,44 @@
 	</div>
 
 	<div class="overflow-x-auto h-100 card">
-		<div class=" card-body h-100 px-0 pt-0 ">
+		<div class=" card-body h-100 px-0 pt-0">
 			<table class="table table-striped text-center" id="table-content">
 				<thead>
 					<tr>
 						<th scope="col" class="hr-thick text-1">Reference No</th>
-						<th scope="col" class="hr-thick text-1">Mode of Payment</th>
-						<th scope="col" class="hr-thick text-1">Total</th>
-						<th scope="col" class="hr-thick"></th>
+						<th scope="col" class="hr-thick text-1">Product Name</th>
+						<th scope="col" class="hr-thick text-1">Quantity</th>
+						<th scope="col" class="hr-thick text-1">Total Amount</th>
 					</tr>
 				</thead>
 
 				<tbody>
+					@forelse ($productOrder as $po)
 					<tr>
-						<td scope="row">#{{ str_pad(rand(0, 999999), 6, '0', STR_PAD_LEFT) }}</td>
-						<td>Gcash</td>
-						<td>₱{{ number_format(str_pad(rand(0, 9999), 4, '0', STR_PAD_LEFT), 2) }}</td>
-					  
+						<td>{{ $po->reference_no }}</td>
+						
 						<td>
-							<div class="dropdown">
-								<button class="btn btn-info bg-1 btn-sm dropdown-toggle mark-affected" type="button" data-toggle="dropdown" id="dropdown" aria-haspopup="true" aria-expanded="false">
-									Action
-								</button>
-								
-								<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown">
-									<a href="{{route ('transaction.products.view', [1])}}" class="dropdown-item"><i class="fa-solid fa-eye mr-2"></i>View Transaction</a>
-									<a href="javascript:void();" onclick="confirmLeave('{{ route('transaction.products.delete', [1]) }}', undefined, 'Are you sure you want to delete this transaction?');" class="dropdown-item"><i class="fa-solid fa-trash mr-2"></i>Delete</a>
-								</div>
-							</div>
+							@php($len = 0)
+							@php($pn = "")
+							@foreach ($po->productsOrderItems as $pi)
+								@if ($len >= 2)
+									@break
+								@endif
+
+								@php($pn .= " {$pi->product_name},")
+								@php($len++)
+							@endforeach
+							{{ substr($pn, 1, strlen($pn)-2)  }}{{ $len <= 2 ? "" : "..." }}
 						</td>
+						
+						<td>{{ $po->productsOrderItems()->sum("quantity") }}</td>
+						<td>₱{{ number_format($po->productsOrderItems()->sum("total"), 2) }}</td>
 					</tr>
+					@empty
+					<tr>
+						<td colspan="4">Nothing to show~</td>
+					</tr>
+					@endforelse
 				</tbody>
 
 			</table>
