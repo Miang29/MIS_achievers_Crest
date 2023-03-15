@@ -9,10 +9,10 @@ Hello!
     You have successfully change your password!
 </p>
 
-<p>To access your account, go to the <a href="{{route ('login') }}">Login</a> page and enter the credentials below:</p>
+<p>To access your account, go to the <a href="{{route ('login') }}">Login</a> page. Thankyou.</p>
 
-<code style="font-size:large;">
+<!-- <code style="font-size:large;">
     <span style="font-family: Arial;">Username:</span> {{ $username }}<br>
     <span style="font-family: Arial;">New Password:</span> {{ $req->password }}
-</code>
+</code> -->
 @endsection

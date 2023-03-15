@@ -67,7 +67,7 @@
 											<label class="important font-weight-bold text-1" for="quantity[]">Quantity</label>
 											<input class="form-control" type="number" name="quantity[]" value="{{old('quantity.0')}}" min="1" />
 										</div>
-										
+
 										{{-- TOTAL --}}
 										<div class="col-lg-2 col-md-4 col-4">
 											<label class="important font-weight-bold text-1" for="total[]">Sub Total</label>
@@ -158,7 +158,8 @@
 				$("[name=total_amt]").trigger('change');
 			}, 500);
 		});
-
+		// 
+		
 		// Updating final total
 		$("[name=total_amt]").on("change", (e) => {
 			let total = 0;

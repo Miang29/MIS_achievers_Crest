@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\ProductCategory;
+use App\Products;
 use App\ProductsOrderTransactionItem;
 use App\ProductsOrderTransaction;
+use App\Services;
+use App\ServicesCategory;
 use Illuminate\Http\Request;
 
 
@@ -95,6 +98,7 @@ class TransactionController extends Controller
 			'total' => 'required|array',
 			'total.*' => 'required|numeric',
 			'total_amt' => 'required|numeric',
+	
 		]);
 
 		if ($validator->fails()) {
@@ -134,7 +138,7 @@ class TransactionController extends Controller
 
 		return redirect()
 			->route('transaction.products-order')
-			->with('flash_success', "Transaction has been created uccessfully.");
+			->with('flash_success', "Transaction has been created successfully.");
 	}
 
 	// ----------------- ARCHIVE ---------------- //
@@ -155,7 +159,10 @@ class TransactionController extends Controller
 	// ------------- CREATE SERVICE TRANSACTION -------------- //
 	protected function createServices()
 	{
-		return view('admin.transaction.services-transaction.create');
+		$serviceCat = ServicesCategory::has('services')->get();
+		return view('admin.transaction.services-transaction.create',[
+			'serviceCategory' => $serviceCat,
+		]);
 	}
 	// ------------------- SHOW ------------------------ //
 	protected function show($id)

@@ -45,7 +45,7 @@ class UserController extends Controller
 		if ($user == null)
 			return redirect()
 				->back()
-				->with('flash_error', 'Wrong username/password!');
+				->with('flash_error', 'Wrong username and password!');
 
 		$authenticated = false;
 		if (!$user->locked) {

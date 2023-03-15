@@ -54,8 +54,14 @@
 										{{-- SERVICE TYPE --}}
 										<label class="important  font-weight-bold text-1" for="service_name">Services Type</label>
 										<div class="input-group mb-3">
-											<select class="custom-select  text-1" id="inputGroupSelect01">
-												<option selected name="service_name" value="{{old('service_name')}}"></option>
+											<select class="custom-select text-1" name="service_name" id="inputGroupSelect01">
+												@foreach ($serviceCategory as $sc)
+												<optgroup label="{{ $sc->service_category_name }}">
+													@foreach ($sc->services as $s)
+													<option data-price="{{ $s->price }}" value="{{ $s->service_name }}">{{ $s->service_name }}</option>
+													@endforeach
+												</optgroup>
+												@endforeach
 											</select>
 										</div>
 
@@ -190,7 +196,7 @@
 				</div>
 			</div>
 		</div>
-		{{-- VACCINATION --}}
+		{{-- -------------------------- VACCINATION------------------------- --}}
 		<div class="tab-pane fade" id="vaccination" role="tabpanel" aria-labelledby="vaccination-tab">
 			<div class="card mx-auto">
 				<h3 class="card-header text-white gbg-1"><i class="fa-solid fa-square-plus mr-2 fa-lg"></i>Vaccination Transaction</h3>
@@ -230,8 +236,16 @@
 						<div class="col-lg-4 col-md-6 col-6 mt-3">
 							<label class="important font-weight-bold text-1" for="vaccine_type">Vaccine Type</label>
 							<div class="input-group mb-3">
-								<select class="custom-select text-1" id="inputGroupSelect01">
-									<option selected name="vaccine_type" value="{{old('vaccine_type')}}"></option>
+								<select class="custom-select text-1" name="vaccine_type" id="inputGroupSelect01">
+									@foreach ($serviceCategory as $sc)
+									@foreach ($sc->services as $s)
+									<optgroup label="{{ $s->service_name }}">
+										@foreach ($s->variations as $v)
+										<option data-price="{{ $v->price }}" value="{{ $v->variation_name }}">{{ $v->variation_name }}</option>
+										@endforeach
+									</optgroup>
+									@endforeach
+									@endforeach
 								</select>
 							</div>
 						</div>
