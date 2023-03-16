@@ -78,7 +78,7 @@ class TransactionController extends Controller
 
 	//-------------- PRODUCT ORDER CREATE TRANSACTION ----------------- //
 	protected function createproductsOrder(){
-		$prc = ProductCategory::has('products')->get();
+		$prc = ProductCategory::has("products", '>', 0)->get();
 		return view('admin.transaction.productsOrder.create', [
 			'prodCat' => $prc,
 		]);
@@ -159,7 +159,7 @@ class TransactionController extends Controller
 	// ------------- CREATE SERVICE TRANSACTION -------------- //
 	protected function createServices()
 	{
-		$serviceCat = ServicesCategory::has('services')->get();
+		$serviceCat = ServicesCategory::has("services", '>', 0)->get();
 		return view('admin.transaction.services-transaction.create',[
 			'serviceCategory' => $serviceCat,
 		]);
