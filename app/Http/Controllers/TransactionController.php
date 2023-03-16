@@ -69,7 +69,7 @@ class TransactionController extends Controller
 	// ------------------- INDEX --------------------- //
 	protected function productsOrder()
 	{
-		$prodOrder = ProductsOrderTransaction::has("productsOrderItems")->get();
+		$prodOrder = ProductsOrderTransaction::has("productsOrderItems", '>', 0)->get();
 		return view('admin.transaction.productsOrder.index',[
 			'productOrder' => $prodOrder,
 		]);
