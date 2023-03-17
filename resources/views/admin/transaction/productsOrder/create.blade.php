@@ -5,12 +5,10 @@
 @section('content')
 <div class="container-fluid m-0">
 	<h3 class="mt-3"><a href="{{route ('transaction.products-order') }}" class="text-decoration-none  text-1"><i class="fas fa-chevron-left mr-2"></i>Product Order List</a></h3>
-
 	<hr class="hr-thick" style="border-color: #707070;">
-
 	<div class="row">
 		<div class="col-12">
-			<form class="card my-3 mx-auto" method="POST" action="{{ route('transaction.submit.order') }}" enctype="multipart/form-data">
+			<form class="card my-3 mx-auto" method="POST" action="{{ route('transaction.submit.order') }}" 		enctype="multipart/form-data">
 				<input type="hidden" name="_token" value="{{ csrf_token() }}">
 				<h3 class="card-header font-weight-bold text-white gbg-2"><i class="fa-solid fa-square-plus mr-2 fa-lg"></i>Products Order</h3>
 
@@ -22,17 +20,17 @@
 							<small class="text-danger small">{{ $errors->first('reference_no') }}</small>
 						</div>
 
-						<div class="form-group col-lg-6 col-md-4 col-6 mr-auto">
-							<label class="important font-weight-bold text-1" for="select">Mode of Payment</label>
-							<select id="select" name="mode_of_payment" class="form-control">
-								<option selected value="">Select mode of payment</option>
-								<option value="cash">Cash</option>
-								<option value="paymaya">Paymaya</option>
-								<option value="gcash">Gcash</option>
-							</select>
-							<small class="text-danger small">{{ $errors->first('mode_of_payment') }}</small>
-						</div>
+					<div class="form-group col-lg-6 col-md-4 col-6 mr-auto">
+						<label class="important font-weight-bold text-1" for="select">Mode of Payment</label>
+						 <select id="select" name="mode_of_payment" class="form-control">
+							<option selected value="">Select mode of payment</option>
+							<option value="cash">Cash</option>
+							<option value="paymaya">Paymaya</option>
+							<option value="gcash">Gcash</option>
+						</select>
+						<small class="text-danger small">{{ $errors->first('mode_of_payment') }}</small>
 					</div>
+				</div>
 
 					{{-- FORM AREA --}}
 					<div class="row" id="form-area">

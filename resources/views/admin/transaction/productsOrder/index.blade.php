@@ -33,6 +33,7 @@
 						<th scope="col" class="hr-thick text-1">Product Name</th>
 						<th scope="col" class="hr-thick text-1">Quantity</th>
 						<th scope="col" class="hr-thick text-1">Total Amount</th>
+						<th scope="col" class="hr-thick text-1"></th>
 					</tr>
 				</thead>
 
@@ -57,6 +58,13 @@
 						
 						<td>{{ $po->productsOrderItems()->sum("quantity") }}</td>
 						<td>₱{{ number_format($po->productsOrderItems()->sum("total"), 2) }}</td>
+						<td>
+							<div class="">
+                                <button href="#" class="btn btn-info bg-1 btn-sm mark-affected" name="voided_at" type="button" aria-expanded="false">
+                                	 Void Transaction
+                                </button>
+                            </div>     
+						</td>
 					</tr>
 					@empty
 					<tr>

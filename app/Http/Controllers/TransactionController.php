@@ -73,7 +73,6 @@ class TransactionController extends Controller
 		return view('admin.transaction.productsOrder.index',[
 			'productOrder' => $prodOrder,
 		]);
-		
 	}
 
 	//-------------- PRODUCT ORDER CREATE TRANSACTION ----------------- //
@@ -83,6 +82,7 @@ class TransactionController extends Controller
 			'prodCat' => $prc,
 		]);
 	}
+	// SUBMIT ORDER //
 	protected function submitOrder(Request $req)
 	{
 		$validator = Validator::make($req->all(), [
@@ -98,7 +98,6 @@ class TransactionController extends Controller
 			'total' => 'required|array',
 			'total.*' => 'required|numeric',
 			'total_amt' => 'required|numeric',
-	
 		]);
 
 		if ($validator->fails()) {
@@ -115,8 +114,15 @@ class TransactionController extends Controller
 				'reference_no' => $req->reference_no,
 				'mode_of_payment' => $req->mode_of_payment,
 			]);
-
+             	
 			for ($i = 0; $i < count($req->product_name); $i++) {
+				$prd = Products::where('product_name', '=', $req->product_name[$i])->first();	
+				$quantity = $req->quantity[$i];
+				$stocks = $prd->stocks;
+				$totalStocks = $stocks - $quantity;
+				$prd->stocks = $totalStocks;
+				$prd->$totalStocks;
+				$prd->save();
 				ProductsOrderTransactionItem::create([
 					'transaction_id'=> $prodOrder->id,
 					'product_name' => $req->product_name[$i],
@@ -125,7 +131,7 @@ class TransactionController extends Controller
 					'total' => $req->total[$i],
 				]);
 			}
-
+			// dd($totalStocks);
 			DB::commit();
 		} catch (Exception $e) {
 			DB::rollback();
@@ -140,7 +146,10 @@ class TransactionController extends Controller
 			->route('transaction.products-order')
 			->with('flash_success', "Transaction has been created successfully.");
 	}
-
+	// VOIDED AT //
+	protected function voidSubmit(){
+		//
+	}
 	// ----------------- ARCHIVE ---------------- //
 	protected function deleteproductsOrder($id)
 	{
