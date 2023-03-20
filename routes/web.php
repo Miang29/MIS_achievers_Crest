@@ -10,9 +10,6 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-use Symfony\Component\HttpKernel\Client;
-
 Route::get('/', 'PageController@user')->name('home');
 Route::get('/schedule/date', 'PageController@dateSched')->name('schedule-date');
 Route::get('/create/appointment', 'PageController@appointmentsCreate')->name('create-appointment');
@@ -87,17 +84,17 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 	Route::group(['prefix' => 'transaction'], function () {
 		// TRANSACTION - PRODUCT
 		Route::group(['prefix' => 'products-order'], function () {
-			//Index
+			// Index
 			Route::get('/', 'TransactionController@productsOrder')->name('transaction.products-order');
 
-			//Create
+			// Create
 			Route::get('/create', 'TransactionController@createproductsOrder')->name('transaction.products.create');
 			Route::post('/submit/order','TransactionController@submitOrder')->name('transaction.submit.order');
 
-			//Show
+			// Show
 			Route::get('/view/{id}', 'TransactionController@viewProductsOrder')->name('transaction.products.view');
 
-			//Delete
+			// Void
 			Route::get('/{id}/void', 'TransactionController@voidTransaction')->name('transaction.product.order.void');
 		});
 

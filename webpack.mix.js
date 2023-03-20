@@ -1,4 +1,5 @@
 const mix = require('laravel-mix');
+const path = require('path');
 
 /*
  |--------------------------------------------------------------------------
@@ -12,10 +13,16 @@ const mix = require('laravel-mix');
  */
 
 mix.webpackConfig({
-      devtool: 'inline-source-map',
-      stats: {
-         children: true
-      }
+   resolve: {
+		 alias: {
+			jquery: path.resolve(__dirname, 'node_modules/jquery/dist/jquery.min.js'),
+			jQuery: path.resolve(__dirname, 'node_modules/jquery/dist/jquery.min.js')
+		 }
+	  },
+	  devtool: 'inline-source-map',
+	  stats: {
+		 children: true
+	  }
    })
    .js('resources/assets/js/app.js', 'public/js')
    .js('resources/assets/js/html2pdf.js', 'public/js/lib')

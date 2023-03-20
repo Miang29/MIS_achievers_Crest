@@ -2,14 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
+
+use Carbon\Carbon;
+
 use App\ProductCategory;
 use App\Products;
 use App\ProductsOrderTransactionItem;
 use App\ProductsOrderTransaction;
 use App\Services;
 use App\ServicesCategory;
-use Illuminate\Http\Request;
-
 
 use DB;
 use Exception;
@@ -100,6 +102,15 @@ class TransactionController extends Controller
 			'total_amt' => 'required|numeric',
 		]);
 
+		$validator->after(function($validator) use ($req) {
+			$transaction = ProductsOrderTransaction::where('reference_no', '=', $req->reference_no)
+				->where("voided_at", "=", null)
+				->first();
+			if (!(empty($transaction) || $transaction == null)) {
+				$validator->errors()->add("reference_no", "Duplicate reference number");
+			}
+		});
+
 		if ($validator->fails()) {
 			Log::debug($validator->messages());
 
@@ -145,16 +156,36 @@ class TransactionController extends Controller
 		->route('transaction.products-order')
 		->with('flash_success', "Transaction has been created successfully.");
 	}
-	// VOIDED AT //
-	protected function voidSubmit(){
-		//
-	}
+
 	// ----------------- VOID ---------------- //
-	protected function voidTransaction($id)
-	{
+	protected function voidTransaction($id) {
+		$transaction = ProductsOrderTransaction::find($id);
+
+		if ($transaction == null || empty($transaction)) {
+			return redirect()
+				->route('transaction.products-order')
+				->with('flash_error', 'The transaction either does not exists or is already deleted.');
+		}
+
+		try {
+			DB::beginTransaction();
+
+			$transaction->voided_at = Carbon::now();
+			$transaction->save();
+
+			DB::commit();
+		} catch (Exception $e) {
+			DB::rollback();
+			Log::error($e);
+
+			return redirect()
+				->route('transaction.products-order')
+				->with('flash_error', 'Something went wrong, please try again later');
+		}
+
 		return redirect()
-		->route('transaction.products-order')
-		->with('flash_success', 'Voided successfully');
+			->route('transaction.products-order')
+			->with('flash_success', 'Voided successfully');
 	}
 
 	//----------- SERVICES TRANSACTION ------------- //

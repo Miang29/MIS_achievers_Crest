@@ -20,7 +20,6 @@ class CreateProductsOrderTransactionItemTable extends Migration
             $table->integer('price');
             $table->integer('quantity');
             $table->integer('total');
-            $table->dateTime('voided_at')->nullable();
         
             $table->timestamps();
             $table->foreign('transaction_id')->references('id')->on('products_order_transactions')->onDelete('cascade');
