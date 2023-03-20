@@ -16,7 +16,7 @@
 					<div class="row">
 						<div class="form-group col-lg-6 col-md-4 col-6 ml-auto">
 							<label class="important font-weight-bold text-1" for="reference_no">Reference No</label>
-							<input class="form-control " type="number" name="reference_no" value="{{old('reference_no')}} " />
+							<input class="form-control " type="number" max="9999999999999" min="1000000000" pattern="\d{13}" name="reference_no" value="{{old('reference_no')}}" />
 							<small class="text-danger small">{{ $errors->first('reference_no') }}</small>
 						</div>
 

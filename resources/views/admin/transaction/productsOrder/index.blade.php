@@ -58,12 +58,12 @@
 						
 						<td>{{ $po->productsOrderItems()->sum("quantity") }}</td>
 						<td>₱{{ number_format($po->productsOrderItems()->sum("total"), 2) }}</td>
-						<td>
-							<div class="">
-                                <button href="#" class="btn btn-info bg-1 btn-sm mark-affected" name="voided_at" type="button" aria-expanded="false">
-                                	 Void Transaction
-                                </button>
-                            </div>     
+						<td class="text-center">
+							<div class="btn-group">
+								<a class="btn btn-outline-info btn-sm" href="{{route ('transaction.products.view', [1]) }}"><i class="fa-solid fa-eye"></i></a>
+								<button class="btn btn-outline-danger btn-sm" onclick="confirmLeave('{{ route('transaction.products-order') }}', undefined, 'Are you sure you want to void the transaction?');"><i class="fa-solid fa-ban"></i></button>
+							</div>
+
 						</td>
 					</tr>
 					@empty

@@ -104,9 +104,9 @@ class TransactionController extends Controller
 			Log::debug($validator->messages());
 
 			return redirect()
-				->back()
-				->withErrors($validator)
-				->withInput();
+			->back()
+			->withErrors($validator)
+			->withInput();
 		}
 		try {
 			DB::beginTransaction();
@@ -114,15 +114,14 @@ class TransactionController extends Controller
 				'reference_no' => $req->reference_no,
 				'mode_of_payment' => $req->mode_of_payment,
 			]);
-             	
+
 			for ($i = 0; $i < count($req->product_name); $i++) {
 				$prd = Products::where('product_name', '=', $req->product_name[$i])->first();	
-				$quantity = $req->quantity[$i];
-				$stocks = $prd->stocks;
-				$totalStocks = $stocks - $quantity;
+				
+				$totalStocks =$prd->stocks - $req->quantity[$i];
 				$prd->stocks = $totalStocks;
-				$prd->$totalStocks;
 				$prd->save();
+
 				ProductsOrderTransactionItem::create([
 					'transaction_id'=> $prodOrder->id,
 					'product_name' => $req->product_name[$i],
@@ -138,24 +137,24 @@ class TransactionController extends Controller
 			Log::error($e);
 			
 			return redirect()
-				->route('transaction.products.create')
-				->with('flash_error', 'Something went wrong, please try again later');
+			->route('transaction.products.create')
+			->with('flash_error', 'Something went wrong, please try again later');
 		}
 
 		return redirect()
-			->route('transaction.products-order')
-			->with('flash_success', "Transaction has been created successfully.");
+		->route('transaction.products-order')
+		->with('flash_success', "Transaction has been created successfully.");
 	}
 	// VOIDED AT //
 	protected function voidSubmit(){
 		//
 	}
-	// ----------------- ARCHIVE ---------------- //
-	protected function deleteproductsOrder($id)
+	// ----------------- VOID ---------------- //
+	protected function voidTransaction($id)
 	{
 		return redirect()
-			->route('transaction.products-order')
-			->with('flash_success', 'Successfully removed transaction from table');
+		->route('transaction.products-order')
+		->with('flash_success', 'Voided successfully');
 	}
 
 	//----------- SERVICES TRANSACTION ------------- //
@@ -187,7 +186,7 @@ class TransactionController extends Controller
 	protected function deleteServices($id)
 	{
 		return redirect()
-			->route('transaction.service')
-			->with('flash_success', 'Successfully removed transaction from table');
+		->route('transaction.service')
+		->with('flash_success', 'Successfully removed transaction from table');
 	}
 }

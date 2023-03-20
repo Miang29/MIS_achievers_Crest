@@ -98,7 +98,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 			Route::get('/view/{id}', 'TransactionController@viewProductsOrder')->name('transaction.products.view');
 
 			//Delete
-			Route::get('/{id}/delete', 'TransactionController@deleteproducstOrder')->name('transaction.products.delete');
+			Route::get('/{id}/void', 'TransactionController@voidTransaction')->name('transaction.product.order.void');
 		});
 
 
