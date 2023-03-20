@@ -7,7 +7,7 @@
 <div class="container-fluid px-2 px-lg-6 py-2 h-100 my-3">
 	<div class="row">
 		<div class="col-12 col-lg text-center text-lg-left">
-			<h3 class="text-1">PRODUCT ORDER LIST</h3>
+			<h3 class="text-1">PRODUCT ORDERS</h3>
 		</div>
 
 		<div class="col-12 col-md-6 col-lg my-2 text-center text-md-left text-lg-right">
