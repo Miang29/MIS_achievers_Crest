@@ -115,9 +115,9 @@ class TransactionController extends Controller
 			Log::debug($validator->messages());
 
 			return redirect()
-			->back()
-			->withErrors($validator)
-			->withInput();
+				->back()
+				->withErrors($validator)
+				->withInput();
 		}
 		try {
 			DB::beginTransaction();
@@ -129,8 +129,10 @@ class TransactionController extends Controller
 			for ($i = 0; $i < count($req->product_name); $i++) {
 				$prd = Products::where('product_name', '=', $req->product_name[$i])->first();	
 				
-				$totalStocks =$prd->stocks - $req->quantity[$i];
-				$prd->stocks = $totalStocks;
+				if ($prd == null || empty($prd))
+					continue;
+
+				$prd->stocks = $prd->stocks - $req->quantity[$i];
 				$prd->save();
 
 				ProductsOrderTransactionItem::create([
@@ -141,7 +143,7 @@ class TransactionController extends Controller
 					'total' => $req->total[$i],
 				]);
 			}
-			// dd($totalStocks);
+
 			DB::commit();
 		} catch (Exception $e) {
 			DB::rollback();
@@ -173,11 +175,13 @@ class TransactionController extends Controller
 			$transaction->voided_at = Carbon::now();
 			$transaction->save();
 
-			for ($i = 0; $i < count($req->product_name); $i++) {
-				$prd = Products::where('product_name', '=', $req->product_name[$i])->first();	
-				
-				$totalStocks = $req->quantity[$i] + $prd->stocks;
-				$prd->stocks = $totalStocks;
+			foreach ($transaction->productsOrder as $pio) {
+				$prd = Products::where('product_name', '=', $pio->product_name)->first();
+
+				if ($prd == null || empty($prd))
+					continue;
+
+				$prd->stocks = $pio->quantity + $prd->stocks;
 				$prd->save();
 			}
 
