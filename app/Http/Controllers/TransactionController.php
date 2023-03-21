@@ -61,8 +61,8 @@ class TransactionController extends Controller
 	// ---------------- SHOW ------------------ //
 	protected function viewProductsOrder($id)
 	{
-		$order = $this->order[$id];
-
+		
+		$order = ProductsOrderTransaction::with('productsOrderItems')->find($id);
 		return view('admin.transaction.productsOrder.view', [
 			'id' => $id,
 			'order' => $order
@@ -104,8 +104,8 @@ class TransactionController extends Controller
 
 		$validator->after(function($validator) use ($req) {
 			$transaction = ProductsOrderTransaction::where('reference_no', '=', $req->reference_no)
-				->where("voided_at", "=", null)
-				->first();
+			->where("voided_at", "=", null)
+			->first();
 			if (!(empty($transaction) || $transaction == null)) {
 				$validator->errors()->add("reference_no", "Duplicate reference number");
 			}
@@ -159,12 +159,12 @@ class TransactionController extends Controller
 
 	// ----------------- VOID ---------------- //
 	protected function voidTransaction($id) {
-		$transaction = ProductsOrderTransaction::find($id);
+		$transaction = ProductsOrderTransaction::with("productsOrderItems")->find($id);
 
 		if ($transaction == null || empty($transaction)) {
 			return redirect()
-				->route('transaction.products-order')
-				->with('flash_error', 'The transaction either does not exists or is already deleted.');
+			->route('transaction.products-order')
+			->with('flash_error', 'The transaction either does not exists or is already deleted.');
 		}
 
 		try {
@@ -173,19 +173,27 @@ class TransactionController extends Controller
 			$transaction->voided_at = Carbon::now();
 			$transaction->save();
 
+			for ($i = 0; $i < count($req->product_name); $i++) {
+				$prd = Products::where('product_name', '=', $req->product_name[$i])->first();	
+				
+				$totalStocks = $req->quantity[$i] + $prd->stocks;
+				$prd->stocks = $totalStocks;
+				$prd->save();
+			}
+
 			DB::commit();
 		} catch (Exception $e) {
 			DB::rollback();
 			Log::error($e);
 
 			return redirect()
-				->route('transaction.products-order')
-				->with('flash_error', 'Something went wrong, please try again later');
+			->route('transaction.products-order')
+			->with('flash_error', 'Something went wrong, please try again later');
 		}
 
 		return redirect()
-			->route('transaction.products-order')
-			->with('flash_success', 'Voided successfully');
+		->route('transaction.products-order')
+		->with('flash_success', 'Voided successfully');
 	}
 
 	//----------- SERVICES TRANSACTION ------------- //

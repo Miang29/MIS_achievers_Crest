@@ -60,7 +60,7 @@
 						<td>₱{{ number_format($po->productsOrderItems()->sum("total"), 2) }}</td>
 						<td class="text-center">
 							<div class="btn-group">
-								<a class="btn btn-info btn-sm" href="{{route ('transaction.products.view', [1]) }}"><i class="fa-solid fa-eye"></i></a>
+								<a class="btn btn-info btn-sm" href="{{route ('transaction.products.view', [$po->id]) }}"><i class="fa-solid fa-eye"></i></a>
 								@if (!$po->isVoided())
 								<button class="btn btn-outline-danger btn-sm" onclick="confirmLeave('{{ route('transaction.product.order.void', [$po->id]) }}', undefined, 'Are you sure you want to void the transaction?');"><i class="fa-solid fa-ban"></i></button>
 								@endif
