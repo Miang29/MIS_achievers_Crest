@@ -20,43 +20,8 @@ use Hash;
 use Log;
 use Validator;
 
-class TransactionController extends Controller
+class ProductOrderTransactionController extends Controller
 {
-
-	//TEMP VAR
-	protected $order = [
-		"1" => [
-			'id' => 1,
-			'reference' => "#081478",
-			'mode' => "Gcash",
-			'name' => "Whiskat",
-			'type' => "Pet Food",
-			'no' => "1",
-			'price' => "50",
-			'qty' => "2",
-			'total' => "100"
-		]
-	];
-
-	protected $services = [
-		"1" => [
-			'id' => 1,
-			'reference' => "#081479",
-			'mode' => "Gcash",
-			'type' => "Consultation",
-			'price' => "300",
-			'additional' => "200",
-			'date' => "11/20/2022",
-			'time' => "3:00 PM",
-			'petname' => "Vodoo",
-			'weight' => "15kg",
-			'temperature' => "36.6",
-			'history' => "fever",
-			'treatment' => "Vaccine",
-			'total' => "500"
-		]
-	];
-
 	// ---------- PRODUCTS ORDER TRANSACTION --------- //
 	// ---------------- SHOW ------------------ //
 	protected function viewProductsOrder($id)
@@ -175,7 +140,7 @@ class TransactionController extends Controller
 			$transaction->voided_at = Carbon::now();
 			$transaction->save();
 
-			foreach ($transaction->productsOrder as $pio) {
+			foreach ($transaction->productsOrderItems as $pio) {
 				$prd = Products::where('product_name', '=', $pio->product_name)->first();
 
 				if ($prd == null || empty($prd))
@@ -198,38 +163,5 @@ class TransactionController extends Controller
 		return redirect()
 		->route('transaction.products-order')
 		->with('flash_success', 'Voided successfully');
-	}
-
-	//----------- SERVICES TRANSACTION ------------- //
-	// ----------------- INDEX ------------------ //
-	protected function Service()
-	{
-		return view('admin.transaction.services-transaction.index');
-	}
-
-	// ------------- CREATE SERVICE TRANSACTION -------------- //
-	protected function createServices()
-	{
-		$serviceCat = ServicesCategory::has("services", '>', 0)->get();
-		return view('admin.transaction.services-transaction.create',[
-			'serviceCategory' => $serviceCat,
-		]);
-	}
-	// ------------------- SHOW ------------------------ //
-	protected function show($id)
-	{
-		$services = $this->services[$id];
-
-		return view('admin.transaction.services-transaction.view', [
-			'id' => $id,
-			'services' => $services
-		]);
-	}
-	// ------------- ARCHIVE --------------- //
-	protected function deleteServices($id)
-	{
-		return redirect()
-		->route('transaction.service')
-		->with('flash_success', 'Successfully removed transaction from table');
 	}
 }

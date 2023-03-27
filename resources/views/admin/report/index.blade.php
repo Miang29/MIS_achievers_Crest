@@ -29,7 +29,7 @@
 					</button>
 
 					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-						<a href="{{ route('report.index', ['t' => 'transaction-sales', 'from' => $from, 'to' => $to]) }}" class="dropdown-item"><i class="fas fa-money-check-dollar mr-1"></i>Sales Order</a>
+						<a href="{{ route('report.index', ['t' => 'transaction-sales', 'from' => $from, 'to' => $to]) }}" class="dropdown-item"><i class="fas fa-money-check-dollar mr-1"></i>Product Order</a>
 						<a href="{{ route('report.index', ['t' => 'transaction-services', 'from' => $from, 'to' => $to]) }}" class="dropdown-item"><i class="fas fa-shield-cat mr-1"></i>Services Transaction</a>
 					</div>
 

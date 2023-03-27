@@ -18,7 +18,8 @@ class UsersTableSeeder extends Seeder
 			'last_name' => 'Mendenilla',
 			'username'=> 'admin',
 			'email' =>'maleonora.mendenilla@gmail.com',
-			'address' =>'',
+			'address' =>'St.Clemence Compound San Francisco Village Muzon Taytay Rizal',
+			'gender'=> 'female',
 			'password' => Hash::make('admin123'),
 			'user_type_id' => 1
 		]);
@@ -30,6 +31,7 @@ class UsersTableSeeder extends Seeder
 			'username'=> 'client',
 			'email' =>'ryza.dizon@gmail.com',
 			'address' =>'Muzon Taytay Rizal',
+			'gender'=> 'female',
 			'password' => Hash::make('client123'),
 			'user_type_id' => 4
 		]);
@@ -40,7 +42,8 @@ class UsersTableSeeder extends Seeder
 			'last_name' => 'Gonzaga',
 			'username'=> 'alex123',
 			'email' =>'alex.gonzaga@gmail.com',
-			'address' =>'',
+			'address' =>'Dolores Taytay Rizal',
+			'gender'=> 'female',
 			'password' => Hash::make('alex123'),
 			'user_type_id' => 4
 		]);
@@ -51,9 +54,22 @@ class UsersTableSeeder extends Seeder
 			'last_name' => 'Padilla',
 			'username'=> 'kath123',
 			'email' =>'kath.padilla@gmail.com',
-			'address' =>'',
+			'address' =>'Angono Rizal',
+			'gender'=> 'female',
 			'password' => Hash::make('kath123'),
 			'user_type_id' => 2
+		]);
+
+		User::create ([
+			'first_name' => 'Arianette',
+			'middle_name' => 'Bernardo',
+			'last_name' => 'Fuller',
+			'username'=> 'staff123',
+			'email' =>'arianette.fuller@gmail.com',
+			'address' =>'Antipolo Rizal',
+			'gender'=> 'female',
+			'password' => Hash::make('staff123'),
+			'user_type_id' => 3
 		]);
 	}
 }

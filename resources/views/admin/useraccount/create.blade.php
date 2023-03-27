@@ -49,10 +49,22 @@
 							</div>
 
 							{{-- Address --}}
-							<div class="col-12 col-md-9 col-lg-12 mx-auto">
+							<div class="col-12 col-md-9 col-lg-6 mx-auto">
 								<div class="form-group">
 									<input class="form-control" type="text" name="address" value="{{ old('address') }}" placeholder="Address"/>
 									<small class="text-danger small">{{ $errors->first('address') }}</small>
+								</div>
+							</div>
+							{{-- GENDER --}}
+							<div class="col-12 col-md-9 col-lg-6 mx-auto">
+								<div class="input-group mb-3">
+									<select class="custom-select" name="gender" id="inputGroupSelect01">
+										<option selected value="">Choose...</option>
+										<option value="female">Female</option>
+										<option value="male">Male</option>
+									</select>
+									<small class="text-danger small">{{ $errors->first('gender') }}
+									</small>
 								</div>
 							</div>
 						</div>
@@ -67,7 +79,7 @@
 							{{-- USER TYPE --}}
 							<div class="col-12 col-md-9 col-lg-6 mx-auto form-group">
 								<select class="form-control custom-select text-1" name="user_type">
-								<option value="0">Select User Type</option>
+									<option value="0">Select User Type</option>
 									@forelse ($types as $t)
 									<option value="{{ $t->id }}" {{ old('user_type') == $t->id ? 'selected' : '' }}>{{ $t->name }}</option>
 									@empty

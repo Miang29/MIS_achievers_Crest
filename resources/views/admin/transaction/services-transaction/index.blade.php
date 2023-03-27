@@ -10,10 +10,17 @@
             <h3 class="text-1">SERVICES TRANSACTION LIST</h3>
         </div>
 
-        
-		<div class="col-12 col-md-6 col-lg my-2 text-center text-md-left text-lg-right">
-			<a href="{{route('transaction.service.create')}}" class="btn btn-info bg-1 btn-sm my-1"><i class="fas fa-plus-circle mr-2"></i>Create Transaction</a>
-		</div>
+        <div class="dropdown">
+            <button class="btn btn-info dropdown-toggle bg-1 btn-sm mt-3" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-plus-circle mr-2"></i>New Transaction
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                <a href="{{ route('transaction.consultation.create') }}" class="dropdown-item" type="button"><i class="fa-solid fa-stethoscope mr-2"></i>Consultation</a>
+                <a  href="{{ route('transaction.vaccination.create') }}" class="dropdown-item" type="button"><i class="fa-solid fa-syringe mr-2"></i>Vaccination</a>
+                <a href="{{ route('transaction.grooming.create') }}" class="dropdown-item" type="button"><i class="fa-solid fa-scissors mr-2"></i>Grooming</a>
+                <a href="{{ route('transaction.boarding.create') }}" class="dropdown-item" type="button"><i class="fa-solid fa-paw mr-2"></i>Boarding</a>
+            </div>
+        </div>
 
         <div class=" col-12 col-md-6 col-lg my-2 text-center text-lg-right">
             <div class="input-group">
@@ -34,6 +41,7 @@
                         <th scope="col" class="hr-thick text-1">Reference No</th>
                         <th scope="col" class="hr-thick text-1">Mode of Payment</th>
                         <th scope="col" class="hr-thick text-1">Total</th>
+                        <th></th>
                     </tr>
                 </thead>
 
@@ -57,7 +65,6 @@
                         </td>
                     </tr>
                 </tbody>
-
             </table>
         </div>
     </div>
