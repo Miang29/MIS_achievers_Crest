@@ -9,7 +9,7 @@
         <h1 class="title mx-auto"><i class="fa-solid fa-house-chimney-medical mr-2"></i>Our Clinic</h1><br>
     </div>
 
-    <div class="row w-100 mx-auto border border-secondary" style="border-radius: 1rem;">
+    <div class="row w-100 mx-auto">
 
         <div class=" col-12 col-md-12 col-lg-6 d-flex text-center h-100" style="margin-top:8rem;">
             <p class="card-text font-italic mr-auto mt-5">Nano Veterinary Clinic is located in Taytay, Rizal. Nano Veterinary Clinic is working in Veterinarians & animal hospitals, Animal and pet stores activities. The Nano Veterinary Clinic was built last September 2015.<br><br></p>

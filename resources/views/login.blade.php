@@ -121,14 +121,12 @@
 						<div class="d-flex col-lg-12">
 							<a href="{{route ("forgot-password") }}" class="text-center mx-auto mb-2">Forgot Password</a>
 						</div>
-
 						<div class="form-group text-center">
 							<button type="submit" class="btn btn-outline-dark w-100 font-weight-bold">LOGIN</button>
 						</div>
 						<div class="form-group">
-							<h6 class="text-center">Not registered yet? <a href="{{ route('sign-up') }}">Create an Account</a></h6>
+							<h6 class="text-center">Not registered yet? <a href="{{ route('sign-up') }}">Register an Account</a></h6>
 						</div>
-
 					</form>
 					{{-- LOGIN FORM END --}}
 				</div>

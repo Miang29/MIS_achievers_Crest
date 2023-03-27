@@ -21,8 +21,6 @@ Route::get('/privacy-policy', 'PageController@privacyPolicy')->name('privacy-pol
 Route::get('/terms-of-service', 'PageController@termsOfService')->name('terms-of-service');
 Route::get('/dashboard', 'PageController@redirectDashboard')->name('dashboard.redirect');
 
-
-
 Route::get('/profile/{id}', 'UserController@profile')->name('profile');
 Route::get('/login', 'UserController@login')->name('login');
 Route::post('/authenticate', 'UserController@authenticate')->name('authenticate');
@@ -78,40 +76,48 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 		Route::get('/view/{id}/history', 'ClientController@petHistory')->name('pet-information.pet.history');
 	});
 
-
-
 	// TRANSACTION
 	Route::group(['prefix' => 'transaction'], function () {
+
 		// TRANSACTION - PRODUCT
 		Route::group(['prefix' => 'products-order'], function () {
 			// Index
-			Route::get('/', 'TransactionController@productsOrder')->name('transaction.products-order');
+			Route::get('/', 'ProductOrderTransactionController@productsOrder')->name('transaction.products-order');
 
 			// Create
-			Route::get('/create', 'TransactionController@createproductsOrder')->name('transaction.products.create');
-			Route::post('/submit/order','TransactionController@submitOrder')->name('transaction.submit.order');
+			Route::get('/create', 'ProductOrderTransactionController@createproductsOrder')->name('transaction.products.create');
+			Route::post('/submit/order','ProductOrderTransactionController@submitOrder')->name('transaction.submit.order');
 
 			// Show
-			Route::get('/view/{id}', 'TransactionController@viewProductsOrder')->name('transaction.products.view');
+			Route::get('/view/{id}', 'ProductOrderTransactionController@viewProductsOrder')->name('transaction.products.view');
 
 			// Void
-			Route::get('/{id}/void', 'TransactionController@voidTransaction')->name('transaction.product.order.void');
+			Route::get('/{id}/void', 'ProductOrderTransactionController@voidTransaction')->name('transaction.product.order.void');
 		});
 
 
 		// TRANSACTION - SERVICES
 		Route::group(['prefix' => 'service'], function () {
 			//Index
-			Route::get('/', 'TransactionController@Service')->name('transaction.service');
+			Route::get('/', 'ServiceTransactionController@Service')->name('transaction.service');
 
 			//Create
-			Route::get('/create', 'TransactionController@createServices')->name('transaction.service.create');
+			Route::get('/create', 'ServiceTransactionController@createConsultation')->name('transaction.consultation.create');
+
+			//Create-Vaccination
+			Route::get('/create/vaccination', 'ServiceTransactionController@createVaccination')->name('transaction.vaccination.create');
+
+			//Create-Grooming
+			Route::get('/create/grooming', 'ServiceTransactionController@createGrooming')->name('transaction.grooming.create');
+
+			//Create-Boarding
+			Route::get('/create/boarding', 'ServiceTransactionController@createBoarding')->name('transaction.boarding.create');
 
 			//Show
-			Route::get('/show/{id}', 'TransactionController@show')->name('transaction.service.view');
+			Route::get('/show/{id}', 'ServiceTransactionController@show')->name('transaction.service.view');
 
 			//Delete
-			Route::get('/{id}/delete', 'TransactionController@deleteService')->name('transaction.service.delete');
+			Route::get('/{id}/delete', 'ServiceTransactionController@deleteService')->name('transaction.service.delete');
 		});
 	});
 

@@ -43,6 +43,7 @@ class ClientController extends Controller
 			'suffix' => 'nullable|min:2|max:255|string',
 			'email' => 'required|unique:users,email|min:2|max:255|email',
 			'address' => 'nullable|min:2|max:255',
+			'gender' => 'required|min:2|max:255|string',
 			'username' => 'required|unique:users,username|min:2|max:255|string',
 			'password' => array('required', 'string', 'min:8', 'max:255', 'regex:/^[a-zA-Z0-9!@#$%^&*()_+\-=\[\]{};\':"\\|,.<>\/?]*$/'),
 			'checkbox' => 'required'
@@ -68,6 +69,7 @@ class ClientController extends Controller
 				'suffix' => $req->suffix,
 				'email' => $req->email,
 				'address' => $req->address,
+				'gender' => $req->gender,
 				'username' => $req->username,
 				'user_type_id' => $type->id,
 				'password' => Hash::make($req->password),

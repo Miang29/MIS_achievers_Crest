@@ -66,16 +66,16 @@
 </div>
 
 
-<div class="card-body text-center" style="height:31rem; background-color:#C2E0D8;">
-    <h1 style="font-family:fantasy; font-weight:bolder;">WE VALUE YOUR PETS</h1>
+<div class="card-body text-center mb-3 bg-light" style="height:31rem;">
+    <h1 class="text-custom-1" style="font-family:fantasy; font-weight:bolder;">WE VALUE YOUR PETS</h1>
     <div class="row h-75 mt-3">
-        <div class="card col-lg-3 col-12 col-md-12 mx-auto border-success" style="border-radius:2.5rem;">
+        <div class="card col-lg-3 col-12 col-md-12 mx-auto" style="border-radius:2.5rem; border-color: #021f53;border-width: 0.2rem;">
             <img src="{{ asset('uploads/settings/vet-img1.jpg') }}" class="card-img-top my-5">
         </div>
-        <div class="card col-lg-3 col-12 col-md-12 mx-auto border-primary" style="border-radius:2.5rem;">
+        <div class="card col-lg-3 col-12 col-md-12 mx-auto" style="border-radius:2.5rem;  border-color: #021f53;border-width: 0.2rem;">
             <img src="{{ asset('uploads/settings/vet-img3.jpg') }}" class="card-img-top my-5">
         </div>
-        <div class="card col-lg-3 col-12 col-md-12 mx-auto border-info" style="border-radius:2.5rem;">
+        <div class="card col-lg-3 col-12 col-md-12 mx-auto" style="border-radius:2.5rem;  border-color: #021f53;border-width: 0.2rem;">
             <img src="{{ asset('uploads/settings/vet-img.jpg') }}" class="card-img-top my-5">
         </div>
     </div>
