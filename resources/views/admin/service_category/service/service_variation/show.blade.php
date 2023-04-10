@@ -5,41 +5,50 @@
 @section('content')
 <div class="container-fluid m-0 ">
 <h3 class="mt-3"><a href="{{route('service_variation.index', [$id, $serviceId]) }}" class="text-decoration-none  text-1"><i class="fas fa-chevron-left mr-2"></i>Variation List</a></h3>
-
+	{{ csrf_field() }}
 	<hr class="hr-thick" style="border-color: #707070;">
-	<h2 class="font-weight-bold text-1 text-center">Service Information</h2>
-	<div class="row">
-		<div class="col-12 col-lg-8 col-md-8 mx-auto my-5 ">
-			<div class="card card-body position-relative shadow p-3 mb-5 border-primary w-lg-100 w-xs-100 w-md-100">
-				<div class="position-absolute border border-secondary bg-1 text-white text-center d-flex w-75 w-lg-50 text-wrap" style="top: -1.8rem; left:1.5rem; min-height:4rem; max-height: 4rem; border-radius:0.5rem;">
-					{{-- CATEGORY NAME --}}
-					<button class="btn" data-toggle="tooltip" data-placement="left" title="{{ $variation['category_name']}}"></button>
-					<span class="h2 m-auto text-truncate" >{{ $variation->services->servicesCategory->service_category_name }}</span>
-				</div>
-				<div>
-					<div class=" mt-5 border-secondary border-bottom w-lg-50 mx-auto">
-						{{-- SERVICE NAME --}}
-						<button class="btn mr-2" data-toggle="tooltip" data-placement="left" title="Service Name"><i class="fa-solid fa-gears"></i></button>
-						<span class="h5 m-auto text-wrap text-1">{{ $variation->services->service_name }}</span>
-					</div>
-					<div class="mt-3 border-secondary border-bottom w-lg-50 mx-auto">
-						{{-- VARIATION NAME --}}
-						<button class="btn mr-2" data-toggle="tooltip" data-placement="left" title="Variation Name"><i class="fa-solid fa-list-check"></i></button>
-						<span class="h5 m-auto text-wrap text-1">{{ $variation->variation_name }}</span>
-					</div>
-					<div class="mt-3 border-secondary border-bottom w-lg-50 mx-auto">
-						{{-- PRICE --}}
-						<button class="btn mr-2" data-toggle="tooltip" data-placement="left" title="Price"><i class="fa-solid fa-barcode"></i></button>
-						<span class="h5 m-auto text-wrap text-1">{{ $variation->price }}</span>
-					</div>
-					{{-- REMARKS --}}
-					<div class="mt-3 border-secondary border-bottom w-lg-50 mx-auto">
-						<button class="btn mr-2" data-toggle="tooltip" data-placement="left" title="Remarks"><i class="fa-solid fa-notes-medical"></i></button>
-						<span class="h5 m-auto text-wrap text-1">{{ $variation->remarks }}</span>
-					</div>
-				</div>
-			</div>
-		</div>
+	
+	<div class="card mx-auto">
+		 <h5 class="card-header gbg-1"></h5>
+		 <h2 class="font-weight-bold text-1 text-center mt-5">Service Information</h2>
+		<div class=" card col-lg-6 col-md-4 col-6 mx-auto my-3 border rounded p-3 shadow">
+			{{-- CATEGORY NAME --}}
+            <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                <span class="input-group-text bg-light font-weight-bold" id="basic-addon1">Category Name</span>
+                </div>
+                <input type="text" class="form-control bg-white" readonly value="{{ $variation->services->servicesCategory->service_category_name }}" aria-describedby="basic-addon1">
+            </div>
+             <div class="dropdown-divider"></div>
+             {{-- SERVICE NAME --}}
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                <span class="input-group-text bg-light font-weight-bold" id="basic-addon1"><i class="fa-solid fa-gears fa-lg text-1"></i></span>
+                </div>
+                <input type="text" class="form-control bg-white" readonly value="{{ $variation->services->service_name }}" aria-describedby="basic-addon1">
+            </div>
+            {{-- VARIATION NAME --}}
+             <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                <span class="input-group-text bg-light font-weight-bold" id="basic-addon1"><i class="fa-solid fa-list-check fa-lg text-1"></i></span>
+                </div>
+                <input type="text" class="form-control bg-white" readonly value="{{ $variation->variation_name }}" aria-describedby="basic-addon1">
+            </div>
+            {{-- PRICE --}}
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                <span class="input-group-text bg-light font-weight-bold" id="basic-addon1"><i class="fa-solid fa-money-check-dollar fa-lg text-1"></i></span>
+                </div>
+                <input type="text" class="form-control bg-white" readonly value="{{ $variation->price }}" aria-describedby="basic-addon1">
+            </div>
+            {{-- REMARKS --}}
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                <span class="input-group-text bg-light font-weight-bold" id="basic-addon1"><i class="fa-solid fa-notes-medical fa-lg text-1"></i></span>
+                </div>
+                <input type="text" class="form-control bg-white" readonly value="{{ $variation->remarks }}" aria-describedby="basic-addon1">
+            </div>
+        </div>
 	</div>
 </div>
 @endsection

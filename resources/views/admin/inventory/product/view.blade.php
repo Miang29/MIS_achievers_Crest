@@ -4,52 +4,49 @@
 
 @section('content')
 <div class="container-fluid m-0">
-<h3 class="mt-3"><a href="{{route('category.view', [$id])}}" class="text-decoration-none  text-1"><i class="fas fa-chevron-left mr-2"></i>Product List</a></h3>
+	<h3 class="mt-3"><a href="{{route('category.view', [$id])}}" class="text-decoration-none  text-1"><i class="fas fa-chevron-left mr-2"></i>Product List</a></h3>
 	<hr class="hr-thick" style="border-color: #707070;">
+	<div class="card mx-auto">
+		 <h5 class="card-header gbg-1"></h5>
+		 <h2 class="font-weight-bold text-1 text-center mt-5">Product Information</h2>
+		<div class=" card col-lg-6 col-md-4 col-6 mx-auto my-3 border rounded p-3 shadow">
+			{{-- PRODUCT NAME --}}
+            <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                <span class="input-group-text bg-light font-weight-bold text-1" id="basic-addon1">Product Name</span>
+                </div>
+                <input type="text" class="form-control bg-white" readonly value="{{ $products->product_name }}" aria-describedby="basic-addon1">
+            </div>
+            <div class="dropdown-divider"></div>
 
-	<h2 class="font-weight-bold text-1 text-center">View Product Information</h2>
-	<div class="row" id="form-area">
-		<div class="col-8 mx-auto my-5 ">
-			<div class="card card-body position-relative shadow p-3 mb-5 border-primary w-lg-100 w-100 w-md-100">
-				{{ csrf_field() }}
-
-				<div class="position-absolute border-secondary bg-1 text-white text-center d-flex w-75 w-md-50 w-lg-50 text-wrap" style="top: -1.8rem; left:1.5rem; min-height:4rem; max-height: 4rem; border-radius:0.5rem;">
-					{{-- PRODUCT NAME --}}
-					<button class="btn" data-toggle="tooltip" data-placement="left" title="{{ $products->product_name}}"></button>
-					<span class="h2 m-auto text-truncate">{{ $products->product_name }}</span>
-				</div>
-
-				{{-- STOCKS --}}
-				<div class="mt-5 border-secondary border-bottom w-lg-50  w-100 w-md-100 mx-auto">
-					<button class="btn font-weight-bold" data-toggle="tooltip" data-placement="left" title="Stocks"><i class="fa-solid fa-arrow-trend-up mr-2"></i>Stocks</button>
-					<span class="h5 m-auto text-wrap text-1">{{$products->stocks }}</span>
-				</div>
-
-				{{-- PRICE --}}
-				<div class="mt-3 border-secondary border-bottom w-lg-50 w-100 w-md-100 mx-auto">
-					<button class="btn  font-weight-bold" data-toggle="tooltip" data-placement="left" title="Price"><i class="fa-solid fa-tag mr-2"></i>Price</button>
-					<span class="h5 m-auto text-wrap text-1">{{ number_format($products->price) }}</span>
-				</div>
-
-				{{-- STATUS --}}
-				<div class="mt-3 border-secondary border-bottom w-lg-50 w-100 w-md-100 mx-auto">
-					<button class="btn  font-weight-bold" data-toggle="tooltip" data-placement="left" title="Status"><i class="fa-solid fa-circle-half-stroke mr-2"></i>Status</button>
-					<span class="h5 m-auto text-wrap text-1" value="active" {{ $products['status'] ? 'Checked' : '' }}> Active</span>
-				</div>
-
-				{{-- CATEGORY NAME --}}
-				<div class="mt-3 border-secondary border-bottom w-lg-50 w-100 w-md-100 mx-auto">
-					<button class="btn  font-weight-bold" data-toggle="tooltip" data-placement="left" title="Category Name"><i class="fa-solid fa-shield-cat mr-2"></i>Category Name</button>
-					<span class="h5 m-auto text-wrap text-1">{{ $products->category_id }}</span>
-				</div>
-
-
-				{{-- DESCRIPTION --}}
-				<div class="mt-3 border-secondary border-bottom w-lg-50 w-100 w-md-100 mx-auto">
-					<button class="btn  font-weight-bold" data-toggle="tooltip" data-placement="left" title="Description"><i class="fa-solid fa-note-sticky mr-2"></i>Description</button>
-					<span class="h5 m-auto text-wrap text-1">{{ $products->description }}</span>
-				</div>
-			</div>
+            {{-- STOCKS --}}
+            <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                <span class="input-group-text bg-light font-weight-bold" id="basic-addon1"><i class="fa-solid fa-arrow-trend-up fa-lg text-1"></i></span>
+                </div>
+                <input type="text" class="form-control bg-white" readonly value="{{$products->stocks }} pcs." aria-describedby="basic-addon1">
+            </div>
+             {{-- PRICE --}}
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                <span class="input-group-text bg-light font-weight-bold" id="basic-addon1"><i class="fa-solid fa-money-check-dollar fa-lg text-1"></i></span>
+                </div>
+                <input type="text" class="form-control bg-white" readonly value="₱{{ ($products->price) }}.00" aria-describedby="basic-addon1">
+            </div>
+            {{-- STATUS --}}
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                <span class="input-group-text bg-light font-weight-bold" id="basic-addon1"><i class="fa-solid fa-circle-half-stroke fa-lg text-1 mr-1"></i></span>
+                </div>
+                <input type="text" class="form-control bg-white" readonly value="active" {{ $products['status'] ? 'Checked' : '' }}" aria-describedby="basic-addon1">
+            </div> 
+            {{-- DESCRIPTION --}}
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                <span class="input-group-text bg-light font-weight-bold" id="basic-addon1"><i class="fa-solid fa-note-sticky fa-lg text-1 mr-1"></i></span>
+                </div>
+                <input type="text" class="form-control bg-white" readonly value="{{ $products->description }}" aria-describedby="basic-addon1">
+            </div> 
 		</div>
 	</div>
 </div>

@@ -24,7 +24,7 @@
         </div>
     </div>
 </div>
-{{-- ============================================= ABOUT ============================================= --}}
+{{-- ABOUT --}}
 <div class="about h-100 bg-custom min-vh-100">
     {{-- Title --}}
     <div class="col-12 d-flex border-bottom border-secondary">
