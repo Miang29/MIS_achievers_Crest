@@ -32,19 +32,20 @@ class ServicesCategoryTableSeeder extends Seeder
 			'service_category_name' => 'Ethunasia'
 		]);
 
+       
         ServicesCategory::create([
 			'id' => 5,
-			'service_category_name' => 'Vaccination'
-		]);
-
-        ServicesCategory::create([
-			'id' => 6,
 			'service_category_name' => 'Laboratory Examination'
 		]);
 
         ServicesCategory::create([
-			'id' => 7,
+			'id' => 6,
 			'service_category_name' => 'Surgery'
+		]);
+
+		ServicesCategory::create([
+			'id' => 7,
+			'service_category_name' => 'Boarding'
 		]);
     }
 }

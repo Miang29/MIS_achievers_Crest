@@ -18,17 +18,17 @@
 						{{-- REFERENCE NO --}}
 						<div class="form-group col-6 col-lg-6 col-md-4 ml-auto">
 							<label class="important font-weight-bold text-1" for="ref_no">Reference No</label>
-							<input class="form-control" type="text" name="ref_no" value="{{old('ref_no')}} " />
+							<input class="form-control" type="text" name="reference_no" value="{{old('ref_no')}} " />
 						</div>
 
 						{{-- MODE OF PAYMENT --}}
 						<div class="form-group col-6 col-lg-6 col-md-4 mr-auto">
-							<label class="important font-weight-bold text-1" for="select">Mode of Payment</label>
-							<select id="select" class="form-control" name="mop">
-								<option>Select mode of payment</option>
-								<option>Cash</option>
-								<option>Paymaya</option>
-								<option>Gcash</option>
+							<label class="important font-weight-bold text-1" for="mode_of_payment">Mode of Payment</label>
+							<select id="select" class="form-control" name="mode_of_payment">
+								<option value="">Select mode of payment</option>
+								<option value="cash">Cash</option>
+								<option value="paymaya">Paymaya</option>
+								<option value="gcash">Gcash</option>
 							</select>
 						</div>
 					</div>
@@ -102,7 +102,13 @@
 									<label class="h6 important font-weight-bold my-2 text-1" for="pet_name">Pet Name</label>
 									<div class="input-group mb-3">
 										<select class="custom-select text-1" id="inputGroupSelect01">
-											<option selected name="pet_name" value="{{old('pet_name')}}"></option>
+										@foreach($owner as $u)
+										<optgroup label="{{$u->getName()}}">
+											@foreach($u->petsInformations as $p)
+											<option selected name="pet_name" value="{{$p->id}}">{{$p->pet_name}}</option>
+											@endforeach
+										</optgroup>
+										@endforeach
 										</select>
 									</div>
 

@@ -22,6 +22,16 @@ class ServicesTableSeeder extends Seeder
             'service_name' => 'Consultation'
 		]);
 
+           Services::create([
+            'service_category_id' => 1,
+            'service_name' => 'Vaccination'
+        ]);
+
+              Services::create([
+            'service_category_id' => 1,
+            'service_name' => 'Grooming'
+        ]);
+
         Services::create([
 			'service_category_id' => 1,
             'service_name' => 'Emergency Fee'
@@ -72,5 +82,15 @@ class ServicesTableSeeder extends Seeder
 			'service_category_id' => 4,
             'service_name' => 'Euthanasia for Dog'
 		]);
+
+         Services::create([
+            'service_category_id' => 7,
+            'service_name' => 'Boarding with food'
+        ]);
+
+          Services::create([
+            'service_category_id' => 7,
+            'service_name' => 'Boarding without food'
+        ]);
     }
 }

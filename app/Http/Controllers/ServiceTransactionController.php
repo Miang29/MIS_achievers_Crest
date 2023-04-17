@@ -6,6 +6,7 @@ use App\Services;
 use App\ServicesCategory;
 use App\ServicesVariation;
 use App\PetsInformation;
+use App\User;
 use Illuminate\Http\Request;
 
 use DB;
@@ -27,10 +28,10 @@ class ServiceTransactionController extends Controller
     protected function createConsultation()
     {
         $service = Services::find(2);
-        $pets = PetsInformation::get();
+        $owner = User::where('user_type_id', '=', 4)->has("petsInformations", '>', 0)->with('petsInformations')->get();
         return view('admin.transaction.services-transaction.consultation-create',[
             'services' => $service,
-            'pet' => $pets,
+            'owner' => $owner,
         ]);
     }
 
@@ -39,10 +40,10 @@ class ServiceTransactionController extends Controller
     {
         $services = Services::where('id', '=', 14)->has("variations", '>', 0)->with('variations')->get();
         // dd($serVar);
-        $pets = PetsInformation::get();
+        $owner = User::where('user_type_id', '=', 4)->has("petsInformations", '>', 0)->with('petsInformations')->get();
           return view('admin.transaction.services-transaction.vaccination-create',[
             'services' => $services,
-            'pet' => $pets,
+            'owner' => $owner,
 
           ]);
 
@@ -51,13 +52,24 @@ class ServiceTransactionController extends Controller
        // CREATE GROOMING TRANSACTION
     protected function createGrooming()
     {
-          return view('admin.transaction.services-transaction.grooming-create');
+        $services = Services::where('id', '=', 4)->has("variations", '>', 0)->with('variations')->get();
+        $owner = User::where('user_type_id', '=', 4)->has("petsInformations", '>', 0)->with('petsInformations')->get();
+          return view('admin.transaction.services-transaction.grooming-create',[
+                'service' => $services,
+                'owner' => $owner
+          ]);
     }
 
        // CREATE BOARDING TRANSACTION
     protected function createBoarding()
     {
-          return view('admin.transaction.services-transaction.boarding-create');
+         $services = Services::where('service_category_id', '=', 7)->has("variations", '>', 0)->with('variations')->get();
+        $owner = User::where('user_type_id', '=', 4)->has("petsInformations", '>', 0)->with('petsInformations')->get();
+          return view('admin.transaction.services-transaction.boarding-create',[
+            'service' => $services,
+            'owner' => $owner
+          ]);
+
     }
     
 
