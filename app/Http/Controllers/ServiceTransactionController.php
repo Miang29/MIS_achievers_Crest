@@ -2,47 +2,66 @@
 
 namespace App\Http\Controllers;
 
+use App\Services;
+use App\ServicesCategory;
+use App\ServicesVariation;
+use App\PetsInformation;
 use Illuminate\Http\Request;
+
+use DB;
+use Exception;
+use Log;
+use Validator;
+
 
 class ServiceTransactionController extends Controller
 {
-    //----------- SERVICES TRANSACTION ------------- //
-    // ----------------- INDEX ------------------ //
+    // SERVICES TRANSACTION 
+    // INDEX 
     protected function Service()
     {
         return view('admin.transaction.services-transaction.index');
     }
 
-
-    // ------------- CREATE Consultation TRANSACTION -------------- //
+    // CREATE Consultation TRANSACTION
     protected function createConsultation()
     {
-        // $serviceCat = ServicesCategory::has("services", '>', 0)->get();
+        $service = Services::find(2);
+        $pets = PetsInformation::get();
         return view('admin.transaction.services-transaction.consultation-create',[
-            // 'serviceCategory' => $serviceCat,
+            'services' => $service,
+            'pet' => $pets,
         ]);
     }
 
-       // ------------- CREATE VACCINATION TRANSACTION -------------- //
+       // CREATE VACCINATION TRANSACTION
     protected function createVaccination()
     {
-          return view('admin.transaction.services-transaction.vaccination-create');
+        $services = Services::where('id', '=', 14)->has("variations", '>', 0)->with('variations')->get();
+        // dd($serVar);
+        $pets = PetsInformation::get();
+          return view('admin.transaction.services-transaction.vaccination-create',[
+            'services' => $services,
+            'pet' => $pets,
+
+          ]);
+
     }
 
-       // ------------- CREATE GROOMING TRANSACTION -------------- //
+       // CREATE GROOMING TRANSACTION
     protected function createGrooming()
     {
           return view('admin.transaction.services-transaction.grooming-create');
     }
 
-       // ------------- CREATE BOARDING TRANSACTION -------------- //
+       // CREATE BOARDING TRANSACTION
     protected function createBoarding()
     {
           return view('admin.transaction.services-transaction.boarding-create');
     }
     
 
-    // ------------------- SHOW ------------------------ //
+    // SHOW
     protected function show($id)
     {
         $services = $this->services[$id];
@@ -52,7 +71,7 @@ class ServiceTransactionController extends Controller
             'services' => $services
         ]);
     }
-    // ------------- ARCHIVE --------------- //
+    // ARCHIVE
     protected function deleteServices($id)
     {
         return redirect()

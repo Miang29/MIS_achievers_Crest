@@ -17,4 +17,8 @@ class Services extends Model
     protected function servicesCategory() {
         return $this->belongsTo('App\ServicesCategory','service_category_id');
     }  
+
+    public function consultation() {
+        return $this->hasMany('App\ConsultationTransaction','service_category_id');
+    }
 }

@@ -39,11 +39,10 @@
 								<div class="form-group border rounded p-3 border-secondary">
 									<label class="important  font-weight-bold text-1" for="service_name">Services Type</label>
 									<div class="input-group mb-3">
-										<select class="custom-select text-1" name="service_name" id="inputGroupSelect01">
-											{{-- @foreach ($serviceCategory as $sc) --}}
-											<optgroup label="">
-												<option data-price="" value=""></option>
-											</optgroup>
+										<select class="custom-select" name="service_category_id" id="inputGroupSelect01">
+											@foreach ($services->variations as $s)
+											<option class="text-dark" data-price="{{$s->price}}" value="{{$s->id}}">{{"{$services->service_name} - {$s->variation_name}"}}</option>
+											@endforeach
 										</select>
 									</div>
 
@@ -55,9 +54,10 @@
 												<div class="input-group-prepend">
 													<span class="input-group-text">₱</span>
 												</div>
+
 												<div class="input-group-append flex-fill">
 													<div class="input-group">
-														<input type="number" data-type="currency" name="price[]" class="form-control" readonly>
+														<input type="number" data-type="currency" name="price[]" value="{{$s->price}}" class="form-control" readonly>
 													</div>
 												</div>
 											</div>
@@ -70,6 +70,7 @@
 												<div class="input-group-prepend">
 													<span class="input-group-text">₱</span>
 												</div>
+
 												<div class="input-group-append flex-fill">
 													<div class="input-group">
 														<input type="number" data-type="currency" name="add_cost[]" class="form-control">
@@ -85,6 +86,7 @@
 												<div class="input-group-prepend">
 													<span class="input-group-text">₱</span>
 												</div>
+												
 												<div class="input-group-append flex-fill">
 													<div class="input-group">
 														<input type="number" data-type="currency" name="total[]" class="form-control" readonly>

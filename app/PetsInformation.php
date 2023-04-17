@@ -22,6 +22,14 @@ class PetsInformation extends Model
         return $this->belongsTo('App\User', 'pet_owner');
     }
 
+    public function vaccination() {
+        return $this->belongsTo('App\Vaccination', 'pet_name');
+    }
+
+      public function consultation() {
+        return $this->hasMany('App\ConsultationTransaction','service_category_id');
+    }
+
     public function getImage($getFull = true) {
         return $getFull ? asset("uploads/clients/{$this->pet_owner}/pets/{$this->pet_image}") : $this->pet_image;
     }

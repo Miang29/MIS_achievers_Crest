@@ -36,8 +36,10 @@
 				<div class="col-lg-4 col-md-6 col-6 mt-3">
 					<label class="important font-weight-bold text-1" for="pet_name">Pet Name</label>
 					<div class="input-group mb-3">
-						<select class="custom-select text-1" id="inputGroupSelect01">
-							<option selected name="pet_name" value="{{old('pet_name')}}"></option>
+						<select class="custom-select text-1" name="pet_name" id="inputGroupSelect01">
+							@foreach($pet as $p)
+							<option selected value="{{$p->id}}">{{$p->pet_name}}</option>
+							@endforeach
 						</select>
 					</div>
 				</div>
@@ -47,9 +49,13 @@
 					<label class="important font-weight-bold text-1" for="vaccine_type">Vaccine Type</label>
 					<div class="input-group mb-3">
 						<select class="custom-select text-1" name="vaccine_type" id="inputGroupSelect01">
-							<optgroup label="">
-								<option data-price="" value=""></option>
+							@foreach($services as $s)
+							<optgroup label="{{$s->service_name}}">
+								@foreach($s->variations as $v)
+								<option data-price="{{$v->price}}" value="{{$v->id}}">{{$v->variation_name}}</option>
+								@endforeach
 							</optgroup>
+							@endforeach
 						</select>
 					</div>
 				</div>

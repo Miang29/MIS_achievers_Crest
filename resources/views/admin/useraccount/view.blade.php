@@ -19,7 +19,6 @@
 					<img src="{{ asset('uploads/settings/profile-female.png') }}" class="card-img-top my-5">
 					@endif
 				</div>
-
 				<div class="card col-lg-6 col-12 col-md-12 mx-auto mt-5 mb-5">
 					{{-- FULL NAME --}}
 					<div class="input-group mt-3">
@@ -28,7 +27,6 @@
 						</div>
 						<input class="form-control bg-white" value="{{$user ['first_name'] }} {{$user ['last_name']}}" readonly>
 					</div>
-
 					{{-- EMAIL --}}
 					<div class="input-group mt-2">
 						<div class="input-group-prepend">
@@ -36,7 +34,6 @@
 						</div>
 						<input class="form-control bg-white" value="{{$user ['email']}}" readonly>
 					</div>
-
 					{{-- ADDRESS --}}
 					<div class="input-group mt-2">
 						<div class="input-group-prepend">
@@ -44,7 +41,6 @@
 						</div>
 						<textarea class="form-control bg-white" readonly>{{$user ['address']}}</textarea>
 					</div>
-
 					{{-- USERTYPE --}}
 					<div class="input-group mt-2">
 						<div class="input-group-prepend">
@@ -60,7 +56,6 @@
 						</div>
 						<input class="form-control bg-white" value="{{$user ['username']}}" readonly>
 					</div>
-
 					{{-- GENDER --}}
 					<div class="input-group mt-2 mb-2">
 						<div class="input-group-prepend">

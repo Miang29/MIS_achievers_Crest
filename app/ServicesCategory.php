@@ -14,4 +14,8 @@ class ServicesCategory extends Model
         return $this->hasMany('App\Services', 'service_category_id');
     }
 
+    public function consultation() {
+        return $this->hasMany('App\ConsultationTransaction','service_category_id');
+    }
+
 }
