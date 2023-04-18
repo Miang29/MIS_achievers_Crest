@@ -9,6 +9,8 @@ use App\PetsInformation;
 use App\ServicesOrderTransaction;
 use App\ConsultationTransaction;
 use App\VaccinationTransaction;
+use App\GroomingTransaction;
+use App\BoardingTransaction;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -122,8 +124,6 @@ class ServiceTransactionController extends Controller
 			->with('flash_success', "Transaction has been created successfully.");
 	}
 
-
-
 	   // CREATE VACCINATION TRANSACTION
 	protected function createVaccination()
 	{
@@ -133,10 +133,9 @@ class ServiceTransactionController extends Controller
 		  return view('admin.transaction.services-transaction.vaccination-create',[
 			'services' => $services,
 			'owner' => $owner,
-
 		  ]);
 	}
-// SUBMIT-VACCINATION
+	// SUBMIT-VACCINATION
 		protected function submitVaccination(Request $req)
 	{
 		$validator = Validator::make($req->all(), [
@@ -179,7 +178,7 @@ class ServiceTransactionController extends Controller
 				'reference_no' => $req->reference_no,
 			]);
 
-	for ($i = 0; $i < count($req->variation_id); $i++) {
+		for ($i = 0; $i < count($req->variation_id); $i++) {
 				
 				$ct = VaccinationTransaction::create([
 					'transaction_id'=> $serviceTransaction->id,
@@ -216,6 +215,71 @@ class ServiceTransactionController extends Controller
 		  ]);
 	}
 
+	// Submit-Grooming
+	protected function submitGrooming(Request $req)
+	{
+		$validator = Validator::make($req->all(), [
+			'reference_no' => 'required|numeric|between:1000000000,9999999999999',
+			'mode_of_payment' => 'required|max:255|string',
+			'variation_id' => 'required|array',
+			'variation_id.*'=>'required|exists:services_variations,id|string',
+			'variation_id.*.*' => 'required|min:2|max:255|string',
+			'pet_name' => 'required|array',
+			'pet_name.*' => 'required|exists:pets_informations,id|string',
+			'pet_name.*.*' => 'required|min:2|max:255|string',
+			'price' => 'required|array',
+			'price.*' => 'required|numeric'
+
+			]);
+
+		$validator->after(function($validator) use ($req) {
+			$transaction = ServicesOrderTransaction::where('reference_no', '=', $req->reference_no)
+			->where("voided_at", "=", null)
+			->first();
+			if (!(empty($transaction) || $transaction == null)) {
+				$validator->errors()->add("reference_no", "Duplicate reference number");
+			}
+		});
+
+		if ($validator->fails()) {
+			Log::debug($validator->messages());
+
+			return redirect()
+				->back()
+				->withErrors($validator)
+				->withInput();
+		}
+		try {
+			DB::beginTransaction();
+			$serviceTransaction = ServicesOrderTransaction::create([
+				'mode_of_payment' => $req->mode_of_payment,
+				'reference_no' => $req->reference_no,
+			]);
+			for ($i = 0; $i < count($req->variation_id); $i++) {
+				
+				$ct = GroomingTransaction::create([
+					'transaction_id'=> $serviceTransaction->id,
+					'variation_id' => $req->variation_id[$i],
+					'pet_name' => $req->pet_name[$i],
+					'price' =>  $req->price[$i],
+				]);
+			}
+			DB::commit();
+		} catch (Exception $e) {
+			DB::rollback();
+			Log::error($e);
+			
+			return redirect()
+			->route('transaction.grooming.create')
+			->with('flash_error', 'Something went wrong, please try again later');
+		}
+
+		// dd("TEST");
+		return redirect()
+			->route('transaction.service')
+			->with('flash_success', "Transaction has been created successfully.");
+	}
+
 	   // CREATE BOARDING TRANSACTION
 	protected function createBoarding()
 	{
@@ -225,9 +289,71 @@ class ServiceTransactionController extends Controller
 			'service' => $services,
 			'owner' => $owner
 		  ]);
-
 	}
-	
+
+	// Submit-Boarding
+	protected function submitBoarding(Request $req)
+	{
+		$validator = Validator::make($req->all(), [
+			'reference_no' => 'required|numeric|between:1000000000,9999999999999',
+			'mode_of_payment' => 'required|max:255|string',
+			'variation_id' => 'required|array',
+			'variation_id.*'=>'required|exists:services_variations,id|string',
+			'variation_id.*.*' => 'required|min:2|max:255|string',
+			'pet_name' => 'required|array',
+			'pet_name.*' => 'required|exists:pets_informations,id|string',
+			'pet_name.*.*' => 'required|min:2|max:255|string',
+			'price' => 'required|array',
+			'price.*' => 'required|numeric'
+
+			]);
+
+		$validator->after(function($validator) use ($req) {
+			$transaction = ServicesOrderTransaction::where('reference_no', '=', $req->reference_no)
+			->where("voided_at", "=", null)
+			->first();
+			if (!(empty($transaction) || $transaction == null)) {
+				$validator->errors()->add("reference_no", "Duplicate reference number");
+			}
+		});
+
+		if ($validator->fails()) {
+			Log::debug($validator->messages());
+
+			return redirect()
+				->back()
+				->withErrors($validator)
+				->withInput();
+		}
+		try {
+			DB::beginTransaction();
+			$serviceTransaction = ServicesOrderTransaction::create([
+				'mode_of_payment' => $req->mode_of_payment,
+				'reference_no' => $req->reference_no,
+			]);
+			for ($i = 0; $i < count($req->variation_id); $i++) {
+				
+				$ct = BoardingTransaction::create([
+					'transaction_id'=> $serviceTransaction->id,
+					'variation_id' => $req->variation_id[$i],
+					'pet_name' => $req->pet_name[$i],
+					'price' =>  $req->price[$i],
+				]);
+			}
+			DB::commit();
+		} catch (Exception $e) {
+			DB::rollback();
+			Log::error($e);
+			
+			return redirect()
+			->route('transaction.boarding.create')
+			->with('flash_error', 'Something went wrong, please try again later');
+		}
+	// dd("TEST");
+		return redirect()
+			->route('transaction.service')
+			->with('flash_success', "Transaction has been created successfully.");
+	}
 
 	// SHOW
 	protected function show($id)

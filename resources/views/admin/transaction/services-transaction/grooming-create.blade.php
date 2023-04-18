@@ -6,24 +6,25 @@
 <div class="container-fluid m-0">
 	<h3 class="mt-3"><a href="{{route('transaction.service')}}" class="text-decoration-none  text-1"><i class="fas fa-chevron-left mr-2"></i>Service Transaction List</a></h3>
 	<hr class="hr-thick" style="border-color: #707070;">
-	<div class="card mx-auto">
+	<form class="card mx-auto" method="POST" action="{{ route('submit.grooming') }}" enctype="multipart/form-data">
+		{{ csrf_field() }}
 		<h3 class="card-header text-white gbg-1"><i class="fa-solid fa-square-plus mr-2 fa-lg"></i>Grooming Transaction</h3>
 
 		{{-- REFERENCE NO --}}
 		<div class="col-lg-12 col-12 col-md-12 mt-3 row">
 			<div class="form-group col-6 col-lg-6 col-md-4 ml-auto">
-				<label class="important font-weight-bold text-1" for="ref_no">Reference No</label>
-				<input class="form-control" type="text" name="ref_no" value="{{old('ref_no')}} " />
+				<label class="important font-weight-bold text-1" for="reference_no">Reference No</label>
+				<input class="form-control" type="text" name="reference_no" value="{{old('reference_no')}} " />
 			</div>
 
 			{{-- MODE OF PAYMENT --}}
 			<div class="form-group col-6 col-lg-6 col-md-4 mr-auto">
 				<label class="important font-weight-bold text-1" for="select">Mode of Payment</label>
-				<select id="select" class="form-control" name="mop">
-					<option>Select mode of payment</option>
-					<option>Cash</option>
-					<option>Paymaya</option>
-					<option>Gcash</option>
+				<select id="select" class="form-control" name="mode_of_payment">
+					<option value="">Select mode of payment</option>
+					<option value="cash">Cash</option>
+					<option value="paymaya">Paymaya</option>
+					<option value="gcash">Gcash</option>
 				</select>
 			</div>
 		</div>
@@ -33,7 +34,7 @@
 				<div class="row">
 					{{-- PET NAME  --}}
 					<div class="col-lg-4 col-md-6 col-6 mt-3">
-						<label class="important font-weight-bold text-1" for="pet_name">Pet Name</label>
+						<label class="important font-weight-bold text-1" for="pet_name[]">Pet Name</label>
 						<div class="input-group mb-3">
 							<select class="custom-select text-1" name="pet_name[]" id="inputGroupSelect01">
 							@foreach($owner as $u)
@@ -51,7 +52,7 @@
 					<div class="col-lg-6 col-md-6 col-6 mt-3">
 						<label class="important font-weight-bold text-1" for="style">Grooming</label>
 						<div class="input-group mb-3">
-							<select class="custom-select text-1" name="service_category_id[]" id="inputGroupSelect01">
+							<select class="custom-select text-1" name="variation_id[]" id="inputGroupSelect01">
 								@foreach($service as $s)
 								<optgroup label="{{$s->service_name}}">
 									@foreach($s->variations as $v)
@@ -65,7 +66,7 @@
 
 					{{-- Price --}}
 					<div class="col-lg-2 col-md-6 col-6 mt-3 ">
-						<label class="important font-weight-bold text-1" for="price">Price</label>
+						<label class="important font-weight-bold text-1" for="price[]">Price</label>
 						<input type="number" class="form-control" name="price[]" aria-label="currency" aria-describedby="basic-addon1" readonly>
 					</div>
 				</div>
@@ -96,11 +97,11 @@
 			</div>
 
 			<div class="col-4 my-2 mx-auto text-center">
-				<button class="btn btn-outline-info btn-sm w-25"><a href="#"></a>Save</button>
+				<button type="submit" class="btn btn-outline-info btn-sm w-25" data-action="submit" data-type="submit">Enter</button>
 				<a href="#" class="btn btn-outline-danger btn-sm w-25">Cancel</a>
 			</div>
 		</div>
-	</div>
+	</form>
 </div>
 @endsection
 @section('scripts')
@@ -128,7 +129,7 @@
 		});
 
 			// Updates the price of the card
-			$(document).on('change', '[name="service_category_id[]"]', (e) => {
+			$(document).on('change', '[name="variation_id[]"]', (e) => {
 				let obj = $(e.target);
 				let price = obj.find(":selected").attr("data-price");
 				console.log(price);
@@ -154,7 +155,7 @@
 		});
 
 	function triggerAllListeners() {
-			$('[name="service_category_id[]"], [name="price[]"]').trigger('change');
+			$('[name="variation_id[]"], [name="price[]"]').trigger('change');
 
 			// Here starts the fix
 			var d = new Date();

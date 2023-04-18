@@ -7,7 +7,7 @@
 <div class="container-fluid m-0">
 	<h3 class="mt-3"><a href="{{route('transaction.service')}}" class="text-decoration-none  text-1"><i class="fas fa-chevron-left mr-2"></i>Service Transaction List</a></h3>
 	<hr class="hr-thick" style="border-color: #707070;">
-	<form class="card mx-auto"method="POST" action="{{ route('submit.vaccination') }}" enctype="multipart/form-data">
+	<form class="card mx-auto" method="POST" action="{{ route('submit.vaccination') }}" enctype="multipart/form-data">
 		{{ csrf_field() }}
 
 		<h3 class="card-header text-white gbg-1"><i class="fa-solid fa-square-plus mr-2 fa-lg"></i>Vaccination Transaction</h3>

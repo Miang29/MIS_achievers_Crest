@@ -9,7 +9,7 @@ class BoardingTransaction extends Model
  protected $fillable = [
     'transaction_id',
     'pet_name',
-    'service_name',
+    'variation_id',
     'price',
     'total',
     ];
