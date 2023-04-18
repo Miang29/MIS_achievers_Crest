@@ -13,4 +13,10 @@ class BoardingTransaction extends Model
     'price',
     'total',
     ];
+
+    protected $table = "boarding_transaction";
+
+    protected function serviceOrderTransaction() {
+        return $this->belongsTo('App\serviceOrderTransaction');
+    }
 }

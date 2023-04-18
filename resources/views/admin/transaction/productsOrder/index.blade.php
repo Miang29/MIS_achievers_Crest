@@ -65,7 +65,6 @@
 								<button class="btn btn-outline-danger btn-sm" onclick="confirmLeave('{{ route('transaction.product.order.void', [$po->id]) }}', undefined, 'Are you sure you want to void the transaction?');"><i class="fa-solid fa-ban"></i></button>
 								@endif
 							</div>
-
 						</td>
 					</tr>
 					@empty
@@ -74,7 +73,7 @@
 					</tr>
 					@endforelse
 				</tbody>
-
+				
 			</table>
 		</div>
 	</div>

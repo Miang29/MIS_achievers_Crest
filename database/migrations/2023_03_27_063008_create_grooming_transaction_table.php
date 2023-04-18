@@ -16,13 +16,12 @@ class CreateGroomingTransactionTable extends Migration
         Schema::create('grooming_transaction', function(Blueprint $table){
         $table->increments('id');
         $table->integer('transaction_id')->unsigned();
+        $table->string('variation_id');
         $table->string('pet_name');
-        $table->string('service_name');
         $table->integer('price');
-        $table->integer('total');
 
         $table->timestamps();
-            // $table->foreign('transaction_id')->references('id')->on('products_order_transactions')->onDelete('cascade');
+        // $table->foreign('transaction_id')->references('id')->on('services_order_transactions')->onDelete('cascade');
 
     });
  }

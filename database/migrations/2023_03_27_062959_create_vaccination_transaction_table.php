@@ -17,13 +17,12 @@ class CreateVaccinationTransactionTable extends Migration
             $table->increments('id');
             $table->integer('transaction_id')->unsigned();
             $table->string('pet_name');
-            $table->string('service_name');
+            $table->string('variation_id');
             $table->date('expired_at');
             $table->integer('price');
-            $table->integer('total');
 
             $table->timestamps();
-            // $table->foreign('transaction_id')->references('id')->on('products_order_transactions')->onDelete('cascade');
+            // $table->foreign('transaction_id')->references('id')->on('services_order_transactions')->onDelete('cascade');
 
         });
     }

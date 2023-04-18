@@ -30,7 +30,7 @@
 		</div>
 
 		<div class="card-body col-lg-12 col-12 col-md-12 mx-auto" id="form-area-boarding">
-			<div class="position-relative border border-secondary col-lg-12 col012 col-md-12 mb-3" id="orig-boarding">
+			<div class="boarding position-relative border border-secondary col-lg-12 col012 col-md-12 mb-3" id="orig-boarding">
 
 				<div class="row">
 					{{-- PET NAME  --}}
@@ -136,7 +136,7 @@
 				let obj = $(e.target);
 				let price = obj.find(":selected").attr("data-price");
 				console.log(price);
-				let target = $(obj.closest(".card-body").find(`[name="price[]"]`)[0]);
+				let target = $(obj.closest(".boarding").find(`[name="price[]"]`)[0]);
 
 				target.val(price)
 					.trigger('change');

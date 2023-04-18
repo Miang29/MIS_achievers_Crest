@@ -11,13 +11,19 @@ class ConsultationTransaction extends Model
     'service_category_id',
     'price',
     'additional_cost',
+    'total',
     'pet_name',
     'weight',
     'temperature',
     'findings',
     'treatment'
-    'total'
     ];
+
+    protected $table = "consultation_transaction";
+
+    protected function serviceOrderTransaction() {
+        return $this->belongsTo('App\serviceOrderTransaction');
+    }
 
 
     public function services() {

@@ -8,7 +8,9 @@
 	<hr class="hr-thick" style="border-color: #707070;">
 
 	{{-- CONSULTATION --}}
-	<div class="tab-pane fade show active" id="consultation" role="tabpanel" aria-labelledby="consultation-tab">
+	<form class="card" method="POST" action="{{ route('submit.consultation') }}" enctype="multipart/form-data">
+		{{ csrf_field() }}
+
 		<div class="row">
 			<div class="col-12 col-lg-12 col-md-12">
 				<div class="card mx-auto">
@@ -18,7 +20,8 @@
 						{{-- REFERENCE NO --}}
 						<div class="form-group col-6 col-lg-6 col-md-4 ml-auto">
 							<label class="important font-weight-bold text-1" for="ref_no">Reference No</label>
-							<input class="form-control" type="text" name="reference_no" value="{{old('ref_no')}} " />
+							<input class="form-control" type="text" name="reference_no" value="{{old('reference_no')}} " />
+							<small class="text-danger small">{{ $errors->first('reference_no') }}</small>
 						</div>
 
 						{{-- MODE OF PAYMENT --}}
@@ -30,6 +33,7 @@
 								<option value="paymaya">Paymaya</option>
 								<option value="gcash">Gcash</option>
 							</select>
+							<small class="text-danger small">{{ $errors->first('mode_of_payment') }}
 						</div>
 					</div>
 
@@ -38,11 +42,11 @@
 							{{-- SERVICE TYPE --}}
 							<div class="col-12 col-lg-6 position-relative" id="orig">
 								<div class="form-group border rounded p-3 border-secondary">
-									<label class="important  font-weight-bold text-1" for="service_name">Services Type</label>
+									<label class="important  font-weight-bold text-1" for="service_category_id[]">Services Type</label>
 									<div class="input-group mb-3">
-										<select class="custom-select" name="service_category_id">
+										<select class="custom-select" name="service_category_id[]">
 											@foreach ($services->variations as $s)
-											<option class="text-dark" data-price="{{$s->price}}" value="{{$s->id}}">{{"{$services->service_name} - {$s->variation_name}"}}</option>
+											<option class="text-dark"  data-price="{{$s->price}}" value="{{$s->id}}">{{"{$services->service_name} - {$s->variation_name}"}}</option>
 											@endforeach
 											<option class="text-dark" data-price="200" value="0">Consultation - Test</option>
 										</select>
@@ -67,7 +71,7 @@
 
 										{{-- ADDITIONAL COST --}}
 										<div class="col-12 col-lg-4 col-md-4 mx-auto ">
-											<label class="important  font-weight-bold text-1" for="add_cost[]">Additional Cost</label>
+											<label class="important  font-weight-bold text-1" for="additional_cost[]">Additional Cost</label>
 											<div class="input-group flex-nowrap">
 												<div class="input-group-prepend">
 													<span class="input-group-text">₱</span>
@@ -75,7 +79,7 @@
 
 												<div class="input-group-append flex-fill">
 													<div class="input-group">
-														<input type="number" data-type="currency" name="add_cost[]" class="form-control">
+														<input type="number" data-type="currency" name="additional_cost[]" class="form-control">
 													</div>
 												</div>
 											</div>
@@ -99,44 +103,49 @@
 									</div>
 
 									{{-- PET NAME  --}}
-									<label class="h6 important font-weight-bold my-2 text-1" for="pet_name">Pet Name</label>
+									<label class="h6 important font-weight-bold my-2 text-1" for="pet_name[]">Pet Name</label>
 									<div class="input-group mb-3">
-										<select class="custom-select text-1" id="inputGroupSelect01">
-										@foreach($owner as $u)
-										<optgroup label="{{$u->getName()}}">
-											@foreach($u->petsInformations as $p)
-											<option selected name="pet_name" value="{{$p->id}}">{{$p->pet_name}}</option>
+										<select class="custom-select text-1" name="pet_name[]" id="inputGroupSelect01">
+											@foreach($owner as $u)
+											<optgroup label="{{$u->getName()}}">
+												@foreach($u->petsInformations as $p)
+												<option selected  value="{{$p->id}}">{{$p->pet_name}}</option>
+												@endforeach
+											</optgroup>
 											@endforeach
-										</optgroup>
-										@endforeach
 										</select>
 									</div>
+									<small class="text-danger small">{{ $errors->first('pet_name.0') }}</small>
 
-									{{-- WEIGHT --}}
 									<div class="row">
+										{{-- WEIGHT --}}
 										<div class="col-lg-6 col-6 col-md-6">
-											<label class="important font-weight-bold my-2 text-1" for="weight">Weight</label>
-											<input class="form-control" type="text" name="weight" value="{{old('weight')}}" />
+											<label class="important font-weight-bold my-2 text-1" for="weight[]">Weight</label>
+											<input class="form-control" type="text" name="weight[]" value="{{old('weight.0')}}" />
+											<small class="text-danger small">{{ $errors->first('weight.0') }}</small>
 										</div>
 
-										{{-- TEMPARATURE --}}
+										{{-- TEMPERATURE --}}
 										<div class="col-lg-6 col-6 col-md-6">
-											<label class="important font-weight-bold my-2 text-1" for="temp">Temperature</label>
-											<input class="form-control" type="text" name="temperature" value="{{old('temperature')}} " />
+											<label class="important font-weight-bold my-2 text-1" for="temperature[]">Temperature</label>
+											<input class="form-control" type="text" name="temperature[]" value="{{old('temperature.0')}} "/>
+											<small class="text-danger small">{{ $errors->first('temperature.0') }}</small>
 										</div>
 									</div>
 
 									<div class="row">
 										{{-- FINDINGS --}}
 										<div class="col-12 col-lg-6 col-md-6 ml-auto">
-											<label class="important font-weight-bold my-2 text-1" for="findings">Findings</label>
-											<textarea class="form-control my-2 not-resizable  border border-secondary" name="findings" rows="5"></textarea>
+											<label class="important font-weight-bold my-2 text-1" for="findings[]">Findings</label>
+											<textarea class="form-control my-2 not-resizable  border border-secondary" name="findings[]" rows="5"></textarea>
+											<small class="text-danger small">{{ $errors->first('findings.0') }}</small>
 										</div>
 
 										{{-- TREATMENT --}}
 										<div class="col-12 col-lg-6 col-md-6 mr-auto">
-											<label class="important font-weight-bold my-2 text-1" for="treatment">Treatment</label>
-											<textarea class="form-control my-2 not-resizable  border border-secondary" name="treatment" rows="5"></textarea>
+											<label class="important font-weight-bold my-2 text-1" for="treatment[]">Treatment</label>
+											<textarea class="form-control my-2 not-resizable  border border-secondary" name="treatment[]" rows="5">{{ old("treatment.0") }}</textarea>
+											<small class="text-danger small">{{ $errors->first('treatment.0') }}</small>
 										</div>
 									</div>
 								</div>
@@ -149,6 +158,7 @@
 								<div class="input-group-prepend">
 									<span class="input-group-text">₱</span>
 								</div>
+
 								<div class="input-group-append flex-fill">
 									<div class="input-group">
 										<input type="number" data-type="currency" name="total_amt" class="form-control" readonly>
@@ -166,14 +176,14 @@
 						</div>
 
 						<div class="col-4 my-2 mx-auto text-center">
-							<button class="btn btn-outline-info btn-sm w-25"><a href="#"></a>Save</button>
+							<button type="submit" class="btn btn-outline-info btn-sm w-25" data-action="submit" data-type="submit">Enter</button>
 							<a href="#" class="btn btn-outline-danger btn-sm w-25">Cancel</a>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
+	</form>
 	{{-- CONSULTATION ENDS HERE --}}
 	@endsection
 
@@ -202,7 +212,7 @@
 			});
 
 			// Updates the price of the card
-			$(document).on('change', '[name="service_category_id"]', (e) => {
+			$(document).on('change', '[name="service_category_id[]"]', (e) => {
 				let obj = $(e.target);
 				let price = obj.find(":selected").attr("data-price");
 				let target = $(obj.closest(".form-group").find(`[name="price[]"]`)[0]);
@@ -212,10 +222,10 @@
 			});
 
 			// Updates the total of the card
-			$(document).on('change', `[name="price[]"], [name="add_cost[]"]`, (e) => {
+			$(document).on('change', `[name="price[]"], [name="additional_cost[]"]`, (e) => {
 				let root = $(e.target).closest(".form-group");
 				let price = parseFloat($(root.find(`[name="price[]"]`)[0]).val());
-				let additional = parseFloat($(root.find(`[name="add_cost[]"]`)[0]).val());
+				let additional = parseFloat($(root.find(`[name="additional_cost[]"]`)[0]).val());
 				let total = $(root.find(`[name="total[]"]`)[0]);
 
 				price = isNaN(price) ? 0.0 : price;
@@ -241,8 +251,8 @@
 		});
 
 		function triggerAllListeners() {
-			$('[name="service_category_id"]').trigger('change');
-			$(`[name="price[]"], [name="add_cost[]"]`).trigger('change');
+			$('[name="service_category_id[]"]').trigger('change');
+			$(`[name="price[]"], [name="additional_cost[]"]`).trigger('change');
 
 			// Here starts the fix
 			var d = new Date();

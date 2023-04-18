@@ -103,9 +103,13 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
 			//Create
 			Route::get('/create', 'ServiceTransactionController@createConsultation')->name('transaction.consultation.create');
+			//Submit Consultation
+			Route::post('/submit/consultation','ServiceTransactionController@submitConsultation')->name('submit.consultation');
 
 			//Create-Vaccination
 			Route::get('/create/vaccination', 'ServiceTransactionController@createVaccination')->name('transaction.vaccination.create');
+			// Submit-Vaccination
+			Route::post('/submit/vaccination','ServiceTransactionController@submitVaccination')->name('submit.vaccination');
 
 			//Create-Grooming
 			Route::get('/create/grooming', 'ServiceTransactionController@createGrooming')->name('transaction.grooming.create');
