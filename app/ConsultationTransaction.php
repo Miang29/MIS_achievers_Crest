@@ -27,7 +27,7 @@ class ConsultationTransaction extends Model
 
 
     public function services() {
-        return $this->hasMany('App\Services', 'service_category_id');
+        return $this->hasMany('App\Services', 'service_category_id',);
     }
   
      public function servicesCategory() {
@@ -37,5 +37,10 @@ class ConsultationTransaction extends Model
      public function petsInformations() {
         return $this->hasMany('App\PetsInformation', 'pet_owner', 'id');
     }
+
+    //  // CUSTOM FUNCTION
+    // public function isVoided() {
+    //     return (!empty($this->voided_at) || ($this->voided_at != null));
+    // }
     
 }

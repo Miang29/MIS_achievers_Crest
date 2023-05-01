@@ -15,7 +15,7 @@
 		<div class="row col-lg-12 col-12 col-md-12 mx-auto mt-3">
 			<div class="form-group col-6 col-lg-6 col-md-4 ml-auto">
 				<label class="important font-weight-bold text-1" for="reference_no">Reference No</label>
-				<input class="form-control" type="text" name="reference_no" value="{{old('reference_no')}} " />
+				<input class="form-control" type="text" name="reference_no"/>
 			</div>
 
 			{{-- MODE OF PAYMENT --}}
@@ -102,7 +102,7 @@
 
 			<div class="col-4 my-2 mx-auto text-center">
 				<button type="submit" class="btn btn-outline-info btn-sm w-25" data-action="submit" data-type="submit">Save</button>
-				<a href="#" class="btn btn-outline-danger btn-sm w-25">Cancel</a>
+				<a href="{{ route('transaction.boarding.create')}}" class="btn btn-outline-danger btn-sm w-25">Cancel</a>
 			</div>
 		</div>
 	</form>

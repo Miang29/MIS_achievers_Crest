@@ -20,7 +20,7 @@
 						{{-- REFERENCE NO --}}
 						<div class="form-group col-6 col-lg-6 col-md-4 ml-auto">
 							<label class="important font-weight-bold text-1" for="ref_no">Reference No</label>
-							<input class="form-control" type="text" name="reference_no" value="{{old('reference_no')}} " />
+							<input class="form-control" type="text" name="reference_no" />
 							<small class="text-danger small">{{ $errors->first('reference_no') }}</small>
 						</div>
 
@@ -48,7 +48,6 @@
 											@foreach ($services->variations as $s)
 											<option class="text-dark"  data-price="{{$s->price}}" value="{{$s->id}}">{{"{$services->service_name} - {$s->variation_name}"}}</option>
 											@endforeach
-											<option class="text-dark" data-price="200" value="0">Consultation - Test</option>
 										</select>
 									</div>
 
@@ -177,7 +176,7 @@
 
 						<div class="col-4 my-2 mx-auto text-center">
 							<button type="submit" class="btn btn-outline-info btn-sm w-25" data-action="submit" data-type="submit">Enter</button>
-							<a href="#" class="btn btn-outline-danger btn-sm w-25">Cancel</a>
+							<a href="{{route ('transaction.consultation.create')}}" class="btn btn-outline-danger btn-sm w-25">Cancel</a>
 						</div>
 					</div>
 				</div>

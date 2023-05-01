@@ -28,6 +28,10 @@ class ServicesOrderTransaction extends Model
         return $this->hasMany('App\ConsultationTransaction', 'transaction_id');
     }
 
+    public function petsInformations() {
+        return $this->hasMany('App\PetsInformation', 'pet_owner', 'id', 'pet_name');
+    }
+
  public function grooming() {
         return $this->hasMany('App\GroomingTransaction', 'transaction_id');
     }

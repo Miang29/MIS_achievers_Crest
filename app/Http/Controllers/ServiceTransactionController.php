@@ -12,6 +12,8 @@ use App\VaccinationTransaction;
 use App\GroomingTransaction;
 use App\BoardingTransaction;
 use App\User;
+use Carbon\Carbon;
+
 use Illuminate\Http\Request;
 
 use DB;
@@ -20,13 +22,23 @@ use Log;
 use Validator;
 
 
+
 class ServiceTransactionController extends Controller
 {
 	// SERVICES TRANSACTION 
 	// INDEX 
-	protected function Service()
+	protected function Services()
 	{
-		return view('admin.transaction.services-transaction.index');
+		$consulService = ServicesOrderTransaction::has("consultation", '>', 0)->with('petsInformations')->get();
+		$vaccService =  ServicesOrderTransaction::has("vaccination", '>', 0)->get();
+		$groomService = ServicesOrderTransaction::has("grooming", '>',0)->get();
+		$boardService = ServicesOrderTransaction::has("boarding", '>', 0)->get();
+		return view('admin.transaction.services-transaction.index',[
+			'consultService' => $consulService,
+			'vacciService' => $vaccService,
+			'groommService' => $groomService,
+			'boardiService' => $boardService,
+		]);
 	}
 
 	// CREATE Consultation TRANSACTION
@@ -326,7 +338,7 @@ class ServiceTransactionController extends Controller
 				->withInput();
 		}
 		try {
-			DB::beginTransaction();
+			DB::beginTransaction(); 
 			$serviceTransaction = ServicesOrderTransaction::create([
 				'mode_of_payment' => $req->mode_of_payment,
 				'reference_no' => $req->reference_no,
@@ -371,5 +383,37 @@ class ServiceTransactionController extends Controller
 		return redirect()
 		->route('transaction.service')
 		->with('flash_success', 'Successfully removed transaction from table');
+	}
+
+	// ----------------- VOID ---------------- //
+	protected function voidConsultation($id) {
+		$conTrans = ServicesOrderTransaction::with("consultation")->find($id);
+
+		if ($conTrans == null || empty($conTrans)) {
+			return redirect()
+			->route('transaction.service')
+			->with('flash_error', 'The transaction either does not exists or is already deleted.');
+		}
+
+		try {
+			DB::beginTransaction();
+
+			$conTrans->voided_at = Carbon::now();
+			$conTrans->save();
+		
+		
+			DB::commit();
+		} catch (Exception $e) {
+			DB::rollback();
+			Log::error($e);
+
+			return redirect()
+			->route('transaction.service')
+			->with('flash_error', 'Something went wrong, please try again later');
+		}
+
+		return redirect()
+		->route('transaction.service')
+		->with('flash_success', 'Voided successfully');
 	}
 }

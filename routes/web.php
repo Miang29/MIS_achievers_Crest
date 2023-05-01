@@ -99,7 +99,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 		// TRANSACTION - SERVICES
 		Route::group(['prefix' => 'service'], function () {
 			//Index
-			Route::get('/', 'ServiceTransactionController@Service')->name('transaction.service');
+			Route::get('/', 'ServiceTransactionController@Services')->name('transaction.service');
 
 			//Create
 			Route::get('/create', 'ServiceTransactionController@createConsultation')->name('transaction.consultation.create');
@@ -126,6 +126,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
 			//Delete
 			Route::get('/{id}/delete', 'ServiceTransactionController@deleteService')->name('transaction.service.delete');
+			// Void
+			Route::get('/{id}/void', 'ServiceTransactionController@voidConsultation')->name('transaction.consultation.void');
 		});
 	});
 

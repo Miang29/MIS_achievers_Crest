@@ -28,4 +28,9 @@ class VaccinationTransaction extends Model
        public function variations() {
         return $this->hasMany('App\ServicesVariation', 'variation_name','price');
     }
+
+    //  // CUSTOM FUNCTION
+    // public function isVoided() {
+    //     return (!empty($this->voided_at) || ($this->voided_at != null));
+    // }
 }

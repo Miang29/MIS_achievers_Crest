@@ -13,9 +13,14 @@ class GroomingTransaction extends Model
     'price',
     'total',
 ];
-protected $table = "grooming_transaction";
+    protected $table = "grooming_transaction";
 
     protected function serviceOrderTransaction() {
         return $this->belongsTo('App\serviceOrderTransaction');
     }
+
+    //  // CUSTOM FUNCTION
+    // public function isVoided() {
+    //     return (!empty($this->voided_at) || ($this->voided_at != null));
+    // }
 }
