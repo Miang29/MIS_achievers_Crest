@@ -54,6 +54,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 		// Create
 		Route::get('/create', 'ClientController@create')->name('pet-information.create');
 
+		//Print
+		Route::get('/print/{id}', 'ClientController@printHistory')->name('history.print');
+
 		// Add
 		Route::get('/add/{clientId}', 'ClientController@add')->name('pet-information.pet.add');
 
@@ -126,8 +129,17 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
 			//Delete
 			Route::get('/{id}/delete', 'ServiceTransactionController@deleteService')->name('transaction.service.delete');
-			// Void
-			Route::get('/{id}/void', 'ServiceTransactionController@voidConsultation')->name('transaction.consultation.void');
+			// VoidConsultation
+			Route::get('/{id}/void/consultation', 'ServiceTransactionController@voidConsultation')->name('transaction.consultation.void');
+
+			// VoidConsultation
+			Route::get('/{id}/void/vaccination', 'ServiceTransactionController@voidVaccination')->name('transaction.vaccination.void');
+
+				// VoidGrooming
+			Route::get('/{id}/void/grooming', 'ServiceTransactionController@voidGrooming')->name('transaction.grooming.void');
+
+				// VoidConsultation
+			Route::get('/{id}/void/boarding', 'ServiceTransactionController@voidBoarding')->name('transaction.boarding.void');
 		});
 	});
 

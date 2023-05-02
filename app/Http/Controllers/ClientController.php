@@ -23,7 +23,18 @@ class ClientController extends Controller
 	{
 		$pi = PetsInformation::find($id);
 		return view('admin.pet-information.pet.history', [
-			'pet' => $pi
+			'pet' => $pi,
+			'id' => $id,
+		]);
+	}
+
+	protected function printHistory(Request $req, $id) {
+		$petInfo = PetsInformation::find($id);
+		$output = $req->output;
+
+		return view('admin.pet-information.pet.print_history',[
+			'output' => $output,
+			'pet' => $petInfo
 		]);
 	}
 

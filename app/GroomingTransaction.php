@@ -19,8 +19,8 @@ class GroomingTransaction extends Model
         return $this->belongsTo('App\serviceOrderTransaction');
     }
 
-    //  // CUSTOM FUNCTION
-    // public function isVoided() {
-    //     return (!empty($this->voided_at) || ($this->voided_at != null));
-    // }
+     // CUSTOM FUNCTION
+    public function isVoided() {
+        return (!empty($this->voided_at) || ($this->voided_at != null));
+    }
 }

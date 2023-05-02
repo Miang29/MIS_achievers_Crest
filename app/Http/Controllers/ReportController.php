@@ -66,11 +66,6 @@ class ReportController extends Controller
 				break;
 		}
 
-		// $fromMin = Carbon\Carbon::parse(Carbon\Carbon::now()->format('Y-m')."-1")->format('Y-m-d');
-		// $fromMax = ;
-		// $toMin = ;
-		// $toMax = ;
-
 		return view('admin.report.index', [
 			'data' => $data,
 			'type' => $t,

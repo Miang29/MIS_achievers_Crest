@@ -29,14 +29,15 @@ class ServiceTransactionController extends Controller
 	// INDEX 
 	protected function Services()
 	{
-		$consulService = ServicesOrderTransaction::has("consultation", '>', 0)->with('petsInformations')->get();
-		$vaccService =  ServicesOrderTransaction::has("vaccination", '>', 0)->get();
-		$groomService = ServicesOrderTransaction::has("grooming", '>',0)->get();
-		$boardService = ServicesOrderTransaction::has("boarding", '>', 0)->get();
+		$consulService = ServicesOrderTransaction::has("consultation", '>', 0)->with(['consultation','consultation.serviceVariation','consultation.serviceVariation.services','consultation.petsInformations'])->get();
+		$vaccService =  ServicesOrderTransaction::has("vaccination", '>', 0)->with('vaccination')->get();
+		$groomService = ServicesOrderTransaction::has("grooming", '>',0)->with('grooming')->get();
+		$boardService = ServicesOrderTransaction::has("boarding", '>', 0)->with('boarding')->get();
+dd($consulService[0]->consultation);
 		return view('admin.transaction.services-transaction.index',[
 			'consultService' => $consulService,
 			'vacciService' => $vaccService,
-			'groommService' => $groomService,
+			'groomService' => $groomService,
 			'boardiService' => $boardService,
 		]);
 	}
@@ -377,13 +378,6 @@ class ServiceTransactionController extends Controller
 			'services' => $services
 		]);
 	}
-	// ARCHIVE
-	protected function deleteServices($id)
-	{
-		return redirect()
-		->route('transaction.service')
-		->with('flash_success', 'Successfully removed transaction from table');
-	}
 
 	// ----------------- VOID ---------------- //
 	protected function voidConsultation($id) {
@@ -416,4 +410,101 @@ class ServiceTransactionController extends Controller
 		->route('transaction.service')
 		->with('flash_success', 'Voided successfully');
 	}
+
+	// ----------------- VOID ---------------- //
+	protected function voidVaccination($id) {
+		$vacTrans = ServicesOrderTransaction::with("vaccination")->find($id);
+
+		if ($vacTrans == null || empty($vacTrans)) {
+			return redirect()
+			->route('transaction.service')
+			->with('flash_error', 'The transaction either does not exists or is already deleted.');
+		}
+
+		try {
+			DB::beginTransaction();
+
+			$vacTrans->voided_at = Carbon::now();
+			$vacTrans->save();
+		
+		
+			DB::commit();
+		} catch (Exception $e) {
+			DB::rollback();
+			Log::error($e);
+
+			return redirect()
+			->route('transaction.service')
+			->with('flash_error', 'Something went wrong, please try again later');
+		}
+
+		return redirect()
+		->route('transaction.service')
+		->with('flash_success', 'Voided successfully');
+	}
+
+	// ----------------- VOID ---------------- //
+	protected function voidBoarding($id) {
+		$boardTrans = ServicesOrderTransaction::with("boarding")->find($id);
+
+		if ($boardTrans == null || empty($boardTrans)) {
+			return redirect()
+			->route('transaction.service')
+			->with('flash_error', 'The transaction either does not exists or is already deleted.');
+		}
+
+		try {
+			DB::beginTransaction();
+
+			$boardTrans->voided_at = Carbon::now();
+			$boardTrans->save();
+		
+		
+			DB::commit();
+		} catch (Exception $e) {
+			DB::rollback();
+			Log::error($e);
+
+			return redirect()
+			->route('transaction.service')
+			->with('flash_error', 'Something went wrong, please try again later');
+		}
+
+		return redirect()
+		->route('transaction.service')
+		->with('flash_success', 'Voided successfully');
+	}
+
+	// ----------------- VOID ---------------- //
+	protected function voidGrooming($id) {
+		$groomTrans = ServicesOrderTransaction::with("grooming")->find($id);
+
+		if ($groomTrans == null || empty($groomTrans)) {
+			return redirect()
+			->route('transaction.service')
+			->with('flash_error', 'The transaction either does not exists or is already deleted.');
+		}
+
+		try {
+			DB::beginTransaction();
+
+			$groomTrans->voided_at = Carbon::now();
+			$groomTrans->save();
+		
+		
+			DB::commit();
+		} catch (Exception $e) {
+			DB::rollback();
+			Log::error($e);
+
+			return redirect()
+			->route('transaction.service')
+			->with('flash_error', 'Something went wrong, please try again later');
+		}
+
+		return redirect()
+		->route('transaction.service')
+		->with('flash_success', 'Voided successfully');
+	}
+
 }

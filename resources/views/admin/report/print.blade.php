@@ -49,7 +49,9 @@
 		<link rel="mask-icon" href="{{ App\Settings::getInstance('web-logo')->getImage(!App\Settings::getInstance('web-logo')->is_file) }}">
 		
 		{{-- Title --}}
-		<title>Print Report - {{ App\Settings::getValue('web-name') }}</title>
+		<title>Print Report - {{ App\Settings::getValue('web-name') }}
+			
+		</title>
 	</head>
 
 	<body>
@@ -58,7 +60,7 @@
 			<h4>{{ $from->format('M d, Y') }} - {{ $to->format('M d, Y') }}</h4>
 
 			{{-- TABLE START --}}
-			<table class="table table-striped m-0 p-0 text-center">
+			<table class="table table-striped m-0 p-0 text-center" id="asd">
 				@if (in_array($type, ['users', 'clients', 'pets', 'appointments', 'inventory', 'transaction-sales', 'transaction-services', 'services']))
 					@include("admin.report.types.{$type}", ['data' => $data])
 				@else
@@ -75,6 +77,8 @@
 		<script type="text/javascript">
 			$(document).ready(() => {
 				@if ($output == 'print')
+				document.getElementById("asd");
+
 				window.onload = () => { 
 					window.print();
 				};
@@ -84,7 +88,11 @@
 				}
 				@elseif ($output == 'pdf')
 
-				let isConverted = html2pdf().from($('html').html()).save("Report for {{ ucfirst($type) }} ({{ $from->format('M d, Y') }} - {{ $to->format('M d, Y') }})");
+				let isConverted = html2pdf()
+					.from($('html').html())
+					.save(
+						"Report for {{ ucfirst($type) }} ({{ $from->format('M d, Y') }} - {{ $to->format('M d, Y') }})"
+						);
 
 				let interval = setInterval(() => {
 					if (isConverted._state == 1) {

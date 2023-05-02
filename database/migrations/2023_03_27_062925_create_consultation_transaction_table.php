@@ -16,18 +16,18 @@ class CreateConsultationTransactionTable extends Migration
         Schema::create('consultation_transaction', function(Blueprint $table){
             $table->increments('id');
             $table->integer('transaction_id')->unsigned();
-            $table->string('service_category_id');
+            $table->integer('service_category_id')->unsigned();
             $table->integer('price');
             $table->integer('additional_cost')->unsigned();
             $table->integer('total');
-            $table->string('pet_name');
+            $table->integer('pet_name')->unsigned();
             $table->string('weight');
             $table->string('temperature');
             $table->string('findings')->nullable();
             $table->string('treatment')->nullable();
 
             $table->timestamps();
-            // $table->foreign('transaction_id')->references('id')->on('services_order_transactions')->onDelete('cascade');
+            $table->foreign('transaction_id')->references('id')->on('services_order_transactions')->onDelete('cascade');
 
         });
     }

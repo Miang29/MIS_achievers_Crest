@@ -16,13 +16,13 @@ class CreateVaccinationTransactionTable extends Migration
         Schema::create('vaccination_transaction', function(Blueprint $table){
             $table->increments('id');
             $table->integer('transaction_id')->unsigned();
-            $table->string('pet_name');
-            $table->string('variation_id');
+            $table->integer('pet_name')->unsigned();
+            $table->integer('variation_id')->unsigned();
             $table->date('expired_at');
             $table->integer('price');
 
             $table->timestamps();
-            // $table->foreign('transaction_id')->references('id')->on('services_order_transactions')->onDelete('cascade');
+            $table->foreign('transaction_id')->references('id')->on('services_order_transactions')->onDelete('cascade');
 
         });
     }
