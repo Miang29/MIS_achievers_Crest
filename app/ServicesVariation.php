@@ -18,7 +18,15 @@ class ServicesVariation extends Model
     } 
 
     public function vaccination() {
-        return $this->belongsTo('App\Vaccination', 'variation_name');
+        return $this->hasMany('App\Vaccination', 'id');
     } 
+
+    public function grooming() {
+        return $this->hasMany('App\GroomingTransaction', 'variation_name');
+    }
+
+    public function boarding() {
+        return $this->hasMany('App\BoardingTransaction', 'variation_name');
+    }
    
 }

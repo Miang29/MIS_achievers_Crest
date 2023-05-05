@@ -74,15 +74,23 @@
 								<td>
 									@php($len = 0)
 									@php($pn = "")
-									@foreach ($cs->consultation[0]->petsInformations as $p)
 										@if ($len >= 2)
 											@break
 										@endif
-
-										@php($pn .= " {$p->pet_name},")
+										@foreach($cs->consultation as $c)
+										@php($pn .= " {$c->petsInformations->pet_name}, ")
 										@php($len++)
-									@endforeach
-									{{ substr($pn, 1, strlen($pn)-2)  }}{{ $len <= 2 ? "" : "..." }}
+										@endforeach
+									{{ substr($pn, 1, strlen($pn)-2)  }}{{ $len <= 2 ? "" : "...." }}
+								</td>
+								<td>₱{{ number_format($cs->consultation()->sum("total"), 2) }}</td>
+							    <td class="text-center">
+									<div class="btn-group">
+										<a class="btn btn-info btn-sm" href="#"><i class="fa-solid fa-eye"></i></a>
+										@if (!$cs->isVoided())
+										<button class="btn btn-outline-danger btn-sm" onclick="confirmLeave('{{ route('transaction.vaccination.void', [$cs->id]) }}', undefined, 'Are you sure you want to void the transaction?');"><i class="fa-solid fa-ban"></i></button>
+										@endif
+									</div>	
 								</td>
 							</tr>
 							@empty
@@ -111,6 +119,37 @@
 						</thead>
 
 						<tbody>
+							@forelse ($vacciService as $vs)
+							<tr class="{{ $vs->isVoided() ? "bg-danger text-white" : "" }}">
+								<td>{{ $vs->reference_no }}</td>
+								<td>{{ $vs->vaccination[0]->variations->variation_name }}</td>
+								<td>
+									@php($len = 0)
+									@php($pn = "")
+										@if ($len >= 2)
+											@break
+										@endif
+										@foreach($vs->vaccination as $v)
+										@php($pn .= " {$v->petsInformations->pet_name}, ")
+										@php($len++)
+										@endforeach
+									{{ substr($pn, 1, strlen($pn)-2)  }}{{ $len <= 2 ? "" : "...." }}
+								</td>
+								<td>₱{{ number_format($vs->vaccination()->sum("price"), 2) }}</td>
+							    <td class="text-center">
+									<div class="btn-group">
+										<a class="btn btn-info btn-sm" href="#"><i class="fa-solid fa-eye"></i></a>
+										@if (!$cs->isVoided())
+										<button class="btn btn-outline-danger btn-sm" onclick="confirmLeave('{{ route('transaction.vaccination.void', [$vs->id]) }}', undefined, 'Are you sure you want to void the transaction?');"><i class="fa-solid fa-ban"></i></button>
+										@endif
+									</div>	
+								</td>
+							</tr>
+							@empty
+							<tr>
+								 <td colspan="5">~Nothing to show~</td>
+							</tr>
+							@endforelse
 						</tbody>
 					</table>
 				</div>
@@ -124,7 +163,7 @@
 						<thead>
 							<tr>
 								<th scope="col" class="hr-thick text-1">Reference No</th>
-								<th scope="col" class="hr-thick text-1">Variation Name</th>
+								<th scope="col" class="hr-thick text-1">Grooming Type</th>
 								<th scope="col" class="hr-thick text-1">Pet Name</th>
 								<th scope="col" class="hr-thick text-1">Total Amount</th>
 								<th></th>
@@ -132,6 +171,37 @@
 						</thead>
 
 						<tbody>
+							@forelse ($groomService as $gs)
+							<tr class="{{ $gs->isVoided() ? "bg-danger text-white" : "" }}">
+								<td>{{ $gs->reference_no }}</td>
+								<td>{{ $gs->grooming[0]->variations->variation_name }}</td>
+								<td>
+									@php($len = 0)
+									@php($pn = "")
+										@if ($len >= 2)
+											@break
+										@endif
+										@foreach($gs->grooming as $g)
+										@php($pn .= " {$g->petsInformations->pet_name}, ")
+										@php($len++)
+										@endforeach
+									{{ substr($pn, 1, strlen($pn)-2)  }}{{ $len <= 2 ? "" : "...." }}
+								</td>
+								<td>₱{{ number_format($gs->grooming()->sum("price"), 2) }}</td>
+							    <td class="text-center">
+									<div class="btn-group">
+										<a class="btn btn-info btn-sm" href="#"><i class="fa-solid fa-eye"></i></a>
+										@if (!$cs->isVoided())
+										<button class="btn btn-outline-danger btn-sm" onclick="confirmLeave('{{ route('transaction.vaccination.void', [$gs->id]) }}', undefined, 'Are you sure you want to void the transaction?');"><i class="fa-solid fa-ban"></i></button>
+										@endif
+									</div>	
+								</td>
+							</tr>
+							@empty
+							<tr>
+								 <td colspan="5">~Nothing to show~</td>
+							</tr>
+							@endforelse
 						</tbody>
 					</table>
 				</div>
@@ -153,6 +223,37 @@
 						</thead>
 
 						<tbody>
+							@forelse ($boardService as $bs)
+							<tr class="{{ $bs->isVoided() ? "bg-danger text-white" : "" }}">
+								<td>{{ $bs->reference_no }}</td>
+								<td>{{ $bs->boarding[0]->variations->variation_name }}</td>
+								<td>
+									@php($len = 0)
+									@php($pn = "")
+										@if ($len >= 2)
+											@break
+										@endif
+										@foreach($bs->boarding as $b)
+										@php($pn .= " {$b->petsInformations->pet_name}, ")
+										@php($len++)
+										@endforeach
+									{{ substr($pn, 1, strlen($pn)-2)  }}{{ $len <= 2 ? "" : "...." }}
+								</td>
+								<td>₱{{ number_format($bs->boarding()->sum("price"), 2) }}</td>
+							    <td class="text-center">
+									<div class="btn-group">
+										<a class="btn btn-info btn-sm" href="#"><i class="fa-solid fa-eye"></i></a>
+										@if (!$cs->isVoided())
+										<button class="btn btn-outline-danger btn-sm" onclick="confirmLeave('{{ route('transaction.vaccination.void', [$bs->id]) }}', undefined, 'Are you sure you want to void the transaction?');"><i class="fa-solid fa-ban"></i></button>
+										@endif
+									</div>	
+								</td>
+							</tr>
+							@empty
+							<tr>
+								 <td colspan="5">~Nothing to show~</td>
+							</tr>
+							@endforelse
 						</tbody>
 					</table>
 				</div>

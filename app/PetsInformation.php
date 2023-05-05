@@ -22,13 +22,20 @@ class PetsInformation extends Model
         return $this->belongsTo('App\User', 'pet_owner');
     }
 
-   
     public function vaccination() {
-        return $this->belongsTo('App\Vaccination', 'pet_name');
+        return $this->hasMany('App\Vaccination', 'pet_name');
     }
 
-      public function consultation() {
-        return $this->belongsTo('App\ConsultationTransaction','service_category_id');
+    public function grooming() {
+        return $this->hasMany('App\GroomingTransaction', 'pet_name');
+    }
+
+    public function boarding() {
+        return $this->hasMany('App\BoardingTransaction', 'pet_name');
+    }
+
+    public function consultation() {
+        return $this->hasMany('App\ConsultationTransaction','service_category_id', 'pet_name');
     }
 
     public function getImage($getFull = true) {

@@ -30,15 +30,15 @@ class ServiceTransactionController extends Controller
 	protected function Services()
 	{
 		$consulService = ServicesOrderTransaction::has("consultation", '>', 0)->with(['consultation','consultation.serviceVariation','consultation.serviceVariation.services','consultation.petsInformations'])->get();
-		$vaccService =  ServicesOrderTransaction::has("vaccination", '>', 0)->with('vaccination')->get();
-		$groomService = ServicesOrderTransaction::has("grooming", '>',0)->with('grooming')->get();
-		$boardService = ServicesOrderTransaction::has("boarding", '>', 0)->with('boarding')->get();
-dd($consulService[0]->consultation);
+		$vaccService =  ServicesOrderTransaction::has("vaccination", '>', 0)->with(['vaccination','vaccination.variations','vaccination.petsInformations'])->get();
+		$groomService = ServicesOrderTransaction::has("grooming", '>',0)->with(['grooming','grooming.variations','grooming.petsInformations' ])->get();
+		$boardService = ServicesOrderTransaction::has("boarding", '>', 0)->with(['boarding','boarding.variations','grooming.petsInformations'])->get();
+// dd($consulService[0]->consultation);
 		return view('admin.transaction.services-transaction.index',[
 			'consultService' => $consulService,
 			'vacciService' => $vaccService,
 			'groomService' => $groomService,
-			'boardiService' => $boardService,
+			'boardService' => $boardService,
 		]);
 	}
 

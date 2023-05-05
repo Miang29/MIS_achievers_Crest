@@ -22,12 +22,13 @@ class VaccinationTransaction extends Model
     }
 
     public function petsInformations() {
-        return $this->hasMany('App\PetsInformation', 'pet_owner', 'id');
+        return $this->belongsTo('App\PetsInformation', 'pet_name', 'id');
     }
 
        public function variations() {
-        return $this->hasMany('App\ServicesVariation', 'variation_name','price');
+        return $this->belongsTo('App\ServicesVariation', 'variation_id',);
     }
+
 
      // CUSTOM FUNCTION
     public function isVoided() {

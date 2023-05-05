@@ -30,7 +30,7 @@ class ConsultationTransaction extends Model
 	}
 
 	public function petsInformations() {
-		return $this->hasMany('App\PetsInformation', 'pet_name', 'id');
+		return $this->belongsTo('App\PetsInformation', 'pet_name', 'id');
 	}
 
 	 // CUSTOM FUNCTION
