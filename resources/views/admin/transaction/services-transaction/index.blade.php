@@ -19,6 +19,7 @@
 				<a  href="{{ route('transaction.vaccination.create') }}" class="dropdown-item" type="button"><i class="fa-solid fa-syringe mr-2"></i>Vaccination</a>
 				<a href="{{ route('transaction.grooming.create') }}" class="dropdown-item" type="button"><i class="fa-solid fa-scissors mr-2"></i>Grooming</a>
 				<a href="{{ route('transaction.boarding.create') }}" class="dropdown-item" type="button"><i class="fa-solid fa-paw mr-2"></i>Boarding</a>
+				<a href="{{ route('other.transaction.create') }}" class="dropdown-item" type="button"><i class="fa-solid fa-sliders mr-2"></i>Other Transaction</a>
 			</div>
 		</div>
 
@@ -48,6 +49,10 @@
 
 			<li class="nav-item">
 				<a class="nav-link" id="boarding-tab" data-toggle="tab" href="#boarding" role="tab" aria-controls="boarding" aria-selected="false">Boarding Table</a>
+			</li>
+
+			<li class="nav-item">
+				<a class="nav-link" id="other-tab" data-toggle="tab" href="#other" role="tab" aria-controls="other" aria-selected="false">Other Transactions Table </a>
 			</li>
 		</ul>
 
@@ -86,7 +91,7 @@
 								<td>₱{{ number_format($cs->consultation()->sum("total"), 2) }}</td>
 							    <td class="text-center">
 									<div class="btn-group">
-										<a class="btn btn-info btn-sm" href="#"><i class="fa-solid fa-eye"></i></a>
+										<a class="btn btn-info btn-sm" href="{{route ('consultation.transaction.show', [$cs->id] )}}"><i class="fa-solid fa-eye"></i></a>
 										@if (!$cs->isVoided())
 										<button class="btn btn-outline-danger btn-sm" onclick="confirmLeave('{{ route('transaction.vaccination.void', [$cs->id]) }}', undefined, 'Are you sure you want to void the transaction?');"><i class="fa-solid fa-ban"></i></button>
 										@endif
@@ -138,7 +143,7 @@
 								<td>₱{{ number_format($vs->vaccination()->sum("price"), 2) }}</td>
 							    <td class="text-center">
 									<div class="btn-group">
-										<a class="btn btn-info btn-sm" href="#"><i class="fa-solid fa-eye"></i></a>
+										<a class="btn btn-info btn-sm" href="{{ route('vaccination.transaction.show', [$vs->id]) }}"><i class="fa-solid fa-eye"></i></a>
 										@if (!$cs->isVoided())
 										<button class="btn btn-outline-danger btn-sm" onclick="confirmLeave('{{ route('transaction.vaccination.void', [$vs->id]) }}', undefined, 'Are you sure you want to void the transaction?');"><i class="fa-solid fa-ban"></i></button>
 										@endif
@@ -190,9 +195,9 @@
 								<td>₱{{ number_format($gs->grooming()->sum("price"), 2) }}</td>
 							    <td class="text-center">
 									<div class="btn-group">
-										<a class="btn btn-info btn-sm" href="#"><i class="fa-solid fa-eye"></i></a>
+										<a class="btn btn-info btn-sm" href="{{route ('grooming.transaction.show', [$gs->id]) }}"><i class="fa-solid fa-eye"></i></a>
 										@if (!$cs->isVoided())
-										<button class="btn btn-outline-danger btn-sm" onclick="confirmLeave('{{ route('transaction.vaccination.void', [$gs->id]) }}', undefined, 'Are you sure you want to void the transaction?');"><i class="fa-solid fa-ban"></i></button>
+										<button class="btn btn-outline-danger btn-sm" onclick="confirmLeave('{{ route('transaction.grooming.void', [$gs->id]) }}', undefined, 'Are you sure you want to void the transaction?');"><i class="fa-solid fa-ban"></i></button>
 										@endif
 									</div>	
 								</td>
@@ -242,9 +247,9 @@
 								<td>₱{{ number_format($bs->boarding()->sum("price"), 2) }}</td>
 							    <td class="text-center">
 									<div class="btn-group">
-										<a class="btn btn-info btn-sm" href="#"><i class="fa-solid fa-eye"></i></a>
+										<a class="btn btn-info btn-sm" href="{{ route('boarding.transaction.show', [$bs->id])}}"><i class="fa-solid fa-eye"></i></a>
 										@if (!$cs->isVoided())
-										<button class="btn btn-outline-danger btn-sm" onclick="confirmLeave('{{ route('transaction.vaccination.void', [$bs->id]) }}', undefined, 'Are you sure you want to void the transaction?');"><i class="fa-solid fa-ban"></i></button>
+										<button class="btn btn-outline-danger btn-sm" onclick="confirmLeave('{{ route('transaction.boarding.void', [$bs->id]) }}', undefined, 'Are you sure you want to void the transaction?');"><i class="fa-solid fa-ban"></i></button>
 										@endif
 									</div>	
 								</td>
@@ -259,6 +264,58 @@
 				</div>
 			</div>
 			{{-- END OF BOARDING --}}
+
+			{{-- OTHER TRANSATION --}}
+			<div class="tab-pane fade" id="other" role="tabpanel" aria-labelledby="other-tab">
+				<div class=" card-body h-100 px-0 pt-0 ">
+					<table class="table table-striped text-center" id="table-content">
+						<thead>
+							<tr>
+								<th scope="col" class="hr-thick text-1">Reference No</th>
+								<th scope="col" class="hr-thick text-1">Service Name</th>
+								<th scope="col" class="hr-thick text-1">Pet Name</th>
+								<th scope="col" class="hr-thick text-1">Total Amount</th>
+								<th></th>
+							</tr>
+						</thead>
+
+						<tbody>
+							@forelse ($otherService as $os)
+							<tr class="{{ $os->isVoided() ? "bg-danger text-white" : "" }}">
+								<td>{{ $os->reference_no }}</td>
+								<td>{{$os->otherTransaction[0]->variations->services->service_name}} - {{ $os->otherTransaction[0]->variations->variation_name }}</td>
+								<td>
+									@php($len = 0)
+									@php($pn = "")
+										@if ($len >= 2)
+											@break
+										@endif
+										@foreach($os->otherTransaction as $o)
+										@php($pn .= " {$o->petsInformations->pet_name}, ")
+										@php($len++)
+										@endforeach
+									{{ substr($pn, 1, strlen($pn)-2)  }}{{ $len <= 2 ? "" : "...." }}
+								</td>
+								<td>₱{{ number_format($os->otherTransaction()->sum("price"), 2) }}</td>
+							    <td class="text-center">
+									<div class="btn-group">
+										<a class="btn btn-info btn-sm" href="{{ route('other.transaction.show', [$os->id])}}"><i class="fa-solid fa-eye"></i></a>
+										@if (!$os->isVoided())
+										<button class="btn btn-outline-danger btn-sm" onclick="confirmLeave('{{ route('transaction.void', [$os->id]) }}', undefined, 'Are you sure you want to void the transaction?');"><i class="fa-solid fa-ban"></i></button>
+										@endif
+									</div>	
+								</td>
+							</tr>
+							@empty
+							<tr>
+								 <td colspan="5">~Nothing to show~</td>
+							</tr>
+							@endforelse
+						</tbody>
+					</table>
+				</div>
+			</div>
+			{{-- END OF OTHER TRANSACTION --}}
 		</div>
 	</div>
 </div>

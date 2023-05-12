@@ -35,8 +35,13 @@ class PetsInformation extends Model
     }
 
     public function consultation() {
-        return $this->hasMany('App\ConsultationTransaction','service_category_id', 'pet_name');
+        return $this->hasMany('App\ConsultationTransaction', 'pet_name');
     }
+
+    public function otherTransaction() {
+        return $this->hasMany('App\OtherTransation', 'pet_name');
+    }
+
 
     public function getImage($getFull = true) {
         return $getFull ? asset("uploads/clients/{$this->pet_owner}/pets/{$this->pet_image}") : $this->pet_image;

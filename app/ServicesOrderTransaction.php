@@ -28,9 +28,14 @@ class ServicesOrderTransaction extends Model
 		return $this->hasMany('App\ConsultationTransaction', 'transaction_id');
 	}
 
- public function grooming() {
+ 	public function grooming() {
 		return $this->hasMany('App\GroomingTransaction', 'transaction_id');
 	}
+
+	public function otherTransaction() {
+		return $this->hasMany('App\OtherTransation', 'transaction_id');
+	}
+
 
 	// CUSTOM FUNCTION
 	public function isVoided() {

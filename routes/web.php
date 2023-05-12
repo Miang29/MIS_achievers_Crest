@@ -104,28 +104,40 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 			//Index
 			Route::get('/', 'ServiceTransactionController@Services')->name('transaction.service');
 
-			//Create
+			//Create Consultation
 			Route::get('/create', 'ServiceTransactionController@createConsultation')->name('transaction.consultation.create');
 			//Submit Consultation
 			Route::post('/submit/consultation/transaction','ServiceTransactionController@submitConsultation')->name('submit.consultation');
+			//Show Consultation
+			Route::get('/consultation/show/{id}', 'ServiceTransactionController@showConsultation')->name('consultation.transaction.show');
 
 			//Create-Vaccination
 			Route::get('/create/vaccination', 'ServiceTransactionController@createVaccination')->name('transaction.vaccination.create');
 			// Submit-Vaccination
 			Route::post('/submit/vaccination/transaction','ServiceTransactionController@submitVaccination')->name('submit.vaccination');
+			//Show Vaccination
+			Route::get('/vaccination/show/{id}', 'ServiceTransactionController@showVaccination')->name('vaccination.transaction.show');
 
 			//Create-Grooming
 			Route::get('/create/grooming', 'ServiceTransactionController@createGrooming')->name('transaction.grooming.create');
 			// Submit-Grooming
 			Route::post('/submit/grooming/transaction', 'ServiceTransactionController@submitGrooming')->name('submit.grooming');
+			//Show Grooming
+			Route::get('/grooming/show/{id}', 'ServiceTransactionController@showGrooming')->name('grooming.transaction.show');
 
 			//Create-Boarding
 			Route::get('/create/boarding', 'ServiceTransactionController@createBoarding')->name('transaction.boarding.create');
 			// Submit-Boarding
 			Route::post('/submit/boarding/transaction','ServiceTransactionController@submitBoarding')->name('submit.boarding');
+			//Show Grooming
+			Route::get('/boarding/show/{id}', 'ServiceTransactionController@showBoarding')->name('boarding.transaction.show');
 
-			//Show
-			Route::get('/show/{id}', 'ServiceTransactionController@show')->name('transaction.service.view');
+			//Create-Other-Transaction
+			Route::get('/create/other', 'ServiceTransactionController@createOthers')->name('other.transaction.create');
+			// Submit-Other-Transaction
+			Route::post('/submit/other/transaction','ServiceTransactionController@submitOtherTransaction')->name('submit.other.transaction');
+			//Show Transaction
+			Route::get('/transaction/show/{id}', 'ServiceTransactionController@showTransaction')->name('other.transaction.show');
 
 			//Delete
 			Route::get('/{id}/delete', 'ServiceTransactionController@deleteService')->name('transaction.service.delete');
@@ -135,11 +147,15 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 			// VoidConsultation
 			Route::get('/{id}/void/vaccination', 'ServiceTransactionController@voidVaccination')->name('transaction.vaccination.void');
 
-				// VoidGrooming
+			// VoidGrooming
 			Route::get('/{id}/void/grooming', 'ServiceTransactionController@voidGrooming')->name('transaction.grooming.void');
 
-				// VoidConsultation
+			// VoidConsultation
 			Route::get('/{id}/void/boarding', 'ServiceTransactionController@voidBoarding')->name('transaction.boarding.void');
+			
+			// VoidTransaction
+			Route::get('/{id}/void', 'ServiceTransactionController@voidTransaction')->name('transaction.void');
+		
 		});
 	});
 

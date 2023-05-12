@@ -11,6 +11,7 @@ use App\ConsultationTransaction;
 use App\VaccinationTransaction;
 use App\GroomingTransaction;
 use App\BoardingTransaction;
+use App\OtherTransation;
 use App\User;
 use Carbon\Carbon;
 
@@ -33,12 +34,59 @@ class ServiceTransactionController extends Controller
 		$vaccService =  ServicesOrderTransaction::has("vaccination", '>', 0)->with(['vaccination','vaccination.variations','vaccination.petsInformations'])->get();
 		$groomService = ServicesOrderTransaction::has("grooming", '>',0)->with(['grooming','grooming.variations','grooming.petsInformations' ])->get();
 		$boardService = ServicesOrderTransaction::has("boarding", '>', 0)->with(['boarding','boarding.variations','grooming.petsInformations'])->get();
-// dd($consulService[0]->consultation);
+		$otherService = ServicesOrderTransaction::has("otherTransaction",'>',0)->with(['otherTransaction','otherTransaction.variations','otherTransaction.variations.services','otherTransaction.petsInformations'])->get();
+	// dd($consulService[0]->consultation);
 		return view('admin.transaction.services-transaction.index',[
 			'consultService' => $consulService,
 			'vacciService' => $vaccService,
 			'groomService' => $groomService,
 			'boardService' => $boardService,
+			'otherService' => $otherService,
+		]);
+	}
+
+	protected function showConsultation($id)
+	{
+		$conTran = ServicesOrderTransaction::with('consultation')->find($id);
+		return view('admin.transaction.services-transaction.consultation_show', [
+			'id' => $id,
+			'conTran' => $conTran
+		]);
+	}
+
+	protected function showVaccination($id)
+	{
+		$vacTran = ServicesOrderTransaction::with('vaccination')->find($id);
+		return view('admin.transaction.services-transaction.vaccination_show', [
+			'id' => $id,
+			'vacTran' => $vacTran
+		]);
+	}
+
+	protected function showGrooming($id)
+	{
+		$groomTran = ServicesOrderTransaction::with('grooming')->find($id);
+		return view('admin.transaction.services-transaction.grooming_show', [
+			'id' => $id,
+			'groomTran' => $groomTran
+		]);
+	}
+
+	protected function showBoarding($id)
+	{
+		$boardTran = ServicesOrderTransaction::with('boarding')->find($id);
+		return view('admin.transaction.services-transaction.boarding_show', [
+			'id' => $id,
+			'boardTran' => $boardTran
+		]);
+	}
+
+	protected function showTransaction($id)
+	{
+		$Tran = ServicesOrderTransaction::with('otherTransaction')->find($id);
+		return view('admin.transaction.services-transaction.transaction_show', [
+			'id' => $id,
+			'Tran' => $Tran
 		]);
 	}
 
@@ -296,7 +344,7 @@ class ServiceTransactionController extends Controller
 	   // CREATE BOARDING TRANSACTION
 	protected function createBoarding()
 	{
-		 $services = Services::where('service_category_id', '=', 7)->has("variations", '>', 0)->with('variations')->get();
+		$services = Services::where('service_category_id', '=', 7)->has("variations", '>', 0)->with('variations')->get();
 		$owner = User::where('user_type_id', '=', 4)->has("petsInformations", '>', 0)->with('petsInformations')->get();
 		  return view('admin.transaction.services-transaction.boarding-create',[
 			'service' => $services,
@@ -368,15 +416,78 @@ class ServiceTransactionController extends Controller
 			->with('flash_success', "Transaction has been created successfully.");
 	}
 
-	// SHOW
-	protected function show($id)
+	// CREATE OTHER TRANSACTION
+	protected function createOthers()
 	{
-		$services = $this->services[$id];
-
-		return view('admin.transaction.services-transaction.view', [
-			'id' => $id,
-			'services' => $services
+		$services = Services::has("variations", '>', 0)->with('variations')->get();
+		$owner = User::where('user_type_id', '=', 4)->has("petsInformations", '>', 0)->with('petsInformations')->get();
+		return view('admin.transaction.services-transaction.others-create',[
+			'services' => $services,
+			'owner' => $owner
 		]);
+	}
+
+protected function submitOtherTransaction(Request $req)
+	{
+		$validator = Validator::make($req->all(), [
+			'reference_no' => 'required|numeric|between:1000000000,9999999999999',
+			'mode_of_payment' => 'required|max:255|string',
+			'variation_id' => 'required|array',
+			'variation_id.*'=>'required|exists:services_variations,id|string',
+			'variation_id.*.*' => 'required|min:2|max:255|string',
+			'pet_name' => 'required|array',
+			'pet_name.*' => 'required|exists:pets_informations,id|string',
+			'pet_name.*.*' => 'required|min:2|max:255|string',
+			'price' => 'required|array',
+			'price.*' => 'required|numeric'
+
+			]);
+
+		$validator->after(function($validator) use ($req) {
+			$transaction = ServicesOrderTransaction::where('reference_no', '=', $req->reference_no)
+			->where("voided_at", "=", null)
+			->first();
+			if (!(empty($transaction) || $transaction == null)) {
+				$validator->errors()->add("reference_no", "Duplicate reference number");
+			}
+		});
+
+		if ($validator->fails()) {
+			Log::debug($validator->messages());
+
+			return redirect()
+				->back()
+				->withErrors($validator)
+				->withInput();
+		}
+		try {
+			DB::beginTransaction(); 
+			$serviceTransaction = ServicesOrderTransaction::create([
+				'mode_of_payment' => $req->mode_of_payment,
+				'reference_no' => $req->reference_no,
+			]);
+			for ($i = 0; $i < count($req->variation_id); $i++) {
+				
+				$ct = OtherTransation::create([
+					'transaction_id'=> $serviceTransaction->id,
+					'variation_id' => $req->variation_id[$i],
+					'pet_name' => $req->pet_name[$i],
+					'price' =>  $req->price[$i],
+				]);
+			}
+			DB::commit();
+		} catch (Exception $e) {
+			DB::rollback();
+			Log::error($e);
+			
+			return redirect()
+			->route('other.transaction.create')
+			->with('flash_error', 'Something went wrong, please try again later');
+		}
+	// dd("TEST");
+		return redirect()
+			->route('transaction.service')
+			->with('flash_success', "Transaction has been created successfully.");
 	}
 
 	// ----------------- VOID ---------------- //
@@ -506,5 +617,38 @@ class ServiceTransactionController extends Controller
 		->route('transaction.service')
 		->with('flash_success', 'Voided successfully');
 	}
+
+	// ----------------- VOID ---------------- //
+	protected function voidTransaction($id) {
+		$Trans = ServicesOrderTransaction::with("otherTransaction")->find($id);
+
+		if ($Trans == null || empty($Trans)) {
+			return redirect()
+			->route('transaction.service')
+			->with('flash_error', 'The transaction either does not exists or is already deleted.');
+		}
+
+		try {
+			DB::beginTransaction();
+
+			$Trans->voided_at = Carbon::now();
+			$Trans->save();
+		
+		
+			DB::commit();
+		} catch (Exception $e) {
+			DB::rollback();
+			Log::error($e);
+
+			return redirect()
+			->route('transaction.service')
+			->with('flash_error', 'Something went wrong, please try again later');
+		}
+
+		return redirect()
+		->route('transaction.service')
+		->with('flash_success', 'Voided successfully');
+	}
+
 
 }
