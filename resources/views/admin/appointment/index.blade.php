@@ -29,10 +29,10 @@
 			<table class="table table-striped text-center" id="table-content">
 				<thead>
 					<tr>
-						<th scope="col" class="hr-thick text-1 text-center">Pet Owner</th>
-						<th scope="col" class="hr-thick text-1 text-center">Email</th>
+						<th scope="col" class="hr-thick text-1 text-center">Client Name</th>
 						<th scope="col" class="hr-thick text-1 text-center">Appointment Date</th>
 						<th scope="col" class="hr-thick text-1 text-center">Service Type</th>
+						<th scope="col" class="hr-thick text-1 text-center">Status</th>
 					</tr>
 				</thead>
 
@@ -40,9 +40,9 @@
 					@forelse ($appointments as $ap)
 					<tr>
 						<td class="text-center">{{ $ap->pet_owner }}</td>
-						<td class="text-center">{{ $ap->email }}</td>
 						<td class="text-center">{{ $ap->date }}</td>
 						<td class="text-center">{{ $ap->service_type }}</td>
+						<td class="text-center">Pending</td>
 
 						<td class="text-center">
 							<div class="dropdown">
@@ -54,6 +54,7 @@
 									<a href="{{route ('appointments.show', [$ap->id]) }}" class="dropdown-item"><i class="fa-solid fa-eye mr-2"></i>View Appointment</a>
 									<a href="{{route ('appointments.edit', [$ap->id]) }}" class="dropdown-item"><i class="fa-solid fa-pen-to-square mr-2"></i>Edit Appointment</a>
 									<a href="{{route ('appointments.edit', [$ap->id]) }}" class="dropdown-item"><i class="fa-solid fa-calendar-check mr-2"></i>Accept Appointment</a>
+
 									<a href="javascript:void(0);" onclick="confirmLeave('{{ route('appointments.delete', [$ap->id]) }}', undefined, 'Are you sure you want to reject this schedule? <b>It cannot be undone.</b>');" class="dropdown-item"><i class="fa-solid fa-calendar-xmark mr-2 text-warning"></i>Reject Appointment</a>
 								</div>
 							</div>

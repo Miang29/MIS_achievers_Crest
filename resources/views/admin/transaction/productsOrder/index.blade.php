@@ -39,7 +39,7 @@
 
 				<tbody>
 					@forelse ($productOrder as $po)
-					<tr class="{{ $po->isVoid() ? "bg-danger text-white" : "" }}">
+					<tr class="{{ $po->isVoided() ? "bg-danger text-white" : "" }}">
 						<td>{{ $po->reference_no }}</td>
 						
 						<td>

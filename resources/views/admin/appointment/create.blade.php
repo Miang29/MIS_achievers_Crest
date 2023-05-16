@@ -8,75 +8,76 @@
 	<hr class="hr-thick" style="border-color: #707070;">
 
 	<div class="row" id="form-area">
-		<div class="col-12 col-lg-12">
-			<form method="POST" action="{{route ('save-appointments')}}" class="card my-3" enctype="multipart/form-data">
+		<div class="col-12 col-lg-12 col-md-12">
+			<form method="POST" class="card my-3" enctype="multipart/form-data">
 				<h3 class="card-header font-weight-bold text-white gbg-1"><i class="fa-solid fa-square-plus mr-2"></i>Create Appointment</h3>
 				{{ csrf_field() }}
 				<div class="card-body d-flex">
-					<div class="col-lg-8 mx-auto ">
 
-						{{-- OWNER --}}
-						<div class="form-group">
-							<input class="form-control border-secondary" type="text" name="pet_owner" value="{{old('petowner')}}" placeholder="Pet Owner" />
-							<small class="text-danger small">{{ $errors->first('pet_owner') }}</small>
-						</div>
+					<div class="card border-light col-lg-6 col-md-12 col-12 mx-auto mb-3 mt-3">
+			            <div class="row">
+			            	{{-- Service Type --}}
+			               		<label class="ml-3 mt-3">Please select a service type.</label>
+			               	<div class="col-12 col-lg-12 col-md-8 mx-auto">
+				                <select class="custom-select" name="service_name">
+				                    <option class="font-weight-bold" value="">Services</option>
+				                </select>
+			            	</div>
+			            	{{--- Reserved AT --}}
+		            		<div class="col-12 col-lg-12 col-md-8  mt-3 mx-auto">
+		               		 	<label class="">Please select an available date.</label>
+				                <div class="input-group mb-3">
+				                    <div class="input-group-prepend">
+				                        <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-calendar-days"></i></span>
+				                    </div>
+				                    <input type="date" class="form-control" name ="reserved_at" aria-label="date" aria-describedby="basic-addon1">
+				                </div>
+		            	 	</div>
 
-						{{-- PET --}}
-						<div class="form-group">
-							<input class="form-control border-secondary" type="text" name="pet_name" value="{{old('petname')}}" placeholder="Pet Name" />
-							<small class="text-danger small">{{ $errors->first('pet_name') }}</small>
-						</div>
+		            	 	{{--- Appointment time --}}
+		                    <div class="col-lg-12 col-md-8 col-12 mr-auto">
+		                        <label>Please select an available time.</label>
+		                        <div class="input-group mb-3">
+		                            <div class="input-group-prepend">
+		                                <label class="input-group-text" for="inputGroupSelect01"><i class="fa-solid fa-clock"></i></label>
+		                            </div>
+		                            <select class="custom-select" name="available_time" id="inputGroupSelect01">
+		                                <option selected value="">Choose...</option>
+		                                <option value="1">8:00 AM - 10:00 PM</option>
+		                                <option value="2">10:00 AM - 12:00 PM</option>
+		                                <option value="3">1:00 PM - 3:00 PM</option>
+		                                <option value="4">3:00 PM - 5:00 PM</option>
+		                                <option value="5">5:00 PM - 7:00 PM</option>
+		                            </select>
+		                        </div>
+		                    </div>
 
-						{{-- EMAIL --}}
-						<div class="form-group">
-							<input class="form-control border-secondary" type="email" name="email" value="{{old('email')}} " placeholder="Email" />
-							<small class="text-danger small">{{ $errors->first('email') }}</small>
-						</div>
-
-						{{-- DATE --}}
-						<div class="form-group">
-							<div class="input-group">
-								<div class="input-group-prepend">
-									<span class="input-group-text bg-white border-secondary">Date</span>
-								</div>
-								<input class="form-control border-secondary border-left-0" type="date" name="date" value="{{old('date')}}" min="{{ Carbon\Carbon::now()->timezone('Asia/Manila')->format('Y-m-d') }}" />
-							</div>
-							<small class="text-danger small">{{ $errors->first('date') }}</small>
-						</div>
-
-						{{-- TIME --}}
-						<div class="form-group">
-							<div class="input-group">
-								<div class="input-group-prepend">
-									<div class="input-group-text bg-white border-secondary">Time</div>
-								</div>
-								<input class="form-control border-secondary border-left-0" type="time" name="time" min="{{ Carbon\Carbon::createFromFormat('H:i', '08:00')->format('H:i') }}" max="{{ Carbon\Carbon::createFromFormat('H:i', '19:00')->format('H:i') }} " />
-							</div>
-							<small class="text-danger small">{{ $errors->first('time') }}</small>
-						</div>
-
-						{{-- SERVICE-TYPE --}}
-						<div class="form-group">
-							<div class="input-group-prepend">
-								<span class="input-group-text bg-white border-secondary border-right-0">Service Type</span>
-								<select class="custom-select border-secondary border-left-0" id="inputGroupSelect01" name="service_type">
-									<option selected name="service_type">Consultation</option>
-									<option selected name="service_type">Vaccination</option>
-									<option selected name="service_type"></option>
-								
-								</select>
-							</div>
-							<small class="text-danger small">{{ $errors->first('service_type') }}</small>
-						</div>
-					</div>
+		                    {{-- Client Name --}}
+                    		<div class="col-12 col-lg-12 col-md-12 mx-auto">
+				                <select class="custom-select" name="client_name">
+				                    <option class="font-weight-bold" value="">Client Name</option>
+				                    <option value=""></option>
+				                </select>
+			            	</div>
+                			{{-- Pet Name --}}
+				            <div class="col-12 col-md-12 col-lg-12 mx-auto mt-3">
+		                        <input class="form-control" placeholder="Pet Name" type="text" name="pet_name" value="{{ old('pet_name') }}" />
+		                        <small class="text-danger small">{{ $errors->first('pet_name.*') }}</small>
+	                    	</div>
+	                    	{{-- Message --}}
+			                <div class="form-group col-12 col-md-12 col-lg-12 mx-auto mt-3">
+		                        <textarea class="form-control my-2 not-resizable" placeholder="Reason" name="reason" rows="3"></textarea>
+		                   </div>
+		              
+					    </div>
+			        </div>
 				</div>
 
 				<div class="card-footer  d-flex flex-row">
-					<button type="submit" class="btn btn-outline-custom ml-auto btn-sm w-lg-25 w-25" data-type="submit">Book</button>
+					<button type="submit" class="btn btn-outline-custom ml-auto btn-sm w-lg-25 w-25" data-type="submit" data-action="submit">Book</button>
 					<a href="javascript:void(0);" onclick="confirmLeave('{{ route('appointments.create') }}');" class="btn btn-outline-danger btn-sm ml-1 w-lg-25 mr-auto w-25" style="border-radius:1rem;">Cancel</a>
 				</div>
-
-			</form>
+		   </form>
 		</div>
 	</div>
 </div>

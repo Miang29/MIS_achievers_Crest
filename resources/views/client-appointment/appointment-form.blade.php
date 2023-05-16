@@ -44,7 +44,7 @@
                     </div>
 
                     <div class="form-group col-12 col-md-12 col-lg-12 mx-auto mt-3">
-                        <textarea class="form-control my-2 not-resizable" placeholder="Your message" name="message" rows="3"></textarea>
+                        <textarea class="form-control my-2 not-resizable" placeholder="Reason" name="reason" rows="3"></textarea>
                     </div>
                 </div>
             </div>
