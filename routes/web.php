@@ -33,12 +33,20 @@ Route::get('/new-password/{token?}', 'PasswordController@newPassword')->name('ne
 
 Route::group(['middleware' => ['auth']], function() {
 	// CLIENT APPOINTMENT
-	Route::get('/appointment', 'ClientAppointmentController@index')->name('appointment');
-	Route::get('/create/appointment', 'PageController@appointmentsCreate')->name('create-appointment');
-	Route::post('/submit-appointments', 'PageController@submitAppointments')->name('submit-appointments');
-	Route::get('/dashboard', 'PageController@redirectDashboard')->name('dashboard.redirect');
+	Route::group(['prefix' => 'appointment'], function() {
+		// Index
+		Route::get('/', 'ClientAppointmentController@index')->name('client.appointment.index');
+		
+		// Create
+		Route::get('/create', 'ClientAppointmentController@create')->name('client.appointment.create');
+		Route::post('/store', 'ClientAppointmentController@store')->name('client.appointment.store');
+	});
 
+	// USER PROFILE
 	Route::get('/profile/{id}', 'UserController@profile')->name('profile');
+
+	// DASHBOARD REDIRECT
+	Route::get('/dashboard', 'PageController@redirectDashboard')->name('dashboard.redirect');
 
 	Route::group(['prefix' => 'admin'], function () {
 		Route::get('/', 'PageController@redirectDashboard')->name('dashboard.redirect');

@@ -29,20 +29,33 @@
 			<table class="table table-striped text-center" id="table-content">
 				<thead>
 					<tr>
+						<th scope="col" class="hr-thick text-1 text-center">Appointment #</th>
 						<th scope="col" class="hr-thick text-1 text-center">Client Name</th>
 						<th scope="col" class="hr-thick text-1 text-center">Appointment Date</th>
 						<th scope="col" class="hr-thick text-1 text-center">Service Type</th>
 						<th scope="col" class="hr-thick text-1 text-center">Status</th>
+						<th scope="col" class="hr-thick text-1 text-center"></th>
 					</tr>
 				</thead>
 
 				<tbody>
 					@forelse ($appointments as $ap)
 					<tr>
-						<td class="text-center">{{ $ap->pet_owner }}</td>
-						<td class="text-center">{{ $ap->date }}</td>
-						<td class="text-center">{{ $ap->service_type }}</td>
-						<td class="text-center">Pending</td>
+						<td class="text-center">{{ $ap->appointment_no }}</td>
+						<td class="text-center">{{ $ap->user->getName() }} (for {{ $ap->user->petsInformations()->where('id', '=', $ap->pet_information_id)->first()->pet_name }})</td>
+						<td class="text-center">{{ \Carbon\Carbon::parse($ap->reserved_at)->format("M d, Y") }} ({{ $ap->getAppointedTime() }})</td>
+						<td class="text-center">{{ $ap->service->service_name }}</td>
+						<td class="text-center">
+							@if ($ap->status == 0)
+							<i class="fas fa-circle text-warning mr-2"></i>Pending
+							@elseif ($ap->status == 1)
+							<i class="fas fa-circle text-success mr-2"></i>Accepted
+							@elseif ($ap->status == 2)
+							<i class="fas fa-circle text-success mr-2"></i>Rejected
+							@else
+							<i class="fas fa-circle text-secondary mr-2"></i>Unknown
+							@endif
+						</td>
 
 						<td class="text-center">
 							<div class="dropdown">

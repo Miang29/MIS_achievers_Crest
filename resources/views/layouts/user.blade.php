@@ -99,6 +99,7 @@
 			</main>
 		</div>
 
+		@yield('pre-script')
 		<script type="text/javascript">
 			@if(Session::has('flash_error'))
 			Swal.fire({
@@ -158,7 +159,6 @@
 				$("[data-toggle=tooltip]").tooltip();
 			});
 		</script>
-		@yield('pre-script')
 		@yield('post-script')
 	</body>
 </html>

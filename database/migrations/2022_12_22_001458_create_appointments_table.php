@@ -17,11 +17,10 @@ class CreateAppointmentsTable extends Migration
             $table->increments('id');
             $table->string('appointment_no');
             $table->string('service_id');
-            $table->string('appointment_time');
+            $table->tinyInteger('appointment_time');
             $table->date('reserved_at');
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('pet_information_id');
-            $table->string('breed');
             $table->tinyInteger('status')->default(0);
             $table->string('reason')->nullable();
 			$table->timestamps();
