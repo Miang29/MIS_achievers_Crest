@@ -77,66 +77,6 @@ class PageController extends Controller
 		return view('terms-of-service');
 	}
 
-	protected function dateSched()
-	{
-
-		$appointments = Appointments::get();
-
-		return view('client-appointment.date-scheduler', [
-			'appointments' => $appointments
-		]);
-	}
-
-	
-	protected function appoitnmentsCreate()
-	{
-		return view('client-appointment.appointment-form');
-	}
-
-	protected function submitAppointments(Request $req)
-	{
-		$validator = Validator::make($req->all(), [
-			'pet_owner' => 'required|min:2|max:255|string',
-			'pet_name' => 'required|min:2|max:255|string',
-			'email' => 'required|min:2|max:255|email',
-			'date' => 'required|min:2|max:255|date',
-			'time' =>  'required|min:2|max:255|string',
-			'service_type' => 'required|unique:users,username|min:2|max:255|string',
-		]);
-
-		if ($validator->fails())
-			return redirect()
-				->back()
-				->withErrors($validator)
-				->withInput();
-
-		try {
-			DB::beginTransaction();
-
-			$appointments = Appointments::create([
-				'pet_owner' => $req->pet_owner,
-				'pet_name' => $req->pet_name,
-				'email' => $req->email,
-				'date' => $req->date,
-				'time' => $req->time,
-				'service_type' => $req->service_type,
-			]);
-
-
-			DB::commit();
-		} catch (Exception $e) {
-			DB::rollback();
-			Log::error($e);
-
-			return redirect()
-				->route('home')
-				->with('flash_error', 'Something went wrong, please try again later');
-		}
-
-		return redirect()
-			->route('home')
-			->with('flash_success', "Successfully added appointments.");
-	}
 
 	protected function ServicesOffer()
 	{
