@@ -17,6 +17,7 @@ use Validator;
 
 class PageController extends Controller
 {
+
 	// DASH BOARD
 	protected function redirectDashboard()
 	{

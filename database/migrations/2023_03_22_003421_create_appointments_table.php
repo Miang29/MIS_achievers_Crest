@@ -16,15 +16,16 @@ class CreateAppointmentsTable extends Migration
         Schema::create('appointments', function (Blueprint $table) {
             $table->increments('id');
             $table->string('appointment_no');
-            $table->string('service_id');
+            $table->unsignedInteger('service_id');
             $table->integer('appointment_time');
             $table->date('reserved_at');
-            $table->unsignedInteger('user_id');
             $table->unsignedInteger('pet_information_id');
-            $table->string('breed');
             $table->tinyInteger('status')->default(0);
             $table->string('reason')->nullable();
 			$table->timestamps();
+
+            $table->foreign('service_id')->references('id')->on('services')->onDelete('cascade');
+            $table->foreign('pet_information_id')->references('id')->on('pets_informations')->onDelete('cascade');
 
         });
     }

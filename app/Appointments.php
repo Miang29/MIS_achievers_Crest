@@ -12,10 +12,10 @@ class Appointments extends Model
             'service_id',
             'appointment_time',
             'reserved_at',
-            'user_id',
             'pet_information_id',
-            'breed',
-            'reason'
+            'reason',
+            // 0 = Pending; 1 = Accepted; 2 = Rejected
+            'status',
     ];
 
     public function services() {
@@ -27,10 +27,21 @@ class Appointments extends Model
     }
 
     public function petsInformations() {
-        return $this->belongsTo('App\PetsInformation', 'pet_name', 'pet_information_id');
-    }
-
-
-
+        
+        return $this->belongsTo('App\PetsInformation', 'pet_information_id');
+    }   
     
+    public function getAppointedTime() {
+            return $this->getAppointmentTimes()[$this->appointment_time-1];
+}
+
+public static function getAppointmentTimes() {
+        return array(
+            "8:00 AM - 10:00 AM",
+            "10:00 AM - 12:00 PM",
+            "1:00 PM - 3:00 PM",
+            "3:00 PM - 5:00 PM",
+            "5:00 PM - 7:00 PM",
+        );
+    }
 }

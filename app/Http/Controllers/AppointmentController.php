@@ -8,7 +8,8 @@ use \Carbon\Carbon;
 
 use App\Appointments;
 use App\Services;
-
+use App\User;
+use App\PetsInformation;
 
 use Auth;
 use DB;
@@ -28,63 +29,161 @@ class AppointmentController extends Controller
 		$search = "%{$req->search}%";
 
 		if ($req->search)
-			$appointments = $appointments->where('pet_owner', 'LIKE', $search)
+			$appointments = $appointments->where('service_name', 'LIKE', $search)
 				->orWhere('email', 'LIKE', $search);
 
+		$appointment = Appointments::has('petsInformations', '>', 0)->with('petsInformations','petsInformations.user')->get();
 		return view('admin.appointment.index', [
 			'appointments' => $appointments->get()
 		]);
 	}
 
-	protected function create()
-	{
-		$service = Services::where('service_category_id', '=', 1)->get();
 
-		return view('admin.appointment.create', [
-			'services' => $service
+	protected function acceptAppointment(Request $req, $id)
+	{
+
+		$appointment = Appointments::find($id);
+
+		if ($appointment == null)
+
+			return redirect()
+			->route('appointments.index')
+			->with('flash_error', 'Appointment does not exists.');
+		
+		{
+			try{
+				DB::beginTransaction();
+				$appointment->status = 1;
+				$appointment->save();
+
+				//MAILER
+			Mail::send(
+				'admin.appointment.mail.accepted_mail',
+				[
+					'appointment' => $appointment,
+				],
+				function ($mail) use ($appointment) {
+					$mail->to($appointment->petsInformations->user->email)
+						->from("nano.mis@technical.com")
+						->subject("Appointment Accepted");
+				}
+			);
+
+			DB::commit();
+		} catch (Exception $e) {
+			DB::rollback();
+			Log::error($e);
+			return redirect()
+			->route('appointments.index')
+			->with('flash_error', 'Something went wrong, please try again later');
+		}
+
+		return redirect()
+			->route('appointments.index')
+			->with('flash_success', "Successfully accepted appointment.");
+		}
+	
+	}
+
+	protected function reason($id)
+	{
+		$appointment = Appointments::find($id);
+		return view('admin.appointment.reason',[
+			'appointment' => $appointment,
+			'id' => $id
 		]);
 	}
 
-	protected function saveAppointments(Request $req)
+	protected function rejectAppointment(Request $req, $id)
 	{
 
-		$appointmentNo = strtotime(Carbon::now());
-
-		$validator = Validator::make($req->all(), [
-		    'service_id' => 'required|numeric|exists:services,id',
-			'appointment_time' => 'required|min:2|max:255|string',
-			'reserved_at' =>  'required|min:2|max:255|date',
-			'user_id' => 'required|numeric|exists:users,id',
-			'pet_information_id' => 'required|numeric|exists:petsInformations,id',
-			'breed' => 'required|min:2|max:255|string',
-		]);
-
-		if ($validator->fails())
+		$appointment = Appointments::find($id);
+		if ($appointment == null)
 			return redirect()
-				->back()
-				->withErrors($validator)
-				->withInput();
+			->route('appointments.index')
+			->with('flash_error', 'Appointment does not exists.');
+	{
+		try{
+				DB::beginTransaction();
+				$appointment->status = 2;
+				$appointment->reason = $req->reason;
+				$appointment->save();
 
-		try {
-			DB::beginTransaction();
-
-			$appointments = Appointments::create([
-
-				'appointment_no' => $appointmentNo,
-				'service_id' => $req->service_id,
-				'appointment_time' => $req->appointment_time,
-				'reserved_at' => $req->reserved_at,
-				'user_id' => $req->user_id,
-				'pet_information_id' => $req->pet_information_id,
-				'breed' => $req->breed,
-			]);
-
+				//MAILER
+				Mail::send(
+				'admin.appointment.mail.rejected_mail',
+				[
+					'appointment' => $appointment,
+				],
+				function ($mail) use ($appointment) {
+					$mail->to($appointment->petsInformations->user->email)
+						->from("nano.mis@technical.com")
+						->subject("Appointment Rejected");
+				}
+			);
 
 			DB::commit();
 		} catch (Exception $e) {
 			DB::rollback();
 			Log::error($e);
 
+			return redirect()
+			->route('appointments.index')
+			->with('flash_error', 'Something went wrong, please try again later');
+		}
+
+		return redirect()
+			->route('appointments.index')
+			->with('flash_success', "Successfully rejected appointment.");
+		}
+	}
+
+	protected function create()
+	{
+		$service = Services::where('service_category_id', '=', 1)->get();
+		$user = User::where('user_type_id', '=', 4)->has("petsInformations", '>', 0)->with('petsInformations')->get();
+		$appointment = Appointments::get();
+		return view('admin.appointment.create', [
+			'services' => $service,
+			'users' => $user,
+			'appointment' => $appointment
+		]);
+	}
+
+	protected function saveAppointments(Request $req)
+	{
+		$appointmentNo = strtotime(Carbon::now());
+
+		$validator = Validator::make($req->all(), [
+		    'service_id' => 'required|numeric|exists:services,id',
+			'appointment_time' => 'required|min:1|max:255|string',
+			'reserved_at' =>  'required|min:2|max:255|date',
+			'pet_information_id' => 'required|numeric|exists:pets_informations,id',
+		]);
+
+		if ($validator->fails()) {
+
+			return redirect()
+				->back()
+				->withErrors($validator)
+				->withInput();
+		}
+
+		try {
+			DB::beginTransaction();
+
+			$appointment = Appointments::create([
+				'appointment_no' => $appointmentNo,
+				'service_id' => $req->service_id,
+				'appointment_time' => $req->appointment_time,
+				'reserved_at' => $req->reserved_at,
+				'pet_information_id' => $req->pet_information_id,
+			]);
+
+			DB::commit();
+		} catch (Exception $e) {
+			DB::rollback();
+			Log::error($e);
 			return redirect()
 				->route('appointments.index')
 				->with('flash_error', 'Something went wrong, please try again later');
@@ -111,9 +210,7 @@ class AppointmentController extends Controller
 			'service_id' => 'required|numeric|exists:services,id',
 			'appointment_time' => 'required|min:2|max:255|string',
 			'reserved_at' =>  'required|min:2|max:255|date',
-			'user_id' => 'required|numeric|exists:users,id',
-			'pet_information_id' => 'required|numeric|exists:petsInformations,id',
-			'breed' => 'required|min:2|max:255|string',
+			'pet_information_id' => 'required|numeric|exists:pets_informations,id',
 
 		]);
 
@@ -128,9 +225,7 @@ class AppointmentController extends Controller
 			$appointments->service_id = $req->service_id;
 			$appointments->appointment_time = $req->appointment_time;
 			$appointments->reserved_at = $req->reserved_at;
-			$appointments->user_id = $req->user_id;
 			$appointments->pet_information_id = $req->pet_information_id;
-			$appointments->breed = $req->breed;
 			$appointments->save();
 
 			DB::commit();

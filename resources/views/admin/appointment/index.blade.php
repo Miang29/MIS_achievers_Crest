@@ -24,51 +24,130 @@
 		</form>
 	</div>
 
-	<div class="overflow-x-auto h-100 card">
-		<div class=" card-body h-100 px-0 pt-0 ">
-			<table class="table table-striped text-center" id="table-content">
-				<thead>
-					<tr>
-						<th scope="col" class="hr-thick text-1 text-center">Client Name</th>
-						<th scope="col" class="hr-thick text-1 text-center">Appointment Date</th>
-						<th scope="col" class="hr-thick text-1 text-center">Service Type</th>
-						<th scope="col" class="hr-thick text-1 text-center">Status</th>
-					</tr>
-				</thead>
+		<ul class="nav nav-tabs" id="myTab" role="tablist">
+  			<li class="nav-item">
+   				<a class="nav-link active" id="all-tab" data-toggle="tab" href="#all" role="tab" aria-controls="all" aria-selected="true">All Appoinment</a>
+ 			</li>
 
-				<tbody>
-					@forelse ($appointments as $ap)
-					<tr>
-						<td class="text-center">{{ $ap->pet_owner }}</td>
-						<td class="text-center">{{ $ap->date }}</td>
-						<td class="text-center">{{ $ap->service_type }}</td>
-						<td class="text-center">Pending</td>
+ 			<li class="nav-item">
+   		 		<a class="nav-link" id="pending-tab" data-toggle="tab" href="#pending" role="tab" aria-controls="pending" aria-selected="false">Pending</a>
+ 		 	</li>
 
-						<td class="text-center">
-							<div class="dropdown">
-								<button class="btn btn-info bg-1 btn-sm dropdown-toggle mark-affected" type="button" data-toggle="dropdown" id="dropdown" aria-haspopup="true" aria-expanded="false" data-id="$a->id">
-									Action
-								</button>
+  			<li class="nav-item">
+   		 		<a class="nav-link" id="accepted-tab" data-toggle="tab" href="#accepted" role="tab" aria-controls="accepted" aria-selected="false">Accepted</a>
+  			</li>
 
-								<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown">
-									<a href="{{route ('appointments.show', [$ap->id]) }}" class="dropdown-item"><i class="fa-solid fa-eye mr-2"></i>View Appointment</a>
-									<a href="{{route ('appointments.edit', [$ap->id]) }}" class="dropdown-item"><i class="fa-solid fa-pen-to-square mr-2"></i>Edit Appointment</a>
-									<a href="{{route ('appointments.edit', [$ap->id]) }}" class="dropdown-item"><i class="fa-solid fa-calendar-check mr-2"></i>Accept Appointment</a>
+  			<li class="nav-item">
+   		 		<a class="nav-link" id="rejected-tab" data-toggle="tab" href="#rejected" role="tab" aria-controls="rejected" aria-selected="false">Rejected</a>
+  			</li>
+		</ul>
+	<div class="tab-content" id="myTabContent">
+		{{-- ALL APPOINTMENT --}}
+	 	<div class="tab-pane fade show active" id="all" role="tabpanel" aria-labelledby="all-tab">
+			<div class="overflow-x-auto h-100 card">
+				<div class=" card-body h-100 px-0 pt-0 ">
+					<table class="table table-striped text-center" id="table-content">
+						<thead>
+							<tr>
+								<th scope="col" class="hr-thick text-1 text-center">Service Name</th>
+								<th scope="col" class="hr-thick text-1 text-center">Appointment Date</th>
+								<th scope="col" class="hr-thick text-1 text-center">Client Name</th>
+								<th scope="col" class="hr-thick text-1 text-center">Status</th>
+							</tr>
+						</thead>
 
-									<a href="javascript:void(0);" onclick="confirmLeave('{{ route('appointments.delete', [$ap->id]) }}', undefined, 'Are you sure you want to reject this schedule? <b>It cannot be undone.</b>');" class="dropdown-item"><i class="fa-solid fa-calendar-xmark mr-2 text-warning"></i>Reject Appointment</a>
-								</div>
-							</div>
-						</td>
-					</tr>
-					@empty
-					<tr>
-						<td colspan="5">Nothing to show~</td>
-					</tr>
-					@endforelse
-				</tbody>
-			</table>
+						<tbody>
+							@forelse ($appointments as $ap)
+							<tr>
+								<td class="text-center">{{ $ap->services->service_name }}</td>
+								<td class="text-center">{{ $ap->reserved_at }}</td>
+								<td class="text-center">{{ $ap->petsInformations->user->getName() }}</td>
+								<td class="text-center">
+									@if($ap->status == 0)
+										<small><i class="fa-solid fa-circle mr-3 text-info"></i>Pending</small>
+									@elseif($ap->status == 1)
+										<small><i class="fa-solid fa-circle mr-3 text-success"></i>Accepted</small>
+									@elseif($ap->status == 2)
+										<small><i class="fa-solid fa-circle mr-3 text-danger"></i>Rejected</small>
+									@endif
+								</td>
+								<td class="text-center"></td>
+
+								<td class="text-center">
+									<div class="dropdown">
+										<button class="btn btn-info bg-1 btn-sm dropdown-toggle mark-affected" type="button" data-toggle="dropdown" id="dropdown" aria-haspopup="true" aria-expanded="false" data-id="$a->id">
+											Action
+										</button>
+
+										<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown">
+											<a href="{{route ('appointments.show', [$ap->id]) }}" class="dropdown-item"><i class="fa-solid fa-eye mr-2"></i>View Appointment</a>
+											<a href="{{route ('appointments.edit', [$ap->id]) }}" class="dropdown-item"><i class="fa-solid fa-pen-to-square mr-2"></i>Edit Appointment</a>
+											<a href="{{route ('accept.appointment', [$ap->id]) }}" class="dropdown-item"><i class="fa-solid fa-calendar-check mr-2"></i>Accept Appointment</a>
+											<a href="{{route ('reason.appointment', [$ap->id]) }}" class="dropdown-item"><i class="fa-solid fa-calendar-xmark mr-2 text-danger"></i>Reject Appointment</a>
+										</div>
+									</div>
+								</td>
+							</tr>
+							@empty
+							<tr>
+								<td colspan="5">Nothing to show~</td>
+							</tr>
+							@endforelse
+						</tbody>
+					</table>
+				</div>
+			</div>
 		</div>
-	</div>
+
+		{{-- PENDING APPOINTMENT --}}
+		<div class="tab-pane fade show active" id="pending" role="tabpanel" aria-labelledby="pending-tab">
+			<div class="overflow-x-auto h-100 card">
+				<div class=" card-body h-100 px-0 pt-0 ">
+					<table class="table table-striped text-center" id="table-content">
+						<thead>
+							<tr>
+								<th scope="col" class="hr-thick text-1 text-center">Service Name</th>
+								<th scope="col" class="hr-thick text-1 text-center">Appointment Date</th>
+								<th scope="col" class="hr-thick text-1 text-center">Client Name</th>
+								<th scope="col" class="hr-thick text-1 text-center">Status</th>
+							</tr>
+						</thead>
+
+						<tbody>
+							@forelse ($appointments as $ap)
+							<tr>
+								<td class="text-center">{{ $ap->services->service_name }}</td>
+								<td class="text-center">{{ $ap->reserved_at }}</td>
+								<td class="text-center">{{ $ap->petsInformations->user->getName() }}</td>
+								{{-- <td class="text-center">{{ $ap->status }}</td> --}}
+								<td class="text-center"></td>
+
+								<td class="text-center">
+									<div class="dropdown">
+										<button class="btn btn-info bg-1 btn-sm dropdown-toggle mark-affected" type="button" data-toggle="dropdown" id="dropdown" aria-haspopup="true" aria-expanded="false" data-id="$a->id">
+											Action
+										</button>
+
+										<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown">
+											<a href="{{route ('appointments.show', [$ap->id]) }}" class="dropdown-item"><i class="fa-solid fa-eye mr-2"></i>View Appointment</a>
+											<a href="{{route ('appointments.edit', [$ap->id]) }}" class="dropdown-item"><i class="fa-solid fa-pen-to-square mr-2"></i>Edit Appointment</a>
+											<a href="{{route ('accept.appointment', [$ap->id]) }}" class="dropdown-item"><i class="fa-solid fa-calendar-check mr-2"></i>Accept Appointment</a>
+											<a href="{{route ('reason.appointment', [$ap->id]) }}" class="dropdown-item"><i class="fa-solid fa-calendar-xmark mr-2 text-danger"></i>Reject Appointment</a>
+										</div>
+									</div>
+								</td>
+							</tr>
+							@empty
+							<tr>
+								<td colspan="5">Nothing to show~</td>
+							</tr>
+							@endforelse
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+  	</div>
 </div>
 @endsection
 

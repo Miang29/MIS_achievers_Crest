@@ -43,7 +43,7 @@ class PetsInformation extends Model
     }
 
     public function appointment() {
-        return $this->hasMany('App\Appointments', 'id');
+        return $this->hasMany('App\Appointments', 'id', 'pet_name');
     }
 
 

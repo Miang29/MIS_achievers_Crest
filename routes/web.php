@@ -226,11 +226,23 @@ Route::group(['middleware' => ['auth']], function() {
 			Route::get('/{id}show', 'AppointmentController@show')->name('appointments.show');
 
 			//Save
-			Route::post('/save-appointments', 'AppointmentController@saveAppointments')->name('save-appointments');
+			Route::post('/submit/appointment', 'AppointmentController@saveAppointments')->name('submit.appointments');
 
 			//Update
 			Route::post('{id}/update-appointments', 'AppointmentController@updateAppointments')->name('update-appointments');
+
+			// Accept
+			Route::get('/Accept/{id}','AppointmentController@acceptAppointment')->name('accept.appointment');
+
+			// Reject
+			Route::post('/Reject/{id}','AppointmentController@rejectAppointment')->name('reject.appointment');
+
+			// Reason
+			Route::get('/Reason/{id}','AppointmentController@reason')->name('reason.appointment');
+
 		});
+
+
 
 		// -------------------- SERVICES CATEGORY ------------------------ //
 		Route::group(['prefix' => '/service-category'], function () {
