@@ -36,21 +36,22 @@
 					</li>
 					@endif
 
-
-					@if (\Request::is('appointment'))
+					{{-- APPOINTMENT --}}
+					@if (\Request::is('appointment/*'))
 					<li class="nav-item active">
 						<span class="nav-link font-weight-bold active" style="border-bottom:skyblue solid;"><i class="fa-solid fa-calendar-check mr-2 "></i>Appointment<span class="sr-only">(current)</span></span>
 					</li>
 					@else
 					<li class="nav-item">
 						@if(Auth::check())
-						<a class="nav-link font-weight-bold text-white" href="{{ route('schedule-date') }}"><i class="fa-solid fa-calendar-check mr-2"></i>Appointment</a>
+						<a class="nav-link font-weight-bold text-white" href="{{ route('appointment') }}"><i class="fa-solid fa-calendar-check mr-2"></i>Appointment</a>
 						@else
 						<a class="nav-link font-weight-bold text-white" href="{{ route('login') }}"><i class="fa-solid fa-calendar-check mr-2"></i>Appointment</a>
 						@endif
 					</li>
 					@endif
 
+					{{-- ABOUT US --}}
 					@if (Request::is('about-us'))
 					<li class="nav-item active">
 						<span class="nav-link font-weight-bold active" style="border-bottom:skyblue solid;"><i class="fa-solid fa-circle-info mr-2"></i>About Us <span class="sr-only">(current)</span></span>
