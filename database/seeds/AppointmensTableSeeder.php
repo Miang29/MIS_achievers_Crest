@@ -14,12 +14,14 @@ class AppointmensTableSeeder extends Seeder
     {
         Appointments::create (
             [
-                'pet_owner' => 'Miang Gonzales',
-                'pet_name' => 'Goofy',
-                'email'=> 'miang.gonzales@gmail.com',
-                'date' =>'2022-12-21',
-                'time' => '00:54:54',
-                'service_type' => 'Consultation'
+                'appointment_no' => 1,
+                'service_id' => 4,
+                'appointment_time'=> '8:00 AM - 10:00 AM',
+                'reserved_at' =>'2022-12-21',
+                'user_id' => 4,
+                'pet_information_id' => '1',
+                'breed' => 'Tabby',
+                'reason' => ''
             ]); 
     }
 }

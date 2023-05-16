@@ -49,6 +49,11 @@ class User extends Authenticatable
         return $this->hasMany('App\PetsInformation', 'pet_owner', 'id');
     }
 
+    public function appointment() {
+        return $this->hasMany('App\Appointments', 'id');
+    }
+
+
     // Custom Functions
     public function getName($include_middle = false) {
         return $this->first_name . ($include_middle ? (' ' . $this->middle_name . ' ') : ' ') . $this->last_name;
