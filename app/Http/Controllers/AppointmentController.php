@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use \Carbon\Carbon;
 
 use App\Appointments;
+use App\Services;
 
 
 use Auth;
@@ -37,22 +38,25 @@ class AppointmentController extends Controller
 
 	protected function create()
 	{
-		$appointments = Appointments::get();
+		$service = Services::where('service_category_id', '=', 1)->get();
 
 		return view('admin.appointment.create', [
-			'appointments' => $appointments
+			'services' => $service
 		]);
 	}
 
 	protected function saveAppointments(Request $req)
 	{
+
+		$appointmentNo = strtotime(Carbon::now());
+
 		$validator = Validator::make($req->all(), [
-			'pet_owner' => 'required|min:2|max:255|string',
-			'pet_name' => 'required|min:2|max:255|string',
-			'email' => 'required|min:2|max:255|email',
-			'date' => 'required|min:2|max:255|date',
-			'time' =>  'required|min:2|max:255|string',
-			'service_type' => 'required|unique:users,username|min:2|max:255|string',
+		    'service_id' => 'required|numeric|exists:services,id',
+			'appointment_time' => 'required|min:2|max:255|string',
+			'reserved_at' =>  'required|min:2|max:255|date',
+			'user_id' => 'required|numeric|exists:users,id',
+			'pet_information_id' => 'required|numeric|exists:petsInformations,id',
+			'breed' => 'required|min:2|max:255|string',
 		]);
 
 		if ($validator->fails())
@@ -65,12 +69,14 @@ class AppointmentController extends Controller
 			DB::beginTransaction();
 
 			$appointments = Appointments::create([
-				'pet_owner' => $req->pet_owner,
-				'pet_name' => $req->pet_name,
-				'email' => $req->email,
-				'date' => $req->date,
-				'time' => $req->time,
-				'service_type' => $req->service_type,
+
+				'appointment_no' => $appointmentNo,
+				'service_id' => $req->service_id,
+				'appointment_time' => $req->appointment_time,
+				'reserved_at' => $req->reserved_at,
+				'user_id' => $req->user_id,
+				'pet_information_id' => $req->pet_information_id,
+				'breed' => $req->breed,
 			]);
 
 
@@ -102,12 +108,12 @@ class AppointmentController extends Controller
 
 		$validator = Validator::make($req->all(), [
 
-			'pet_owner' => 'required|min:2|max:255|string',
-			'pet_name' => 'required|min:2|max:255|string',
-			'email' => 'required|min:2|max:255|email',
-			'date' => 'required|min:2|max:255|date',
-			'time' =>  'required|min:2|max:255|string',
-			'service_type' => 'required|unique:users,username|min:2|max:255|string',
+			'service_id' => 'required|numeric|exists:services,id',
+			'appointment_time' => 'required|min:2|max:255|string',
+			'reserved_at' =>  'required|min:2|max:255|date',
+			'user_id' => 'required|numeric|exists:users,id',
+			'pet_information_id' => 'required|numeric|exists:petsInformations,id',
+			'breed' => 'required|min:2|max:255|string',
 
 		]);
 
@@ -119,12 +125,12 @@ class AppointmentController extends Controller
 
 		try {
 			DB::beginTransaction();
-			$appointments->pet_owner = $req->pet_owner;
-			$appointments->pet_name = $req->pet_name;
-			$appointments->email = $req->email;
-			$appointments->date = $req->date;
-			$appointments->time = $req->time;
-			$appointments->service_type = $req->service_type;
+			$appointments->service_id = $req->service_id;
+			$appointments->appointment_time = $req->appointment_time;
+			$appointments->reserved_at = $req->reserved_at;
+			$appointments->user_id = $req->user_id;
+			$appointments->pet_information_id = $req->pet_information_id;
+			$appointments->breed = $req->breed;
 			$appointments->save();
 
 			DB::commit();

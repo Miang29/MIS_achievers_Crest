@@ -88,7 +88,7 @@ class PageController extends Controller
 	}
 
 	
-	protected function appointmentsCreate()
+	protected function appoitnmentsCreate()
 	{
 		return view('client-appointment.appointment-form');
 	}

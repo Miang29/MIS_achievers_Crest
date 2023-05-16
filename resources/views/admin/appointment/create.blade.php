@@ -19,7 +19,8 @@
 			            	{{-- Service Type --}}
 			               		<label class="ml-3 mt-3">Please select a service type.</label>
 			               	<div class="col-12 col-lg-12 col-md-8 mx-auto">
-				                <select class="custom-select" name="service_name">
+			               		
+				                <select class="custom-select" name="service_id">
 				                    <option class="font-weight-bold" value="">Services</option>
 				                </select>
 			            	</div>
@@ -41,7 +42,7 @@
 		                            <div class="input-group-prepend">
 		                                <label class="input-group-text" for="inputGroupSelect01"><i class="fa-solid fa-clock"></i></label>
 		                            </div>
-		                            <select class="custom-select" name="available_time" id="inputGroupSelect01">
+		                            <select class="custom-select" name="appointment_time" id="inputGroupSelect01">
 		                                <option selected value="">Choose...</option>
 		                                <option value="1">8:00 AM - 10:00 PM</option>
 		                                <option value="2">10:00 AM - 12:00 PM</option>
@@ -54,20 +55,19 @@
 
 		                    {{-- Client Name --}}
                     		<div class="col-12 col-lg-12 col-md-12 mx-auto">
-				                <select class="custom-select" name="client_name">
+				                <select class="custom-select" name="user_id">
 				                    <option class="font-weight-bold" value="">Client Name</option>
 				                    <option value=""></option>
 				                </select>
 			            	</div>
                 			{{-- Pet Name --}}
-				            <div class="col-12 col-md-12 col-lg-12 mx-auto mt-3">
-		                        <input class="form-control" placeholder="Pet Name" type="text" name="pet_name" value="{{ old('pet_name') }}" />
-		                        <small class="text-danger small">{{ $errors->first('pet_name.*') }}</small>
-	                    	</div>
-	                    	{{-- Message --}}
-			                <div class="form-group col-12 col-md-12 col-lg-12 mx-auto mt-3">
-		                        <textarea class="form-control my-2 not-resizable" placeholder="Reason" name="reason" rows="3"></textarea>
-		                   </div>
+
+                			<div class="col-12 col-lg-12 col-md-12 mx-auto mt-3">
+				                <select class="custom-select" name="pet_information_id">
+				                    <option class="font-weight-bold" value="">Pet Name</option>
+				                    <option value=""></option>
+				                </select>
+			            	</div>
 		              
 					    </div>
 			        </div>

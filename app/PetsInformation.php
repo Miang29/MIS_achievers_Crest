@@ -42,6 +42,10 @@ class PetsInformation extends Model
         return $this->hasMany('App\OtherTransation', 'pet_name');
     }
 
+    public function appointment() {
+        return $this->hasMany('App\Appointments', 'id');
+    }
+
 
     public function getImage($getFull = true) {
         return $getFull ? asset("uploads/clients/{$this->pet_owner}/pets/{$this->pet_image}") : $this->pet_image;

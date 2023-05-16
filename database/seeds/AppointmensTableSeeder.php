@@ -16,7 +16,7 @@ class AppointmensTableSeeder extends Seeder
             [
                 'appointment_no' => 1,
                 'service_id' => 4,
-                'appointment_time'=> '8:00 AM - 10:00 AM',
+                'appointment_time'=> 1,
                 'reserved_at' =>'2022-12-21',
                 'user_id' => 4,
                 'pet_information_id' => '1',

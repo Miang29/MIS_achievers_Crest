@@ -26,6 +26,10 @@ class Appointments extends Model
         return $this->belongsTo('App\User', 'user_id');
     }
 
+    public function petsInformations() {
+        return $this->belongsTo('App\PetsInformation', 'pet_name', 'pet_information_id');
+    }
+
 
 
     
