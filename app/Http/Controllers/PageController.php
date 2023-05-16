@@ -17,6 +17,7 @@ use Validator;
 
 class PageController extends Controller
 {
+
 	// DASH BOARD
 	protected function redirectDashboard()
 	{
@@ -76,6 +77,7 @@ class PageController extends Controller
 	protected function termsOfService() {
 		return view('terms-of-service');
 	}
+
 
 	protected function ServicesOffer()
 	{
