@@ -237,7 +237,7 @@ Route::group(['middleware' => ['auth']], function() {
 			Route::post('/submit/appointment', 'AppointmentController@saveAppointments')->name('submit.appointments');
 
 			//Update
-			Route::post('{id}/update-appointments', 'AppointmentController@updateAppointments')->name('update-appointments');
+			Route::post('/update/{id}', 'AppointmentController@updateAppointments')->name('update.appointments');
 
 			// Accept
 			Route::get('/Accept/{id}','AppointmentController@acceptAppointment')->name('accept.appointment');

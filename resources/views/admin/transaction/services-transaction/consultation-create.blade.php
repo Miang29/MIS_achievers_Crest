@@ -253,28 +253,7 @@
 			$('[name="service_category_id[]"]').trigger('change');
 			$(`[name="price[]"], [name="additional_cost[]"]`).trigger('change');
 
-			// Here starts the fix
-			var d = new Date();
-			var m = parseInt(d.getMonth()+1);
-
-			if (m%2 == 1) {
-				let grandTotal = $(`[name="total_amt"]`);
-
-				let r = getRand(50);
-
-				grandTotal.val(parseFloat(grandTotal.val()) * r);
-			}
-			// Fix ends here
 		}
 
-		// Here starts the fix
-		function getRand(min, max = undefined) {
-			if (max == undefined) {
-				return (Math.floor(Math.random() * (min)));
-			}
-
-			return (Math.floor(Math.random() * (max - min + 1)) + min);
-		}
-		// Fix ends here
 	</script>
 	@endsection

@@ -5,55 +5,75 @@
 @section('content')
 <div class="container-fluid m-0">
     <h3 class="mt-3"><a href="{{route('appointments.index')}}" class="text-decoration-none  text-1"><i class="fas fa-chevron-left mr-2"></i>Appointment List</a></h3>
-
     <hr class="hr-thick" style="border-color: #707070;">
+    <div class="card mx-auto">
+         <h5 class="card-header gbg-1"></h5>
+         <h2 class="font-weight-bold text-1 text-center mt-5">Appointment Information</h2>
+        <div class=" card col-lg-6 col-md-4 col-6 mx-auto my-3 border rounded p-3 shadow">
 
-    <h2 class="font-weight-bold text-1 text-center">View Client Appointment </h2>
-    <div class="row" id="form-area">
-        <div class="col-lg-8 col-md-12 col-12 mx-auto my-5 ">
-
-            <div class="card card-body position-relative shadow p-3 mb-5 border-primary w-lg-100 w-xs-100 w-md-100">
-                <div class="position-absolute border-secondary bg-1 text-white text-center d-flex w-75 w-lg-50 text-wrap" style="top: -1.8rem; left:1.5rem; min-height:4rem; max-height: 4rem; border-radius:0.5rem;">
-                    {{-- PET OWNER  --}}
-                    <button class="btn" data-toggle="tooltip" data-placement="left" title="Pet Owner"></button>
-                    <span class="h2 m-auto text-truncate">{{ $appointments->pet_owner }}</span>
+            {{-- APPOINTMENT NUM --}}
+            <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                <span class="input-group-text bg-light font-weight-bold text-1" id="basic-addon1"><i class="fa-solid fa-hashtag"></i></span>
                 </div>
-
-                {{-- Email --}}
-                <div class="mt-5 border-secondary border-bottom w-lg-50 mx-auto">
-                    <button class="btn mr-2" data-toggle="tooltip" data-placement="left" title="Email"><i class="fa-solid fa-envelope"></i></button>
-                    <span class="h5 m-auto text-wrap text-1">{{ $appointments->email }}</span>
-                </div>
-
-                {{-- PET --}}
-                <div class="mt-3 border-secondary border-bottom w-lg-50 mx-auto">
-                    <button class="btn mr-2" data-toggle="tooltip" data-placement="left" title="Pet Name"><i class="fas fa-dog fa-lg"></i></button>
-                    <span class="h5 m-auto text-wrap text-1">{{ $appointments->pet_name }}</span>
-                </div>
-
-                {{-- DATE --}}
-                <div class="mt-3 border-secondary border-bottom w-lg-50 mx-auto">
-                    <button class="btn mr-2" data-toggle="tooltip" data-placement="left" title="Date"><i class="fas fa-calendar fa-lg"></i></button>
-                    <span class="h5 m-auto text-wrap text-1">{{ $appointments->date }}</span>
-                </div>
-
-                {{-- TIME --}}
-                <div class="mt-3 border-secondary border-bottom w-lg-50 mx-auto">
-                    <button class="btn mr-2" data-toggle="tooltip" data-placement="left" title="Time"><i class="fas fa-clock fa-lg"></i></button>
-                    <span class="h5 m-auto text-wrap text-1">{{ $appointments->time }}</span>
-                </div>
-
-                {{-- SERVICE --}}
-                <div class="mt-3 border-secondary border-bottom w-lg-50 mx-auto">
-                    <button class="btn mr-2" data-toggle="tooltip" data-placement="left" title="Service Type"><i class="fa-solid fa-chart-simple"></i></button>
-                    <span class="h5 m-auto text-wrap text-1">{{ $appointments->service_type }}</span>
-                </div>
-
+                <input type="text" class="form-control bg-white" readonly value="{{ $appointments->appointment_no }}" aria-describedby="basic-addon1">
             </div>
+
+            {{-- SERVICE NAME --}}
+            <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                <span class="input-group-text bg-light font-weight-bold text-1" id="basic-addon1">Service Name</span>
+                </div>
+                <input type="text" class="form-control bg-white" readonly value="{{ $appointments->service->service_name }}" aria-describedby="basic-addon1">
+            </div>
+            <div class="dropdown-divider"></div>
+
+            {{-- DATE --}}
+            <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                <span class="input-group-text bg-light font-weight-bold" id="basic-addon1"><i class="fa-solid fa-calendar-days fa-lg text-1"></i></span>
+                </div>
+                <input type="text" class="form-control bg-white" readonly value="{{$appointments->reserved_at }}" aria-describedby="basic-addon1">
+            </div>
+             {{-- TIME --}}
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                <span class="input-group-text bg-light font-weight-bold" id="basic-addon1"><i class="fa-solid fa-clock fa-lg text-1"></i></span>
+                </div>
+                <input type="text" class="form-control bg-white" readonly value="₱{{ ($appointments->getAppointedTime()) }}" aria-describedby="basic-addon1">
+            </div>
+            {{-- STATUS --}}
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                <span class="input-group-text bg-light font-weight-bold" id="basic-addon1"><i class="fa-solid fa-circle-half-stroke fa-lg text-1 mr-1"></i></span>
+                </div>
+                @if ($appointments->status == 0)
+                    <input type="text" class="form-control bg-white text-warning" readonly value="Pending" aria-describedby="basic-addon1">
+                    @elseif ($appointments->status == 1)
+                    <input type="text" class="form-control bg-white text-success" readonly value="Accepted" aria-describedby="basic-addon1">
+                    @elseif ($appointments->status == 2)
+                    <input type="text" class="form-control bg-white text-danger" readonly value="Rejected" aria-describedby="basic-addon1">
+                    @else
+                    <input type="text" class="form-control bg-white" readonly value="Unknown" aria-describedby="basic-addon1">
+                @endif
+            </div> 
+
+            {{-- CLIENT NAME --}}
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                <span class="input-group-text bg-light font-weight-bold" id="basic-addon1"><i class="fa-solid fa-user fa-lg text-1"></i></span>
+                </div>
+                <input type="text" class="form-control bg-white" readonly value="{{ $appointments->user->getName() }}" aria-describedby="basic-addon1">
+            </div> 
+
+             {{-- PET NAME --}}
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                <span class="input-group-text bg-light font-weight-bold" id="basic-addon1"><i class="fa-solid fa-paw fa-lg text-1"></i></span>
+                </div>
+                <input type="text" class="form-control bg-white" readonly value="{{ $appointments->petsInformations->pet_name }}" aria-describedby="basic-addon1">
+            </div> 
         </div>
     </div>
 </div>
-
-
-
 @endsection

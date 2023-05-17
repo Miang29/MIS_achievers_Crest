@@ -23,11 +23,12 @@
 			               			@foreach ($services as $s)
 				                    <option value="{{$s->id}}">{{$s->service_name}}</option>
 				                    @endforeach
+				                    <option {{ old('service_id') ? '' : 'selected' }} disabled>--- SELECT SERVICE ---</option>
 				                </select>
-				                <small class="text-danger small">{{ $errors->first('service_id') }}</small>
 
-				              
+				                <small class="text-danger small">{{ $errors->first('service_id') }}</small>
 			            	</div>
+
 			            	{{--- Reserved AT --}}
 		            		<div class="col-12 col-lg-12 col-md-8  mt-3 mx-auto">
 		               		 	<label class="">Please select an available date.</label>
@@ -47,37 +48,50 @@
 		                            <div class="input-group-prepend">
 		                                <label class="input-group-text" for="inputGroupSelect01"><i class="fa-solid fa-clock"></i></label>
 		                            </div>
-		                            <select class="custom-select" name="appointment_time" id="inputGroupSelect01">
-		                                <option selected value="">--Choose--</option>
-		                                <option value="1">8:00 AM - 10:00 AM</option>
-		                                <option value="2">10:00 AM - 12:00 PM</option>
-		                                <option value="3">1:00 PM - 3:00 PM</option>
-		                                <option value="4">3:00 PM - 5:00 PM</option>
-		                                <option value="5">5:00 PM - 7:00 PM</option>
-		                            </select>
+		                            <select class="custom-select" name="appointment_time" aria-label="Please select an available time">
+										@foreach ($appointmentTime as $k => $v)
+										<option value="{{ $k + 1 }}" {{ old('appointment_time') == ($k + 1) ? 'selected' : '' }}>{{ $v }}</option>
+										@endforeach
+										<option {{ old('appointment_time') ? '' : 'selected'}} disabled>--- SELECT TIME ---</option>
+									</select>
 		                        </div>
 		                    </div>
 		                    <small class="text-danger small ml-3 mb-2">{{ $errors->first('appointment_time') }}</small>
 
-		                    {{-- Client Name --}}
-		                    <div class="col-lg-12 col-md-8 col-12 mr-auto">
-		                        <label>Please select a pet.</label>
+
+		                     <div class="col-lg-12 col-md-8 col-12 mr-auto">
+		                        <label>Please select a client</label>
 		                        <div class="input-group mb-3">
 		                            <div class="input-group-prepend">
 		                                <label class="input-group-text" for="inputGroupSelect01"><i class="fa-solid fa-clock"></i></label>
 		                            </div>
-		                           	<select class="custom-select" name="pet_information_id">				        
-					                    @foreach($users as $u)
+		                           	<select class="custom-select" name="user_id">				        
+					                    @foreach($user as $u)
+										<option selected  value="{{$u->id}}">{{ $u->getName() }}</option>
+										@endforeach
+										<option {{ old('user_id') ? '' : 'selected'}} disabled>--- SELECT CLIENT ---</option>
+					                </select>
+		                       </div>
+		                   </div>
+		                	
+		                	<div class="col-lg-12 col-md-8 col-12 mr-auto">
+		                        <label>Please select a clients pet</label>
+		                        <div class="input-group mb-3">
+		                            <div class="input-group-prepend">
+		                                <label class="input-group-text" for="inputGroupSelect01"><i class="fa-solid fa-clock"></i></label>
+		                            </div>
+		                           <select class="custom-select" name="pet_information_id">				        
+					                    @foreach($user as $u)
 										<optgroup label="{{$u->getName()}}">
 										@foreach($u->petsInformations as $p)
 										<option selected  value="{{$p->id}}">{{"{$p->pet_name} - {$p->breed}"}}</option>
 										@endforeach
 										</optgroup>
 										@endforeach
-					                </select>
-		                        </div>
-		                    </div>
-		                     <small class="text-danger small">{{ $errors->first('pet_information_id') }}</small>
+										<option {{ old('pet_information_id') ? '' : 'selected'}} disabled>--- SELECT PET ---</option>
+									</select>
+		                       </div>
+		                   </div>
 					    </div>
 			        </div>
 				</div>

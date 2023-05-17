@@ -18,6 +18,7 @@ use Hash;
 use Log;
 use Mail;
 use Validator;
+  
 
 
 
@@ -140,14 +141,22 @@ class AppointmentController extends Controller
 
 	protected function create()
 	{
+		$client = Auth()->user();
+		$pets = $client->petsInformations;
+		$appointmentTimes = Appointments::getAppointmentTimes();
 		$service = Services::where('service_category_id', '=', 1)->get();
 		$user = User::where('user_type_id', '=', 4)->has("petsInformations", '>', 0)->with('petsInformations')->get();
 		$appointment = Appointments::get();
 		return view('admin.appointment.create', [
 			'services' => $service,
-			'users' => $user,
-			'appointment' => $appointment
+			'user' => $user,
+			'appointment' => $appointment,
+			'appointmentTime' => $appointmentTimes,
+			'pets' => $pets,
+			'client' => $client
 		]);
+
+
 	}
 
 	protected function saveAppointments(Request $req)
@@ -158,6 +167,7 @@ class AppointmentController extends Controller
 		    'service_id' => 'required|numeric|exists:services,id',
 			'appointment_time' => 'required|min:1|max:255|string',
 			'reserved_at' =>  'required|min:2|max:255|date',
+			'user_id' => 'required|numeric|exists:users,id',
 			'pet_information_id' => 'required|numeric|exists:pets_informations,id',
 		]);
 
@@ -177,6 +187,7 @@ class AppointmentController extends Controller
 				'service_id' => $req->service_id,
 				'appointment_time' => $req->appointment_time,
 				'reserved_at' => $req->reserved_at,
+				'user_id' => $req->user_id,
 				'pet_information_id' => $req->pet_information_id,
 			]);
 
@@ -197,6 +208,7 @@ class AppointmentController extends Controller
 
 	protected function updateAppointments(Request $req, $id)
 	{
+
 		$appointments = Appointments::find($id);
 
 		if ($appointments == null) {
@@ -208,10 +220,10 @@ class AppointmentController extends Controller
 		$validator = Validator::make($req->all(), [
 
 			'service_id' => 'required|numeric|exists:services,id',
-			'appointment_time' => 'required|min:2|max:255|string',
-			'reserved_at' =>  'required|min:2|max:255|date',
+			'appointment_time' => 'required|min:1|max:255|string',
+			'reserved_at' =>  'required|min:1|max:255|date',
+			'user_id' => 'required|numeric|exists:users,id',
 			'pet_information_id' => 'required|numeric|exists:pets_informations,id',
-
 		]);
 
 		if ($validator->fails()) {
@@ -225,6 +237,7 @@ class AppointmentController extends Controller
 			$appointments->service_id = $req->service_id;
 			$appointments->appointment_time = $req->appointment_time;
 			$appointments->reserved_at = $req->reserved_at;
+			$appointments->user_id = $req->user_id;
 			$appointments->pet_information_id = $req->pet_information_id;
 			$appointments->save();
 
@@ -236,7 +249,7 @@ class AppointmentController extends Controller
 			if ($appointments == null)
 				return redirect()
 					->route('appointments.index')
-					->with('flash_error', 'Clients already removed. Please refresh your browser if it is still visible.');
+					->with('flash_error', 'Please refresh your browser if appointment still visible.');
 		}
 		return redirect()
 			->route('appointments.index')
@@ -245,15 +258,17 @@ class AppointmentController extends Controller
 
 	protected function edit($id)
 	{
-		$appointments = Appointments::find($id);
 
-		if (!$appointments)
-			return redirect()
-				->route('appointments.index')
-				->with('flash_error', 'Something went wrong, please try again later');
-
-		return view('admin.appointment.edit', [
-			'appointments' => $appointments
+		
+		$appointmentTimes = Appointments::getAppointmentTimes();
+		$service = Services::where('service_category_id', '=', 1)->get();
+		// $user = User::where('user_type_id', '=', 4)->has("petsInformations", '>', 0)->with('petsInformations')->get();
+		$appointment = Appointments::find($id);
+		return view('admin.appointment.edit',[
+			'services' => $service,
+			'appointment' => $appointment,
+			'id' => $id,
+			'appointmentTime' => $appointmentTimes,
 		]);
 	}
 
@@ -269,29 +284,5 @@ class AppointmentController extends Controller
 		return view('admin.appointment.show', [
 			'appointments' => $appointments
 		]);
-	}
-
-	protected function delete($id)
-	{
-		$appointments = Appointments::find($id);
-		try {
-			DB::beginTransaction();
-
-			if (Auth::check())
-				$appointments->delete();
-
-			DB::commit();
-		} catch (Exception $e) {
-			DB::rollback();
-			Log::error($e);
-
-			return redirect()
-				->route('appointments.index')
-				->with('flash_error', 'Something went wrong, please try again later');
-		}
-
-		return redirect()
-			->route('appointments.index')
-			->with('flash_success', 'Successfully removed scheduled appointments from table');
 	}
 }

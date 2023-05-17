@@ -42,7 +42,7 @@
 					@forelse ($appointments as $ap)
 					<tr>
 						<td class="text-center">{{ $ap->appointment_no }}</td>
-						<td class="text-center">{{ $ap->user->getName() }} (for {{ $ap->user->petsInformations()->where('id', '=', $ap->pet_information_id)->first()->pet_name }})</td>
+						<td class="text-center">{{ $ap->user->getName() }}</td>
 						<td class="text-center">{{ \Carbon\Carbon::parse($ap->reserved_at)->format("M d, Y") }} ({{ $ap->getAppointedTime() }})</td>
 						<td class="text-center">{{ $ap->service->service_name }}</td>
 						<td class="text-center">
@@ -51,7 +51,7 @@
 							@elseif ($ap->status == 1)
 							<i class="fas fa-circle text-success mr-2"></i>Accepted
 							@elseif ($ap->status == 2)
-							<i class="fas fa-circle text-success mr-2"></i>Rejected
+							<i class="fas fa-circle text-danger mr-2"></i>Rejected
 							@else
 							<i class="fas fa-circle text-secondary mr-2"></i>Unknown
 							@endif
@@ -66,9 +66,8 @@
 								<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown">
 									<a href="{{route ('appointments.show', [$ap->id]) }}" class="dropdown-item"><i class="fa-solid fa-eye mr-2"></i>View Appointment</a>
 									<a href="{{route ('appointments.edit', [$ap->id]) }}" class="dropdown-item"><i class="fa-solid fa-pen-to-square mr-2"></i>Edit Appointment</a>
-									<a href="{{route ('appointments.edit', [$ap->id]) }}" class="dropdown-item"><i class="fa-solid fa-calendar-check mr-2"></i>Accept Appointment</a>
-
-									<a href="javascript:void(0);" onclick="confirmLeave('{{ route('appointments.delete', [$ap->id]) }}', undefined, 'Are you sure you want to reject this schedule? <b>It cannot be undone.</b>');" class="dropdown-item"><i class="fa-solid fa-calendar-xmark mr-2 text-warning"></i>Reject Appointment</a>
+									<a href="{{route ('accept.appointment', [$ap->id]) }}" class="dropdown-item"><i class="fa-solid fa-calendar-check mr-2"></i>Accept Appointment</a>
+									<a href="{{route ('reason.appointment', [$ap->id]) }}" class="dropdown-item"><i class="fa-solid fa-calendar-xmark mr-2 text-danger"></i>Reject Appointment</a>
 								</div>
 							</div>
 						</td>
