@@ -4,6 +4,7 @@
 
 @section('content')
 
+
 <div class="container-fluid m-0">
     <div class="row">
        <h2 class="mt-5"><a href="javascript:void(0);" onclick="confirmLeave('{{route('inventory')}}');" class="text-decoration-none  text-1"><i class="fas fa-chevron-left mr-2"></i>Inventory List</a></h2>
@@ -39,6 +40,7 @@
                     </tr>
                 </thead>
 
+
                 <tbody>
                     @forelse ($products as $p)
                     <tr>
@@ -47,10 +49,10 @@
                         <td>₱{{ number_format($p->price, 2) }}</td>
 
                         <td>
-                            @if ($p->status == "active")
+                            @if($p->status == "active")
                             <i class="fas fa-circle text-success mr-2"></i>Active
                             @elseif ($p->status == "inactive")
-                            <i class="fas fa-circle text-danger mr-2"></i>Inactive
+                            <i class="fas fa-circle text-danger mr-2"></i>Inactive                           
                             @endif
                         </td>
 

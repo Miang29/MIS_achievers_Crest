@@ -59,9 +59,12 @@
 			<h2 class="mb-3"><b>{{ ucfirst($type) }}</b></h2>
 			<h4>{{ $from->format('M d, Y') }} - {{ $to->format('M d, Y') }}</h4>
 
+			<div class="col-lg-12 col-12 col-md-12 mx-auto">
+				<img src="{{ asset('uploads/settings/banner.png') }}" style="max-height: 2.15rem;" class="m-0 p-0" alt="MIS Nano" data-fallback-img="{{ asset('uploads/settings/default.png') }}"/> Veterinary Clinic</h2>
+			</div>
 			{{-- TABLE START --}}
 			<table class="table table-striped m-0 p-0 text-center" id="asd">
-				@if (in_array($type, ['users', 'clients', 'pets', 'appointments', 'inventory', 'transaction-sales', 'transaction-services', 'services']))
+				@if (in_array($type, ['users', 'clients', 'pets', 'appointments', 'inventory', 'transaction-sales', 'transaction-services', 'transaction-vaccination', 'transaction-grooming', 'transaction-boarding', 'transaction-other', 'services']))
 					@include("admin.report.types.{$type}", ['data' => $data])
 				@else
 				<tbody>

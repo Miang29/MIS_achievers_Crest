@@ -54,10 +54,8 @@
 
 						<td class="text-center">
 							<div class="row">
-								<a class="border-right border-secondary" href="{{route('pet-information.pet.show', [$c->id])}}"><i class="fa-solid fa-eye mr-2 text-dark"></i></a>
-								<a href="javascript:void(0);" onclick="confirmLeave('{{ route('pet-information') }}', undefined, 'Are you sure you want to archive?');"><i class="fa-solid fa-box-archive ml-2 text-info"></i></a>
+								<a class="mx-auto" href="{{route('pet-information.pet.show', [$c->id])}}"><i class="fa-solid fa-eye mr-2 text-info">View Pets</i></a>
 							</div>
-
 						</td>
 					</tr>
 					@empty

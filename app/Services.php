@@ -23,12 +23,16 @@ class Services extends Model
         return $this->hasMany('App\ConsultationTransaction','service_category_id');
     }
 
-    public function otherTransaction() {
-        return $this->hasMany('App\OtherTransation', 'service_name');
-    }
-
     protected function appointment() {
         return $this->hasMany('App\Appointments','id');
+    }
+
+    public function boarding() {
+        return $this->hasMany('App\BoardingTransaction');
+    }
+
+    public function otherTransaction() {
+        return $this->hasMany('App\OtherTransation');
     }
 
 

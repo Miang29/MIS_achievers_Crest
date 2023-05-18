@@ -25,7 +25,7 @@ class OtherTransation extends Model
     }
 
     public function services() {
-        return $this->belongsTo('App\Services','service_name');
+        return $this->belongsTo('App\Services');
     }
 
     protected function servicesCategory() {
@@ -35,6 +35,7 @@ class OtherTransation extends Model
     public function variations() {
         return $this->belongsTo('App\ServicesVariation', 'variation_id');
     }
+
 
     // CUSTOM FUNCTION
     public function isVoided() {

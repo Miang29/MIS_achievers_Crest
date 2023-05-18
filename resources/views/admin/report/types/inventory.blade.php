@@ -1,6 +1,5 @@
 <thead>
 	<tr>
-		<th scope="col" class="text-1">Category Name</th>
 		<th scope="col" class="text-1">Product Name</th>
 		<th scope="col" class="text-1">Stocks</th>
 		<th scope="col" class="text-1">Price</th>
@@ -10,14 +9,13 @@
 </thead>
 
 <tbody>
-	@forelse ($data as $u)
+	@forelse ($data as $p)
 	<tr>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
+		<td>{{ $p->product_name }}</td>
+		<td>{{ $p->stocks }}</td>
+		<td>{{ $p->price }}</td>
+		<td>{{ $p->status }}</td>
+		<td>{{ $p->description }}</td>
 	</tr>
 	@empty
 	<tr>

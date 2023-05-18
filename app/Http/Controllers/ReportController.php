@@ -7,6 +7,20 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 
 use App\User;
+use App\Appointments;
+use App\PetsInformation;
+use App\Products;
+use App\ProductCategory;
+use App\Services;
+use App\ProductsOrderTransaction;
+use App\ServicesOrderTransaction;
+use App\ProductsOrderTransactionItem;
+use App\ConsultationTransaction;
+use App\VaccinationTransaction;
+use App\GroomingTransaction;
+use App\BoardingTransaction;
+use App\OtherTransaction;
+
 
 use Auth;
 use DB;
@@ -53,11 +67,27 @@ class ReportController extends Controller
 				break;
 
 			case 'transaction-sales':
-				$data = $this->getTransactionSales($from, $to);
+				$data = $this->getProductOrder($from, $to);
 				break;
 
 			case 'transaction-services':
-				$data = $this->getTransactionServices($from, $to);
+				$data = $this->getConsultation($from, $to);
+				break;
+
+			case 'transaction-vaccination':
+				$data = $this->getVaccination($from, $to);
+				break;
+
+			case 'transaction-grooming':
+				$data = $this->getGrooming($from, $to);
+				break;
+
+			case 'transaction-boarding':
+				$data = $this->getBoarding($from, $to);
+				break;
+
+			case 'transaction-other':
+				$data = $this->getOther($from, $to);
 				break;
 
 			case 'user':
@@ -118,12 +148,28 @@ class ReportController extends Controller
 				$data = $this->getServices($from, $to);
 				break;
 
-			case 'transaction-sales':
-				$data = $this->getTransactionSales($from, $to);
+			case 'transaction-productOrder':
+				$data = $this->getProductOrder($from, $to);
 				break;
 
 			case 'transaction-services':
-				$data = $this->getTransactionServices($from, $to);
+				$data = $this->getConsultation($from, $to);
+				break;
+
+			case 'transaction-vaccination':
+				$data = $this->getVaccination($from, $to);
+				break;
+
+			case 'transaction-grooming':
+			$data = $this->getGrooming($from, $to);
+			break;
+
+			case 'transaction-boarding':
+				$data = $this->getBoarding($from, $to);
+				break;
+
+			case 'transaction-other':
+				$data = $this->getOther($from, $to);
 				break;
 
 			case 'user':
@@ -143,31 +189,51 @@ class ReportController extends Controller
 
 	// GETTERS
 	private function getAppointments($from, $to) {
-		return [];
+		return Appointments::whereDate('created_at','>', $from)->get();
 	}
 
 	private function getPets($from, $to) {
-		return [];
+		return PetsInformation::whereDate('created_at','>', $from)->get();
 	}
 
 	private function getClients($from, $to) {
-		return [];
+		return User::where('user_type_id', '=', 4)->whereDate('created_at','>', $from)->get();
 	}
 
 	private function getInventory($from, $to) {
-		return [];
+
+		return Products::whereDate('created_at','=', $from)->get();
+		
+	}
+
+	private function getProductOrder($from, $to) {
+		return ProductsOrderTransaction::has("productsOrderItems", '>', 0)->whereDate('created_at','>', $from)->get();
+
 	}
 
 	private function getServices($from, $to) {
-		return [];
+		return Services::whereDate('created_at', '=', $from)->get();
 	}
 
-	private function getTransactionSales($from, $to) {
-		return [];
+	private function getConsultation($from, $to) {
+		return ServicesOrderTransaction::has("consultation", '>', 0)->with(['consultation','consultation.serviceVariation','consultation.serviceVariation.services','consultation.petsInformations'])->whereDate('created_at', '>', $from)->get();
+		
 	}
 
-	private function getTransactionServices($from, $to) {
-		return [];
+	private function getVaccination($from, $to) {
+			return ServicesOrderTransaction::has("vaccination", '>', 0)->with(['vaccination','vaccination.variations','vaccination.petsInformations'])->whereDate('created_at', '>', $from)->get();
+	}
+
+	private function getGrooming($from, $to) {
+			return ServicesOrderTransaction::has("grooming", '>',0)->with(['grooming','grooming.variations','grooming.petsInformations' ])->whereDate('created_at', '>', $from)->get();
+	}
+
+	private function getBoarding($from, $to) {
+			return ServicesOrderTransaction::has("boarding", '>', 0)->with(['boarding','boarding.variations','boarding.variations.services','boarding.petsInformations'])->whereDate('created_at', '>', $from)->get();
+	}
+
+	private function getOther($from, $to) {
+			return ServicesOrderTransaction::has("otherTransaction",'>',0)->with(['otherTransaction','otherTransaction.variations','otherTransaction.variations.services','otherTransaction.variations.services','otherTransaction.petsInformations'])->whereDate('created_at', '>', $from)->get();
 	}
 
 	private function getUsers($from, $to) {

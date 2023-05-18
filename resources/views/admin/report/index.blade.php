@@ -5,7 +5,7 @@
 @section('content')
 
 
-<div class="container-fluid px-2 px-lg-6 py-2 h-100 my-3">
+<div class="container-fluid px-2 px-lg-6 py-2 h-auto my-3">
 	<div class="row">
 		<div class="col-12 col-lg text-center text-lg-left">
 			<h2 class="text-1">REPORTS</h2>
@@ -23,18 +23,20 @@
 				
 				<a href="{{ route('report.index', ['t' => 'inventory', 'from' => $from, 'to' => $to]) }}" class="btn btn-outline-info btn-sm m-1 {{ $type == 'inventory' ? 'active' : '' }}"><i class="fa-solid fa-warehouse mr-2"></i>Inventory</a>
 
-				<div class="dropdown">
-					<button class="btn btn-outline-info btn-sm m-1 dropdown-toggle  {{ ($type == 'transaction-sales' || $type == 'transaction-services') ? 'active' : '' }}" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						<i class="fa-solid fa-money-check-dollar mr-2"></i>Transaction
-					</button>
+				<a href="{{ route('report.index', ['t' => 'transaction-sales', 'from' => $from, 'to' => $to]) }}" class="btn btn-outline-info btn-sm m-1"><i class="fas fa-money-check-dollar mr-1"></i>Product Order</a>
 
-					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-						<a href="{{ route('report.index', ['t' => 'transaction-sales', 'from' => $from, 'to' => $to]) }}" class="dropdown-item"><i class="fas fa-money-check-dollar mr-1"></i>Product Order</a>
-						<a href="{{ route('report.index', ['t' => 'transaction-services', 'from' => $from, 'to' => $to]) }}" class="dropdown-item"><i class="fas fa-shield-cat mr-1"></i>Services Transaction</a>
-					</div>
+				<a href="{{ route('report.index', ['t' => 'services', 'from' => $from, 'to' => $to]) }}" class="btn btn-outline-info btn-sm m-1 {{ $type == 'services' ? 'active' : '' }}"><i class="fa-solid fa-chart-simple mr-2"></i>Services</a>
+				
+				<a href="{{ route('report.index', ['t' => 'transaction-services', 'from' => $from, 'to' => $to]) }}" class="btn btn-outline-info btn-sm m-1 {{ $type == 'transaction-services' ? 'active' : '' }}"><i class="fas fa-shield-cat mr-1"></i>Consultation Transaction</a>
 
-				</div>   
-					<a href="{{ route('report.index', ['t' => 'services', 'from' => $from, 'to' => $to]) }}" class="btn btn-outline-info btn-sm m-1 {{ $type == 'services' ? 'active' : '' }}"><i class="fa-solid fa-chart-simple mr-2"></i>Services</a>
+				<a href="{{ route('report.index', ['t' => 'transaction-vaccination', 'from' => $from, 'to' => $to]) }}" class="btn btn-outline-info btn-sm m-1 {{ $type == 'transaction-vaccination' ? 'active' : '' }}"><i class="fas fa-shield-cat mr-1"></i>Vaccination Transaction</a>
+
+				<a href="{{ route('report.index', ['t' => 'transaction-grooming', 'from' => $from, 'to' => $to]) }}" class="btn btn-outline-info btn-sm m-1 {{ $type == 'transaction-grooming' ? 'active' : '' }}"><i class="fas fa-shield-cat mr-1"></i>Grooming Transaction</a>
+
+				<a href="{{ route('report.index', ['t' => 'transaction-boarding', 'from' => $from, 'to' => $to]) }}" class="btn btn-outline-info btn-sm m-1 {{ $type == 'transaction-boarding' ? 'active' : '' }}"><i class="fas fa-shield-cat mr-1"></i>Boarding Transaction</a>
+
+				<a href="{{ route('report.index', ['t' => 'transaction-other', 'from' => $from, 'to' => $to]) }}" class="btn btn-outline-info btn-sm m-1 {{ $type == 'transaction-other' ? 'active' : '' }}"><i class="fas fa-shield-cat mr-1"></i>Other Transaction</a>
+
 			</div>
 
 	<div class="overflow-x-auto h-100 card mb-3">
@@ -67,7 +69,7 @@
 
 		<div class="card-body">
 			<table class="table table-striped text-center" id="table-content">
-				@if (in_array($type, ['users', 'clients', 'pets', 'appointments', 'inventory', 'transaction-sales', 'transaction-services', 'services']))
+				@if (in_array($type, ['users', 'clients', 'pets', 'appointments', 'inventory', 'transaction-sales', 'transaction-services', 'transaction-vaccination', 'transaction-grooming', 'transaction-boarding', 'transaction-other', 'services']))
 				@include("admin.report.types.{$type}", ['data' => $data])
 				@else
 				<tbody>

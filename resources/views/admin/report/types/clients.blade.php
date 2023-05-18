@@ -1,23 +1,23 @@
 <thead>
 	<tr>
-		<th scope="col" class="text-1">Pet Owner</th>
+		<th scope="col" class="text-1">Username</th>
+		<th scope="col" class="text-1">Name</th>
 		<th scope="col" class="text-1">Email</th>
-		<th scope="col" class="text-1">Telephone No</th>
-		<th scope="col" class="text-1">Mobile No</th>
 		<th scope="col" class="text-1">Address</th>
-		<th scope="col" class="text-1">Type</th>
+		<th scope="col" class="text-1">Created At</th>
+		<th scope="col" class="text-1">Last Updated At</th>
 	</tr>
 </thead>
 
 <tbody>
-	@forelse ($data as $u)
+	@forelse ($data as $c)
 	<tr>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
+		<td>{{ $c->username }}</td>
+		<td>{{ $c->getName() }}</td>
+		<td>{{ $c->email }}</td>
+		<td>{{ $c->address }}</td>
+		<td>{{ Carbon\Carbon::parse($c->created_at)->timezone('Asia/Manila')->format('M d, Y h:i A') }}</td>
+		<td>{{ Carbon\Carbon::parse($c->updated_at)->timezone('Asia/Manila')->format('M d, Y h:i A') }}</td>
 	</tr>
 	@empty
 	<tr>

@@ -1,6 +1,5 @@
 <thead>
 	<tr>
-		<th scope="col" class="text-1">Avatar</th>
 		<th scope="col" class="text-1">Pet Name</th>
 		<th scope="col" class="text-1">Breed</th>
 		<th scope="col" class="text-1">Color/s</th>
@@ -11,18 +10,16 @@
 	</tr>
 </thead>
 
-
 <tbody>
-	@forelse ($data as $u)
+	@forelse ($data as $p)
 	<tr>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
+		<td>{{ $p->pet_name}}</td>
+		<td>{{ $p->breed}}</td>
+		<td>{{ $p->colors}}</td>
+		<td>{{ $p->birthdate}}</td>
+		<td>{{ $p->species}}</td>
+		<td>{{ $p->gender}}</td>
+		<td>{{ $p->types}}</td>
 	</tr>
 	@empty
 	<tr>

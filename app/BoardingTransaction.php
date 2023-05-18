@@ -28,6 +28,10 @@ class BoardingTransaction extends Model
         return $this->belongsTo('App\ServicesVariation', 'variation_id',);
     }
 
+    public function services() {
+        return $this->belongsTo('App\Services');
+    }
+
      // CUSTOM FUNCTION
     public function isVoided() {
         return (!empty($this->voided_at) || ($this->voided_at != null));

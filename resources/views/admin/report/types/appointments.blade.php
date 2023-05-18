@@ -1,21 +1,21 @@
 <thead>
 	<tr>
-		<th scope="col" class="text-1">Pet Owner</th>
-		<th scope="col" class="text-1">Email</th>
-		<th scope="col" class="text-1">Pet Name</th>
-		<th scope="col" class="text-1">Date</th>
-		<th scope="col" class="text-1">Time</th>
+		<th scope="col" class="text-1">Appointment #</th>
+		<th scope="col" class="text-1">Client Name</th>
+		<th scope="col" class="text-1">Appointment Date - Time</th>
+		<th scope="col" class="text-1">Service Type</th>
+		<th scope="col" class="text-1">Pet Name</th>	
 	</tr>
 </thead>
 
 <tbody>
-	@forelse ($data as $u)
+	@forelse ($data as $ap)
 	<tr>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
+		<td>{{ $ap->appointment_no }}</td>
+		<td>{{ $ap->user->getName() }}</td>
+		<td>{{ \Carbon\Carbon::parse($ap->reserved_at)->format("M d, Y") }} ({{ $ap->getAppointedTime() }})</td>
+		<td>{{ $ap->service->service_name }}</td>
+		<td>{{ $ap->petsInformations->pet_name }}</td>
 	</tr>
 	@empty
 	<tr>
