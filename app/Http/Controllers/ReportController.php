@@ -203,7 +203,6 @@ class ReportController extends Controller
 	private function getInventory($from, $to) {
 
 		return Products::whereDate('created_at','=', $from)->get();
-		
 	}
 
 	private function getProductOrder($from, $to) {
@@ -212,7 +211,7 @@ class ReportController extends Controller
 	}
 
 	private function getServices($from, $to) {
-		return Services::whereDate('created_at', '=', $from)->get();
+		return Services::has("variations", '>', 0)->with(['variations','variations.servicesCategory'])->whereDate('created_at', '=', $from)->get();
 	}
 
 	private function getConsultation($from, $to) {

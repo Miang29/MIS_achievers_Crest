@@ -15,8 +15,8 @@ class Products extends Model
         'description'
     ];
 
-    protected function productCategory() {
-        return $this->belongsTo('App\ProductCategory');
+    public function productCategory() {
+        return $this->belongsTo('App\ProductCategory','category_name');
     }
 
     protected function productOrderTransaction() {

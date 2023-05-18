@@ -9,17 +9,17 @@
 </thead>
 
 <tbody>
-	@forelse ($data as $u)
+	@forelse ($data as $s)
 	<tr>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
+		<td>{{ $s->servicesCategory->service_category_name }}</td>
+		<td>{{ $s->service_name }}</td>
+		<td>{{ $s->variations[0]->variation_name}}</td>
+		<td>₱{{ number_format($s->variations[0]->price, 2) }}</td>
+		<td>{{ $s->variations[0]->remarks }}</td>
 	</tr>
 	@empty
 	<tr>
-		<td colspan="6">Nothing to show~</td>
+		<td colspan="5">Nothing to show~</td>
 	</tr>
 	@endforelse
 </tbody>

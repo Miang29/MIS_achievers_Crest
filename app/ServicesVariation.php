@@ -21,6 +21,10 @@ class ServicesVariation extends Model
         return $this->hasMany('App\Vaccination', 'id');
     } 
 
+    public function servicesCategory() {
+        return $this->belongsTo('App\ServicesCategory','service_category_name');
+    } 
+
     public function grooming() {
         return $this->hasMany('App\GroomingTransaction', 'variation_name');
     }

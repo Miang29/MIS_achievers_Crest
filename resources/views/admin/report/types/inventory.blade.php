@@ -13,7 +13,7 @@
 	<tr>
 		<td>{{ $p->product_name }}</td>
 		<td>{{ $p->stocks }}</td>
-		<td>{{ $p->price }}</td>
+		<td>₱{{ number_format($p->price, 2) }}</td>
 		<td>{{ $p->status }}</td>
 		<td>{{ $p->description }}</td>
 	</tr>

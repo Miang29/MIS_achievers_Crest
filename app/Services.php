@@ -15,7 +15,7 @@ class Services extends Model
         return $this->hasMany('App\ServicesVariation', 'service_id');
     }
 
-    protected function servicesCategory() {
+    public function servicesCategory() {
         return $this->belongsTo('App\ServicesCategory','service_category_id');
     }  
 
@@ -23,7 +23,7 @@ class Services extends Model
         return $this->hasMany('App\ConsultationTransaction','service_category_id');
     }
 
-    protected function appointment() {
+    public function appointment() {
         return $this->hasMany('App\Appointments','id');
     }
 

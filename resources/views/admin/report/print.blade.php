@@ -59,7 +59,7 @@
 			<h2 class="mb-3"><b>{{ ucfirst($type) }}</b></h2>
 			<h4>{{ $from->format('M d, Y') }} - {{ $to->format('M d, Y') }}</h4>
 
-			<div class="col-lg-12 col-12 col-md-12 mx-auto">
+			<div class="col-lg-12 col-12 col-md-12 mx-auto mb-3 mt-3 text-center">
 				<img src="{{ asset('uploads/settings/banner.png') }}" style="max-height: 2.15rem;" class="m-0 p-0" alt="MIS Nano" data-fallback-img="{{ asset('uploads/settings/default.png') }}"/> Veterinary Clinic</h2>
 			</div>
 			{{-- TABLE START --}}

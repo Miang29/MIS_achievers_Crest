@@ -8,6 +8,7 @@
 		<th scope="col" class="text-1">Total</th>
 		<th scope="col" class="text-1">Created at</th>
 		<th scope="col" class="text-1">Last Updated at</th>
+		<th></th>
 	</tr>
 </thead>
 
