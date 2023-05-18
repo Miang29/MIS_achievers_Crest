@@ -320,15 +320,24 @@ class ClientController extends Controller
 	}
 
 	// -------------------- PET INFORMATION INDEX ---------------------- //
-	protected function index()
+	protected function index(Request $req)
 	{
+
+		$user = User::query();
+		$search = "%{$req->search}%";
+
+		if ($req->search)
+			$appointments = $appointments->where('pet_name', 'LIKE', $search);
+				
+
 		$clients = User::has('petsInformations', '>', 0)
 			->select(DB::raw('id, CONCAT(first_name, " ", last_name) as name, email'))
 			->where('user_type_id', '=', '4')
 			->get();
 
 		return view('admin.pet-information.index', [
-			'clients' => $clients
+			'clients' => $clients,
+			'user' => $user
 		]);
 	}
 	// ------------------ CREATE PET INFORMATION -------------------------- //

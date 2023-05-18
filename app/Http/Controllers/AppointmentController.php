@@ -30,8 +30,7 @@ class AppointmentController extends Controller
 		$search = "%{$req->search}%";
 
 		if ($req->search)
-			$appointments = $appointments->where('service_name', 'LIKE', $search)
-				->orWhere('email', 'LIKE', $search);
+			$appointments = $appointments->where('user_id', 'LIKE', $search);
 
 		$appointment = Appointments::has('petsInformations', '>', 0)->with('petsInformations','petsInformations.user')->get();
 		return view('admin.appointment.index', [

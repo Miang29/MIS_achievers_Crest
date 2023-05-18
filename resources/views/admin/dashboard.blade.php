@@ -14,21 +14,30 @@
 			{{-- PATIENTS --}}
 			<div class="col-12 col-md-6 col-lg-3 my-3">
 				<div class="total-block bg-info text-white dark-shadow invisiborder rounded">
-					<i class="fas fa-paw fa-5x mx-2 mt-2"></i>
-					<div class="d-flex flex-d-col flex-grow-1 text-right ml-3">
-						<h6 class="my-auto">Patients</h6>
-						<h6 class="my-auto"></h6>
+					<div class="row">
+						<i class="fas fa-paw fa-5x mx-4 mt-3"></i>
+						<div class="d-flex flex-d-col flex-grow-1 text-right">
+							<h1 class="my-auto">{{ $patients->count() }}</h1>
+						</div>
 					</div>
+						<div class="d-flex flex-d-col flex-grow-1 text-right">
+							<h6 class="mx-auto ml-3 ">Patients</h6>
+						</div>
 				</div>
+
 			</div>
 
 			{{-- VACCINATED --}}
 			<div class="col-12 col-md-6 col-lg-3  my-3">
 				<div class="total-block bg-2 text-white dark-shadow invisiborder rounded">
-				<i class="fa-solid fa-chart-simple fa-5x mx-2 mt-2"></i>
-					<div class="d-flex flex-d-col flex-grow-1 text-right ml-3">
-						<h6 class="my-auto">Sales</h6>
-						<h6 class="my-auto"></h6>
+					<div class="row">
+					<i class="fa-solid fa-chart-simple fa-5x mx-4 mt-3"></i>
+						<div class="d-flex flex-d-col flex-grow-1 text-right">
+							<h1 class="my-auto"></h1>
+						</div>
+					</div>
+					<div class="d-flex flex-d-col flex-grow-1 text-right">
+							<h6 class="mx-auto ml-3 ">Sales</h6>
 					</div>
 				</div>
 			</div>
@@ -36,10 +45,14 @@
 			{{-- STOCKS --}}
 			<div class="col-12 col-md-6 col-lg-3  my-3">
 				<div class="total-block bg-3 text-white dark-shadow invisiborder rounded">
-					<i class="fas fa-arrow-trend-up fa-5x mx-2 mt-2"></i>
-					<div class="d-flex flex-d-col flex-grow-1 text-right ml-3">
-						<h6 class="my-auto">Stocks</h6>
-						<h6 class="my-auto"></h6>
+					<div class="row">
+						<i class="fas fa-arrow-trend-up fa-5x mx-4 mt-3"></i>
+						<div class="d-flex flex-d-col flex-grow-1 text-right">
+							<h1 class="my-auto">30</h1>
+						</div>
+					</div>
+					<div class="d-flex flex-d-col flex-grow-1 text-right">
+							<h6 class="mx-auto ml-3 ">Stocks</h6>
 					</div>
 				</div>
 			</div>
@@ -47,10 +60,14 @@
 			{{-- CLIENTS --}}
 			<div class="col-12 col-md-6 col-lg-3  my-3">
 				<div class="total-block bg-4 text-white dark-shadow invisiborder rounded">
-					<i class="fas fa-users fa-5x mx-2 mt-2"></i>
-					<div class="d-flex flex-d-col flex-grow-1 text-right ml-3">
-						<h6 class="my-auto">Clients</h6>
-						<h6 class="my-auto"></h6>
+					<div class="row">
+						<i class="fas fa-users fa-5x mx-4 mt-3"></i>
+						<div class="d-flex flex-d-col flex-grow-1 text-right">
+							<h1 class="my-auto">{{$client}}</h1>
+						</div>
+					</div>
+					<div class="d-flex flex-d-col flex-grow-1 text-right">
+							<h6 class="mx-auto ml-3 ">Clients</h6>
 					</div>
 				</div>
 			</div>

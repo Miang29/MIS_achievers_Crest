@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Appointments;
+use App\PetsInformation;
+use App\ProductsOrderTransaction;
+use App\User;
+use App\Products;
 use Carbon\Carbon;
 
 use Auth;
@@ -49,9 +53,13 @@ class PageController extends Controller
 			);
 		}
 
+		$patient = PetsInformation::get();
+		$clients = User::where('user_type_id','=', 4)->count();
 		return view('admin.dashboard', [
 			'months' => $months,
-			'monthly_earnings' => $monthly_earnings
+			'monthly_earnings' => $monthly_earnings,
+			'patients' => $patient,
+			'client' => $clients,
 		]);
 	}
 

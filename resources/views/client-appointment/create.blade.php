@@ -68,7 +68,7 @@
 				</div>
 
 				{{-- BREED --}}
-				<div class="col-12 col-md-9 col-lg-6 mx-auto">
+				<div class="col-12 col-md-9 col-lg-6 mx-auto mt-3">
 					<input class="form-control" placeholder="Breed" type="text" name="breed" value="{{ old('breed') }}" />
 					<small class="text-danger small">{{ $errors->first('breed') }}</small>
 				</div>
@@ -77,8 +77,8 @@
 	</div>
 
 	<div class="card-footer col-12 col-lg-12 mx-auto text-center flex-row">
-		<a href="{{ route('client.appointment.index')}}" class="btn btn-outline-custom btn-sm w-lg-25"><i class="fa-solid fa-arrow-left fa-lg mr-2"></i>Back</a>
-		<button type="submit" class="btn btn-outline-custom btn-sm w-lg-25" data-type="submit">Make Appointment</button>
+		<a href="{{ route('client.appointment.index')}}" class="btn btn-outline-custom btn-sm w-lg-25 w-50"><i class="fa-solid fa-arrow-left fa-lg mr-2"></i>Back</a>
+		<button type="submit" class="btn btn-outline-custom btn-sm w-lg-25 w-50" data-type="submit">Make Appointment</button>
 	</div>
 </form>
 

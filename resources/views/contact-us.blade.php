@@ -14,7 +14,7 @@
 
     {{-- Content --}}
     <div class="col-12 w-75 mx-auto   w-md-75 w-lg-75  w-xs-100 ">
-        <div class="card my-3 mx-auto w-100  border border-secondary">
+        <form class="card my-3 mx-auto w-100  border border-secondary">
             <h5 class="card-header text-center bg-white text-1 font-weight-bold  border border-secondary">We would like to hear from you.</h5>
             <div class="card-body d-flex  border border-secondary">
                 <div class="form-group mx-auto  w-xs-100">
@@ -23,7 +23,7 @@
                             <div class="order-1 order-lg-0 col-12 col-lg-6">
 
                                 <div class="form-group">
-                                    <input class="form-control my-2 border border-secondary " type="text" name="petowner" value="{{old('petowner')}}" placeholder="Name" />
+                                    <input class="form-control my-2 border border-secondary " type="text" name="client_name" value="{{old('petowner')}}" placeholder="Name" />
                                 </div>
 
                                 <div class="form-group">
@@ -65,9 +65,8 @@
                 </div>
 
             </div>
-        </div>
+        </form>
     </div>
-
 </div>
 <div class="card-footer col-lg-12 text-center cite" style="background-color:#021f53; color:white;">
     Copyright <i class="fa-solid fa-copyright"></i> Nano Vet 2015

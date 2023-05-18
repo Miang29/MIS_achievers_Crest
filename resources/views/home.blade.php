@@ -67,30 +67,29 @@
 
 
 <div class="card-body text-center mb-3 bg-light" style="height:31rem;">
-    <h1 class="text-custom-1" style="font-family:fantasy; font-weight:bolder;">WE VALUE YOUR PETS</h1>
+    <h1 class="text-custom-1" style="font-family:arial; font-weight:bold;">WE VALUE YOUR PETS</h1>
     <div class="row h-75 mt-3">
-        <div class="card col-lg-3 col-12 col-md-12 mx-auto" style="border-radius:2.5rem; border-color: #021f53;border-width: 0.2rem;">
-            <img src="{{ asset('uploads/settings/vet-img1.jpg') }}" class="card-img-top my-5">
+        <div class="card col-lg-3 col-4 col-md-12 mx-auto mb-3" style="border-radius:2.5rem; border-color: #021f53;border-width: 0.2rem;">
+            <img src="{{ asset('uploads/settings/vet-img1.jpg') }}" class="card-img-top my-5 w-100">
         </div>
-        <div class="card col-lg-3 col-12 col-md-12 mx-auto" style="border-radius:2.5rem;  border-color: #021f53;border-width: 0.2rem;">
-            <img src="{{ asset('uploads/settings/vet-img3.jpg') }}" class="card-img-top my-5">
+        <div class="card col-lg-3 col-4 col-md-12 mx-auto mb-3" style="border-radius:2.5rem;  border-color: #021f53;border-width: 0.2rem;">
+            <img src="{{ asset('uploads/settings/vet-img3.jpg') }}" class="card-img-top my-5 w-100">
         </div>
-        <div class="card col-lg-3 col-12 col-md-12 mx-auto" style="border-radius:2.5rem;  border-color: #021f53;border-width: 0.2rem;">
-            <img src="{{ asset('uploads/settings/vet-img.jpg') }}" class="card-img-top my-5">
+        <div class="card col-lg-3 col-4 col-md-12 mx-auto mb-3" style="border-radius:2.5rem;  border-color: #021f53;border-width: 0.2rem;">
+            <img src="{{ asset('uploads/settings/vet-img.jpg') }}" class="card-img-top my-5 w-100">
         </div>
     </div>
 </div>
 
-<div class="d-flex my-2">
-    <a href="{{ route('terms-of-service')}}" class="ml-auto">Terms of Service</a>
-    <div class="border-right ml-2 border-dark"></div>
-    <a href="{{ route('privacy-policy')}}" class="mr-auto ml-2">Privacy Policy</a>
-</div>
+    <div class="d-flex my-2">
+        <a href="{{ route('terms-of-service')}}" class="ml-auto">Terms of Service</a>
+        <div class="border-right ml-2 border-dark"></div>
+        <a href="{{ route('privacy-policy')}}" class="mr-auto ml-2">Privacy Policy</a>
+    </div>
 
-<div class="card-footer col-lg-12 text-center cite" style="background-color:#021f53; color:white;">
-    Copyright <i class="fa-solid fa-copyright"></i> Nano Vet 2015
-</div>
-
+    <div class="col-lg-12 col-md-12 col-12 text-center" style="background-color:#021f53; color:white; position: relative;">
+        Copyright <i class="fa-solid fa-copyright"></i> Nano Vet 2015
+    </div>
 @endsection
 @section('pre-css')
 <link href="{{ asset('css/user.css') }}" rel="stylesheet">
