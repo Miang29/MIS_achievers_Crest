@@ -48,7 +48,7 @@
 					<div class="row">
 						<i class="fas fa-arrow-trend-up fa-5x mx-4 mt-3"></i>
 						<div class="d-flex flex-d-col flex-grow-1 text-right">
-							<h1 class="my-auto">30</h1>
+							<h1 class="my-auto"></h1>
 						</div>
 					</div>
 					<div class="d-flex flex-d-col flex-grow-1 text-right">

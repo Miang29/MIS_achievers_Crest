@@ -15,6 +15,7 @@
 			<a class="nav-item nav-link active" id="nav-web-tab" data-toggle="tab" href="#nav-web" role="tab" aria-controls="nav-web" aria-selected="true">Website Information</a>
 			<a class="nav-item nav-link" id="nav-inventory-tab" data-toggle="tab" href="#nav-inventory" role="tab" aria-controls="nav-inventory" aria-selected="false">Product Category</a>
 			<a class="nav-item nav-link" id="nav-services-tab" data-toggle="tab" href="#nav-services" role="tab" aria-controls="nav-services" aria-selected="false">Service Category</a>
+			<a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Contact Information Messages</a>
 		</div>
 	</nav>
 
@@ -163,6 +164,68 @@
 				</form>
 			</div>
 		</div>
+		{{-- CONTACT --}}
+		<div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+			<div class="container-fluid m-0">
+
+				<div class="overflow-x-auto h-100 card">
+					<div class=" card-body h-100 px-0 pt-0 ">
+						<table class="table table-striped text-center" id="table-content">
+							<thead>
+								<tr>
+									<th scope="col" class="hr-thick text-1">Client Name</th>
+									<th scope="col" class="hr-thick text-1">Email</th>
+									<th scope="col" class="hr-thick text-1">Mobile No</th>
+									<th scope="col" class="hr-thick text-1">Message</th>
+									<th scope="col" class="hr-thick text-1">Status</th>
+								</tr>
+							</thead>
+
+							<tbody>
+								@forelse($contacts as $ci)
+								<tr>
+									<td>{{ $ci->client_name}}</td>
+									<td>{{ $ci->email}}</td>
+									<td>{{ $ci->mobile_no}}</td>
+									<td>{{ $ci->message }}</td>
+									<td>
+										@if ($ci->status == 0)
+										<i class="fas fa-circle text-warning mr-2"></i>Pending
+										@elseif ($ci->status == 1)
+										<i class="fas fa-circle text-success mr-2"></i>Message Viewed
+										@elseif ($ci->status == 2)
+										<i class="fas fa-circle text-danger mr-2"></i>Message Ignored
+										@elseif ($ci->status == 3)
+										<i class="fas fa-circle text-info mr-2"></i>Replied
+										@else
+										<i class="fas fa-circle text-secondary mr-2"></i>Unknown
+										@endif
+									</td>
+									<td>
+										<div class="dropdown">
+											<button class="btn btn-info bg-1 btn-sm dropdown-toggle mark-affected" type="button" data-toggle="dropdown" id="dropdown" aria-haspopup="true" aria-expanded="false" data-id="$a->id">
+												Action
+											</button>
+
+											<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown">
+												<a href="{{route ('contact.show', [$ci->id]) }}" class="dropdown-item"><i class="fa-solid fa-message mr-2"></i>View Message</a>
+												<a href="{{route ('ignore.message', [$ci->id]) }}" class="dropdown-item"><i class="fa-solid fa-comment-slash mr-2 text-danger"></i>Ignore Message</a>
+												<a href="{{route ('response', [$ci->id]) }}" class="dropdown-item"><i class="fa-solid fa-paper-plane mr-2 text-info"></i>Reply Message</a>
+											</div>
+										</div>
+									</td>
+								</tr>
+								@empty
+								<tr>
+									<td colspan="7">Nothing to show ~</td>
+								</tr>
+								@endforelse
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>>
 	</div>
 
 

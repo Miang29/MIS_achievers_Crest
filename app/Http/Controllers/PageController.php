@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Appointments;
 use App\PetsInformation;
+use App\ContactInformation;
 use App\ProductsOrderTransaction;
 use App\User;
 use App\Products;
@@ -74,10 +75,6 @@ class PageController extends Controller
 		return view('about-us');
 	}
 
-	protected function contactUs() {
-		return view('contact-us');
-	}
-
 	protected function privacyPolicy() {
 		return view('privacy-policy');
 	}
@@ -86,10 +83,164 @@ class PageController extends Controller
 		return view('terms-of-service');
 	}
 
-
 	protected function ServicesOffer()
 	{
 		return view('services');
 	}
 
+	protected function contactUs() {
+		return view('contact-information.contact-us');
+	}
+
+	protected function viewMessage($id){
+
+		$contact = ContactInformation::find($id);
+
+		if ($contact == null)
+
+			return redirect()
+			->route('settings.index')
+			->with('flash_error', 'Message does not exists.');
+
+			{
+			try{
+				DB::beginTransaction();
+				$contact->status = 1;
+				$contact->save();
+
+			DB::commit();
+		} catch (Exception $e) {
+			DB::rollback();
+			Log::error($e);
+			return redirect()
+			->route('settings.index')
+			->with('flash_error', 'Something went wrong, please try again later');
+		}
+
+		return redirect()
+			->route('settings.index')
+			->with('flash_success', "Message viewed");
+		}
+
+	}
+
+	protected function ignoreMessage($id){
+
+		$contact = ContactInformation::find($id);
+
+		if ($contact == null)
+
+			return redirect()
+			->route('settings.index')
+			->with('flash_error', 'Message does not exists.');
+
+			{
+			try{
+				DB::beginTransaction();
+				$contact->status = 2;
+				$contact->save();
+
+			DB::commit();
+		} catch (Exception $e) {
+			DB::rollback();
+			Log::error($e);
+			return redirect()
+			->route('settings.index')
+			->with('flash_error', 'Something went wrong, please try again later');
+		}
+
+		return redirect()
+			->route('settings.index')
+			->with('flash_success', "Message was ignored");
+		}
+
+	}
+
+	protected function replyMessage(Request $req, $id){
+
+		$contact = ContactInformation::find($id);
+
+		if ($contact == null)
+
+			return redirect()
+			->route('settings.index')
+			->with('flash_error', 'Contact Information does not exists.');
+
+			{
+			try{
+				DB::beginTransaction();
+				$contact->status = 3;
+				$contact->reply = $req->reply;
+				$contact->save();
+
+			// MAILER SHIT
+			Mail::send(
+				'contact-information.mail.email',
+				[
+					'contact' => $contact,
+				],
+				function ($mail) use ($contact) {
+					$mail->to($contact->email)
+						->from("nano.mis@technical.com") // MIS Nano Vet Clinic
+						->subject("Message Response");
+				}
+			);
+
+			DB::commit();
+		} catch (Exception $e) {
+			DB::rollback();
+			Log::error($e);
+			return redirect()
+			->route('settings.index')
+			->with('flash_error', 'Something went wrong, please try again later');
+		}
+
+		return redirect()
+			->route('settings.index')
+			->with('flash_success', "Successfully replied to the message");
+		}
+
+	}
+
+	protected function submit(Request $req) {
+		
+		$validator = Validator::make($req->all(), [
+			'client_name' => 'required|min:2|max:255|string',
+			'email' => 'required|min:2|max:255|email',
+			'mobile_no' => 'required|min:10|max:255|string',
+			'message' => 'nullable|min:2|max:255|string',
+		]);
+
+		if ($validator->fails())
+			return redirect()
+				->back()
+				->withErrors($validator)
+				->withInput();
+
+		try {
+			DB::beginTransaction();
+
+			$contact = ContactInformation::create([
+				'client_name' => $req->client_name,
+				'email' => $req->email,
+				'mobile_no' => $req->mobile_no,
+				'message' => $req->message,
+			]);
+
+			DB::commit();
+		} catch (Exception $e) {
+			DB::rollback();
+			Log::error($e);
+
+			return redirect()
+				->route('contact-us')
+				->with('flash_error', 'Something went wrong, please try again later');
+		}
+
+		return redirect()
+			->route('home')
+			->with('flash_success', "Message successfully sent");
+	}
 };
+
+

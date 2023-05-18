@@ -74,7 +74,7 @@
 					</tr>
 					@empty
 					<tr>
-						<td colspan="5">Nothing to show~</td>
+						<td colspan="6">Nothing to show~</td>
 					</tr>
 					@endforelse
 				</tbody>

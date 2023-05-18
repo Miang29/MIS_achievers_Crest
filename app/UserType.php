@@ -13,4 +13,8 @@ class UserType extends Model
 	// Relationships
 	protected function users() { return $this->hasMany('App\User'); }
 	protected function permissions() { return $this->belongsToMany('App\Permission', 'type_permissions'); }
+
+	public function clientNotification() {
+        return $this->hasMany('App\ClientNotification','id');
+    }
 }

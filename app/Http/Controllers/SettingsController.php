@@ -5,19 +5,47 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Settings;
+use App\ContactInformation;
+use App\User;
+use App\ClientNotification;
 
 use DB;
 use Exception;
 use File;
 use Log;
 use Validator;
-
+use Auth;
+use Mail;
 
 class SettingsController extends Controller
 {
+
+	protected function messageResponse($id) {
+		$user = Auth::user();
+		$contacts = ContactInformation::find($id);
+		return view('contact-information.message_response',[
+		'contacts' => $contacts,
+		'id' => $id,
+		'user' => $user
+		]);
+	}
+
+	protected function contactShow($id) {
+		$contacts = ContactInformation::find($id);
+		return view('contact-information.contact_show',[
+		'contacts' => $contacts,
+		'id' => $id
+		]);
+	}
+
 	//SETTINGS 
 	protected function settings() {
-		return view('admin.settings.index');
+		$contact = ContactInformation::get();
+		$client = User::where('user_type_id','=', 4)->get();
+		return view('admin.settings.index',[
+		'contacts' => $contact,
+		'client' => $client,
+		]);
 	}
 
 	protected function update(Request $req) {

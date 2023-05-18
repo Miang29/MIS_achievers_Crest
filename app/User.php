@@ -53,7 +53,10 @@ class User extends Authenticatable
         return $this->hasMany('App\Appointments', 'id');
     }
 
-
+    public function clientNotification() {
+        return $this->hasMany('App\ClientNotification', 'user_type_id','email');
+    }
+    
     // Custom Functions
     public function getName($include_middle = false) {
         return $this->first_name . ($include_middle ? (' ' . $this->middle_name . ' ') : ' ') . $this->last_name;

@@ -383,32 +383,5 @@ class ClientController extends Controller
 			]
 		);
 	}
-	// --------------- NOTIFICATION MESSAGE ------------------ //
-	protected function notifyClient(Request $req)
-	{
-		try {
-			DB::beginTransaction();
-			// MAILING STUFFS
-			if (random_int(0, 100) <= 50)
-				throw new Exception();
 
-			DB::commit();
-		} catch (Exception $e) {
-			DB::rollback();
-			Log::error($e);
-
-			return response()
-				->json([
-					'success' => false,
-					'title' => 'Something went wrong',
-					'message' => '<p class="m-0 text-center">Something went wrong, please try again later</p>'
-				]);
-		}
-		return response()
-			->json([
-				'success' => true,
-				'title' => 'Success',
-				'message' => '<p class="m-0 text-center">Successfully notified all subscribed clients</p>'
-			]);
-	}
 }

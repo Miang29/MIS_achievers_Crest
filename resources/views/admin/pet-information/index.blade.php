@@ -12,7 +12,6 @@
 
 		<div class="col-12 col-md-6 col-lg my-2 text-center text-md-left text-lg-right">
 			<a href="{{ route('pet-information.create') }}" class="btn btn-info btn-sm my-1 bg-1"><i class="fas fa-plus-circle mr-2"></i>Pet Registration</a>
-			<button class="btn btn-info btn-sm my-1 bg-1" id="clientNotify" data-scf="Message" data-scf-name="message" data-scf-target-uri="{{ route('clients.notify') }}" data-scf-custom-title="Notification Message" data-scf-use-textarea="true" data-scf-disable-button="true"><i class="fa-solid fa-bell mr-2"></i>Notify Clients</a>
 		</div>
 
 		<div class=" col-12 col-md-6 col-lg my-2 text-center text-lg-right">

@@ -309,7 +309,7 @@ class UserController extends Controller
 		if ($user == null)
 			return redirect()
 				->route('user.index')
-				->with('flash_error', 'User already removed. Please refresh your browser if it is still visible');
+				->with('flash_error', 'User already archived. Please refresh your browser if it is still visible');
 
 		$isDeleted = false;
 
@@ -334,11 +334,11 @@ class UserController extends Controller
 		if ($isDeleted)
 			return redirect()
 				->route('user.index')
-				->with('flash_success', 'Successfully removed user from table');
+				->with('flash_success', 'Successfully archived user from table');
 
 		return redirect()
 			->route('user.index')
-			->with('flash_info', 'Cannot delete your own account while active');
+			->with('flash_info', 'Cannot archived your own account while active');
 	}
 
 	protected function submitPassword(Request $req, $id)

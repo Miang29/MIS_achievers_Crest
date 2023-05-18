@@ -14,6 +14,12 @@ Route::get('/', 'PageController@user')->name('home');
 Route::get('/services-offer', 'PageController@ServicesOffer')->name('services-offer');
 Route::get('/about-us', 'PageController@aboutUs')->name('about-us');
 Route::get('/contact-us', 'PageController@contactUs')->name('contact-us');
+Route::post('/submit/message', 'PageController@submit')->name('submit.message');
+Route::post('/submit/{id}/response', 'PageController@replyMessage')->name('submit.response');
+Route::get('/message/{id}/viewed','PageController@viewMessage')->name('view.message');
+Route::get('/contact/{id}/show', 'SettingsController@contactShow')->name('contact.show');
+Route::get('/message/{id}/response', 'SettingsController@messageResponse')->name('response');
+Route::get('/message/{id}/ignored','PageController@ignoreMessage')->name('ignore.message');
 Route::get('/privacy-policy', 'PageController@privacyPolicy')->name('privacy-policy');
 Route::get('/terms-of-service', 'PageController@termsOfService')->name('terms-of-service');
 
@@ -89,6 +95,7 @@ Route::group(['middleware' => ['auth']], function() {
 
 			// Pet History
 			Route::get('/view/{id}/history', 'ClientController@petHistory')->name('pet-information.pet.history');
+			
 		});
 
 		// TRANSACTION
@@ -321,8 +328,6 @@ Route::group(['middleware' => ['auth']], function() {
 		Route::get('/settings', 'SettingsController@settings')->name('settings.index');
 		Route::post('/update', 'SettingsController@update')->name('settings.update');
 		Route::post('/remove-logo', 'SettingsController@removeLogo')->name('settings.remove-logo');
-
-
 
 		//USER ACCOUNT
 		Route::group(['prefix' => 'users'], function () {

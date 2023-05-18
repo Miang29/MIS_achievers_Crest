@@ -68,7 +68,7 @@
 				</div>
 
 				{{-- BREED --}}
-				<div class="col-12 col-md-9 col-lg-6 mx-auto mt-3">
+				<div class="col-12 col-md-9 col-lg-6 mx-auto">
 					<input class="form-control" placeholder="Breed" type="text" name="breed" value="{{ old('breed') }}" />
 					<small class="text-danger small">{{ $errors->first('breed') }}</small>
 				</div>

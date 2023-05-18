@@ -28,7 +28,7 @@ class CreateUsersTable extends Migration
 			$table->tinyInteger('login_attempts')->default(0);
 			$table->tinyInteger('locked')->default(0);
 			$table->ipAddress('locked_by')->nullable();
-			$table->rememberToken();
+			$table->rememberToken(); 
 			$table->timestamps();
 
 			$table->foreign('user_type_id')->references('id')->on('user_types')->onDelete('cascade');

@@ -14,7 +14,8 @@
 
     {{-- Content --}}
     <div class="col-12 w-75 mx-auto   w-md-75 w-lg-75  w-xs-100 ">
-        <form class="card my-3 mx-auto w-100  border border-secondary">
+        <form class="card my-3 mx-auto w-100  border border-secondary" method="POST" Action="{{ route('submit.message') }}" enctype="multipart/form-data">
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <h5 class="card-header text-center bg-white text-1 font-weight-bold  border border-secondary">We would like to hear from you.</h5>
             <div class="card-body d-flex  border border-secondary">
                 <div class="form-group mx-auto  w-xs-100">
@@ -24,18 +25,22 @@
 
                                 <div class="form-group">
                                     <input class="form-control my-2 border border-secondary " type="text" name="client_name" value="{{old('petowner')}}" placeholder="Name" />
+                                    <small class="text-danger small">{{ $errors->first('client_name') }}</small>
                                 </div>
 
                                 <div class="form-group">
                                     <input class="form-control my-2  border border-secondary" type="email" name="email" value="{{old('email')}}" placeholder="Email" />
+                                    <small class="text-danger small">{{ $errors->first('email') }}</small>
                                 </div>
 
                                 <div class="form-group">
-                                    <input class="form-control my-2  border border-secondary" type="text" name="mobile" value="{{old('mobile')}}" placeholder="Mobile No" />
+                                    <input class="form-control my-2  border border-secondary" type="text" name="mobile_no" value="{{old('mobile')}}" placeholder="Mobile No" />
+                                    <small class="text-danger small">{{ $errors->first('mobile_no') }}</small>
                                 </div>
 
                                 <div class="form-group">
                                     <textarea class="form-control my-2 not-resizable  border border-secondary" name="message" rows="3" placeholder="Message"></textarea>
+                                    <small class="text-danger small">{{ $errors->first('message') }}</small>
                                 </div>
                             </div>
 
@@ -60,7 +65,7 @@
             <div class="card-footer">
 
                 <div class="d-flex">
-                    <button class="btn btn-outline-primary btn-sm w-25  mr-2 ml-auto">Send</button>
+                    <button class="btn btn-outline-primary btn-sm w-25  mr-2 ml-auto" type="submit" data-type="submit" data-action="submit">Send</button>
                     <a href="#" class="btn btn-outline-danger btn-sm w-25 mr-auto">Cancel</a>
                 </div>
 

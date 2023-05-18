@@ -40,18 +40,8 @@
 					<tr>
 						<td>{{ $c->category_name }}</td>
 						<td>{{ $c->products()->count() }}</td>
-
 						<td>
-							<div class="dropdown">
-								<button class="btn btn-info bg-1 btn-sm dropdown-toggle mark-affected" type="button" data-toggle="dropdown" id="dropdown" aria-haspopup="true" aria-expanded="false" data-id="$a->id">
-									Action
-								</button>
-
-								<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown">
-									<a href="{{ route('category.view', [$c->id]) }}" class="dropdown-item"><i class="fa-solid fa-eye mr-2"></i>View Category</a>
-									<button data-scf="Category Name" data-scf-name="category_name" data-scf-target-uri="{{ route('category.update', [$c->id]) }}" data-scf-label="This will also move all the content of this category to the same category if it already exists." class="dropdown-item"><i class="fa-regular fa-pen-to-square mr-2"></i>Edit Category</button>
-								</div>
-							</div>
+							<a href="{{ route('category.view', [$c->id]) }}" class="text-info"><i class="fa-solid fa-eye mr-2"></i>View Category</a>
 						</td>
 					</tr>
 					@empty
