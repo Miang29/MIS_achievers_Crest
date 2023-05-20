@@ -13,8 +13,8 @@ class Appointments extends Model
 			'reserved_at',
 			'user_id',
 			'pet_information_id',
+			'status',
 			'reason',
-			'status'
 	];
 
 	public function service() {
