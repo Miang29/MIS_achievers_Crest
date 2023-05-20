@@ -27,5 +27,11 @@ mix.webpackConfig({
    .js('resources/assets/js/app.js', 'public/js')
    .js('resources/assets/js/html2pdf.js', 'public/js/lib')
    .sass('resources/assets/sass/app.scss', 'public/css')
+
+   // BOOTSTRAP
+   .js('resources/assets/js/bootstrap.js', 'public/lib/bootstrap')
+   .sass('resources/assets/sass/bootstrap.scss', 'public/lib/bootstrap')
+
+   // CONFIG
    .sourceMaps()
    .disableNotifications();

@@ -21,8 +21,9 @@ class ConsultationTransaction extends Model
 
 	protected $table = "consultation_transaction";
 
+	// RELATIONSHIP
 	protected function serviceOrderTransaction() {
-		return $this->belongsTo('App\serviceOrderTransaction');
+		return $this->belongsTo('App\ServiceOrderTransaction');
 	}
 
 	public function serviceVariation() {

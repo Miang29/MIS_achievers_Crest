@@ -1,5 +1,7 @@
 {
     "/js/app.js": "/js/app.js",
     "/js/lib/html2pdf.js": "/js/lib/html2pdf.js",
-    "/css/app.css": "/css/app.css"
+    "/lib/bootstrap/bootstrap.js": "/lib/bootstrap/bootstrap.js",
+    "/css/app.css": "/css/app.css",
+    "/lib/bootstrap/bootstrap.css": "/lib/bootstrap/bootstrap.css"
 }

@@ -13,7 +13,7 @@ use Exception;
 use File;
 use Hash;
 use Log;
-use restore;
+use PDF;
 use Validator;
 
 
@@ -44,6 +44,7 @@ class ClientController extends Controller
 	protected function petHistory($id)
 	{
 		$pi = PetsInformation::find($id);
+		
 		return view('admin.pet-information.pet.history', [
 			'pet' => $pi,
 			'id' => $id,
@@ -54,7 +55,7 @@ class ClientController extends Controller
 		$petInfo = PetsInformation::find($id);
 		$output = $req->output;
 
-		return view('admin.pet-information.pet.print_history',[
+		return view('admin.pet-information.pet.print_history', [
 			'output' => $output,
 			'pet' => $petInfo
 		]);

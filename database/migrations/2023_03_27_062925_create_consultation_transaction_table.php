@@ -25,10 +25,11 @@ class CreateConsultationTransactionTable extends Migration
             $table->string('temperature');
             $table->string('findings')->nullable();
             $table->string('treatment')->nullable();
-
             $table->timestamps();
-            $table->foreign('transaction_id')->references('id')->on('services_order_transactions')->onDelete('cascade');
 
+            $table->foreign('transaction_id')->references('id')->on('services_order_transactions')->onDelete('cascade');
+            $table->foreign('service_category_id')->references('id')->on('services_categories')->onDelete('cascade');
+            $table->foreign('pet_name')->references('id')->on('pets_informations')->onDelete('cascade');
         });
     }
 
