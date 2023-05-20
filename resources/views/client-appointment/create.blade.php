@@ -46,7 +46,7 @@
 
 					<select class="custom-select" name="reserved_at_time" aria-label="Please select an available time">
 						@foreach ($appointmentTimes as $k => $v)
-						<option value="{{ $k + 1 }}" {{ old('reserved_at_time') == ($k + 1) ? 'selected' : '' }}>{{ $v }}</option>
+						<option value="{{ $k + 1 }}" {{ old('reserved_at_time') == ($k + 1) ? 'selected' : '' }} {{ in_array(($k + 1), $unavailableTime) ? 'disabled' : '' }}>{{ $v }}</option>
 						@endforeach
 						<option {{ old('reserved_at_time') ? '' : 'selected'}} disabled>--- SELECT TIME ---</option>
 					</select>

@@ -47,12 +47,63 @@
 
 @endsection
 
-@section('scripts')
+@section('post-script')
 <script type="text/javascript" src="{{ asset('js/util/confirm-leave.js') }}"></script>
 <script type="text/javascript">
 	$(document).ready(() => {
-		const UNAVAILABLE_DATES = [
-		];
+		$(`[name=reserved_at]`).on('change',  (e) => {
+			const FULL_DATES = [
+				@foreach ($appointments as $k => $a)
+					@if (count($a) == 5)
+						"{{ $k }}",
+					@endif
+				@endforeach
+			];
+
+			const UNAVAILABLE_DATES = [
+				@foreach ($unavailableDates as $ud)
+					@if ($ud->is_whole_day)
+						"{{ \Carbon\Carbon::parse($ud->date)->format('Y-m-d') }}",
+					@endif
+				@endforeach
+			];
+
+			const obj = $(e.currentTarget);
+			const val = obj.val();
+			const opt = {
+				position: `top`,
+				showConfirmButton: false,
+				toast: true,
+				timer: 10000,
+				background: `#ffc107`,
+				customClass: {
+					title: `text-white`,
+					content: `text-white`,
+					popup: `px-3`
+				},
+			};
+
+			let runSwal = false;
+			if (FULL_DATES.includes(val)) {
+				obj.val('');
+				opt.title = "Selected date is already full.";
+
+				runSwal = true;
+			}
+			else if (UNAVAILABLE_DATES.includes(val)) {
+				obj.val('');
+				opt.title = "The Veterinarian is unavailable at this date.";
+
+				runSwal = true;
+			}
+
+			if (runSwal)
+				Swal.fire(opt);
+
+		});
+
+		const validateDate = dateString => {
+		}
 	});
 </script>
 @endsection

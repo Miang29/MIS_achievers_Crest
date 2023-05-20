@@ -9,6 +9,7 @@ use Carbon\Carbon;
 use App\Appointments;
 use App\PetsInformation;
 use App\Services;
+use App\UnavailableDate;
 
 use DB;
 use Exception;
@@ -20,9 +21,11 @@ class ClientAppointmentController extends Controller
 	protected function index(Request $req) {
 		$services = Services::where('service_category_id', '=', 1)
 			->get();
-		$appointments = Appointments::whereDate('reserved_at', '<', Carbon::now('Asia/Manila')->format('Y-m-d'))
+		$appointments = Appointments::whereDate('reserved_at', '>=', Carbon::now('Asia/Manila')->format('Y-m-d'))
 			->get()
 			->groupBy('reserved_at');
+		$unavailableDates = UnavailableDate::whereDate('date', '>=', Carbon::now('Asia/Manila')->format('Y-m-d'))
+			->get();
 
 		// If `service` or `reserved_at` is present in the session storage...
 		$service = session('service');
@@ -51,6 +54,7 @@ class ClientAppointmentController extends Controller
 		return view('client-appointment.index', [
 			'services' => $services,
 			'appointments' => $appointments,
+			'unavailableDates' => $unavailableDates
 		]);
 	}
 
@@ -93,12 +97,17 @@ class ClientAppointmentController extends Controller
 		$pets = $user->petsInformations;
 		$appointmentTimes = Appointments::getAppointmentTimes();
 		$service_name = Services::find($req->service)->service_name;
+		$unavailableTime = UnavailableDate::whereDate('date', '=', $req->reserved_at)
+			->where('is_whole_day', '=', 0)
+			->pluck('time')
+			->toArray();
 
 		return view('client-appointment.create', [
 			'user' => $user,
 			'pets' => $pets,
 			'appointmentTimes' => $appointmentTimes,
-			'service_name' => $service_name
+			'service_name' => $service_name,
+			'unavailableTime' => $unavailableTime
 		]);
 	}
 

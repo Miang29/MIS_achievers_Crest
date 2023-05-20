@@ -18,9 +18,6 @@ use Hash;
 use Log;
 use Mail;
 use Validator;
-  
-
-
 
 class AppointmentController extends Controller
 {
