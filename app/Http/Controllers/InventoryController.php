@@ -141,15 +141,14 @@ class InventoryController extends Controller
 	// --------------- INDEX OF INVENTORY --------------- //
 	protected function indexCategory(Request $req)
 	{
-		$prd = ProductCategory::query();
+		$prd = ProductCategory::has('products', '>', 0);
 		$search = "%{$req->search}%";
 
 		if ($req->search)
 			$prd = $prd->where('category_name', 'LIKE', $search);
 			
-		$prd = ProductCategory::has('products', '>', 0)->get();
 		return view('admin.inventory.index', [
-			'categories' => $prd,
+			'categories' => $prd->get(),
 		]);
 	}
 	// -------------- CREATION OF PRODUCTS ----------------- //
@@ -229,12 +228,19 @@ class InventoryController extends Controller
 
 	// ----------------- P R O D U C T S---------------//
 	// ------------------- INDEX OF PRODUCTS -------------------- //
-	protected function index($id)
+	protected function index(Request $req, $id)
 	{
-		$product = Products::where('category_id', '=', $id)->get();
+		
+		$product = Products::where('category_id', '=', $id);
+		$search = "%{$req->search}%";
+
+		if ($req->search) {
+			$product = $product->where('product_name', 'LIKE', $search);
+		}
+
 		return view('admin.inventory.view', [
 			'id' => $id,
-			'products' => $product
+			'products' => $product->get(),
 		]);
 	}
 	// ------------------ VIEW PRODUCT --------------------- //

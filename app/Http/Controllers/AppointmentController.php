@@ -18,20 +18,20 @@ use Hash;
 use Log;
 use Mail;
 use Validator;
-
+ 
 class AppointmentController extends Controller
 {
 	protected function index(Request $req)
 	{
-		$appointments = Appointments::query();
+		
+		$appointment = Appointments::has('petsInformations', '>', 0)->with('petsInformations','petsInformations.user');
 		$search = "%{$req->search}%";
 
 		if ($req->search)
-			$appointments = $appointments->where('user_id', 'LIKE', $search);
+			$appointment = $appointment->where('reserved_at', 'LIKE', $search);
 
-		$appointment = Appointments::has('petsInformations', '>', 0)->with('petsInformations','petsInformations.user')->get();
 		return view('admin.appointment.index', [
-			'appointments' => $appointments->get()
+			'appointments' => $appointment->get()
 		]);
 	}
 

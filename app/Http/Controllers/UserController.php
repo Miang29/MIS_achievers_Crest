@@ -212,12 +212,17 @@ class UserController extends Controller
 	}
 
 	// RESOURCE FUNCTIONS
-	protected function index()
+	protected function index(Request $req)
 	{
-		$users = User::get();
+		$users = User::query();
+		$search = "%{$req->search}%";
 
+		if ($req->search) {
+			$users = $users->where('first_name', 'LIKE', $search)
+			->orWhere('last_name','LIKE', $search);
+		}
 		return view('admin.useraccount.index', [
-			'user' => $users
+			'user' => $users->get()
 		]);
 	}
 

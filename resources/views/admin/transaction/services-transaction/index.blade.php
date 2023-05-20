@@ -11,7 +11,7 @@
 		</div>
 
 		<div class="dropdown mx-auto">
-			<button class="btn btn-info dropdown-toggle bg-1 btn-sm mt-3" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			<button class="btn btn-info dropdown-toggle bg-1 btn-sm mt-3 mr-3 mb-2" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 				<i class="fas fa-plus-circle mr-2"></i>New Transaction
 			</button>
 			<div class="dropdown-menu" aria-labelledby="dropdownMenu2">
@@ -20,15 +20,6 @@
 				<a href="{{ route('transaction.grooming.create') }}" class="dropdown-item" type="button"><i class="fa-solid fa-scissors mr-2"></i>Grooming</a>
 				<a href="{{ route('transaction.boarding.create') }}" class="dropdown-item" type="button"><i class="fa-solid fa-paw mr-2"></i>Boarding</a>
 				<a href="{{ route('other.transaction.create') }}" class="dropdown-item" type="button"><i class="fa-solid fa-sliders mr-2"></i>Other Transaction</a>
-			</div>
-		</div>
-
-		<div class=" col-12 col-md-6 col-lg my-2 text-center text-lg-right">
-			<div class="input-group">
-				<input type="text" class="form-control" name="search" placeholder="Search..." />
-				<div class="input-group-append">
-					<button type="submit" class="btn btn-secondary"><i class="fas fa-search"></i></button>
-				</div>
 			</div>
 		</div>
 	</div>

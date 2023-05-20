@@ -15,16 +15,15 @@
 			<a href="{{ route('variation.archive',[$id,$serviceId])}}" class="btn btn-info btn-sm my-1 bg-1"><i class="fa-solid fa-box-archive mr-2"></i>Archived Service</a>
 
 		</div>
-
-		<div class=" col-12 col-md-6 col-lg my-2 text-center text-lg-right">
+		<form method="GET" action="{{ route('service_variation.index',[$id, $serviceId])}}" class=" col-12 col-md-6 col-lg my-2 text-center text-lg-right">
 			<div class="input-group">
-				<input type="text" class="form-control" name="search" placeholder="Search..." />
+				<input type="text" class="form-control" value="{{ request()->search }}" name="search" placeholder="Search..." />
 
 				<div class="input-group-append">
 					<button type="submit" class="btn btn-secondary"><i class="fas fa-search"></i></button>
 				</div>
 			</div>
-		</div>
+		</form>
 	</div>
 
 	<div class="overflow-x-auto h-100 card">

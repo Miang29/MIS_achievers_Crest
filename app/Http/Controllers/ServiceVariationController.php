@@ -14,11 +14,16 @@ use Validator;
 class ServiceVariationController extends Controller
 {
 	// -------------- INDEX OF SERVICE VARIATION --------------- //
-	protected function index($id, $serviceId)
+	protected function index(Request $req, $id, $serviceId)
 	{
-		$variations = ServicesVariation::where('service_id', '=', $serviceId)->get();
+		$variations = ServicesVariation::where('service_id', '=', $serviceId);
+		$search = "%{$req->search}%";
+
+		if ($req->search) {
+			$variations = $variations->where('variation_name', 'LIKE', $search);
+		}
 		return view('admin.service_category.service.service_variation.index', [
-			'variations' => $variations,
+			'variations' => $variations->get(),
 			'id' => $id,
 			'serviceId' => $serviceId
 		]);

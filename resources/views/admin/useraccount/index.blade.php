@@ -10,23 +10,23 @@
 			<h3 class="text-1">USERS LIST</h3>
 		</div>
 
-		<div class="w-lg-25 my-2">
-			<a href="{{ route('notify-client')}}" class="btn btn-info btn-sm my-1 bg-1 w-50"><i class="fa-solid fa-bell mr-2"></i>Notify Client</a>
-		</div>
-
-		<div class="col-12 col-md-6 col-lg-4 my-2 text-center text-md-left text-lg-right">
-			<a href="{{route('user.create')}}" class="btn btn-info btn-sm  my-1 bg-1 w-50"><i class="fas fa-plus-circle mr-2"></i>Add User</a>
-		</div>
-
-		<div class=" col-12 col-md-6 col-lg my-2 text-center text-lg-right">
+		<form method="GET" action="{{ route('user.index')}}" class=" col-12 col-md-6 col-lg my-2 text-center text-lg-right">
 			<div class="input-group">
-				<input type="text" class="form-control" name="search" placeholder="Search..." />
+				<input type="text" class="form-control" value="{{ request()->search }}" name="search" placeholder="Search..." />
+
 				<div class="input-group-append">
 					<button type="submit" class="btn btn-secondary"><i class="fas fa-search"></i></button>
 				</div>
 			</div>
-		</div>
+		</form>
 	</div>
+	<hr class="hr-thick" style="border-color: #707070;">
+
+	<div class="row">
+		<a href="{{ route('notify-client')}}" class="btn btn-info btn-sm my-1 bg-1 mr-3 ml-3"><i class="fa-solid fa-bell mr-2"></i>Notify Client</a>
+		<a href="{{route('user.create')}}" class="btn btn-info btn-sm  my-1 bg-1 mr-3"><i class="fas fa-plus-circle mr-2"></i>Add User</a>
+	</div>
+
 
 	<div class="overflow-x-auto h-100 card">
 		<div class=" card-body h-100 px-0 pt-0 ">

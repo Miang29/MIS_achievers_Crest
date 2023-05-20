@@ -6,31 +6,26 @@
 
 
 <div class="container-fluid m-0">
+       
+       <h2 class="mt-5"><a href="{{route('inventory')}}" class="text-1"><i class="fas fa-chevron-left mr-2"></i>Inventory List</a></h2>
     <div class="row">
-       <h2 class="mt-5"><a href="javascript:void(0);" onclick="confirmLeave('{{route('inventory')}}');" class="text-decoration-none  text-1"><i class="fas fa-chevron-left mr-2"></i>Inventory List</a></h2>
-
-        <div class="col-12 col-md-6 col-lg mt-5 text-center text-md-left text-lg-right">
-            <a href="{{route('product.create', [$id])}}" class="btn btn-info bg-1 btn-sm my-1"><i class="fas fa-plus-circle mr-2"></i>Add New Products</a>
-        </div>
-        <div class="ccol-12 col-md-6 col-lg-6 mt-5 text-center text-lg-right ml-auto">
-            <div class="input-group">
-                <input type="text" class="form-control" name="search" placeholder="Search..." />
-                <div class="input-group-append">
-                    <button type="submit" class="btn btn-secondary"><i class="fas fa-search"></i></button>
-                </div>
-            </div>
-        </div>
+        
     </div>
     <hr class="hr-thick" style="border-color: #707070;">
 
-        <div class="row">
-            <div class="col-12 col-lg text-center text-lg-left">
-                <h2 class="font-weight-bold text-1">Product List</h2>
-            </div>
+        <div class="row"> 
+            <h2 class="font-weight-bold text-1 mr-3 ml-3">Product List</h2>
+            <a href="{{route('product.create', [$id])}}" class="btn btn-info bg-1 btn-sm my-3 ml-3 mr-3"><i class="fas fa-plus-circle mr-2"></i>Add New Products</a>
+            <a href="{{ route('archive.product')}}" class="btn btn-info btn-sm my-3 bg-1"><i class="fa-solid fa-box-archive mr-2"></i>Archived Products</a> 
+            <form method="GET" action="{{ route('category.view',[$id])}}" class=" col-12 col-md-6 col-lg-6 my-2 text-center text-lg-right">
+                <div class="input-group">
+                    <input type="text" class="form-control" value="{{ request()->search }}" name="search" placeholder="Search..." />
 
-             <div class="col-12 col-md-6 ml-auto text-center text-md-left text-lg-right">
-                    <a href="{{ route('archive.product')}}" class="btn btn-info btn-sm my-1 bg-1"><i class="fa-solid fa-box-archive mr-2"></i>Archived Products</a>
-            </div>
+                    <div class="input-group-append">
+                        <button type="submit" class="btn btn-secondary"><i class="fas fa-search"></i></button>
+                    </div>
+                </div>
+            </form>
        </div>
 
     <div class="overflow-x-auto h-100 card">

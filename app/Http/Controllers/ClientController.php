@@ -19,6 +19,27 @@ use Validator;
 
 class ClientController extends Controller
 { 
+
+	// -------------------- PET INFORMATION INDEX ---------------------- //
+	protected function index(Request $req)
+	{
+
+		$clients = User::select(DB::raw('id, CONCAT(first_name, " ", last_name) as name, email'));
+		$search = "%{$req->search}%";
+
+		if ($req->search) {
+			$clients = $clients->where('first_name', 'LIKE', $search)
+				->orWhere('last_name','LIKE', $search);
+		}
+
+		$clients = $clients->has('petsInformations', '>', 0)
+			->where('user_type_id', '=', '4')
+			->get();
+
+		return view('admin.pet-information.index', [
+			'clients' => $clients
+		]);
+	}
 	// -------------- HISTORY INDEX ------------------ //
 	protected function petHistory($id)
 	{
@@ -43,6 +64,58 @@ class ClientController extends Controller
 	protected function SignUp()
 	{
 		return view('sign-up');
+	}
+	// ------------------ CREATE PET INFORMATION -------------------------- //
+	protected function create()
+	{
+		$user =  User::select(DB::raw('CONCAT(first_name, " ", last_name) as name,id'))->where("user_type_id", "=", 4)->get();
+		$pi = PetsInformation::get();
+
+		return view('admin.pet-information.create', [
+			'PetsInformation' => $pi,
+			'users' => $user,
+		]);
+	}
+    // -------------------- ADD NEW PET ----------------------- //
+	protected function add($id)
+	{
+
+		$pi = PetsInformation::get();
+		return view(
+			'admin.pet-information.pet.add',
+			[
+				'PetsInformation' => $pi,
+				'id' => $id
+			]
+		);
+	}
+	// ------------------ SHOW PET INFORMATION ----------------- //
+	protected function showPets(Request $req, $id)
+	{
+
+		$pets = PetsInformation::where('pet_owner', '=', $id);
+		$search = "%{$req->search}%";
+
+		if ($req->search) {
+			$pets = $pets->where('pet_name', 'LIKE', $search)
+				->orWhere('breed','LIKE', $search);
+		}
+
+		return view('admin.pet-information.pet.index', [
+			'pets' => $pets->get(),
+			'id' => $id
+		]);
+	}
+ // ------------------ EDIT PET INFORMATION --------------------- //
+	protected function editPet($clientId, $id)
+	{
+		$pet = PetsInformation::find($id);
+		return view(
+			'admin.pet-information.pet.edit', [
+				'clientId' => $clientId,
+				'pet' => $pet
+			]
+		);
 	}
 
 	//---------------- CLIENT REGISTRATION SAVE ------------------- //
@@ -86,18 +159,7 @@ class ClientController extends Controller
 				'user_type_id' => $type->id,
 				'password' => Hash::make($req->password),
 			]);
-			//MAILER SHIT
-			// Mail::send(
-			// 	'layouts.emails.creation',
-			// 	[
-			// 		'req' => $req,
-			// 	],
-			// 	function ($mail) use ($user) {
-			// 		$mail->to($user->email)
-			// 			->from("nano.mis@technical.com") // MIS Nano Vet Clinic
-			// 			->subject("Account Created");
-			// 	}
-			// );
+			
 			DB::commit();
 		} catch (Exception $e) {
 			DB::rollback();
@@ -144,7 +206,7 @@ class ClientController extends Controller
 			'types.*.required' => 'Please select a type.',
 
 		]);
-		// dd($validator->messages());
+	
 		if ($validator->fails()) {
 			return redirect()
 				->back()
@@ -318,71 +380,6 @@ class ClientController extends Controller
 		return redirect()
 			->route('pet-information', [$clientId])
 			->with('flash_success', "Pet Information has been updated successfully");
-	}
-
-	// -------------------- PET INFORMATION INDEX ---------------------- //
-	protected function index(Request $req)
-	{
-
-		$user = User::query();
-		$search = "%{$req->search}%";
-
-		if ($req->search)
-			$appointments = $appointments->where('pet_name', 'LIKE', $search);
-				
-
-		$clients = User::has('petsInformations', '>', 0)
-			->select(DB::raw('id, CONCAT(first_name, " ", last_name) as name, email'))
-			->where('user_type_id', '=', '4')
-			->get();
-
-		return view('admin.pet-information.index', [
-			'clients' => $clients,
-			'user' => $user
-		]);
-	}
-	// ------------------ CREATE PET INFORMATION -------------------------- //
-	protected function create()
-	{
-		$user =  User::select(DB::raw('CONCAT(first_name, " ", last_name) as name,id'))->where("user_type_id", "=", 4)->get();
-		$pi = PetsInformation::get();
-
-		return view('admin.pet-information.create', [
-			'PetsInformation' => $pi,
-			'users' => $user,
-		]);
-	}
-    // -------------------- ADD NEW PET ----------------------- //
-	protected function add($id)
-	{
-		$pi = PetsInformation::get();
-		return view(
-			'admin.pet-information.pet.add',
-			[
-				'PetsInformation' => $pi,
-				'id' => $id
-			]
-		);
-	}
-	// ------------------ SHOW PET INFORMATION ----------------- //
-	protected function showPets($id)
-	{
-		$pi = PetsInformation::where('pet_owner', '=', $id)->get();
-		return view('admin.pet-information.pet.index', [
-			'pets' => $pi,
-			'id' => $id
-		]);
-	}
- // ------------------ EDIT PET INFORMATION --------------------- //
-	protected function editPet($clientId, $id)
-	{
-		$pet = PetsInformation::find($id);
-		return view(
-			'admin.pet-information.pet.edit', [
-				'clientId' => $clientId,
-				'pet' => $pet
-			]
-		);
 	}
 
 	protected function archiveIndex(){

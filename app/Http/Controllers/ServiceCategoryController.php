@@ -13,11 +13,18 @@ use Validator;
 
 class ServiceCategoryController extends Controller
 {
-    protected function index() {
-		$sc = ServicesCategory::has('services', '>', 0)->get();
+    protected function index(Request $req) {
+
+    
+		$serviceCategory = ServicesCategory::has('services', '>', 0);
+		$search = "%{$req->search}%";
+
+		if ($req->search) {
+			$serviceCategory = $serviceCategory->where('service_category_name', 'LIKE', $search);
+		}
+
 		return view('admin.service_category.index',[
-			'servicesCategory' => $sc,
-			
+			'servicesCategory' => $serviceCategory->get(),
 		]);
 	}
 // --------------- CREATE BLADE ---------------- //

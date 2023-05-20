@@ -17,11 +17,20 @@ class ServiceController extends Controller
 {
 
  // ----------------- INDEX SERVICES ------------------ //
-	protected function index($scid) {
-		$sv = Services::has("variations", '>', 0)->where("service_category_id", '=', $scid)->get();
+	protected function index(Request $req, $scid) {
+
+
+		$services = Services::has("variations", '>', 0)->where("service_category_id", '=', $scid);
+		$search = "%{$req->search}%";
+
+		if ($req->search) {
+			$services = $services->where('service_name', 'LIKE', $search);
+		}
+
 		return view('admin.service_category.service.index',[
-			'serviceVar' => $sv,
+			'serviceVar' => $services->get(),
 			'id' =>$scid
+		
 		]);
 	}
 	// ----------- CREATE SERVICE ---------------- //

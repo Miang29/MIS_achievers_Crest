@@ -14,14 +14,15 @@
 			<a href="{{route('transaction.products.create')}}" class="btn btn-info bg-1 btn-sm w-50 my-1"><i class="fas fa-plus-circle mr-2"></i>Add transaction</a>
 		</div>
 
-		<div class=" col-12 col-md-6 col-lg my-2 text-center text-lg-right">
+		<form method="GET" action="{{ route('transaction.products-order')}}" class=" col-12 col-md-6 col-lg my-2 text-center text-lg-right">
 			<div class="input-group">
-				<input type="text" class="form-control" name="search" placeholder="Search..." />
+				<input type="text" class="form-control" value="{{ request()->search }}" name="search" placeholder="Search..." />
+
 				<div class="input-group-append">
 					<button type="submit" class="btn btn-secondary"><i class="fas fa-search"></i></button>
 				</div>
 			</div>
-		</div>
+		</form>
 	</div>
 
 	<div class="overflow-x-auto h-100 card">
