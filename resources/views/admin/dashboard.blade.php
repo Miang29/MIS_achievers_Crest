@@ -36,93 +36,117 @@
 						<i class="fa-solid fa-dollar-sign fa-5x mx-4 mt-3"></i>
 
 						<div class="d-flex flex-d-col flex-grow-1 text-right">
-							<h1 class="my-auto text-wrap">{{ number_format($sales, 2) }}</h1>
+							<h1 class="my-auto h1-xl h2-md h3-sm">{{ number_format($sales, 2) }}</h1>
 						</div>
 					</div>
 
 					<div class="d-flex flex-d-col flex-grow-1 text-right">
-						<h6 class="mx-auto ml-3 ">Sales</h6>
+						<h6 class="mx-auto ml-3">Sales</h6>
 					</div>
 				</div>
 			</div>
 
 			{{-- STOCKS --}}
-			<div class="col-12 col-md-6 col-lg-3  my-3">
+			<div class="col-12 col-md-6 col-lg-3 my-3">
 				<div class="total-block bg-3 text-white dark-shadow invisiborder rounded">
 					<div class="row">
 						<i class="fa-solid fa-boxes-stacked fa-5x mx-4 mt-3"></i>
 
 						<div class="d-flex flex-d-col flex-grow-1 text-right">
-							<h2 class="my-auto">{{ $products}}</h2>
+							<h1 class="my-auto h1-xl h2-md h3-sm">{{ $products}}</h2>
 						</div>
 					</div>
 
 					<div class="d-flex flex-d-col flex-grow-1 text-right">
-						<h6 class="mx-auto ml-3 ">Stocks</h6>
+						<h6 class="mx-auto ml-3">Stocks</h6>
 					</div>
 				</div>
 			</div>
 
 			{{-- CLIENTS --}}
-			<div class="col-12 col-md-6 col-lg-3  my-3">
+			<div class="col-12 col-md-6 col-lg-3 my-3">
 				<div class="total-block bg-4 text-white dark-shadow invisiborder rounded">
 					<div class="row">
 						<i class="fas fa-users fa-5x mx-4 mt-3"></i>
 
 						<div class="d-flex flex-d-col flex-grow-1 text-right">
-							<h1 class="my-auto">{{$client}}</h1>
+							<h1 class="my-auto h1-xl h3-sm">{{$client}}</h1>
 						</div>
 					</div>
 
 					<div class="d-flex flex-d-col flex-grow-1 text-right">
-						<h6 class="mx-auto ml-3 ">Clients</h6>
+						<h6 class="mx-auto ml-3">Clients</h6>
 					</div>
 				</div>
 			</div>
 		</div>
 
 		{{-- SECOND ROW --}}
-		<div class="row my-3">
+		<div class="row">
 			{{-- MONTHLY EARNINGS --}}
-			<div class="col-12 col-lg-6 d-flex flex-column my-3 my-xl-0">
+			<div class="col-12 col-lg-6 d-flex flex-column my-3">
 				<div class="card border rounded dark-shadow h-100">
 					<h5 class="card-header text-center">Monthly Earnings</h5>
 
-					<div class="card-body d-flex">
-						<canvas id="monthlyEarnings" class="rounded m-auto" style="border: solid 1px #707070;"></canvas>
+					<div class="card-body d-flex justify-content-center align-middle">
+						<canvas id="monthlyEarnings" class="rounded" style="border: solid 1px #707070;"></canvas>
 					</div>
 				</div>
 			</div>
 
 			{{-- UNREAD MESSAGES --}}
-			<div class="col-12 col-lg-4 d-flex flex-column my-3 my-xl-0">
+			<div class="col-12 col-lg d-flex flex-column my-3">
 				<div class="card border rounded dark-shadow h-100">
 					<h5 class="card-header text-center">Unread Messages</h5>
 					
 					<div class="card-body">
+						<table class="table table-striped text-center">
+							<thead>
+								<tr>
+									<th scope="col">Email</th>
+									<th scope="col">Message</th>
+								</tr>
+							</thead>
+
+							<tbody>
+								@forelse ($unreadMessages as $u)
+								<tr>
+									<td><a href="mailto:{{ $u->email }}">{{ $u->email }}</a></td>
+									<td class="text-truncate">{{ $u->messages }}</td>
+								</tr>
+								@empty
+								<tr>
+									<td colspan="2">Nothing to show~</td>
+								</tr>
+								@endforelse
+							</tbody>
+						</table>
 					</div>
 				</div>
 			</div>
 
 			{{-- QUICK ACTIONS --}}
-			<div class="col-12 col-lg-2 d-flex flex-column my-3 my-xl-0">
+			<div class="col-12 col-lg-3 d-flex flex-column my-3">
 				<div class="card border rounded dark-shadow h-100">
-					<h5 class="card-header text-center text-center">Quick Actions</h5>
+					<h5 class="card-header text-center text-wrap">Quick Actions</h5>
 
-					<div class="card-body">
+					<div class="card-body d-flex flex-column">
+						@foreach ($quickActions as $qa)
+						<a href="{{ $qa['href'] }}" class="btn btn-outline-primary my-2">{{ $qa['text'] }}</a>
+						@endforeach
 					</div>
 				</div>
 			</div>
 		</div>
 
-		<div class="row my-3">
+		<div class="row">
 			{{-- LOW STOCKS --}}
-			<div class="col-12 col-lg-6">
+			<div class="col-12 col-lg-6 my-3">
 				<div class="card border rounded dark-shadow h-100">
 					<h5 class="card-header text-center">Low Stocks</h5>
 					
 					<div class="card-body h-100 px-0 pt-0 overflow-x-auto">
-						<table class="table table-striped text-center" id="table-content">
+						<table class="table table-striped text-center">
 							<thead>
 								<tr>
 									<th scope="col" class="hr-thick text-1">Product Name</th>
@@ -155,12 +179,12 @@
 			</div>
 
 			{{-- PENDING APPOINTMENTS --}}
-			<div class="col-12 col-lg-6">
+			<div class="col-12 col-lg-6 my-3">
 				<div class="card border rounded dark-shadow h-100">
 					<h5 class="card-header text-center">Pending Appointments</h5>
 
 					<div class="card-body h-100 px-0 pt-0 overflow-x-auto">
-						<table class="table table-striped text-center" id="table-content">
+						<table class="table table-striped text-center">
 							<thead>
 								<tr>
 									<th scope="col" class="hr-thick text-1">Client Name</th>
@@ -224,19 +248,13 @@
 					}
 				},
 				responsive: true,
-				maintainAspectRatio: true,
-				aspectRatio: '1:2'
+				maintainAspectRatio: false,
 			}
 		});
 
-		myChart.resize(1000, 1000);
-
-		window.addEventListener('beforeprint', () => {
-			myChart.resize(1000, 1000);
-		});
-
-		window.addEventListener('afterprint', () => {
-			myChart.resize();
+		window.addEventListener('resize', () => {
+			myChart.canvas.parentNode.style.height = $(`#monthlyEarnings`).parent().height();
+			myChart.canvas.parentNode.style.width = $(`#monthlyEarnings`).parent().width();
 		});
 	});
 </script>

@@ -5,17 +5,18 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Appointments;
-use App\PetsInformation;
-use App\ContactInformation;
-use App\User;
-use App\Products;
-use App\ConsultationTransaction;
-use App\VaccinationTransaction;
-use App\GroomingTransaction;
 use App\BoardingTransaction;
+use App\ConsultationTransaction;
+use App\ContactInformation;
+use App\GroomingTransaction;
 use App\OtherTransation;
-use App\ProductsOrderTransactionItem;
+use App\PetsInformation;
+use App\Products;
 use App\ProductsOrderTransaction;
+use App\ProductsOrderTransactionItem;
+use App\User;
+use App\VaccinationTransaction;
+
 use Carbon\Carbon;
 
 use Auth;
@@ -118,7 +119,27 @@ class PageController extends Controller
 		
 		$inventory = Products::where('stocks', '<=', 10)->get();
 		$appointments = Appointments::where('status', '=', 0)->get();
-		
+		$unreadMessages = ContactInformation::where('status', '=', 0)->get();
+
+		$quickActions = array(
+			array(
+				'text' => 'Notify Client',
+				'href' => route('notify-client')
+			),
+			array(
+				'text' => 'Register a Pet',
+				'href' => route('pet-information.create')
+			),
+			array(
+				'text' => 'Book an Appointment',
+				'href' => route('appointments.create')
+			),
+			array(
+				'text' => 'Sign Out',
+				'href' => route('logout')
+			),
+		);
+
 		return view('admin.dashboard', [
 			'months' => $months,
 			'monthly_earnings' => $monthly_earnings,
@@ -127,7 +148,9 @@ class PageController extends Controller
 			'products' => $products,
 			'sales' => $sales,
 			'inventory' => $inventory,
-			'appointments' => $appointments
+			'appointments' => $appointments,
+			'unreadMessages' => $unreadMessages,
+			'quickActions' => $quickActions
 		]);
 	}
 
