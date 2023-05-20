@@ -19,6 +19,38 @@ use Mail;
 
 class SettingsController extends Controller
 {
+	// COntact-information
+	protected function viewMessage($id){
+
+		$contact = ContactInformation::find($id);
+
+		if ($contact == null)
+
+			return redirect()
+			->route('settings.index')
+			->with('flash_error', 'Message does not exists.');
+
+			{
+			try{
+				DB::beginTransaction();
+				$contact->status = 1;
+				$contact->save();
+
+			DB::commit();
+		} catch (Exception $e) {
+			DB::rollback();
+			Log::error($e);
+			return redirect()
+			->route('settings.index')
+			->with('flash_error', 'Something went wrong, please try again later');
+		}
+
+		return redirect()
+			->route('settings.index')
+			->with('flash_success', "Message viewed");
+		}
+
+	}
 
 	protected function messageResponse($id) {
 		$user = Auth::user();

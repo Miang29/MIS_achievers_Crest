@@ -193,10 +193,6 @@
 										<i class="fas fa-circle text-warning mr-2"></i>Pending
 										@elseif ($ci->status == 1)
 										<i class="fas fa-circle text-success mr-2"></i>Message Viewed
-										@elseif ($ci->status == 2)
-										<i class="fas fa-circle text-danger mr-2"></i>Message Ignored
-										@elseif ($ci->status == 3)
-										<i class="fas fa-circle text-info mr-2"></i>Replied
 										@else
 										<i class="fas fa-circle text-secondary mr-2"></i>Unknown
 										@endif
@@ -209,8 +205,7 @@
 
 											<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown">
 												<a href="{{route ('contact.show', [$ci->id]) }}" class="dropdown-item"><i class="fa-solid fa-message mr-2"></i>View Message</a>
-												<a href="{{route ('ignore.message', [$ci->id]) }}" class="dropdown-item"><i class="fa-solid fa-comment-slash mr-2 text-danger"></i>Ignore Message</a>
-												<a href="{{route ('response', [$ci->id]) }}" class="dropdown-item"><i class="fa-solid fa-paper-plane mr-2 text-info"></i>Reply Message</a>
+												<a href="https://gmail.com/" class="dropdown-item"><i class="fa-solid fa-paper-plane mr-2 text-info"></i>Reply (Opens Gmail)</a>
 											</div>
 										</div>
 									</td>
