@@ -13,4 +13,4 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::post('/notify-clients', 'ClientController@notifyClient')->name('clients.notify');
+Route::post('/notify-clients', 'UserController@sendNotification')->name('api.notify-client.send');

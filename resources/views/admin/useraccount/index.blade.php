@@ -11,7 +11,7 @@
 		</div>
 
 		<div class="w-lg-25 my-2">
-			<a href="{{ route('notify.client')}}" class="btn btn-info btn-sm my-1 bg-1 w-50"><i class="fa-solid fa-bell mr-2"></i>Notify Client</a>
+			<a href="{{ route('notify-client')}}" class="btn btn-info btn-sm my-1 bg-1 w-50"><i class="fa-solid fa-bell mr-2"></i>Notify Client</a>
 		</div>
 
 		<div class="col-12 col-md-6 col-lg-4 my-2 text-center text-md-left text-lg-right">
@@ -76,4 +76,54 @@
 
 @section('scripts')
 <script type="text/javascript" src="{{ asset('js/util/confirm-leave.js') }}"></script>
+
+@if (Session::has('sendEmail'))
+<script type="text/javascript" class="forRemoval">
+	$(document).ready(() => {
+		let amt = parseInt(`{{ Session::get('sendEmail') }}`);
+
+		$.post(`{{ route('api.notify-client.send') }}`, {
+			_token: `{{ csrf_token() }}`,
+			amount: `a`
+		}).done((response) => {
+			let opt = {
+				position: `top`,
+				showConfirmButton: false,
+				toast: true,
+				background: response.success ? `#28a745` : `#dc3545`,
+				customClass: {
+					title: `text-white`,
+					content: `text-white`,
+					popup: `px-3`
+				},
+			};
+
+			if (response.success) {
+				opt.title = `Successfully sent all emails`;
+				opt.timer = 10000;
+			}
+			else {
+				opt.title = `A problem occured but was dealt with`;
+				opt.toast = false;
+				opt.showConfirmButton = true;
+				
+				opt.html = `<ul>`;
+				for (let keyI in response.validationMsg) {
+
+					opt.html += `<li><p><b>${keyI}</b></p><ul>`;
+					for (let keyM in response.validationMsg[keyI]) {
+						opt.html += `<li>${response.validationMsg[keyI][keyM]}</li>`;
+					}
+					opt.html += `</ul></li>`;
+
+				}
+				opt.html += `</ul>`;
+			}
+			
+			$(`script.forRemoval`).remove();
+			Swal.fire(opt);
+		});
+	});
+</script>
+@endif
 @endsection

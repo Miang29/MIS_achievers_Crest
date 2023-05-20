@@ -5,7 +5,6 @@ Hello!
 @endsection
 
 @section('content')
-
 <p>
     Your account has been created just recently and you're now ready to access it!
 </p>
@@ -16,5 +15,4 @@ Hello!
     <span style="font-family: Arial;">Username:</span> {{ $req->username }}<br>
     <span style="font-family: Arial;">Password:</span> {{ $req->password }}
 </code>
-
 @endsection

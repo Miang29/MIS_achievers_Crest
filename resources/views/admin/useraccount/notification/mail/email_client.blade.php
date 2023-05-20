@@ -1,9 +1,9 @@
-@extends ('admin.useraccount.notification.mail.email_client.layout')
+@extends ('layouts.emails.layout')
 
-@section('title')
-Hello!
-@endsection
+@section('title', "Nano-tification!")
 
 @section('content')
-
+<p>
+	{{ $contentMsg }}
+</p>
 @endsection

@@ -30,6 +30,7 @@ class CreateUsersTable extends Migration
 			$table->ipAddress('locked_by')->nullable();
 			$table->rememberToken(); 
 			$table->timestamps();
+			$table->softDeletes();
 
 			$table->foreign('user_type_id')->references('id')->on('user_types')->onDelete('cascade');
 		});

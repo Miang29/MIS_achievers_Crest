@@ -8,19 +8,22 @@ use Illuminate\Http\Request;
 use App\User;
 use App\UserType;
 
+use App\Jobs\NotifyClient;
+
+use Artisan;
 use Auth;
 use DB;
 use Exception;
 use Hash;
 use Log;
 use Mail;
+use Queue;
 use Validator;
 
 class UserController extends Controller
 {
 	// NOTIFICATION CLIENTS
 	protected function notifyClients(){
-		
 		$client = User::where('user_type_id', '=', 4)->get();
 		
 		return view('admin.useraccount.notification.notify-client',[
@@ -28,51 +31,86 @@ class UserController extends Controller
 		]);
 	}
 
-	// protected function submitNotification(Request $req, $id){
+	protected function submitNotification(Request $req){
+		$validator = Validator::make($req->all(), [
+			'client' => 'required|array|min:1',
+			'client.*' => 'required|numeric|exists:users,id',
+			'message' => 'required|string|between:2,1000',
+		],[
+			'client.required' => 'Please select a client to notify',
+			'client.min' => 'Please select at least 1 client to notify',
+		]);
 
-	// 	$client = User::find($id)
+		if ($validator->fails()) {
+			return redirect()
+				->back()
+				->withErrors($validator)
+				->withInput();
+		}
 
-	// 	$validator = Validator::make($req->all(), [
-	// 		'client' => 'required|array',
-	// 		'client.*' => 'required|numeric|exists:users,id',
-	// 		'message' => 'required|min:2|max:255|string',
-	// 	],[
-	// 		'checkbox.required' => 'Please select a client to notify'
-	// 	]);
 
-	// 	if ($validator->fails())
-	// 		return redirect()
-	// 			->back()
-	// 			->withErrors($validator)
-	// 			->withInput();
-	// 	try {
+		try {
+			// Mailer Job
+			foreach ($req->client as $cid) {
+				$user = User::find($cid);
+				dispatch(
+					(new NotifyClient($user->email, $req->message))
+						->onQueue('user_notification')
+				);
+			}
 
-	// 		//Mailer
-	// 			Mail::send(
-	// 				'admin.useraccount.notification.mail.email_client',
-	// 				[
-	// 					'client' => $client,
-	// 				],
-	// 				function ($mail) use ($client) {
-	// 					$mail->to($client->email)
-	// 						->from("nano.mis@technical.com") // MIS Nano Vet Clinic
-	// 						->subject("Message");
-	// 				}
-	// 			);
-	// 		DB::commit();
-	// 	} catch (Exception $e) {
-	// 		DB::rollback();
-	// 		Log::error($e);
 
-	// 		return redirect()
-	// 			->back()
-	// 			->with('flash_error', 'Something went wrong, please try again later.');
-	// 	}
-	// 	return redirect()
-	// 		->route('user.index')
-	// 		->with('flash_success', "Succesfully updated password");
-	// }
+		} catch (Exception $e) {
+			Log::error($e);
+
+			return redirect()
+				->back()
+				->with('flash_error', 'Something went wrong, please try again later.');
+		}
+		return redirect()
+			->route('user.index')
+			->with('flash_success', "Succesfully notified " . str_plural('client', count($req->client)))
+			->with('sendEmail', count($req->client));
+	}
 	
+	protected function sendNotification(Request $req) {
+		$isSuccess = true;
+
+		$validator = Validator::make($req->all(), [
+			'amount' => 'required|numeric|min:1'
+		], [
+			'amount.required' => 'Amount is missing, proceed to using current amount of pending jobs',
+			'amount.numeric' => "Amount ({$req->amount}) is not a number, proceed to using current amount of pending jobs",
+			'amount.min' => "Amount ({$req->amount}) is insufficient, proceed to using current amount of pending jobs"
+		]);
+
+		if ($validator->fails())
+			$amt = Queue::size('user_notification');
+		else
+			$amt = $req->amount;
+
+		try {
+			// Runs the queue worker
+			for ($i = 0; $i < $amt; $i++) {
+				Artisan::call("queue:work", [
+					'--queue' => 'user_notification',
+					'--tries' => 3,
+					'--once' => true
+				]);
+			}
+		} catch (Exception $e) {
+			Log::error($e);
+			$isSuccess = false;
+		}
+
+		return response()
+			->json([
+				'success' => $isSuccess,
+				'validationFailed' => $validator->fails(),
+				'validationMsg' => $validator->errors(),
+				'amount' => $amt,
+			]);
+	}
 
 	// AUTHENTICATION FUNCTIONS
 	protected function login()

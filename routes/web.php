@@ -359,7 +359,9 @@ Route::group(['middleware' => ['auth']], function() {
 
 			Route::post('/{id}/submit-password', 'UserController@submitPassword')->name('submit-password');
 
+			// Notify Client
 			Route::get('/notify/clients','UserController@notifyClients')->name('notify-client');
+			Route::post('/notify/clients/submit','UserController@submitNotification')->name('notify-client.submit');
 		});
 	});
 });
