@@ -12,7 +12,7 @@
 		</div>
 
 		<div class="col-12 col-md-6 col-lg my-2 text-center text-md-left text-lg-right">
-			<a href="{{ route('variation.archive')}}" class="btn btn-info btn-sm my-1 bg-1"><i class="fa-solid fa-box-archive mr-2"></i>Archived Service</a>
+			<a href="{{ route('variation.archive',[$id,$serviceId])}}" class="btn btn-info btn-sm my-1 bg-1"><i class="fa-solid fa-box-archive mr-2"></i>Archived Service</a>
 
 		</div>
 
@@ -35,7 +35,7 @@
 						<th scope="col" class="hr-thick text-1">Variation</th>
 						<th scope="col" class="hr-thick text-1">Price</th>
 						<th scope="col" class="hr-thick text-1">Remarks</th>
-						<th scope="col" class="hr-thick text-1"></th>
+						<th scope="col" class="hr-thick text-1">Action</th>
 					</tr>
 				</thead>
 

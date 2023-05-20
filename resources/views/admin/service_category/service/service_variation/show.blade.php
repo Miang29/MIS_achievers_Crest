@@ -17,7 +17,7 @@
                 <div class="input-group-prepend">
                 <span class="input-group-text bg-light font-weight-bold" id="basic-addon1">Category Name</span>
                 </div>
-                {{ dd($variation)}}
+             
                 <input type="text" class="form-control bg-white" readonly value="{{ $variation->services->servicesCategory->service_category_name }}" aria-describedby="basic-addon1">
             </div>
              <div class="dropdown-divider"></div>

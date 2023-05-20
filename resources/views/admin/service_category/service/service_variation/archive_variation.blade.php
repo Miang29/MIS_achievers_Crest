@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Pet Profile')
+@section('title', 'Archived')
 
 @section('content')
 <div class="container-fluid px-2 px-lg-6 py-2 h-100 my-3">
@@ -30,17 +30,18 @@
                         <th scope="col" class="hr-thick text-1 text-center">Variation Name</th>
                         <th scope="col" class="hr-thick text-1 text-center">Price</th>
                         <th scope="col" class="hr-thick text-1 text-center">Date Archived</th>
+                        <th scope="col" class="hr-thick text-1">Action</th>
                     </tr>
                 </thead>
 
                 <tbody>
-                   @forelse ($variation as $v)
+                   @forelse ($serviVariation as $sv)
                     <tr>
-                        <td class="text-center">{{ $v->variation_name }}</td>
-                         <td class="text-center">{{ $v->price }}</td>
-                        <td class="text-center">{{ $v->deleted_at}}</td>
+                        <td class="text-center">{{ $sv->variation_name }}</td>
+                         <td class="text-center">{{ $sv->price }}</td>
+                        <td class="text-center">{{ $sv->deleted_at}}</td>
                         <td class="text-center">
-                            <a href="{{ route('variation.restore',[$v->id])}}" type="button" class="btn btn-success btn-sm">Restore</a>
+                            <a href="{{ route('variation.restore',[$id, $serviceId,$sv->id])}}" type="button" class="btn btn-success btn-sm">Restore</a>
                         </td>
                     </tr>
                     @empty
