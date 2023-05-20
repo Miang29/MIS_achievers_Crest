@@ -94,6 +94,10 @@ Route::group(['middleware' => ['auth']], function() {
 			// Delete
 			Route::get('/archive/{id}/pet','ClientController@delete')->name('deleted');
 
+			// Restore
+			Route::get('/restore/{id}/pet','ClientController@restore')->name('restore');
+
+			//Archive - Index
 			Route::get('/archived','ClientController@archiveIndex')->name('archived.index');
 			
 		});
@@ -190,9 +194,6 @@ Route::group(['middleware' => ['auth']], function() {
 			//Update
 			Route::post('/{id}/update', 'InventoryController@updateCategory')->name('category.update');
 
-			// Delete
-			Route::get('/{id}/delete/', 'InventoryController@deleteCategory')->name('category.delete');
-
 			//CATEGORY
 			//Create
 			Route::get('/create-category', 'InventoryController@createCty')->name('create-category');
@@ -202,14 +203,18 @@ Route::group(['middleware' => ['auth']], function() {
 			Route::group(['prefix' => 'product'], function () {
 				//Index
 				Route::get('/{id}', 'InventoryController@index')->name('category.view');
+
 				//Create 
 				Route::get('/{id}/create', 'InventoryController@createProduct')->name('product.create');
+
 				Route::post('/save-product/{id}', 'InventoryController@saveProduct')->name('save-product');
 
 				//View
 				Route::get('/{id}/view/product/{pid}', 'InventoryController@viewProduct')->name('product.view');
+
 	            //Add Stock
 				Route::get('/add/{id}/stocks/{pid}','InventoryController@addStock')->name('product.add.stock');
+
 				Route::post('/update/{id}/stocks/{pid}', 'InventoryController@updateStock')->name('update-stocks');
 
 				//Edit
@@ -217,6 +222,12 @@ Route::group(['middleware' => ['auth']], function() {
 
 				//Update
 				Route::post('/product/{id}/update/{pid}', 'InventoryController@updateProducts')->name('product.update');
+
+				// Archive Index
+				Route::get('/product/archived/', 'InventoryController@archiveIndexProduct')->name('archive.product');
+
+				// Restore
+				Route::get('/product/{id}/restore', 'InventoryController@restoreProduct')->name('restore.product');
 
 				// Delete
 				Route::get('/product/{id}/delete/', 'InventoryController@deleteProduct')->name('product.delete');
@@ -279,6 +290,12 @@ Route::group(['middleware' => ['auth']], function() {
 			// Delete
 			Route::get('/{id}/delete', 'ServiceCategoryController@delete')->name('service_category.delete');
 
+			// Archive
+			Route::get('/archived', 'ServiceCategoryController@archiveServicesCategory')->name('service_category.archive');
+			
+			// Restore
+			Route::get('/{id}/restore', 'ServiceCategoryController@restoreServiceCategory')->name('service_category.restore');
+
 			// ----------------------- SERVICES ----------------------- //
 			Route::group(['prefix' => '{id}/service'], function () {
 				// Show - Category / Index - Service
@@ -297,6 +314,12 @@ Route::group(['middleware' => ['auth']], function() {
 				// Delete
 				Route::get('/delete/{serviceId}', 'ServiceController@deleteService')->name('service.delete');
 
+				// Archive
+				Route::get('/archived/service', 'ServiceController@archiveServices')->name('services.archive');
+				
+				// Restore
+				Route::get('/{serviceId}/restore', 'ServiceController@restoreService')->name('service.restore');
+
 				// --------------------  VARIATIONS -------------------- //
 				Route::group(['prefix' => '{serviceId}/variations'], function () {
 					// Index
@@ -311,6 +334,12 @@ Route::group(['middleware' => ['auth']], function() {
 
 					// Delete
 					Route::get('/{variationId}/delete', 'ServiceVariationController@delete')->name('service_variation.delete');
+
+					// Archive
+					Route::get('/archive', 'ServiceController@archivedVariation')->name('variation.archive');
+					
+					// Restore
+					Route::get('/{variationId}/restore', 'ServiceController@restoreVariation')->name('variation.restore');
 
 				});
 			});

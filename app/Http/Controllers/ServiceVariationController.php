@@ -129,8 +129,43 @@ class ServiceVariationController extends Controller
 	}
 
 
-	protected function restore(){
+	protected function archivedVariation($id, $serviceId,$variationId){
 
-		$petsInformations->restore();
+		$Servivariation = ServicesVariation::onlyTrashed()->get();
+		return view ('admin.service_category.service.service_variation.archive_variation',[
+			'variation' => $variation,
+			'id' => $id,
+			'serviceId' => $serviceId,
+			'variationId' => $variationId
+		]);
+	}
+
+	protected function restoreVariation($id){
+
+		$Servivariation = ServicesVariation::withTrashed()->find($id);
+
+		if ($Servivariation == null) {
+			return redirect()
+			->route('service.index',[$id])
+			->with('flash_error','Service variation does not exists');
+			}
+
+			try{
+				DB::beginTransaction();
+				$Servivariation->restore();
+
+			DB::commit();
+		} catch (Exception $e) {
+			DB::rollback();
+			Log::error($e);
+
+			return redirect()
+				->route('service.index',[$id])
+				->with('flash_error', 'Something went wrong, please try again later');
+		}
+
+		return redirect()
+			->route('service.index',[$id])
+			->with('flash_success', "Successfully restored service variation");
 	}
 }

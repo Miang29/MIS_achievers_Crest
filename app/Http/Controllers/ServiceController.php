@@ -178,8 +178,43 @@ class ServiceController extends Controller
 	}
 
 
-	protected function restore(){
+	protected function archiveServices($id){
 
-		$petsInformations->restore();
+		$services = Services::onlyTrashed()->get();
+		return view ('admin.service_category.service.archive_service',[
+			'services' => $services,
+			'id' => $id
+		]);
 	}
+
+
+	protected function restoreService($id){
+
+		$services = Services::withTrashed()->find($id);
+
+		if ($services == null) {
+			return redirect()
+			->route('service.index',[$id])
+			->with('flash_error','Service does not exists');
+			}
+
+			try{
+				DB::beginTransaction();
+				$services->restore();
+
+			DB::commit();
+		} catch (Exception $e) {
+			DB::rollback();
+			Log::error($e);
+
+			return redirect()
+				->route('service.index',[$id])
+				->with('flash_error', 'Something went wrong, please try again later');
+		}
+
+		return redirect()
+			->route('service.index',[$id])
+			->with('flash_success', "Successfully restored service");
+	}
+ 
 }

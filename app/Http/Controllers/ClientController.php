@@ -13,6 +13,7 @@ use Exception;
 use File;
 use Hash;
 use Log;
+use restore;
 use Validator;
 
 
@@ -386,7 +387,10 @@ class ClientController extends Controller
 
 	protected function archiveIndex(){
 
-		return view('admin.pet-information.pet.archive');
+		$pet = PetsInformation::onlyTrashed()->get();
+		return view('admin.pet-information.pet.archive',[
+			'pets' => $pet,
+		]);
 	}
 
 	protected function delete($id) {
@@ -415,13 +419,37 @@ class ClientController extends Controller
 
 		return redirect()
 			->route('pet-information')
-			->with('flash_success', "Successfully archived pet");
+			->with('flash_success', "Successfully archived pet information");
 	}
 
 
-	protected function restore(){
+	protected function restore($id){
 
-		$petsInformations->restore();
+		$petsInformation = PetsInformation::withTrashed()->find($id);
+
+		if ($petsInformation == null) {
+			return redirect()
+			->route('pet-information')
+			->with('flash_error','Pet does not exists');
+			}
+
+			try{
+				DB::beginTransaction();
+				$petsInformation->restore();
+
+			DB::commit();
+		} catch (Exception $e) {
+			DB::rollback();
+			Log::error($e);
+
+			return redirect()
+				->route('pet-information')
+				->with('flash_error', 'Something went wrong, please try again later');
+		}
+
+		return redirect()
+			->route('pet-information')
+			->with('flash_success', "Successfully restored pet information");
 	}
-
+	
 }

@@ -8,6 +8,7 @@
 <div class="container-fluid m-0">
     <div class="row">
        <h2 class="mt-5"><a href="javascript:void(0);" onclick="confirmLeave('{{route('inventory')}}');" class="text-decoration-none  text-1"><i class="fas fa-chevron-left mr-2"></i>Inventory List</a></h2>
+
         <div class="col-12 col-md-6 col-lg mt-5 text-center text-md-left text-lg-right">
             <a href="{{route('product.create', [$id])}}" class="btn btn-info bg-1 btn-sm my-1"><i class="fas fa-plus-circle mr-2"></i>Add New Products</a>
         </div>
@@ -22,10 +23,15 @@
     </div>
     <hr class="hr-thick" style="border-color: #707070;">
 
-    <div class="col-12 col-lg text-center text-lg-left">
-        <h2 class="font-weight-bold text-1">Product List</h2>
-    </div>
+        <div class="row">
+            <div class="col-12 col-lg text-center text-lg-left">
+                <h2 class="font-weight-bold text-1">Product List</h2>
+            </div>
 
+             <div class="col-12 col-md-6 ml-auto text-center text-md-left text-lg-right">
+                    <a href="{{ route('archive.product')}}" class="btn btn-info btn-sm my-1 bg-1"><i class="fa-solid fa-box-archive mr-2"></i>Archived Products</a>
+            </div>
+       </div>
 
     <div class="overflow-x-auto h-100 card">
         <div class=" card-body h-100 px-0 pt-0 ">

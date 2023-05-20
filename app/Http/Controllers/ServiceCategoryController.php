@@ -137,9 +137,42 @@ class ServiceCategoryController extends Controller
 	}
 
 
-	protected function restore(){
+	protected function archiveServicesCategory(){
 
-		$petsInformations->restore();
+		$serviceCategory = ServicesCategory::onlyTrashed()->get();
+		return view ('admin.service_category.archive_services_category',[
+			'serviceCategory' => $serviceCategory
+		]);
 	}
 
+
+	protected function restoreServiceCategory($id){
+
+		$serviceCategory = ServicesCategory::withTrashed()->find($id);
+
+		if ($serviceCategory == null) {
+			return redirect()
+			->route('service_category.index')
+			->with('flash_error','Services category does not exists');
+			}
+
+			try{
+				DB::beginTransaction();
+				$serviceCategory->restore();
+
+			DB::commit();
+		} catch (Exception $e) {
+			DB::rollback();
+			Log::error($e);
+
+			return redirect()
+				->route('service_category.index')
+				->with('flash_error', 'Something went wrong, please try again later');
+		}
+
+		return redirect()
+			->route('service_category.index')
+			->with('flash_success', "Successfully restored services category");
+	}
+ 
 }

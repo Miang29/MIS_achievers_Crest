@@ -376,9 +376,41 @@ class InventoryController extends Controller
 			->with('flash_success', "Successfully archived product");
 	}
 
+	protected function archiveIndexProduct(){
 
-	protected function restore(){
+		$products = Products::onlyTrashed()->get();
+		return view ('admin.inventory.product.archive_products',[
+			'products' => $products
+		]);
+	}
 
-		$petsInformations->restore();
+
+	protected function restoreProduct($id){
+
+		$products = Products::withTrashed()->find($id);
+
+		if ($products == null) {
+			return redirect()
+			->route('inventory')
+			->with('flash_error','Product does not exists');
+			}
+
+			try{
+				DB::beginTransaction();
+				$products->restore();
+
+			DB::commit();
+		} catch (Exception $e) {
+			DB::rollback();
+			Log::error($e);
+
+			return redirect()
+				->route('inventory')
+				->with('flash_error', 'Something went wrong, please try again later');
+		}
+
+		return redirect()
+			->route('inventory')
+			->with('flash_success', "Successfully restored product");
 	}
 }

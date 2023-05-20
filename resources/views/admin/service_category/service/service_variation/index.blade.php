@@ -11,6 +11,11 @@
 			</a>
 		</div>
 
+		<div class="col-12 col-md-6 col-lg my-2 text-center text-md-left text-lg-right">
+			<a href="{{ route('variation.archive')}}" class="btn btn-info btn-sm my-1 bg-1"><i class="fa-solid fa-box-archive mr-2"></i>Archived Service</a>
+
+		</div>
+
 		<div class=" col-12 col-md-6 col-lg my-2 text-center text-lg-right">
 			<div class="input-group">
 				<input type="text" class="form-control" name="search" placeholder="Search..." />
