@@ -65,7 +65,7 @@
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown">
                                     <a href="{{route ('product.view', [$id, $p->id])}}" class="dropdown-item"><i class="fa-solid fa-eye mr-2"></i>View Product</a>
                                     <a href="{{route('product.edit', [$id, $p->id])}}" class="dropdown-item"><i class="fa-regular fa-pen-to-square mr-2"></i>Edit Product</a>
-                                    <a href="javascript:void(0);" onclick="confirmLeave('{{ route('product.delete', [$id, $p]) }}', undefined, 'Are you sure you want to archive this item?');" class="dropdown-item"><i class="fa-solid fa-box-archive mr-2"></i>Archive</a>
+                                    <a href="javascript:void(0);" onclick="confirmLeave('{{ route('product.delete', [$id, $p]) }}', undefined, 'Are you sure you want to archive this product?');" class="dropdown-item"><i class="fa-solid fa-box-archive mr-2"></i>Archive</a>
                                     <a href="{{ route('product.add.stock', [$id, $p->id]) }}" class="dropdown-item"><i class="fa-solid fa-plus mr-2"></i>Add Stocks</a>
                                 </div>
                             </div>

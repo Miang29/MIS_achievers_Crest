@@ -384,8 +384,44 @@ class ClientController extends Controller
 		);
 	}
 
-	protected function archivedPet(){
-		
+	protected function archiveIndex(){
+
+		return view('admin.pet-information.pet.archive');
+	}
+
+	protected function delete($id) {
+
+		$pets = PetsInformation::find($id);
+
+		if ($pets == null) {
+			return redirect()
+			->route('pet-information')
+			->with('flash_error','Pet does not exists');
+			}
+
+			try{
+				DB::beginTransaction();
+				$pets->delete();
+			
+			DB::commit();
+		} catch (Exception $e) {
+			DB::rollback();
+			Log::error($e);
+
+			return redirect()
+				->route('pet-information')
+				->with('flash_error', 'Something went wrong, please try again later');
+		}
+
+		return redirect()
+			->route('pet-information')
+			->with('flash_success', "Successfully archived pet");
+	}
+
+
+	protected function restore(){
+
+		$petsInformations->restore();
 	}
 
 }

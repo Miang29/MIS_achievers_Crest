@@ -50,7 +50,7 @@
 								<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown">
 									<a href="{{ route('service.index',[$sc->id]) }}" class="dropdown-item"><i class="fa-solid fa-eye mr-2"></i>View Service</a>
 									 <div class="dropdown-divider"></div>
-									<button onclick="confirmLeave('{{ route("service_category.delete", [1]) }}', undefined, 'Are you sure you want to archive this category? This will <b>archived all the services and variations</b> encoded within this category.');" class="dropdown-item"><i class="fa-solid fa-box-archive mr-2"></i>Archive</button>
+									<button onclick="confirmLeave('{{ route("service_category.delete", [$sc->id]) }}', undefined, 'Are you sure you want to archive this category? This will <b>archived all the services and variations</b> encoded within this category.');" class="dropdown-item"><i class="fa-solid fa-box-archive mr-2"></i>Archive</button>
 								</div>
 							</div>
 						</td>

@@ -106,10 +106,40 @@ class ServiceCategoryController extends Controller
 			->route('settings.index')
 			->with('flash_success', "Successfully added a services category");
 	}
-	
+
 	protected function delete($id) {
+
+		$serviceCategory = ServicesCategory::find($id);
+
+		if ($serviceCategory == null) {
+			return redirect()
+			->route('service_category.index')
+			->with('flash_error','Service category does not exists');
+			}
+
+			try{
+				DB::beginTransaction();
+				$serviceCategory->delete();
+			
+			DB::commit();
+		} catch (Exception $e) {
+			DB::rollback();
+			Log::error($e);
+
+			return redirect()
+				->route('service_category.index')
+				->with('flash_error', 'Something went wrong, please try again later');
+		}
+
 		return redirect()
 			->route('service_category.index')
-			->with('flash_success', 'Successfully removed entire category and all its items');
+			->with('flash_success', "Successfully archived service category");
 	}
+
+
+	protected function restore(){
+
+		$petsInformations->restore();
+	}
+
 }

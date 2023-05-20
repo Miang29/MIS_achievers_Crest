@@ -21,6 +21,7 @@ class CreateProductsTable extends Migration
             $table->integer('price');
             $table->string('status');
             $table->string('description')->nullable();
+            $table->softDeletes();
             $table->timestamps();
 
             $table->foreign('category_id')->references('id')->on('product_categories')->onDelete('cascade');
