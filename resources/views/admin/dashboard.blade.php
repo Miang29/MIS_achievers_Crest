@@ -19,7 +19,7 @@
 					<div class="row">
 						<i class="fas fa-paw fa-5x mx-4 mt-3"></i>
 						<div class="d-flex flex-d-col flex-grow-1 text-right">
-							<h1 class="my-auto">{{ $patients->count() }}</h1>
+							<h1 class="my-auto h1-xl h3-md h5-sm">{{ $patients->count() }}</h1>
 						</div>
 					</div>
 
@@ -36,7 +36,7 @@
 						<i class="fa-solid fa-dollar-sign fa-5x mx-4 mt-3"></i>
 
 						<div class="d-flex flex-d-col flex-grow-1 text-right">
-							<h1 class="my-auto h1-xl h2-md h3-sm">{{ number_format($sales, 2) }}</h1>
+							<h1 class="my-auto h1-xl h3-md h5-sm">{{ number_format($sales, 2) }}</h1>
 						</div>
 					</div>
 
@@ -53,7 +53,7 @@
 						<i class="fa-solid fa-boxes-stacked fa-5x mx-4 mt-3"></i>
 
 						<div class="d-flex flex-d-col flex-grow-1 text-right">
-							<h1 class="my-auto h1-xl h2-md h3-sm">{{ $products}}</h2>
+							<h1 class="my-auto h1-xl h3-md h5-sm">{{ $products}}</h2>
 						</div>
 					</div>
 
@@ -70,7 +70,7 @@
 						<i class="fas fa-users fa-5x mx-4 mt-3"></i>
 
 						<div class="d-flex flex-d-col flex-grow-1 text-right">
-							<h1 class="my-auto h1-xl h3-sm">{{$client}}</h1>
+							<h1 class="my-auto h1-xl h3-md h5-sm">{{$client}}</h1>
 						</div>
 					</div>
 
