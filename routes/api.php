@@ -13,4 +13,14 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::post('/notify-clients', 'UserController@sendNotification')->name('api.notify-client.send');
+// ALL NOTIFY
+Route::group(['prefix' => 'notify'], function() {
+	// NOTIFY CLIENTS
+	Route::post('/clients', 'UserController@sendNotification')->name('api.notify.client.send');
+});
+
+// ALL FETCHES
+Route::group(['prefix' => 'fetch'], function() {
+	// FETCH UNAVAIBLE TIME
+	Route::post('/unavailable-time', 'AppointmentController@fetchAvailableTime')->name('api.fetch.unavailable-time');
+});

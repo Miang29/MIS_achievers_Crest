@@ -7,11 +7,11 @@ use Illuminate\Http\Request;
 use \Carbon\Carbon;
 
 use App\Appointments;
-use App\Services;
-use App\User;
 use App\PetsInformation;
+use App\Services;
+use App\UnavailableDate;
+use App\User;
 
-use Auth;
 use DB;
 use Exception;
 use Hash;
@@ -35,25 +35,21 @@ class AppointmentController extends Controller
 		]);
 	}
 
-
 	protected function acceptAppointment(Request $req, $id)
 	{
-
 		$appointment = Appointments::find($id);
 
-		if ($appointment == null)
-
+		if ($appointment == null) {
 			return redirect()
-			->route('appointments.index')
-			->with('flash_error', 'Appointment does not exists.');
-		
-		{
-			try{
-				DB::beginTransaction();
-				$appointment->status = 1;
-				$appointment->save();
+				->route('appointments.index')
+				->with('flash_error', 'Appointment does not exists.');
+		}
+		try{
+			DB::beginTransaction();
+			$appointment->status = 1;
+			$appointment->save();
 
-				//MAILER
+			//MAILER
 			Mail::send(
 				'admin.appointment.mail.accepted_mail',
 				[
@@ -70,16 +66,15 @@ class AppointmentController extends Controller
 		} catch (Exception $e) {
 			DB::rollback();
 			Log::error($e);
+			
 			return redirect()
-			->route('appointments.index')
-			->with('flash_error', 'Something went wrong, please try again later');
+				->route('appointments.index')
+				->with('flash_error', 'Something went wrong, please try again later');
 		}
 
 		return redirect()
 			->route('appointments.index')
 			->with('flash_success', "Successfully accepted appointment.");
-		}
-	
 	}
 
 	protected function reason($id)
@@ -95,12 +90,13 @@ class AppointmentController extends Controller
 	{
 
 		$appointment = Appointments::find($id);
-		if ($appointment == null)
+		if ($appointment == null) {
 			return redirect()
-			->route('appointments.index')
-			->with('flash_error', 'Appointment does not exists.');
-	{
-		try{
+				->route('appointments.index')
+				->with('flash_error', 'Appointment does not exists.');
+		}
+
+		try {
 				DB::beginTransaction();
 				$appointment->status = 2;
 				$appointment->reason = $req->reason;
@@ -132,27 +128,98 @@ class AppointmentController extends Controller
 		return redirect()
 			->route('appointments.index')
 			->with('flash_success', "Successfully rejected appointment.");
-		}
 	}
 
 	protected function create()
 	{
-		$client = Auth()->user();
-		$pets = $client->petsInformations;
-		$appointmentTimes = Appointments::getAppointmentTimes();
-		$service = Services::where('service_category_id', '=', 1)->get();
 		$user = User::where('user_type_id', '=', 4)->has("petsInformations", '>', 0)->with('petsInformations')->get();
-		$appointment = Appointments::get();
+
+		$service = Services::where('service_category_id', '=', 1)->get();
+		$appointmentTimes = Appointments::getAppointmentTimes();
+		
+		// Fetch Unavailable Dates
+		$appointments = Appointments::whereDate('reserved_at', '>=', Carbon::now('Asia/Manila')->format('Y-m-d'))
+			->get()
+			->groupBy('reserved_at');
+		$unavailableDates = UnavailableDate::whereDate('date', '>=', Carbon::now('Asia/Manila')->format('Y-m-d'))
+			->where('is_whole_day', '=', 1)
+			->get();
+		
 		return view('admin.appointment.create', [
-			'services' => $service,
 			'user' => $user,
-			'appointment' => $appointment,
+			'services' => $service,
 			'appointmentTime' => $appointmentTimes,
-			'pets' => $pets,
-			'client' => $client
+			'appointments' => $appointments,
+			'unavailableDates' => $unavailableDates,
+		]);
+	}
+
+	protected function fetchAvailableTime(Request $req) {
+		$appointments = Appointments::whereDate('reserved_at', '>=', Carbon::now('Asia/Manila')->format('Y-m-d'))
+			->get()
+			->groupBy('reserved_at');
+		$unavailableDates = UnavailableDate::whereDate('date', '>=', Carbon::now('Asia/Manila')->format('Y-m-d'))
+			->where('is_whole_day', '=', 1)
+			->pluck('date')
+			->toArray();
+
+		foreach ($appointments as $k => $a) {
+			if (count($a) >= 5) {
+				array_push($unavailableDates, $k);
+			}
+		}
+
+		$validator = Validator::make($req->all(), [
+			"reserved_at" => "required|date|after_or_equal:today|not_in:" . implode(',', $unavailableDates)
+		], [
+			"reserved_at.required" => "Please select a date to reserve your appointment at.",
+			"reserved_at.date" => "Please refrain from modifying the form.",
+			"reserved_at.after_or_equal" => "Please set your appointment date to today or after today.",
+			"reserved_at.not_in" => "These dates are unavailable. Please select another date."
 		]);
 
+		if ($validator->fails()) {
+			return response()
+				->json([
+					'success' => false,
+					'validationFailed' => $validator->fails(),
+					'validationMsg' => $validator->errors(),
+					'data' => null
+				]);
+		}
 
+		$unavailableTime;
+		$unavailableTime2;
+		
+		try {
+			$unavailableTime = UnavailableDate::whereDate('date', '=', $req->reserved_at)
+				->where('is_whole_day', '=', 0)
+				->pluck('time')
+				->toArray();
+			$unavailableTime2 = Appointments::whereDate('reserved_at', '=', $req->reserved_at)
+				->pluck('appointment_time')
+				->toArray();
+
+			$unavailableTime = array_merge($unavailableTime, $unavailableTime2);
+		} catch (Exception $e) {
+			Log::error($e);
+
+			return response()
+				->json([
+					'success' => false,
+					'validationFailed' => $validator->fails(),
+					'validationMsg' => $validator->errors(),
+					'data' => $e->getMessage()
+				]);
+		}
+
+		return response()
+			->json([
+				'success' => true,
+				'validationFailed' => $validator->fails(),
+				'validationMsg' => $validator->errors(),
+				'data' => $unavailableTime
+			]);
 	}
 
 	protected function saveAppointments(Request $req)
@@ -200,7 +267,6 @@ class AppointmentController extends Controller
 			->route('appointments.index')
 			->with('flash_success', "Successfully added appointments.");
 	}
-
 
 	protected function updateAppointments(Request $req, $id)
 	{

@@ -82,7 +82,7 @@
 	$(document).ready(() => {
 		let amt = parseInt(`{{ Session::get('sendEmail') }}`);
 
-		$.post(`{{ route('api.notify-client.send') }}`, {
+		$.post(`{{ route('api.notify.client.send') }}`, {
 			_token: `{{ csrf_token() }}`,
 			amount: `a`
 		}).done((response) => {

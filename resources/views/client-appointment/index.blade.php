@@ -101,9 +101,6 @@
 				Swal.fire(opt);
 
 		});
-
-		const validateDate = dateString => {
-		}
 	});
 </script>
 @endsection

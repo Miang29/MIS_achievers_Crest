@@ -25,6 +25,7 @@ class ClientAppointmentController extends Controller
 			->get()
 			->groupBy('reserved_at');
 		$unavailableDates = UnavailableDate::whereDate('date', '>=', Carbon::now('Asia/Manila')->format('Y-m-d'))
+			->where('is_whole_day', '=', 1)
 			->get();
 
 		// If `service` or `reserved_at` is present in the session storage...
@@ -62,17 +63,32 @@ class ClientAppointmentController extends Controller
 	protected function create(Request $req) {
 		$isFromIndex = $req->has('isFromIndex') ? $req->isFromIndex : 0;
 
+		$appointments = Appointments::whereDate('reserved_at', '>=', Carbon::now('Asia/Manila')->format('Y-m-d'))
+			->get()
+			->groupBy('reserved_at');
+		$unavailableDates = UnavailableDate::whereDate('date', '>=', Carbon::now('Asia/Manila')->format('Y-m-d'))
+			->where('is_whole_day', '=', 1)
+			->pluck('date')
+			->toArray();
+
+		foreach ($appointments as $k => $a) {
+			if (count($a) >= 5) {
+				array_push($unavailableDates, $k);
+			}
+		}
+
 		if ($isFromIndex == 1) {
 			$validator = Validator::make($req->all(), [
 				"service" => "required|numeric|exists:services,id",
-				"reserved_at" => "required|date|after_or_equal:today"
+				"reserved_at" => "required|date|after_or_equal:today|not_in:" . implode(',',$unavailableDates)
 			], [
-				"service.required" => "Please select a service to avail",
-				"service.numeric" => "Please refrain from modifying the form",
-				"service.exists" => "Please re-select the service",
-				"reserved_at.required" => "Please select a date to reserve your appointment at",
-				"reserved_at.date" => "Please refrain from modifying the form",
-				"reserved_at.after_or_equal" => "Please set your appointment date to today or after today",
+				"service.required" => "Please select a service to avail.",
+				"service.numeric" => "Please refrain from modifying the form.",
+				"service.exists" => "Please re-select the service.",
+				"reserved_at.required" => "Please select a date to reserve your appointment at.",
+				"reserved_at.date" => "Please refrain from modifying the form.",
+				"reserved_at.after_or_equal" => "Please set your appointment date to today or after today.",
+				"reserved_at.not_in" => "These dates are unavailable. Please select another date."
 			]);
 
 			if ($validator->fails()) {
@@ -101,6 +117,11 @@ class ClientAppointmentController extends Controller
 			->where('is_whole_day', '=', 0)
 			->pluck('time')
 			->toArray();
+		$unavailableTime2 = Appointments::whereDate('reserved_at', '=', $req->reserved_at)
+			->pluck('appointment_time')
+			->toArray();
+
+		$unavailableTime = array_merge($unavailableTime, $unavailableTime2);
 
 		return view('client-appointment.create', [
 			'user' => $user,
@@ -112,10 +133,34 @@ class ClientAppointmentController extends Controller
 	}
 
 	protected function store(Request $req) {
+		$appointments = Appointments::whereDate('reserved_at', '>=', Carbon::now('Asia/Manila')->format('Y-m-d'))
+			->get()
+			->groupBy('reserved_at');
+		$unavailableDates = UnavailableDate::whereDate('date', '>=', Carbon::now('Asia/Manila')->format('Y-m-d'))
+			->where('is_whole_day', '=', 1)
+			->pluck('date')
+			->toArray();
+
+		foreach ($appointments as $k => $a) {
+			if (count($a) >= 5) {
+				array_push($unavailableDates, $k);
+			}
+		}
+
+		$unavailableTime = UnavailableDate::whereDate('date', '=', $req->reserved_at)
+			->where('is_whole_day', '=', 0)
+			->pluck('time')
+			->toArray();
+		$unavailableTime2 = Appointments::whereDate('reserved_at', '=', $req->reserved_at)
+			->pluck('appointment_time')
+			->toArray();
+
+		$unavailableTime = array_merge($unavailableTime, $unavailableTime2);
+
 		$validator = Validator::make($req->all(), [
 			"service" => "required|numeric|exists:services,id",
-			"reserved_at" => "required|date|after_or_equal:today",
-			"reserved_at_time" => "required|numeric|between:1,5",
+			"reserved_at" => "required|date|after_or_equal:today,not_in:" . $unavailableDates,
+			"reserved_at_time" => "required|numeric|between:1,5,not_in:" . $unavailableTime,
 			"owner_name" => "required|string|between:2,255",
 			"pet_name" => "required|string|between:2,255",
 			"breed" => "required|string|between:2,255",
