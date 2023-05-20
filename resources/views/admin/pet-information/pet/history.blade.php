@@ -129,15 +129,31 @@
                          <div class="input-group-prepend">
                             <span class="input-group-text border border-white bg-white font-weight-bold" id="addon-wrapping">Weight :</span>
                          </div>
-                            <input value="{{-- $pet->consultation->weight --}}" type="text" class="form-control border-right-0 border-left-0 border-top-0 border-bottom border-secondary" aria-describedby="addon-wrapping">
+                            <input value="" type="text" class="form-control border-right-0 border-left-0 border-top-0 border-bottom border-secondary" aria-describedby="addon-wrapping">
                        </div>
 
                        <div class="input-group flex-nowrap col-lg-5 mb-3 mt-3 mr-auto">
                          <div class="input-group-prepend">
                             <span class="input-group-text border border-white bg-white font-weight-bold" id="addon-wrapping">Temperature :</span>
                          </div>
-                            <input value="{{-- $pet->consultation->temperature --}}" type="text" class="form-control border-right-0 border-left-0 border-top-0 border-bottom border-secondary" aria-describedby="addon-wrapping">
+                            <input value="" type="text" class="form-control border-right-0 border-left-0 border-top-0 border-bottom border-secondary" aria-describedby="addon-wrapping">
                        </div>
+                    </div>
+
+                    <div class="row">
+                       <div class="input-group col-lg-5 mb-3 mt-3 mr-auto">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text border border-white bg-white font-weight-bold">Findings:</span>
+                          </div>
+                          <textarea readonly class="form-control border-right-0 border-left-0 bg-white border-top-0 border-bottom border-secondary" aria-label="With textarea"></textarea>
+                        </div>
+
+                        <div class="input-group col-lg-5 mb-3 mt-3 mr-auto">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text border border-white bg-white font-weight-bold">Treatment:</span>
+                          </div>
+                          <textarea readonly class="form-control border-right-0 border-left-0 bg-white border-top-0 border-bottom border-secondary" aria-label="With textarea"></textarea>
+                        </div>
                     </div>
                 </div>
             </div>
