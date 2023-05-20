@@ -230,7 +230,6 @@ class AppointmentController extends Controller
 		    'service_id' => 'required|numeric|exists:services,id',
 			'appointment_time' => 'required|min:1|max:255|string',
 			'reserved_at' =>  'required|min:2|max:255|date',
-			'user_id' => 'required|numeric|exists:users,id',
 			'pet_information_id' => 'required|numeric|exists:pets_informations,id',
 		]);
 
@@ -245,12 +244,14 @@ class AppointmentController extends Controller
 		try {
 			DB::beginTransaction();
 
+			$petInfo = PetsInformation::find($req->pet_information_id);
+
 			$appointment = Appointments::create([
 				'appointment_no' => $appointmentNo,
 				'service_id' => $req->service_id,
 				'appointment_time' => $req->appointment_time,
 				'reserved_at' => $req->reserved_at,
-				'user_id' => $req->user_id,
+				'user_id' => $petInfo->pet_owner,
 				'pet_information_id' => $req->pet_information_id,
 			]);
 

@@ -86,12 +86,30 @@ class PageController extends Controller
 			array_push($monthly_earnings, ($consultationA + $vaccinationA + $groomingA + $boardingA + $otherTransactionA + $productsOrder));
 		}
 
-		$consultation = ConsultationTransaction::sum('total');
-		$vaccination = VaccinationTransaction::sum('price');
-		$grooming = GroomingTransaction::sum('price');
-		$boarding = BoardingTransaction::sum('price');
-		$otherTransaction = OtherTransation::sum('price');
-		$productsOrder = ProductsOrderTransactionItem::sum('total');
+		$consultation = ConsultationTransaction::whereDate('created_at', '>=', Carbon::parse(Carbon::now()->format('Y') . '-01-01'))
+				->whereDate('created_at', '<=', Carbon::parse(Carbon::now()->format('Y') . '-12-31'))
+				->get()
+				->sum('total');
+		$vaccination = VaccinationTransaction::whereDate('created_at', '>=', Carbon::parse(Carbon::now()->format('Y') . '-01-01'))
+				->whereDate('created_at', '<=', Carbon::parse(Carbon::now()->format('Y') . '-12-31'))
+				->get()
+				->sum('price');
+		$grooming = GroomingTransaction::whereDate('created_at', '>=', Carbon::parse(Carbon::now()->format('Y') . '-01-01'))
+				->whereDate('created_at', '<=', Carbon::parse(Carbon::now()->format('Y') . '-12-31'))
+				->get()
+				->sum('price');
+		$boarding = BoardingTransaction::whereDate('created_at', '>=', Carbon::parse(Carbon::now()->format('Y') . '-01-01'))
+				->whereDate('created_at', '<=', Carbon::parse(Carbon::now()->format('Y') . '-12-31'))
+				->get()
+				->sum('price');
+		$otherTransaction = OtherTransation::whereDate('created_at', '>=', Carbon::parse(Carbon::now()->format('Y') . '-01-01'))
+				->whereDate('created_at', '<=', Carbon::parse(Carbon::now()->format('Y') . '-12-31'))
+				->get()
+				->sum('price');
+		$productsOrder = ProductsOrderTransactionItem::whereDate('created_at', '>=', Carbon::parse(Carbon::now()->format('Y') . '-01-01'))
+				->whereDate('created_at', '<=', Carbon::parse(Carbon::now()->format('Y') . '-12-31'))
+				->get()
+				->sum('total');
 
 		$sales = ($consultation + $vaccination + $grooming + $boarding + $otherTransaction + $productsOrder);
 		$products = Products::sum('stocks');
@@ -99,6 +117,7 @@ class PageController extends Controller
 		$clients = User::where('user_type_id','=', 4)->count();
 		
 		$inventory = Products::where('stocks', '<=', 10)->get();
+		$appointments = Appointments::where('status', '=', 0)->get();
 		
 		return view('admin.dashboard', [
 			'months' => $months,
@@ -107,7 +126,8 @@ class PageController extends Controller
 			'client' => $clients,
 			'products' => $products,
 			'sales' => $sales,
-			'inventory' => $inventory
+			'inventory' => $inventory,
+			'appointments' => $appointments
 		]);
 	}
 
@@ -180,5 +200,3 @@ class PageController extends Controller
 			->with('flash_success', "Message successfully sent");
 	}
 };
-
-
