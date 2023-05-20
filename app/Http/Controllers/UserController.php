@@ -18,6 +18,62 @@ use Validator;
 
 class UserController extends Controller
 {
+	// NOTIFICATION CLIENTS
+	protected function notifyClients(){
+		
+		$client = User::where('user_type_id', '=', 4)->get();
+		
+		return view('admin.useraccount.notification.notify-client',[
+			'clients' => $client,
+		]);
+	}
+
+	protected function submitNotification(Request $req, $id){
+
+		$client = User::find($id)
+
+		$validator = Validator::make($req->all(), [
+			'client' => 'required|array',
+			'client.*' => 'required|numeric|exists:users,id',
+			'message' => 'required|min:2|max:255|string',
+		],[
+			'checkbox.required' => 'Please select a client to notify'
+		]);
+
+		if ($validator->fails())
+			return redirect()
+				->back()
+				->withErrors($validator)
+				->withInput();
+		try {
+
+			//Mailer
+				Mail::send(
+					'admin.useraccount.notification.mail.email_client',
+					[
+						'client' => $client,
+					],
+					function ($mail) use ($client) {
+						$mail->to($client->email)
+							->from("nano.mis@technical.com") // MIS Nano Vet Clinic
+							->subject("Message");
+					}
+				);
+			DB::commit();
+		} catch (Exception $e) {
+			DB::rollback();
+			Log::error($e);
+
+			return redirect()
+				->back()
+				->with('flash_error', 'Something went wrong, please try again later.');
+		}
+		return redirect()
+			->route('user.index')
+			->with('flash_success', "Succesfully updated password");
+	}
+	
+
 	// AUTHENTICATION FUNCTIONS
 	protected function login()
 	{

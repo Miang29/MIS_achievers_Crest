@@ -354,6 +354,8 @@ Route::group(['middleware' => ['auth']], function() {
 			Route::get('/{id}/edit-password', 'UserController@editPassword')->name('user.edit-password');
 
 			Route::post('/{id}/submit-password', 'UserController@submitPassword')->name('submit-password');
+
+			Route::get('/notify/clients','UserController@notifyClients')->name('notify-client');
 		});
 	});
 });

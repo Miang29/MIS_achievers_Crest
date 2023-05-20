@@ -10,7 +10,11 @@
 			<h3 class="text-1">USERS LIST</h3>
 		</div>
 
-		<div class="col-12 col-md-6 col-lg my-2 text-center text-md-left text-lg-right">
+		<div class="w-lg-25 my-2">
+			<a href="{{ route('notify.client')}}" class="btn btn-info btn-sm my-1 bg-1 w-50"><i class="fa-solid fa-bell mr-2"></i>Notify Client</a>
+		</div>
+
+		<div class="col-12 col-md-6 col-lg-4 my-2 text-center text-md-left text-lg-right">
 			<a href="{{route('user.create')}}" class="btn btn-info btn-sm  my-1 bg-1 w-50"><i class="fas fa-plus-circle mr-2"></i>Add User</a>
 		</div>
 
