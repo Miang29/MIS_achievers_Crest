@@ -93,21 +93,22 @@
 
 
 		<div class="card-footer d-flex flex-column">
-			{{-- <div class="form-group col-6 mx-auto">
+			 <div class="form-group col-6 mx-auto">
 				<button class="card mx-auto w-100 h-100 d-flex" type="button" style="border-style: dashed; border-width: .25rem;" id="addother">
 					<span class="m-auto  font-weight-bold text-1"><i class="fa-solid fa-circle-plus mr-2"></i></span>
 				</button>
-			</div> --}}
+			</div> 
 
 			<div class="col-4 my-2 mx-auto text-center">
 				<button type="submit" class="btn btn-outline-info btn-sm w-25" data-action="submit" data-type="submit">Enter</button>
-				<a href="{{ route('other.transaction.create')}}" class="btn btn-outline-danger btn-sm w-25">Cancel</a>
+				<a href="javascript:void(0);" onclick="confirmLeave('{{ route('transaction.service') }}');" class="btn btn-outline-danger btn-sm w-25">Cancel</a>
 			</div>
 		</div>
 	</form>
 </div>
 @endsection
 @section('scripts')
+<script type="text/javascript" src="{{ asset('js/util/confirm-leave.js') }}"></script>
 <script type="text/javascript">
 	$(document).ready(() => {
 		// Adding and Removing Variations

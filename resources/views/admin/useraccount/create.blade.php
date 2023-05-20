@@ -120,7 +120,8 @@
 
 			<div class="card-footer d-flex">
 				<div class="col-12 col-lg-6 mx-auto text-center">
-					<button type="submit" class="btn btn-outline-info mx-auto btn-sm w-25 mb-3" data-type="submit"><i class="fa-solid fa-floppy-disk mr-2"></i>Save</button>
+					<button type="submit" class="btn btn-outline-info mx-auto btn-sm w-25" data-type="submit"><i class="fa-solid fa-floppy-disk mr-2"></i>Save</button>
+					<a href="javascript:void(0);" onclick="confirmLeave('{{ route('user.index') }}');" class="btn btn-outline-danger btn-sm w-25">Cancel</a>
 				</div>
 			</div>
 		</form>
@@ -129,5 +130,6 @@
 @endsection
 
 @section('scripts')
+<script type="text/javascript" src="{{ asset('js/util/confirm-leave.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/login.js') }}"></script>
 @endsection

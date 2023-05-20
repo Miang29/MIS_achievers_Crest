@@ -136,7 +136,7 @@
 		<div class="card-footer d-flex">
 			<div class="col-4 mx-auto text-center">
 				<button class="btn btn-outline-info mr-1 btn-sm w-50" data-action ="submit" type="submit" data-type="submit">Save</button>
-				 <a href="javascript:void(0);" onclick="confirmLeave('{{ route('appointments.index') }}');" class="btn btn-outline-danger btn-sm ml-1 w-lg-50 mr-auto w-50">Cancel</a>
+				 <a href="javascript:void(0);" onclick="confirmLeave('{{ route('inventory') }}');" class="btn btn-outline-danger btn-sm ml-1 w-lg-50 mr-auto w-50">Cancel</a>
 			</div>
 		</div>
 		</form>
