@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Carbon\Carbon;
+
 use App\Appointments;
 use App\PetsInformation;
 use App\Services;
@@ -18,6 +20,9 @@ class ClientAppointmentController extends Controller
 	protected function index(Request $req) {
 		$services = Services::where('service_category_id', '=', 1)
 			->get();
+		$appointments = Appointments::whereDate('reserved_at', '<', Carbon::now('Asia/Manila')->format('Y-m-d'))
+			->get()
+			->groupBy('reserved_at');
 
 		// If `service` or `reserved_at` is present in the session storage...
 		$service = session('service');
@@ -44,13 +49,15 @@ class ClientAppointmentController extends Controller
 		}
 
 		return view('client-appointment.index', [
-			'services' => $services
+			'services' => $services,
+			'appointments' => $appointments,
 		]);
 	}
 
 	
 	protected function create(Request $req) {
 		$isFromIndex = $req->has('isFromIndex') ? $req->isFromIndex : 0;
+
 		if ($isFromIndex == 1) {
 			$validator = Validator::make($req->all(), [
 				"service" => "required|numeric|exists:services,id",

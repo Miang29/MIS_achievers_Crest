@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Settings;
 use App\ContactInformation;
-use App\User;
 use App\ClientNotification;
+use App\Settings;
+use App\UnavailableDate;
+use App\User;
 
 use DB;
 use Exception;
@@ -74,9 +75,12 @@ class SettingsController extends Controller
 	protected function settings() {
 		$contact = ContactInformation::get();
 		$client = User::where('user_type_id','=', 4)->get();
-		return view('admin.settings.index',[
-		'contacts' => $contact,
-		'client' => $client,
+		$unavailableDates = UnavailableDate::get();
+		
+		return view('admin.settings.index', [
+			'contacts' => $contact,
+			'client' => $client,
+			'unavailableDates' => $unavailableDates
 		]);
 	}
 
@@ -208,5 +212,10 @@ class SettingsController extends Controller
 				'message' => $message,
 				'image' => $image
 			]);
+	}
+
+	// UNAVAILABLE DATES
+	protected function unavailableDatesIndex(Request $req) {
+		return view();
 	}
 }

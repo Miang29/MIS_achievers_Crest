@@ -3,25 +3,24 @@
 @section('title', 'Settings')
 
 @section('content')
-
-
 <div class="container-fluid px-2 px-lg-6 py-2 h-100 my-3">
 	<div class="col-12 col-lg text-center text-lg-left">
 		<h3 class="text-1">SETTINGS</h3>
 	</div>
 
 	<nav>
-		<div class="nav nav-tabs" id="nav-tab" role="tablist">
+		<div class="nav nav-tabs hr-thick border-secondary" id="nav-tab" role="tablist">
 			<a class="nav-item nav-link active" id="nav-web-tab" data-toggle="tab" href="#nav-web" role="tab" aria-controls="nav-web" aria-selected="true">Website Information</a>
 			<a class="nav-item nav-link" id="nav-inventory-tab" data-toggle="tab" href="#nav-inventory" role="tab" aria-controls="nav-inventory" aria-selected="false">Product Category</a>
 			<a class="nav-item nav-link" id="nav-services-tab" data-toggle="tab" href="#nav-services" role="tab" aria-controls="nav-services" aria-selected="false">Service Category</a>
 			<a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Contact Information Messages</a>
+			<a class="nav-item nav-link" id="nav-unavailable-dates-tab" data-toggle="tab" href="#nav-unavailable-dates" role="tab" aria-controls="nav-unavailable-dates" aria-selected="false">Unavailable Dates</a>
 		</div>
 	</nav>
 
 	<div class="tab-content" id="nav-tabContent">
+		{{-- WEBSITE INFORMATION --}}
 		<div class="tab-pane fade show active" id="nav-web" role="tabpanel" aria-labelledby="nav-web-tab">
-			{{-- WEBSITE INFORMATION --}}
 			<form method="POST" action="{{ route('settings.update') }}" class="row" id="form-area" enctype="multipart/form-data">
 				{{ csrf_field() }}
 				<div class="col-12 col-lg-12 col-md-12">
@@ -113,8 +112,6 @@
 		{{-- PRODUCT CATEGORY --}}
 		<div class="tab-pane fade" id="nav-inventory" role="tabpanel" aria-labelledby="nav-inventory-tab">
 			<div class="container-fluid m-0">
-				<hr class="hr-thick" style="border-color: #707070;">
-
 				<form class="card my-3 mx-auto h-100" method="POST" action="{{ route('submit-category') }}" enctype="multipart/form-data">
 					<input type="hidden" name="_token" value="{{ csrf_token() }}">
 					<h3 class="card-header font-weight-bold text-white gbg-1"><i class="fa-solid fa-cart-plus mr-2 fa-lg"></i>ADD PRODUCT CATEGORY</h3>
@@ -137,14 +134,15 @@
 				</form>
 			</div>
 		</div>
+		
 		{{-- SERVICES CATEGORY --}}
 		<div class="tab-pane fade" id="nav-services" role="tabpanel" aria-labelledby="nav-services-tab">
 			<div class="container-fluid m-0">
-				<hr class="hr-thick" style="border-color: #707070;">
-
 				<form class="card my-3 mx-auto h-100" method="POST" action ="{{ route('submit-service-category') }}" enctype="multipart/form-data">
-					<input type="hidden" name="_token" value="{{ csrf_token() }}">
+					{{ csrf_field()}}
+					
 					<h3 class="card-header font-weight-bold text-white gbg-1"><i class="fa-solid fa-cart-plus mr-2 fa-lg"></i>ADD SERVICE CATEGORY</h3>
+					
 					<div class="card-body d-flex ">
 						<div class="form-group mx-auto w-100 col-lg-8 colo-12 col-md-12 mt-5 ">
 							<div class="input-group mb-3">
@@ -164,13 +162,15 @@
 				</form>
 			</div>
 		</div>
+		
 		{{-- CONTACT --}}
 		<div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
 			<div class="container-fluid m-0">
+				<div class="card my-3 mx-auto h-100 overflow-x-auto">
+					<h3 class="card-header font-weight-bold text-white gbg-1"><i class="fa-solid fa-envelope mr-2 fa-lg"></i>MESSAGES</h3>
 
-				<div class="overflow-x-auto h-100 card">
-					<div class=" card-body h-100 px-0 pt-0 ">
-						<table class="table table-striped text-center" id="table-content">
+					<div class="card-body h-100 px-0">
+						<table class="table table-striped text-center">
 							<thead>
 								<tr>
 									<th scope="col" class="hr-thick text-1">Client Name</th>
@@ -220,7 +220,64 @@
 					</div>
 				</div>
 			</div>
-		</div>>
+		</div>
+
+		{{-- UNAVAILABLE DATES --}}
+		<div class="tab-pane fade" id="nav-unavailable-dates" role="tabpanel" aria-labelledby="nav-unavailable-dates-tab">
+			<div class="container-fuild m-0">
+				<div class="card my-3 mx-auto h-100 overflow-x-auto">
+					<h3 class="card-header font-weight-bold text-white gbg-1">
+						<i class="fa-solid fa-calendar-days mr-2 fa-lg"></i>UNAVAILABLE VET DATES
+						<a href="{{ route('settings.unavailable-dates.create') }}" class="btn btn-success float-right">
+							<i class="fa-solid fa-plus-circle mr-2"></i>Add Entry
+						</a>
+					</h3>
+					
+					<div class="card-body h-100 px-0">
+						@php ($now = \Carbon\Carbon::now('Asia/Manila'))
+						<table class="table table-striped text-center">
+							<thead>
+								<tr>
+									<th scope="col" class="hr-thick text-1">Date</th>
+									<th scope="col" class="hr-thick text-1">Time</th>
+									<th scope="col" class="hr-thick text-1">Status</th>
+									<th scope="col" class="hr-thick text-1"></th>
+								</tr>
+							</thead>
+
+							<tbody>
+								@forelse ($unavailableDates as $d)
+								
+								@php
+								$convertedTime = App\Appointments::getAppointmentTimes()[$d->time - 1];
+								$convertedTime = preg_split("/(\s*-\s*)/gi", $convertedTime)[1];
+
+								$parsedDate = \Carbon\Carbon::parse("{$d->date} {$convertedTime}");
+								@endphp
+								
+								<tr>
+									<td>{{ $d->date }}</td>
+									<td>{{ $d->time }}</td>
+									
+									<td>
+										@if ($now->gt($parsedDate))
+										@endif
+									</td>
+									
+									<td>
+									</td>
+								</tr>
+								@empty
+								<tr>
+									<td colspan="4">Nothing to show ~</td>
+								</tr>
+								@endforelse
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 
 

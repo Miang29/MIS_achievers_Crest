@@ -49,4 +49,10 @@
 
 @section('scripts')
 <script type="text/javascript" src="{{ asset('js/util/confirm-leave.js') }}"></script>
+<script type="text/javascript">
+	$(document).ready(() => {
+		const UNAVAILABLE_DATES = [
+		];
+	});
+</script>
 @endsection
