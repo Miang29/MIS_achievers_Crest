@@ -43,7 +43,7 @@
 								</div>
 
 								<div class="input-group-append bg-white border-left">
-									<a href="javascript:void(0);" onclick="confirmLeave(`{{route('pet-information.pet.show', [$id])}}`, undefined, `Are you sure you want to remove this pet?`);" class="btn btn-white"><i class="fa-solid fa-box-archive text-info"></i></a>
+									<a href="javascript:void(0);" onclick="confirmLeave(`{{route('deleted', [$p->id])}}`, undefined, `Are you sure you want to remove this pet?`);" class="btn btn-white"><i class="fa-solid fa-box-archive text-info"></i></a>
 								</div>
 							</div>
 						</div>

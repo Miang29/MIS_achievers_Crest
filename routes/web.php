@@ -90,6 +90,11 @@ Route::group(['middleware' => ['auth']], function() {
 
 			// Pet History
 			Route::get('/view/{id}/history', 'ClientController@petHistory')->name('pet-information.pet.history');
+
+			// Delete
+			Route::get('/archive/{id}/pet','ClientController@delete')->name('deleted');
+
+			Route::get('/archived','ClientController@archiveIndex')->name('archived.index');
 			
 		});
 
@@ -214,7 +219,7 @@ Route::group(['middleware' => ['auth']], function() {
 				Route::post('/product/{id}/update/{pid}', 'InventoryController@updateProducts')->name('product.update');
 
 				// Delete
-				Route::get('/product/delete/', 'InventoryController@delete')->name('product.delete');
+				Route::get('/product/{id}/delete/', 'InventoryController@deleteProduct')->name('product.delete');
 			});
 		});
 
@@ -290,7 +295,7 @@ Route::group(['middleware' => ['auth']], function() {
 				Route::post("/submit/{serviceId}","ServiceController@submitVariation")->name('submit-variation');
 
 				// Delete
-				Route::get('/delete/{serviceId}', 'ServiceController@delete')->name('service.delete');
+				Route::get('/delete/{serviceId}', 'ServiceController@deleteService')->name('service.delete');
 
 				// --------------------  VARIATIONS -------------------- //
 				Route::group(['prefix' => '{serviceId}/variations'], function () {
@@ -306,6 +311,7 @@ Route::group(['middleware' => ['auth']], function() {
 
 					// Delete
 					Route::get('/{variationId}/delete', 'ServiceVariationController@delete')->name('service_variation.delete');
+
 				});
 			});
 		});

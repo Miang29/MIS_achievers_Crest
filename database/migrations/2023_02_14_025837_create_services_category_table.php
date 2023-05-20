@@ -16,6 +16,7 @@ class CreateServicesCategoryTable extends Migration
         Schema::create('services_categories', function(Blueprint $table){
             $table->increments('id');
             $table->string('service_category_name');
+            $table->softDeletes();
             $table->timestamps();
 
         });

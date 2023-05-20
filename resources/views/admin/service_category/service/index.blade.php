@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title', 'Services')
-
+ 
 @section('content')
 <div class="container-fluid px-2 px-lg-6 py-2 h-100 my-3">
 	<div class="row">
@@ -54,7 +54,7 @@
 								 <div class="dropdown-divider"></div>
 								<a href="{{route ('service_variation.index', [$id, $sv->id] )}}" class="dropdown-item"><i class="fa-solid fa-eye mr-2"></i>View Variation</a>
 								<div class="dropdown-divider"></div>
-								<button onclick="confirmLeave('{{ route("service_category.delete", [1]) }}', undefined, 'Are you sure you want to archive this services? This will <b>archived all the variations</b> encoded within this category.');" class="dropdown-item"><i class="fa-solid fa-box-archive mr-2"></i>Archive Service</button>
+								<button onclick="confirmLeave('{{ route("service.delete", [$id, $sv->id]) }}', undefined, 'Are you sure you want to archive this services? This will <b>archived all the variations</b> encoded within this category.');" class="dropdown-item"><i class="fa-solid fa-box-archive mr-2"></i>Archive Service</button>
 							</div>
 						</td>
 					</tr>

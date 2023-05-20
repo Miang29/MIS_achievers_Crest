@@ -99,10 +99,38 @@ class ServiceVariationController extends Controller
 
 
 		// ------------------- ARCHIVE VARIATION ------------------ //
-	protected function delete($id, $serviceId, $variationId)
-	{
+	protected function delete($id, $serviceId, $variationId) {
+
+		$serviceVariation = ServicesVariation::find($variationId);
+
+		if ($serviceVariation == null) {
+			return redirect()
+			->route('service.index',[$id])
+			->with('flash_error','Service variation does not exists.');
+			}
+
+			try{
+				DB::beginTransaction();
+				$serviceVariation->delete();
+			
+			DB::commit();
+		} catch (Exception $e) {
+			DB::rollback();
+			Log::error($e);
+
+			return redirect()
+				->route('service.index',[$id])
+				->with('flash_error', 'Something went wrong, please try again later.');
+		}
+
 		return redirect()
-			->route('service_variation.index', [1, 1])
-			->with('flash_success', 'Successfully removed variation');
+			->route('service.index',[$id])
+			->with('flash_success', "Successfully archived service variation.");
+	}
+
+
+	protected function restore(){
+
+		$petsInformations->restore();
 	}
 }

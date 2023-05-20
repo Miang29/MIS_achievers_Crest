@@ -148,9 +148,38 @@ class ServiceController extends Controller
 			]);
 	}
 
-	protected function delete($id, $serviceId) {
+	protected function deleteService($id, $serviceId) {
+
+		$service = Services::find($serviceId);
+
+		if ($service == null) {
+			return redirect()
+			->route('service.index',[$id])
+			->with('flash_error','Service does not exists');
+			}
+
+			try{
+				DB::beginTransaction();
+				$service->delete();
+			
+			DB::commit();
+		} catch (Exception $e) {
+			DB::rollback();
+			Log::error($e);
+
+			return redirect()
+				->route('service.index',[$id])
+				->with('flash_error', 'Something went wrong, please try again later');
+		}
+
 		return redirect()
-			->route('services.index', [1])
-			->with('flash_success', 'Successfully removed entire services and all its items');
+			->route('service.index',[$id])
+			->with('flash_success', "Successfully archived service");
+	}
+
+
+	protected function restore(){
+
+		$petsInformations->restore();
 	}
 }

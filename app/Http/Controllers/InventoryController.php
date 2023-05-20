@@ -346,4 +346,39 @@ class InventoryController extends Controller
 			->route('settings.index')
 			->with('flash_success', "Successfully added a product category");
 	}
+
+	protected function deleteProduct($id) {
+
+		$products = Products::find($id);
+
+		if ($products == null) {
+			return redirect()
+			->route('inventory')
+			->with('flash_error','Products does not exists');
+			}
+
+			try{
+				DB::beginTransaction();
+				$products->delete();
+			
+			DB::commit();
+		} catch (Exception $e) {
+			DB::rollback();
+			Log::error($e);
+
+			return redirect()
+				->route('inventory')
+				->with('flash_error', 'Something went wrong, please try again later');
+		}
+
+		return redirect()
+			->route('inventory')
+			->with('flash_success', "Successfully archived product");
+	}
+
+
+	protected function restore(){
+
+		$petsInformations->restore();
+	}
 }

@@ -17,8 +17,8 @@ class CreateServicesTable extends Migration
             $table->increments('id');
             $table->integer('service_category_id');
             $table->string('service_name');
+            $table->softDeletes();
             $table->timestamps();
-
         });
     }
 

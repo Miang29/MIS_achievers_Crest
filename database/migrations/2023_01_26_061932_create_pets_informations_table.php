@@ -25,6 +25,7 @@ class CreatePetsInformationsTable extends Migration
             $table->string('gender')->default("trans");
             $table->string('types')->default("tamed");
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('pet_owner')->references('id')->on('users')->onDelete('cascade');
         });

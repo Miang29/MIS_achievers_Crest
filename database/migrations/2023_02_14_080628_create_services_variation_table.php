@@ -19,6 +19,7 @@ class CreateServicesVariationTable extends Migration
             $table->string('variation_name')->default('Default');
             $table->integer('price');
             $table->string('remarks')->nullable();
+            $table->softDeletes();
             $table->timestamps();
 
             $table->foreign('service_id')->references('id')->on('services')->onDelete('cascade');

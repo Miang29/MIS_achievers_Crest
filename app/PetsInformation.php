@@ -3,9 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class PetsInformation extends Model
 {
+    use SoftDeletes;
+
     protected $fillable = [
         'pet_owner',
         'pet_image',
