@@ -32,9 +32,6 @@
 		<link rel="stylesheet" href="{{ asset('css/app.css') }}">
 		<script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
 
-		{{-- Removes the code that shows up when script is disabled/not allowed/blocked --}}
-		<script style="display: none;" type="text/javascript" id="for-js-disabled-js">$('head').append('<style id="for-js-disabled">#js-disabled { display: none; }</style>');$(document).ready(function() {$('#js-disabled').remove();$('#for-js-disabled').remove();$('#for-js-disabled-js').remove();});</script>
-
 		{{-- Custom CSS --}}
 		<link rel="stylesheet" href="{{ asset('css/style.css') }}">
 		<style type="text/css"> * { -webkit-print-color-adjust: exact!important; } </style>
@@ -54,146 +51,189 @@
 		<link href="{{ asset('css/user.css') }}" rel="stylesheet">
 	
 		{{-- Title --}}
-		<title>	  
-		Print Clinical History - {{ App\Settings::getValue('web-name') }}
-	
-		</title>
-
+		<title>Print Clinical History - {{ App\Settings::getValue('web-name') }}</title>
 	</head>
 
 	<body>
-
 		<div class="container-fluid my-2 mx-0 px-3" id="history">
 			<div class="card">
 				<h2 class="card-header text-center text-white bg-1">
-							<img src="{{ asset('uploads/settings/banner-white.png') }}" style="max-height: 2.25rem;" class="m-0 p-0" alt="MIS Nano" data-fallback-img="{{ asset('uploads/settings/default.png') }}"/> Veterinary Clinical History</h2>
+				<img src="{{ asset('uploads/settings/banner-white.png') }}" style="max-height: 2.25rem;" class="m-0 p-0" alt="MIS Nano" data-fallback-img="{{ asset('uploads/settings/default.png') }}"/> Veterinary Clinical History</h2>
 
 				<div class="card-body">
 					{{-- PET OWNER INFORMATION --}}
-	            
-	                    <div class="input-group flex-nowrap col-lg-12 col-12 col-md-12">
-						  <div class="input-group-prepend">
-						    <span class="input-group-text border border-white bg-white font-weight-bold" id="addon-wrapping">Pet Owner :</span>
-						  </div>
-						  	<input value="{{ $pet->user->getName() }}" type="text" class="form-control border-right-0 border-left-0 border-top-0 border-bottom border-secondary" aria-describedby="addon-wrapping">
-						</div>
+					<div class="form-group">
+						<div class="row">
+							<div class="col-lg-4">
+								<div class="input-group flex-nowrap col-lg-12 col-12 col-md-12">
+									<div class="input-group-prepend">
+										<span class="input-group-text border border-white bg-white font-weight-bold" id="addon-wrapping">Pet Owner :</span>
+									</div>
 
-						<div class="input-group flex-nowrap col-lg-12 col-12 col-md-12">
-						  <div class="input-group-prepend">
-						    <span class="input-group-text border border-white bg-white font-weight-bold" id="addon-wrapping">Address :</span>
-						  </div>
-						  	<input value="{{ $pet->user->address }}" type="text" class="form-control border-right-0 border-left-0 border-top-0 border-bottom border-secondary" aria-describedby="addon-wrapping">
+									<input value="{{ $pet->user->getName() }}" type="text" class="form-control border-right-0 border-left-0 border-top-0 border-bottom border-secondary" aria-describedby="addon-wrapping">
+								</div>
+							</div>
+
+							<div class="col-lg-4">
+								<div class="input-group flex-nowrap col-lg-12 col-12 col-md-12">
+									<div class="input-group-prepend">
+										<span class="input-group-text border border-white bg-white font-weight-bold" id="addon-wrapping">Address :</span>
+									</div>
+
+									<input value="{{ $pet->user->address }}" type="text" class="form-control border-right-0 border-left-0 border-top-0 border-bottom border-secondary" aria-describedby="addon-wrapping">
+								</div>
+							</div>
+
+							<div class="col-lg-4">
+								<div class="input-group flex-nowrap col-lg-12 col-12 col-md-12">
+									<div class="input-group-prepend">
+										<span class="input-group-text border border-white bg-white font-weight-bold" id="addon-wrapping">Email :</span>
+									</div>
+
+									<input value="{{ $pet->user->email }}" type="text" class="form-control border-right-0 border-left-0 border-top-0 border-bottom border-secondary" aria-describedby="addon-wrapping">
+								</div>
+							</div>
 						</div>
+					</div>
 					
-						<div class="input-group flex-nowrap col-lg-12 col-12 col-md-12">
-						  <div class="input-group-prepend">
-						    <span class="input-group-text border border-white bg-white font-weight-bold" id="addon-wrapping">Email :</span>
-						  </div>
-						  	<input value="{{ $pet->user->email }}" type="text" class="form-control border-right-0 border-left-0 border-top-0 border-bottom border-secondary" aria-describedby="addon-wrapping">
-						</div>
-	                
-	                {{-- PET INFORMATION --}}
-		            <div class="card border border-white mx-auto col-lg-12 col-12 col-md-12 mt-5">
-                		 <div class="card col-lg-12 ml-2">
-                		 	<h3 class="mx-auto mt-3">Pet Information</h3>
+					{{-- PET INFORMATION --}}
+					<div class="card border border-white mx-auto col-lg-12 col-12 col-md-12 mt-5">
+						<div class="card col-lg-12 ml-2">
+							<h3 class="mx-auto mt-3">Pet Information</h3>
 
-                		 	  <div class="col-lg-4 col-12 col-md-4 mx-auto text-center">  
-							   	<img src="{{ $pet->getImage() }}" alt="Pet Image" class="img-thumbnail getImage mt-3">
-                        		<span class="font-weight-bold mx-auto text-center mt-2">{{ $pet->pet_name }}</span>
-							  </div>
-
-                		 	<div class="row">
-	                           <div class="input-group flex-nowrap col-lg-5 mb-3 mt-3 mx-auto">
-							 	 <div class="input-group-prepend">
-							        <span class="input-group-text border border-white bg-white font-weight-bold" id="addon-wrapping">Birthdate :</span>
-						 		 </div>
-						  			<input value="{{ $pet->birthdate }}" type="text" class="form-control border-right-0 border-left-0 border-top-0 border-bottom border-secondary" aria-describedby="addon-wrapping">
-							   </div>
-
-							   <div class="input-group flex-nowrap col-lg-5 mb-3 mt-3 mr-auto">
-							 	 <div class="input-group-prepend">
-							        <span class="input-group-text border border-white bg-white font-weight-bold" id="addon-wrapping">Gender :</span>
-						 		 </div>
-						  			<input value="{{ $pet->gender }}" type="text" class="form-control border-right-0 border-left-0 border-top-0 border-bottom border-secondary" aria-describedby="addon-wrapping">
-							   </div>
+							<div class="col-lg-4 col-12 col-md-4 mx-auto text-center">  
+								<img src="{{ $pet->getImage() }}" alt="Pet Image" class="img-thumbnail getImage mt-3">
+								<span class="font-weight-bold mx-auto text-center mt-2">{{ $pet->pet_name }}</span>
 							</div>
 
 							<div class="row">
-	                           <div class="input-group flex-nowrap col-lg-5 mb-3 mt-3 mx-auto">
-							 	 <div class="input-group-prepend">
-							        <span class="input-group-text border border-white bg-white font-weight-bold" id="addon-wrapping">Color/s :</span>
-						 		 </div>
-						  			<input value="{{ $pet->colors }}" type="text" class="form-control border-right-0 border-left-0 border-top-0 border-bottom border-secondary" aria-describedby="addon-wrapping">
-							   </div>
+								<div class="input-group flex-nowrap col-lg-5 mb-3 mt-3 mx-auto">
+									<div class="input-group-prepend">
+										<span class="input-group-text border border-white bg-white font-weight-bold" id="addon-wrapping">Birthdate :</span>
+									</div>
 
-							   <div class="input-group flex-nowrap col-lg-5 mb-3 mt-3 mr-auto">
-							 	 <div class="input-group-prepend">
-							        <span class="input-group-text border border-white bg-white font-weight-bold" id="addon-wrapping">Breed :</span>
-						 		 </div>
-						  			<input value="{{ $pet->breed }}" type="text" class="form-control border-right-0 border-left-0 border-top-0 border-bottom border-secondary" aria-describedby="addon-wrapping">
-							   </div>
+									<input value="{{ \Carbon\Carbon::parse($pet->birthdate)->timezone('Asia/Manila')->format('M d, Y') }}" type="text" class="form-control border-right-0 border-left-0 border-top-0 border-bottom border-secondary" aria-describedby="addon-wrapping">
+								</div>
+
+								<div class="input-group flex-nowrap col-lg-5 mb-3 mt-3 mr-auto">
+									<div class="input-group-prepend">
+										<span class="input-group-text border border-white bg-white font-weight-bold" id="addon-wrapping">Gender :</span>
+									</div>
+									
+									<input value="{{ ucfirst($pet->gender) }}" type="text" class="form-control border-right-0 border-left-0 border-top-0 border-bottom border-secondary" aria-describedby="addon-wrapping">
+								</div>
 							</div>
 
 							<div class="row">
-	                           <div class="input-group flex-nowrap col-lg-5 mb-3 mt-3 mx-auto">
-							 	 <div class="input-group-prepend">
-							        <span class="input-group-text border border-white bg-white font-weight-bold" id="addon-wrapping">Species :</span>
-						 		 </div>
-						  			<input value="{{ $pet->species }}" type="text" class="form-control border-right-0 border-left-0 border-top-0 border-bottom border-secondary" aria-describedby="addon-wrapping">
-							   </div>
+								<div class="input-group flex-nowrap col-lg-5 mb-3 mt-3 mx-auto">
+									<div class="input-group-prepend">
+										<span class="input-group-text border border-white bg-white font-weight-bold" id="addon-wrapping">Color/s :</span>
+									</div>
 
-							   <div class="input-group flex-nowrap col-lg-5 mb-3 mt-3 mr-auto">
-							 	 <div class="input-group-prepend">
-							        <span class="input-group-text border border-white bg-white font-weight-bold" id="addon-wrapping">Type :</span>
-						 		 </div>
-						  			<input value="{{ $pet->types }}" type="text" class="form-control border-right-0 border-left-0 border-top-0 border-bottom border-secondary" aria-describedby="addon-wrapping">
-							   </div>
-							 </div>
-						</div>
-		            </div>
-		             {{-- CLINICAL HISTORY --}}
-		             <div class="card mt-3 border border-white">
-		             	 <div class="card my-3 ml-3">
-                		 	<h3 class="mx-auto mt-3">Clinical History</h3>
-	                		 <div class="row">
-	                           <div class="input-group flex-nowrap col-lg-5 mb-3 mt-3 mx-auto">
-							 	 <div class="input-group-prepend">
-							        <span class="input-group-text border border-white bg-white font-weight-bold" id="addon-wrapping">Weight :</span>
-						 		 </div>
-						  			<input value="{{-- $pet->species --}}" type="text" class="form-control border-right-0 border-left-0 border-top-0 border-bottom border-secondary" aria-describedby="addon-wrapping">
-							   </div>
+									<div class="text-wrap border-bottom border-secondary w-auto flex-grow-1 d-flex flex-row">
+										@if ($output == 'print')
+											@foreach(explode(", ", $pet->colors) as $c)
+											<span class="mx-1"><i class="fas fa-circle border" style="color: {{ $c }}; border-radius: 50%; border-width: 0.125rem!important;"></i></span>
+											@endforeach
+										@elseif ($output == 'pdf')
+											@foreach(explode(", ", $pet->colors) as $c)
+											<span class="mx-1 d-flex"><div class="border my-auto" style="width: 1rem; height: 1rem; background-color: {{ $c }}; border-radius: 50%; border-width: 0.125rem!important"></div></span>
+											@endforeach
+										@endif
+									</div>
+								</div>
 
-							   <div class="input-group flex-nowrap col-lg-5 mb-3 mt-3 mr-auto">
-							 	 <div class="input-group-prepend">
-							        <span class="input-group-text border border-white bg-white font-weight-bold" id="addon-wrapping">Temperature :</span>
-						 		 </div>
-						  			<input value="{{-- $pet->types --}}" type="text" class="form-control border-right-0 border-left-0 border-top-0 border-bottom border-secondary" aria-describedby="addon-wrapping">
-							   </div>
+								<div class="input-group flex-nowrap col-lg-5 mb-3 mt-3 mr-auto">
+									<div class="input-group-prepend">
+										<span class="input-group-text border border-white bg-white font-weight-bold" id="addon-wrapping">Breed :</span>
+									</div>
+									
+									<input value="{{ ucfirst($pet->breed) }}" type="text" class="form-control border-right-0 border-left-0 border-top-0 border-bottom border-secondary" aria-describedby="addon-wrapping">
+								</div>
 							</div>
-                		 </div>
-		             </div>
+
+							<div class="row">
+								<div class="input-group flex-nowrap col-lg-5 mb-3 mt-3 mx-auto">
+									<div class="input-group-prepend">
+										<span class="input-group-text border border-white bg-white font-weight-bold" id="addon-wrapping">Species :</span>
+									</div>
+
+									<input value="{{ ucfirst($pet->species) }}" type="text" class="form-control border-right-0 border-left-0 border-top-0 border-bottom border-secondary" aria-describedby="addon-wrapping">
+								</div>
+
+								<div class="input-group flex-nowrap col-lg-5 mb-3 mt-3 mr-auto">
+									<div class="input-group-prepend">
+										<span class="input-group-text border border-white bg-white font-weight-bold" id="addon-wrapping">Type :</span>
+									</div>
+									<input value="{{ ucfirst($pet->types) }}" type="text" class="form-control border-right-0 border-left-0 border-top-0 border-bottom border-secondary" aria-describedby="addon-wrapping">
+								</div>
+							</div>
+						</div>
+					</div>
+
+					{{-- CLINICAL HISTORY --}}
+					<div class="card mt-3 border border-white">
+						<div class="card my-3 ml-3">
+							<h3 class="mx-auto mt-3">Clinical History</h3>
+							<div class="row">
+								<div class="input-group flex-nowrap col-lg-5 mb-3 mt-3 mx-auto">
+									<div class="input-group-prepend">
+										<span class="input-group-text border border-white bg-white font-weight-bold" id="addon-wrapping">Weight :</span>
+									</div>
+
+									<input value="{{ $pet->consultation()->latest()->first()->weight }}" type="text" class="form-control border-right-0 border-left-0 border-top-0 border-bottom border-secondary" aria-describedby="addon-wrapping">
+								</div>
+
+								<div class="input-group flex-nowrap col-lg-5 mb-3 mt-3 mr-auto">
+									<div class="input-group-prepend">
+										<span class="input-group-text border border-white bg-white font-weight-bold" id="addon-wrapping">Temperature :</span>
+									</div>
+
+									<input value="{{ $pet->consultation()->latest()->first()->temperature }}" type="text" class="form-control border-right-0 border-left-0 border-top-0 border-bottom border-secondary" aria-describedby="addon-wrapping">
+								</div>
+
+								<div class="input-group flex-nowrap col-lg-5 mb-3 mt-3 mr-auto">
+									<div class="input-group-prepend">
+										<span class="input-group-text border border-white bg-white font-weight-bold" id="addon-wrapping">Findings :</span>
+									</div>
+
+									<textarea class="form-control border-right-0 border-left-0 border-top-0 border-bottom border-secondary not-resizable" rows="2">{{ $pet->consultation()->latest()->first()->findings }}</textarea>
+								</div>
+
+								<div class="input-group flex-nowrap col-lg-5 mb-3 mt-3 mr-auto">
+									<div class="input-group-prepend">
+										<span class="input-group-text border border-white bg-white font-weight-bold" id="addon-wrapping">Treatment :</span>
+									</div>
+
+									<textarea class="form-control border-right-0 border-left-0 border-top-0 border-bottom border-secondary not-resizable" rows="2">{{ $pet->consultation()->latest()->first()->treatment }}</textarea>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
 
 		<script type="text/javascript">
-			$(document).ready(() => {
-				@if ($output == 'print')
+			@if ($output == 'print')
+			document.addEventListener('DOMContentLoaded', () => {
 				document.getElementById("history");
+				
 				window.onload = () => { 
 					window.print();
 				};
 
 				window.onafterprint = () => {
-					window.close();
+					// window.close();
 				}
-				@elseif ($output == 'pdf')
-
+			});
+			@elseif ($output == 'pdf')
+			document.addEventListener('DOMContentLoaded', () => {
 				let isConverted = html2pdf()
-					.from($('html').html())
+					.from(document.querySelector('html').innerHTML)
 					.save(
 						"Clinical History {{ $pet->pet_name }}"
-						);
+					);
 
 				let interval = setInterval(() => {
 					if (isConverted._state == 1) {
@@ -201,9 +241,9 @@
 						clearInterval(interval);
 						window.close();
 					}
-				}, 0);
-				@endif
+				}, 500);
 			});
+			@endif
 		</script>
 	</body>
 </html>
