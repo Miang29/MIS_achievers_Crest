@@ -280,7 +280,6 @@
 		</div>
 	</div>
 
-
 	@endsection
 	@section('css')
 	<link rel="stylesheet" type="text/css" href="{{ asset('css/util/image-input.css') }}" />

@@ -384,4 +384,8 @@ class ClientController extends Controller
 		);
 	}
 
+	protected function archivedPet(){
+		
+	}
+
 }

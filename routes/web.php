@@ -328,7 +328,7 @@ Route::group(['middleware' => ['auth']], function() {
 		Route::get('/message/{id}/response', 'SettingsController@messageResponse')->name('response');
 
 		// SETTINGS - UNAVAILABLE DATES
-		Route::get('/settings/unavailable-dates/create', 'SettingsController@unavailableDatesIndex')->name('settings.unavailable-dates.create');
+		Route::get('/settings/unavailable-dates/create', 'SettingsController@unavailableDatesCreate')->name('settings.unavailable-dates.create');
 		Route::post('/settings/unavailable-dates/submit', 'SettingsController@unavailableDatesSubmit')->name('settings.unavailable-dates.submit');
 
 		//USER ACCOUNT

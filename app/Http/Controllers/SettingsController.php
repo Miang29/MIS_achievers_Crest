@@ -8,6 +8,7 @@ use App\ContactInformation;
 use App\ClientNotification;
 use App\Settings;
 use App\UnavailableDate;
+use App\Appointments;
 use App\User;
 
 use DB;
@@ -215,7 +216,49 @@ class SettingsController extends Controller
 	}
 
 	// UNAVAILABLE DATES
-	protected function unavailableDatesIndex(Request $req) {
-		return view();
+	protected function unavailableDatesCreate(Request $req) {
+		$time = Appointments::getAppointmentTimes();
+		return view('admin.settings.unavailable-dates.create',[
+			'time' => $time,
+		]);
 	}
-}
+
+	protected function unavailableDatesSubmit(Request $req){
+
+		$validator = Validator::make($req->all(), [
+		    'date' =>'required|min:1|max:255|string',
+			'time' => 'required|min:1|max:255|string',
+
+			]);
+
+			if ($validator->fails()) {
+
+				return redirect()
+					->back()
+					->withErrors($validator)
+					->withInput();
+				}
+
+				try {
+				DB::beginTransaction();
+				UnavailableDate::create([
+					'date' => $req->date,
+					'time' => $req->time,
+				]);
+
+
+				DB::commit();
+			} catch (Exception $e) {
+				DB::rollback();
+				Log::error($e);
+				return redirect()
+					->route('settings.index')
+					->with('flash_error', 'Something went wrong, please try again later');
+			}
+
+			return redirect()
+				->route('settings.index')
+				->with('flash_success', "Successfully set unavailable date and time");
+		}
+
+	}
