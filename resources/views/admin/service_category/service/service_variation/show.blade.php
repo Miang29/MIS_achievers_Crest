@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Services')
+@section('title', 'View Services Variation')
 
 @section('content')
 <div class="container-fluid m-0 ">

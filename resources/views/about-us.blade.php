@@ -1,6 +1,6 @@
 @extends('layouts.user')
 
-@section('title', 'Home')
+@section('title', 'About Us')
 
 @section('content')
 <div class="col-lg-12 col-md-8 col-12 bg-white h-100 min-vh-100">

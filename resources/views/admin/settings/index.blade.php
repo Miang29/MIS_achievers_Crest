@@ -184,10 +184,10 @@
 							<tbody>
 								@forelse($contacts as $ci)
 								<tr>
-									<td>{{ $ci->client_name}}</td>
-									<td>{{ $ci->email}}</td>
-									<td>{{ $ci->mobile_no}}</td>
-									<td>{{ $ci->message }}</td>
+									<td class="text-center">{{ $ci->client_name}}</td>
+									<td class="text-center">{{ $ci->email}}</td>
+									<td class="text-center">{{ $ci->mobile_no}}</td>
+									<td class="text-center text-truncate">{{ $ci->message }}</td>
 									<td>
 										@if ($ci->status == 0)
 										<i class="fas fa-circle text-warning mr-2"></i>Pending

@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Services')
+@section('title', 'Services Variation')
 
 @section('content')
 <div class="container-fluid px-2 px-lg-6 py-2 h-100 my-3">
@@ -54,7 +54,7 @@
 								<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown">	
 									<a href="{{route ('service_variation.show', [$id, $serviceId, $v->id] )}}" class="dropdown-item"><i class="fa-solid fa-eye mr-2"></i>View Information</a>
 									<a href="{{route('service_variation.edit', [$id, $serviceId, $v->id]) }}" class="dropdown-item"><i class="fa-regular fa-pen-to-square mr-2"></i>Edit Variation</a>
-									<button onclick="confirmLeave('{{ route("service_variation.delete",[$id, $serviceId, $v->id]) }}', undefined, 'Are you sure you want to archived this variation?');" class="dropdown-item"><i class="fa-solid fa-box-archive mr-2"></i>Delete</button>
+									<button onclick="confirmLeave('{{ route("service_variation.delete",[$id, $serviceId, $v->id]) }}', undefined, 'Are you sure you want to archived this variation?');" class="dropdown-item"><i class="fa-solid fa-box-archive mr-2"></i>Archive</button>
 								</div>
 							</div>
 						</td>

@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Services')
+@section('title', 'Create Services Variation')
 
 @section('content')
 <div class="container-fluid m-0">
@@ -46,7 +46,7 @@
 										<label class="form-label" name="remarks">Remarks</label>
 										<textarea name="remarks" id="" rows="5" class="form-control not-resizable"></textarea>
 									</div>
-								</div>
+								</div> 
 							</div>
 						</div>
 					</div>
@@ -54,6 +54,7 @@
 				<div class="card-footer d-flex">
 					<div class="col-4 mx-auto text-center">
 						<button class="btn btn-outline-info btn-sm w-50" type="submit" data-type="submit" data-action="submit">Save</button>
+						<a href="javascript:void(0);" onclick="confirmLeave('{{ route('service.index',[$id, $serviceId]) }}');" class="btn btn-outline-danger btn-sm w-50">Cancel</a>
 					</div>
 				</div>
 			</form>
@@ -79,6 +80,7 @@
 @endsection
 
 @section('scripts')
+<script type="text/javascript" src="{{ asset('js/util/confirm-leave.js') }}"></script>
 <script type="text/javascript">
 	const updateOg = () => {
 		let container = $("#varContainer");

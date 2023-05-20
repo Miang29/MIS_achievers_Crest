@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Product')
+@section('title', 'Edit Product')
 
 @section('content')
 <div class="container-fluid m-0">
@@ -68,6 +68,7 @@
 				<div class="card-footer d-flex">
 					<div class="col-lg-4 col-12 col-md-4 mx-auto text-center">
 						<button type="submit" data-action ="update" class="btn btn-outline-info btn-sm w-50" data-type="submit">Update</button>
+						 <a href="javascript:void(0);" onclick="confirmLeave('{{ route('appointments.index') }}');" class="btn btn-outline-danger btn-sm ml-1 w-lg-50 mr-auto w-50">Cancel</a>
 					</div>
 				</div>
 			</form>
@@ -76,5 +77,6 @@
 </div>
 @endsection
 @section('scripts')
+<script type="text/javascript" src="{{ asset('js/util/disable-on-submit.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/util/disable-on-submit.js') }}"></script>
 @endsection

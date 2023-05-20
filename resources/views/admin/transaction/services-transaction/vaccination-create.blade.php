@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Vaccination Transaction')
+@section('title', 'Create Vaccination Transaction')
 
 @section('content')
 {{-- VACCINATION --}}

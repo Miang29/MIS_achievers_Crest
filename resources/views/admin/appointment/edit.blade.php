@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Appointment')
+@section('title', 'Edit ppointment')
 
 @section('content')
 <form method="POST" action="{{ route('update.appointments', [$appointment->id]) }}" class="container-fluid m-0" enctype="multipart/form-data">

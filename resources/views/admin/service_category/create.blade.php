@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Services')
+@section('title', 'Create Services Category')
 
 @section('content')
 <div class="container-fluid m-0">
@@ -40,11 +40,16 @@
 				</div>
 				<div class="card-footer d-flex">
 					<div class="col-4 mx-auto text-center">
-						<button class="btn btn-outline-info btn-sm w-50" type="submit" data-type="submit" data-action="submit">Save</button>
+						<button class="btn btn-outline-info btn-sm w-50" type="submit" data-type="submit" data-action="submit">Save</button> 
+						<a href="javascript:void(0);" onclick="confirmLeave('{{ route('service_category.index') }}');" class="btn btn-outline-danger btn-sm w-50">Cancel</a>
 					</div>
 				</div>
 			</form>
 		</div>
 	</div>
 </div>
+@endsection
+@section('scripts')
+<script type="text/javascript" src="{{ asset('js/util/confirm-leave.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/util/disable-on-submit.js') }}"></script>
 @endsection

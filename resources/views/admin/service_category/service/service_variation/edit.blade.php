@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Services')
+@section('title', 'Edit Services Variation')
 
 @section('content')
 <div class="container-fluid m-0">
@@ -56,6 +56,7 @@
 				<div class="card-footer d-flex">
 					<div class="col-4 mx-auto text-center">
 						<button class="btn btn-outline-info btn-sm w-50" type="submit" data-type="submit" data-action="update">Save</button>
+						<a href="javascript:void(0);" onclick="confirmLeave('{{ route('service_variation.index',[$id, $serviceId,$variationId]) }}');" class="btn btn-outline-danger btn-sm w-50">Cancel</a>
 					</div>
 				</div>
 			</form>
@@ -81,6 +82,7 @@
 @endsection
 
 @section('scripts')
+<script type="text/javascript" src="{{ asset('js/util/confirm-leave.js') }}"></script>
 <script type="text/javascript">
 	$(document).ready(() => {
 		// Increment and Decrement price

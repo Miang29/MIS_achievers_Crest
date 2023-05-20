@@ -149,7 +149,7 @@
 		<div class="row">
 			<div class="col-12 my-3 d-flex flex-row">
 				<button type="submit" data-action="submit" class="btn btn-outline-info ml-auto mr-1 w-25 mb-5" data-type="submit">Save</button>
-				<a href="{{ route('pet-information') }}" class="btn btn-outline-danger ml-1 mr-auto w-25 mb-5">Cancel</a>
+				<a href="javascript:void(0);" onclick="confirmLeave('{{ route('pet-information') }}');" class="btn btn-outline-danger mr-auto mr-1 w-25 mb-5">Cancel</a>
 			</div>
 		</div>
 	</form>
@@ -161,6 +161,7 @@
 @endsection
 
 @section('scripts')
+<script type="text/javascript" src="{{ asset('js/util/confirm-leave.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/util/disable-on-submit.js') }}"></script>
 <script type="text/javascript">
 	var __iterator = 1;

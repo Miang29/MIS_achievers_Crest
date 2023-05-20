@@ -122,16 +122,17 @@
             <div class="card-footer d-flex">
                 <div class="col-lg-4 col-md-4 col-8 mx-auto text-center">
                     <button type="submit" class="btn btn-outline-info  btn-md  w-25  mb-3" data-type="submit">Save</button>
-                    <a href="{{ route('pet-information') }}" class="btn btn-outline-danger btn-md w-25 mb-3">Cancel</a>
+                    <a href="javascript:void(0);" onclick="confirmLeave('{{ route('pet-information') }}');" class="btn btn-outline-danger btn-md  w-25  mb-3">Cancel</a>
                 </div>
             </div>
         </form>
-    </div>
+    </div> 
 </div>
 
 @endsection
 @section('scripts')
 <script type="text/javascript" src="{{ asset('js/util/select.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/util/confirm-leave.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/util/image-input.js') }}"></script>
 <script type="text/javascript">
     $(document).ready(() => {

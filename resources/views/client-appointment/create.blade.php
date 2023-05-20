@@ -1,6 +1,6 @@
 @extends('layouts.user')
 
-@section('title', 'Appointment')
+@section('title', 'Client Appointment')
 
 @section('content')
 <form method="POST" action="{{ route('client.appointment.store') }}" class="card dark-shadow my-3 mt-5 mb-5 mx-auto w-md-50 w-100 w-lg-75" enctype="multipart/form-data">

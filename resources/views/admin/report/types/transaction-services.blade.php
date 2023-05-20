@@ -32,7 +32,7 @@
 	</tr>
 	@empty
 	<tr>
-		<td colspan="9">Nothing to show~</td>
+		<td colspan="12">Nothing to show~</td>
 	</tr>
 	@endforelse
 </tbody>

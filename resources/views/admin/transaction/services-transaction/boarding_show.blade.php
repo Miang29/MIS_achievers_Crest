@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Boarding Transaction')
+@section('title', 'View Boarding Transaction')
 
 @section('content')
 <div class="container-fluid m-0">
