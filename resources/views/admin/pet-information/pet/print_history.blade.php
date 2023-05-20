@@ -175,7 +175,10 @@
 					<div class="card mt-3 border border-white">
 						<div class="card my-3 ml-3">
 							<h3 class="mx-auto mt-3">Clinical History</h3>
+
+							@if (count($pet->consultation()->get()) > 0)
 							<div class="row">
+								{{-- WEIGHT --}}
 								<div class="input-group flex-nowrap col-lg-5 mb-3 mt-3 mx-auto">
 									<div class="input-group-prepend">
 										<span class="input-group-text border border-white bg-white font-weight-bold" id="addon-wrapping">Weight :</span>
@@ -184,6 +187,7 @@
 									<input value="{{ $pet->consultation()->latest()->first()->weight }}" type="text" class="form-control border-right-0 border-left-0 border-top-0 border-bottom border-secondary" aria-describedby="addon-wrapping">
 								</div>
 
+								{{-- TEMPERATUR --}}
 								<div class="input-group flex-nowrap col-lg-5 mb-3 mt-3 mr-auto">
 									<div class="input-group-prepend">
 										<span class="input-group-text border border-white bg-white font-weight-bold" id="addon-wrapping">Temperature :</span>
@@ -192,6 +196,7 @@
 									<input value="{{ $pet->consultation()->latest()->first()->temperature }}" type="text" class="form-control border-right-0 border-left-0 border-top-0 border-bottom border-secondary" aria-describedby="addon-wrapping">
 								</div>
 
+								{{-- FINDINGS --}}
 								<div class="input-group flex-nowrap col-lg-5 mb-3 mt-3 mr-auto">
 									<div class="input-group-prepend">
 										<span class="input-group-text border border-white bg-white font-weight-bold" id="addon-wrapping">Findings :</span>
@@ -200,6 +205,7 @@
 									<textarea class="form-control border-right-0 border-left-0 border-top-0 border-bottom border-secondary not-resizable" rows="2">{{ $pet->consultation()->latest()->first()->findings }}</textarea>
 								</div>
 
+								{{-- TREATMENT --}}
 								<div class="input-group flex-nowrap col-lg-5 mb-3 mt-3 mr-auto">
 									<div class="input-group-prepend">
 										<span class="input-group-text border border-white bg-white font-weight-bold" id="addon-wrapping">Treatment :</span>
@@ -208,6 +214,11 @@
 									<textarea class="form-control border-right-0 border-left-0 border-top-0 border-bottom border-secondary not-resizable" rows="2">{{ $pet->consultation()->latest()->first()->treatment }}</textarea>
 								</div>
 							</div>
+							@else
+							<div class="card-body">
+								<h3 class="text-center">No Clinical History</h3>
+							</div>
+							@endif
 						</div>
 					</div>
 				</div>
