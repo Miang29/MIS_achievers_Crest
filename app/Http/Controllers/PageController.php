@@ -7,9 +7,15 @@ use Illuminate\Http\Request;
 use App\Appointments;
 use App\PetsInformation;
 use App\ContactInformation;
-use App\ProductsOrderTransaction;
 use App\User;
 use App\Products;
+use App\ConsultationTransaction;
+use App\VaccinationTransaction;
+use App\GroomingTransaction;
+use App\BoardingTransaction;
+use App\OtherTransation;
+use App\ProductsOrderTransactionItem;
+use App\ProductsOrderTransaction;
 use Carbon\Carbon;
 
 use Auth;
@@ -43,24 +49,65 @@ class PageController extends Controller
 		for ($i = 1; $i <= Carbon::now()->format('m'); $i++) {
 			array_push($months, Carbon::parse(Carbon::now()->format('Y') . '-' . $i . '-' . Carbon::now()->format('d'))->format('M'));
 
-			array_push(
-				$monthly_earnings,
-				// SalesOrder::where('created_at', '>=', Carbon::parse(Carbon::now()->format('Y') . '-' . $i . '-01'))
-				// 	->where('created_at', '<=', Carbon::parse(Carbon::now()->format('Y') . '-' . $i)->endOfMonth())
-				// 	->where('status', '>=', '3')
-				// 	->get()
-				// 	->sum('price')
-				random_int(0, 10000)
-			);
+			$consultationA = ConsultationTransaction::whereDate('created_at', '>=', Carbon::parse(Carbon::now()->format('Y') . '-' . $i . '-01'))
+				->whereDate('created_at', '<=', Carbon::parse(Carbon::now()->format('Y') . '-' . $i)->endOfMonth())
+				->get()
+				->sum('total');
+
+			$vaccinationA = VaccinationTransaction::whereDate('created_at', '>=', Carbon::parse(Carbon::now()->format('Y') . '-' . $i . '-01'))
+				->whereDate('created_at', '<=', Carbon::parse(Carbon::now()->format('Y') . '-' . $i)->endOfMonth())
+				->get()
+				->sum('price');
+
+
+			$groomingA = GroomingTransaction::whereDate('created_at', '>=', Carbon::parse(Carbon::now()->format('Y') . '-' . $i . '-01'))
+				->whereDate('created_at', '<=', Carbon::parse(Carbon::now()->format('Y') . '-' . $i)->endOfMonth())
+				->get()
+				->sum('price');
+
+
+			$boardingA = BoardingTransaction::whereDate('created_at', '>=', Carbon::parse(Carbon::now()->format('Y') . '-' . $i . '-01'))
+				->whereDate('created_at', '<=', Carbon::parse(Carbon::now()->format('Y') . '-' . $i)->endOfMonth())
+				->get()
+				->sum('price');
+
+
+			$otherTransactionA = OtherTransation::whereDate('created_at', '>=', Carbon::parse(Carbon::now()->format('Y') . '-' . $i . '-01'))
+				->whereDate('created_at', '<=', Carbon::parse(Carbon::now()->format('Y') . '-' . $i)->endOfMonth())
+				->get()
+				->sum('price');
+
+			$productsOrder = ProductsOrderTransactionItem::whereDate('created_at', '>=', Carbon::parse(Carbon::now()->format('Y') . '-' . $i . '-01'))
+				->whereDate('created_at', '<=', Carbon::parse(Carbon::now()->format('Y') . '-' . $i)->endOfMonth())
+				->get()
+				->sum('total');
+
+
+			array_push($monthly_earnings, ($consultationA + $vaccinationA + $groomingA + $boardingA + $otherTransactionA + $productsOrder));
 		}
 
+		$consultation = ConsultationTransaction::sum('total');
+		$vaccination = VaccinationTransaction::sum('price');
+		$grooming = GroomingTransaction::sum('price');
+		$boarding = BoardingTransaction::sum('price');
+		$otherTransaction = OtherTransation::sum('price');
+		$productsOrder = ProductsOrderTransactionItem::sum('total');
+
+		$sales = ($consultation + $vaccination + $grooming + $boarding + $otherTransaction + $productsOrder);
+		$products = Products::sum('stocks');
 		$patient = PetsInformation::get();
 		$clients = User::where('user_type_id','=', 4)->count();
+		
+		$inventory = Products::where('stocks', '<=', 10)->get();
+		
 		return view('admin.dashboard', [
 			'months' => $months,
 			'monthly_earnings' => $monthly_earnings,
 			'patients' => $patient,
 			'client' => $clients,
+			'products' => $products,
+			'sales' => $sales,
+			'inventory' => $inventory
 		]);
 	}
 

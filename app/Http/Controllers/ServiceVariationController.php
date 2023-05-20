@@ -14,11 +14,16 @@ use Validator;
 class ServiceVariationController extends Controller
 {
 	// -------------- INDEX OF SERVICE VARIATION --------------- //
-	protected function index($id, $serviceId)
+	protected function index(Request $req, $id, $serviceId)
 	{
-		$variations = ServicesVariation::where('service_id', '=', $serviceId)->get();
+		$variations = ServicesVariation::where('service_id', '=', $serviceId);
+		$search = "%{$req->search}%";
+
+		if ($req->search) {
+			$variations = $variations->where('variation_name', 'LIKE', $search);
+		}
 		return view('admin.service_category.service.service_variation.index', [
-			'variations' => $variations,
+			'variations' => $variations->get(),
 			'id' => $id,
 			'serviceId' => $serviceId
 		]);
@@ -129,30 +134,30 @@ class ServiceVariationController extends Controller
 	}
 
 
-	protected function archivedVariation($id, $serviceId,$variationId){
+	protected function archivedVariation($id, $serviceId){
 
-		$Servivariation = ServicesVariation::onlyTrashed()->get();
+		$serviVariation = ServicesVariation::onlyTrashed()->get();
 		return view ('admin.service_category.service.service_variation.archive_variation',[
-			'variation' => $variation,
+			'serviVariation' => $serviVariation,
 			'id' => $id,
 			'serviceId' => $serviceId,
-			'variationId' => $variationId
+
 		]);
 	}
 
-	protected function restoreVariation($id){
+	protected function restoreVariation($id, $serviceId,$variationId){
 
-		$Servivariation = ServicesVariation::withTrashed()->find($id);
+		$serviVariation = ServicesVariation::withTrashed()->find($variationId);
 
-		if ($Servivariation == null) {
+		if ($serviVariation == null) {
 			return redirect()
-			->route('service.index',[$id])
+			->route('service_variation.index',[$id,$serviceId])
 			->with('flash_error','Service variation does not exists');
 			}
 
 			try{
 				DB::beginTransaction();
-				$Servivariation->restore();
+				$serviVariation->restore();
 
 			DB::commit();
 		} catch (Exception $e) {
@@ -160,12 +165,12 @@ class ServiceVariationController extends Controller
 			Log::error($e);
 
 			return redirect()
-				->route('service.index',[$id])
+				->route('service_variation.index',[$id,$serviceId])
 				->with('flash_error', 'Something went wrong, please try again later');
 		}
 
 		return redirect()
-			->route('service.index',[$id])
+			->route('service_variation.index',[$id,$serviceId])
 			->with('flash_success', "Successfully restored service variation");
 	}
 }

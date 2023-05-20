@@ -28,6 +28,11 @@ class ProductOrderTransactionController extends Controller
 	{
 		
 		$order = ProductsOrderTransaction::with('productsOrderItems')->find($id);
+		$search = "%{$req->search}%";
+
+		if ($req->search) {
+			$order = $order->where('reference_no', 'LIKE', $search);
+		}
 		return view('admin.transaction.productsOrder.view', [
 			'id' => $id,
 			'order' => $order

@@ -10,22 +10,23 @@
 			<h2 class=" text-1">Pet List</h2>
 		</div>
 
-		<div class="col-12 col-md-6 col-lg my-2 text-center text-md-left text-lg-right">
-			<a href="{{ route('archived.index')}}" class="btn btn-info btn-sm my-1 bg-1"><i class="fa-solid fa-box-archive mr-2"></i>Archived Pets</a>
-		</div>
-
-		<div class="col-12 col-md-6 col-lg my-2 text-center text-md-left text-lg-right">
-			<a href="{{ route('pet-information.create') }}" class="btn btn-info btn-sm my-1 bg-1"><i class="fas fa-plus-circle mr-2"></i>Pet Registration</a>
-		</div>
-
-		<div class=" col-12 col-md-6 col-lg my-2 text-center text-lg-right">
+	   <form method="GET" action="{{ route('pet-information')}}" class=" col-12 col-md-6 col-lg my-2 text-center text-lg-right">
 			<div class="input-group">
-				<input type="text" class="form-control" name="search" placeholder="Search..." />
+				<input type="text" class="form-control" value="{{ request()->search }}" name="search" placeholder="Search..." />
+
 				<div class="input-group-append">
 					<button type="submit" class="btn btn-secondary"><i class="fas fa-search"></i></button>
 				</div>
 			</div>
-		</div>
+		</form>
+
+	</div>
+	<hr class="hr-thick" style="border-color: #707070;">
+
+	<div class="row">
+			<a href="{{ route('archived.index')}}" class="btn btn-info btn-sm my-1 bg-1 ml-3 mr-3"><i class="fa-solid fa-box-archive mr-2"></i>Archived Pets</a>
+
+			<a href="{{ route('pet-information.create') }}" class="btn btn-info btn-sm my-1 bg-1"><i class="fas fa-plus-circle mr-2"></i>Pet Registration</a>
 	</div>
 
 	<div class="overflow-x-auto h-100 card">

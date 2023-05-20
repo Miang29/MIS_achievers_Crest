@@ -336,10 +336,10 @@ Route::group(['middleware' => ['auth']], function() {
 					Route::get('/{variationId}/delete', 'ServiceVariationController@delete')->name('service_variation.delete');
 
 					// Archive
-					Route::get('/archive', 'ServiceController@archivedVariation')->name('variation.archive');
+					Route::get('/archived/variation', 'ServiceVariationController@archivedVariation')->name('variation.archive');
 					
 					// Restore
-					Route::get('/{variationId}/restore', 'ServiceController@restoreVariation')->name('variation.restore');
+					Route::get('/{variationId}/restore', 'ServiceVariationController@restoreVariation')->name('variation.restore');
 
 				});
 			});

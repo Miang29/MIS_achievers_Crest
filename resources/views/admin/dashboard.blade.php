@@ -31,9 +31,9 @@
 			<div class="col-12 col-md-6 col-lg-3  my-3">
 				<div class="total-block bg-2 text-white dark-shadow invisiborder rounded">
 					<div class="row">
-					<i class="fa-solid fa-chart-simple fa-5x mx-4 mt-3"></i>
+					<i class="fa-solid fa-dollar-sign fa-5x mx-4 mt-3"></i>
 						<div class="d-flex flex-d-col flex-grow-1 text-right">
-							<h1 class="my-auto"></h1>
+							<h1 class="my-auto">{{$sales}}</h1>
 						</div>
 					</div>
 					<div class="d-flex flex-d-col flex-grow-1 text-right">
@@ -46,9 +46,9 @@
 			<div class="col-12 col-md-6 col-lg-3  my-3">
 				<div class="total-block bg-3 text-white dark-shadow invisiborder rounded">
 					<div class="row">
-						<i class="fas fa-arrow-trend-up fa-5x mx-4 mt-3"></i>
+						<i class="fa-solid fa-boxes-stacked fa-5x mx-4 mt-3"></i>
 						<div class="d-flex flex-d-col flex-grow-1 text-right">
-							<h1 class="my-auto"></h1>
+							<h2 class="my-auto">{{ $products}}</h2>
 						</div>
 					</div>
 					<div class="d-flex flex-d-col flex-grow-1 text-right">
@@ -74,14 +74,52 @@
 		</div>
 
 		{{-- SECOND ROW --}}
-		<div class="row">
-			{{-- MONTHLY EARNINGS --}}
-			<!-- MONTHLY EARNINGS -->
-			<div class="col-12 col-lg-6 d-flex flex-column my-3 my-xl-0 mx-auto">
-				<div class="card border rounded dark-shadow h-100">
-					<h5 class="card-header">Monthly Earnings</h5>
-					<div class="card-body d-flex">
-						<canvas id="monthlyEarnings" class="rounded m-auto" style="border: solid 1px #707070;"></canvas>
+		<div class="card">
+			<div class="row mt-5 mb-5">
+				{{-- MONTHLY EARNINGS --}}
+				<!-- MONTHLY EARNINGS -->
+				<div class="col-12 col-lg-6 d-flex flex-column my-3 my-xl-0 ml-5 mx-auto">
+					<div class="card border rounded dark-shadow h-100">
+						<h5 class="card-header">Monthly Earnings</h5>
+						<div class="card-body d-flex">
+							<canvas id="monthlyEarnings" class="rounded m-auto" style="border: solid 1px #707070;"></canvas>
+						</div>
+					</div>
+				</div>
+				{{-- TABLE --}}
+				<div class="mx-auto mb-5 col-lg-12 col-md-12 col-12">
+					<h2 class="ml-3">Low Stocks</h2>
+					<div class="overflow-x-auto h-100 card ml-3 mr-3">
+						<div class=" card-body h-100 px-0 pt-0 ">
+							<table class="table table-striped text-center" id="table-content">
+								<thead>
+									<tr>
+										<th scope="col" class="hr-thick text-1">Product Name</th>
+				                        <th scope="col" class="hr-thick text-1">Stocks</th>
+				                        <th scope="col" class="hr-thick text-1">Price</th>
+				                        <th scope="col" class="hr-thick text-1">Status</th>
+									</tr>
+								</thead>
+
+								<tbody>
+									@forelse ($inventory as $i)
+				                    <tr>
+				                        <td>{{ $i->product_name }}</td>
+				                        <td>{{ $i->stocks }}</td>
+				                        <td>₱{{ number_format($i->price, 2) }}</td>
+
+				                        <td>
+				                            <i class="fas fa-circle text-danger mr-2"></i>Low Inventory
+				                        </td>
+				                    </tr>
+				                    @empty
+				                    <tr>
+				                        <td colspan="4">Nothing to show~</td>
+				                    </tr>
+				                    @endforelse
+								</tbody>
+							</table>
+						</div>
 					</div>
 				</div>
 			</div>

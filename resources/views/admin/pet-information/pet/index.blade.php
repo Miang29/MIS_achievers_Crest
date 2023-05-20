@@ -10,14 +10,15 @@
 			<h3 class="mt-3"><a href="{{route('pet-information', [$id])}}" class="text-decoration-none  text-1"><i class="fas fa-chevron-left mr-2"></i>Pet Information</a></h3>
 		</div>
 
-		<div class=" col-12 col-md-6 col-lg-6 my-2 text-center text-lg-right">
+		<form method="GET" action="{{ route('pet-information.pet.show',[$id])}}" class=" col-12 col-md-6 col-lg my-2 text-center text-lg-right">
 			<div class="input-group">
-				<input type="text" class="form-control" name="search" placeholder="Search..." />
+				<input type="text" class="form-control" value="{{ request()->search }}" name="search" placeholder="Search..." />
+
 				<div class="input-group-append">
 					<button type="submit" class="btn btn-secondary"><i class="fas fa-search"></i></button>
 				</div>
 			</div>
-		</div>
+		</form>
 	</div>
 	<div class="card mx-auto mt-4">
 		<h5 class="card-header text-center text-white bg-1 font-weight-bold text-justify" style=" word-spacing: 3px;">P E T <p>L I S T - I N F O R M A T I O N</h5>
