@@ -62,7 +62,7 @@
 									</div>
 
 									<div class="col-12 col-md-6 col-lg-6 ">
-										<label class="h7  text-1 important font-weight-bold " for="webname">Website Name</label>
+										<label class="h7 text-1 important font-weight-bold " for="webname">Website Name</label>
 										<input class="form-control " type="text" name="web-name" value="{{ App\Settings::getValue('web-name') }}">
 										<small class="text-danger small mx-auto">{{ $errors->first('web-name') }}</small><br>
 
@@ -249,22 +249,47 @@
 								@forelse ($unavailableDates as $d)
 								
 								@php
-								$convertedTime = App\Appointments::getAppointmentTimes()[$d->time - 1];
-								$convertedTime = preg_split("/(\s*-\s*)/gi", $convertedTime)[1];
+								if (!$d->is_whole_day) {
+									$fetchedTime = App\Appointments::getAppointmentTimes()[$d->time - 1];
+									$convertedTime = preg_split("/(\s*-\s*)/i", $fetchedTime)[1];
 
-								$parsedDate = \Carbon\Carbon::parse("{$d->date} {$convertedTime}");
+									$parsedDate = \Carbon\Carbon::parse("{$d->date} {$convertedTime}");
+								}
 								@endphp
 								
 								<tr>
-									<td>{{ $d->date }}</td>
-									<td>{{ $d->time }}</td>
-									
+									<td>{{ \Carbon\Carbon::parse($d->date)->format("M d, Y") }}</td>
 									<td>
-										@if ($now->gt($parsedDate))
+										@if ($d->is_whole_day)
+										Whole Day
+										@else
+										{{ $fetchedTime }}
 										@endif
 									</td>
 									
 									<td>
+										@php ($isDone = false)
+										@if ($d->is_whole_day)
+											@if ($now->gt($d->date))
+											<i class="fas fa-check text-success mr-2"></i>Done
+											@php ($isDone = true)
+											@else
+											<i class="fas fa-circle text-warning mr-2"></i>To Come
+											@endif
+										@else
+											@if ($now->gt($parsedDate))
+											<i class="fas fa-check text-success mr-2"></i>Done
+											@php ($isDone = true)
+											@else
+											<i class="fas fa-circle text-warning mr-2"></i>To Come
+											@endif
+										@endif
+									</td>
+									
+									<td>
+										@if (!$isDone)
+										<a href="javascript:confirmLeave('{{ route ('settings.unavailable-dates.remove', [$d->id]) }}', undefined, 'This action cannot be undone.');" role="button" class="btn btn-outline-danger"><i class="fa-solid fa-trash mr-2"></i>Remove Unavailability</a>
+										@endif
 									</td>
 								</tr>
 								@empty

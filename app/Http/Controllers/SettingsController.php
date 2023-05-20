@@ -76,7 +76,7 @@ class SettingsController extends Controller
 	protected function settings() {
 		$contact = ContactInformation::get();
 		$client = User::where('user_type_id','=', 4)->get();
-		$unavailableDates = UnavailableDate::get();
+		$unavailableDates = UnavailableDate::orderByDesc('date')->get();
 		
 		return view('admin.settings.index', [
 			'contacts' => $contact,
@@ -218,6 +218,7 @@ class SettingsController extends Controller
 	// UNAVAILABLE DATES
 	protected function unavailableDatesCreate(Request $req) {
 		$time = Appointments::getAppointmentTimes();
+
 		return view('admin.settings.unavailable-dates.create',[
 			'time' => $time,
 		]);
@@ -226,39 +227,69 @@ class SettingsController extends Controller
 	protected function unavailableDatesSubmit(Request $req){
 
 		$validator = Validator::make($req->all(), [
-		    'date' =>'required|min:1|max:255|string',
-			'time' => 'required|min:1|max:255|string',
+		    'date' =>'required|date|after_or_equal:today',
+			'time' => 'required_if:isWholeDay,false|numeric|between:1,5',
+			'isWholeDay' => 'nullable|in:true,false'
+		]);
 
+		if ($validator->fails()) {
+			return redirect()
+				->back()
+				->withErrors($validator)
+				->withInput();
+		}
+
+		try {
+			DB::beginTransaction();
+		
+			UnavailableDate::create([
+				'date' => $req->date,
+				'time' => $req->isWholeDay === 'true' ? null : $req->time,
+				'is_whole_day' => $req->isWholeDay === 'true'
 			]);
 
-			if ($validator->fails()) {
-
-				return redirect()
-					->back()
-					->withErrors($validator)
-					->withInput();
-				}
-
-				try {
-				DB::beginTransaction();
-				UnavailableDate::create([
-					'date' => $req->date,
-					'time' => $req->time,
-				]);
-
-
-				DB::commit();
-			} catch (Exception $e) {
-				DB::rollback();
-				Log::error($e);
-				return redirect()
-					->route('settings.index')
-					->with('flash_error', 'Something went wrong, please try again later');
-			}
+			DB::commit();
+		} catch (Exception $e) {
+			DB::rollback();
+			Log::error($e);
 
 			return redirect()
 				->route('settings.index')
-				->with('flash_success', "Successfully set unavailable date and time");
+				->with('flash_error', 'Something went wrong, please try again later');
 		}
 
+		return redirect()
+			->route('settings.index')
+			->with('flash_success', "Successfully set unavailable date and time");
+
 	}
+
+	protected function unavailableDatesRemove(Request $req, $id) {
+		$ud = UnavailableDate::find($id);
+
+		if ($ud == null) {
+			return redirect()
+				->back()
+				->with('flash_error', 'The entry does not exists or is already removed');
+		}
+
+		try {
+			DB::beginTransaction();
+
+			$ud->delete();
+
+			DB::commit();
+		} catch (Exception $e) {
+			DB::rollback();
+			Log::error($e);
+
+			return redirect()
+				->back()
+				->with('flash_error', 'Something went wrong, please try again later');
+		}
+
+		return redirect()
+			->route('settings.index')
+			->with('flash_success', 'Successfully removed entry');
+	}
+}

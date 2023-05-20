@@ -8,6 +8,7 @@ class UnavailableDate extends Model
 {
 	protected $fillable = [
 		'date',
-		'time'
+		'time',
+		'is_whole_day'
 	];
 }
