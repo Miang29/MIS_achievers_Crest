@@ -239,7 +239,7 @@
 							    <td class="text-center">
 									<div class="btn-group">
 										<a class="btn btn-info btn-sm" href="{{ route('boarding.transaction.show', [$bs->id])}}"><i class="fa-solid fa-eye"></i></a>
-										@if (!$cs->isVoided())
+										@if (!$bs->isVoided())
 										<button class="btn btn-outline-danger btn-sm" onclick="confirmLeave('{{ route('transaction.boarding.void', [$bs->id]) }}', undefined, 'Are you sure you want to void the transaction?');"><i class="fa-solid fa-ban"></i></button>
 										@endif
 									</div>	
