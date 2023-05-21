@@ -5,7 +5,8 @@
 /.idea
 Homestead.json
 Homestead.yaml
-.env
+.env*
+!.env.example
 mailer.env
 *.sql
 db-management.sh

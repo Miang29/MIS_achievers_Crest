@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 
 use App\User;
 use App\UserType;
@@ -350,9 +351,9 @@ class UserController extends Controller
 			'middle_name' => 'nullable|min:2|max:255|string',
 			'last_name' => 'required|min:2|max:255|string',
 			'suffix' => 'nullable|min:2|max:255|string',
-			'email' => 'required|unique:users,email|min:2|max:255|email',
+			'email' => ['required', 'min:2', 'max:255', 'email', Rule::unique('users')->ignore($id)],
 			'address' => 'nullable|min:2|max:255|string',
-			'username' => 'required|unique:users,username|min:2|max:255|string',
+			'username' => ['required', 'min:2', 'max:255', 'string', Rule::unique('users')->ignore($id)],
 			'user_type' => 'required|exists:user_types,id|numeric',
 			
 		], [
