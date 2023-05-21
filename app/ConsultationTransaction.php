@@ -26,7 +26,7 @@ class ConsultationTransaction extends Model
 		return $this->belongsTo('App\ServiceOrderTransaction');
 	}
 
-	public function variations() {
+	public function serviceVariation() {
 		return $this->belongsTo('App\ServicesVariation', 'service_category_id');
 	}
 
