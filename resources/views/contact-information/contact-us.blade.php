@@ -66,7 +66,7 @@
 
                 <div class="d-flex">
                     <button class="btn btn-outline-primary btn-sm w-25  mr-2 ml-auto" type="submit" data-type="submit" data-action="submit">Send</button>
-                    <a href="#" class="btn btn-outline-danger btn-sm w-25 mr-auto">Cancel</a>
+                    <a href="javascript:void(0);" onclick="confirmLeave('{{ route('home') }}');" class="btn btn-outline-danger btn-sm w-25 mr-auto">Cancel</a>
                 </div>
 
             </div>
@@ -77,4 +77,7 @@
     Copyright <i class="fa-solid fa-copyright"></i> Nano Vet 2015
 </div>
 
+@endsection
+@section('scripts')
+<script type="text/javascript" src="{{ asset('js/util/confirm-leave.js') }}"></script>
 @endsection
