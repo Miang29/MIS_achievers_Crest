@@ -45,9 +45,11 @@
 									<label class="important  font-weight-bold text-1" for="service_category_id[]">Services Type</label>
 									<div class="input-group mb-3">
 										<select class="custom-select" name="service_category_id[]">
-											@foreach ($services->variations as $s)
-											<option class="text-dark"  data-price="{{$s->price}}" value="{{$s->id}}">{{"{$services->service_name} - {$s->variation_name}"}}</option>
-											@endforeach
+											@forelse ($serviceVariations as $s)
+											<option class="text-dark"  data-price="{{$s->price}}" value="{{ $s->id }}">{{ "{$s->services->service_name} - {$s->variation_name}" }}</option>
+											@empty
+											<option class="text-dark"  data-price="0.00" value="0" hidden selected>-- NO VARIATIONS FOUND FOR CONSULTATION --</option>
+											@endforelse
 										</select>
 									</div>
 
