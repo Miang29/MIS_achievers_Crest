@@ -14,7 +14,7 @@ class Services extends Model
     ];
 
     public function variations() {
-        return $this->hasMany('App\ServicesVariation', 'service_id');
+        return $this->hasMany('App\ServicesVariation', 'service_id', 'id', 'services_variations');
     }
 
     public function servicesCategory() {
