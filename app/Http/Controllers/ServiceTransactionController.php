@@ -95,7 +95,7 @@ class ServiceTransactionController extends Controller
 	{
 		$serviceVariations = ServicesVariation::where('service_id', '=', 2)->with('services')->get();
 		$owner = User::where('user_type_id', '=', 4)->has("petsInformations", '>', 0)->with('petsInformations')->get();
-		
+		dd($serviceVariations);
 		return view('admin.transaction.services-transaction.consultation-create', [
 			'serviceVariations' => $serviceVariations,
 			'owner' => $owner,
