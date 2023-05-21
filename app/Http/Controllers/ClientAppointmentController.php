@@ -159,8 +159,8 @@ class ClientAppointmentController extends Controller
 
 		$validator = Validator::make($req->all(), [
 			"service" => "required|numeric|exists:services,id",
-			"reserved_at" => "required|date|after_or_equal:today,not_in:" . $unavailableDates,
-			"reserved_at_time" => "required|numeric|between:1,5,not_in:" . $unavailableTime,
+			"reserved_at" => "required|date|after_or_equal:today,not_in:" . implode(',', $unavailableDates),
+			"reserved_at_time" => "required|numeric|between:1,5,not_in:" . implode(',', $unavailableTime),
 			"owner_name" => "required|string|between:2,255",
 			"pet_name" => "required|string|between:2,255",
 			"breed" => "required|string|between:2,255",
