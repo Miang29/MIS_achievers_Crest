@@ -84,7 +84,7 @@
 		{{-- SECOND ROW --}}
 		<div class="row">
 			{{-- MONTHLY EARNINGS --}}
-			<div class="col-12 col-lg-6 d-flex flex-column my-3">
+			<div class="col-12 col-xl-6 d-flex flex-column my-3">
 				<div class="card border rounded dark-shadow h-100">
 					<h5 class="card-header text-center">Monthly Earnings</h5>
 
@@ -95,11 +95,11 @@
 			</div>
 
 			{{-- UNREAD MESSAGES --}}
-			<div class="col-12 col-lg d-flex flex-column my-3">
+			<div class="col-12 col-md-8 col-xl-3 d-flex flex-column my-3">
 				<div class="card border rounded dark-shadow h-100">
 					<h5 class="card-header text-center">Unread Messages</h5>
 					
-					<div class="card-body">
+					<div class="card-body overflow-x-auto px-0">
 						<table class="table table-striped text-center">
 							<thead>
 								<tr>
@@ -111,8 +111,8 @@
 							<tbody>
 								@forelse ($unreadMessages as $u)
 								<tr>
-									<td><a href="mailto:{{ $u->email }}">{{ $u->email }}</a></td>
-									<td class="text-truncate">{{ $u->messages }}</td>
+									<td class="text-wrap"><a href="mailto:{{ $u->email }}">{{ $u->email }}</a></td>
+									<td class="text-truncate">{{ $u->message }}</td>
 								</tr>
 								@empty
 								<tr>
@@ -126,11 +126,11 @@
 			</div>
 
 			{{-- QUICK ACTIONS --}}
-			<div class="col-12 col-lg-3 d-flex flex-column my-3">
+			<div class="col-12 col-md-4 col-xl-3 d-flex flex-column my-3">
 				<div class="card border rounded dark-shadow h-100">
 					<h5 class="card-header text-center text-wrap">Quick Actions</h5>
 
-					<div class="card-body d-flex flex-column">
+					<div class="card-body d-flex flex-column overflow-x-auto">
 						@foreach ($quickActions as $qa)
 						<a href="{{ $qa['href'] }}" class="btn btn-outline-primary my-2">{{ $qa['text'] }}</a>
 						@endforeach

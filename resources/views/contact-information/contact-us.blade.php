@@ -24,8 +24,8 @@
                             <div class="order-1 order-lg-0 col-12 col-lg-6">
 
                                 <div class="form-group">
-                                    <input class="form-control my-2 border border-secondary " type="text" name="client_name" value="{{old('petowner')}}" placeholder="Name" />
-                                    <small class="text-danger small">{{ $errors->first('client_name') }}</small>
+                                    <input class="form-control my-2 border border-secondary " type="text" name="name" value="{{old('name')}}" placeholder="Name" />
+                                    <small class="text-danger small">{{ $errors->first('name') }}</small>
                                 </div>
 
                                 <div class="form-group">
@@ -34,8 +34,8 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <input class="form-control my-2  border border-secondary" type="text" name="mobile_no" value="{{old('mobile')}}" placeholder="Mobile No" />
-                                    <small class="text-danger small">{{ $errors->first('mobile_no') }}</small>
+                                    <input class="form-control my-2  border border-secondary" type="text" name="mobile" value="{{old('mobile')}}" placeholder="Mobile No" />
+                                    <small class="text-danger small">{{ $errors->first('mobile') }}</small>
                                 </div>
 
                                 <div class="form-group">

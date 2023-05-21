@@ -186,25 +186,26 @@ class PageController extends Controller
 	protected function submit(Request $req) {
 		
 		$validator = Validator::make($req->all(), [
-			'client_name' => 'required|min:2|max:255|string',
+			'name' => 'required|min:2|max:255|string',
 			'email' => 'required|min:2|max:255|email',
-			'mobile_no' => 'required|min:10|max:255|string',
-			'message' => 'nullable|min:2|max:255|string',
+			'mobile' => 'required|min:10|max:255|string',
+			'message' => 'required|min:2|max:255|string',
 		]);
 
-		if ($validator->fails())
+		if ($validator->fails()) {
 			return redirect()
 				->back()
 				->withErrors($validator)
 				->withInput();
+		}
 
 		try {
 			DB::beginTransaction();
 
 			$contact = ContactInformation::create([
-				'client_name' => $req->client_name,
+				'client_name' => $req->name,
 				'email' => $req->email,
-				'mobile_no' => $req->mobile_no,
+				'mobile_no' => $req->mobile,
 				'message' => $req->message,
 			]);
 
