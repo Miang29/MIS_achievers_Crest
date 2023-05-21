@@ -96,7 +96,7 @@
 
 					<div class="col-12 my-2 mx-auto text-center flex-row">
 						<button type="submit" class="btn btn-outline-info btn-sm w-25" data-action="submit" data-type="submit">Save</button>
-						<a class="btn btn-outline-danger btn-sm w-25">Cancel</a>
+						<a href="javascript:void(0);" onclick="confirmLeave('{{ route('transaction.products-order') }}');" class="btn btn-outline-danger btn-sm w-25">Cancel</a>
 					</div>
 				</div>
 			</form>
@@ -106,6 +106,7 @@
 @endsection
 
 @section('scripts')
+<script type="text/javascript" src="{{ asset('js/util/confirm-leave.js') }}"></script>
 <script type="text/javascript">
 	$(document).ready(() => {
 		// Adding and Removing Variations

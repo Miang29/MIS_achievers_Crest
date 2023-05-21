@@ -3,7 +3,7 @@
 @section('title', 'Pet Information')
 
 @section('content')
-<div class="container-fluid m-0 ">
+<div class="container-fluid m-0 "> 
 	<h3 class="mt-3"><a href="{{route('pet-information')}}" class="text-decoration-none  text-1"><i class="fas fa-chevron-left mr-2"></i>Pet Information</a></h3>
 	<hr class="hr-thick" style="border-color: #707070;">
 

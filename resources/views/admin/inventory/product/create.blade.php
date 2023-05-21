@@ -57,8 +57,8 @@
                 </div>
                 <div class="card-footer d-flex">
                     <div class="col-4 mx-auto text-center">
-                        <button class="btn btn-outline-info mr-1 btn-sm w-50" type="submit" data-type="submit">Save</button>
-                        <a href="javascript:void(0);" onclick="confirmLeave('{{ route('appointments.index') }}');" class="btn btn-outline-danger btn-sm ml-1 w-lg-50 mr-auto w-50">Cancel</a>
+                        <button class="btn btn-outline-info mr-1 btn-sm" type="submit" data-type="submit">Save</button>
+                        <a href="javascript:void(0);" onclick="confirmLeave('{{ route('category.view',[$id]) }}');" class="btn btn-outline-danger btn-sm">Cancel</a>
                     </div>
                 </div>
             </form>
@@ -67,6 +67,6 @@
 </div>
 @endsection
 @section('scripts')
-<script type="text/javascript" src="{{ asset('js/util/disable-on-submit.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/util/confirm-leave.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/util/disable-on-submit.js') }}"></script>
 @endsection

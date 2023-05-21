@@ -98,13 +98,14 @@
 
 			<div class="col-4 my-2 mx-auto text-center">
 				<button type="submit" class="btn btn-outline-info btn-sm w-25" data-action="submit" data-type="submit">Enter</button>
-				<a href="{{ route('transaction.grooming.create')}}" class="btn btn-outline-danger btn-sm w-25">Cancel</a>
+				<a href="javascript:void(0);" onclick="confirmLeave('{{ route('transaction.service') }}');" class="btn btn-outline-danger btn-sm w-25">Cancel</a>
 			</div>
 		</div>
 	</form>
 </div>
 @endsection
 @section('scripts')
+<script type="text/javascript" src="{{ asset('js/util/confirm-leave.js') }}"></script>
 <script type="text/javascript">
 	$(document).ready(() => {
 		// Adding and Removing Variations
