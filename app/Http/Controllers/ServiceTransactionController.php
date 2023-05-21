@@ -30,7 +30,7 @@ class ServiceTransactionController extends Controller
 	// INDEX 
 	protected function Services()
 	{
-		$consulService = ServicesOrderTransaction::has("consultation", '>', 0)->with(['consultation','consultation.variations','consultation.variations.services','consultation.petsInformations'])->get();
+		$consulService = ServicesOrderTransaction::has("consultation", '>', 0)->with(['consultation','consultation.serviceVariation','consultation.variations.services','consultation.petsInformations'])->get();
 		$vaccService =  ServicesOrderTransaction::has("vaccination", '>', 0)->with(['vaccination','vaccination.variations','vaccination.petsInformations'])->get();
 		$groomService = ServicesOrderTransaction::has("grooming", '>',0)->with(['grooming','grooming.variations','grooming.petsInformations' ])->get();
 		$boardService = ServicesOrderTransaction::has("boarding", '>', 0)->with(['boarding','boarding.variations','grooming.petsInformations'])->get();
