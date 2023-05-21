@@ -35,9 +35,6 @@ class ServicesVariation extends Model
         return $this->hasMany('App\BoardingTransaction', 'variation_name');
     }
 
-    public function consultation() {
-        return $this->hasMany('App\ConsultationTransaction', 'variation_name');
-    }
      public function otherTransaction() {
         return $this->hasMany('App\OtherTransation', 'variation_name');
     }
