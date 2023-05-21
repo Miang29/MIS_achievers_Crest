@@ -100,7 +100,7 @@ class InventoryController extends Controller
 				->withInput();
 
 		try {
-			DB::beginTransaction();
+			DB::beginTransaction(); 
 			$prd->category_id = $id;
 			$prd->product_name = $req->product_name;
 			$prd->stocks = $req->stocks;
