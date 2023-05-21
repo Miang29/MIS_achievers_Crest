@@ -93,11 +93,11 @@ class ServiceTransactionController extends Controller
 	// CREATE Consultation TRANSACTION
 	protected function createConsultation()
 	{
-		$serviceVariations = ServicesVariation::where('service_id', '=', 2)->with('services')->get();
+		$service = Services::where('service_name', '=', 'Consultation')->with('variations')->first();
 		$owner = User::where('user_type_id', '=', 4)->has("petsInformations", '>', 0)->with('petsInformations')->get();
-		dd(Services::with('variations')->find(2));
+
 		return view('admin.transaction.services-transaction.consultation-create', [
-			'serviceVariations' => $serviceVariations,
+			'service' => $service,
 			'owner' => $owner,
 		]);
 	} 

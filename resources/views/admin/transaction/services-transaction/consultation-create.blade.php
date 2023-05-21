@@ -44,12 +44,16 @@
 								<div class="form-group border rounded p-3 border-secondary">
 									<label class="important  font-weight-bold text-1" for="service_category_id[]">Services Type</label>
 									<div class="input-group mb-3">
-										<select class="custom-select" name="service_category_id[]">
-											@forelse ($serviceVariations as $s)
-											<option class="text-dark"  data-price="{{$s->price}}" value="{{ $s->id }}">{{ "{$s->services->service_name} - {$s->variation_name}" }}</option>
-											@empty
-											<option class="text-dark"  data-price="0.00" value="0" hidden selected>-- NO VARIATIONS FOUND FOR CONSULTATION --</option>
-											@endforelse
+										<select class="custom-select" name="service_category_id[]" {{ $service ? '' : 'disabled' }}>
+											@if ($service)
+												@forelse ($service->variations as $v)
+												<option class="text-dark"  data-price="{{ $v->price }}" value="{{ $v->id }}">{{ "{$service->service_name} - {$v->variation_name}" }}</option>
+												@empty
+												<option class="text-dark"  data-price="0.00" value="0" hidden selected>-- NO VARIATIONS FOUND FOR CONSULTATION --</option>
+												@endforelse
+											@else
+											<option class="text-dark"  data-price="0.00" value="-1" hidden selected>-- CONSULTATION SERVICE NOT YET SET --</option>
+											@endif
 										</select>
 									</div>
 
