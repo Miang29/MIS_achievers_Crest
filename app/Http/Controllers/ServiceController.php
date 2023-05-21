@@ -36,7 +36,7 @@ class ServiceController extends Controller
 	// ----------- CREATE SERVICE ---------------- //
 	protected function create($id) {
 		$service = Services::where("service_category_id", '=', $id)->get();
-		return view('admin.service_category.service.create', [
+		return view('admin.service_category.service.service_create', [
 			'services' => $service,
 			'id' => $id,
 			
