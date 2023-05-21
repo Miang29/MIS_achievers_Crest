@@ -135,7 +135,7 @@
 							    <td class="text-center">
 									<div class="btn-group">
 										<a class="btn btn-info btn-sm" href="{{ route('vaccination.transaction.show', [$vs->id]) }}"><i class="fa-solid fa-eye"></i></a>
-										@if (!$cs->isVoided())
+										@if (!$vs->isVoided())
 										<button class="btn btn-outline-danger btn-sm" onclick="confirmLeave('{{ route('transaction.vaccination.void', [$vs->id]) }}', undefined, 'Are you sure you want to void the transaction?');"><i class="fa-solid fa-ban"></i></button>
 										@endif
 									</div>	
@@ -187,7 +187,7 @@
 							    <td class="text-center">
 									<div class="btn-group">
 										<a class="btn btn-info btn-sm" href="{{route ('grooming.transaction.show', [$gs->id]) }}"><i class="fa-solid fa-eye"></i></a>
-										@if (!$cs->isVoided())
+										@if (!$gs->isVoided())
 										<button class="btn btn-outline-danger btn-sm" onclick="confirmLeave('{{ route('transaction.grooming.void', [$gs->id]) }}', undefined, 'Are you sure you want to void the transaction?');"><i class="fa-solid fa-ban"></i></button>
 										@endif
 									</div>	
