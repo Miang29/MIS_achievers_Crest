@@ -18,8 +18,6 @@ class ServiceController extends Controller
 
  // ----------------- INDEX SERVICES ------------------ //
 	protected function index(Request $req, $scid) {
-
-
 		$services = Services::has("variations", '>', 0)->where("service_category_id", '=', $scid);
 		$search = "%{$req->search}%";
 
@@ -27,10 +25,18 @@ class ServiceController extends Controller
 			$services = $services->where('service_name', 'LIKE', $search);
 		}
 
+		$essentials = array(
+			Services::where('service_name', '=', 'Consultation')->first()->id,
+			Services::where('service_name', '=', 'Vaccination')->first()->id,
+			Services::where('service_name', '=', 'Grooming')->first()->id,
+		);
+		
+		$essentials = array_merge($essentials, Services::where('service_name', 'LIKE', '%Boarding%')->pluck('id')->toArray());
+
 		return view('admin.service_category.service.index',[
 			'serviceVar' => $services->get(),
-			'id' =>$scid
-		
+			'id' => $scid,
+			'essentials' => $essentials
 		]);
 	}
 	// ----------- CREATE SERVICE ---------------- //

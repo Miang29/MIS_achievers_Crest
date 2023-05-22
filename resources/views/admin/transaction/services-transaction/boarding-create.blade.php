@@ -96,7 +96,7 @@
 		<div class="card-footer d-flex flex-column">
 			<div class="form-group col-6 mx-auto">
 				<button class="card mx-auto w-100 h-100 d-flex" type="button" style="border-style: dashed; border-width: .25rem;" id="addboarding">
-					<span class="m-auto  font-weight-bold text-1"><i class="fa-solid fa-circle-plus mr-2"></i>Add Grooming</span>
+					<span class="m-auto  font-weight-bold text-1"><i class="fa-solid fa-circle-plus mr-2"></i>Add Pet</span>
 				</button>
 			</div>
 

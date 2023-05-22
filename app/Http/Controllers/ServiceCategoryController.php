@@ -14,8 +14,6 @@ use Validator;
 class ServiceCategoryController extends Controller
 {
     protected function index(Request $req) {
-
-    
 		$serviceCategory = ServicesCategory::has('services', '>', 0);
 		$search = "%{$req->search}%";
 

@@ -52,11 +52,16 @@
 								</button>
 								
 								<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown">
-								<a href="{{route ('service_variation.create', [$id, $sv->id] )}}" class="dropdown-item"><i class="fa-solid fa-plus mr-2"></i>Add Variation</a>	
-								 <div class="dropdown-divider"></div>
-								<a href="{{route ('service_variation.index', [$id, $sv->id] )}}" class="dropdown-item"><i class="fa-solid fa-eye mr-2"></i>View Variation</a>
-								<div class="dropdown-divider"></div>
-								<button onclick="confirmLeave('{{ route("service.delete", [$id, $sv->id]) }}', undefined, 'Are you sure you want to archive this services? This will <b>archived all the variations</b> encoded within this category.');" class="dropdown-item"><i class="fa-solid fa-box-archive mr-2"></i>Archive Service</button>
+									<a href="{{route ('service_variation.create', [$id, $sv->id] )}}" class="dropdown-item"><i class="fa-solid fa-plus mr-2"></i>Add Variation</a>	
+									<a href="{{route ('service_variation.index', [$id, $sv->id] )}}" class="dropdown-item"><i class="fa-solid fa-eye mr-2"></i>View Variation</a>
+									
+									{{-- Removes the archive buttons for essential services --}}
+									@if (!in_array($sv->id, $essentials))
+									<button onclick="confirmLeave('{{ route("service.delete", [$id, $sv->id]) }}', undefined, 'Are you sure you want to archive this services? This will <b>archived all the variations</b> encoded within this category.');" class="dropdown-item">
+										<i class="fa-solid fa-box-archive mr-2"></i>Archive Service
+									</button>
+									@endif
+								</div>
 							</div>
 						</td>
 					</tr>
