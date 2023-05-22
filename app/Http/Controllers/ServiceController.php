@@ -25,13 +25,21 @@ class ServiceController extends Controller
 			$services = $services->where('service_name', 'LIKE', $search);
 		}
 
+		$boardingServiceCatID = ServicesCategory::where('service_category_name', 'LIKE', '%Boarding%')
+			->orWhere('service_category_name', 'LIKE', '%boarding%')
+			->first()
+			->id;
+		
 		$essentials = array(
 			Services::where('service_name', '=', 'Consultation')->first()->id,
 			Services::where('service_name', '=', 'Vaccination')->first()->id,
 			Services::where('service_name', '=', 'Grooming')->first()->id,
+			Services::where('service_category_id', '=', $boardingServiceCatID)
+				->orwhere('service_name', 'LIKE', '%Boarding%')
+				->orWhere('service_name', 'LIKE', '%boarding%')
+				->pluck('id')
+				->first()
 		);
-		
-		$essentials = array_merge($essentials, Services::where('service_name', 'LIKE', '%Boarding%')->pluck('id')->toArray());
 
 		return view('admin.service_category.service.index',[
 			'serviceVar' => $services->get(),
