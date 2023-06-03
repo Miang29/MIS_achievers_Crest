@@ -17,6 +17,8 @@ Route::get('/contact-us', 'PageController@contactUs')->name('contact-us');
 Route::post('/submit/message', 'PageController@submit')->name('submit.message');
 Route::get('/privacy-policy', 'PageController@privacyPolicy')->name('privacy-policy');
 Route::get('/terms-of-service', 'PageController@termsOfService')->name('terms-of-service');
+Route::get('/register/pet', 'PageController@registerPets')->name('pets.registration');
+Route::get('/pets/profile/information', 'PageController@petsProfile')->name('pets.profile.information');
 
 // AUTHENTICATION
 Route::get('/login', 'UserController@login')->name('login');

@@ -157,6 +157,14 @@ class PageController extends Controller
 
 	// CLIENT PANEL
 
+	protected function registerPets() {
+		return view('pet_registration.register_pet');
+	}
+
+	protected function petsProfile() {
+		return view('pet_registration.pet_information');
+	}
+
 	protected function user() {
 		return view('home');
 	}

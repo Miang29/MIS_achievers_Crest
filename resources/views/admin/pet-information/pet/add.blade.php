@@ -8,7 +8,7 @@
     class="text-decoration-none  text-1"><i class="fas fa-chevron-left mr-2"></i>Pet List Information</a></h3>
     <hr class="hr-thick" style="border-color: #707070;">
     <div class="col-12 my-2 mx-auto">
-        <form method="POST" action="{{ route('add-pet', [$id]) }}" class="card mx-auto" enctype="multipart/form-data">
+        <form  class="card mx-auto" method="POST" action="{{ route('add-pet', [$id]) }}" enctype="multipart/form-data">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <h5 class="card-header text-center text-white bg-1"></h5>
 

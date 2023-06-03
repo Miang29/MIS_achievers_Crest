@@ -28,10 +28,9 @@
 
 		@yield('meta')
 
-		{{-- JQUERY / SWAL2 / FONTAWESOME 6  SUMMERNOTE --}}
+		{{-- JQUERY / SWAL2 / FONTAWESOME 6 / SUMMERNOTE / FULLCALENDAR / CHART.JS --}}
 		<link rel="stylesheet" href="{{ asset('css/app.css') }}">
 		<script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
-		<script type="text/javascript" src="{{ asset('js/util/confirm-leave.js') }}"></script>
 
 		{{-- Removes the code that shows up when script is disabled/not allowed/blocked --}}
 		<script type="text/javascript" id="for-js-disabled-js">
@@ -43,18 +42,23 @@
 			});
 		</script>
 
+		{{-- Input Mask 5.0.5 --}}
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.5/jquery.inputmask.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/choices.min.js"></script>
+
 		{{-- CSS --}}
-		@yield('pre-css')
 		<link href="{{ asset('css/style.css') }}" rel="stylesheet">
 		<link href="{{ asset('css/admin.css') }}" rel="stylesheet">
 		<link href="{{ asset('css/user.css') }}" rel="stylesheet">
-		@yield('post-css')
+
+		@yield('css')
 
 		{{-- FAVICON --}}
 		<link rel="icon" href="{{ App\Settings::getInstance('web-logo')->getImage(!App\Settings::getInstance('web-logo')->is_file) }}">
 		<link rel="shortcut icon" href="{{ App\Settings::getInstance('web-logo')->getImage(!App\Settings::getInstance('web-logo')->is_file) }}">
 		<link rel="apple-touch-icon" href="{{ App\Settings::getInstance('web-logo')->getImage(!App\Settings::getInstance('web-logo')->is_file) }}">
 		<link rel="mask-icon" href="{{ App\Settings::getInstance('web-logo')->getImage(!App\Settings::getInstance('web-logo')->is_file) }}">
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/choices.min.css">
 
 		{{-- TITLE --}}
 		<title>@yield('title') - {{ App\Settings::getValue('web-name') }}</title>
@@ -98,6 +102,8 @@
 				</div>
 			</main>
 		</div>
+
+		@yield('script')
 
 		@yield('pre-script')
 		<script type="text/javascript">
