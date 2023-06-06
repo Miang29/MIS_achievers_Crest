@@ -224,7 +224,7 @@
 									</div>
 
 									{{-- COLORS --}}
-									<div class="col-12 col-md-9 col-lg-12 mx-auto">
+									<div class="col-12 col-md-9 col-lg-12 mx-auto" style=>
 										<label class="h6 font-weight-bold text-1 important" for="colors">Colors</label>
 										<select class="select-choices" name="colors[${__iterator++}][]" placeholder="Select Pet color" multiple notInstantiated>
 											<option value="#FFFFFF">White</option>

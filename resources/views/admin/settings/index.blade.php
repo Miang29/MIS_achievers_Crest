@@ -141,7 +141,7 @@
 				<form class="card my-3 mx-auto h-100" method="POST" action ="{{ route('submit-service-category') }}" enctype="multipart/form-data">
 					{{ csrf_field()}}
 					
-					<h3 class="card-header font-weight-bold text-white gbg-1"><i class="fa-solid fa-cart-plus mr-2 fa-lg"></i>ADD SERVICE CATEGORY</h3>
+					<h3 class="card-header font-weight-bold text-white gbg-1">ADD SERVICE CATEGORY</h3>
 					
 					<div class="card-body d-flex ">
 						<div class="form-group mx-auto w-100 col-lg-8 colo-12 col-md-12 mt-5 ">
@@ -157,6 +157,7 @@
 					<div class="card-footer d-flex">
 						<div class="col-4 mx-auto text-center">
 							<button type="submit" class="btn btn-outline-info mr-1 btn-sm w-75 w-lg-50 w-md-75" data-action="submit" data-type="submit">Save</button>
+							<a href="{{ route('service_category.index')}}" class="btn btn-outline-primary btn-sm w-75 w-lg-50 w-md-75"><i class="fa-solid fa-arrow-right mr-2"></i>Services</a>
 						</div>
 					</div>
 				</form>

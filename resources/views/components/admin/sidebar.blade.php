@@ -37,7 +37,7 @@
 
 
 		{{-- Services --}}
-		@if (Auth::user()->user_type_id == 1 || Auth::user()->user_type_id == 3)
+		{{-- @if (Auth::user()->user_type_id == 1 || Auth::user()->user_type_id == 3)
 		@if (\Request::is('admin/service-category'))
 		<span class="bg-secondary text-white"><i class="fa-solid fa-chart-simple  mr-3 fa-lg"></i>Services</span>
 		@elseif (\Request::is('admin/service-category/*'))
@@ -45,7 +45,7 @@
 		@else
 		<a class="text-decoration-none text-1  aria-link" href="{{route('service_category.index')}}" aria-hidden="false" aria-label="Reservation"><i class="fa-solid fa-chart-simple  mr-3 fa-lg"></i>Services</a>
 		@endif
-	    @endif
+	    @endif --}}
 
 
 		{{-- Inventory --}}

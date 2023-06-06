@@ -20,6 +20,7 @@
 				<a href="{{ route('transaction.grooming.create') }}" class="dropdown-item" type="button"><i class="fa-solid fa-scissors mr-2"></i>Grooming</a>
 				<a href="{{ route('transaction.boarding.create') }}" class="dropdown-item" type="button"><i class="fa-solid fa-paw mr-2"></i>Boarding</a>
 				<a href="{{ route('other.transaction.create') }}" class="dropdown-item" type="button"><i class="fa-solid fa-sliders mr-2"></i>Other Transaction</a>
+				<a href="{{ route('service.transaction.create') }}" class="dropdown-item" type="button"><i class="fa-solid fa-sliders mr-2"></i>Create Transaction</a>
 			</div>
 		</div>
 	</div>

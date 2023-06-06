@@ -129,6 +129,9 @@ Route::group(['middleware' => ['auth']], function() {
 				//Index
 				Route::get('/', 'ServiceTransactionController@Services')->name('transaction.service');
 
+				//Create Service Trasaction
+				Route::get('create/transaction','ServiceTransactionController@createServiceTransaction')->name('service.transaction.create');
+
 				//Create Consultation
 				Route::get('/create', 'ServiceTransactionController@createConsultation')->name('transaction.consultation.create');
 				//Submit Consultation

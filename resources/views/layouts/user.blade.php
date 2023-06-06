@@ -50,6 +50,7 @@
 		<link href="{{ asset('css/style.css') }}" rel="stylesheet">
 		<link href="{{ asset('css/admin.css') }}" rel="stylesheet">
 		<link href="{{ asset('css/user.css') }}" rel="stylesheet">
+		
 
 		@yield('css')
 

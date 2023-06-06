@@ -27,6 +27,15 @@ use Validator;
 class ServiceTransactionController extends Controller
 {
 	// SERVICES TRANSACTION 
+
+	protected function createServiceTransaction(){
+
+		$service = Services::where('service_name', '=', 'Consultation')->with('variations')->first();
+		return view('admin.transaction.services-transaction.service_transaction_create', [
+			'service' => $service,
+			
+		]);
+	}
 	// INDEX 
 	protected function Services()
 	{
