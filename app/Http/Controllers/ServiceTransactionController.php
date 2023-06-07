@@ -25,17 +25,8 @@ use Validator;
 
 
 class ServiceTransactionController extends Controller
-{
-	// SERVICES TRANSACTION 
-
-	protected function createConsultationTransaction(){
-
-		$service = Services::where('service_name', '=', 'Consultation')->with('variations')->first();
-		return view('admin.transaction.services-transaction.consultation_transaction_create', [
-			'service' => $service,
-			
-		]);
-	}
+{	
+// SERVICES TRANSACTION 
 	// INDEX 
 	protected function Services()
 	{
@@ -54,6 +45,13 @@ class ServiceTransactionController extends Controller
 		]);
 	}
 
+	protected function createConsultationTransaction(){
+		$service = Services::where('service_name', '=', 'Consultation')->with('variations')->first();
+		return view('admin.transaction.services-transaction.consultation_transaction_create', [
+			'service' => $service,
+			
+		]);
+	}
 	protected function showConsultation($id)
 	{
 		$conTran = ServicesOrderTransaction::with('consultation')->find($id);
@@ -99,17 +97,17 @@ class ServiceTransactionController extends Controller
 		]);
 	}
 
-	// CREATE Consultation TRANSACTION
-	protected function createConsultation()
-	{
-		$service = Services::where('service_name', '=', 'Consultation')->with('variations')->first();
-		$owner = User::where('user_type_id', '=', 4)->has("petsInformations", '>', 0)->with('petsInformations')->get();
+	// // CREATE Consultation TRANSACTION
+	// protected function createConsultation()
+	// {
+	// 	$service = Services::where('service_name', '=', 'Consultation')->with('variations')->first();
+	// 	$owner = User::where('user_type_id', '=', 4)->has("petsInformations", '>', 0)->with('petsInformations')->get();
 
-		return view('admin.transaction.services-transaction.consultation-create', [
-			'service' => $service,
-			'owner' => $owner,
-		]);
-	} 
+	// 	return view('admin.transaction.services-transaction.consultation-create', [
+	// 		'service' => $service,
+	// 		'owner' => $owner,
+	// 	]);
+	// } 
    
 	// SUBMIT-CONSULTATION
 	protected function submitConsultation(Request $req)

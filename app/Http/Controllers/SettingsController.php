@@ -54,6 +54,15 @@ class SettingsController extends Controller
 
 	}
 
+	protected function editGcashQRcode(){
+		return view('admin.settings.qr_code.gcash_qrcode_edit');
+	}
+
+	protected function editMayaQRcode(){
+		return view('admin.settings.qr_code.maya_qrcode_edit');
+	}
+
+
 	protected function messageResponse($id) {
 		$user = Auth::user();
 		$contacts = ContactInformation::find($id);

@@ -96,6 +96,14 @@
 											<small class="text-danger small mx-auto">{{ $errors->first('address') }}</small>
 										</div>
 									</div>
+
+									<div class="row">
+										<div class="col-12 col-lg-6 col-md-6 mx-auto  text-center ">
+											<a href="{{ route('gcash.edit')}}" class="btn btn-primary btn-sm w-lg-25">Edit Gcash Info</a>
+											<a href="{{ route('maya.edit')}}" class="btn btn-success btn-sm w-lg-25">Edit Maya Info</a>
+										</div>
+									</div>
+
 								</div>
 							</div>
 						</div>

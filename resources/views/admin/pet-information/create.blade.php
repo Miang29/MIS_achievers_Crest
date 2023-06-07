@@ -31,7 +31,7 @@
 					<h3 class="card-header font-weight-bold text-center bg-1 text-white"><i class="fa-solid fa-dog mr-2"></i>Pet Registration<i class="fa-solid fa-cat ml-2"></i></h3>
 					<div class="card-body d-flex">
 						<div class="row">
-							<div class="col-12 col-md-6 col-lg-12">
+							<div class="col-12 col-md-6 col-lg-12"> 
 								{{-- IMAGE INPUT --}}
 								<div class="image-input-scope" id="pet-image-scope_0" data-settings="#image-input-settings_0" data-fallback-img="{{ asset('uploads/settings/default.png') }}">
 									{{-- FILE IMAGE --}}

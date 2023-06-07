@@ -183,11 +183,6 @@
 						{{-- USE MODAL UPON UPDATING QR CODE INFO --}}
 						<div class="row">
 							<div class="col-lg-4 col-12 col-md-12 mb-3 border border-secondary mx-auto" style=" background: linear-gradient(to bottom, #00cc99 0%, #00cc99 100%);">
-								<div class="position-absolute border rounded input m-0 mt-2" style="top: -1rem; right: -1rem;">
-									<a href="#" class="btn btn-md bg-white border-light"><i class="fa-solid fa-pen text-black"></i></a>
-									
-								</div>
-
 								<h6 class="font-weight-bold mt-3 text-center text-dark">Pay using maya QR code</h6>
 								<img src="{{ asset('uploads/settings/maya_qr.jpg') }}" class="card ml-5">
 								<h6 class="font-weight-bold mt-2 text-center text-dark">09267785567</h6>
@@ -195,9 +190,6 @@
 							</div>
 
 							<div class="col-lg-4 col-12 col-md-12 mb-3 border border-secondary mx-auto" style=" background: linear-gradient(to bottom, #0000ff 0%, #0066ff 100%);">
-								<div class="position-absolute border rounded input m-0 mt-2" style="top: -1rem; right: -1rem;">
-									<a href="#" class="btn btn-md bg-white border-light"><i class="fa-solid fa-pen text-black"></i></a>
-								</div>
 								<h6 class="font-weight-bold mt-3 text-center text-white">Pay using gcash QR code</h6>
 								<img src="{{ asset('uploads/settings/gcash_qr.jpg') }}" class="card ml-5">
 								<h6 class="font-weight-bold text-center text-dark">09260073317</h6>

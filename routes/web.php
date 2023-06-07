@@ -128,12 +128,8 @@ Route::group(['middleware' => ['auth']], function() {
 			Route::group(['prefix' => 'service'], function () {
 				//Index
 				Route::get('/', 'ServiceTransactionController@Services')->name('transaction.service');
-
 				//Create Service Trasaction
 				Route::get('create/transaction/consultation','ServiceTransactionController@createConsultationTransaction')->name('consultation.transaction.create');
-
-				//Create Consultation
-				Route::get('/create', 'ServiceTransactionController@createConsultation')->name('transaction.consultation.create');
 				//Submit Consultation
 				Route::post('/submit/consultation/transaction','ServiceTransactionController@submitConsultation')->name('submit.consultation');
 				//Show Consultation
@@ -366,6 +362,11 @@ Route::group(['middleware' => ['auth']], function() {
 		Route::get('/message/{id}/viewed','SettingsController@viewMessage')->name('view.message');
 		Route::get('/contact/{id}/show', 'SettingsController@contactShow')->name('contact.show');
 		Route::get('/message/{id}/response', 'SettingsController@messageResponse')->name('response');
+
+		//Edit Gcash
+		Route::get('/edit/gcash/information/','SettingsController@editGcashQRcode')->name('gcash.edit');
+		//Edit Maya
+		Route::get('/edit/maya/information/','SettingsController@editMayaQRcode')->name('maya.edit');
 
 		// SETTINGS - UNAVAILABLE DATES
 		Route::get('/settings/unavailable-dates/create', 'SettingsController@unavailableDatesCreate')->name('settings.unavailable-dates.create');
