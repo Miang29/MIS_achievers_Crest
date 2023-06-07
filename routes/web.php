@@ -130,7 +130,7 @@ Route::group(['middleware' => ['auth']], function() {
 				Route::get('/', 'ServiceTransactionController@Services')->name('transaction.service');
 
 				//Create Service Trasaction
-				Route::get('create/transaction','ServiceTransactionController@createServiceTransaction')->name('service.transaction.create');
+				Route::get('create/transaction/consultation','ServiceTransactionController@createConsultationTransaction')->name('consultation.transaction.create');
 
 				//Create Consultation
 				Route::get('/create', 'ServiceTransactionController@createConsultation')->name('transaction.consultation.create');
@@ -161,7 +161,7 @@ Route::group(['middleware' => ['auth']], function() {
 				Route::get('/boarding/show/{id}', 'ServiceTransactionController@showBoarding')->name('boarding.transaction.show');
 
 				//Create-Other-Transaction
-				Route::get('/create/other', 'ServiceTransactionController@createOthers')->name('other.transaction.create');
+				Route::get('/create/home-service/transaction', 'ServiceTransactionController@createHomeServiceTransaction')->name('home-service.transaction.create');
 				// Submit-Other-Transaction
 				Route::post('/submit/other/transaction','ServiceTransactionController@submitOtherTransaction')->name('submit.other.transaction');
 				//Show Transaction

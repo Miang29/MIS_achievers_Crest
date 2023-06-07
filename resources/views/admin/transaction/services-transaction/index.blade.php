@@ -15,12 +15,11 @@
 				<i class="fas fa-plus-circle mr-2"></i>New Transaction
 			</button>
 			<div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-				<a href="{{ route('transaction.consultation.create') }}" class="dropdown-item" type="button"><i class="fa-solid fa-stethoscope mr-2"></i>Consultation</a>
+				<a href="{{ route('consultation.transaction.create') }}" class="dropdown-item" type="button"><i class="fa-solid fa-stethoscope mr-2"></i>Consultation</a>
 				<a  href="{{ route('transaction.vaccination.create') }}" class="dropdown-item" type="button"><i class="fa-solid fa-syringe mr-2"></i>Vaccination</a>
 				<a href="{{ route('transaction.grooming.create') }}" class="dropdown-item" type="button"><i class="fa-solid fa-scissors mr-2"></i>Grooming</a>
 				<a href="{{ route('transaction.boarding.create') }}" class="dropdown-item" type="button"><i class="fa-solid fa-paw mr-2"></i>Boarding</a>
-				<a href="{{ route('other.transaction.create') }}" class="dropdown-item" type="button"><i class="fa-solid fa-sliders mr-2"></i>Other Transaction</a>
-				<a href="{{ route('service.transaction.create') }}" class="dropdown-item" type="button"><i class="fa-solid fa-sliders mr-2"></i>Create Transaction</a>
+				<a href="{{ route('home-service.transaction.create') }}" class="dropdown-item" type="button"><i class="fa-solid fa-sliders mr-2"></i>Home Service</a>
 			</div>
 		</div>
 	</div>
@@ -44,7 +43,7 @@
 			</li>
 
 			<li class="nav-item">
-				<a class="nav-link" id="other-tab" data-toggle="tab" href="#other" role="tab" aria-controls="other" aria-selected="false">Other Transactions Table </a>
+				<a class="nav-link" id="other-tab" data-toggle="tab" href="#other" role="tab" aria-controls="other" aria-selected="false">Home Service Transaction Table </a>
 			</li>
 		</ul>
 

@@ -9,97 +9,250 @@
 	
 	<form class="card mx-auto" method="POST" action="{{ route('submit.boarding') }}" enctype="multipart/form-data">
 		{{ csrf_field() }}
-		<h3 class="card-header text-white gbg-1"><i class="fa-solid fa-square-plus mr-2 fa-lg"></i>Boarding Transaction</h3>
+		<h3 class="font-weight-bold text-dark text-center mt-5">Create Boarding Transaction</h3>
 
-		{{-- REFERENCE NO --}}
-		<div class="row col-lg-12 col-12 col-md-12 mx-auto mt-3">
-			<div class="form-group col-6 col-lg-6 col-md-4 ml-auto">
-				<label class="important font-weight-bold text-1" for="reference_no">Reference No</label>
-				<input class="form-control" type="text" name="reference_no"/>
-			</div>
+		<div class="col-12 col-md-12 col-lg-12 mx-auto">
+			<div class="input-group mb-3">
+				<div class="input-group-prepend">
+					<label class="input-group-text bg-white" for="inputGroupSelect01">Client Name</label>
+				</div>
 
-			{{-- MODE OF PAYMENT --}}
-			<div class="form-group col-6 col-lg-6 col-md-4 mr-auto">
-				<label class="important font-weight-bold text-1" for="select">Mode of Payment</label>
-				<select id="select" class="form-control" name="mode_of_payment">
-					<option value="">Select mode of payment</option>
-					<option value="cash">Cash</option>
-					<option value="paymaya">Paymaya</option>
-					<option value="gcash">Gcash</option>
+				<select class="custom-select" id="inputGroupSelect01" name="client_name">
+				{{-- 	@foreach($owner as $u)
+					<option value="{{ $u->id }}">{{$u->getName()}}</option>
+					@endforeach --}}
 				</select>
+				<small class="text-danger small">{{ $errors->first('client_name') }}</small>
 			</div>
 		</div>
 
-		<div class="card-body col-lg-12 col-12 col-md-12 mx-auto" id="form-area-boarding">
-			<div class="boarding position-relative border border-secondary col-lg-12 col012 col-md-12 mb-3" id="orig-boarding">
+		<div class="col-12 col-md-12 col-lg-12 mx-auto">
+			<div class="col-12 col-md-12 col-lg-12 mx-auto">
+				{{-- ARRAY FORM --}}
+				<div class="card-body" >
+					<div class="row "id="form-area-boarding"  >
+				 		<div class="col-12 col-md-12 col-lg-6 border border-secondary boarding position-relative" id="orig-boarding" >
+				 		{{-- PET INFORMATION --}}
+						<h5 class="font-weight-bold mt-3">Pet Information</h5>
+							<div class="card col-lg-12 col-md-12 col-12 mb-3">
+								<div class="row">
+									<div class="col-12 col-md-12 col-lg-12 mt-3">
+										<div class="input-group mb-3">
+											<div class="input-group-prepend">
+												<label class="input-group-text bg-white" for="inputGroupSelect01">Pet Name</label>
+											</div>
+											<select class="custom-select" id="inputGroupSelect01" name="pet_name">
+													{{-- @foreach($owner as $u)
+													<optgroup label="{{$u->getName()}}">
+														@foreach($u->petsInformations as $p)
+														<option selected  value="{{$p->id}}">{{$p->pet_name}}</option>
+														@endforeach
+													</optgroup>
+													@endforeach --}}
+											</select>
+										</div>
+										<small class="text-danger small">{{ $errors->first('pet_name') }}</small>
+									</div>
+									<div class="col-12 col-md-12 col-lg-6 mb-3">
+										<label class="important my-2" for="breed[]">Breed</label>
+										<input class="form-control" type="text" name="breed" value="{{ old('breed') }}" />
+										<small class="text-danger small">{{ $errors->first('breed.*') }}</small>
+									</div>
+									<div class="col-12 col-md-12 col-lg-6 mb-3">
+										<label class="important my-2" for="birthdate[]">Birthdate</label>
+										<input class="form-control" type="date" name="birthdate[]" value="{{ old('birthdate[]') }}" />
+										<small class="text-danger small">{{ $errors->first('birthdate.*') }}</small>
+									</div>
+								</div>
+							</div>
+							{{-- SERVICE TYPE --}}
+							<div class="card col-lg-12 col-md-12 col-12 my-2">
+								<div class="row">
+									<div class="col-lg-12 col-md-12 col-12 mt-3 mx-auto ">
+										<label class="important font-weight-bold text-1" for="variation_id[]">Boarding Type</label>
+										<div class="input-group mb-3">
+											<select class="custom-select text-1" name="variation_id[]"id="inputGroupSelect01">
+											@foreach($service as $s)
+												@foreach($s->variations as $v)
+												<option selected data-price="{{$v->price}}" value="{{$v->id}}">{{ "{$s->service_name} - {$v->variation_name}" }}</option>
+												@endforeach
+											@endforeach
+											</select>
+										</div>
+									</div>
+								</div>
+							</div>
 
-				<div class="row">
-					{{-- PET NAME  --}}
-					<div class="col-lg-4 col-md-12 col-12 mt-3 mx-auto ">
-						<label class="important font-weight-bold text-1" for="pet_name[]">Pet Name</label>
-						<div class="input-group mb-3">
-							<select class="custom-select text-1" name="pet_name[]" id="inputGroupSelect01">
-							@foreach($owner as $u)
-								<optgroup label="{{$u->getName()}}">
-								@foreach($u->petsInformations as $p)
-								<option selected  value="{{$p->id}}">{{$p->pet_name}}</option>
-								@endforeach
-								</optgroup>
-							@endforeach
-							</select>
+							{{-- PRICES --}}
+							<div class="card col-lg-12 col-md-12 col-12 my-2">
+								<div class="row">
+									{{-- PRICE --}}
+									<div class="col-12 col-lg-6 col-md-4 mx-auto mb-3">
+										<label for="price[]" class="form-label important">Price</label>
+										<div class="input-group flex-nowrap">
+											<div class="input-group-prepend">
+												<span class="input-group-text">₱</span>
+											</div>
+
+											<div class="input-group-append flex-fill">
+												<div class="input-group">
+													<input type="number" data-type="currency" name="price[]" class="form-control" readonly>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									{{-- ADDITIONAL COST --}}
+									<div class="col-12 col-lg-6 col-md-4 mx-auto mb-3">
+										<label class="important" for="additional_cost[]">Additional Cost</label>
+										<div class="input-group flex-nowrap">
+											<div class="input-group-prepend">
+												<span class="input-group-text">₱</span>
+											</div>
+
+											<div class="input-group-append flex-fill">
+												<div class="input-group">
+													<input type="number" data-type="currency" name="additional_cost[]" class="form-control">
+												</div>
+											</div>
+										</div>
+									</div>
+
+									{{-- TOTAL --}}
+									<div class="col-12 col-lg-12 col-md-4 mx-auto mb-3">
+										<label class="important" for="subtotal[]">Sub Total</label>
+										<div class="input-group flex-nowrap">
+											<div class="input-group-prepend">
+												<span class="input-group-text">₱</span>
+											</div>
+											
+											<div class="input-group-append flex-fill">
+												<div class="input-group">
+													<input type="number" data-type="currency" name="subtotal[]" class="form-control" readonly>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+				 		</div>
+				 	</div>
+				 	{{-- ADD --}}
+					<div class="form-group col-lg-12 col-md-12 col-12 mt-3 mx-auto">
+						<button class="card mx-auto w-100 h-100 d-flex" type="button" style="border-style: dashed; border-width: .25rem;" id="addboarding">
+							<span class="m-auto  font-weight-bold text-1"><i class="fa-solid fa-circle-plus mr-2"></i>Add Boarding Transaction</span>
+						</button>
+					</div>
+
+					{{-- PAYMENT METHOD --}}
+					<h5 class="font-weight-bold mt-3">Payment Method</h5>
+					<div class=" card col-lg-12 col-12 col-md-12">
+
+						<div class="row">
+							{{-- REFERENCE NO --}}
+							<div class="form-group col-12 col-lg-6 col-md-12 mx-auto">
+								<label class="important font-weight-bold text-1" for="reference_no">Reference No</label>
+								<input class="form-control" type="text" name="reference_no" />
+								<small class="text-danger small">{{ $errors->first('reference_no') }}</small>
+							</div>
+
+							{{-- MODE OF PAYMENT --}}
+							<div class="form-group col-12 col-lg-6 col-md-12">
+								<label class="important font-weight-bold text-1" for="mode_of_payment">Mode of Payment</label>
+								<select id="select" class="form-control" name="mode_of_payment">
+									<option value="">Select mode of payment</option>
+									<option value="cash">Cash</option>
+									<option value="paymaya">Paymaya</option>
+									<option value="gcash">Gcash</option>
+								</select>
+								<small class="text-danger small">{{ $errors->first('mode_of_payment') }}
+							</div>
+						</div>
+						{{-- USE MODAL UPON UPDATING QR CODE INFO --}}
+						<div class="row">
+							<div class="col-lg-4 col-12 col-md-12 mb-3 border border-secondary mx-auto" style=" background: linear-gradient(to bottom, #00cc99 0%, #00cc99 100%);">
+								<div class="position-absolute border rounded input m-0 mt-2" style="top: -1rem; right: -1rem;">
+									<a href="#" class="btn btn-md bg-white border-light"><i class="fa-solid fa-pen text-black"></i></a>
+									
+								</div>
+
+								<h6 class="font-weight-bold mt-3 text-center text-dark">Pay using maya QR code</h6>
+								<img src="{{ asset('uploads/settings/maya_qr.jpg') }}" class="card ml-5">
+								<h6 class="font-weight-bold mt-2 text-center text-dark">09267785567</h6>
+								<h6 class="font-weight-bold mt-1 text-center text-dark">Juan D.</h6>
+							</div>
+
+							<div class="col-lg-4 col-12 col-md-12 mb-3 border border-secondary mx-auto" style=" background: linear-gradient(to bottom, #0000ff 0%, #0066ff 100%);">
+								<div class="position-absolute border rounded input m-0 mt-2" style="top: -1rem; right: -1rem;">
+									<a href="#" class="btn btn-md bg-white border-light"><i class="fa-solid fa-pen text-black"></i></a>
+								</div>
+								<h6 class="font-weight-bold mt-3 text-center text-white">Pay using gcash QR code</h6>
+								<img src="{{ asset('uploads/settings/gcash_qr.jpg') }}" class="card ml-5">
+								<h6 class="font-weight-bold text-center text-dark">09260073317</h6>
+								<h6 class="font-weight-bold text-center text-dark">Juan D.</h6>
+							</div>
 						</div>
 					</div>
 
-					{{-- Service Name  --}}
-					<div class="col-lg-4 col-md-12 col-12 mt-3 mx-auto ">
-						<label class="important font-weight-bold text-1" for="variation_id[]">Service Name</label>
-						<div class="input-group mb-3">
-							<select class="custom-select text-1" name="variation_id[]"id="inputGroupSelect01">
-							@foreach($service as $s)
-								<optgroup label="{{$s->service_name}}"> 
-								@foreach($s->variations as $v)
-								<option selected data-price="{{$v->price}}"  value="{{$v->id}}">{{$v->variation_name}}</option>
-								@endforeach
-								</optgroup>
-							@endforeach
-							</select>
-						</div>
-					</div>
+					{{-- TOTAL --}}
+					<h5 class="font-weight-bold mt-3 text-dark">Total</h5>
+					<div class=" card col-lg-12 col-12 col-md-12 changes">
+						<div class="row my-3">
+							{{-- TOTAL --}}
+							<div class="col-12 col-lg-4 col-md-12 mx-auto">
+								<label class="important  font-weight-bold text-1" for="total_amt">Total</label>
+								<div class="input-group flex-nowrap">
+									<div class="input-group-prepend">
+										<span class="input-group-text">₱</span>
+									</div>
+									
+									<div class="input-group-append flex-fill">
+										<div class="input-group">
+											<input type="number" data-type="currency" name="total_amt" class="form-control" readonly>
+										</div>
+									</div>
+								</div>
+							</div>
 
-					{{-- PRICE --}}
-					<div class="col-lg-4 col-md-12 col-12 mt-3 mr-auto ">
-						<div class="form-group col-12 col-lg-8 col-md-6 mx-auto">
-							<label class="important font-weight-bold text-1" for="price[]">Price</label>
-							<input class="form-control bg-light" type="number" name="price[]" value="{{old('price.0')}}" readonly />
-						</div>
-					</div>
-				</div>	
-			</div>
-		</div>
-			{{-- TOTAL AMOUNT --}}
-			<div class="col-12 col-lg-4 col-md-4 ml-auto mb-3">
-				<label class="important  font-weight-bold text-1" for="total_amt">Total Amount</label>
-				<div class="input-group flex-nowrap">
-					<div class="input-group-prepend">
-						<span class="input-group-text">₱</span>
-					</div>
-					<div class="input-group-append flex-fill">
-						<div class="input-group">
-							<input type="number" data-type="currency" name="total_amt" class="form-control" readonly>
+							{{-- AMOUNT --}}
+							<div class="col-12 col-lg-4 col-md-12 mx-auto">
+								<label class="important  font-weight-bold text-1" for="amount">Amount</label>
+								<div class="input-group flex-nowrap">
+									<div class="input-group-prepend">
+										<span class="input-group-text">₱</span>
+									</div>
+									
+									<div class="input-group-append flex-fill">
+										<div class="input-group">
+											<input type="number" data-type="currency" name="amount" class="form-control">
+										</div>
+									</div>
+								</div>
+							</div>
+
+							{{-- Change --}}
+							<div class="col-12 col-lg-4 col-md-12 mx-auto">
+								<label class="important  font-weight-bold text-1" for="change">Change</label>
+								<div class="input-group flex-nowrap">
+									<div class="input-group-prepend">
+										<span class="input-group-text">₱</span>
+									</div>
+									
+									<div class="input-group-append flex-fill">
+										<div class="input-group">
+											<input type="number" data-type="currency" name="change" class="form-control" readonly>
+										</div>
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	
 		{{-- FOOTER --}}
 		<div class="card-footer d-flex flex-column">
-			<div class="form-group col-6 mx-auto">
-				<button class="card mx-auto w-100 h-100 d-flex" type="button" style="border-style: dashed; border-width: .25rem;" id="addboarding">
-					<span class="m-auto  font-weight-bold text-1"><i class="fa-solid fa-circle-plus mr-2"></i>Add Pet</span>
-				</button>
-			</div>
-
 			<div class="col-4 my-2 mx-auto text-center">
 				<button type="submit" class="btn btn-outline-info btn-sm w-25" data-action="submit" data-type="submit">Save</button>
 				<a href="javascript:void(0);" onclick="confirmLeave('{{ route('transaction.service') }}');" class="btn btn-outline-danger btn-sm w-25">Cancel</a>
@@ -137,16 +290,30 @@
 			$(document).on('change', '[name="variation_id[]"]', (e) => {
 				let obj = $(e.target);
 				let price = obj.find(":selected").attr("data-price");
-				console.log(price);
 				let target = $(obj.closest(".boarding").find(`[name="price[]"]`)[0]);
 
 				target.val(price)
 					.trigger('change');
 			});
 
+
+			// Updates the total of the card
+			$(document).on('change', `[name="price[]"], [name="additional_cost[]"]`, (e) => {
+				let root = $(e.target).closest(".boarding");
+				let price = parseFloat($(root.find(`[name="price[]"]`)[0]).val());
+				let additional = parseFloat($(root.find(`[name="additional_cost[]"]`)[0]).val());
+				let total = $(root.find(`[name="subtotal[]"]`)[0]);
+
+				price = isNaN(price) ? 0.0 : price;
+				additional = isNaN(additional) ? 0.0 : additional;
+
+				total.val((price + additional).toFixed(2))
+					.trigger('change');
+			});
+
 			// Update the grand total
-			$(document).on('change', `[name="price[]"]`, (e) => {
-				let total = $(`[name="price[]"]`);
+			$(document).on('change', `[name="subtotal[]"]`, (e) => {
+				let total = $(`[name="subtotal[]"]`);
 				let grandTotal = $(`[name="total_amt"]`);
 				let gt = 0;
 
@@ -156,10 +323,24 @@
 				grandTotal.val(gt.toFixed(2));
 			});
 
+			// Update the Change
+			$(document).on('change',`[name="total_amt"], [name="amount"]`, (e) => {
+				let root = $(e.target).closest(".changes");
+				let totalAmount = parseFloat($(root.find(`[name="total_amt"]`)[0]).val());
+				let amount = parseFloat($(root.find(`[name="amount"]`)[0]).val());
+				let change = $(root.find(`[name=change]`)[0]);
+
+				totalAmount = isNaN(totalAmount) ? 0.0 : totalAmount;
+				amount = isNaN(amount) ? 0.0 : amount;
+
+				change.val((amount - totalAmount).toFixed(2))
+					.trigger('change');
+			});
+
 			triggerAllListeners();
 		});
 
-	function triggerAllListeners() {
+		function triggerAllListeners() {
 			$('[name="variation_id[]"], [name="price[]"]').trigger('change');
 
 		}

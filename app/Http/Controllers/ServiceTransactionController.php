@@ -28,10 +28,10 @@ class ServiceTransactionController extends Controller
 {
 	// SERVICES TRANSACTION 
 
-	protected function createServiceTransaction(){
+	protected function createConsultationTransaction(){
 
 		$service = Services::where('service_name', '=', 'Consultation')->with('variations')->first();
-		return view('admin.transaction.services-transaction.service_transaction_create', [
+		return view('admin.transaction.services-transaction.consultation_transaction_create', [
 			'service' => $service,
 			
 		]);
@@ -427,11 +427,11 @@ class ServiceTransactionController extends Controller
 	}
 
 	// CREATE OTHER TRANSACTION
-	protected function createOthers()
+	protected function createHomeServiceTransaction()
 	{
-		$services = Services::has("variations", '>', 0)->with('variations')->get();
+		$services = Services::where('id', '=', 1)->has("variations", '>', 0)->with('variations')->get();
 		$owner = User::where('user_type_id', '=', 4)->has("petsInformations", '>', 0)->with('petsInformations')->get();
-		return view('admin.transaction.services-transaction.others-create',[
+		return view('admin.transaction.services-transaction.home_service_create',[
 			'services' => $services,
 			'owner' => $owner
 		]);

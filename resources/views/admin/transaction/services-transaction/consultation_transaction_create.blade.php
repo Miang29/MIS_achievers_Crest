@@ -32,7 +32,7 @@
 				{{-- ARRAY FORM --}}
 				<div class="card-body">
 					<div class="row"  id="form-area">
-				 		<div class="col-12 col-md-12 col-lg-6 border border-secondary" id="orig">
+				 		<div class="col-12 col-md-12 col-lg-6 consultation border border-secondary" id="orig">
 						{{-- PET INFORMATION --}}
 						<h5 class="font-weight-bold mt-3">Pet Information</h5>
 						<div class="card col-lg-12 col-md-12 col-12 mb-3">
@@ -52,8 +52,8 @@
 												</optgroup>
 												@endforeach --}}
 										</select>
-										<small class="text-danger small">{{ $errors->first('pet_name') }}</small>
 									</div>
+										<small class="text-danger small">{{ $errors->first('pet_name') }}</small>
 								</div>
 				
 								<div class="col-12 col-md-12 col-lg-6 mb-3">
@@ -127,8 +127,8 @@
 								</div>
 							</div>
 						</div>
-						{{-- PRICES --}}
-						<div class="card col-lg-12 col-md-12 col-12 my-2">
+							{{-- PRICES --}}
+							<div class="card col-lg-12 col-md-12 col-12 my-2">
 								<div class="row">
 									{{-- PRICE --}}
 									<div class="col-12 col-lg-6 col-md-4 mx-auto mb-3">
@@ -189,112 +189,108 @@
 						</button>
 					</div>			
 
-				{{-- PAYMENT METHOD --}}
-				<h5 class="font-weight-bold mt-3">Payment Method</h5>
-				<div class=" card col-lg-12 col-12 col-md-12">
+					{{-- PAYMENT METHOD --}}
+					<h5 class="font-weight-bold mt-3">Payment Method</h5>
+					<div class=" card col-lg-12 col-12 col-md-12">
 
-					<div class="row">
-						{{-- REFERENCE NO --}}
-						<div class="form-group col-12 col-lg-6 col-md-12 mx-auto">
-							<label class="important font-weight-bold text-1" for="reference_no">Reference No</label>
-							<input class="form-control" type="text" name="reference_no" />
-							<small class="text-danger small">{{ $errors->first('reference_no') }}</small>
-						</div>
-
-						{{-- MODE OF PAYMENT --}}
-						<div class="form-group col-12 col-lg-6 col-md-12">
-							<label class="important font-weight-bold text-1" for="mode_of_payment">Mode of Payment</label>
-							<select id="select" class="form-control" name="mode_of_payment">
-								<option value="">Select mode of payment</option>
-								<option value="cash">Cash</option>
-								<option value="paymaya">Paymaya</option>
-								<option value="gcash">Gcash</option>
-							</select>
-							<small class="text-danger small">{{ $errors->first('mode_of_payment') }}
-						</div>
-					</div>
-				{{-- USE MODAL UPON UPDATING QR CODE INFO --}}
-					<div class="row">
-						<div class="col-lg-4 col-12 col-md-12 mb-3 border border-secondary mx-auto" style=" background: linear-gradient(to bottom, #00cc99 0%, #00cc99 100%);">
-							<div class="position-absolute border rounded input m-0 mt-2" style="top: -1rem; right: -1rem;">
-								<!-- Button trigger modal -->
-								<button type="button" class="btn btn-light" data-toggle="modal" data-target="#exampleModalCenter"><i class="fa-solid fa-pen text-black"></i></button>
-								
+						<div class="row">
+							{{-- REFERENCE NO --}}
+							<div class="form-group col-12 col-lg-6 col-md-12 mx-auto">
+								<label class="important font-weight-bold text-1" for="reference_no">Reference No</label>
+								<input class="form-control" type="text" name="reference_no" />
+								<small class="text-danger small">{{ $errors->first('reference_no') }}</small>
 							</div>
 
-							<h6 class="font-weight-bold mt-3 text-center text-dark">Pay using maya QR code</h6>
-							<img src="{{ asset('uploads/settings/maya_qr.jpg') }}" class="card ml-5">
-							<h6 class="font-weight-bold mt-2 text-center text-dark">09267785567</h6>
-							<h6 class="font-weight-bold mt-1 text-center text-dark">Juan D.</h6>
-						</div>
-
-						<div class="col-lg-4 col-12 col-md-12 mb-3 border border-secondary mx-auto" style=" background: linear-gradient(to bottom, #0000ff 0%, #0066ff 100%);">
-							<div class="position-absolute border rounded input m-0 mt-2" style="top: -1rem; right: -1rem;">
-								<a href="#" class="btn btn-md bg-white border-light"><i class="fa-solid fa-pen text-black"></i></a>
+							{{-- MODE OF PAYMENT --}}
+							<div class="form-group col-12 col-lg-6 col-md-12">
+								<label class="important font-weight-bold text-1" for="mode_of_payment">Mode of Payment</label>
+								<select id="select" class="form-control" name="mode_of_payment">
+									<option value="">Select mode of payment</option>
+									<option value="cash">Cash</option>
+									<option value="paymaya">Paymaya</option>
+									<option value="gcash">Gcash</option>
+								</select>
+								<small class="text-danger small">{{ $errors->first('mode_of_payment') }}
 							</div>
-							<h6 class="font-weight-bold mt-3 text-center text-white">Pay using gcash QR code</h6>
-							<img src="{{ asset('uploads/settings/gcash_qr.jpg') }}" class="card ml-5">
-							<h6 class="font-weight-bold text-center text-dark">09260073317</h6>
-							<h6 class="font-weight-bold text-center text-dark">Juan D.</h6>
+						</div>
+					{{-- USE MODAL UPON UPDATING QR CODE INFO --}}
+						<div class="row">
+							<div class="col-lg-4 col-12 col-md-12 mb-3 border border-secondary mx-auto" style=" background: linear-gradient(to bottom, #00cc99 0%, #00cc99 100%);">
+								<div class="position-absolute border rounded input m-0 mt-2" style="top: -1rem; right: -1rem;">
+									<a href="#" class="btn btn-md bg-white border-light"><i class="fa-solid fa-pen text-black"></i></a>
+									
+								</div>
+
+								<h6 class="font-weight-bold mt-3 text-center text-dark">Pay using maya QR code</h6>
+								<img src="{{ asset('uploads/settings/maya_qr.jpg') }}" class="card ml-5">
+								<h6 class="font-weight-bold mt-2 text-center text-dark">09267785567</h6>
+								<h6 class="font-weight-bold mt-1 text-center text-dark">Juan D.</h6>
+							</div>
+
+							<div class="col-lg-4 col-12 col-md-12 mb-3 border border-secondary mx-auto" style=" background: linear-gradient(to bottom, #0000ff 0%, #0066ff 100%);">
+								<div class="position-absolute border rounded input m-0 mt-2" style="top: -1rem; right: -1rem;">
+									<a href="#" class="btn btn-md bg-white border-light"><i class="fa-solid fa-pen text-black"></i></a>
+								</div>
+								<h6 class="font-weight-bold mt-3 text-center text-white">Pay using gcash QR code</h6>
+								<img src="{{ asset('uploads/settings/gcash_qr.jpg') }}" class="card ml-5">
+								<h6 class="font-weight-bold text-center text-dark">09260073317</h6>
+								<h6 class="font-weight-bold text-center text-dark">Juan D.</h6>
+							</div>
 						</div>
 					</div>
-				</div>
 
-				{{-- TOTAL --}}
-
-				<h5 class="font-weight-bold mt-3 text-dark">Total</h5>
-				<div class=" card col-lg-12 col-12 col-md-12">
-
-					<div class="row my-3">
-						
 					{{-- TOTAL --}}
-					<div class="col-12 col-lg-4 col-md-12 mx-auto">
-						<label class="important  font-weight-bold text-1" for="total_amt[]">Total</label>
-						<div class="input-group flex-nowrap">
-							<div class="input-group-prepend">
-								<span class="input-group-text">₱</span>
-							</div>
-							
-							<div class="input-group-append flex-fill">
-								<div class="input-group">
-									<input type="number" data-type="currency" name="total_amt[]" class="form-control" readonly>
+
+					<h5 class="font-weight-bold mt-3 text-dark">Total</h5>
+					<div class=" card col-lg-12 col-12 col-md-12 changes">
+						<div class="row my-3">
+						{{-- TOTAL --}}
+						<div class="col-12 col-lg-4 col-md-12 mx-auto">
+							<label class="important  font-weight-bold text-1" for="total_amt">Total</label>
+							<div class="input-group flex-nowrap">
+								<div class="input-group-prepend">
+									<span class="input-group-text">₱</span>
+								</div>
+								
+								<div class="input-group-append flex-fill">
+									<div class="input-group">
+										<input type="number" data-type="currency" name="total_amt" class="form-control" readonly>
+									</div>
 								</div>
 							</div>
 						</div>
-					</div>
 
-					{{-- AMOUNT --}}
-					<div class="col-12 col-lg-4 col-md-12 mx-auto">
-						<label class="important  font-weight-bold text-1" for="amount[]">Amount</label>
-						<div class="input-group flex-nowrap">
-							<div class="input-group-prepend">
-								<span class="input-group-text">₱</span>
-							</div>
-							
-							<div class="input-group-append flex-fill">
-								<div class="input-group">
-									<input type="number" data-type="currency" name="amount" class="form-control">
+						{{-- AMOUNT --}}
+						<div class="col-12 col-lg-4 col-md-12 mx-auto">
+							<label class="important  font-weight-bold text-1" for="amount">Amount</label>
+							<div class="input-group flex-nowrap">
+								<div class="input-group-prepend">
+									<span class="input-group-text">₱</span>
+								</div>
+								
+								<div class="input-group-append flex-fill">
+									<div class="input-group">
+										<input type="number" data-type="currency" name="amount" class="form-control">
+									</div>
 								</div>
 							</div>
 						</div>
-					</div>
 
-					{{-- Change --}}
-					<div class="col-12 col-lg-4 col-md-12 mx-auto">
-						<label class="important  font-weight-bold text-1" for="change[]">Change</label>
-						<div class="input-group flex-nowrap">
-							<div class="input-group-prepend">
-								<span class="input-group-text">₱</span>
-							</div>
-							
-							<div class="input-group-append flex-fill">
-								<div class="input-group">
-									<input type="number" data-type="currency" name="change[]" class="form-control" readonly>
+						{{-- Change --}}
+						<div class="col-12 col-lg-4 col-md-12 mx-auto">
+							<label class="important  font-weight-bold text-1" for="change">Change</label>
+							<div class="input-group flex-nowrap">
+								<div class="input-group-prepend">
+									<span class="input-group-text">₱</span>
+								</div>
+								
+								<div class="input-group-append flex-fill">
+									<div class="input-group">
+										<input type="number" data-type="currency" name="change" class="form-control" readonly>
+									</div>
 								</div>
 							</div>
 						</div>
-					</div>
-
 					</div>
 				</div>
 			</div>
@@ -310,11 +306,6 @@
 @endsection
 @section('scripts')
 	<script type="text/javascript" src="{{ asset('js/util/confirm-leave.js') }}"></script>
-	<script type="text/javascript">
-		$('#myModal').on('shown.bs.modal', function () {
-  		$('#myInput').trigger('focus')
-			})
-	</script>
 	<script type="text/javascript">
 		$(document).ready(() => {
 			// Adding and Removing Variations
@@ -342,7 +333,7 @@
 			$(document).on('change', '[name="service_category_id[]"]', (e) => {
 				let obj = $(e.target);
 				let price = obj.find(":selected").attr("data-price");
-				let target = $(obj.closest(".form-group").find(`[name="price[]"]`)[0]);
+				let target = $(obj.closest(".consultation").find(`[name="price[]"]`)[0]);
 
 				target.val(price)
 					.trigger('change');
@@ -350,10 +341,10 @@
 
 			// Updates the total of the card
 			$(document).on('change', `[name="price[]"], [name="additional_cost[]"]`, (e) => {
-				let root = $(e.target).closest(".form-group");
+				let root = $(e.target).closest(".consultation");
 				let price = parseFloat($(root.find(`[name="price[]"]`)[0]).val());
 				let additional = parseFloat($(root.find(`[name="additional_cost[]"]`)[0]).val());
-				let total = $(root.find(`[name="total[]"]`)[0]);
+				let total = $(root.find(`[name="subtotal[]"]`)[0]);
 
 				price = isNaN(price) ? 0.0 : price;
 				additional = isNaN(additional) ? 0.0 : additional;
@@ -374,13 +365,26 @@
 				grandTotal.val(gt.toFixed(2));
 			});
 
+			// Update the Change
+			$(document).on('change',`[name="total_amt"], [name="amount"]`, (e) => {
+				let root = $(e.target).closest(".changes");
+				let totalAmount = parseFloat($(root.find(`[name="total_amt"]`)[0]).val());
+				let amount = parseFloat($(root.find(`[name="amount"]`)[0]).val());
+				let change = $(root.find(`[name=change]`)[0]);
+
+				totalAmount = isNaN(totalAmount) ? 0.0 : totalAmount;
+				amount = isNaN(amount) ? 0.0 : amount;
+
+				change.val((amount - totalAmount).toFixed(2))
+					.trigger('change');
+			});
+
 			triggerAllListeners();
 		});
 
 		function triggerAllListeners() {
 			$('[name="service_category_id[]"]').trigger('change');
 			$(`[name="price[]"], [name="additional_cost[]"]`).trigger('change');
-
 		}
 
 	</script>
