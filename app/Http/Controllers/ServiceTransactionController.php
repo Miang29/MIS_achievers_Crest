@@ -14,6 +14,7 @@ use App\BoardingTransaction;
 use App\OtherTransation;
 use App\User;
 use Carbon\Carbon;
+use App\PaymentMethodInfo;
 
 use Illuminate\Http\Request;
 
@@ -21,7 +22,6 @@ use DB;
 use Exception;
 use Log;
 use Validator;
-
 
 
 class ServiceTransactionController extends Controller
@@ -45,13 +45,6 @@ class ServiceTransactionController extends Controller
 		]);
 	}
 
-	protected function createConsultationTransaction(){
-		$service = Services::where('service_name', '=', 'Consultation')->with('variations')->first();
-		return view('admin.transaction.services-transaction.consultation_transaction_create', [
-			'service' => $service,
-			
-		]);
-	}
 	protected function showConsultation($id)
 	{
 		$conTran = ServicesOrderTransaction::with('consultation')->find($id);
@@ -96,31 +89,35 @@ class ServiceTransactionController extends Controller
 			'Tran' => $Tran
 		]);
 	}
-
-	// // CREATE Consultation TRANSACTION
-	// protected function createConsultation()
-	// {
-	// 	$service = Services::where('service_name', '=', 'Consultation')->with('variations')->first();
-	// 	$owner = User::where('user_type_id', '=', 4)->has("petsInformations", '>', 0)->with('petsInformations')->get();
-
-	// 	return view('admin.transaction.services-transaction.consultation-create', [
-	// 		'service' => $service,
-	// 		'owner' => $owner,
-	// 	]);
-	// } 
    
+	protected function createConsultationTransaction(){
+
+		$gcash = PaymentMethodInfo::where('id', '=', 1)->get();
+		$maya = PaymentMethodInfo::where('id', '=', 2)->get();
+		$service = Services::where('service_name', '=', 'Consultation')->with('variations')->first();
+		$owner = User::where('user_type_id', '=', 4)->has("petsInformations", '>', 0)->with('petsInformations')->get();
+
+		return view('admin.transaction.services-transaction.consultation_transaction_create', [
+			'service' => $service,
+			'owner' => $owner,
+			'gcash' => $gcash,
+			'maya' => $maya
+			
+		]);
+	}
 	// SUBMIT-CONSULTATION
 	protected function submitConsultation(Request $req)
 	{
 		$validator = Validator::make($req->all(), [
-			'reference_no' => 'required|numeric|between:1000000000,9999999999999',
-			'mode_of_payment' => 'required|max:255|string',
+			"client_name" => 'required|numeric|exists:users,id',
 			'service_category_id' => 'required|array',
 			'service_category_id.*'=>'required|exists:services,service_category_id|string',
 			'service_category_id.*.*' => 'required|min:2|max:255|string',
 			'pet_name' => 'required|array',
 			'pet_name.*' => 'required|exists:pets_informations,id|string',
 			'pet_name.*.*' => 'required|min:2|max:255|string',
+			'breed' => 'required|array',
+			'breed.*.*' => 'required|min:2|max:255|string',
 			'weight' => 'required|array',
 			'weight.*' => 'required|min:2|max:255|string',
 			'temperature' => 'required|array',
@@ -129,6 +126,8 @@ class ServiceTransactionController extends Controller
 			'findings.*' => 'required|min:2|max:255|string',
 			'treatment' => 'required|array',
 			'treatment.*' => 'required|min:2|max:255|string',
+			'prescription' => 'required|array',
+			'prescription.*' => 'required|min:2|max:255|string',
 			'price' => 'required|array',
 			'price.*' => 'required|numeric',
 			'additional_cost' => 'required|array',
@@ -136,6 +135,8 @@ class ServiceTransactionController extends Controller
 			'total' => 'required|array',
 			'total.*' => 'required|numeric',
 			'total_amt' => 'required|numeric',
+			'reference_no' => 'required|numeric|between:1000000000,9999999999999',
+			'mode_of_payment' => 'required|max:255|string',
 		]);
 
 		$validator->after(function($validator) use ($req) {
@@ -196,12 +197,16 @@ class ServiceTransactionController extends Controller
 	   // CREATE VACCINATION TRANSACTION
 	protected function createVaccination()
 	{
+		$gcash = PaymentMethodInfo::where('id', '=', 1)->get();
+		$maya = PaymentMethodInfo::where('id', '=', 2)->get();
 		$services = Services::where('id', '=', 3)->has("variations", '>', 0)->with('variations')->get();
 		// dd($serVar);
 		$owner = User::where('user_type_id', '=', 4)->has("petsInformations", '>', 0)->with('petsInformations')->get();
 		  return view('admin.transaction.services-transaction.vaccination-create',[
 			'services' => $services,
 			'owner' => $owner,
+			'gcash' => $gcash,
+			'maya' => $maya,
 		  ]);
 	}
 	// SUBMIT-VACCINATION
@@ -276,11 +281,15 @@ class ServiceTransactionController extends Controller
 	   // CREATE GROOMING TRANSACTION
 	protected function createGrooming()
 	{
+		$gcash = PaymentMethodInfo::where('id', '=', 1)->get();
+		$maya = PaymentMethodInfo::where('id', '=', 2)->get();
 		$services = Services::where('id', '=', 4)->has("variations", '>', 0)->with('variations')->get();
 		$owner = User::where('user_type_id', '=', 4)->has("petsInformations", '>', 0)->with('petsInformations')->get();
 		  return view('admin.transaction.services-transaction.grooming-create',[
 				'service' => $services,
-				'owner' => $owner
+				'owner' => $owner,
+				'gcash' => $gcash,
+				'maya'=> $maya,
 		  ]);
 	}
 
@@ -352,11 +361,15 @@ class ServiceTransactionController extends Controller
 	   // CREATE BOARDING TRANSACTION
 	protected function createBoarding()
 	{
+		$gcash = PaymentMethodInfo::where('id', '=', 1)->get();
+		$maya = PaymentMethodInfo::where('id', '=', 2)->get();
 		$services = Services::where('service_category_id', '=', 7)->has("variations", '>', 0)->with('variations')->get();
 		$owner = User::where('user_type_id', '=', 4)->has("petsInformations", '>', 0)->with('petsInformations')->get();
 		  return view('admin.transaction.services-transaction.boarding-create',[
 			'service' => $services,
-			'owner' => $owner
+			'owner' => $owner,
+			'gcash' => $gcash,
+			'maya' => $maya,
 		  ]);
 	}
 
@@ -424,14 +437,18 @@ class ServiceTransactionController extends Controller
 			->with('flash_success', "Transaction has been created successfully.");
 	}
 
-	// CREATE OTHER TRANSACTION
+	// CREATE HOME SERVICE TRANSACTION
 	protected function createHomeServiceTransaction()
 	{
+		$gcash = PaymentMethodInfo::where('id', '=', 1)->get();
+		$maya = PaymentMethodInfo::where('id', '=', 2)->get();
 		$services = Services::where('id', '=', 1)->has("variations", '>', 0)->with('variations')->get();
 		$owner = User::where('user_type_id', '=', 4)->has("petsInformations", '>', 0)->with('petsInformations')->get();
 		return view('admin.transaction.services-transaction.home_service_create',[
 			'services' => $services,
-			'owner' => $owner
+			'owner' => $owner,
+			'gcash' => $gcash,
+			'maya' => $maya,
 		]);
 	}
 

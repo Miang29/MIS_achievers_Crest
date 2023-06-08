@@ -20,9 +20,9 @@
 					</div>
 
 					<select class="custom-select" id="inputGroupSelect01" name="client_name">
-					{{-- 	@foreach($owner as $u)
-						<option value="{{ $u->id }}">{{$u->getName()}}</option>
-						@endforeach --}}
+						@foreach($owner as $u)
+						<option selected  value="{{$u->id}}">{{$u->getName()}}</option>
+						@endforeach
 					</select>
 					<small class="text-danger small">{{ $errors->first('client_name') }}</small>
 				</div>
@@ -43,30 +43,21 @@
 											<label class="input-group-text bg-white" for="inputGroupSelect01">Pet Name</label>
 										</div>
 
-										<select class="custom-select" id="inputGroupSelect01" name="pet_name">
-												{{-- @foreach($owner as $u)
-												<optgroup label="{{$u->getName()}}">
-													@foreach($u->petsInformations as $p)
-													<option selected  value="{{$p->id}}">{{$p->pet_name}}</option>
-													@endforeach
-												</optgroup>
-												@endforeach --}}
+										@foreach($owner as $u)
+										<select class="custom-select" id="inputGroupSelect01" name="pet_name[]">
+											@foreach($u->petsInformations as $p)
+											<option selected  value="{{$p->id}}">{{$p->pet_name}}</option>
+											@endforeach
 										</select>
+										@endforeach
 									</div>
-										<small class="text-danger small">{{ $errors->first('pet_name') }}</small>
+										<small class="text-danger small">{{ $errors->first('pet_name.*') }}</small>
 								</div>
 				
-								<div class="col-12 col-md-12 col-lg-6 mb-3">
+								<div class="col-12 col-md-12 col-lg-12 mb-3">
 									<label class="important my-2" for="breed[]">Breed</label>
-									<input class="form-control" type="text" name="breed" value="{{ old('breed') }}" />
+									<input class="form-control" type="text" name="breed[]" readonly value="" />
 									<small class="text-danger small">{{ $errors->first('breed.*') }}</small>
-								</div>
-
-
-								<div class="col-12 col-md-12 col-lg-6 mb-3">
-									<label class="important my-2" for="birthdate[]">Birthdate</label>
-									<input class="form-control" type="date" name="birthdate[]" value="{{ old('birthdate[]') }}" />
-									<small class="text-danger small">{{ $errors->first('birthdate.*') }}</small>
 								</div>
 							</div>
 						</div>
@@ -191,8 +182,8 @@
 
 					{{-- PAYMENT METHOD --}}
 					<h5 class="font-weight-bold mt-3">Payment Method</h5>
+					
 					<div class=" card col-lg-12 col-12 col-md-12">
-
 						<div class="row">
 							{{-- REFERENCE NO --}}
 							<div class="form-group col-12 col-lg-6 col-md-12 mx-auto">
@@ -213,26 +204,33 @@
 								<small class="text-danger small">{{ $errors->first('mode_of_payment') }}
 							</div>
 						</div>
-					{{-- USE MODAL UPON UPDATING QR CODE INFO --}}
 						<div class="row">
+							{{-- MAYA  --}}
 							<div class="col-lg-4 col-12 col-md-12 mb-3 border border-secondary mx-auto" style=" background: linear-gradient(to bottom, #00cc99 0%, #00cc99 100%);">
+								@foreach($maya as $m)
 								<h6 class="font-weight-bold mt-3 text-center text-dark">Pay using maya QR code</h6>
-								<img src="{{ asset('uploads/settings/maya_qr.jpg') }}" class="card ml-5">
-								<h6 class="font-weight-bold mt-2 text-center text-dark">09267785567</h6>
-								<h6 class="font-weight-bold mt-1 text-center text-dark">Juan D.</h6>
+								<div class="text-center text-lg-right">
+								   <img src='{{ asset("uploads/settings/qr_codes/" . $m->payment_method_image) }}' class="card ml-5" style="width: 12rem; height: 12rem;" data-target='#{{ "{$m->name}-{$m->id}" }}' id='img-{{ "{$m->name }-{$m->id}" }}'>
+								</div>
+								<h6 class="font-weight-bold mt-2 text-center text-dark">{{ $m->mobile_no }}</h6>
+								<h6 class="font-weight-bold mt-1 text-center text-dark">{{ $m->name }}</h6>
+								@endforeach
 							</div>
-
-							<div class="col-lg-4 col-12 col-md-12 mb-3 border border-secondary mx-auto" style=" background: linear-gradient(to bottom, #0000ff 0%, #0066ff 100%);">
+							{{-- GCASH  --}}
+							<div class="col-lg-4 col-12 col-md-12 mb-3 border border-secondary mx-auto bg-primary">
+								@foreach($gcash as $g)
 								<h6 class="font-weight-bold mt-3 text-center text-white">Pay using gcash QR code</h6>
-								<img src="{{ asset('uploads/settings/gcash_qr.jpg') }}" class="card ml-5">
-								<h6 class="font-weight-bold text-center text-dark">09260073317</h6>
-								<h6 class="font-weight-bold text-center text-dark">Juan D.</h6>
+								<div class="text-center text-lg-right">
+								   <img src='{{ asset("uploads/settings/qr_codes/" . $g->payment_method_image) }}' class="card ml-5" style="width: 13rem; height: 12rem;" data-target='#{{ "{$g->name}-{$g->id}" }}' id='img-{{ "{$g->name }-{$g->id}" }}'>
+								</div>
+								<h6 class="font-weight-bold text-center text-dark">{{ $g->mobile_no }}</h6>
+								<h6 class="font-weight-bold text-center text-dark">{{ $g->name }}</h6>
+								@endforeach
 							</div>
 						</div>
 					</div>
 
 					{{-- TOTAL --}}
-
 					<h5 class="font-weight-bold mt-3 text-dark">Total</h5>
 					<div class=" card col-lg-12 col-12 col-md-12 changes">
 						<div class="row my-3">

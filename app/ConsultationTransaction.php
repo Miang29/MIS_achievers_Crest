@@ -9,14 +9,17 @@ class ConsultationTransaction extends Model
 	protected $fillable = [
 		'transaction_id',
 		'service_category_id',
-		'price',
-		'additional_cost',
-		'total',
+		'client_name',
 		'pet_name',
+		'breed',
 		'weight',
 		'temperature',
 		'findings',
-		'treatment'
+		'treatment',
+		'prescription',
+		'price',
+		'additional_cost',
+		'total',
 	];
 
 	protected $table = "consultation_transaction";

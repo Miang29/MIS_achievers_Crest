@@ -17,10 +17,10 @@ use PDF;
 use Validator;
 
 
-class ClientController extends Controller
+class ClientController extends Controller 
 { 
 
-	// -------------------- PET INFORMATION INDEX ---------------------- //
+	// -------------------- PET INFORMATION INDEX -----------------=----- //
 	protected function index(Request $req)
 	{
 

@@ -367,6 +367,8 @@ Route::group(['middleware' => ['auth']], function() {
 		Route::get('/edit/gcash/information/','SettingsController@editGcashQRcode')->name('gcash.edit');
 		//Edit Maya
 		Route::get('/edit/maya/information/','SettingsController@editMayaQRcode')->name('maya.edit');
+		// SUBMIT
+		Route::post('/update/information','SettingsController@savePaymentMethodInfo')->name('submit.payment.method');
 
 		// SETTINGS - UNAVAILABLE DATES
 		Route::get('/settings/unavailable-dates/create', 'SettingsController@unavailableDatesCreate')->name('settings.unavailable-dates.create');

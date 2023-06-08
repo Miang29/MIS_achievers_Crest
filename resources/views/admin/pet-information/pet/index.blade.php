@@ -18,7 +18,7 @@
 					<button type="submit" class="btn btn-secondary"><i class="fas fa-search"></i></button>
 				</div>
 			</div>
-		</form>
+		</form> 
 	</div>
 	<div class="card mx-auto mt-4">
 		<h5 class="card-header text-center text-white bg-1 font-weight-bold text-justify" style=" word-spacing: 3px;">P E T <p>L I S T - I N F O R M A T I O N</h5>

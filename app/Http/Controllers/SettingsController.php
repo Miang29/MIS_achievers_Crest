@@ -10,6 +10,7 @@ use App\Settings;
 use App\UnavailableDate;
 use App\Appointments;
 use App\User;
+use App\PaymentMethodInfo;
 
 use DB;
 use Exception;
@@ -56,6 +57,53 @@ class SettingsController extends Controller
 
 	protected function editGcashQRcode(){
 		return view('admin.settings.qr_code.gcash_qrcode_edit');
+	}
+
+	protected function savePaymentMethodInfo(Request $req){
+
+		$validator = Validator::make($req->all(), [
+			'payment_method_image' => 'max:5120|mimes:jpeg,jpg,png,webp|nullable',
+			'mobile_no' => 'required|string|max:255',
+			'name' => 'required|string|max:255',
+			'payment_method' => 'required|string|max:255', 
+		]);
+
+		if ($validator->fails()) {
+			return redirect()
+				->back()
+				->withErrors($validator)
+				->withInput();
+		}
+		try {
+		DB::beginTransaction();
+		if ($req->hasFile("payment_method_image")) {
+			$destination = "uploads/settings/qr_codes";
+			$fileType = $req->file("payment_method_image")->getClientOriginalExtension();
+			$imagename = strtolower(preg_replace("/s+/", "_", $req->name)) . ".$fileType";
+			$req->file("payment_method_image")->move($destination, $imagename);
+		}
+			// dd($imagename);
+			$pm = PaymentMethodInfo::create([
+			'payment_method_image' => $imagename,
+			'mobile_no' => $req->mobile_no,
+			'name' => $req->name,
+			'payment_method' => $req->payment_method,
+		]);
+
+			DB::commit();
+		} catch (Exception $e) {
+			DB::rollback();
+			Log::error($e);
+
+			return redirect()
+			->route('gcash.edit')
+			->with('flash_error', 'Something went wrong, please try again later');
+		}
+
+		return redirect()
+		->route('settings.index')
+		->with('flash_success', "Successfully updated!");
+
 	}
 
 	protected function editMayaQRcode(){
