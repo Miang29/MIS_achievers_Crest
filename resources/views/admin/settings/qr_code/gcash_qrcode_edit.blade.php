@@ -2,7 +2,7 @@
 
 @section('title', 'Edit payment_method Information')
 
-@section('content')
+@section('content') 
 <div class="container-fluid m-0">
 	<h3 class="mt-3"><a href="{{ route('settings.index') }}" class="text-decoration-none  text-1"><i class="fas fa-chevron-left mr-2"></i>Settings</a></h3>
 	<hr class="hr-thick" style="border-color: #707070;">
@@ -20,6 +20,7 @@
 						<div class="row py-2 mx-1">
 							<div class="col-12 col-md-6 text-md-right">
 								<div class="hover-cam mx-auto avatar rounded overflow-hidden">
+									
 									<img src="{{ asset('uploads/settings/default.png') }}" class="hover-zoom img-fluid avatar" id="payment_method-image-container" alt="payment_method Image" data-default-src="{{ asset('uploads/settings/default.png') }}">
 									<span class="icon text-center image-input-float" id="payment_method-image" tabindex="0" data-target="#payment_method-image-container">
 										<i class="fas fa-camera text-white hover-icon-2x"></i>
