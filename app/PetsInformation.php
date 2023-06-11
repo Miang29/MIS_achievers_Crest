@@ -19,6 +19,9 @@ class PetsInformation extends Model
         'species',
         'gender',
         'types',
+        'traits',
+        'pet_status',
+        'lifespan',
     ];
 
     public function user() {

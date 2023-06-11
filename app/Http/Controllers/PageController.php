@@ -157,12 +157,116 @@ class PageController extends Controller
 
 	// CLIENT PANEL
 
-	protected function registerPets() {
-		return view('pet_registration.register_pet');
+	protected function registerPets($id) {
+
+		$user = User::find($id);
+		return view('pet_registration.register_pet',[
+			'user' => $user,
+		]);
 	}
 
-	protected function petsProfile() {
-		return view('pet_registration.pet_information');
+	protected function submitPetInfo(Request $req, $id)
+	{
+		$user = User::find($id);
+		// dd($user);
+
+		if ($user == null){
+			return redirect()
+			->route('pets.registration')
+			->with('flash_error', 'User either does not exists or is already deleted.');
+		}
+
+		$validator = Validator::make($req->all(), [
+			"pet_owner" => 'required|numeric|exists:users,id',
+			"pet_name" => 'required|array',
+			"pet_name.*" => 'required|max:255|string',
+			"breed" => 'required|array',
+			"breed.*" => 'required|string|max:255',
+			"colors" => 'required|array',
+			"colors.*" => 'required|array|max:3',
+			"colors.*.*" => 'required|string|max:255',
+			"birthdate" => 'required|array',
+			"birthdate.*" => 'required|date',
+			"species" => 'required|array',
+			"species.*" => 'required|string|max:255',
+			"gender" => 'required|array',
+			"gender.*" => 'required|string|max:255',
+			"types" => 'required|array',
+			"types.*" => 'required|string|max:255',
+			"traits" => 'required|array',
+			"traits.*" => 'required|string|max:255',
+			"pet_status" => 'required|array',
+			"pet_status.*" => 'required|string|max:255',
+			"lifespan" => 'required|array',
+			"lifespan.*" => 'required|string|max:255',
+			"pet_image.*" => 'max:5120|mimes:jpeg,jpg,png,webp|nullable',
+		], [
+			'pet_owner.required' => 'Please select client name.',
+			'pet_name.*.required' => 'Pet name is required.',
+			'breed.*.required' => 'Breed is required',
+			'colors.*.required' => 'Please select pet color.',
+			'birthdate.*.required' => 'Birthdate is required',
+			'species.*.required' => 'Please select a species',
+			'gender.*.required' => 'Please select a gender ',
+			'types.*.required' => 'Please select a type.',
+
+		]);
+	
+		if ($validator->fails()) {
+			return redirect()
+				->back()
+				->withErrors($validator)
+				->withInput();
+		}
+		try {
+			DB::beginTransaction();
+			$colorKeys = array_keys($req->colors);
+			for ($i = 0; $i < count($req->pet_name); $i++) {
+				$imagename = "";
+				if ($req->hasFile("pet_image.$i")) {
+					$destination = "uploads/clients/$req->pet_owner/pets";
+					$fileType = $req->file("pet_image.$i")->getClientOriginalExtension();
+					$imagename = strtolower(preg_replace("/s+/", "_", $req->pet_name[$i])) . ".$fileType";
+					$req->file("pet_image.$i")->move($destination, $imagename);
+				}
+				$pi = PetsInformation::create([
+					'pet_owner' => $req->pet_owner,
+					'pet_name' => $req->pet_name[$i],
+					'breed' => $req->breed[$i],
+					'colors' => implode(", ", $req->colors[$i]),
+					'birthdate' => $req->birthdate[$i],
+					'species' => $req->species[$i],
+					'gender' => $req->gender[$i],
+					'types' => $req->types[$i],
+					'traits' => $req->traits[$i],
+					'pet_status' => $req->pet_status[$i],
+					'lifespan' => $req->lifespan[$i],
+					'pet_image' => $imagename,
+				]);
+			}
+			DB::commit();
+		} catch (Exception $e) {
+			DB::rollback();
+			Log::error($e);
+
+			return redirect()
+				->route('pets.registration',[$user->id])
+				->with('flash_error', 'Something went wrong, please try again later');
+		}
+
+		return redirect()
+			->route('home')
+			->with('flash_success', "Successfully registered!");
+	}
+
+	protected function petsProfile($id) {
+
+		$pets = PetsInformation::where('pet_owner', '=', $id)->get();
+		return view('pet_registration.pet_information',[
+			'pets' => $pets,
+			'id' => $id
+
+		]);
 	}
 
 	protected function user() {

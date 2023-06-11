@@ -107,6 +107,8 @@
 		@yield('script')
 
 		@yield('pre-script')
+		<script type="text/javascript">const fiFallbackImage = '{{ asset("uploads/settings/default.png") }}';</script>
+		<script type="text/javascript" src="{{ asset('js/util/fallback-image.js') }}"></script>
 		<script type="text/javascript">
 			@if(Session::has('flash_error'))
 			Swal.fire({

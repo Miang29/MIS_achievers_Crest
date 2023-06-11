@@ -195,6 +195,12 @@ class ClientController extends Controller
 			"gender.*" => 'required|string|max:255',
 			"types" => 'required|array',
 			"types.*" => 'required|string|max:255',
+			"traits" => 'required|array',
+			"traits.*" => 'required|string|max:255',
+			"pet_status" => 'required|array',
+			"pet_status.*" => 'required|string|max:255',
+			"lifespan" => 'required|array',
+			"lifespan.*" => 'required|string|max:255',
 			"pet_image.*" => 'max:5120|mimes:jpeg,jpg,png,webp|nullable',
 		], [
 			'pet_owner.required' => 'Please select client name.',
@@ -234,6 +240,9 @@ class ClientController extends Controller
 					'species' => $req->species[$i],
 					'gender' => $req->gender[$i],
 					'types' => $req->types[$i],
+					'traits' => $req->traits[$i],
+					'pet_status' => $req->pet_status[$i],
+					'lifespan' => $req->lifespan[$i],
 					'pet_image' => $imagename,
 				]);
 			}
@@ -263,6 +272,9 @@ class ClientController extends Controller
 			"species" => 'required|string|max:255',
 			"gender" => 'required|string|max:255',
 			"types" => 'required|string|max:255',
+			"traits" => 'required|string|max:255',
+			"pet_status" => 'required|string|max:255',
+			"lifespan" => 'required|string|max:255',
 			"pet_image" => 'max:5120|mimes:jpeg,jpg,png,webp|nullable',
 		], [
 
@@ -300,7 +312,10 @@ class ClientController extends Controller
 				'species' => $req->species,
 				'gender' => $req->gender,
 				'types' => $req->types,
-				'pet_image' => $imagename,
+				'traits' => $req->types,
+				'pet_status' => $req->types,
+				'types' => $req->types,
+				'lifespan' => $imagename,
 			]);
 			DB::commit();
 		} catch (Exception $e) {
@@ -335,6 +350,9 @@ class ClientController extends Controller
 			"species" => 'required|string|max:255',
 			"gender" => 'required|string|max:255',
 			"types" => 'required|string|max:255',
+			"traits" => 'required|string|max:255',
+			"pet_status" => 'required|string|max:255',
+			"lifespan" => 'required|string|max:255',
 			"pet_image" => 'max:5120|mimes:jpeg,jpg,png,webp|nullable',
 		]);
 		if ($validator->fails()) {
@@ -366,6 +384,9 @@ class ClientController extends Controller
 			$pi->species = $req->species;
 			$pi->gender = $req->gender;
 			$pi->types = $req->types;
+			$pi->traits = $req->traits;
+			$pi->pet_status = $req->pet_status;
+			$pi->lifespan = $req->lifespan;
 			$pi->save();
 
 			DB::commit();

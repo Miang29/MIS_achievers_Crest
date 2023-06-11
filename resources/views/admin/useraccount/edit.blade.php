@@ -99,7 +99,7 @@
 			
 			<div class="card-footer d-flex">
 				<div class="col-lg-6 col-md-6 col-12 mx-auto  text-center">
-					<button type="submit" class="btn btn-outline-info  btn-sm  w-25  mb-3" data-type="submit">Save</button>
+					<button type="submit" class="btn btn-outline-info  btn-sm  w-25  mb-3" data-type="submit" data-action="update" data-action="update">Update</button>
 					<a href="javascript:void(0);" onclick="confirmLeave('{{ route('user.index') }}');" class="btn btn-outline-danger btn-sm w-25 mb-3">Cancel</a>
 				</div>
 			</div>

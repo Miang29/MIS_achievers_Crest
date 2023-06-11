@@ -113,12 +113,7 @@ class UserController extends Controller
 			]);
 	}
 
-	// AUTHENTICATION FUNCTIONS
-	protected function login()
-	{
-		return view('login');
-	}
-
+	// CLIENT PROFILE
 	protected function profile($id)
 	{
 		$user = User::find($id);
@@ -128,11 +123,100 @@ class UserController extends Controller
 				->route('home')
 				->with('flash_error', 'User already removed. Please refresh your browser if it is still visible');
 
-		return view('profile', [
+		return view('client_profile.profile', [
 			'user' => $user
 		]);
 	}
 
+	// EDIT CLIENT PROFILE
+	protected function editClientProfile($id)
+	{
+		$client = User::find($id);
+		$types = UserType::get();
+
+		if ($client == null)
+			return redirect()
+				->route('user.index')
+				->with('flash_error', 'User already removed. Please refresh your browser if it is still visible');
+
+		return view('client_profile.edit_profile', [
+			'client' => $client,
+			'types' => $types,
+		]);
+	}
+
+	protected function updateClientProfile(Request $req, $id)
+	{
+		$client = User::find($id);
+
+		if ($client == null){
+			return redirect()
+			->route('client.edit.profile',[$client->id])
+			->with('flash_error', 'User either does not exists or is already deleted.');
+		}
+
+		$validator = Validator::make($req->all(), [
+			'first_name' => 'required|min:2|max:255|string',
+			'middle_name' => 'nullable|min:2|max:255|string',
+			'last_name' => 'required|min:2|max:255|string',
+			'suffix' => 'nullable|min:2|max:255|string',
+			'email' => ['required', 'min:2', 'max:255', 'email', Rule::unique('users')->ignore($id)],
+			'address' => 'nullable|min:2|max:255|string',
+			'username' => ['required', 'min:2', 'max:255', 'string', Rule::unique('users')->ignore($id)],
+			'user_type' => 'required|exists:user_types,id|numeric',
+			
+		], [
+			'first_name.required' => 'Firstname is required',
+			'last_name.required' => 'Lastname is required',
+			'username.required' => 'Username is required',
+			'usertype.required' => 'Usertype is required',
+			'email.email' => 'Please provide a proper email address',
+			'email.max' => 'Please provide a proper email address',
+			
+		]);
+
+		if ($validator->fails()) {
+			return redirect()
+				->back()
+				->withErrors($validator);
+		}
+
+		try {
+			DB::beginTransaction();
+
+			$client->first_name = $req->first_name;
+			$client->middle_name = $req->middle_name;
+			$client->last_name = $req->last_name;
+			$client->suffix = $req->suffix;
+			$client->email = $req->email;
+			$client->address = $req->address;
+			$client->username = $req->username;
+			$client->user_type_id = $req->user_type;
+			$client->save();
+			
+			DB::commit();
+		} catch (Exception $e) {
+			DB::rollback();
+			Log::error($e);
+
+			if ($client == null)
+				return redirect()
+					->route('client.edit.profile',[$client->id])
+					->with('flash_error', 'Client already removed. Please refresh your browser if it is still visible');
+		}
+		return redirect()
+			->route('profile',[$client->id])
+			->with('flash_success', 'Successfully updated your information');
+	}
+
+
+	// AUTHENTICATION FUNCTIONS
+	protected function login()
+	{
+		return view('login');
+	}
+
+	//AUTHENTICATE
 	protected function authenticate(Request $req)
 	{
 		$user = User::where('username', '=', $req->username)->first();
@@ -396,7 +480,7 @@ class UserController extends Controller
 					->with('flash_error', 'User already removed. Please refresh your browser if it is still visible');
 		}
 		return redirect()
-			->route('user.index')
+			// ->route('user.index')
 			->with('flash_success', 'Successfully updated user information');
 	}
 

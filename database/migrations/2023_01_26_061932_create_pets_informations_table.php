@@ -24,6 +24,9 @@ class CreatePetsInformationsTable extends Migration
             $table->string('species')->default("pet");
             $table->string('gender')->default("trans");
             $table->string('types')->default("tamed");
+            $table->string('traits')->nullable();
+            $table->string('pet_status')->default("alive");
+            $table->string('lifespan')->nullable();
             $table->timestamps();
             $table->softDeletes();
 

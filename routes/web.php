@@ -17,8 +17,9 @@ Route::get('/contact-us', 'PageController@contactUs')->name('contact-us');
 Route::post('/submit/message', 'PageController@submit')->name('submit.message');
 Route::get('/privacy-policy', 'PageController@privacyPolicy')->name('privacy-policy');
 Route::get('/terms-of-service', 'PageController@termsOfService')->name('terms-of-service');
-Route::get('/register/pet', 'PageController@registerPets')->name('pets.registration');
-Route::get('/pets/profile/information', 'PageController@petsProfile')->name('pets.profile.information');
+Route::get('/register/{id}/pet/', 'PageController@registerPets')->name('pets.registration');
+Route::post('/submit/registration/{id}', 'PageController@submitPetInfo')->name('register.submit');
+Route::get('/view/pet/{id}/information', 'PageController@petsProfile')->name('pets.profile.information');
 
 // AUTHENTICATION
 Route::get('/login', 'UserController@login')->name('login');
@@ -47,6 +48,11 @@ Route::group(['middleware' => ['auth']], function() {
 
 	// USER PROFILE
 	Route::get('/profile/{id}', 'UserController@profile')->name('profile');
+	//Edit Client Profile
+	Route::get('/edit/{id}/client/profile', 'UserController@editClientProfile')->name('client.edit.profile');
+	// UPDATE CLIENT PROFILE
+	Route::post('/update/{id}/client/profile', 'UserController@updateClientProfile')->name('client.update.profile');
+
 
 	// DASHBOARD REDIRECT
 	Route::get('/dashboard', 'PageController@redirectDashboard')->name('dashboard.redirect');
@@ -405,6 +411,7 @@ Route::group(['middleware' => ['auth']], function() {
 
 			// Notify Client
 			Route::get('/notify/clients','UserController@notifyClients')->name('notify-client');
+			//Submit Notification
 			Route::post('/notify/clients/submit','UserController@submitNotification')->name('notify-client.submit');
 		});
 	});
