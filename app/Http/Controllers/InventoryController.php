@@ -90,6 +90,7 @@ class InventoryController extends Controller
 			'stocks' => 'required|numeric',
 			'price' => 'numeric',
 			'status' => 'required|min:2|max:355|string',
+			'expired_at' => 'nullable|min:2|max:355|string',
 			'description' => 'nullable|min:2|max:355|string',
 		]);
 
@@ -106,6 +107,7 @@ class InventoryController extends Controller
 			$prd->stocks = $req->stocks;
 			$prd->price = $req->price;
 			$prd->status = $req->status;
+			$prd->expired_at = $req->expired_at;
 			$prd->description = $req->description;
 			$prd->save();
 
@@ -172,6 +174,8 @@ class InventoryController extends Controller
 			'price.*' => 'required|numeric',
 			'status' => 'required|array',
 			'status.*' => 'required|min:2|max:255|string',
+			'expired_at' => 'nullable|array',
+			'expired_at.*' => 'nullable|min:2|max:255|string',
 			'description' => 'nullable|array',
 			'description.*' => 'nullable|min:2|max:255|string',
 		], [
@@ -198,6 +202,7 @@ class InventoryController extends Controller
 					'stocks' => $req->stocks[$i],
 					'price' =>  $req->price[$i],
 					'status' => $req->status[$i],
+					'expired_at' => $req->expired_at[$i],
 					'description' => $req->description[$i],
 				]);
 			}
@@ -271,6 +276,7 @@ class InventoryController extends Controller
 			'stocks' => 'required|numeric',
 			'price' => 'numeric',
 			'status' => 'required|min:2|max:355|string',
+			'expired_at' => 'nullable|min:2|max:355|string',
 			'description' => 'nullable|min:2|max:355|string',
 		]);
 
@@ -289,6 +295,7 @@ class InventoryController extends Controller
 				'stocks' => $req->stocks,
 				'price' =>  $req->price,
 				'status' => $req->status,
+				'expired_at' => $req->expired_at,
 				'description' => $req->description,
 			]);
 
@@ -322,7 +329,12 @@ class InventoryController extends Controller
 	protected function submitCty(Request $req)
 	{
 		$validator = Validator::make($req->all(), [
-			'category_name' => 'required|min:2|max:255|string',
+			'category_name' => 'required|min:2|max:255|string|unique:product_categories',
+			'is_perishable' => 'required|min:1|max:255|string',
+		],[
+
+			'is_perishable.required' => 'Please select if the product is perishible or not.'
+
 		]);
 
 		if ($validator->fails())

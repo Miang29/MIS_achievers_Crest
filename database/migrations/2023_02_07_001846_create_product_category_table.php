@@ -15,7 +15,8 @@ class CreateProductCategoryTable extends Migration
     {
        Schema::create('product_categories', function(Blueprint $table){
         $table->increments('id');
-        $table->string('category_name');
+        $table->string('category_name')->unique();
+        $table->tinyInteger('is_perishable')->default(0);
         $table->timestamps();
        });
     }

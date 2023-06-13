@@ -21,8 +21,9 @@
                 <div class="form-group mx-auto  w-xs-100">
                     <div class="col-12">
                         <div class="row ">
+                            
+                            @if(!Auth::check())
                             <div class="order-1 order-lg-0 col-12 col-lg-6">
-
                                 <div class="form-group">
                                     <input class="form-control my-2 border border-secondary " type="text" name="name" value="{{old('name')}}" placeholder="Name" />
                                     <small class="text-danger small">{{ $errors->first('name') }}</small>
@@ -43,6 +44,29 @@
                                     <small class="text-danger small">{{ $errors->first('message') }}</small>
                                 </div>
                             </div>
+                            @else
+                             <div class="order-1 order-lg-0 col-12 col-lg-6">
+                                <div class="form-group">
+                                    <input class="form-control my-2 border border-secondary " type="text" name="name" value="{{$user ['first_name'] }} {{$user ['last_name']}}" placeholder="Name" />
+                                    <small class="text-danger small">{{ $errors->first('name') }}</small>
+                                </div>
+
+                                <div class="form-group">
+                                    <input class="form-control my-2  border border-secondary" type="email" name="email" value="{{$user ['email']}}" placeholder="Email" />
+                                    <small class="text-danger small">{{ $errors->first('email') }}</small>
+                                </div>
+
+                                <div class="form-group">
+                                    <input class="form-control my-2  border border-secondary" type="text" name="mobile" value="{{old('mobile')}}" placeholder="Mobile No" />
+                                    <small class="text-danger small">{{ $errors->first('mobile') }}</small>
+                                </div>
+
+                                <div class="form-group">
+                                    <textarea class="form-control my-2 not-resizable  border border-secondary" name="message" rows="3" placeholder="Message"></textarea>
+                                    <small class="text-danger small">{{ $errors->first('message') }}</small>
+                                </div>
+                            </div>
+                            @endif
 
                             <div class="order-0 order-lg-1 col-12 col-lg-6 mx-auto text-center"><br>
                                 <img src="{{ asset('uploads/settings/banner.png') }}" class="img img-fluid mx-auto my-2 w-50" alt="Nano machines son">

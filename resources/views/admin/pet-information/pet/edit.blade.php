@@ -10,107 +10,138 @@
     <div class="col-12 my-2 mx-auto">
         <form class="card mx-auto" method="POST" action="{{ route('update-pet', [$clientId, $pet->id]) }}" id="form-area" enctype="multipart/form-data">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
-            <h5 class="card-header text-center text-white bg-1"> Edit Pet Information</h5>
+            <h5 class="card-header text-center text-white bg-1"> Update Pet Information</h5>
 
             <div class="card-body">
-                <div class="row">
-                    <div class="col-12 col-lg-8 mx-auto">
-                        {{-- IMAGE INPUT --}}
-                        <div class="image-input-scope" id="pet-image-scope_0" data-settings="#image-input-settings_0" data-fallback-img="{{ asset('uploads/settings/default.png') }}">
-                            {{-- FILE IMAGE --}}
-                            <div class="form-group text-center image-input collapse show avatar_holder" id="pet-image-image-input-wrapper_0">
-                                <div class="row border rounded border-secondary-light py-2 mx-1">
-                                    <div class="col-12 col-md-6 text-md-right">
-                                        <div class="hover-cam mx-auto avatar rounded overflow-hidden">
-                                            <img src="{{ $pet->getImage() }}" class="hover-zoom img-fluid avatar getImage" id="pet-image-container_0" alt="Pet Image" data-default-src="{{ asset('uploads/settings/default.png') }}">
-                                            <span class="icon text-center image-input-float" id="pet-image_0" tabindex="0" data-target="#pet-image-container_0">
-                                                <i class="fas fa-camera text-white hover-icon-2x"></i>
-                                            </span>
+                <div class="card col-lg-12 col-12 col-md-12 my-3">
+                    <div class="row">
+                        <div class="col-12 col-lg-8 mx-auto mt-3">
+                            {{-- IMAGE INPUT --}}
+                            <div class="image-input-scope" id="pet-image-scope_0" data-settings="#image-input-settings_0" data-fallback-img="{{ asset('uploads/settings/default.png') }}">
+                                {{-- FILE IMAGE --}}
+                                <div class="form-group text-center image-input collapse show avatar_holder" id="pet-image-image-input-wrapper_0">
+                                    <div class="row border rounded border-secondary-light py-2 mx-1">
+                                        <div class="col-12 col-md-6 text-md-right">
+                                            <div class="hover-cam mx-auto avatar rounded overflow-hidden">
+                                                <img src="{{ $pet->getImage() }}" class="hover-zoom img-fluid avatar getImage" id="pet-image-container_0" alt="Pet Image" data-default-src="{{ asset('uploads/settings/default.png') }}">
+                                                <span class="icon text-center image-input-float" id="pet-image_0" tabindex="0" data-target="#pet-image-container_0">
+                                                    <i class="fas fa-camera text-white hover-icon-2x"></i>
+                                                </span>
+                                            </div>
+                                            <input type="file" name="pet_image" class="d-none getImage" accept=".jpg,.jpeg,.png,.webp" data-role="image-input" data-target-image-container="#pet-image-container_0" data-target-name-container="#pet-image-name_0">
                                         </div>
-                                        <input type="file" name="pet_image" class="d-none getImage" accept=".jpg,.jpeg,.png,.webp" data-role="image-input" data-target-image-container="#pet-image-container_0" data-target-name-container="#pet-image-name_0">
-                                    </div>
 
-                                    <div class="col-12 col-md-6 text-md-left">
-                                        <label class="form-label font-weight-bold" for="pet_image">Pet Image</label><br>
-                                        <small class="text-muted pb-0 mb-0">
-                                            <b>FORMATS ALLOWED:</b>
-                                            <br>JPEG, JPG, PNG, WEBP
-                                        </small><br>
-                                        <small class="text-muted pt-0 mt-0"><b>MAX SIZE:</b> 5MB</small><br>
-                                        <button class="btn btn-secondary reset-image" type="button" data-reset-id="0">Remove Image</button><br>
+                                        <div class="col-12 col-md-6 text-md-left">
+                                            <label class="form-label font-weight-bold" for="pet_image">Pet Image</label><br>
+                                            <small class="text-muted pb-0 mb-0">
+                                                <b>FORMATS ALLOWED:</b>
+                                                <br>JPEG, JPG, PNG, WEBP
+                                            </small><br>
+                                            <small class="text-muted pt-0 mt-0"><b>MAX SIZE:</b> 5MB</small><br>
+                                            <button class="btn btn-secondary reset-image" type="button" data-reset-id="0">Remove Image</button><br>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-12 col-lg-8 mx-auto">
-                        <div class="form-group ">
-                            <div class="col-12 col-md-9 col-lg-12 mx-auto">
-                                <label class="h6 font-weight-bold text-1 important" for="pet_name">Pet Name</label>
-                                <input class="form-control" type="text" name="pet_name" value="{{ $pet->pet_name }}" />
-                                <small class="text-danger small">{{ $errors->first('pet_name') }}</small>
-                            </div>
+                        <div class="col-12 col-lg-8 mx-auto">
+                            <div class="form-group ">
+                                <div class="row">    
+                                    <div class="col-12 col-md-12 col-lg-6 mx-auto">
+                                        <label class="h6 font-weight-bold text-1 important" for="pet_name">Pet Name</label>
+                                        <input class="form-control" type="text" name="pet_name" value="{{ $pet->pet_name }}" />
+                                        <small class="text-danger small">{{ $errors->first('pet_name') }}</small>
+                                    </div>
 
-                            <div class="col-12 col-md-9 col-lg-12 mx-auto">
-                                <label class="h6 font-weight-bold text-1  important" for="breed">Breed</label>
-                                <input class="form-control" type="text" name="breed" value="{{ $pet->breed }}" />
-                                <small class="text-danger small">{{ $errors->first('breed') }}</small>
-                            </div>
+                                    <div class="col-12 col-md-12 col-lg-6 mx-auto">
+                                        <label class="h6 font-weight-bold text-1  important" for="breed">Breed</label>
+                                        <input class="form-control" type="text" name="breed" value="{{ $pet->breed }}" />
+                                        <small class="text-danger small">{{ $errors->first('breed') }}</small>
+                                    </div>
 
-                            <div class="col-12 col-md-9 col-lg-12 mx-auto">
-                                <label class="h6 font-weight-bold text-1 important" for="colors">Colors</label>
-                                <select value="{{ $pet->colors }}" name="colors[]" id="choices-multiple-remove-button" placeholder="Select Pet color" multiple>
-                                    <option value="#FFFFFF">White</option>
-                                    <option value="#000000)">Black</option>
-                                    <option value="#C1C1C1">Ash Gray</option>
-                                    <option value="#FFFDD0">Cream</option>
-                                    <option value="#D2691E">Cinnamon</option>
-                                    <option value="#E5AA70">Fawn</option>
-                                    <option value="#964B00">Brown</option>
-                                </select>
-                                <small class="text-danger small">{{ $errors->first('colors') }}</small>
-                            </div>
+                                    <div class="col-12 col-md-12 col-lg-12 mx-auto mt-2">
+                                        <label class="h6 font-weight-bold text-1 important" for="colors">Colors</label>
+                                        <select value="{{ $pet->colors }}" name="colors[]" id="choices-multiple-remove-button" placeholder="Select Pet color" multiple>
+                                            <option value="#FFFFFF">White</option>
+                                            <option value="#000000)">Black</option>
+                                            <option value="#C1C1C1">Ash Gray</option>
+                                            <option value="#FFFDD0">Cream</option>
+                                            <option value="#D2691E">Cinnamon</option>
+                                            <option value="#E5AA70">Fawn</option>
+                                            <option value="#964B00">Brown</option>
+                                        </select>
+                                        <small class="text-danger small">{{ $errors->first('colors') }}</small>
+                                    </div>
 
-                            <div class="col-12 col-md-9 col-lg-12 mx-auto">
-                                <label class="h6 font-weight-bold text-1  important" for="birthdate">Birthdate</label>
-                                <input class="form-control" type="date" name="birthdate" value="{{ $pet->birthdate }}" />
-                                <small class="text-danger small">{{ $errors->first('birthdate') }}</small>
-                            </div>
+                                    <div class="col-12 col-md-12 col-lg-6 mx-auto">
+                                        <label class="h6 font-weight-bold text-1  important" for="birthdate">Birthdate</label>
+                                        <input class="form-control" type="date" name="birthdate" value="{{ $pet->birthdate }}" />
+                                        <small class="text-danger small">{{ $errors->first('birthdate') }}</small>
+                                    </div>
 
-                            <div class="col-12 col-md-9 col-lg-12 mx-auto">
-                                <label class="h6 font-weight-bold text-1  important" for="species">Species</label>
-                                <div class="input-group mb-3 ">
-                                    <select class="custom-select" id="inputGroupSelect01" name="species" value="{{ $pet->species }}">
-                                        <option selected value="">Choose species..</option>
-                                        <option value="cat">Cat</option>
-                                        <option value="dog">Dog</option>
-                                    </select>
+                                    <div class="col-12 col-md-12 col-lg-6 mx-auto">
+                                        <label class="h6 font-weight-bold text-1  important" for="species">Species</label>
+                                        <div class="input-group mb-3 ">
+                                            <select class="custom-select" id="inputGroupSelect01" name="species" value="{{ $pet->species }}">
+                                                <option value="cat">Cat</option>
+                                                <option value="dog">Dog</option>
+                                               <option {{ old('pet_status[]') ? '' : 'selected' }} disabled>--- Select species ---</option>
+                                            </select>
+                                        </div>
+                                        <small class="text-danger small">{{ $errors->first('species') }}</small>
+                                    </div>
+
+                                    <div class="col-12 col-md-12 col-lg-6 mx-auto">
+                                        <label class="h7 font-weight-bold text-1  important" for="gender">Gender</label>
+                                        <div class="input-group mb-3 ">
+                                            <select class="custom-select" id="inputGroupSelect01" name="gender" value="{{ $pet->gender }}">
+                                                <option value="female">Female</option>
+                                                <option value="male">Male</option>
+                                               <option {{ old('gender') ? '' : 'selected' }} disabled>--- Select gender ---</option>
+                                            </select>
+                                        </div>
+                                        <small class="text-danger small">{{ $errors->first('gender') }}</small>
+                                    </div>
+
+                                    <div class="col-12 col-md-12 col-lg-6 mx-auto">
+                                        <label class="h6 font-weight-bold text-1 important" for="types">Types</label>
+                                        <div class="input-group mb-3 ">
+                                            <select class="custom-select" id="inputGroupSelect01" name="types" value="{{ $pet->types }}">
+                                                <option value="tame">Tame</option>
+                                                <option value="wild">Wild</option>
+                                                <option {{ old('types') ? '' : 'selected' }} disabled>--- Select types ---</option>
+                                            </select>
+                                        </div>
+                                        <small class="text-danger small">{{ $errors->first('types') }}</small>
+                                    </div>
+
+                                    {{-- traits --}}
+                                    <div class="col-12 col-md-12 col-lg-12 mx-auto">
+                                        <label class="important font-weight-bold" for="traits">Unique Traits/Feature</label>
+                                        <textarea class="form-control my-2 not-resizable" name="traits" rows="3">{{ $pet->traits }}</textarea>
+                                        <small class="text-danger small">{{ $errors->first('traits') }}</small>
+                                    </div>
                                 </div>
-                                <small class="text-danger small">{{ $errors->first('species') }}</small>
-                            </div>
 
-                            <div class="col-12 col-md-9 col-lg-12 mx-auto">
-                                <label class="h7 font-weight-bold text-1  important" for="gender">Gender</label>
-                                <div class="input-group mb-3 ">
-                                    <select class="custom-select" id="inputGroupSelect01" name="gender" value="{{ $pet->gender }}">
-                                        <option selected value="">Choose gender..</option>
-                                        <option value="female">Female</option>
-                                        <option value="male">Male</option>
-                                    </select>
-                                </div>
-                                <small class="text-danger small">{{ $errors->first('gender') }}</small>
-                            </div>
+                                <div class="row">
+                                    <div class="col-12 col-md-9 col-lg-6 mx-auto">
+                                        <label class="important font-weight-bold" for="gender">Pet Status</label>
+                                        <div class="input-group mb-3 ">
+                                            <select class="custom-select" id="inputGroupSelect01" name="pet_status" value="{{ $pet->pet_status }}">
+                                                <option value="alive">Alive</option>
+                                                <option value="deceased">Deceased</option>
+                                                <option {{ old('pet_status[]') ? '' : 'selected' }} disabled>--- Select status ---</option>
+                                            </select>
+                                        </div>
+                                        <small class="text-danger small">{{ $errors->first('pet_status.*') }}</small>
+                                    </div>
 
-                            <div class="col-12 col-md-9 col-lg-12 mx-auto">
-                                <label class="h6 font-weight-bold text-1 important" for="types">Types</label>
-                                <div class="input-group mb-3 ">
-                                    <select class="custom-select" id="inputGroupSelect01" name="types" value="{{ $pet->types }}">
-                                        <option selected value="">Choose types..</option>
-                                        <option value="tame">Tame</option>
-                                        <option value="wild">Wild</option>
-                                    </select>
+                                    <div class="col-12 col-md-9 col-lg-6 mx-auto">
+                                        <label class="important font-weight-bold" for="lifespan">Expected Life Span</label>
+                                        <input class="form-control" type="text" name="lifespan" value="{{ $pet->lifesfan }}" />
+                                        <small class="text-danger small">{{ $errors->first('lifespan.*') }}</small>
+                                    </div>
                                 </div>
-                                <small class="text-danger small">{{ $errors->first('types') }}</small>
                             </div>
                         </div>
                     </div>

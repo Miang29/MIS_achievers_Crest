@@ -20,6 +20,7 @@
 						@foreach ($users as $u)
 						<option value="{{ $u->id}}">{{ $u->name }}</option>
 						@endforeach
+						<option {{ old('pet_owner') ? '' : 'selected' }} disabled>--- Select Client Name ---</option>
 					</select>
 					<small class="text-danger small">{{ $errors->first('pet_owner') }}</small>
 				</div>
@@ -103,9 +104,9 @@
 											<label class="font-weight-bold important" for="species">Species</label>
 											<div class="input-group mb-3 ">
 												<select class="custom-select" id="inputGroupSelect01" name="species[]" value="{{ old('species[]') }}">
-													<option selected value="">Choose species..</option>
 													<option value="cat">Cat</option>
 													<option value="dog">Dog</option>
+													<option {{ old('species[]') ? '' : 'selected' }} disabled>--- Select species ---</option>
 												</select>
 											</div>
 											<small class="text-danger small">{{ $errors->first('species.*') }}</small>
@@ -117,9 +118,9 @@
 											<label class="font-weight-bold important" for="gender">Gender</label>
 											<div class="input-group mb-3 ">
 												<select class="custom-select" id="inputGroupSelect01" name="gender[]" value="{{ old('gender[]') }}">
-													<option selected value="">Choose gender..</option>
 													<option value="female">Female</option>
 													<option value="male">Male</option>
+													<option {{ old('gender[]') ? '' : 'selected' }} disabled>--- Select gender ---</option>
 												</select>
 											</div>
 											<small class="text-danger small">{{ $errors->first('gender.*') }}</small>
@@ -129,9 +130,9 @@
 											<label class="font-weight-bold important" for="types">Types</label>
 											<div class="input-group mb-3 ">
 												<select class="custom-select" id="inputGroupSelect01" name="types[]" value="{{ old('types[]') }}">
-													<option selected value="">Choose types..</option>
 													<option value="tame">Tame</option>
 													<option value="wild">Wild</option>
+													<option {{ old('types[]') ? '' : 'selected' }} disabled>--- Select types ---</option>
 												</select>
 											</div>
 											<small class="text-danger small">{{ $errors->first('types.*') }}</small>
@@ -149,9 +150,9 @@
 											<label class="important font-weight-bold" for="gender">Pet Status</label>
 											<div class="input-group mb-3 ">
 												<select class="custom-select" id="inputGroupSelect01" name="pet_status[]" value="{{ old('pet_status[]') }}">
-													<option selected value="">Choose pet status..</option>
 													<option value="alive">Alive</option>
 													<option value="deceased">Deceased</option>
+													<option {{ old('pet_status[]') ? '' : 'selected' }} disabled>--- Select status ---</option>
 												</select>
 											</div>
 											<small class="text-danger small">{{ $errors->first('pet_status.*') }}</small>
@@ -289,9 +290,9 @@
 										<label class="font-weight-bold important" for="species">Species</label>
 										<div class="input-group mb-3 ">
 											<select class="custom-select" id="inputGroupSelect01" name="species[]">
-												<option selected value="">Choose species..</option>
 												<option value="cat">Cat</option>
 												<option value="dog">Dog</option>
+												<option {{ old('species[]') ? '' : 'selected' }} disabled>--- Select species ---</option>
 											</select>
 										</div>
 									</div>
@@ -302,9 +303,9 @@
 										<label class="font-weight-bold important" for="gender">Gender</label>
 										<div class="input-group mb-3 ">
 											<select class="custom-select" id="inputGroupSelect01" name="gender[]">
-												<option selected value="">Choose gender..</option>
 												<option value="female">Female</option>
 												<option value="male">Male</option>
+												<option {{ old('gender[]') ? '' : 'selected' }} disabled>--- Select gender ---</option>
 											</select>
 										</div>
 									</div>
@@ -313,9 +314,9 @@
 										<label class="font-weight-bold important" for="types">Types</label>
 										<div class="input-group mb-3 ">
 											<select class="custom-select" id="inputGroupSelect01" name="types[]">
-												<option selected value="">Choose types..</option>
 												<option value="tame">Tame</option>
 												<option value="wild">Wild</option>
+												<option {{ old('types[]') ? '' : 'selected' }} disabled>--- Select types ---</option>
 											</select>
 										</div>
 									</div>
@@ -332,9 +333,9 @@
 										<label class="important font-weight-bold" for="gender">Pet Status</label>
 										<div class="input-group mb-3 ">
 											<select class="custom-select" id="inputGroupSelect01" name="pet_status[]" value="{{ old('pet_status[]') }}">
-												<option selected value="">Choose pet status..</option>
 												<option value="alive">Alive</option>
 												<option value="deceased">Deceased</option>
+												<option {{ old('pet_status[]') ? '' : 'selected' }} disabled>--- Select status ---</option>
 											</select>
 										</div>
 										<small class="text-danger small">{{ $errors->first('pet_status.*') }}</small>

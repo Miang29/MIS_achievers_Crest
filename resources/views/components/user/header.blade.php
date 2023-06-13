@@ -84,14 +84,15 @@
 							{{ Auth::user()->getName() }}
 						</a>
 						<div class="dropdown-menu dropdown-menu-lg-right" aria-labelledby="dropdownMenu">
+							@if(Auth::user()->user_type_id == 4)
 							<a class="dropdown-item" href="{{ route('profile', [Auth::user()->id]) }}"><i class="fa-solid fa-user mr-2"></i>My Profile</a>
 							<div class="dropdown-divider"></div>
-							@if(Auth::user()->user_type_id == 4)
 							<a class="dropdown-item" href="{{ route('pets.registration',[Auth::user()->id]) }}"><i class="fa-solid fa-paw mr-2"></i>Register Pets</a>
 							<div class="dropdown-divider"></div>
 							@endif
 							@if(Auth::user()->user_type_id != 4)
 							<a class="dropdown-item" href="{{ route('dashboard')}}"><i class="fa-solid fa-chart-simple mr-2"></i>Dashboard</a>
+							<div class="dropdown-divider"></div>
 							@endif
 							{{-- LOGOUT --}}
 							<a class="dropdown-item" href="{{ route('logout') }}"><i class="fa-solid fa-right-from-bracket mr-2"></i>Logout</a>

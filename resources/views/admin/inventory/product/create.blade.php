@@ -49,6 +49,12 @@
                         </div>
 
                         <div class="form-group col-lg-12 col-12 col-md-6">
+                            <label class="important" for="expired_at">Expiration Date</label>
+                            <input class="form-control" type="date" name="expired_at"/>
+                            <small class="text-danger small">{{ $errors->first('expired_at') }}</small>
+                        </div>
+
+                        <div class="form-group col-lg-12 col-12 col-md-6">
                             <label class="h6 important" for="description">Description</label>
                             <textarea class="form-control not-resizable" name="description" rows="3"></textarea>
                             <small class="text-danger small">{{ $errors->first('description') }}</small>

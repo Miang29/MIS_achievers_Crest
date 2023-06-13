@@ -16,8 +16,8 @@
 				<div class="ml-auto" >
 					<label class="my-auto">
 						<div class="dropdown">
-							<a href='#' role="button" class="nav-link dropdown-toggle text-dark my-auto font-weight-bold header-username" style="font-size: 1.2rem;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								{{ Auth::user()->getName() }}
+							<a href='#' role="button" class="nav-link dropdown-toggle text-dark my-auto font-weight-bold header-username" style="font-size: 1.2rem;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 
+							{{ Auth::user()->getName() }}
 							</a>
 
 							<div class="dropdown-menu dropdown-menu-right">

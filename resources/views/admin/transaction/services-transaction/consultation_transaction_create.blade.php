@@ -43,17 +43,16 @@
 											<label class="input-group-text bg-white" for="inputGroupSelect01">Pet Name</label>
 										</div>
 
-										@foreach($owner as $u)
+										{{-- @foreach($owner as $u) --}}
 										<select class="custom-select" id="inputGroupSelect01" name="pet_name[]">
-											@foreach($u->petsInformations as $p)
-											<option selected  value="{{$p->id}}">{{$p->pet_name}}</option>
-											@endforeach
+											{{-- @foreach($u->petsInformations as $p) --}}
+											<option selected  value="{{-- $p->id --}}">{{-- $p->pet_name --}}</option>
+											{{-- @endforeach --}}
 										</select>
-										@endforeach
+										{{-- @endforeach --}}
 									</div>
 										<small class="text-danger small">{{ $errors->first('pet_name.*') }}</small>
 								</div>
-				
 								<div class="col-12 col-md-12 col-lg-12 mb-3">
 									<label class="important my-2" for="breed[]">Breed</label>
 									<input class="form-control" type="text" name="breed[]" readonly value="" />

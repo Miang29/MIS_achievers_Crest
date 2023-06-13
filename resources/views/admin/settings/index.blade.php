@@ -125,17 +125,30 @@
 				<form class="card my-3 mx-auto h-100" method="POST" action="{{ route('submit-category') }}" enctype="multipart/form-data">
 					<input type="hidden" name="_token" value="{{ csrf_token() }}">
 					<h3 class="card-header font-weight-bold text-white gbg-1"><i class="fa-solid fa-cart-plus mr-2 fa-lg"></i>ADD PRODUCT CATEGORY</h3>
-					<div class="card-body d-flex ">
-						<div class="form-group mx-auto w-100 col-lg-8 colo-12 col-md-12 mt-5 ">
-							<div class="input-group mb-3">
-								<div class="input-group-prepend">
-									<span class="input-group-text font-weight-bold" id="inputGroup-sizing-default">Category Name</span>
+					<div class="card-body">
+						<div class="card col-lg-6 col-12 col-md-12 mx-auto">
+							<div class="form-group mx-auto col-lg-12 col-12 col-md-12 mt-5 ">
+								<div class="input-group mb-3">
+									<div class="input-group-prepend">
+										<span class="input-group-text font-weight-bold" id="inputGroup-sizing-default">Category Name</span>
+									</div>
+									<input name="category_name" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
 								</div>
-								<input name="category_name" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+								<small class="text-danger small">{{ $errors->first('category_name') }}</small>
 							</div>
-							<small class="text-danger small">{{ $errors->first('category_name') }}</small>
-						</div>
+
+							<div class="form-group col-lg-12 col-12 col-md-8">
+	                            <label class="h6 important " for="status">Select if the product is perishable or not perishable.</label><br>
+	                            <select class="custom-select " name="is_perishable">
+	                                <option value="1">Perishable</option>
+	                                <option value="0">None Perishable</option>
+	                                <option {{ old('is_perishable') ? '' : 'selected' }} disabled>--- SELECT ---</option>
+	                            </select>
+	                        </div>
+							<small class="text-danger small mb-2">{{ $errors->first('is_perishable') }}</small>
+	                    </div>
 					</div>
+
 					<div class="card-footer d-flex">
 						<div class="col-4 mx-auto text-center">
 							<button type="submit" data-action="submit" class="btn btn-outline-info mr-1 btn-sm w-75 w-lg-50 w-md-75" data-type="submit">Save</button>

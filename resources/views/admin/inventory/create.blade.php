@@ -26,6 +26,7 @@
 									@foreach ($productCty as $pcty)
 									<option value="{{ $pcty->id}}">{{ $pcty->category_name }}</option>
 									@endforeach
+									<option {{ old('category') ? '' : 'selected' }} disabled>--- Select Category Name ---</option>
 								</select>
 								<small class="text-danger small">{{-- $errors->first('category_name') --}}</small>
 							</div>
@@ -68,7 +69,13 @@
 											</select>
 											<small class="text-danger small">{{ $errors->first('status.*') }}</small>
 										</div>
+
 									</div>
+										<div class="col-12 col-lg-12 form-group">
+											<label class="important" for="expired_at[]">Expiration Date</label>
+											<input class="form-control" type="date" name="expired_at[]"/>
+											<small class="text-danger small">{{ $errors->first('expired_at.*') }}</small>
+										</div>
 
 									<div class="form-group">
 										<label class="important" for="description">Description</label>
@@ -112,6 +119,12 @@
 										</select>
 										<small class="text-danger small">{{ $errors->first('status.*') }}</small>
 									</div>
+								</div>
+
+								<div class="form-group">
+									<label class="important" for="expired_at[]">Expiration Date</label>
+									<input class="form-control" type="date" name="expired_at[]"/>
+									<small class="text-danger small">{{ $errors->first('expired_at.*') }}</small>
 								</div>
 
 								<div class="form-group">

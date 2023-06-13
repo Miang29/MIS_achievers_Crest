@@ -56,6 +56,12 @@
 									</div>
 								</div>
 
+								 <div class="form-group">
+		                            <label class="important" for="expired_at">Expiration Date</label>
+		                            <input class="form-control" type="date" name="expired_at" value="{{ $product->expired_at}}" />
+		                            <small class="text-danger small">{{ $errors->first('expired_at') }}</small>
+		                        </div>
+
 								<div class="form-group">
 									<label class="h6 important" for="description">Description</label>
 									<textarea class="form-control not-resizable" name="description" rows="3">{{ $product->description }}</textarea>

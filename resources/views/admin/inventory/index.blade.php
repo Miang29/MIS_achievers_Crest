@@ -30,6 +30,7 @@
 				<thead>
 					<tr>
 						<th scope="col" class="hr-thick text-1">Category Name</th>
+						<th scope="col" class="hr-thick text-1">Category Status</th>
 						<th scope="col" class="hr-thick text-1">Total No. of Products</th>
 						<th scope="col" class="hr-thick text-1">Action</th>
 					</tr>
@@ -39,6 +40,14 @@
 					@forelse ($categories as $c)
 					<tr>
 						<td>{{ $c->category_name }}</td>
+						<td>
+						 @if($c->is_perishable == 0)
+                        	<i class="fas fa-circle text-danger mr-2"></i>None Perishable
+                        @elseif ($c->is_perishable == 1)
+                       		<i class="fas fa-circle text-success mr-2"></i>Perishable                           
+                        @endif
+
+						</td>
 						<td>{{ $c->products()->count() }}</td>
 						<td>
 							<a href="{{ route('category.view', [$c->id]) }}" class="text-info"><i class="fa-solid fa-eye mr-2"></i>View Category</a>

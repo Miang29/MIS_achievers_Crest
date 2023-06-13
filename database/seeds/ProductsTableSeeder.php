@@ -18,6 +18,7 @@ class ProductsTableSeeder extends Seeder
             'stocks' => '100',
             'price' => '100',
             'status' => 'active',
+            'expired_at' => '2024-12-12',
             'description' => 'Dog Food',
         ]);
 
@@ -27,6 +28,7 @@ class ProductsTableSeeder extends Seeder
             'stocks' => '100',
             'price' => '100',
             'status' => 'active',
+            'expired_at' => '2024-12-12',
             'description' => '',
         ]);
 
@@ -36,6 +38,7 @@ class ProductsTableSeeder extends Seeder
             'stocks' => '100',
             'price' => '100',
             'status' => 'active',
+            'expired_at' => '2024-12-12',
             'description' => 'Dog Food',
         ]);
 
@@ -45,6 +48,7 @@ class ProductsTableSeeder extends Seeder
             'stocks' => '100',
             'price' => '100',
             'status' => 'active',
+            'expired_at' => '2024-12-12',
             'description' => 'Dog Food',
         ]);
 
@@ -54,6 +58,7 @@ class ProductsTableSeeder extends Seeder
             'stocks' => '100',
             'price' => '150',
             'status' => 'active',
+            'expired_at' => '2024-12-12',
             'description' => '',
         ]);
 
@@ -63,33 +68,7 @@ class ProductsTableSeeder extends Seeder
             'stocks' => '100',
             'price' => '180',
             'status' => 'active',
-            'description' => '',
-        ]);
-
-        Products::create([
-            'category_id'=> '3',
-            'product_name' => 'Antiparasitics',
-            'stocks' => '1000',
-            'price' => '1050',
-            'status' => 'active',
-            'description' => '',
-        ]);
-
-        Products::create([
-            'category_id'=> '3',
-            'product_name' => 'Steroids',
-            'stocks' => '1000',
-            'price' => '170',
-            'status' => 'active',
-            'description' => '',
-        ]);
-
-        Products::create([
-            'category_id'=> '3',
-            'product_name' => 'Antibiotics',
-            'stocks' => '400',
-            'price' => '100',
-            'status' => 'active',
+            'expired_at' => '2024-12-12',
             'description' => '',
         ]);
 

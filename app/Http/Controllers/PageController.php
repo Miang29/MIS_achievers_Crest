@@ -291,7 +291,10 @@ class PageController extends Controller
 	}
 
 	protected function contactUs() {
-		return view('contact-information.contact-us');
+		$user = Auth::user();
+		return view('contact-information.contact-us',[
+			'user' => $user,
+		]);
 	}
 
 

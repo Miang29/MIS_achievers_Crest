@@ -8,6 +8,7 @@ class ProductCategory extends Model
 {
     protected $fillable = [
         'category_name',
+        'is_perishable',
     ];
 
     public function products() {

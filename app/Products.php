@@ -15,7 +15,8 @@ class Products extends Model
         'stocks',
         'price',
         'status',
-        'description'
+        'expired_at',
+        'description',
     ];
 
     public function productCategory() {

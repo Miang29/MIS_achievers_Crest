@@ -22,7 +22,7 @@
             {{-- STOCKS --}}
             <div class="input-group mb-2">
                 <div class="input-group-prepend">
-                <span class="input-group-text bg-light font-weight-bold" id="basic-addon1"><i class="fa-solid fa-arrow-trend-up fa-lg text-1"></i></span>
+                <span class="input-group-text bg-light font-weight-bold" id="basic-addon1"><i class="fa-solid fa-box fa-lg text-1"></i></span>
                 </div>
                 <input type="text" class="form-control bg-white" readonly value="{{$products->stocks }} pcs." aria-describedby="basic-addon1">
             </div>
@@ -40,6 +40,15 @@
                 </div>
                 <input type="text" class="form-control bg-white" readonly value="active" {{ $products['status'] ? 'Checked' : '' }}" aria-describedby="basic-addon1">
             </div> 
+            {{-- Expired at --}}
+             <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                <span class="input-group-text bg-light font-weight-bold" id="basic-addon1"><i class="fa-solid fa-calendar-days fa-lg text-1"></i></span>
+                </div>
+                <input type="text" class="form-control bg-white" readonly value="{{$products->expired_at }}" aria-describedby="basic-addon1">
+            </div>
+
+
             {{-- DESCRIPTION --}}
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
