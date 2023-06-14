@@ -195,31 +195,6 @@
 								<small class="text-danger small">{{ $errors->first('mode_of_payment') }}
 							</div>
 						</div>
-						{{-- USE MODAL UPON UPDATING QR CODE INFO --}}
-						<div class="row">
-							{{-- MAYA  --}}
-							<div class="col-lg-4 col-12 col-md-12 mb-3 border border-secondary mx-auto" style=" background: linear-gradient(to bottom, #00cc99 0%, #00cc99 100%);">
-								@foreach($maya as $m)
-								<h6 class="font-weight-bold mt-3 text-center text-dark">Pay using maya QR code</h6>
-								<div class="text-center text-lg-right">
-								   <img src='{{ asset("uploads/settings/qr_codes/" . $m->payment_method_image) }}' class="card ml-5" style="width: 12rem; height: 12rem;" data-target='#{{ "{$m->name}-{$m->id}" }}' id='img-{{ "{$m->name }-{$m->id}" }}'>
-								</div>
-								<h6 class="font-weight-bold mt-2 text-center text-dark">{{ $m->mobile_no }}</h6>
-								<h6 class="font-weight-bold mt-1 text-center text-dark">{{ $m->name }}</h6>
-								@endforeach
-							</div>
-							{{-- GCASH  --}}
-							<div class="col-lg-4 col-12 col-md-12 mb-3 border border-secondary mx-auto bg-primary">
-								@foreach($gcash as $g)
-								<h6 class="font-weight-bold mt-3 text-center text-white">Pay using gcash QR code</h6>
-								<div class="text-center text-lg-right">
-								   <img src='{{ asset("uploads/settings/qr_codes/" . $g->payment_method_image) }}' class="card ml-5" style="width: 13rem; height: 12rem;" data-target='#{{ "{$g->name}-{$g->id}" }}' id='img-{{ "{$g->name }-{$g->id}" }}'>
-								</div>
-								<h6 class="font-weight-bold text-center text-dark">{{ $g->mobile_no }}</h6>
-								<h6 class="font-weight-bold text-center text-dark">{{ $g->name }}</h6>
-								@endforeach
-							</div>
-						</div>
 					</div>
 
 

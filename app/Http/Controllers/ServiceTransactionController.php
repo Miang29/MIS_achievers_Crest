@@ -92,6 +92,7 @@ class ServiceTransactionController extends Controller
    
 	protected function createConsultationTransaction(){
 
+		$pets = PetsInformation::get();
 		$gcash = PaymentMethodInfo::where('id', '=', 1)->get();
 		$maya = PaymentMethodInfo::where('id', '=', 2)->get();
 		$service = Services::where('service_name', '=', 'Consultation')->with('variations')->first();
@@ -99,6 +100,7 @@ class ServiceTransactionController extends Controller
 
 		return view('admin.transaction.services-transaction.consultation_transaction_create', [
 			'service' => $service,
+			'pets' => $pets,
 			'owner' => $owner,
 			'gcash' => $gcash,
 			'maya' => $maya

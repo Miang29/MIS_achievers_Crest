@@ -16,7 +16,7 @@ use Exception;
 use Log;
 use Validator;
 
-class ClientAppointmentController extends Controller
+class ClientAppointmentController extends Controller 
 {
 	protected function index(Request $req) {
 		$services = Services::where('service_category_id', '=', 1)

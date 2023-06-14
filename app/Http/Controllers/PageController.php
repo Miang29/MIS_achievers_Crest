@@ -48,6 +48,8 @@ class PageController extends Controller
 		$months = array();
 		$monthly_earnings = array();
 
+		$monthStart = Carbon::parse(Carbon::now("Asia/Manila")->format("Y-m") . "-01");
+		$monthEnd = Carbon::parse($monthStart)->endOfMonth();
 		for ($i = 1; $i <= Carbon::now()->format('m'); $i++) {
 			array_push($months, Carbon::parse(Carbon::now()->format('Y') . '-' . $i . '-' . Carbon::now()->format('d'))->format('M'));
 
@@ -123,10 +125,10 @@ class PageController extends Controller
 		$unreadMessages = ContactInformation::where('status', '=', 0)->get();
 
 		$quickActions = array(
-			array(
-				'text' => 'Notify Client',
-				'href' => route('notify-client')
-			),
+			// array(
+			// 	'text' => 'Notify Client',
+			// 	'href' => route('notify-client')
+			// ),
 			array(
 				'text' => 'Register a Pet',
 				'href' => route('pet-information.create')

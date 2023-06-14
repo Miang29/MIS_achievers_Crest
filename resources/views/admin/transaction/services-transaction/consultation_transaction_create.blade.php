@@ -11,8 +11,6 @@
 		{{ csrf_field() }}
 		<div class="card-body">
 		<h3 class="font-weight-bold text-center">Create Service Transaction</h3>
-
-
 			<div class="col-12 col-md-12 col-lg-12 mx-auto my-3">
 				<div class="input-group mb-3">
 					<div class="input-group-prepend">
@@ -20,8 +18,8 @@
 					</div>
 
 					<select class="custom-select" id="inputGroupSelect01" name="client_name">
-						@foreach($owner as $u)
-						<option selected  value="{{$u->id}}">{{$u->getName()}}</option>
+						@foreach($owner as $client)
+						<option selected  value="{{$client->id}}">{{$client->getName()}}</option>
 						@endforeach
 					</select>
 					<small class="text-danger small">{{ $errors->first('client_name') }}</small>
@@ -42,14 +40,13 @@
 										<div class="input-group-prepend">
 											<label class="input-group-text bg-white" for="inputGroupSelect01">Pet Name</label>
 										</div>
-
-										{{-- @foreach($owner as $u) --}}
 										<select class="custom-select" id="inputGroupSelect01" name="pet_name[]">
-											{{-- @foreach($u->petsInformations as $p) --}}
-											<option selected  value="{{-- $p->id --}}">{{-- $p->pet_name --}}</option>
-											{{-- @endforeach --}}
+										@foreach($owner as $u)
+											@foreach($u->petsInformations as $p)
+											<option selected  value="{{ $p->id }}">{{ $p->pet_name }}</option>
+											@endforeach
+										@endforeach
 										</select>
-										{{-- @endforeach --}}
 									</div>
 										<small class="text-danger small">{{ $errors->first('pet_name.*') }}</small>
 								</div>
@@ -203,30 +200,6 @@
 								<small class="text-danger small">{{ $errors->first('mode_of_payment') }}
 							</div>
 						</div>
-						<div class="row">
-							{{-- MAYA  --}}
-							<div class="col-lg-4 col-12 col-md-12 mb-3 border border-secondary mx-auto" style=" background: linear-gradient(to bottom, #00cc99 0%, #00cc99 100%);">
-								@foreach($maya as $m)
-								<h6 class="font-weight-bold mt-3 text-center text-dark">Pay using maya QR code</h6>
-								<div class="text-center text-lg-right">
-								   <img src='{{ asset("uploads/settings/qr_codes/" . $m->payment_method_image) }}' class="card ml-5" style="width: 12rem; height: 12rem;" data-target='#{{ "{$m->name}-{$m->id}" }}' id='img-{{ "{$m->name }-{$m->id}" }}'>
-								</div>
-								<h6 class="font-weight-bold mt-2 text-center text-dark">{{ $m->mobile_no }}</h6>
-								<h6 class="font-weight-bold mt-1 text-center text-dark">{{ $m->name }}</h6>
-								@endforeach
-							</div>
-							{{-- GCASH  --}}
-							<div class="col-lg-4 col-12 col-md-12 mb-3 border border-secondary mx-auto bg-primary">
-								@foreach($gcash as $g)
-								<h6 class="font-weight-bold mt-3 text-center text-white">Pay using gcash QR code</h6>
-								<div class="text-center text-lg-right">
-								   <img src='{{ asset("uploads/settings/qr_codes/" . $g->payment_method_image) }}' class="card ml-5" style="width: 13rem; height: 12rem;" data-target='#{{ "{$g->name}-{$g->id}" }}' id='img-{{ "{$g->name }-{$g->id}" }}'>
-								</div>
-								<h6 class="font-weight-bold text-center text-dark">{{ $g->mobile_no }}</h6>
-								<h6 class="font-weight-bold text-center text-dark">{{ $g->name }}</h6>
-								@endforeach
-							</div>
-						</div>
 					</div>
 
 					{{-- TOTAL --}}
@@ -376,7 +349,6 @@
 			$('[name="service_category_id[]"]').trigger('change');
 			$(`[name="price[]"], [name="additional_cost[]"]`).trigger('change');
 		}
-
 	</script>
 	@endsection
 

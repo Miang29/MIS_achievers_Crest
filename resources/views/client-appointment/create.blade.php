@@ -19,7 +19,7 @@
 			</div>
 
 			{{-- RESERVED AT --}}
-			<div class="form-group">
+			<div class="form-group"> 
 				<label for="reserved_at" class="form-label">Date</label>
 				<div class="input-group">
 					<div class="input-group-prepend">

@@ -189,53 +189,53 @@ class ReportController extends Controller
 
 	// GETTERS
 	private function getAppointments($from, $to) {
-		return Appointments::whereDate('created_at','>', $from)->get();
+		return Appointments::whereDate('created_at','>=', $from)->get();
 	}
 
 	private function getPets($from, $to) {
-		return PetsInformation::whereDate('created_at','>', $from)->get();
+		return PetsInformation::whereDate('created_at','>=', $from)->get();
 	}
 
 	private function getClients($from, $to) {
-		return User::where('user_type_id', '=', 4)->whereDate('created_at','>', $from)->get();
+		return User::where('user_type_id', '=', 4)->whereDate('created_at','>=', $from)->get();
 	}
 
 	private function getInventory($from, $to) {
 
-		return Products::whereDate('created_at','=', $from)->get();
+		return Products::whereDate('created_at','>=', $from)->get();
 	}
 
 	private function getProductOrder($from, $to) {
-		return ProductsOrderTransaction::has("productsOrderItems", '>', 0)->whereDate('created_at','>', $from)->get();
+		return ProductsOrderTransaction::has("productsOrderItems", '>', 0)->whereDate('created_at','>=', $from)->get();
 
 	}
 
 	private function getServices($from, $to) {
-		return Services::has("variations", '>', 0)->with(['variations','variations.servicesCategory'])->whereDate('created_at', '=', $from)->get();
+		return Services::has("variations", '>', 0)->with(['variations','variations.servicesCategory'])->whereDate('created_at', '>=', $from)->get();
 	}
 
 	private function getConsultation($from, $to) {
-		return ServicesOrderTransaction::has("consultation", '>', 0)->with(['consultation','consultation.serviceVariation','consultation.serviceVariation.services','consultation.petsInformations'])->whereDate('created_at', '>', $from)->get();
+		return ServicesOrderTransaction::has("consultation", '>', 0)->with(['consultation','consultation.serviceVariation','consultation.serviceVariation.services','consultation.petsInformations'])->whereDate('created_at', '>=', $from)->get();
 		
 	}
 
 	private function getVaccination($from, $to) {
-			return ServicesOrderTransaction::has("vaccination", '>', 0)->with(['vaccination','vaccination.variations','vaccination.petsInformations'])->whereDate('created_at', '>', $from)->get();
+			return ServicesOrderTransaction::has("vaccination", '>', 0)->with(['vaccination','vaccination.variations','vaccination.petsInformations'])->whereDate('created_at', '>=', $from)->get();
 	}
 
 	private function getGrooming($from, $to) {
-			return ServicesOrderTransaction::has("grooming", '>',0)->with(['grooming','grooming.variations','grooming.petsInformations' ])->whereDate('created_at', '>', $from)->get();
+			return ServicesOrderTransaction::has("grooming", '>',0)->with(['grooming','grooming.variations','grooming.petsInformations' ])->whereDate('created_at', '>=', $from)->get();
 	}
 
 	private function getBoarding($from, $to) {
-			return ServicesOrderTransaction::has("boarding", '>', 0)->with(['boarding','boarding.variations','boarding.variations.services','boarding.petsInformations'])->whereDate('created_at', '>', $from)->get();
+			return ServicesOrderTransaction::has("boarding", '>', 0)->with(['boarding','boarding.variations','boarding.variations.services','boarding.petsInformations'])->whereDate('created_at', '>=', $from)->get();
 	}
 
 	private function getOther($from, $to) {
-			return ServicesOrderTransaction::has("otherTransaction",'>',0)->with(['otherTransaction','otherTransaction.variations','otherTransaction.variations.services','otherTransaction.variations.services','otherTransaction.petsInformations'])->whereDate('created_at', '>', $from)->get();
+			return ServicesOrderTransaction::has("otherTransaction",'>',0)->with(['otherTransaction','otherTransaction.variations','otherTransaction.variations.services','otherTransaction.variations.services','otherTransaction.petsInformations'])->whereDate('created_at', '>=', $from)->get();
 	}
 
 	private function getUsers($from, $to) {
-		return User::whereDate('created_at', '>', $from)->get();
+		return User::whereDate('created_at', '>=', $from)->get();
 	}
 }

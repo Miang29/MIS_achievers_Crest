@@ -15,7 +15,7 @@
 			<a class="nav-item nav-link" id="nav-services-tab" data-toggle="tab" href="#nav-services" role="tab" aria-controls="nav-services" aria-selected="false">Services</a>
 			<a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Contact Information Messages</a>
 			<a class="nav-item nav-link" id="nav-unavailable-dates-tab" data-toggle="tab" href="#nav-unavailable-dates" role="tab" aria-controls="nav-unavailable-dates" aria-selected="false">Unavailable Dates</a>
-			</div>
+		</div>
 	</nav>
 
 	<div class="tab-content" id="nav-tabContent">
@@ -110,7 +110,7 @@
 				</div>
 			</form>
 			{{-- PAYMENT METHOD SETTINGS --}}
-			<div class="card col-lg-12 col-md-12 col-12 mx-auto">
+			{{-- <div class="card col-lg-12 col-md-12 col-12 mx-auto">
 				<h4 class="font-weight-bold text-center my-3 text-dark">Payment Method Settings</h4>
 				<div class="row">
 					<div class="col-12 col-lg-6 col-md-6 mx-auto text-center mb-3">
@@ -118,7 +118,7 @@
 						<a href="{{ route('maya.edit')}}" class="btn btn-outline-success btn-sm w-lg-50">Edit Maya Info</a>
 					</div>
 				</div>
-			</div>
+			</div> --}}
 			{{-- END PAYMENT METHOD SETTINGS --}}
 
 			{{-- PET INFO SETTINGS --}}
@@ -177,7 +177,7 @@
 							<td class="text-center">{{ $c->value}}</td>
 							<td class="text-center">{{ $c->name}}</td>
 							<td>
-								<a href="javascript:void(0);" onclick="confirmLeave('{{ route('remove.color', [$c->id]) }}', undefined, 'Are you sure you want to remove this color?');" class="dropdown-item text-primary"><i class="fa-solid fa-box-archive mr-2"></i>Archive</a>
+								<a href="javascript:void(0);" onclick="confirmLeave('{{ route('remove.color', [$c->id]) }}', undefined, 'Are you sure you want to remove this color?');" class="dropdown-item text-danger"><i class="fa-solid fa-box-archive mr-2"></i>Remove Color</a>
 							</td>
 						</tr>
 						@empty
