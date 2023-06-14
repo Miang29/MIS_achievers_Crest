@@ -86,7 +86,7 @@
 		@endif
 
 		{{-- SETTINGS --}}
-		@if (Auth::user()->user_type_id == 1 || Auth::user()->user_type_id == 3)
+		@if (Auth::user()->user_type_id == 1 || Auth::user()->user_type_id == 2 || Auth::user()->user_type_id == 3)
 		@if (\Request::is('admin/settings'))
 		<span class="bg-secondary text-white"><i class="fas fa-gear  mr-3 fa-lg"></i>Settings</span>
 		@elseif (\Request::is('admin/settings/*'))

@@ -27,7 +27,7 @@ class InventoryController extends Controller
 	{
 		$prd = Products::find($pid);
 		if ($prd == null) {
-			return redirect()
+			return redirect() 
 				->back()
 				->route('inventory')
 				->with('flash_error', "No such product exists");

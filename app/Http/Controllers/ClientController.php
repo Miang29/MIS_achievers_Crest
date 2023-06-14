@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\PetsInformation;
 use App\User;
 use App\UserType;
+use App\ColorSetting;
 
 use DB;
 use Exception;
@@ -69,24 +70,27 @@ class ClientController extends Controller
 	// ------------------ CREATE PET INFORMATION -------------------------- //
 	protected function create()
 	{
+		$color= ColorSetting::get();
 		$user =  User::select(DB::raw('CONCAT(first_name, " ", last_name) as name,id'))->where("user_type_id", "=", 4)->get();
 		$pi = PetsInformation::get();
 
 		return view('admin.pet-information.create', [
 			'PetsInformation' => $pi,
 			'users' => $user,
+			'color' => $color
 		]);
 	}
     // -------------------- ADD NEW PET ----------------------- //
 	protected function add($id)
 	{
-
+		$color= ColorSetting::get();
 		$pi = PetsInformation::get();
 		return view(
 			'admin.pet-information.pet.add',
 			[
 				'PetsInformation' => $pi,
-				'id' => $id
+				'id' => $id,
+				'color' => $color
 			]
 		);
 	}
@@ -110,11 +114,13 @@ class ClientController extends Controller
  // ------------------ EDIT PET INFORMATION --------------------- //
 	protected function editPet($clientId, $id)
 	{
+		$color= ColorSetting::get();
 		$pet = PetsInformation::find($id);
 		return view(
 			'admin.pet-information.pet.edit', [
 				'clientId' => $clientId,
-				'pet' => $pet
+				'pet' => $pet,
+				'color' => $color
 			]
 		);
 	}
@@ -223,6 +229,7 @@ class ClientController extends Controller
 		try {
 			DB::beginTransaction();
 			$colorKeys = array_keys($req->colors);
+			// dd($colorKeys);
 			for ($i = 0; $i < count($req->pet_name); $i++) {
 				$imagename = "";
 				if ($req->hasFile("pet_image.$i")) {

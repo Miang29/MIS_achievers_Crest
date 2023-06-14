@@ -368,6 +368,8 @@ Route::group(['middleware' => ['auth']], function() {
 		Route::get('/message/{id}/viewed','SettingsController@viewMessage')->name('view.message');
 		Route::get('/contact/{id}/show', 'SettingsController@contactShow')->name('contact.show');
 		Route::get('/message/{id}/response', 'SettingsController@messageResponse')->name('response');
+		Route::post('/submit/colors', 'SettingsController@submitColor')->name('submit.colors');
+		Route::get('/remove/{id}', 'SettingsController@removeColor')->name('remove.color');
 
 		//Edit Gcash
 		Route::get('/edit/gcash/information/','SettingsController@editGcashQRcode')->name('gcash.edit');

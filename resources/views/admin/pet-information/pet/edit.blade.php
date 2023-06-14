@@ -62,13 +62,9 @@
                                     <div class="col-12 col-md-12 col-lg-12 mx-auto mt-2">
                                         <label class="h6 font-weight-bold text-1 important" for="colors">Colors</label>
                                         <select value="{{ $pet->colors }}" name="colors[]" id="choices-multiple-remove-button" placeholder="Select Pet color" multiple>
-                                            <option value="#FFFFFF">White</option>
-                                            <option value="#000000)">Black</option>
-                                            <option value="#C1C1C1">Ash Gray</option>
-                                            <option value="#FFFDD0">Cream</option>
-                                            <option value="#D2691E">Cinnamon</option>
-                                            <option value="#E5AA70">Fawn</option>
-                                            <option value="#964B00">Brown</option>
+                                            @foreach($color as $c)
+                                            <option value="{{$c->id}}">{{$c->name}}</option>
+                                            @endforeach
                                         </select>
                                         <small class="text-danger small">{{ $errors->first('colors') }}</small>
                                     </div>

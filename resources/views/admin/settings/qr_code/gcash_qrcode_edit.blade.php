@@ -9,7 +9,7 @@
 	
 	<form class="card mx-auto" method="POST" action="{{ route('submit.payment.method') }}" enctype="multipart/form-data">
 		{{ csrf_field() }}
-		<h3 class="font-weight-bold text-center mt-5 text-primary">Edit payment_method Information</h3>
+		<h3 class="font-weight-bold text-center mt-5 text-primary">Update Gcash Information</h3>
 		<div class="card col-lg-10 col-md-12 col-12 my-2 mx-auto mb-5">
 
 			<div class="col-12 col-md-12 col-lg-6 mx-auto mt-3 border border-secondary bg-primary">

@@ -16,6 +16,7 @@ use App\ProductsOrderTransaction;
 use App\ProductsOrderTransactionItem;
 use App\User;
 use App\VaccinationTransaction;
+use App\ColorSetting;
 
 use Carbon\Carbon;
 
@@ -159,9 +160,11 @@ class PageController extends Controller
 
 	protected function registerPets($id) {
 
+		$color= ColorSetting::get();
 		$user = User::find($id);
 		return view('pet_registration.register_pet',[
 			'user' => $user,
+			'color' => $color
 		]);
 	}
 

@@ -11,6 +11,7 @@ use App\UnavailableDate;
 use App\Appointments;
 use App\User;
 use App\PaymentMethodInfo;
+use App\ColorSetting;
 
 use DB;
 use Exception;
@@ -19,9 +20,79 @@ use Log;
 use Validator;
 use Auth;
 use Mail;
+use delete;
 
 class SettingsController extends Controller
 {
+	// PET INFO SETTINGS
+	protected function submitColor(Request $req){
+
+		$validator = Validator::make($req->all(), [
+			'value' => 'required|array',
+			'value.*' => 'required|string|max:255',
+			'name' => 'required|array',
+			'name.*' => 'required|string|max:255',
+		]);
+
+		if ($validator->fails()) {
+			return redirect()
+				->back()
+				->withErrors($validator)
+				->withInput();
+		}
+		try {
+		DB::beginTransaction();
+		for ($i = 0; $i < count($req->value); $i++) {
+			ColorSetting::create([
+				'value' => $req->value[$i],
+				'name' => $req->name[$i],
+			]);
+		}
+			DB::commit();
+		} catch (Exception $e) {
+			DB::rollback();
+			Log::error($e);
+
+			return redirect()
+				->route('settings.index')
+				->with('flash_error', 'Something went wrong, please try again later');
+		}
+
+		return redirect()
+			->route('settings.index')
+			->with('flash_success', "Successfully set added new colors");
+
+	}
+	// REMOVE COLOR
+	protected function removeColor($id) {
+
+		$c = ColorSetting::find($id);
+
+		if ($c == null) {
+			return redirect()
+			->route('settings.index')
+			->with('flash_error', 'The color does not exists or is already removed');
+			}
+
+			try{
+				DB::beginTransaction();
+				$c->delete();
+			
+			DB::commit();
+		} catch (Exception $e) {
+			DB::rollback();
+			Log::error($e);
+
+			return redirect()
+				->route('settings.index')
+				->with('flash_error', 'Something went wrong, please try again later');
+		}
+
+		return redirect()
+			->route('settings.index')
+			->with('flash_success', 'Successfully removed color');
+	}
+	
 	// COntact-information
 	protected function viewMessage($id){
 
@@ -131,6 +202,8 @@ class SettingsController extends Controller
 
 	//SETTINGS 
 	protected function settings() {
+		$archive = ColorSetting::onlyTrashed()->get();
+		$colors = ColorSetting::get();
 		$contact = ContactInformation::get();
 		$client = User::where('user_type_id','=', 4)->get();
 		$unavailableDates = UnavailableDate::orderByDesc('date')->get();
@@ -138,7 +211,9 @@ class SettingsController extends Controller
 		return view('admin.settings.index', [
 			'contacts' => $contact,
 			'client' => $client,
-			'unavailableDates' => $unavailableDates
+			'unavailableDates' => $unavailableDates,
+			'colors' => $colors,
+			'archive' => $archive
 		]);
 	}
 
@@ -274,20 +349,31 @@ class SettingsController extends Controller
 
 	// UNAVAILABLE DATES
 	protected function unavailableDatesCreate(Request $req) {
+		$status = Appointments::get();
 		$time = Appointments::getAppointmentTimes();
 
 		return view('admin.settings.unavailable-dates.create',[
 			'time' => $time,
+			'status' => $status
 		]);
 	}
 
 	protected function unavailableDatesSubmit(Request $req){
 
-		$validator = Validator::make($req->all(), [
-		    'date' =>'required|date|after_or_equal:today',
-			'time' => 'required_if:isWholeDay,false|numeric|between:1,5',
-			'isWholeDay' => 'nullable|in:true,false'
-		]);
+		$additionalRules = [];
+		for ($i = 0; $i < count($req->time); $i++) {
+			$additionalRules["time.$i"] = "required_if:isWholeDay.$i,false|numeric|between:1,5";
+		}
+
+		$validator = Validator::make($req->all(), array_merge([
+			'status' => 'required|string|max:255',
+			'reason' => 'nullable|string|max:255',
+			'date' =>'required|array',
+			'date.*' =>'required|date|after_or_equal:today',
+			'time' =>'required|array',
+			'isWholeDay' =>'nullable|array',
+			'isWholeDay.*' => 'nullable|in:true,false'
+		], $additionalRules));
 
 		if ($validator->fails()) {
 			return redirect()
@@ -299,12 +385,15 @@ class SettingsController extends Controller
 		try {
 			DB::beginTransaction();
 		
+			for ($i = 0; $i < count($req->date); $i++) {
 			UnavailableDate::create([
-				'date' => $req->date,
-				'time' => $req->isWholeDay === 'true' ? null : $req->time,
-				'is_whole_day' => $req->isWholeDay === 'true'
+				'status' => $req->status,
+				'reason' => $req->reason,
+				'date' => $req->date[$i],
+				'time' => $req->isWholeDay[$i] === 'true' ? null : $req->time[$i],
+				'is_whole_day' => $req->isWholeDay[$i] === 'true'
 			]);
-
+		}
 			DB::commit();
 		} catch (Exception $e) {
 			DB::rollback();

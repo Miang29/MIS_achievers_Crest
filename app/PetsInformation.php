@@ -24,6 +24,10 @@ class PetsInformation extends Model
         'lifespan',
     ];
 
+    public function color() {
+        return $this->belongsTo('App\ColorSetting', 'colors');
+    }
+
     public function user() {
         return $this->belongsTo('App\User', 'pet_owner','id');
     }

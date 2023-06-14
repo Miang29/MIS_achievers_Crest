@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUnavailableDatesTable extends Migration
+class CreateColorSettingsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,12 @@ class CreateUnavailableDatesTable extends Migration
      */
     public function up()
     {
-        Schema::create('unavailable_dates', function (Blueprint $table) {
+        Schema::create('color_settings', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('status');
-            $table->string('reason')->nullable();
-            $table->date('date');
-            $table->unsignedInteger('time')->nullable();
-            $table->boolean('is_whole_day')->default(false);
+            $table->string('value');
+            $table->string('name');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -31,6 +29,6 @@ class CreateUnavailableDatesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('unavailable_dates');
+        Schema::dropIfExists('color_settings');
     }
 }

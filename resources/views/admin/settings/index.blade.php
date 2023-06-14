@@ -15,7 +15,7 @@
 			<a class="nav-item nav-link" id="nav-services-tab" data-toggle="tab" href="#nav-services" role="tab" aria-controls="nav-services" aria-selected="false">Service Category</a>
 			<a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Contact Information Messages</a>
 			<a class="nav-item nav-link" id="nav-unavailable-dates-tab" data-toggle="tab" href="#nav-unavailable-dates" role="tab" aria-controls="nav-unavailable-dates" aria-selected="false">Unavailable Dates</a>
-		</div>
+			</div>
 	</nav>
 
 	<div class="tab-content" id="nav-tabContent">
@@ -25,7 +25,7 @@
 				{{ csrf_field() }}
 				<div class="col-12 col-lg-12 col-md-12">
 					<div class="card my-3 mx-auto">
-						<h3 class="card-header font-weight-bold text-white gbg-1">Website Related</h3>
+						<h3 class="card-header font-weight-bold text-white bg-1">Website Related</h3>
 						<div class="card-body ">
 							<div class="form-group ">
 
@@ -98,14 +98,6 @@
 											</div>
 										</div>
 									</div>
-
-									<div class="row">
-										<div class="col-12 col-lg-6 col-md-6 mx-auto  text-center ">
-											<a href="{{ route('gcash.edit')}}" class="btn btn-primary btn-sm w-lg-25">Edit Gcash Info</a>
-											<a href="{{ route('maya.edit')}}" class="btn btn-success btn-sm w-lg-25">Edit Maya Info</a>
-										</div>
-									</div>
-
 								</div>
 							</div>
 						</div>
@@ -117,6 +109,86 @@
 					</div>
 				</div>
 			</form>
+			{{-- PAYMENT METHOD SETTINGS --}}
+			<div class="card col-lg-12 col-md-12 col-12 mx-auto">
+				<h4 class="font-weight-bold text-center my-3 text-dark">Payment Method Settings</h4>
+				<div class="row">
+					<div class="col-12 col-lg-6 col-md-6 mx-auto text-center mb-3">
+						<a href="{{ route('gcash.edit')}}" class="btn btn-outline-primary btn-sm w-lg-50">Edit Gcash Info</a>
+						<a href="{{ route('maya.edit')}}" class="btn btn-outline-success btn-sm w-lg-50">Edit Maya Info</a>
+					</div>
+				</div>
+			</div>
+			{{-- END PAYMENT METHOD SETTINGS --}}
+
+			{{-- PET INFO SETTINGS --}}
+			<form class="card my-3" method="POST" action="{{ route('submit.colors')}}"  id="form-area" enctype="multipart/form-data">
+				{{-- ADD COLOR FOR PET INFO --}}
+				{{ csrf_field() }}
+				<div class="col-lg-12 col-12 col-md-12 my-3">
+				<h4 class="font-weight-bold text-center my-3 text-dark">Pet Information Settings</h4>
+					<div class="row" id="colorContainer">
+						<div class="card col-lg-5 col-12 col-md-12 my-3 ml-5" id="colorOriginal">
+						<h7 class="text-dark my-2 border-bottom text-center position-relative">Add new colors:</h7>
+							<div class="row">
+								<div class="form-group col-12 col-lg-6 col-md-6">
+									<label class="h6 important" for="value[]">Color</label>
+									<input class="form-control" type="color" name="value[]" />
+									<small class="text-danger small mx-auto">{{ $errors->first('value.*') }}</small>
+								</div>
+
+								<div class="form-group col-12 col-lg-6 col-md-6">
+									<label class="h6 important" for="name[]">Color Name</label>
+									<input class="form-control" type="text" name="name[]" />
+									<small class="text-danger small mx-auto">{{ $errors->first('name.*') }}</small>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				{{-- ADD --}}
+				<div class="form-group col-lg-12 col-md-12 col-12 mx-auto">
+					<button class="card mx-auto w-100 h-100 d-flex" type="button" style="border-style: dashed; border-width: .20rem;" id="addColor">
+						<span class="m-auto font-weight-bold text-1"><i class="fa-solid fa-circle-plus mr-2"></i>Add Color</span>
+					</button>
+				</div>
+
+				<div class="card-footer d-flex">
+					<div class="col-12 col-lg-6 col-md-6 mx-auto  text-center ">
+						<button type="submit" data-type="submit" class="btn btn-outline-info my-2 btn-sm w-25">Save</button>
+					</div>
+				</div>
+			</form>
+			{{-- END PET INFO SETTINGS --}}
+
+			<div class="card h-100 px-0">
+				<table class="table table-striped text-center">
+					<thead>
+						<tr class="bg-1">
+							<th scope="col" class="hr-thick text-white">Hex Code</th>
+							<th scope="col" class="hr-thick text-white">Color Name</th>
+							<th scope="col" class="hr-thick text-white">Action</th>
+						</tr>
+					</thead>
+
+					<tbody>
+						@forelse($colors as $c)
+						<tr>
+							<td class="text-center">{{ $c->value}}</td>
+							<td class="text-center">{{ $c->name}}</td>
+							<td>
+								<a href="javascript:void(0);" onclick="confirmLeave('{{ route('remove.color', [$c->id]) }}', undefined, 'Are you sure you want to remove this color?');" class="dropdown-item"><i class="fa-solid fa-box-archive mr-2"></i>Archive</a>
+							</td>
+						</tr>
+						@empty
+						<tr>
+							<td colspan="7">Nothing to show ~</td>
+						</tr>
+						@endforelse
+					</tbody>
+				</table>
+			</div>
+
 		</div>
 
 		{{-- PRODUCT CATEGORY --}}
@@ -124,7 +196,7 @@
 			<div class="container-fluid m-0">
 				<form class="card my-3 mx-auto h-100" method="POST" action="{{ route('submit-category') }}" enctype="multipart/form-data">
 					<input type="hidden" name="_token" value="{{ csrf_token() }}">
-					<h3 class="card-header font-weight-bold text-white gbg-1"><i class="fa-solid fa-cart-plus mr-2 fa-lg"></i>ADD PRODUCT CATEGORY</h3>
+					<h3 class="card-header font-weight-bold text-white bg-1"><i class="fa-solid fa-plus mr-2 fa-lg"></i>ADD PRODUCT CATEGORY</h3>
 					<div class="card-body">
 						<div class="card col-lg-6 col-12 col-md-12 mx-auto">
 							<div class="form-group mx-auto col-lg-12 col-12 col-md-12 mt-5 ">
@@ -164,17 +236,19 @@
 				<form class="card my-3 mx-auto h-100" method="POST" action ="{{ route('submit-service-category') }}" enctype="multipart/form-data">
 					{{ csrf_field()}}
 					
-					<h3 class="card-header font-weight-bold text-white gbg-1">ADD SERVICE CATEGORY</h3>
+					<h3 class="card-header font-weight-bold text-white bg-1"><i class="fa-solid fa-plus mr-2 fa-lg"></i>ADD SERVICE CATEGORY</h3>
 					
 					<div class="card-body d-flex ">
-						<div class="form-group mx-auto w-100 col-lg-8 colo-12 col-md-12 mt-5 ">
-							<div class="input-group mb-3">
-								<div class="input-group-prepend">
-									<span class="input-group-text font-weight-bold" id="inputGroup-sizing-default">Service Category Name</span>
+						<div class="card col-lg-6 col-12 col-md-12 mx-auto">
+							<div class="form-group mx-auto col-lg-12 colo-12 col-md-12 mt-5 ">
+								<div class="input-group mb-3">
+									<div class="input-group-prepend">
+										<span class="input-group-text font-weight-bold" id="inputGroup-sizing-default">Category Name</span>
+									</div>
+									<input name="service_category_name" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
 								</div>
-								<input name="service_category_name" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+								<small class="text-danger small">{{ $errors->first('service_category_name') }}</small>
 							</div>
-							<small class="text-danger small">{{ $errors->first('service_category_name') }}</small>
 						</div>
 					</div>
 					<div class="card-footer d-flex">
@@ -191,7 +265,7 @@
 		<div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
 			<div class="container-fluid m-0">
 				<div class="card my-3 mx-auto h-100 overflow-x-auto">
-					<h3 class="card-header font-weight-bold text-white gbg-1"><i class="fa-solid fa-envelope mr-2 fa-lg"></i>MESSAGES</h3>
+					<h3 class="card-header font-weight-bold text-white bg-1"><i class="fa-solid fa-envelope mr-2 fa-lg"></i>MESSAGES</h3>
 
 					<div class="card-body h-100 px-0">
 						<table class="table table-striped text-center">
@@ -250,7 +324,7 @@
 		<div class="tab-pane fade" id="nav-unavailable-dates" role="tabpanel" aria-labelledby="nav-unavailable-dates-tab">
 			<div class="container-fuild m-0">
 				<div class="card my-3 mx-auto h-100 overflow-x-auto">
-					<h3 class="card-header font-weight-bold text-white gbg-1">
+					<h3 class="card-header font-weight-bold text-white bg-1">
 						<i class="fa-solid fa-calendar-days mr-2 fa-lg"></i>UNAVAILABLE VET DATES
 						<a href="{{ route('settings.unavailable-dates.create') }}" class="btn btn-success float-right">
 							<i class="fa-solid fa-plus-circle mr-2"></i>Add Entry
@@ -376,6 +450,35 @@
 						});
 					}
 				});
+			});
+		});
+	</script>
+	<script type="text/javascript">
+		$(document).ready(() => {
+			// Adding and Removing Variations
+			$(document).on('click', '#addColor', (e) => {
+				let obj = $(e.currentTarget);
+				let form = $("#colorOriginal");
+				let container = $("#colorContainer");
+				let formCopy = form.clone();
+				let copy = obj.clone();
+
+				let remove = $(`
+					<span class="position-absolute cursor-pointer" onclick="$(this).parent().remove();" style="top: -1rem; right: -1.125rem;">
+						<i class="fas fa-circle-xmark fa-lg p-2 text-custom-1"></i>
+					</span>
+				`);
+
+				obj.remove();
+				formCopy.append(remove)
+					.removeAttr("id")
+					.css('transition', '0.375s ease-in-out')
+					.css('opacity', 0);
+				setTimeout(() => {
+					formCopy.css('opacity', 1);
+				});
+				container.append(formCopy);
+				container.append(copy);
 			});
 		});
 	</script>

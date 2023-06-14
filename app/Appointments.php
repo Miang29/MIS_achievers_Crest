@@ -17,6 +17,10 @@ class Appointments extends Model
 			'reason',
 	];
 
+	// public function unavailableDate() {
+	// 	return $this->belongsTo('App\UnavailableDate', 'status');
+	// }
+
 	public function service() {
 		return $this->belongsTo('App\Services', 'service_id', 'id', 'services');
 	}
