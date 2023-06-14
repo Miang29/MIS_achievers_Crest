@@ -12,6 +12,8 @@ use App\Appointments;
 use App\User;
 use App\PaymentMethodInfo;
 use App\ColorSetting;
+use App\ServicesCategory;
+use App\Services;
 
 use DB;
 use Exception;
@@ -202,7 +204,8 @@ class SettingsController extends Controller
 
 	//SETTINGS 
 	protected function settings() {
-		$archive = ColorSetting::onlyTrashed()->get();
+
+		$serviceCategory = ServicesCategory::has('services', '>', 0);
 		$colors = ColorSetting::get();
 		$contact = ContactInformation::get();
 		$client = User::where('user_type_id','=', 4)->get();
@@ -213,7 +216,7 @@ class SettingsController extends Controller
 			'client' => $client,
 			'unavailableDates' => $unavailableDates,
 			'colors' => $colors,
-			'archive' => $archive
+			'servicesCategory' => $serviceCategory->get()
 		]);
 	}
 

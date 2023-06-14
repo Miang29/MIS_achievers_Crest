@@ -12,7 +12,7 @@
 		<div class="nav nav-tabs hr-thick border-secondary" id="nav-tab" role="tablist">
 			<a class="nav-item nav-link active" id="nav-web-tab" data-toggle="tab" href="#nav-web" role="tab" aria-controls="nav-web" aria-selected="true">Website Information</a>
 			<a class="nav-item nav-link" id="nav-inventory-tab" data-toggle="tab" href="#nav-inventory" role="tab" aria-controls="nav-inventory" aria-selected="false">Product Category</a>
-			<a class="nav-item nav-link" id="nav-services-tab" data-toggle="tab" href="#nav-services" role="tab" aria-controls="nav-services" aria-selected="false">Service Category</a>
+			<a class="nav-item nav-link" id="nav-services-tab" data-toggle="tab" href="#nav-services" role="tab" aria-controls="nav-services" aria-selected="false">Services</a>
 			<a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Contact Information Messages</a>
 			<a class="nav-item nav-link" id="nav-unavailable-dates-tab" data-toggle="tab" href="#nav-unavailable-dates" role="tab" aria-controls="nav-unavailable-dates" aria-selected="false">Unavailable Dates</a>
 			</div>
@@ -164,10 +164,10 @@
 			<div class="card h-100 px-0">
 				<table class="table table-striped text-center">
 					<thead>
-						<tr class="bg-1">
-							<th scope="col" class="hr-thick text-white">Hex Code</th>
-							<th scope="col" class="hr-thick text-white">Color Name</th>
-							<th scope="col" class="hr-thick text-white">Action</th>
+						<tr class="table-primary">
+							<th scope="col" class="hr-thick text-dark">Hex Code</th>
+							<th scope="col" class="hr-thick text-dark">Color Name</th>
+							<th scope="col" class="hr-thick text-dark">Action</th>
 						</tr>
 					</thead>
 
@@ -177,7 +177,7 @@
 							<td class="text-center">{{ $c->value}}</td>
 							<td class="text-center">{{ $c->name}}</td>
 							<td>
-								<a href="javascript:void(0);" onclick="confirmLeave('{{ route('remove.color', [$c->id]) }}', undefined, 'Are you sure you want to remove this color?');" class="dropdown-item"><i class="fa-solid fa-box-archive mr-2"></i>Archive</a>
+								<a href="javascript:void(0);" onclick="confirmLeave('{{ route('remove.color', [$c->id]) }}', undefined, 'Are you sure you want to remove this color?');" class="dropdown-item text-primary"><i class="fa-solid fa-box-archive mr-2"></i>Archive</a>
 							</td>
 						</tr>
 						@empty
@@ -254,10 +254,75 @@
 					<div class="card-footer d-flex">
 						<div class="col-4 mx-auto text-center">
 							<button type="submit" class="btn btn-outline-info mr-1 btn-sm w-75 w-lg-50 w-md-75" data-action="submit" data-type="submit">Save</button>
-							<a href="{{ route('service_category.index')}}" class="btn btn-outline-primary btn-sm w-75 w-lg-50 w-md-75"><i class="fa-solid fa-arrow-right mr-2"></i>Services</a>
 						</div>
 					</div>
 				</form>
+				{{-- SERVICES --}}
+
+				<div class="card px-2 px-lg-6 py-2 h-100 my-3">
+					<div class="row">
+						<div class="col-12 col-lg text-center text-lg-left">
+							<h3 class="text-1">SERVICES CATEGORY LIST </h3>
+						</div>
+
+						<form method="GET" action="{{ route('service_category.index')}}" class=" col-12 col-md-6 col-lg my-2 text-center text-lg-right">
+							<div class="input-group">
+								<input type="text" class="form-control" value="{{ request()->search }}" name="search" placeholder="Search..." />
+
+								<div class="input-group-append">
+									<button type="submit" class="btn btn-secondary"><i class="fas fa-search"></i></button>
+								</div>
+							</div>
+						</form>
+					</div>
+					<div class="row mb-2">
+						<a href="{{ route('service_category.archive')}}" class="btn btn-info btn-sm my-1 bg-1 ml-3 mr-3"><i class="fa-solid fa-box-archive mr-2"></i>Archived Services Category</a>
+						<a href="{{ route('service_category.create') }}" class="btn btn-info bg-1 btn-sm my-1"><i class="fas fa-plus-circle mr-2"></i>Create Services</a>
+					</div>
+
+					<div class="overflow-x-auto h-100 card">
+						<div class=" card-body h-100 px-0 pt-0 ">
+							<table class="table table-striped" id="table-content">
+								<thead>
+									<tr>
+										<th scope="col" class="hr-thick text-1 text-center">Services Category Name</th>
+										<th scope="col" class="hr-thick text-1 text-center">Total No. of Service</th>
+										<th scope="col" class="hr-thick text-1 text-center"></th>
+									</tr>
+								</thead>
+
+								<tbody>
+								@forelse ($servicesCategory as $sc)
+									<tr>
+										<td class="text-center">{{ $sc->service_category_name }}</td>
+										<td class="text-center">{{ $sc->services()->count() }}</td>
+										
+										<td class="text-center">
+											<div class="dropdown">
+												<button class="btn btn-info bg-1 btn-sm dropdown-toggle mark-affected" type="button" data-toggle="dropdown" id="dropdown" aria-haspopup="true" aria-expanded="false" data-id="$a->id">
+													Action
+												</button>
+
+												<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown">
+													<a href="{{ route('service.index',[$sc->id]) }}" class="dropdown-item"><i class="fa-solid fa-eye mr-2"></i>View Service</a>
+													<button onclick="confirmLeave('{{ route("service_category.delete", [$sc->id]) }}', undefined, 'Are you sure you want to archive this category? This will <b>archived all the services and variations</b> encoded within this category.');" class="dropdown-item"><i class="fa-solid fa-box-archive mr-2"></i>Archive</button>
+												</div>
+											</div>
+										</td>
+									</tr>
+									@empty
+									<tr>
+										<td colspan="2">Nothing to show~</td>
+									</tr>
+									@endforelse
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+
+			{{-- END SERVICES --}}
+
 			</div>
 		</div>
 		

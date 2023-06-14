@@ -4,8 +4,8 @@
 
 @section('content')
 <div class="container-fluid px-2 px-lg-6 py-2 h-100 my-3">
-    <h3 class="mt-3"><a href="{{route('service_category.index')}}"
-    class="text-decoration-none  text-1"><i class="fas fa-chevron-left mr-2"></i>Services Category List</a></h3>
+    <h3 class="mt-3"><a href="{{route('settings.index')}}"
+    class="text-decoration-none  text-1"><i class="fas fa-chevron-left mr-2"></i>Settings</a></h3>
   <hr class="hr-thick" style="border-color: #707070;">
     <div class="row">
         <div class="col-12 col-lg-6 text-center text-lg-left">

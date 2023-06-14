@@ -29,7 +29,7 @@
 	</div>
 
 	<div class="overflow-x-auto h-100 card">
-		<div class=" card-body h-100 px-0 pt-0 ">
+		<div class=" card-body h-100 px-0 pt-0">
 			<table class="table table-striped" id="table-content">
 				<thead>
 					<tr>
@@ -60,7 +60,7 @@
 					</tr>
 					@empty
 					<tr>
-						<td colspan="2">Nothing to show~</td>
+						<td colspan="3" class="text-center">Nothing to show~</td>
 					</tr>
 					@endforelse
 				</tbody>
