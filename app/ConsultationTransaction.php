@@ -9,9 +9,7 @@ class ConsultationTransaction extends Model
 	protected $fillable = [
 		'transaction_id',
 		'service_category_id',
-		'client_name',
 		'pet_name',
-		'breed',
 		'weight',
 		'temperature',
 		'findings',

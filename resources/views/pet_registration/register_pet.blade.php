@@ -74,7 +74,7 @@
 											<label class="important font-weight-bold" for="colors">Colors</label>
 											<select class="select-choices" name="colors[0][]" placeholder="Select Pet color" multiple notInstantiated>
 												@foreach($color as $c)
-												<option value="{{$c->id}}">{{$c->name}}</option>
+												<option value="{{$c->value}}">{{$c->name}}</option>
 												@endforeach
 											</select>
 											<small class="text-danger small">{{ $errors->first('colors') }}</small>
@@ -256,13 +256,9 @@
 										<div class="col-12 col-md-9 col-lg-12 mx-auto">
 											<label class="font-weight-bold important" for="colors[]">Colors</label>
 											<select class="select-choices" name="colors[${__iterator++}][]" placeholder="Select Pet color" multiple notInstantiated>
-												<option value="#FFFFFF">White</option>
-												<option value="#000000">Black</option>
-												<option value="#C1C1C1">Ash Gray</option>
-												<option value="#FFFDD0">Cream</option>
-												<option value="#D2691E">Cinnamon</option>
-												<option value="#E5AA70">Fawn</option>
-												<option value="#964B00">Brown</option>
+												@foreach($color as $c)
+												<option value="{{$c->id}}">{{$c->name}}</option>
+												@endforeach
 											</select>
 											<small class="text-danger small">{{ $errors->first('colors') }}</small>
 										</div>

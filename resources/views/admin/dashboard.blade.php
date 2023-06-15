@@ -36,7 +36,7 @@
 						<i class="fa-solid fa-arrow-right-arrow-left fa-5x mx-4 mt-3"></i>
 
 						<div class="d-flex flex-d-col flex-grow-1 text-right">
-							<h1 class="my-auto h2-xl h3-md h5-sm">5</h2>
+							<h1 class="my-auto h2-xl h3-md h5-sm">{{$transactedPets}}</h2>
 						</div>
 					</div>
 

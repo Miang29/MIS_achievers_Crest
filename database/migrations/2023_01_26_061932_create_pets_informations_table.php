@@ -19,7 +19,7 @@ class CreatePetsInformationsTable extends Migration
             $table->string('pet_image')->nullable();
             $table->string('pet_name');
             $table->string('breed')->default("askal");
-            $table->unsignedInteger('colors')->nullable();
+            $table->string('colors')->nullable();
             $table->date('birthdate')->nullable();
             $table->string('species')->default("pet");
             $table->string('gender')->default("trans");
@@ -31,7 +31,7 @@ class CreatePetsInformationsTable extends Migration
             $table->softDeletes();
 
             $table->foreign('pet_owner')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('colors')->references('id')->on('color_settings')->onDelete('cascade');
+            // $table->foreign('colors')->references('id')->on('color_settings')->onDelete('cascade');
         });
     }
 

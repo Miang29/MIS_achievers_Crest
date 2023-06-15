@@ -11,6 +11,7 @@ class GroomingTransaction extends Model
     'pet_name',
     'variation_id',
     'price',
+    'additional_cost',
     'total',
 ];
     protected $table = "grooming_transaction";

@@ -110,16 +110,14 @@ class ServiceTransactionController extends Controller
 	// SUBMIT-CONSULTATION
 	protected function submitConsultation(Request $req)
 	{
+		// dd($req);
 		$validator = Validator::make($req->all(), [
-			"client_name" => 'required|numeric|exists:users,id',
 			'service_category_id' => 'required|array',
 			'service_category_id.*'=>'required|exists:services,service_category_id|string',
 			'service_category_id.*.*' => 'required|min:2|max:255|string',
 			'pet_name' => 'required|array',
 			'pet_name.*' => 'required|exists:pets_informations,id|string',
 			'pet_name.*.*' => 'required|min:2|max:255|string',
-			'breed' => 'required|array',
-			'breed.*.*' => 'required|min:2|max:255|string',
 			'weight' => 'required|array',
 			'weight.*' => 'required|min:2|max:255|string',
 			'temperature' => 'required|array',
@@ -130,8 +128,8 @@ class ServiceTransactionController extends Controller
 			'treatment.*' => 'required|min:2|max:255|string',
 			'prescription' => 'required|array',
 			'prescription.*' => 'required|min:2|max:255|string',
-			'price' => 'required|array',
 			'price.*' => 'required|numeric',
+			'price' => 'required|array',
 			'additional_cost' => 'required|array',
 			'additional_cost.*' => 'required|numeric',
 			'total' => 'required|array',
@@ -170,14 +168,15 @@ class ServiceTransactionController extends Controller
 				$ct = ConsultationTransaction::create([
 					'transaction_id'=> $serviceTransaction->id,
 					'service_category_id' => $req->service_category_id[$i],
-					'price' =>  $req->price[$i],
-					'additional_cost' => $req->additional_cost[$i],
-					'total' => $req->total[$i],
 					'pet_name' => $req->pet_name[$i],
 					'weight' => $req->weight[$i],
 					'temperature' => $req->temperature[$i],
 					'findings' => $req->findings[$i],
 					'treatment' => $req->treatment[$i],
+					'prescription' => $req->treatment[$i],
+					'price' =>  $req->price[$i],
+					'additional_cost' => $req->additional_cost[$i],
+					'total' => $req->total[$i],
 				]);
 			}
 			DB::commit();
@@ -226,7 +225,11 @@ class ServiceTransactionController extends Controller
 		'expired_at' => 'required|array',
 		'expired_at.*' => 'required|min:2|max:255|string',
 		'price' => 'required|array',
-		'price.*' => 'required|numeric'
+		'price.*' => 'required|numeric',
+		'additional_cost' => 'required|array',
+		'additional_cost.*' => 'required|numeric',
+		'total' => 'required|array',
+		'total.*' => 'required|numeric',
 
 		]);
 
@@ -262,6 +265,8 @@ class ServiceTransactionController extends Controller
 					'pet_name' => $req->pet_name[$i],
 					'expired_at' => $req->expired_at[$i],
 					'price' =>  $req->price[$i],
+					'additional_cost' => $req->additional_cost[$i],
+					'total' => $req->total[$i],
 				]);
 			}
 			DB::commit();
@@ -308,7 +313,11 @@ class ServiceTransactionController extends Controller
 			'pet_name.*' => 'required|exists:pets_informations,id|string',
 			'pet_name.*.*' => 'required|min:2|max:255|string',
 			'price' => 'required|array',
-			'price.*' => 'required|numeric'
+			'price.*' => 'required|numeric',
+			'additional_cost' => 'required|array',
+			'additional_cost.*' => 'required|numeric',
+			'total' => 'required|array',
+			'total.*' => 'required|numeric',
 
 			]);
 
@@ -342,6 +351,8 @@ class ServiceTransactionController extends Controller
 					'variation_id' => $req->variation_id[$i],
 					'pet_name' => $req->pet_name[$i],
 					'price' =>  $req->price[$i],
+					'additional_cost' => $req->additional_cost[$i],
+					'total' => $req->total[$i],
 				]);
 			}
 			DB::commit();
@@ -388,7 +399,11 @@ class ServiceTransactionController extends Controller
 			'pet_name.*' => 'required|exists:pets_informations,id|string',
 			'pet_name.*.*' => 'required|min:2|max:255|string',
 			'price' => 'required|array',
-			'price.*' => 'required|numeric'
+			'price.*' => 'required|numeric',
+			'additional_cost' => 'required|array',
+			'additional_cost.*' => 'required|numeric',
+			'total' => 'required|array',
+			'total.*' => 'required|numeric',
 
 			]);
 
@@ -422,6 +437,8 @@ class ServiceTransactionController extends Controller
 					'variation_id' => $req->variation_id[$i],
 					'pet_name' => $req->pet_name[$i],
 					'price' =>  $req->price[$i],
+					'additional_cost' => $req->additional_cost[$i],
+					'total' => $req->total[$i],
 				]);
 			}
 			DB::commit();
@@ -466,8 +483,11 @@ protected function submitOtherTransaction(Request $req)
 			'pet_name.*' => 'required|exists:pets_informations,id|string',
 			'pet_name.*.*' => 'required|min:2|max:255|string',
 			'price' => 'required|array',
-			'price.*' => 'required|numeric'
-
+			'price.*' => 'required|numeric',
+			'additional_cost' => 'required|array',
+			'additional_cost.*' => 'required|numeric',
+			'total' => 'required|array',
+			'total.*' => 'required|numeric',
 			]);
 
 		$validator->after(function($validator) use ($req) {
@@ -500,6 +520,8 @@ protected function submitOtherTransaction(Request $req)
 					'variation_id' => $req->variation_id[$i],
 					'pet_name' => $req->pet_name[$i],
 					'price' =>  $req->price[$i],
+					'additional_cost' => $req->additional_cost[$i],
+					'total' => $req->total[$i],
 				]);
 			}
 			DB::commit();

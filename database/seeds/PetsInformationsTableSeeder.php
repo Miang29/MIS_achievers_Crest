@@ -15,9 +15,9 @@ class PetsInformationsTableSeeder extends Seeder
     {
         PetsInformation::create([
         	'pet_owner' => 4,
-        	'pet_name' => 'Miang',
-        	'breed' => 'Shitzu',
-        	'species' => 'Dog'
+        	'pet_name' => 'Chin',
+        	'breed' => 'Britisht Shorthair',
+        	'species' => 'Cat'
         ]);
     }
 }

@@ -12,21 +12,6 @@
 		<h3 class="font-weight-bold text-dark text-center mt-5">Create Boarding Transaction</h3>
 
 		<div class="col-12 col-md-12 col-lg-12 mx-auto">
-			<div class="input-group mb-3">
-				<div class="input-group-prepend">
-					<label class="input-group-text bg-white" for="inputGroupSelect01">Client Name</label>
-				</div>
-
-				<select class="custom-select" id="inputGroupSelect01" name="client_name">
-				{{-- 	@foreach($owner as $u)
-					<option value="{{ $u->id }}">{{$u->getName()}}</option>
-					@endforeach --}}
-				</select>
-				<small class="text-danger small">{{ $errors->first('client_name') }}</small>
-			</div>
-		</div>
-
-		<div class="col-12 col-md-12 col-lg-12 mx-auto">
 			<div class="col-12 col-md-12 col-lg-12 mx-auto">
 				{{-- ARRAY FORM --}}
 				<div class="card-body" >
@@ -34,34 +19,24 @@
 				 		<div class="col-12 col-md-12 col-lg-6 border border-secondary boarding position-relative" id="orig-boarding" >
 				 		{{-- PET INFORMATION --}}
 						<h5 class="font-weight-bold mt-3">Pet Information</h5>
-							<div class="card col-lg-12 col-md-12 col-12 mb-3">
+							<div class="col-lg-12 col-md-12 col-12 mb-3">
 								<div class="row">
 									<div class="col-12 col-md-12 col-lg-12 mt-3">
 										<div class="input-group mb-3">
 											<div class="input-group-prepend">
 												<label class="input-group-text bg-white" for="inputGroupSelect01">Pet Name</label>
 											</div>
-											<select class="custom-select" id="inputGroupSelect01" name="pet_name">
-													{{-- @foreach($owner as $u)
-													<optgroup label="{{$u->getName()}}">
-														@foreach($u->petsInformations as $p)
-														<option selected  value="{{$p->id}}">{{$p->pet_name}}</option>
-														@endforeach
-													</optgroup>
-													@endforeach --}}
+											<select class="custom-select" id="inputGroupSelect01" name="pet_name[]">
+											@foreach($owner as $u)
+											<optgroup label="{{$u->getName()}}">
+												@foreach($u->petsInformations as $p)
+												<option selected  value="{{$p->id}}">{{$p->pet_name}}</option>
+												@endforeach
+											</optgroup>
+											@endforeach
 											</select>
 										</div>
 										<small class="text-danger small">{{ $errors->first('pet_name') }}</small>
-									</div>
-									<div class="col-12 col-md-12 col-lg-6 mb-3">
-										<label class="important my-2" for="breed[]">Breed</label>
-										<input class="form-control" type="text" name="breed" value="{{ old('breed') }}" />
-										<small class="text-danger small">{{ $errors->first('breed.*') }}</small>
-									</div>
-									<div class="col-12 col-md-12 col-lg-6 mb-3">
-										<label class="important my-2" for="birthdate[]">Birthdate</label>
-										<input class="form-control" type="date" name="birthdate[]" value="{{ old('birthdate[]') }}" />
-										<small class="text-danger small">{{ $errors->first('birthdate.*') }}</small>
 									</div>
 								</div>
 							</div>
@@ -120,7 +95,7 @@
 
 									{{-- TOTAL --}}
 									<div class="col-12 col-lg-12 col-md-4 mx-auto mb-3">
-										<label class="important" for="subtotal[]">Sub Total</label>
+										<label class="important" for="total[]">Sub Total</label>
 										<div class="input-group flex-nowrap">
 											<div class="input-group-prepend">
 												<span class="input-group-text">₱</span>
@@ -128,7 +103,7 @@
 											
 											<div class="input-group-append flex-fill">
 												<div class="input-group">
-													<input type="number" data-type="currency" name="subtotal[]" class="form-control" readonly>
+													<input type="number" data-type="currency" name="total[]" class="form-control" readonly>
 												</div>
 											</div>
 										</div>
@@ -278,7 +253,7 @@
 				let root = $(e.target).closest(".boarding");
 				let price = parseFloat($(root.find(`[name="price[]"]`)[0]).val());
 				let additional = parseFloat($(root.find(`[name="additional_cost[]"]`)[0]).val());
-				let total = $(root.find(`[name="subtotal[]"]`)[0]);
+				let total = $(root.find(`[name="total[]"]`)[0]);
 
 				price = isNaN(price) ? 0.0 : price;
 				additional = isNaN(additional) ? 0.0 : additional;
@@ -288,8 +263,8 @@
 			});
 
 			// Update the grand total
-			$(document).on('change', `[name="subtotal[]"]`, (e) => {
-				let total = $(`[name="subtotal[]"]`);
+			$(document).on('change', `[name="total[]"]`, (e) => {
+				let total = $(`[name="total[]"]`);
 				let grandTotal = $(`[name="total_amt"]`);
 				let gt = 0;
 

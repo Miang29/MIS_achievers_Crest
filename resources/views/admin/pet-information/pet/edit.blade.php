@@ -63,7 +63,7 @@
                                         <label class="h6 font-weight-bold text-1 important" for="colors">Colors</label>
                                         <select value="{{ $pet->colors }}" name="colors[]" id="choices-multiple-remove-button" placeholder="Select Pet color" multiple>
                                             @foreach($color as $c)
-                                            <option value="{{$c->id}}">{{$c->name}}</option>
+                                            <option value="{{$c->value}}">{{$c->name}}</option>
                                             @endforeach
                                         </select>
                                         <small class="text-danger small">{{ $errors->first('colors') }}</small>

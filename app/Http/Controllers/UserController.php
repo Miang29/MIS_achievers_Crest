@@ -21,7 +21,7 @@ use Mail;
 use Queue;
 use Validator;
 
-class UserController extends Controller
+class UserController extends Controller 
 {
 	// NOTIFICATION CLIENTS
 	protected function notifyClients(){

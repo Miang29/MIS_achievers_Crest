@@ -25,7 +25,7 @@ class PetsInformation extends Model
     ];
 
     public function color() {
-        return $this->belongsTo('App\ColorSetting', 'colors');
+        return $this->belongsTo('App\ColorSetting', 'id');
     }
 
     public function user() {

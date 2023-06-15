@@ -7,53 +7,35 @@
     <h3 class="mt-3"><a href="{{route('transaction.service')}}" class="text-decoration-none  text-1"><i class="fas fa-chevron-left mr-2"></i>Service Transaction List</a></h3>
     <hr class="hr-thick" style="border-color: #707070;">
 
-    <form class="card mx-auto" method="POST" action="{{ route('submit.boarding') }}" enctype="multipart/form-data">
+    <form class="card mx-auto" method="POST" action="{{ route('submit.consultation') }}" enctype="multipart/form-data">
 		{{ csrf_field() }}
 		<div class="card-body">
-		<h3 class="font-weight-bold text-center">Create Service Transaction</h3>
-			<div class="col-12 col-md-12 col-lg-12 mx-auto my-3">
-				<div class="input-group mb-3">
-					<div class="input-group-prepend">
-						<label class="input-group-text bg-white" for="inputGroupSelect01">Client Name</label>
-					</div>
-
-					<select class="custom-select" id="inputGroupSelect01" name="client_name">
-						@foreach($owner as $client)
-						<option selected  value="{{$client->id}}">{{$client->getName()}}</option>
-						@endforeach
-					</select>
-					<small class="text-danger small">{{ $errors->first('client_name') }}</small>
-				</div>
-			</div>
-			
+		<h3 class="font-weight-bold text-center">Create Consultation Transaction</h3>
 			<div class="col-12 col-md-12 col-lg-12 mx-auto">
 				{{-- ARRAY FORM --}}
 				<div class="card-body">
 					<div class="row"  id="form-area">
 				 		<div class="col-12 col-md-12 col-lg-6 consultation border border-secondary" id="orig">
 						{{-- PET INFORMATION --}}
-						<h5 class="font-weight-bold mt-3">Pet Information</h5>
-						<div class="card col-lg-12 col-md-12 col-12 mb-3">
+						<h5 class="font-weight-bold mt-3">Pets</h5>
+						<div class="col-lg-12 col-md-12 col-12 mb-3">
 							<div class="row">
 								<div class="col-12 col-md-12 col-lg-12 mt-3">
-									<div class="input-group mb-3">
+									<div class="input-group ">
 										<div class="input-group-prepend">
 											<label class="input-group-text bg-white" for="inputGroupSelect01">Pet Name</label>
 										</div>
 										<select class="custom-select" id="inputGroupSelect01" name="pet_name[]">
 										@foreach($owner as $u)
+										<optgroup label="{{$u->getName()}}">
 											@foreach($u->petsInformations as $p)
-											<option selected  value="{{ $p->id }}">{{ $p->pet_name }}</option>
+											<option selected  value="{{$p->id}}">{{$p->pet_name}}</option>
 											@endforeach
+										</optgroup>
 										@endforeach
 										</select>
 									</div>
 										<small class="text-danger small">{{ $errors->first('pet_name.*') }}</small>
-								</div>
-								<div class="col-12 col-md-12 col-lg-12 mb-3">
-									<label class="important my-2" for="breed[]">Breed</label>
-									<input class="form-control" type="text" name="breed[]" readonly value="" />
-									<small class="text-danger small">{{ $errors->first('breed.*') }}</small>
 								</div>
 							</div>
 						</div>
@@ -65,7 +47,7 @@
 									<select class="custom-select" name="service_category_id[]" {{ $service ? '' : 'disabled' }}>
 										@if ($service)
 											@forelse ($service->variations as $v)
-											<option class="text-dark"  data-price="{{ $v->price }}" value="{{ $v->id }}">{{ "{$service->service_name} - {$v->variation_name}" }}</option>
+											<option class="text-dark" selected  data-price="{{ $v->price }}" value="{{ $v->id }}">{{ "{$service->service_name} - {$v->variation_name}" }}</option>
 											@empty
 											<option class="text-dark"  data-price="0.00" value="0" hidden selected>-- NO VARIATIONS FOUND FOR CONSULTATION --</option>
 											@endforelse
@@ -74,6 +56,7 @@
 										@endif
 									</select>
 								</div>
+								<small class="text-danger small">{{ $errors->first('service_category_id.*') }}</small>
 							</div>
 						{{-- CHANGE WHEN OTHER SERVICES SELECTED --}}
 						<div class="card col-lg-12 col-md-12 col-12 my-2">
@@ -151,7 +134,7 @@
 
 									{{-- TOTAL --}}
 									<div class="col-12 col-lg-12 col-md-4 mx-auto mb-3">
-										<label class="important" for="subtotal[]">Sub Total</label>
+										<label class="important" for="total[]">Sub Total</label>
 										<div class="input-group flex-nowrap">
 											<div class="input-group-prepend">
 												<span class="input-group-text">₱</span>
@@ -159,7 +142,7 @@
 											
 											<div class="input-group-append flex-fill">
 												<div class="input-group">
-													<input type="number" data-type="currency" name="subtotal[]" class="form-control" readonly>
+													<input type="number" data-type="currency" name="total[]" class="form-control" readonly>
 												</div>
 											</div>
 										</div>
@@ -307,7 +290,7 @@
 				let root = $(e.target).closest(".consultation");
 				let price = parseFloat($(root.find(`[name="price[]"]`)[0]).val());
 				let additional = parseFloat($(root.find(`[name="additional_cost[]"]`)[0]).val());
-				let total = $(root.find(`[name="subtotal[]"]`)[0]);
+				let total = $(root.find(`[name="total[]"]`)[0]);
 
 				price = isNaN(price) ? 0.0 : price;
 				additional = isNaN(additional) ? 0.0 : additional;
@@ -317,8 +300,8 @@
 			});
 
 			// Update the grand total
-			$(document).on('change', `[name="subtotal[]"]`, (e) => {
-				let total = $(`[name="subtotal[]"]`);
+			$(document).on('change', `[name="total[]"]`, (e) => {
+				let total = $(`[name="total[]"]`);
 				let grandTotal = $(`[name="total_amt"]`);
 				let gt = 0;
 

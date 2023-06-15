@@ -13,8 +13,8 @@ class ColorSetting extends Model
     'name',
     ];
 
-     public function color() {
-        return $this->hasMany('App\ColorSetting', 'id');
+     public function petsInformations() {
+        return $this->hasMany('App\PetsInformation', 'colors');
     }
 
 }

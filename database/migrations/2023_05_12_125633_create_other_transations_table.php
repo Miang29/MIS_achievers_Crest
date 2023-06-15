@@ -19,6 +19,8 @@ class CreateOtherTransationsTable extends Migration
             $table->integer('variation_id')->unsigned();
             $table->integer('pet_name')->unsigned();
             $table->integer('price');
+            $table->integer('additional_cost')->unsigned();
+            $table->integer('total');
 
             $table->timestamps();
             $table->foreign('transaction_id')->references('id')->on('services_order_transactions')->onDelete('cascade');

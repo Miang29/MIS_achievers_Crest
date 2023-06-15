@@ -12,6 +12,7 @@ class VaccinationTransaction extends Model
         'variation_id',
         'expired_at',
         'price',
+        'additional_cost',
         'total',
     ];
 

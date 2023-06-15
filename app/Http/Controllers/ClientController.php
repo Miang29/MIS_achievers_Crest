@@ -184,6 +184,7 @@ class ClientController extends Controller
 	// ---------=----------- PET INFORMATION SUBMIT ------------------------- //
 	protected function submitPet(Request $req)
 	{
+		// dd($req);
 		$validator = Validator::make($req->all(), [
 			"pet_owner" => 'required|numeric|exists:users,id',
 			"pet_name" => 'required|array',
@@ -192,7 +193,8 @@ class ClientController extends Controller
 			"breed.*" => 'required|string|max:255',
 			"colors" => 'required|array',
 			"colors.*" => 'required|array|max:3',
-			"colors.*.*" => 'required|string|max:255',
+			// "colors.*.*" => 'required|numeric|exists:color_settings,id',
+			"colors.*.*" => 'required|max:255|string',
 			"birthdate" => 'required|array',
 			"birthdate.*" => 'required|date',
 			"species" => 'required|array',
@@ -229,7 +231,6 @@ class ClientController extends Controller
 		try {
 			DB::beginTransaction();
 			$colorKeys = array_keys($req->colors);
-			// dd($colorKeys);
 			for ($i = 0; $i < count($req->pet_name); $i++) {
 				$imagename = "";
 				if ($req->hasFile("pet_image.$i")) {

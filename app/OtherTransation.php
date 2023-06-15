@@ -11,6 +11,7 @@ class OtherTransation extends Model
     'pet_name',
     'variation_id',
     'price',
+    'additional_cost',
     'total',
 
     ];

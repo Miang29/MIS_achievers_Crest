@@ -22,8 +22,8 @@
 						@endforeach
 						<option {{ old('pet_owner') ? '' : 'selected' }} disabled>--- Select Client Name ---</option>
 					</select>
-					<small class="text-danger small">{{ $errors->first('pet_owner') }}</small>
 				</div>
+					<small class="text-danger small">{{ $errors->first('pet_owner') }}</small>
 			</div>
 
 			{{-- PET REGISTRATION FORM --}}
@@ -81,7 +81,7 @@
 											<label class="font-weight-bold important" for="colors">Colors</label>
 											<select class="select-choices" name="colors[0][]" placeholder="Select Pet color" multiple notInstantiated>
 												@foreach($color as $c)
-												<option value="{{$c->id}}">{{$c->name}}</option>
+												<option value="{{$c->value}}">{{$c->name}}</option>
 												@endforeach
 											</select>
 											<small class="text-danger small">{{ $errors->first('colors') }}</small>
@@ -264,13 +264,9 @@
 									<div class="col-12 col-md-9 col-lg-12 mx-auto">
 										<label class="font-weight-bold important" for="colors">Colors</label>
 										<select class="select-choices" name="colors[${__iterator++}][]" placeholder="Select Pet color" multiple notInstantiated>
-											<option value="#FFFff">White</option>
-											<option value="#00000">Black</option>
-											<option value="#D269C1">Ash Gray</option>
-											<option value="#C1C10">Cream</option>
-											<option value="#FFFDD1E">Cinnamon</option>
-											<option value="#E5AA70">Fawn</option>
-											<option value="#964B00">Brown</option>
+											@foreach($color as $c)
+											<option value="{{$c->value}}">{{$c->name}}</option>
+											@endforeach
 										</select>
 									</div>
 								</div>

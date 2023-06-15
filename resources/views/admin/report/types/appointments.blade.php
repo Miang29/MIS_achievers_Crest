@@ -1,3 +1,4 @@
+
 <thead>
 	<tr>
 		<th scope="col" class="text-1">Appointment #</th>
@@ -23,3 +24,4 @@
 	</tr>
 	@endforelse
 </tbody>
+

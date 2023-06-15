@@ -91,7 +91,7 @@
 							<div class="dropdown-divider"></div>
 							@endif
 							@if(Auth::user()->user_type_id != 4)
-							<a class="dropdown-item" href="{{ route('dashboard')}}"><i class="fa-solid fa-chart-simple mr-2"></i>Dashboard</a>
+							<a class="dropdown-item" href="{{ route('dashboard',[Auth::user()->id])}}"><i class="fa-solid fa-chart-simple mr-2"></i>Dashboard</a>
 							<div class="dropdown-divider"></div>
 							@endif
 							{{-- LOGOUT --}}

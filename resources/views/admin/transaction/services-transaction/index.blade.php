@@ -1,18 +1,18 @@
 @extends('layouts.admin')
 
-@section('title', 'Service Transaction')
+@section('title', 'Service Transaction') 
 
 @section('content')
 
 <div class="container-fluid px-2 px-lg-6 py-2 h-100 my-3">
 	<div class="row">
 		<div class="col-12 col-lg text-center text-lg-left">
-			<h3 class="text-1">SERVICES TRANSACTION LIST</h3>
+			<h3 class="text-1 my-3">SERVICES TRANSACTION LIST</h3>
 		</div>
 
 		<div class="dropdown mx-auto">
 			<button class="btn btn-info dropdown-toggle bg-1 btn-sm mt-3 mr-3 mb-2" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-				<i class="fas fa-plus-circle mr-2"></i>New Transaction
+				<i class="fas fa-plus-circle mr-2"></i>Create Transaction
 			</button>
 			<div class="dropdown-menu" aria-labelledby="dropdownMenu2">
 				<a href="{{ route('consultation.transaction.create') }}" class="dropdown-item" type="button"><i class="fa-solid fa-stethoscope mr-2"></i>Consultation</a>
@@ -23,8 +23,8 @@
 			</div>
 		</div>
 	</div>
+	   <hr class="hr-thick" style="border-color: #707070;">
 
-	<div class="overflow-x-auto h-100 card w-lg-100 w-100 w-md-100">
 		<ul class="nav nav-tabs" id="myTab" role="tablist">
 			<li class="nav-item">
 				<a class="nav-link active" id="consultation-tab" data-toggle="tab" href="#consultation" role="tab" aria-controls="consultation" aria-selected="true">Consultation Table</a>
@@ -46,6 +46,8 @@
 				<a class="nav-link" id="other-tab" data-toggle="tab" href="#other" role="tab" aria-controls="other" aria-selected="false">Home Service Transaction Table </a>
 			</li>
 		</ul>
+	<div class="overflow-x-auto h-100 card w-lg-100 w-100 w-md-100">
+
 
 		 <div class="tab-content" id="myTabContent">
 			{{-- CONSULTATION --}}
@@ -131,7 +133,7 @@
 										@endforeach
 									{{ substr($pn, 1, strlen($pn)-2)  }}{{ $len <= 2 ? "" : "...." }}
 								</td>
-								<td>₱{{ number_format($vs->vaccination()->sum("price"), 2) }}</td>
+								<td>₱{{ number_format($vs->vaccination()->sum("total"), 2) }}</td>
 							    <td class="text-center">
 									<div class="btn-group">
 										<a class="btn btn-info btn-sm" href="{{ route('vaccination.transaction.show', [$vs->id]) }}"><i class="fa-solid fa-eye"></i></a>
@@ -183,7 +185,7 @@
 										@endforeach
 									{{ substr($pn, 1, strlen($pn)-2)  }}{{ $len <= 2 ? "" : "...." }}
 								</td>
-								<td>₱{{ number_format($gs->grooming()->sum("price"), 2) }}</td>
+								<td>₱{{ number_format($gs->grooming()->sum("total"), 2) }}</td>
 							    <td class="text-center">
 									<div class="btn-group">
 										<a class="btn btn-info btn-sm" href="{{route ('grooming.transaction.show', [$gs->id]) }}"><i class="fa-solid fa-eye"></i></a>
@@ -235,7 +237,7 @@
 										@endforeach
 									{{ substr($pn, 1, strlen($pn)-2)  }}{{ $len <= 2 ? "" : "...." }}
 								</td>
-								<td>₱{{ number_format($bs->boarding()->sum("price"), 2) }}</td>
+								<td>₱{{ number_format($bs->boarding()->sum("total"), 2) }}</td>
 							    <td class="text-center">
 									<div class="btn-group">
 										<a class="btn btn-info btn-sm" href="{{ route('boarding.transaction.show', [$bs->id])}}"><i class="fa-solid fa-eye"></i></a>
@@ -287,7 +289,7 @@
 										@endforeach
 									{{ substr($pn, 1, strlen($pn)-2)  }}{{ $len <= 2 ? "" : "...." }}
 								</td>
-								<td>₱{{ number_format($os->otherTransaction()->sum("price"), 2) }}</td>
+								<td>₱{{ number_format($os->otherTransaction()->sum("total"), 2) }}</td>
 							    <td class="text-center">
 									<div class="btn-group">
 										<a class="btn btn-info btn-sm" href="{{ route('other.transaction.show', [$os->id])}}"><i class="fa-solid fa-eye"></i></a>

@@ -22,9 +22,9 @@
 									<label class="input-group-text font-weight-bold bg-white" for="inputGroupSelect01">Category Name</label>
 								</div>
 
-								<select class="custom-select" id="inputGroupSelect01" name="category">
+								<select class="custom-select" name="category">
 									@foreach ($productCty as $pcty)
-									<option value="{{ $pcty->id}}">{{ $pcty->category_name }}</option>
+									<option value="{{ $pcty->is_perishable}}">{{ $pcty->category_name }}</option>
 									@endforeach
 									<option {{ old('category') ? '' : 'selected' }} disabled>--- Select Category Name ---</option>
 								</select>
@@ -121,7 +121,7 @@
 									</div>
 								</div>
 
-								<div class="form-group">
+								<div class="form-group ">
 									<label class="important" for="expired_at[]">Expiration Date</label>
 									<input class="form-control" type="date" name="expired_at[]"/>
 									<small class="text-danger small">{{ $errors->first('expired_at.*') }}</small>
