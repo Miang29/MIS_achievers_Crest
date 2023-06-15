@@ -168,6 +168,7 @@ class PageController extends Controller
 			),
 		);
 
+		$user = Auth::user()->with('usertype','>', 0);
 		return view('admin.dashboard', [
 			'months' => $months,
 			'monthly_earnings' => $monthly_earnings,
@@ -180,6 +181,7 @@ class PageController extends Controller
 			'unreadMessages' => $unreadMessages,
 			'quickActions' => $quickActions,
 			'transactedPets' => $transactedPets,
+			'user' => $user
 		]);
 	}
 

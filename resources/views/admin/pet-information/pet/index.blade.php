@@ -50,22 +50,27 @@
 						</div>
 
 						<div class="col-12 col-lg-6 d-flex flex-column">
+
 							{{-- IMAGE --}}
 							<div class="text-center text-lg-right">
 								<img src='{{ asset("uploads/clients/{$id}/pets/" . $p->pet_image) }}' class="img-fluid border mb-3 cursor-pointer" style="border-width: 0.25rem!important; max-height: 16.25rem;" alt="{{ $p->pet_name }}" data-toggle="modal" data-target='#{{ "{$p->pet_name}-{$p->id}" }}' id='img-{{ "{$p->pet_name }-{$p->id}" }}'>
+							</div>
+							{{-- HISTORY --}}
+							<div class="mx-auto">
+								<a type="button" href="{{ route('pet-information.pet.history',[$p->id])}}" class="btn btn-info btn-sm bg-1"><i class="fa-regular fa-eye mr-2"></i>View History</a>
 							</div>
 						</div>
 
 						<div class="col-12 col-lg-6 d-flex flex-column text-center text-lg-left">
 							{{-- NAME (BREED) --}}
-							<span class="h2 my-0 text-wrap">{{ $p->pet_name }} ({{ $p->breed }})</span>
+							<span class="h4 my-0 text-wrap">{{ $p->pet_name }} ({{ $p->breed }})</span>
 							{{-- BIRTHDAY --}}
-							<span class="h4 mb-3">{{ Carbon\Carbon::parse($p->birthdate)->format("M d, Y") }}</span>
+							<span class="h3">{{ Carbon\Carbon::parse($p->birthdate)->format("M d, Y") }}</span>
 
 							{{-- SPECIES --}}
 							<div>
 								<span class="p font-weight-bold">Species:</span>
-								<span class="mx-2">
+								<span class="mx-1">
 									<i class="fas fa-{{ $p->species }} fa-lg mr-2"></i>{{ ucfirst($p->species) }}
 								</span>
 							</div>
@@ -96,9 +101,22 @@
 								<span class="p text-wrap">{{ ucfirst($p->types) }}</span>
 							</div>
 
-							{{-- HISTORY --}}
-							<div class="mt-2">
-								<a type="button" href="{{ route('pet-information.pet.history',[$p->id])}}" class="btn btn-info btn-sm bg-1"><i class="fa-regular fa-eye mr-2"></i>View History</a>
+							{{-- UNIQUE TRAITS --}}
+							{{-- <div>
+								<span class="p font-weight-bold mr-2">Birth Mark: </span>
+								<span class="p text-wrap">{{ ucfirst($p->traits) }}</span>
+							</div> --}}
+
+							{{-- STATUS --}}
+							<div>
+								<span class="p font-weight-bold mr-2">Status: </span>
+								<span class="p text-wrap">{{ ucfirst($p->pet_status) }}</span>
+							</div>
+
+							{{-- Life Span --}}
+							<div>
+								<span class="p font-weight-bold mr-2">Life Span: </span>
+								<span class="p text-wrap">{{ ucfirst($p->lifespan) }}</span>
 							</div>
 						</div>
 					</div>

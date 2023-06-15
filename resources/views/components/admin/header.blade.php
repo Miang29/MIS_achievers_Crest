@@ -10,13 +10,14 @@
 			<img src="{{ asset('uploads/settings/banner.png') }}" style="max-height: 2.25rem;" class="m-0 p-0" alt="MIS Nano" data-fallback-img="{{ asset('uploads/settings/default.png') }}" /> Veterinary Clinic
 		</a>
 
-		<div class="d-flex flex-row ml-auto">
+		<div class="d-flex flex-row">
 			{{-- Navbar contents --}}
 			<div class="navbar-collapse" id="navbar">
-				<div class="ml-auto" >
+				<div class="mr-5" >
 					<label class="my-auto">
 						<div class="dropdown">
-							<a href='#' role="button" class="nav-link dropdown-toggle text-dark my-auto font-weight-bold header-username" style="font-size: 1.2rem;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 
+							<a role="button" class="nav-link dropdown-toggle text-dark my-auto font-weight-bold header-username mr-5" style="font-size: 1.1rem;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 
+							({{ Auth::user()->userType->name}})
 							{{ Auth::user()->getName() }}
 							</a>
 
