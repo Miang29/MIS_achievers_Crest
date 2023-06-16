@@ -55,6 +55,15 @@
     {{-- TITLE --}}
     <title>Terms of Service</title>
 </head>
+<header>
+    <nav class="navbar navbar-expand-lg navbar-dark border-bottom position-sticky position-lg-relative py-0 px-3" style="z-index: 1000; background-color:#021f53;;" id="navbar">
+     {{-- Branding --}}
+        <a class="navbar-brand m-2 py-0 font-weight-bold"style="height: auto;">
+            <img src="{{ asset('uploads/settings/banner-white.png') }}" style="max-height: 2.25rem;" class="m-0 p-0" alt="MIS Nano" data-fallback-img="{{ asset('uploads/settings/default.png') }}" />
+            <h8 style="font-size:1.5rem;">Veterinary Clinic</h8>
+        </a>
+    </nav>
+</header>
 
 <body>
     {{-- SHOWS THIS INSTEAD WHEN JAVASCRIPT IS DISABLED --}}
@@ -79,7 +88,7 @@
         </div>
     </div>
 
-    <main class="card mt-5 h-50 mx-auto js-only w-50 w-lg-75 w-md-50 w-xs-75 shadow mb-5 bg-white rounded border-info" id="content">
+    <main class="card mt-3 h-50 mx-auto js-only w-50 w-lg-75 w-md-50 w-xs-75 shadow mb-5 bg-white rounded border-info" id="content">
         <p class="mr-3 ml-3 mt-3 text-justify"><b>Parts of this Agreement</b><br>This Agreement consists of the following terms and services (hereinafter the “General Terms”) and terms and services, if any, specific to the use of individual Services (hereinafter the “Service Specific Terms”). The General Terms and Service Specific Terms are collectively referred to as the “Terms”. In the event of a conflict between the General Terms and Service Specific Terms, the Service Specific Terms shall prevail.</p>
         <p class="mr-3 ml-3 text-justify"><b>Description of Service</b><br>We provide services for online appointments. You may connect to the Services using any Internet browser supported by the Services. You are responsible for obtaining access to the Internet and the equipment necessary to use the Services. You can create an account with your user account also you can set the service you want.</p>
         <p class="mr-3 ml-3 mt-3 text-justify"><b>User Sign-up Obligations</b><br>You need to sign up for a user account by providing all required information including user name, password, email address, contact, and contact to access or use the Services. You agree to a) provide true, accurate, current, and complete information about yourself as prompted by the sign-up process; and b) maintain and promptly update the information provided during sign-up to keep it true, accurate, current, and complete.</p>

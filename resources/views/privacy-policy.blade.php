@@ -55,7 +55,15 @@
     {{-- TITLE --}}
     <title>Privacy Policy</title>
 </head>
-
+        <header>
+            <nav class="navbar navbar-expand-lg navbar-dark border-bottom position-sticky position-lg-relative py-0 px-3" style="z-index: 1000; background-color:#021f53;;" id="navbar">
+             {{-- Branding --}}
+                <a class="navbar-brand m-2 py-0 font-weight-bold"style="height: auto;">
+                    <img src="{{ asset('uploads/settings/banner-white.png') }}" style="max-height: 2.25rem;" class="m-0 p-0" alt="MIS Nano" data-fallback-img="{{ asset('uploads/settings/default.png') }}" />
+                    <h8 style="font-size:1.5rem;">Veterinary Clinic</h8>
+                </a>
+            </nav>
+        </header>
 <body>
     {{-- SHOWS THIS INSTEAD WHEN JAVASCRIPT IS DISABLED --}}
     <div style="position: absolute; height: 100vh; width: 100vw; background-color: #ccc;" id="js-disabled">
@@ -79,7 +87,7 @@
         </div>
     </div>
 
-    <main class="card  h-50 mx-auto js-only w-50 w-lg-75 w-md-50 w-xs-75 shadow mt-5 mb-5 bg-white rounded border-info">
+    <main class="card  h-50 mx-auto js-only w-50 w-lg-75 w-md-50 w-xs-75 shadow mt-3 mb-5 bg-white rounded border-light">
         <p class="mr-3 ml-3 mt-3 text-justify"><b>Privacy Policy</b><br>Privacy of personal information is an important principle to the <i>Nano Veterinary Clinic</i>. We are committed to protecting, collecting, using and disclosing your personal information responsibly and developing a website that gives you the most powerful and safe online experience. By using this website you consent to the data practices described in this statement.</p>
         <p class="mr-3 ml-3 text-justify"><b>Collection of your Personal Information</b><br>This Practice collects personally identifiable information, such as your email address, name, home address, or telephone number.This Practice also collects information about your pet such as your pets name, breed and the type of service needed. This Practice does not sell, rent or lease its customer lists to third parties. All such third parties are prohibited from using your personal information except to provide these services, and they are required to maintain the confidentiality of your data. </p>
         <p class="mr-3 ml-3 text-justify"><b>Use of Cookies</b><br>The website uses “cookies” to help this Practice personalize your online experience. A cookie is a text file that is placed on your hard disk by a website server. Cookies cannot be used to run programs or deliver viruses to your computer. Cookies are uniquely assigned to you and can only be read by a web server in the domain that issued the cookie to you.</p>

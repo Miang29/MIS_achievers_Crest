@@ -35,6 +35,7 @@
 					</div>
 				</div>
 				<hr class="hr-thick" style="border-color: lightgray;">
+				<h4 class="text-center">Date Range</h4>
 				<div class="col-lg-12 col-12 col-md-12">
 					<div class="row" id="dateRangeContainer">
 						<div class="card col-lg-5 mt-3 py-4 position-relative mr-3 ml-5 mb-2" id="dateRangeOg">
@@ -73,7 +74,7 @@
 							<div class="form-group">
 								<div class="form-check">
 									<input type="hidden" name="isWholeDay[]" value="false">
-									<input type="checkbox" class="form-check-input checkbox" name="isWholeDay[]" {{ old('isWholeDay') == 'true' ? 'checked' : '' }} value="true">
+									<input type="checkbox" class="form-check-input checkbox" name="isWholeDay[]" {{ old('isWholeDay[]') == 'true' ? 'checked' : '' }} value="true">
 									<label class="form-check-label">Is Whole Day?</label>
 								</div>
 								<small class="text-danger">{{ $errors->first('isWholeDay.*') }}</small>
