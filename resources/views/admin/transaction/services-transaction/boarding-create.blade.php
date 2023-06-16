@@ -5,7 +5,7 @@
 @section('content')
 <div class="container-fluid m-0">
 	<h3 class="mt-3"><a href="{{route('transaction.service')}}" class="text-decoration-none  text-1"><i class="fas fa-chevron-left mr-2"></i>Service Transaction List</a></h3>
-	<hr class="hr-thick" style="border-color: #707070;">
+	<hr class="hr-thick" style="border-color: #707070;"> 
 	
 	<form class="card mx-auto" method="POST" action="{{ route('submit.boarding') }}" enctype="multipart/form-data">
 		{{ csrf_field() }}
@@ -27,13 +27,10 @@
 												<label class="input-group-text bg-white" for="inputGroupSelect01">Pet Name</label>
 											</div>
 											<select class="custom-select" id="inputGroupSelect01" name="pet_name[]">
-											@foreach($owner as $u)
-											<optgroup label="{{$u->getName()}}">
-												@foreach($u->petsInformations as $p)
-												<option selected  value="{{$p->id}}">{{$p->pet_name}}</option>
-												@endforeach
-											</optgroup>
+											@foreach($appointments as $ap)
+											<option selected  value="{{ $ap->petsInformations->id }}">{{ $ap->petsInformations->pet_name }} - ({{ $ap->user->getName() }})</option>
 											@endforeach
+											<option {{ old('pet_name') ? '' : 'selected' }} disabled>--- SELECT A PET ---</option>
 											</select>
 										</div>
 										<small class="text-danger small">{{ $errors->first('pet_name') }}</small>
@@ -136,10 +133,10 @@
 							<div class="form-group col-12 col-lg-6 col-md-12">
 								<label class="important font-weight-bold text-1" for="mode_of_payment">Mode of Payment</label>
 								<select id="select" class="form-control" name="mode_of_payment">
-									<option value="">Select mode of payment</option>
-									<option value="cash">Cash</option>
-									<option value="paymaya">Paymaya</option>
-									<option value="gcash">Gcash</option>
+									@foreach($mode as $mode)
+									<option value="{{ $mode->value }}">{{ $mode->name }}</option>
+									@endforeach
+									<option {{ old('mode_of_payment') ? '' : 'selected' }} disabled>--- SELECT A PAYMENT METHOD ---</option>
 								</select>
 								<small class="text-danger small">{{ $errors->first('mode_of_payment') }}
 							</div>

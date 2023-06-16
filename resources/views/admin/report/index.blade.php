@@ -17,24 +17,32 @@
 	<div class="row ">
 		<div class="dropdown mr-4 ml-auto my-3">
 			  <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-			    Select Reports
+			    Select Other Reports
 			  </button>
 			  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+				<a href="{{ route('report.index', ['t' => 'appointments', 'from' => $from, 'to' => $to]) }}" class="dropdown-item m-1 {{ $type == 'appointments' ? 'active' : '' }}"><i class="fa-solid fa-calendar mr-2"></i>Appointment</a>				
+				<div class="dropdown-divider"></div>
+				<a href="{{ route('report.index', ['t' => 'inventory', 'from' => $from, 'to' => $to]) }}" class="dropdown-item m-1 {{ $type == 'inventory' ? 'active' : '' }}"><i class="fa-solid fa-warehouse mr-2"></i>Inventory</a>
+				<div class="dropdown-divider"></div>
+				<a href="{{ route('report.index', ['t' => 'services', 'from' => $from, 'to' => $to]) }}" class="dropdown-item m-1 {{ $type == 'services' ? 'active' : '' }}"><i class="fa-solid fa-chart-simple mr-2"></i>Services</a>
+			  </div>
+		</div>
+
+		<div class="dropdown my-3 mr-3">
+			  <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			   Select Account Reports
+			  </button>
+			  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+			  
 				<a href="{{ route('report.index', ['t' => 'users', 'from' => $from, 'to' => $to]) }}" class="dropdown-item m-1 {{ $type == 'users' ? 'active' : '' }}"><i class="fas fa-user-alt mr-2"></i>Users</a>	
 				<div class="dropdown-divider"></div>
 				<a href="{{ route('report.index', ['t' => 'clients', 'from' => $from, 'to' => $to]) }}" class="dropdown-item m-1 {{ $type == 'clients' ? 'active' : '' }}"><i class="fas fa-address-card mr-2"></i>Client</a>
 				<div class="dropdown-divider"></div>
 				<a href="{{ route('report.index', ['t' => 'pets', 'from' => $from, 'to' => $to]) }}" class="dropdown-item m-1 {{ $type == 'pets' ? 'active' : '' }}"><i class="fa-solid fa-dog mr-2"></i>Pets</a>			
-				<div class="dropdown-divider"></div>
-				<a href="{{ route('report.index', ['t' => 'appointments', 'from' => $from, 'to' => $to]) }}" class="dropdown-item m-1 {{ $type == 'appointments' ? 'active' : '' }}"><i class="fa-solid fa-calendar mr-2"></i>Appointment</a>				
-				<div class="dropdown-divider"></div>
-				<a href="{{ route('report.index', ['t' => 'inventory', 'from' => $from, 'to' => $to]) }}" class="dropdown-item m-1 {{ $type == 'inventory' ? 'active' : '' }}"><i class="fa-solid fa-warehouse mr-2"></i>Inventory</a>
-				<div class="dropdown-divider"></div>
-				<a href="{{ route('report.index', ['t' => 'transaction-sales', 'from' => $from, 'to' => $to]) }}" class="dropdown-item m-1"><i class="fas fa-money-check-dollar mr-2"></i>Product Order</a>
-				<div class="dropdown-divider"></div>
-				<a href="{{ route('report.index', ['t' => 'services', 'from' => $from, 'to' => $to]) }}" class="dropdown-item m-1 {{ $type == 'services' ? 'active' : '' }}"><i class="fa-solid fa-chart-simple mr-2"></i>Services</a>
-			  </div>
+			</div>
 		</div>
+
+
 		<div class="dropdown mr-auto my-3">
 			  <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 			    Select Transaction Reports
@@ -49,6 +57,8 @@
 				<a href="{{ route('report.index', ['t' => 'transaction-boarding', 'from' => $from, 'to' => $to]) }}" class="dropdown-item m-1 {{ $type == 'transaction-boarding' ? 'active' : '' }}"><i class="fa-solid fa-house-chimney-medical mr-2"></i>Boarding Transaction</a>
 				<div class="dropdown-divider"></div>
 				<a href="{{ route('report.index', ['t' => 'transaction-other', 'from' => $from, 'to' => $to]) }}" class="dropdown-item btn-sm m-1 {{ $type == 'transaction-other' ? 'active' : '' }}"><i class="fas fa-solid fa-house mr-2"></i>Home Service</a>
+				<div class="dropdown-divider"></div>
+				<a href="{{ route('report.index', ['t' => 'transaction-sales', 'from' => $from, 'to' => $to]) }}" class="dropdown-item m-1"><i class="fas fa-box mr-2"></i>Product Order</a>
 			  </div>
 		</div>
 	</div>

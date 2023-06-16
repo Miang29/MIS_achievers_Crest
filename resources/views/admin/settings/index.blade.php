@@ -110,16 +110,73 @@
 				</div>
 			</form>
 			{{-- PAYMENT METHOD SETTINGS --}}
-			{{-- <div class="card col-lg-12 col-md-12 col-12 mx-auto">
-				<h4 class="font-weight-bold text-center my-3 text-dark">Payment Method Settings</h4>
-				<div class="row">
-					<div class="col-12 col-lg-6 col-md-6 mx-auto text-center mb-3">
-						<a href="{{ route('gcash.edit')}}" class="btn btn-outline-primary btn-sm w-lg-50">Edit Gcash Info</a>
-						<a href="{{ route('maya.edit')}}" class="btn btn-outline-success btn-sm w-lg-50">Edit Maya Info</a>
+			<form class="card my-3" method="POST" action="{{ route('submit.payment.method')}}"  id="form-area" enctype="multipart/form-data">
+				{{ csrf_field() }}
+				<div class="col-lg-12 col-12 col-md-12 my-3">
+					<h4 class="font-weight-bold text-center my-3 text-dark">Payment Method Settings</h4>
+					<div class="row" id="paymentContainer">
+						<div class="card col-lg-5 col-12 col-md-12 my-3 ml-5" id="paymentOriginal">
+								<h7 class="text-dark my-2 border-bottom text-center position-relative">Mode of Payment:</h7>
+							<div class="row">
+								<div class="form-group col-12 col-lg-6 col-md-6">
+									<label class="h6 important" for="value[]">Value</label>
+									<input class="form-control" type="text" name="value[]" value="" />
+									<small class="text-danger small mx-auto">{{ $errors->first('value.*') }}</small>
+								</div>
+
+								<div class="form-group col-12 col-lg-6 col-md-6">
+									<label class="h6 important" for="name[]">Name</label>
+									<input class="form-control" type="text" name="name[]" value=""/>
+									<small class="text-danger small mx-auto">{{ $errors->first('name.*') }}</small>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
-			</div> --}}
+				{{-- ADD --}}
+				<div class="form-group col-lg-12 col-md-12 col-12 mx-auto">
+					<button class="card mx-auto w-100 h-100 d-flex" type="button" style="border-style: dashed; border-width: .20rem;" id="addpayment">
+						<span class="m-auto font-weight-bold text-1"><i class="fa-solid fa-circle-plus mr-2"></i>Add Mode of Payment</span>
+					</button>
+				</div>
+
+				<div class="card-footer d-flex">
+					<div class="col-12 col-lg-6 col-md-6 mx-auto  text-center ">
+						<button type="submit" data-type="submit" class="btn btn-outline-info my-2 btn-sm w-25">Save</button>
+					</div>
+				</div>
+			</form>
 			{{-- END PAYMENT METHOD SETTINGS --}}
+
+			{{-- PAYMENT METHOD TABLE --}}
+			<div class="card h-100 px-0">
+				<table class="table table-striped text-center">
+					<thead>
+						<tr>
+							<th scope="col" class="hr-thick text-dark">Payment Method Name</th>
+							<th></th>
+							<th scope="col" class="hr-thick text-dark">Action</th>
+						</tr>
+					</thead>
+
+					<tbody>
+						@forelse($paymentMode as $p)
+						<tr>
+							<td class="text-center">{{ $p->name}}</td>
+							<td></td>
+							<td>
+								<a href="javascript:void(0);" onclick="confirmLeave('{{ route('remove.payment', [$p->id]) }}', undefined, 'Are you sure you want to remove this mode of payment?');" class="text-danger"><i class="fa-solid fa-box-archive mr-2"></i>Remove Method</a>
+							</td>
+						</tr>
+						@empty
+						<tr>
+							<td colspan="7">Nothing to show ~</td>
+						</tr>
+						@endforelse
+					</tbody>
+				</table>
+			</div>
+			{{-- END PAYMENT METHOD TABLE --}}
 
 			{{-- PET INFO SETTINGS --}}
 			<form class="card my-3" method="POST" action="{{ route('submit.colors')}}"  id="form-area" enctype="multipart/form-data">
@@ -160,7 +217,7 @@
 				</div>
 			</form>
 			{{-- END PET INFO SETTINGS --}}
-
+			{{-- COLOR TABLE --}}
 			<div class="card h-100 px-0">
 				<table class="table table-striped text-center">
 					<thead>
@@ -177,7 +234,7 @@
 							<td class="text-center">{{ $c->value}}</td>
 							<td class="text-center">{{ $c->name}}</td>
 							<td>
-								<a href="javascript:void(0);" onclick="confirmLeave('{{ route('remove.color', [$c->id]) }}', undefined, 'Are you sure you want to remove this color?');" class="dropdown-item text-danger"><i class="fa-solid fa-box-archive mr-2"></i>Remove Color</a>
+								<a href="javascript:void(0);" onclick="confirmLeave('{{ route('remove.color', [$c->id]) }}', undefined, 'Are you sure you want to remove this color?');" class="text-danger"><i class="fa-solid fa-box-archive mr-2"></i>Remove Color</a>
 							</td>
 						</tr>
 						@empty
@@ -188,7 +245,7 @@
 					</tbody>
 				</table>
 			</div>
-
+			{{-- END COLOR TABLE --}}
 		</div>
 
 		{{-- PRODUCT CATEGORY --}}
@@ -525,6 +582,36 @@
 				let obj = $(e.currentTarget);
 				let form = $("#colorOriginal");
 				let container = $("#colorContainer");
+				let formCopy = form.clone();
+				let copy = obj.clone();
+
+				let remove = $(`
+					<span class="position-absolute cursor-pointer" onclick="$(this).parent().remove();" style="top: -1rem; right: -1.125rem;">
+						<i class="fas fa-circle-xmark fa-lg p-2 text-custom-1"></i>
+					</span>
+				`);
+
+				obj.remove();
+				formCopy.append(remove)
+					.removeAttr("id")
+					.css('transition', '0.375s ease-in-out')
+					.css('opacity', 0);
+				setTimeout(() => {
+					formCopy.css('opacity', 1);
+				});
+				container.append(formCopy);
+				container.append(copy);
+			});
+		});
+	</script>
+
+	<script type="text/javascript">
+		$(document).ready(() => {
+			// Adding and Removing Variations
+			$(document).on('click', '#addpayment', (e) => {
+				let obj = $(e.currentTarget);
+				let form = $("#paymentOriginal");
+				let container = $("#paymentContainer");
 				let formCopy = form.clone();
 				let copy = obj.clone();
 

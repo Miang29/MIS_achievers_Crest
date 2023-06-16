@@ -12,6 +12,7 @@ use App\ProductsOrderTransactionItem;
 use App\ProductsOrderTransaction;
 use App\Services;
 use App\ServicesCategory;
+use App\ModeOfPayment;
 
 use DB;
 use Exception;
@@ -24,7 +25,7 @@ class ProductOrderTransactionController extends Controller
 {
 	// ---------- PRODUCTS ORDER TRANSACTION --------- //
 	// ---------------- SHOW ------------------ //
-	protected function viewProductsOrder($id)
+	protected function viewProductsOrder(Request $req, $id)
 	{
 		
 		$order = ProductsOrderTransaction::with('productsOrderItems')->find($id);
@@ -49,9 +50,11 @@ class ProductOrderTransactionController extends Controller
 
 	//-------------- PRODUCT ORDER CREATE TRANSACTION ----------------- //
 	protected function createproductsOrder(){
+		$mode = ModeOfPayment::get();
 		$prc = ProductCategory::has("products", '>', 0)->get();
 		return view('admin.transaction.productsOrder.create', [
 			'prodCat' => $prc,
+			'mode' => $mode
 		]);
 	}
 	// SUBMIT ORDER //

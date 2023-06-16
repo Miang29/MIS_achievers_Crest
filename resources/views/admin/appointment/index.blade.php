@@ -35,7 +35,7 @@
 						<th scope="col" class="hr-thick text-1 text-center">Service Type</th>
 						<th scope="col" class="hr-thick text-1 text-center">Status</th>
 						<th scope="col" class="hr-thick text-1 text-center"></th>
-					</tr>
+					</tr> 
 				</thead>
 
 				<tbody>

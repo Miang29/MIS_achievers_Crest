@@ -14,6 +14,7 @@ use App\PaymentMethodInfo;
 use App\ColorSetting;
 use App\ServicesCategory;
 use App\Services;
+use App\ModeOfPayment;
 
 use DB;
 use Exception;
@@ -26,6 +27,78 @@ use delete;
 
 class SettingsController extends Controller
 {
+
+	//PAYMENT METHOD
+	// PET INFO SETTINGS
+	protected function submitPaymentMethod(Request $req){
+
+		$validator = Validator::make($req->all(), [
+			'value' => 'required|array',
+			'value.*' => 'required|string|max:255',
+			'name' => 'required|array',
+			'name.*' => 'required|string|max:255',
+		]);
+
+		if ($validator->fails()) {
+			return redirect()
+				->back()
+				->withErrors($validator)
+				->withInput();
+		}
+		try {
+		DB::beginTransaction();
+		for ($i = 0; $i < count($req->value); $i++) {
+			ModeOfPayment::create([
+				'value' => $req->value[$i],
+				'name' => $req->name[$i],
+			]);
+		}
+			DB::commit();
+		} catch (Exception $e) {
+			DB::rollback();
+			Log::error($e);
+
+			return redirect()
+				->route('settings.index')
+				->with('flash_error', 'Something went wrong, please try again later');
+		}
+
+		return redirect()
+			->route('settings.index')
+			->with('flash_success', "Successfully set added new mode of payment");
+		}
+
+		// REMOVE PAYMENT METHOD
+	protected function removePayment($id) {
+
+		$mode = ModeOfPayment::find($id);
+
+		if ($mode == null) {
+			return redirect()
+			->route('settings.index')
+			->with('flash_error', 'The mode of payment does not exists or is already removed');
+			}
+
+			try{
+				DB::beginTransaction();
+				$mode->delete();
+			
+			DB::commit();
+		} catch (Exception $e) {
+			DB::rollback();
+			Log::error($e);
+
+			return redirect()
+				->route('settings.index')
+				->with('flash_error', 'Something went wrong, please try again later');
+		}
+
+		return redirect()
+			->route('settings.index')
+			->with('flash_success', 'Successfully removed mode of payment');
+	}
+
+
 	// PET INFO SETTINGS
 	protected function submitColor(Request $req){
 
@@ -207,6 +280,7 @@ class SettingsController extends Controller
 
 		$serviceCategory = ServicesCategory::has('services', '>', 0);
 		$colors = ColorSetting::get();
+		$paymentMode = ModeOfPayment::get();
 		$contact = ContactInformation::get();
 		$client = User::where('user_type_id','=', 4)->get();
 		$unavailableDates = UnavailableDate::orderByDesc('date')->get();
@@ -216,6 +290,7 @@ class SettingsController extends Controller
 			'client' => $client,
 			'unavailableDates' => $unavailableDates,
 			'colors' => $colors,
+			'paymentMode' => $paymentMode,
 			'servicesCategory' => $serviceCategory->get()
 		]);
 	}

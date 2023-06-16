@@ -368,15 +368,14 @@ Route::group(['middleware' => ['auth']], function() {
 		Route::get('/message/{id}/viewed','SettingsController@viewMessage')->name('view.message');
 		Route::get('/contact/{id}/show', 'SettingsController@contactShow')->name('contact.show');
 		Route::get('/message/{id}/response', 'SettingsController@messageResponse')->name('response');
+
+		// PET INFO SETTINGS
 		Route::post('/submit/colors', 'SettingsController@submitColor')->name('submit.colors');
 		Route::get('/remove/{id}', 'SettingsController@removeColor')->name('remove.color');
 
-		//Edit Gcash
-		Route::get('/edit/gcash/information/','SettingsController@editGcashQRcode')->name('gcash.edit');
-		//Edit Maya
-		Route::get('/edit/maya/information/','SettingsController@editMayaQRcode')->name('maya.edit');
-		// SUBMIT
-		Route::post('/update/information','SettingsController@savePaymentMethodInfo')->name('submit.payment.method');
+		// PAYMENT METHOD SETTINGS
+		Route::post('/submit','SettingsController@submitPaymentMethod')->name('submit.payment.method');
+		Route::get('/remove/{id}/payment-method', 'SettingsController@removePayment')->name('remove.payment');
 
 		// SETTINGS - UNAVAILABLE DATES
 		Route::get('/settings/unavailable-dates/create', 'SettingsController@unavailableDatesCreate')->name('settings.unavailable-dates.create');
