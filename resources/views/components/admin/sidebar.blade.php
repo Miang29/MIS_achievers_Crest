@@ -35,19 +35,6 @@
 		@endif
 		@endif
 
-
-		{{-- Services --}}
-		{{-- @if (Auth::user()->user_type_id == 1 || Auth::user()->user_type_id == 3)
-		@if (\Request::is('admin/service-category'))
-		<span class="bg-secondary text-white"><i class="fa-solid fa-chart-simple  mr-3 fa-lg"></i>Services</span>
-		@elseif (\Request::is('admin/service-category/*'))
-		<a class="text-decoration-none aria-link bg-secondary text-white" href="{{route('service_category.index')}}" aria-hidden="false" aria-label="Reservation"><i class="fa-solid fa-chart-simple  mr-3 fa-lg"></i>Services</a>
-		@else
-		<a class="text-decoration-none text-1  aria-link" href="{{route('service_category.index')}}" aria-hidden="false" aria-label="Reservation"><i class="fa-solid fa-chart-simple  mr-3 fa-lg"></i>Services</a>
-		@endif
-	    @endif --}}
-
-
 		{{-- Inventory --}}
 	    @if (Auth::user()->user_type_id == 1 || Auth::user()->user_type_id == 3)
 		@if (\Request::is('admin/inventory'))
@@ -60,7 +47,7 @@
 		@endif
 
 		{{-- Transaction --}}
-	    @if (Auth::user()->user_type_id == 1 || Auth::user()->user_type_id == 3)
+	    @if (Auth::user()->user_type_id == 1 || Auth::user()->user_type_id == 3 || Auth::user()->user_type_id == 2)
 		<a class="btn text-decoration-none text-1 aria-link text-left" aria-label="transaction" data-toggle="collapse" href="#collapseItem2" role="button" aria-expanded="false" aria-controls="collapseItem2">
 			<i class="fa-solid fa-money-check-dollar  mr-2 fa-lg"></i>Transaction
 		</a>
@@ -74,7 +61,7 @@
 		@endif
 
 		{{-- Reports --}}
-		@if (Auth::user()->user_type_id == 1 || Auth::user()->user_type_id == 2)
+		@if (Auth::user()->user_type_id == 1 || Auth::user()->user_type_id == 2 || Auth::user()->user_type_id == 3)
 		@if (\Request::is('admin/report'))
 		<span class="bg-secondary text-white"><i class="fa-solid fa-chart-simple  mr-3 fa-lg"></i>Reports</span>
 		@elseif (\Request::is('admin/report/*'))
