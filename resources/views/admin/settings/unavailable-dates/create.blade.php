@@ -84,7 +84,7 @@
 
 				</div>
 				{{-- ADD --}}
-				<div class="form-group col-lg-6 col-md-6 col-6 mx-auto">
+				<div class="form-group col-lg-12 col-md-12 col-12 mx-auto">
 					<button class="card mx-auto w-100 h-100 d-flex" type="button" style="border-style: dashed; border-width: .25rem;" id="addDateRange">
 						<span class="m-auto font-weight-bold text-1"><i class="fa-solid fa-circle-plus mr-2"></i>Add Date Range</span>
 					</button>

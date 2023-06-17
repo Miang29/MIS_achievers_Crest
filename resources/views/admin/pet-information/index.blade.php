@@ -55,7 +55,6 @@
 							echo implode(', ', $arr);
 							@endphp
 						</td>
-
 						<td class="text-center">
 							<div class="row">
 								<a class="mx-auto text-1" href="{{route('pet-information.pet.show', [$c->id])}}"><i class="fa-solid fa-eye mr-2 text-info"></i>View Pets</a>

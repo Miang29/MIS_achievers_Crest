@@ -406,7 +406,7 @@ class SettingsController extends Controller
 
 		try {
 			DB::beginTransaction();
-		
+			
 			for ($i = 0; $i < count($req->date); $i++) {
 			UnavailableDate::create([
 				'status' => $req->status,

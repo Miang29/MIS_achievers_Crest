@@ -98,7 +98,7 @@ class ServiceTransactionController extends Controller
 		$pets = PetsInformation::get();
 		$service = Services::where('service_name', '=', 'Consultation')->with('variations')->first();
 		$owner = User::where('user_type_id', '=', 4)->has("petsInformations", '>', 0)->with('petsInformations')->get();
-		$appointments = Appointments::where('service_id', '=', 2)->has('petsInformations', '>', 0)->with('petsInformations','petsInformations.user')->get();
+		$appointments = Appointments::where('status','=', 1)->where('service_id', '=', 2)->has('petsInformations', '>', 0)->with('petsInformations','petsInformations.user')->get();
 		return view('admin.transaction.services-transaction.consultation_transaction_create', [
 			'service' => $service,
 			'pets' => $pets,
@@ -179,21 +179,45 @@ class ServiceTransactionController extends Controller
 					'total' => $req->total[$i],
 				]);
 			}
-			DB::commit();
-		} catch (Exception $e) {
-			DB::rollback();
-			Log::error($e);
-			
+
+				$appointment = Appointments::select('id')->where('pet_information_id', '=', $req->pet_name)->first();
+			// dd($appointment);
+			if ($appointment == null) {
+				return redirect()
+					->route('transaction.service')
+					->with('flash_error', 'Appointment does not exists.');
+			}
+			try{
+				DB::beginTransaction();
+				$appointment->status = 3;
+				$appointment->save();
+
+
+				DB::commit();
+			} catch (Exception $e) {
+				DB::rollback();
+				Log::error($e);
+
 			return redirect()
-			->route('transaction.consultation.create')
+			->route('transaction.grooming.create')
 			->with('flash_error', 'Something went wrong, please try again later');
 		}
 
-		// dd("TEST");
+		DB::commit();
+	} catch (Exception $e) {
+		DB::rollback();
+		Log::error($e);
+		
 		return redirect()
-			->route('transaction.service')
-			->with('flash_success', "Transaction has been created successfully.");
+		->route('transaction.consultation.create')
+		->with('flash_error', 'Something went wrong, please try again later');
 	}
+
+	// dd("TEST");
+	return redirect()
+		->route('transaction.service')
+		->with('flash_success', "Transaction has been created successfully.");
+}
 
 	   // CREATE VACCINATION TRANSACTION
 	protected function createVaccination()
@@ -201,7 +225,7 @@ class ServiceTransactionController extends Controller
 		$mode = ModeOfPayment::get();
 		$services = Services::where('id', '=', 3)->has("variations", '>', 0)->with('variations')->get();
 		// dd($serVar);
-		$appointments = Appointments::where('service_id', '=', 3)->has('petsInformations', '>', 0)->with('petsInformations','petsInformations.user')->get();
+		$appointments = Appointments::where('status','=', 1)->where('service_id', '=', 3)->has('petsInformations', '>', 0)->with('petsInformations','petsInformations.user')->get();
 		  return view('admin.transaction.services-transaction.vaccination-create',[
 			'services' => $services,
 			'appointments' => $appointments,
@@ -267,28 +291,52 @@ class ServiceTransactionController extends Controller
 					'total' => $req->total[$i],
 				]);
 			}
-			DB::commit();
-		} catch (Exception $e) {
-			DB::rollback();
-			Log::error($e);
-			
+
+				$appointment = Appointments::select('id')->where('pet_information_id', '=', $req->pet_name)->first();
+			// dd($appointment);
+			if ($appointment == null) {
+				return redirect()
+					->route('transaction.service')
+					->with('flash_error', 'Appointment does not exists.');
+			}
+			try{
+				DB::beginTransaction();
+				$appointment->status = 3;
+				$appointment->save();
+
+
+				DB::commit();
+			} catch (Exception $e) {
+				DB::rollback();
+				Log::error($e);
+
 			return redirect()
-			->route('transaction.vaccination.create')
+			->route('transaction.grooming.create')
 			->with('flash_error', 'Something went wrong, please try again later');
 		}
 
-		// dd("TEST");
+		DB::commit();
+	} catch (Exception $e) {
+		DB::rollback();
+		Log::error($e);
+		
 		return redirect()
-			->route('transaction.service')
-			->with('flash_success', "Transaction has been created successfully.");
+		->route('transaction.vaccination.create')
+		->with('flash_error', 'Something went wrong, please try again later');
 	}
+
+	// dd("TEST");
+	return redirect()
+		->route('transaction.service')
+		->with('flash_success', "Transaction has been created successfully.");
+}
 
 	   // CREATE GROOMING TRANSACTION
 	protected function createGrooming()
 	{
 		$mode = ModeOfPayment::get();
 		$services = Services::where('id', '=', 4)->has("variations", '>', 0)->with('variations')->get();
-		$appointments = Appointments::where('service_id', '=', 4)->has('petsInformations', '>', 0)->with('petsInformations','petsInformations.user')->get();
+		$appointments = Appointments::where('status','=', 1)->where('service_id', '=', 4)->has('petsInformations', '>', 0)->with('petsInformations','petsInformations.user')->get();
 		  return view('admin.transaction.services-transaction.grooming-create',[
 			'service' => $services,
 			'appointments' => $appointments,
@@ -351,28 +399,53 @@ class ServiceTransactionController extends Controller
 					'total' => $req->total[$i],
 				]);
 			}
-			DB::commit();
-		} catch (Exception $e) {
-			DB::rollback();
-			Log::error($e);
-			
+
+			$appointment = Appointments::select('id')->where('pet_information_id', '=', $req->pet_name)->first();
+			// dd($appointment);
+			if ($appointment == null) {
+				return redirect()
+					->route('transaction.service')
+					->with('flash_error', 'Appointment does not exists.');
+			}
+			try{
+				DB::beginTransaction();
+				$appointment->status = 3;
+				$appointment->save();
+
+
+				DB::commit();
+			} catch (Exception $e) {
+				DB::rollback();
+				Log::error($e);
+
 			return redirect()
 			->route('transaction.grooming.create')
 			->with('flash_error', 'Something went wrong, please try again later');
 		}
 
-		// dd("TEST");
+
+		DB::commit();
+	} catch (Exception $e) {
+		DB::rollback();
+		Log::error($e);
+		
 		return redirect()
-			->route('transaction.service')
-			->with('flash_success', "Transaction has been created successfully.");
+		->route('transaction.grooming.create')
+		->with('flash_error', 'Something went wrong, please try again later');
 	}
+
+	// dd("TEST");
+	return redirect()
+		->route('transaction.service')
+		->with('flash_success', "Transaction has been created successfully.");
+}
 
 	   // CREATE BOARDING TRANSACTION
 	protected function createBoarding()
 	{
 		$mode = ModeOfPayment::get();
 		$services = Services::where('id', '=', 17)->has("variations", '>', 0)->with('variations')->get();
-		$appointments = Appointments::where('service_id', '=', 17)->has('petsInformations', '>', 0)->with('petsInformations','petsInformations.user')->get();
+		$appointments = Appointments::where('status','=', 1)->where('service_id', '=', 17)->has('petsInformations', '>', 0)->with('petsInformations','petsInformations.user')->get();
 		  return view('admin.transaction.services-transaction.boarding-create',[
 			'service' => $services,
 			'appointments' => $appointments,
@@ -435,27 +508,51 @@ class ServiceTransactionController extends Controller
 					'total' => $req->total[$i],
 				]);
 			}
-			DB::commit();
-		} catch (Exception $e) {
-			DB::rollback();
-			Log::error($e);
-			
+
+				$appointment = Appointments::select('id')->where('pet_information_id', '=', $req->pet_name)->first();
+			// dd($appointment);
+			if ($appointment == null) {
+				return redirect()
+					->route('transaction.service')
+					->with('flash_error', 'Appointment does not exists.');
+			}
+			try{
+				DB::beginTransaction();
+				$appointment->status = 3;
+				$appointment->save();
+
+
+				DB::commit();
+			} catch (Exception $e) {
+				DB::rollback();
+				Log::error($e);
+
 			return redirect()
-			->route('transaction.boarding.create')
+			->route('transaction.grooming.create')
 			->with('flash_error', 'Something went wrong, please try again later');
 		}
-	// dd("TEST");
+
+		DB::commit();
+	} catch (Exception $e) {
+		DB::rollback();
+		Log::error($e);
+		
 		return redirect()
-			->route('transaction.service')
-			->with('flash_success', "Transaction has been created successfully.");
+		->route('transaction.boarding.create')
+		->with('flash_error', 'Something went wrong, please try again later');
 	}
+	// dd("TEST");
+	return redirect()
+		->route('transaction.service')
+		->with('flash_success', "Transaction has been created successfully.");
+}
 
 	// CREATE HOME SERVICE TRANSACTION
 	protected function createHomeServiceTransaction()
 	{
 		$mode = ModeOfPayment::get();
 		$services = Services::where('id', '=', 1)->has("variations", '>', 0)->with('variations')->get();
-		$appointments = Appointments::where('service_id', '=', 1)->has('petsInformations', '>', 0)->with('petsInformations','petsInformations.user')->get();
+		$appointments = Appointments::where('status','=', 1)->where('service_id', '=', 1)->has('petsInformations', '>', 0)->with('petsInformations','petsInformations.user')->get();
 		return view('admin.transaction.services-transaction.home_service_create',[
 			'services' => $services,
 			'appointments' => $appointments,
@@ -516,20 +613,44 @@ protected function submitOtherTransaction(Request $req)
 					'total' => $req->total[$i],
 				]);
 			}
-			DB::commit();
-		} catch (Exception $e) {
-			DB::rollback();
-			Log::error($e);
-			
+
+				$appointment = Appointments::select('id')->where('pet_information_id', '=', $req->pet_name)->first();
+			// dd($appointment);
+			if ($appointment == null) {
+				return redirect()
+					->route('transaction.service')
+					->with('flash_error', 'Appointment does not exists.');
+			}
+			try{
+				DB::beginTransaction();
+				$appointment->status = 3;
+				$appointment->save();
+
+
+				DB::commit();
+			} catch (Exception $e) {
+				DB::rollback();
+				Log::error($e);
+
 			return redirect()
-			->route('other.transaction.create')
+			->route('transaction.grooming.create')
 			->with('flash_error', 'Something went wrong, please try again later');
 		}
-	// dd("TEST");
+
+		DB::commit();
+	} catch (Exception $e) {
+		DB::rollback();
+		Log::error($e);
+		
 		return redirect()
-			->route('transaction.service')
-			->with('flash_success', "Transaction has been created successfully.");
+		->route('other.transaction.create')
+		->with('flash_error', 'Something went wrong, please try again later');
 	}
+// dd("TEST");
+	return redirect()
+		->route('transaction.service')
+		->with('flash_success', "Transaction has been created successfully.");
+}
 
 	// ----------------- VOID ---------------- //
 	protected function voidConsultation($id) {

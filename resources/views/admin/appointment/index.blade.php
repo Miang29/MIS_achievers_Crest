@@ -52,6 +52,8 @@
 							<i class="fas fa-circle text-success mr-2"></i>Accepted
 							@elseif ($ap->status == 2)
 							<i class="fas fa-circle text-danger mr-2"></i>Rejected
+							@elseif ($ap->status == 3)
+							<i class="fas fa-check text-success mr-2"></i>Done
 							@else
 							<i class="fas fa-circle text-secondary mr-2"></i>Unknown
 							@endif

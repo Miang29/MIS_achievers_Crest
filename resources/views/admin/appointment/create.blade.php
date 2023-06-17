@@ -15,7 +15,7 @@
 				{{ csrf_field() }}
 				
 				<div class="card-body d-flex">
-					<div class="card border-light col-lg-6 col-md-12 col-12 mx-auto mb-3 mt-3">
+					<div class="card border-light col-lg-6 col-md-12 col-12 mx-auto mt-3">
 						{{-- SERVICE --}}
 						<div class="form-group">
 							<label class="form-label">Please select a service type.</label><br>
@@ -68,11 +68,16 @@
 							<small class="text-danger">{{ $errors->first('appointment_time') }}</small>
 						</div>
 
-						{{-- PET --}}
-						<div class="form-group">
-							<label class="form-label">Please select a clients pet</label>
+					</div>
+				</div>
+
+				{{-- PET --}}
+				<div class="row" id="dateRangeContainer">
+					<div class="card border-secondary-light col-lg-5 col-md-12 col-12 ml-5 mb-3 position-relative"id="dateRangeOg">
+						<div class="form-group col-lg-12" >
+							<label class="form-label mt-2">Please select a client pets</label>
 							
-							<div class="input-group mb-3">
+							<div class="input-group my-2">
 								<div class="input-group-prepend">
 									<label class="input-group-text"><i class="fa-solid fa-paw"></i></label>
 								</div>
@@ -93,6 +98,13 @@
 							<small class="text-danger">{{ $errors->first('pet_information_id') }}</small>
 						</div>
 					</div>
+				</div>
+
+				{{-- ADD --}}
+				<div class="form-group col-lg-10 col-md-12 col-12 mx-auto">
+					<button class="card mx-auto w-75 h-100 d-flex" type="button" style="border-style: dashed; border-width: .25rem;" id="addDateRange">
+						<span class="m-auto font-weight-bold text-1"><i class="fa-solid fa-circle-plus mr-2"></i>Add Pet</span>
+					</button>
 				</div>
 
 				<div class="card-footer  d-flex flex-row">
@@ -263,6 +275,35 @@
 
 				opts.prop('hidden', false);
 			}
+		});
+	});
+</script>
+<script type="text/javascript">
+	$(document).ready(() => {
+		// Adding and Removing Variations
+		$(document).on('click', '#addDateRange', (e) => {
+			let obj = $(e.currentTarget);
+			let form = $("#dateRangeOg");
+			let container = $("#dateRangeContainer");
+			let formCopy = form.clone();
+			let copy = obj.clone();
+
+			let remove = $(`
+				<span class="position-absolute cursor-pointer" onclick="$(this).parent().css('opacity', 0); setTimeout(() => {$(this).parent().remove();}, 375);" style="top: -0.10rem; right: -0.10rem;">
+					<i class="fas fa-circle-xmark fa-lg text-custom-1"></i>
+				</span>
+			`);
+
+			obj.remove();
+			formCopy.append(remove)
+				.removeAttr("id")
+				.css('transition', '0.375s ease-in-out')
+				.css('opacity', 0);
+			setTimeout(() => {
+				formCopy.css('opacity', 1);
+			});
+			container.append(formCopy);
+			container.append(copy);
 		});
 	});
 </script>

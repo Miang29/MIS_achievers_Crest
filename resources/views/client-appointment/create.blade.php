@@ -59,20 +59,30 @@
 			<div class="form-group">
 				<input class="form-control bg-light" placeholder="Name" type="text" name="owner_name" value="{{ $user->getName() }}" readonly />
 			</div>
+		</div>
+		<div class="row mb-3 mt-3" id="petsContainer">
+			<div class="card border-secondary-light shadow-sm col-lg-5 col-md-12 col-12 py-2 position-relative ml-5 my-2" id="petsOg">
+				<div class="row mb-3 mt-3">
+					{{-- PET NAME --}}
+					<div class="col-12 col-md-9 col-lg-6 mx-auto">
+						<input class="form-control" placeholder="Pet Name" type="text" name="pet_name" value="{{ old('pet_name') }}" />
+						<small class="text-danger small">{{ $errors->first('pet_name') }}</small>
+					</div>
 
-			<div class="row mb-3 mt-3">
-				{{-- PET NAME --}}
-				<div class="col-12 col-md-9 col-lg-6 mx-auto">
-					<input class="form-control" placeholder="Pet Name" type="text" name="pet_name" value="{{ old('pet_name') }}" />
-					<small class="text-danger small">{{ $errors->first('pet_name') }}</small>
-				</div>
-
-				{{-- BREED --}}
-				<div class="col-12 col-md-9 col-lg-6 mx-auto">
-					<input class="form-control" placeholder="Breed" type="text" name="breed" value="{{ old('breed') }}" />
-					<small class="text-danger small">{{ $errors->first('breed') }}</small>
+					{{-- BREED --}}
+					<div class="col-12 col-md-9 col-lg-6 mx-auto">
+						<input class="form-control" placeholder="Breed" type="text" name="breed" value="{{ old('breed') }}" />
+						<small class="text-danger small">{{ $errors->first('breed') }}</small>
+					</div>
 				</div>
 			</div>
+		</div>
+
+		{{-- ADD --}}
+		<div class="form-group col-lg-10 col-md-12 col-12 mx-auto">
+			<button class="card mx-auto w-75 h-100 d-flex" type="button" style="border-style: dashed; border-width: .25rem;" id="addPets">
+				<span class="m-auto font-weight-bold text-1"><i class="fa-solid fa-circle-plus mr-2"></i>Add Pet</span>
+			</button>
 		</div>
 	</div>
 
@@ -112,6 +122,35 @@
 			$(`[name="breed"]`)
 				.val(petInformation[obj.val()])
 				.text(petInformation[obj.val()]);
+		});
+	});
+</script>
+<script type="text/javascript">
+	$(document).ready(() => {
+		// Adding and Removing Variations
+		$(document).on('click', '#addPets', (e) => {
+			let obj = $(e.currentTarget);
+			let form = $("#petsOg");
+			let container = $("#petsContainer");
+			let formCopy = form.clone();
+			let copy = obj.clone();
+
+			let remove = $(`
+				<span class="position-absolute cursor-pointer" onclick="$(this).parent().css('opacity', 0); setTimeout(() => {$(this).parent().remove();}, 375);" style="top: -0.10rem; right: -0.10rem;">
+					<i class="fas fa-circle-xmark fa-lg text-custom-1"></i>
+				</span>
+			`);
+
+			obj.remove();
+			formCopy.append(remove)
+				.removeAttr("id")
+				.css('transition', '0.375s ease-in-out')
+				.css('opacity', 0);
+			setTimeout(() => {
+				formCopy.css('opacity', 1);
+			});
+			container.append(formCopy);
+			container.append(copy);
 		});
 	});
 </script>
