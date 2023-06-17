@@ -34,7 +34,7 @@ class ServicesTableSeeder extends Seeder
 
         Services::create([
 			'service_category_id' => 1,
-            'service_name' => 'Emergency Fee'
+            'service_name' => 'boarding'
 		]);
 
         Services::create([

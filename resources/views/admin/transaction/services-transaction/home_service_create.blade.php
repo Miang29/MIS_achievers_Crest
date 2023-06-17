@@ -135,8 +135,8 @@
 						<div class="row">
 							{{-- REFERENCE NO --}}
 							<div class="form-group col-12 col-lg-6 col-md-12 mx-auto">
-								<label class="important font-weight-bold text-1" for="reference_no">Reference No</label>
-								<input class="form-control" type="text" name="reference_no" />
+								<label class="important font-weight-bold text-1" for="reference_no">Order No / Reference No</label>
+								<input class="form-control" type="text" name="reference_no" value="{{ str_pad(rand(0, 9999999999999), 6, '0', STR_PAD_LEFT) }}"/>
 								<small class="text-danger small">{{ $errors->first('reference_no') }}</small>
 							</div>
 
