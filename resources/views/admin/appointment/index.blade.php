@@ -9,9 +9,7 @@
 			<h2 class="text-1">APPOINTMENT LIST</h2>
 		</div>
 
-		<div class="col-12 col-md-6 col-lg my-2 text-center text-md-left text-lg-right">
-			<a href="{{route('appointments.create')}}" class="btn btn-info bg-1 btn-sm my-1"><i class="fas fa-plus-circle mr-2"></i>Add Apointment</a>
-		</div>
+		
 
 		<form method="GET" action="{{ route('appointments.index') }}" class=" col-12 col-md-6 col-lg my-2 text-center text-lg-right">
 			<div class="input-group">
@@ -22,6 +20,15 @@
 				</div>
 			</div>
 		</form>
+	</div>
+
+	<div class="row">
+		<a href="{{ route('rejected.index')}}" class="btn btn-info btn-sm my-1 bg-1 ml-3 mr-3"><i class="fa-solid fa-box-archive mr-2"></i>Rejected Appointments</a>
+		
+		{{-- <div class="col-12 col-md-6 col-lg my-2 text-center text-md-left text-lg-right"> --}}
+			<a href="{{route('appointments.create')}}" class="btn btn-info bg-1 btn-sm my-1"><i class="fas fa-plus-circle mr-2"></i>Add Apointment</a>
+		{{-- </div> --}}
+	
 	</div>
 
 	<div class="overflow-x-auto h-100 card">

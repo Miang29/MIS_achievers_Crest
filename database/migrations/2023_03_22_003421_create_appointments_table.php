@@ -23,6 +23,7 @@ class CreateAppointmentsTable extends Migration
 			$table->unsignedInteger('pet_information_id');
 			$table->tinyInteger('status')->default(0);
 			$table->string('reason')->nullable();
+			$table->softDeletes();
 			$table->timestamps();
 
 			$table->foreign('service_id')->references('id')->on('services')->onDelete('cascade');

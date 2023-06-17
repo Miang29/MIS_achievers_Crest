@@ -20,7 +20,8 @@
 							</div>
 							<select class="custom-select" name="status">
 								<option value="0">Pending</option>
-								<option value="1">Cancelled</option>
+								<option value="2">Rejected</option>
+								<option value="4">Cancelled</option>
 								<option {{ old('status') ? '' : 'selected'}} disabled value="0">--- SELECT STATUS ---</option>
 							</select>
 						</div>

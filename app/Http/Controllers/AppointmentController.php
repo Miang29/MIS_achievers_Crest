@@ -21,9 +21,9 @@ use Validator;
  
 class AppointmentController extends Controller
 {
+	//APPOINTMENT INDEX
 	protected function index(Request $req)
 	{
-		
 		$appointment = Appointments::has('petsInformations', '>', 0)->with('petsInformations','petsInformations.user');
 		$search = "%{$req->search}%";
 
@@ -34,7 +34,8 @@ class AppointmentController extends Controller
 			'appointments' => $appointment->get()
 		]);
 	}
-
+	
+	// ACCEPT APPOINTMENT
 	protected function acceptAppointment(Request $req, $id)
 	{
 		$appointment = Appointments::find($id);
@@ -86,9 +87,9 @@ class AppointmentController extends Controller
 		]);
 	}
 
+	// REJECT APPOINTMENT
 	protected function rejectAppointment(Request $req, $id)
 	{
-
 		$appointment = Appointments::find($id);
 		if ($appointment == null) {
 			return redirect()
@@ -115,6 +116,20 @@ class AppointmentController extends Controller
 				}
 			);
 
+				try{
+					DB::beginTransaction();
+					$appointment->delete();
+
+				DB::commit();
+			} catch (Exception $e) {
+				DB::rollback();
+				Log::error($e);
+
+				return redirect()
+				->route('appointments.index')
+				->with('flash_error', 'Something went wrong, please try again later');
+			}
+
 			DB::commit();
 		} catch (Exception $e) {
 			DB::rollback();
@@ -130,6 +145,47 @@ class AppointmentController extends Controller
 			->with('flash_success', "Successfully rejected appointment.");
 	}
 
+	// REJECTED APPOINTMENT INDEX
+	protected function rejectedIndex(){
+		$appointment = Appointments::onlyTrashed()->get();
+		return view('admin.appointment.rejected',[
+			'appointment' => $appointment,
+		]);
+	}
+
+	//RESTORE REJECTED APPOINTMENT
+	protected function restoreRejected($id){
+		$appointment = Appointments::withTrashed()->find($id);
+
+		if ($appointment == null) {
+			return redirect()
+			->route('appointments.index')
+			->with('flash_error','Appointment does not exists');
+			}
+
+			try{
+				DB::beginTransaction();
+				$appointment->status = 0;
+				$appointment->save();
+				$appointment->restore();
+
+
+			DB::commit();
+		} catch (Exception $e) {
+			DB::rollback();
+			Log::error($e);
+
+			return redirect()
+				->route('appointments.index')
+				->with('flash_error', 'Something went wrong, please try again later');
+		}
+
+		return redirect()
+			->route('appointments.index')
+			->with('flash_success', "Successfully restored rejected appointment");
+	}
+	
+	// APPOINTMENT CREATE
 	protected function create()
 	{
 		$user = User::where('user_type_id', '=', 4)->has("petsInformations", '>', 0)->with('petsInformations')->get();

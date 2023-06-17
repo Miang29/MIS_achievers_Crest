@@ -24,9 +24,9 @@
 	<hr class="hr-thick" style="border-color: #707070;">
 
 	<div class="row">
-			<a href="{{ route('archived.index')}}" class="btn btn-info btn-sm my-1 bg-1 ml-3 mr-3"><i class="fa-solid fa-box-archive mr-2"></i>Archived Pets</a>
+		<a href="{{ route('archived.index')}}" class="btn btn-info btn-sm my-1 bg-1 ml-3 mr-3"><i class="fa-solid fa-box-archive mr-2"></i>Archived Pets</a>
 
-			<a href="{{ route('pet-information.create') }}" class="btn btn-info btn-sm my-1 bg-1"><i class="fas fa-plus-circle mr-2"></i>Pet Registration</a>
+		<a href="{{ route('pet-information.create') }}" class="btn btn-info btn-sm my-1 bg-1"><i class="fas fa-plus-circle mr-2"></i>Pet Registration</a>
 	</div>
 
 	<div class="overflow-x-auto h-100 card">

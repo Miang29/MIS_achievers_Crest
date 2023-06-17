@@ -273,6 +273,12 @@ Route::group(['middleware' => ['auth']], function() {
 			// Reason
 			Route::get('/Reason/{id}','AppointmentController@reason')->name('reason.appointment');
 
+			//REJECTED INDEX
+			Route::get('/rejected/index','AppointmentController@rejectedIndex')->name('rejected.index');
+
+			//RESTORE REJECTED
+			// Reject
+			Route::get('/restore/{id}/rejected','AppointmentController@restoreRejected')->name('restore.appointment');
 		});
 
 
