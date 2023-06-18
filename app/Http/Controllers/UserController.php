@@ -49,7 +49,6 @@ class UserController extends Controller
 				->withInput();
 		}
 
-
 		try {
 			// Mailer Job
 			foreach ($req->client as $cid) {

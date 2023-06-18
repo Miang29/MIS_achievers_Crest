@@ -382,12 +382,12 @@ class SettingsController extends Controller
 
 	protected function unavailableDatesSubmit(Request $req){
 
-		$additionalRules = [];
-		for ($i = 0; $i < count($req->time); $i++) {
-			$additionalRules["time.$i"] = "required_if:isWholeDay.$i,false|numeric|between:1,5";
-		}
+			$additionalRules = [];
+			for ($i = 0; $i < count($req->time); $i++) {
+				$additionalRules["time.$i"] = "required_if:isWholeDay.$i,false|numeric|between:1,5";
+			}
 		$validator = Validator::make($req->all(), array_merge([
-			'status' => 'required|string|max:255',
+			'status' => 'nullable|string|max:255',
 			'reason' => 'nullable|string|max:255',
 			'date' =>'required|array',
 			'date.*' =>'required|date|after_or_equal:today',
@@ -415,7 +415,33 @@ class SettingsController extends Controller
 				'time' => $req->isWholeDay[$i] === 'true' ? null : $req->time[$i],
 				'is_whole_day' => $req->isWholeDay[$i] === 'true'
 			]);
-		}
+
+			$appointment = Appointments::where('reserved_at', '=',  $req->date[$i])->where('appointment_time','=', $req->isWholeDay[$i] === 'true' ? null : $req->time[$i] )->first();
+			// dd($appointment);
+			if ($appointment == null) {
+				return redirect()
+					->route('settings.index')
+					->with('flash_error', 'Appointment does not exists.');
+				}
+			
+			try {
+				DB::beginTransaction();
+				$appointment->status = $req->status;
+				$appointment->reason = $req->reason;
+				$appointment->save();
+
+
+					DB::commit();
+				} catch (Exception $e) {
+					DB::rollback();
+					Log::error($e);
+
+					return redirect()
+						->route('settings.index')
+						->with('flash_error', 'Something went wrong, please try again later');
+				}
+			}
+	
 			DB::commit();
 		} catch (Exception $e) {
 			DB::rollback();
