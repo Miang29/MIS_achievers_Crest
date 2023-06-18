@@ -494,14 +494,14 @@
 											<i class="fas fa-check text-success mr-2"></i>Done
 											@php ($isDone = true)
 											@else
-											<i class="fas fa-circle text-warning mr-2"></i>To Come
+											<i class="fas fa-circle text-warning mr-2"></i>Not Available
 											@endif
 										@else
 											@if ($now->gt($parsedDate))
 											<i class="fas fa-check text-success mr-2"></i>Done
 											@php ($isDone = true)
 											@else
-											<i class="fas fa-circle text-warning mr-2"></i>To Come
+											<i class="fas fa-circle text-warning mr-2"></i>Not Available
 											@endif
 										@endif
 									</td>

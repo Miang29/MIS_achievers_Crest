@@ -15,11 +15,11 @@ class CreateUnavailableDatesTable extends Migration
     {
         Schema::create('unavailable_dates', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('status');
-            $table->string('reason')->nullable();
             $table->date('date');
             $table->unsignedInteger('time')->nullable();
             $table->boolean('is_whole_day')->default(false);
+            $table->string('status')->nullable();
+            $table->string('reason')->nullable();
             $table->timestamps();
         });
     }

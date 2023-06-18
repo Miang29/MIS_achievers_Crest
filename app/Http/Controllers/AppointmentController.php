@@ -48,6 +48,7 @@ class AppointmentController extends Controller
 		try{
 			DB::beginTransaction();
 			$appointment->status = 1;
+			$appointment->reason = null;
 			$appointment->save();
 
 			//MAILER

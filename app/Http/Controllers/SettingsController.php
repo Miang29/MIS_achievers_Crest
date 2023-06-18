@@ -382,7 +382,45 @@ class SettingsController extends Controller
 
 	protected function unavailableDatesSubmit(Request $req){
 
-			$additionalRules = [];
+		$validator = Validator::make($req->all(), [
+		    'date' =>'required|date|after_or_equal:today',
+			'time' => 'required_if:isWholeDay,false|numeric|between:1,5',
+			'isWholeDay' => 'nullable|in:true,false'
+		]);
+
+		if ($validator->fails()) {
+			return redirect()
+				->back()
+				->withErrors($validator)
+				->withInput();
+		}
+
+		try {
+			DB::beginTransaction();
+		
+			UnavailableDate::create([
+				'date' => $req->date,
+				'time' => $req->isWholeDay === 'true' ? null : $req->time,
+				'is_whole_day' => $req->isWholeDay === 'true'
+			]);
+
+			DB::commit();
+		} catch (Exception $e) {
+			DB::rollback();
+			Log::error($e);
+
+			return redirect()
+				->route('settings.index')
+				->with('flash_error', 'Something went wrong, please try again later');
+		}
+
+		return redirect()
+			->route('settings.index')
+			->with('flash_success', "Successfully set unavailable date and time");
+
+	}
+	protected function massUpdateStatus(Request $req){
+		$additionalRules = [];
 			for ($i = 0; $i < count($req->time); $i++) {
 				$additionalRules["time.$i"] = "required_if:isWholeDay.$i,false|numeric|between:1,5";
 			}
@@ -430,7 +468,6 @@ class SettingsController extends Controller
 				$appointment->reason = $req->reason;
 				$appointment->save();
 
-
 					DB::commit();
 				} catch (Exception $e) {
 					DB::rollback();
@@ -457,6 +494,7 @@ class SettingsController extends Controller
 			->with('flash_success', "Successfully set unavailable date and time");
 
 	}
+
 
 	protected function unavailableDatesRemove(Request $req, $id) {
 		$ud = UnavailableDate::find($id);

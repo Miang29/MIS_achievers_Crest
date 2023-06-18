@@ -7,11 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class UnavailableDate extends Model
 {
 	protected $fillable = [
-		'status',
-		'reason',
 		'date',
 		'time',
-		'is_whole_day'
+		'is_whole_day',
+		'status',
+		'reason',
 	];
 // 
 	// public function appointment() {

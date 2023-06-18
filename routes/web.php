@@ -387,6 +387,7 @@ Route::group(['middleware' => ['auth']], function() {
 		Route::get('/settings/unavailable-dates/create', 'SettingsController@unavailableDatesCreate')->name('settings.unavailable-dates.create');
 		Route::post('/settings/unavailable-dates/submit', 'SettingsController@unavailableDatesSubmit')->name('settings.unavailable-dates.submit');
 		Route::get('/settings/unavailable-dates/{id}/remove', 'SettingsController@unavailableDatesRemove')->name('settings.unavailable-dates.remove');
+		Route::post('/settings/update', 'SettingsController@massUpdateStatus')->name('settings.mass.update');
 
 		//USER ACCOUNT
 		Route::group(['prefix' => 'users'], function () {
