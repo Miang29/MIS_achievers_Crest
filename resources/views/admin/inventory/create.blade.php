@@ -22,7 +22,7 @@
 									<label class="input-group-text font-weight-bold bg-white" for="inputGroupSelect01">Category Name</label>
 								</div>
 
-								<select class="custom-select" name="category">
+								<select class="custom-select" id="item" name="category">
 									@foreach ($productCty as $pcty)
 									<option value="{{ $pcty->is_perishable}}">{{ $pcty->category_name }}</option>
 									@endforeach
@@ -73,6 +73,7 @@
 									</div>
 										<div class="col-12 col-lg-12 form-group">
 											<label class="important" for="expired_at[]">Expiration Date</label>
+											<input class="form-control" type="hidden" name="expired_at[]"/>
 											<input class="form-control" type="date" name="expired_at[]"/>
 											<small class="text-danger small">{{ $errors->first('expired_at.*') }}</small>
 										</div>
@@ -123,6 +124,7 @@
 
 								<div class="form-group ">
 									<label class="important" for="expired_at[]">Expiration Date</label>
+									<input class="form-control" type="hidden" name="expired_at[]"/>
 									<input class="form-control" type="date" name="expired_at[]"/>
 									<small class="text-danger small">{{ $errors->first('expired_at.*') }}</small>
 								</div>
@@ -191,3 +193,32 @@
 	});
 </script>
 @endsection
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Your JavaScript code -->
+<script>
+	$(document).ready(function() {
+	    // Get the select element
+	    var itemSelect = $('#item');
+
+	    // Get the date input element
+	    // var dateInput = $('#date');
+	    var dateInput = $('input[name="expired_at[]"');
+
+	    // Initially disable the date input
+	    dateInput.prop('disabled', true);
+
+	    // Event handler for item selection change
+	    itemSelect.on('change', function() {
+	        var selectedItem = $(this).val();
+
+	        // Check if the selected item is non-perishable
+	        if (selectedItem == 0) {
+	            dateInput.prop('disabled', true);
+
+	        } else {
+	            dateInput.prop('disabled', false);
+	        }
+	    });
+	});
+</script>

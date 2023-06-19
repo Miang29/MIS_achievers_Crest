@@ -17,7 +17,7 @@
 				{{-- ARRAY FORM --}}
 				<div class="card-body" >
 					<div class="row "id="form-area-vaccination"  >
-				 		<div class="col-12 col-md-12 col-lg-6 border border-secondary vaccination position-relative" id="orig-vaccine" >
+				 		<div class="col-12 col-md-12 col-lg-5 mr-4 ml-5 my-26 border border-secondary vaccination position-relative" id="orig-vaccine" >
 
 				 		{{-- PET INFORMATION --}}
 						<h5 class="font-weight-bold my-3">Pets</h5>

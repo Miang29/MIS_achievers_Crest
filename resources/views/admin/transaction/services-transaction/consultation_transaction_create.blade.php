@@ -15,7 +15,7 @@
 				{{-- ARRAY FORM --}}
 				<div class="card-body">
 					<div class="row"  id="form-area">
-				 		<div class="col-12 col-md-12 col-lg-6 consultation border border-secondary" id="orig">
+				 		<div class="col-12 col-md-12 col-lg-5  mr-4 ml-5 my-2 consultation border border-secondary" id="orig">
 						{{-- PET INFORMATION --}}
 						<h5 class="font-weight-bold mt-3">Pets</h5>
 						<div class="col-lg-12 col-md-12 col-12 mb-3">

@@ -15,7 +15,7 @@
 				{{-- ARRAY FORM --}}
 				<div class="card-body" >
 					<div class="row" id="form-area-grooming">
-				 		<div class="col-12 col-md-12 col-lg-6 border border-secondary grooming position-relative" id="orig-groom">
+				 		<div class="col-12 col-md-12 col-lg-5 mr-4 ml-5 my-2 border border-secondary grooming position-relative" id="orig-groom">
 
 				 		{{-- PET INFORMATION --}}
 						<h5 class="font-weight-bold mt-3">Pet Information</h5>

@@ -205,7 +205,9 @@ class InventoryController extends Controller
 					'expired_at' => $req->expired_at[$i],
 					'description' => $req->description[$i],
 				]);
+
 			}
+			
 			DB::commit();
 		} catch (Exception $e) {
 			DB::rollback();

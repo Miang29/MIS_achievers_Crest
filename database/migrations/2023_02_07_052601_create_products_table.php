@@ -21,7 +21,7 @@ class CreateProductsTable extends Migration
             $table->integer('price');
             $table->string('status');
             $table->string('description')->nullable();
-            $table->date('expired_at')->nullable();
+            $table->string('expired_at')->nullable();
             $table->softDeletes();
             $table->timestamps();
 
