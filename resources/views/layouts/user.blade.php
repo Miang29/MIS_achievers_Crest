@@ -46,6 +46,14 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.5/jquery.inputmask.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/choices.min.js"></script>
 
+
+		{{-- CSS --}}
+		@yield('pre-css')
+		<link href="{{ asset('css/style.css') }}" rel="stylesheet">
+		<link href="{{ asset('css/admin.css') }}" rel="stylesheet">
+		<link href="{{ asset('css/user.css') }}" rel="stylesheet">
+		
+		@yield('post-css')
 		{{-- CSS --}}
 		<link href="{{ asset('css/style.css') }}" rel="stylesheet">
 		<link href="{{ asset('css/admin.css') }}" rel="stylesheet">

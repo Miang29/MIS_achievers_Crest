@@ -203,7 +203,7 @@
 
 	    // Get the date input element
 	    // var dateInput = $('#date');
-	    var dateInput = $('input[name="expired_at[]"');
+	    var dateInput = $('input[name="expired_at[]"]');
 
 	    // Initially disable the date input
 	    dateInput.prop('disabled', true);
