@@ -62,18 +62,23 @@
 		</div>
 		<div class="row mb-3 mt-3" id="petsContainer">
 			<div class="card border-secondary-light shadow-sm col-lg-5 col-md-12 col-12 py-2 position-relative ml-5 my-2" id="petsOg">
-				<div class="row mb-3 mt-3">
-					{{-- PET NAME --}}
-					<div class="col-12 col-md-9 col-lg-6 mx-auto">
-						<input class="form-control" placeholder="Pet Name" type="text" name="pet_name" value="{{ old('pet_name') }}" />
-						<small class="text-danger small">{{ $errors->first('pet_name') }}</small>
-					</div>
+				<div class="form-group col-lg-12" >
+					<label class="form-label mt-2">Please select your pets</label>
+					
+					<div class="input-group my-2">
+						<div class="input-group-prepend">
+							<label class="input-group-text"><i class="fa-solid fa-paw"></i></label>
+						</div>
 
-					{{-- BREED --}}
-					<div class="col-12 col-md-9 col-lg-6 mx-auto">
-						<input class="form-control" placeholder="Breed" type="text" name="breed" value="{{ old('breed') }}" />
-						<small class="text-danger small">{{ $errors->first('breed') }}</small>
+						<select class="custom-select" name="pet_information_id[]">						
+							@foreach(Auth::user()->petsInformations as $p)
+							<option selected  value="{{$p->id}}">{{"{$p->pet_name} - {$p->breed}"}}</option>
+							@endforeach
+							<option {{ old('pet_information_id') ? '' : 'selected'}} disabled>--- SELECT PET ---</option>
+						</select>
 					</div>
+					
+					<small class="text-danger">{{ $errors->first('pet_information_id') }}</small>
 				</div>
 			</div>
 		</div>

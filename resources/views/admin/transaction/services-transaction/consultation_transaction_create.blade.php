@@ -52,9 +52,9 @@
 										<option class="text-dark"  data-price="0.00" value="-1" hidden selected>-- CONSULTATION SERVICE NOT YET SET --</option>
 										@endif
 									</select>
-								</div>
-								<small class="text-danger small">{{ $errors->first('service_category_id.*') }}</small>
 							</div>
+								<small class="text-danger small">{{ $errors->first('service_category_id.*') }}</small>
+						</div>
 						{{-- CHANGE WHEN OTHER SERVICES SELECTED --}}
 						<div class="card col-lg-12 col-md-12 col-12 my-2">
 							<div class="row">

@@ -161,9 +161,8 @@ class ClientAppointmentController extends Controller
 			"service" => "required|numeric|exists:services,id",
 			"reserved_at" => "required|date|after_or_equal:today,not_in:" . implode(',', $unavailableDates),
 			"reserved_at_time" => "required|numeric|between:1,5,not_in:" . implode(',', $unavailableTime),
-			"owner_name" => "required|string|between:2,255",
-			"pet_name" => "required|string|between:2,255",
-			"breed" => "required|string|between:2,255",
+			"pet_information_id" => 'required|array',
+			"pet_information_id.*" => 'required|numeric|exists:pets_informations,id',
 		]);
 
 		if ($validator->fails()) {
@@ -184,11 +183,8 @@ class ClientAppointmentController extends Controller
 				'reserved_at'
 			]);
 
-			$petInfo = PetsInformation::firstOrCreate([
-				'pet_owner' => auth()->user()->id,
-				'pet_name' => $req->pet_name,
-				'breed' => $req->breed,
-			]);
+			for ($i = 0; $i < count($req->pet_information_id); $i++) {
+			$petInfo = PetsInformation::find($req->pet_information_id[$i]);
 
 			$appointments = Appointments::create([
 				'appointment_no' => strtotime('now'),
@@ -196,8 +192,10 @@ class ClientAppointmentController extends Controller
 				'appointment_time' => $req->reserved_at_time,
 				'reserved_at' => $req->reserved_at,
 				'user_id' => $petInfo->pet_owner,
-				'pet_information_id' => $petInfo->id
+				'pet_information_id' => $req->pet_information_id[$i]
 			]);
+
+		}
 
 			DB::commit();
 		} catch (Exception $e) {

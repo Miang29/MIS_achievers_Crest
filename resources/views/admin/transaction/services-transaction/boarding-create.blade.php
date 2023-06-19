@@ -19,7 +19,7 @@
 				 		<div class="col-12 col-md-12 col-lg-6 border border-secondary boarding position-relative" id="orig-boarding" >
 				 		{{-- PET INFORMATION --}}
 						<h5 class="font-weight-bold mt-3">Pet Information</h5>
-							<div class="col-lg-12 col-md-12 col-12 mb-3">
+							<div class="col-lg-12 col-md-12 col-12">
 								<div class="row">
 									<div class="col-12 col-md-12 col-lg-12 mt-3">
 										<div class="input-group mb-3">
@@ -38,7 +38,8 @@
 								</div>
 							</div>
 							{{-- SERVICE TYPE --}}
-							<div class="card col-lg-12 col-md-12 col-12 my-2">
+							<h5 class="font-weight-bold">Service</h5>
+							<div class="card col-lg-12 col-md-12 col-12">
 								<div class="row">
 									<div class="col-lg-12 col-md-12 col-12 mt-3 mx-auto ">
 										<label class="important font-weight-bold text-1" for="variation_id[]">Boarding Type</label>

@@ -18,7 +18,7 @@
 				 		<div class="col-12 col-md-12 col-lg-6 border border-secondary homeservice position-relative" id="orig-homeservice">
 				 			{{-- PET INFORMATION --}}
 						<h5 class="font-weight-bold mt-3">Pet Information</h5>
-							<div class="col-lg-12 col-md-12 col-12 mb-3">
+							<div class="col-lg-12 col-md-12 col-12">
 								<div class="row">
 									<div class="col-12 col-md-12 col-lg-12 mt-3">
 										<div class="input-group mb-3">
@@ -38,17 +38,7 @@
 							</div>
 
 							{{-- SERVICE TYPE --}}
-							<h5 class="font-weight-bold mt-3">Services</h5>
-							<div class="col-lg-12 col-md-12 col-12 mt-3 mx-auto ">
-								<label class="important" for="variation_id[]">Service Name</label>
-								<div class="input-group-append flex-fill">
-									<div class="input-group">
-										@foreach($services as $s)
-										<input type="text" data-type="currency" value="{{$s->service_name}}" class="form-control bg-light" readonly>
-										@endforeach
-									</div>
-								</div>
-							</div>
+							<h5 class="font-weight-bold">Service</h5>
 
 							<div class="card col-lg-12 col-md-12 col-12 my-2">
 								<div class="row">
@@ -58,7 +48,7 @@
 											<select class="custom-select text-1" name="variation_id[]"id="inputGroupSelect01">
 											@foreach($services as $s)
 												@foreach($s->variations as $v)
-												<option selected name="style" data-price="{{$v->price}}" value="{{$v->id}}">{{ $v->variation_name }}</option>
+												<option selected name="style" data-price="{{$v->price}}" value="{{$v->id}}">{{ $v->variation_name }} - ( {{ $s->service_name }} )</option>
 												@endforeach
 											@endforeach
 											</select>

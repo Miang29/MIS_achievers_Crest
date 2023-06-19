@@ -82,7 +82,7 @@
 									<label class="input-group-text"><i class="fa-solid fa-paw"></i></label>
 								</div>
 
-								<select class="custom-select" name="pet_information_id">						
+								<select class="custom-select" name="pet_information_id[]">						
 									@foreach($user as $u)
 									<optgroup label="{{$u->getName()}}">
 										@foreach($u->petsInformations as $p)

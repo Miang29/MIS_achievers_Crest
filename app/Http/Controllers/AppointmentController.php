@@ -287,7 +287,8 @@ class AppointmentController extends Controller
 		    'service_id' => 'required|numeric|exists:services,id',
 			'appointment_time' => 'required|min:1|max:255|string',
 			'reserved_at' =>  'required|min:2|max:255|date',
-			'pet_information_id' => 'required|numeric|exists:pets_informations,id',
+			'pet_information_id' => 'required|array',
+			'pet_information_id.*' => 'required|numeric|exists:pets_informations,id',
 		]);
 
 		if ($validator->fails()) {
@@ -301,7 +302,8 @@ class AppointmentController extends Controller
 		try {
 			DB::beginTransaction();
 
-			$petInfo = PetsInformation::find($req->pet_information_id);
+			for ($i = 0; $i < count($req->pet_information_id); $i++) {
+			$petInfo = PetsInformation::find($req->pet_information_id[$i]);
 
 			$appointment = Appointments::create([
 				'appointment_no' => $appointmentNo,
@@ -309,8 +311,10 @@ class AppointmentController extends Controller
 				'appointment_time' => $req->appointment_time,
 				'reserved_at' => $req->reserved_at,
 				'user_id' => $petInfo->pet_owner,
-				'pet_information_id' => $req->pet_information_id,
+				'pet_information_id' => $req->pet_information_id[$i],
 			]);
+			// dd($petInfo->pet_owner);
+		}
 
 			DB::commit();
 		} catch (Exception $e) {

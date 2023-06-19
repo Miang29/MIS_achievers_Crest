@@ -41,27 +41,16 @@
 
 							{{-- Services Type --}}
 							<h5 class="font-weight-bold mt-3">Services</h5>
-							<div class="form-group col-12 col-md-12 col-lg-12 mt-3">
-								<label class="text-dark" for="service_category_id[]">Service Name</label>
-								<div class="input-group-append flex-fill">
-									<div class="input-group">
-										@foreach($service as $s)
-										<input type="text" data-type="currency" value="{{$s->service_name}}" class="form-control bg-light" readonly>
-										@endforeach
-									</div>
-								</div>
-							</div>
-
 							<div class="card col-lg-12 col-md-12 col-12 my-2">
 								<div class="row">
-									{{-- Vaccine Type --}}
+									{{-- Grooming Type --}}
 									<div class="col-lg-12 col-md-12 col-12 mt-3">
 										<label class="important" for="service_category_id[]">Pet Size</label>
 										<div class="input-group mb-3">
 											@foreach($service as $s)
 											<select class="custom-select text-1" name="variation_id[]" id="inputGroupSelect01">
 											@foreach($s->variations as $v)
-											<option selected name="style" data-price="{{$v->price}}" value="{{$v->id}}">{{$v->variation_name}}</option>
+											<option selected name="style" data-price="{{$v->price}}" value="{{$v->id}}">{{$v->variation_name}} - ( {{$s->service_name}} )</option>
 											@endforeach
 											</select>
 											@endforeach

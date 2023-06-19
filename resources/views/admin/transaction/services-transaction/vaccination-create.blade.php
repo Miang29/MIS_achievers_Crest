@@ -40,20 +40,7 @@
 								</div>
 							</div>
 							{{-- Vaccine Type --}}
-							<h5 class="font-weight-bold mt-3">Services</h5>
-							<div class="form-group col-12 col-md-12 col-lg-12 mt-3">
-								<label class="text-dark" for="variation_id">Service Name</label>
-								<div class="input-group mb-3">
-									<div class="input-group-append flex-fill">
-										<div class="input-group">
-											@foreach($services as $s)
-											<input type="text" data-type="currency" value="{{$s->service_name}}" class="form-control bg-light" readonly>
-											@endforeach
-										</div>
-									</div>
-								</div>
-							</div>
-
+						<h5 class="font-weight-bold mt-2">Services</h5>
 							<div class="card col-lg-12 col-md-12 col-12 my-2">
 								<div class="row">
 									{{-- Vaccine Type --}}

@@ -76,7 +76,7 @@
 							{{-- REFERENCE NO --}}
 							<div class="form-group col-12 col-lg-6 col-md-12 mx-auto">
 								<label class="important font-weight-bold text-1" for="reference_no">Reference No</label>
-								<input class="form-control" type="text" name="reference_no" />
+								<input class="form-control" type="text" name="reference_no" value="{{ str_pad(rand(0, 9999999999999), 6, '0', STR_PAD_LEFT) }}" />
 								<small class="text-danger small">{{ $errors->first('reference_no') }}</small>
 							</div>
 
@@ -84,10 +84,10 @@
 							<div class="form-group col-12 col-lg-6 col-md-12">
 								<label class="important font-weight-bold text-1" for="mode_of_payment">Mode of Payment</label>
 								<select id="select" class="form-control" name="mode_of_payment">
-									<option value="">Select mode of payment</option>
-									<option value="cash">Cash</option>
-									<option value="paymaya">Paymaya</option>
-									<option value="gcash">Gcash</option>
+								@foreach($mode as $mode)
+								<option value="{{ $mode->value }}">{{ $mode->name }}</option>
+								@endforeach
+								<option {{ old('mode_of_payment') ? '' : 'selected' }} disabled>--- SELECT A PAYMENT METHOD ---</option>
 								</select>
 								<small class="text-danger small">{{ $errors->first('mode_of_payment') }}
 							</div>

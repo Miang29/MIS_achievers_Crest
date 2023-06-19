@@ -178,31 +178,31 @@ class ServiceTransactionController extends Controller
 					'additional_cost' => $req->additional_cost[$i],
 					'total' => $req->total[$i],
 				]);
-			}
+			
 
-				$appointment = Appointments::select('id')->where('pet_information_id', '=', $req->pet_name)->first();
+				$appointment = Appointments::select('id')->where('pet_information_id', '=', $req->pet_name[$i])->first();
 			// dd($appointment);
 			if ($appointment == null) {
 				return redirect()
 					->route('transaction.service')
 					->with('flash_error', 'Appointment does not exists.');
+				}
+				try{
+					DB::beginTransaction();
+					$appointment->status = 3;
+					$appointment->save();
+
+
+					DB::commit();
+				} catch (Exception $e) {
+					DB::rollback();
+					Log::error($e);
+
+				return redirect()
+				->route('transaction.grooming.create')
+				->with('flash_error', 'Something went wrong, please try again later');
 			}
-			try{
-				DB::beginTransaction();
-				$appointment->status = 3;
-				$appointment->save();
-
-
-				DB::commit();
-			} catch (Exception $e) {
-				DB::rollback();
-				Log::error($e);
-
-			return redirect()
-			->route('transaction.grooming.create')
-			->with('flash_error', 'Something went wrong, please try again later');
 		}
-
 		DB::commit();
 	} catch (Exception $e) {
 		DB::rollback();
@@ -290,29 +290,29 @@ class ServiceTransactionController extends Controller
 					'additional_cost' => $req->additional_cost[$i],
 					'total' => $req->total[$i],
 				]);
-			}
 
-				$appointment = Appointments::select('id')->where('pet_information_id', '=', $req->pet_name)->first();
+				$appointment = Appointments::select('id')->where('pet_information_id', '=', $req->pet_name[$i])->first();
 			// dd($appointment);
 			if ($appointment == null) {
 				return redirect()
 					->route('transaction.service')
 					->with('flash_error', 'Appointment does not exists.');
+				}
+				try{
+					DB::beginTransaction();
+					$appointment->status = 3;
+					$appointment->save();
+
+
+					DB::commit();
+				} catch (Exception $e) {
+					DB::rollback();
+					Log::error($e);
+
+				return redirect()
+				->route('transaction.grooming.create')
+				->with('flash_error', 'Something went wrong, please try again later');
 			}
-			try{
-				DB::beginTransaction();
-				$appointment->status = 3;
-				$appointment->save();
-
-
-				DB::commit();
-			} catch (Exception $e) {
-				DB::rollback();
-				Log::error($e);
-
-			return redirect()
-			->route('transaction.grooming.create')
-			->with('flash_error', 'Something went wrong, please try again later');
 		}
 
 		DB::commit();
@@ -398,30 +398,30 @@ class ServiceTransactionController extends Controller
 					'additional_cost' => $req->additional_cost[$i],
 					'total' => $req->total[$i],
 				]);
+					$appointment = Appointments::select('id')->where('pet_information_id', '=', $req->pet_name[$i])->first();
+					// dd($appointment);
+					if ($appointment == null) {
+						return redirect()
+							->route('transaction.service')
+							->with('flash_error', 'Appointment does not exists.');
+					}
+					try{
+						DB::beginTransaction();
+						$appointment->status = 3;
+						$appointment->save();
+
+
+						DB::commit();
+					} catch (Exception $e) {
+						DB::rollback();
+						Log::error($e);
+
+					return redirect()
+					->route('transaction.grooming.create')
+					->with('flash_error', 'Something went wrong, please try again later');
+				}
 			}
 
-			$appointment = Appointments::select('id')->where('pet_information_id', '=', $req->pet_name)->first();
-			// dd($appointment);
-			if ($appointment == null) {
-				return redirect()
-					->route('transaction.service')
-					->with('flash_error', 'Appointment does not exists.');
-			}
-			try{
-				DB::beginTransaction();
-				$appointment->status = 3;
-				$appointment->save();
-
-
-				DB::commit();
-			} catch (Exception $e) {
-				DB::rollback();
-				Log::error($e);
-
-			return redirect()
-			->route('transaction.grooming.create')
-			->with('flash_error', 'Something went wrong, please try again later');
-		}
 
 
 		DB::commit();
@@ -507,30 +507,30 @@ class ServiceTransactionController extends Controller
 					'additional_cost' => $req->additional_cost[$i],
 					'total' => $req->total[$i],
 				]);
+						$appointment = Appointments::select('id')->where('pet_information_id', '=', $req->pet_name[$i])->first();
+					// dd($appointment);
+					if ($appointment == null) {
+						return redirect()
+							->route('transaction.service')
+							->with('flash_error', 'Appointment does not exists.');
+					}
+					try{
+						DB::beginTransaction();
+						$appointment->status = 3;
+						$appointment->save();
+
+
+						DB::commit();
+					} catch (Exception $e) {
+						DB::rollback();
+						Log::error($e);
+
+					return redirect()
+					->route('transaction.grooming.create')
+					->with('flash_error', 'Something went wrong, please try again later');
+				}
 			}
 
-				$appointment = Appointments::select('id')->where('pet_information_id', '=', $req->pet_name)->first();
-			// dd($appointment);
-			if ($appointment == null) {
-				return redirect()
-					->route('transaction.service')
-					->with('flash_error', 'Appointment does not exists.');
-			}
-			try{
-				DB::beginTransaction();
-				$appointment->status = 3;
-				$appointment->save();
-
-
-				DB::commit();
-			} catch (Exception $e) {
-				DB::rollback();
-				Log::error($e);
-
-			return redirect()
-			->route('transaction.grooming.create')
-			->with('flash_error', 'Something went wrong, please try again later');
-		}
 
 		DB::commit();
 	} catch (Exception $e) {
@@ -612,30 +612,30 @@ protected function submitOtherTransaction(Request $req)
 					'additional_cost' => $req->additional_cost[$i],
 					'total' => $req->total[$i],
 				]);
+						$appointment = Appointments::select('id')->where('pet_information_id', '=', $req->pet_name[$i])->first();
+					// dd($appointment);
+					if ($appointment == null) {
+						return redirect()
+							->route('transaction.service')
+							->with('flash_error', 'Appointment does not exists.');
+					}
+					try{
+						DB::beginTransaction();
+						$appointment->status = 3;
+						$appointment->save();
+
+
+						DB::commit();
+					} catch (Exception $e) {
+						DB::rollback();
+						Log::error($e);
+
+					return redirect()
+					->route('transaction.grooming.create')
+					->with('flash_error', 'Something went wrong, please try again later');
+				}
 			}
 
-				$appointment = Appointments::select('id')->where('pet_information_id', '=', $req->pet_name)->first();
-			// dd($appointment);
-			if ($appointment == null) {
-				return redirect()
-					->route('transaction.service')
-					->with('flash_error', 'Appointment does not exists.');
-			}
-			try{
-				DB::beginTransaction();
-				$appointment->status = 3;
-				$appointment->save();
-
-
-				DB::commit();
-			} catch (Exception $e) {
-				DB::rollback();
-				Log::error($e);
-
-			return redirect()
-			->route('transaction.grooming.create')
-			->with('flash_error', 'Something went wrong, please try again later');
-		}
 
 		DB::commit();
 	} catch (Exception $e) {
