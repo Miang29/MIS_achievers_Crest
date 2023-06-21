@@ -27,7 +27,7 @@ class ProductsCategoryTableSeeder extends Seeder
         ProductCategory::create([
 			'id' => 3,
 			'category_name' => 'Medicine',
-			'is_perishable' => 0
+			'is_perishable' => 1
 		]);
 		
     }
