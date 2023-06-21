@@ -19,7 +19,7 @@
 				<a  href="{{ route('transaction.vaccination.create') }}" class="dropdown-item" type="button"><i class="fa-solid fa-syringe mr-2"></i>Vaccination</a>
 				<a href="{{ route('transaction.grooming.create') }}" class="dropdown-item" type="button"><i class="fa-solid fa-scissors mr-2"></i>Grooming</a>
 				<a href="{{ route('transaction.boarding.create') }}" class="dropdown-item" type="button"><i class="fa-solid fa-paw mr-2"></i>Boarding</a>
-				<a href="{{ route('home-service.transaction.create') }}" class="dropdown-item" type="button"><i class="fa-solid fa-sliders mr-2"></i>Home Service</a>
+				<a href="{{ route('home-service.transaction.create') }}" class="dropdown-item" type="button"><i class="fa-solid fa-house mr-2"></i>Home Service</a>
 			</div>
 		</div>
 	</div>

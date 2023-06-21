@@ -50,7 +50,7 @@
 						</td>
 						<td>{{ $c->products()->count() }}</td>
 						<td>
-							<a href="{{ route('category.view', [$c->id]) }}" class="text-info"><i class="fa-solid fa-eye mr-2"></i>View Category</a>
+							<a href="{{ route('category.view', [$c->id]) }}" class="text-info"><i class="fa-solid fa-eye mr-2"></i>View Products</a>
 						</td>
 					</tr>
 					@empty

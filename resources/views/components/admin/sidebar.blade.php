@@ -53,8 +53,8 @@
 		</a>
 		<div class="collapse" id="collapseItem2">
 			<div class="card">
-				<a class="dropdown-item" href="{{route('transaction.products-order')}}"><i class="fa-solid fa-box mr-2 fa-lg"></i>Products Order</a>
-				<a class="dropdown-item" href="{{route('transaction.service')}}"><i class="fas fa-shield-cat mr-2 fa-lg"></i>Services</a>
+				<a class="dropdown-item" href="{{route('transaction.products-order')}}"><i class="fa-solid fa-box mr-2"></i>Products Order</a>
+				<a class="dropdown-item" href="{{route('transaction.service')}}"><i class="fas fa-shield-cat mr-1"></i>Services Transaction</a>
 			</div>
 		</div>
 		<hr class="w-100 custom-hr">
