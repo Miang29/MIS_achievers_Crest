@@ -134,7 +134,7 @@
 
                                     <div class="col-12 col-md-9 col-lg-6 mx-auto">
                                         <label class="important font-weight-bold" for="lifespan">Expected Life Span</label>
-                                        <input class="form-control" type="text" name="lifespan" value="{{ $pet->lifesfan }}" />
+                                        <input class="form-control" type="text" name="lifespan" value="{{ $pet->lifespan }}" />
                                         <small class="text-danger small">{{ $errors->first('lifespan.*') }}</small>
                                     </div>
                                 </div>
