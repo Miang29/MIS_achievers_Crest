@@ -102,10 +102,10 @@
 							</div>
 
 							{{-- UNIQUE TRAITS --}}
-							{{-- <div>
+							<div>
 								<span class="p font-weight-bold mr-2">Birth Mark: </span>
 								<span class="p text-wrap">{{ ucfirst($p->traits) }}</span>
-							</div> --}}
+							</div> 
 
 							{{-- STATUS --}}
 							<div>

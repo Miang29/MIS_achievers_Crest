@@ -40,7 +40,7 @@ class InventoryController extends Controller
 
 		if ($validator->fails())
 			return redirect()
-				->back()
+				->back() 
 				->withErrors($validator)
 				->withInput();
 
@@ -175,7 +175,7 @@ class InventoryController extends Controller
 			'status' => 'required|array',
 			'status.*' => 'required|min:2|max:255|string',
 			'expired_at' => 'nullable|array',
-			'expired_at.*' => 'nullable|min:2|max:255|string',
+			'expired_at.*' => 'nullable|max:255|string',
 			'description' => 'nullable|array',
 			'description.*' => 'nullable|min:2|max:255|string',
 		], [

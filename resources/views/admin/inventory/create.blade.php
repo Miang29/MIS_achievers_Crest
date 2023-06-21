@@ -8,7 +8,7 @@
 	<hr class="hr-thick" style="border-color: #707070;">
 
 	<div class="row" id="form-area">
-		<div class="col-12">
+		<div class="col-12"> 
 
 			<form method ="POST" Action="{{ route('submit-products') }}"class="card my-3 mx-auto" enctype="multipart/form-data">
 			<input type="hidden" name="_token" value="{{ csrf_token() }}">	
@@ -73,7 +73,6 @@
 									</div>
 										<div class="col-12 col-lg-12 form-group">
 											<label class="important" for="expired_at[]">Expiration Date</label>
-											<input class="form-control" type="hidden" name="expired_at[]"/>
 											<input class="form-control" type="date" name="expired_at[]"/>
 											<small class="text-danger small">{{ $errors->first('expired_at.*') }}</small>
 										</div>
@@ -124,7 +123,6 @@
 
 								<div class="form-group ">
 									<label class="important" for="expired_at[]">Expiration Date</label>
-									<input class="form-control" type="hidden" name="expired_at[]"/>
 									<input class="form-control" type="date" name="expired_at[]"/>
 									<small class="text-danger small">{{ $errors->first('expired_at.*') }}</small>
 								</div>
@@ -201,12 +199,8 @@
 	    // Get the select element
 	    var itemSelect = $('#item');
 
-	    // Get the date input element
-	    // var dateInput = $('#date');
-	    var dateInput = $('input[name="expired_at[]"]');
-
 	    // Initially disable the date input
-	    dateInput.prop('disabled', true);
+	    var dateInput = $('input[name="expired_at[]"]').prop('disabled', true);
 
 	    // Event handler for item selection change
 	    itemSelect.on('change', function() {
@@ -214,10 +208,9 @@
 
 	        // Check if the selected item is non-perishable
 	        if (selectedItem == 0) {
-	            dateInput.prop('disabled', true);
-
+	            var dateInput = $('input[name="expired_at[]"]').prop('disabled', true);
 	        } else {
-	            dateInput.prop('disabled', false);
+	            var dateInput = $('input[name="expired_at[]"]').prop('disabled', false);
 	        }
 	    });
 	});
