@@ -209,6 +209,7 @@
 	        // Check if the selected item is non-perishable
 	        if (selectedItem == 0) {
 	            var dateInput = $('input[name="expired_at[]"]').prop('disabled', true);
+	            
 	        } else {
 	            var dateInput = $('input[name="expired_at[]"]').prop('disabled', false);
 	        }
