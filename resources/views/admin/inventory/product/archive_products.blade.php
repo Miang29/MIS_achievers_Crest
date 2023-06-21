@@ -9,7 +9,7 @@
   <hr class="hr-thick" style="border-color: #707070;">
     <div class="row">
         <div class="col-12 col-lg-6 text-center text-lg-left">
-            <h2 class="text-1 mr-3">Archived Pet List</h2>
+            <h2 class="text-1 mr-3">Archived Products</h2>
         </div>
 
         <div class=" col-12 col-md-6 col-lg my-2 text-center text-lg-right">
