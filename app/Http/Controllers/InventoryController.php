@@ -165,7 +165,7 @@ class InventoryController extends Controller
 	protected function submitProducts(Request $req)
 	{
 		$validator = Validator::make($req->all(), [
-			'category' => 'required|exists:product_categories,id,is_perishable|string',
+			'category' => 'required|exists:product_categories,id|string',
 			'product_name' => 'required|array',
 			'product_name.*' => 'required|min:2|max:255|string',
 			'stocks' => 'required|array',
