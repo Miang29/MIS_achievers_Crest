@@ -44,7 +44,7 @@
 						 @if($c->is_perishable == 0)
                         	<i class="fas fa-circle text-danger mr-2"></i>None Perishable
                         @elseif ($c->is_perishable == 1)
-                       		<i class="fas fa-circle text-success mr-2"></i>Perishable                           
+                       		<i class="fas fa-circle text-success mr-2"></i>Perishable                            
                         @endif
 
 						</td>

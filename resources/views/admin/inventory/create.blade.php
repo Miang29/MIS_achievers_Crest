@@ -24,12 +24,12 @@
 
 								<select class="custom-select" id="item" name="category">
 									@foreach ($productCty as $pcty)
-									<option value="{{ $pcty->is_perishable}}">{{ $pcty->category_name }}</option>
+									<option value="{{ $pcty->id }}">{{ $pcty->category_name }}</option>
 									@endforeach
 									<option {{ old('category') ? '' : 'selected' }} disabled>--- Select Category Name ---</option>
 								</select>
-								<small class="text-danger small">{{-- $errors->first('category_name') --}}</small>
 							</div>
+							<small class="text-danger small">{{$errors->first('category')}}</small>
 						</div>
 
 						<div class="row" id="prodContainer">

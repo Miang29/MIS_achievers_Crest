@@ -143,7 +143,7 @@ class InventoryController extends Controller
 	// --------------- INDEX OF INVENTORY --------------- //
 	protected function indexCategory(Request $req)
 	{
-		$prd = ProductCategory::has('products', '>', 0);
+		$prd = ProductCategory::with('products');
 		$search = "%{$req->search}%";
 
 		if ($req->search)
@@ -165,7 +165,7 @@ class InventoryController extends Controller
 	protected function submitProducts(Request $req)
 	{
 		$validator = Validator::make($req->all(), [
-			'category' => 'required|exists:product_categories,id|numeric',
+			'category' => 'required|exists:product_categories,id,is_perishable|string',
 			'product_name' => 'required|array',
 			'product_name.*' => 'required|min:2|max:255|string',
 			'stocks' => 'required|array',

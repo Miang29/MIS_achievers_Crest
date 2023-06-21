@@ -29,7 +29,7 @@
 								<div class="row">
 									<div class="col-12 col-lg-4 form-group">
 										<label class="h6 important" for="stocks">Stocks</label>
-										<input class="form-control" type="number" name="stocks" value="{{ $product->stocks }}" />
+										<input class="form-control" type="number" name="stocks" value="{{ $product->stocks }}" readonly />
 										<small class="text-danger small">{{ $errors->first('stocks') }}</small>
 									</div>
 
