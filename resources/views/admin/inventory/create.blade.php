@@ -22,9 +22,9 @@
 									<label class="input-group-text font-weight-bold bg-white" for="inputGroupSelect01">Category Name</label>
 								</div>
 
-								<select class="custom-select" id="item" name="category">
+								<select id="category" class="custom-select" name="category">
 									@foreach ($productCty as $pcty)
-									<option value="{{ $pcty->id }}">{{ $pcty->category_name }}</option>
+									<option value="{{ $pcty->id }}" data-perishable="{{ $pcty->is_perishable == 1 ? "true" : "false" }}">{{ $pcty->category_name }}</option>
 									@endforeach
 									<option {{ old('category') ? '' : 'selected' }} disabled>--- Select Category Name ---</option>
 								</select>
@@ -71,11 +71,12 @@
 										</div>
 
 									</div>
-										<div class="col-12 col-lg-12 form-group">
-											<label class="important" for="expired_at[]">Expiration Date</label>
-											<input class="form-control" type="date" name="expired_at[]"/>
-											<small class="text-danger small">{{ $errors->first('expired_at.*') }}</small>
-										</div>
+									
+									<div class="form-group perishable-form">
+										<label class="important" for="expired_at[]">Expiration Date</label>
+										<input class="form-control" type="date" name="expired_at[]"/>
+										<small class="text-danger small">{{ $errors->first('expired_at.*') }}</small>
+									</div>
 
 									<div class="form-group">
 										<label class="important" for="description">Description</label>
@@ -121,14 +122,12 @@
 									</div>
 								</div>
 
-								@if ($isPerishable)
-								<div class="form-group ">
+								<div class="form-group perishable-form">
 									<label class="important" for="expired_at[]">Expiration Date</label>
 									<input class="form-control" type="date" name="expired_at[]"/>
 									<small class="text-danger small">{{ $errors->first('expired_at.*') }}</small>
 								</div>
-								@endif
-
+								
 								<div class="form-group">
 									<label class="important" for="description">Description</label>
 									<textarea class="form-control not-resizable" name="description[]" rows="5">{{ old('description.0') }}</textarea>
@@ -165,6 +164,33 @@
 <script type="text/javascript" src="{{ asset('js/util/disable-on-submit.js') }}"></script>
 <script type="text/javascript">
 	$(document).ready(() => {
+		// Enabling & Disabling Perishable Form
+		$(document).on('change', '#category', (e) => {
+			const obj = $(e.currentTarget);
+			const isPerishable = /^true$/i.test($(obj.find(`option`)[obj.val() - 1]).attr("data-perishable"));
+
+			if (isPerishable) {
+				$(`.perishable-form input`).each((k, v) => {
+					let form = $(v);
+
+					// Activates the expiration field form
+					form.prop('readonly', false)
+						.val(form.attr("data-value"))
+						.removeAttr('data-value');
+				});
+			}
+			else {
+				$(`.perishable-form input`).each((k, v) => {
+					let form = $(v);
+
+					// Deactivates the expiration field form
+					form.prop('readonly', true)
+						.attr('data-value', form.val())
+						.val("");
+				});
+			}
+		});
+		
 		// Adding and Removing Variations
 		$(document).on('click', '#addProd', (e) => {
 			let obj = $(e.currentTarget);
@@ -194,27 +220,3 @@
 </script>
 @endsection
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-<!-- Your JavaScript code -->
-<script>
-	$(document).ready(function() {
-	    // Get the select element
-	    var itemSelect = $('#item');
-
-	    // Initially disable the date input
-	    var dateInput = $('input[name="expired_at[]"]').prop('disabled', true);
-
-	    // Event handler for item selection change
-	    itemSelect.on('change', function() {
-	        var selectedItem = $(this).val();
-
-	        // Check if the selected item is non-perishable
-	        if (selectedItem == 0) {
-	            var dateInput = $('input[name="expired_at[]"]').prop('disabled', true);
-	            
-	        } else {
-	            var dateInput = $('input[name="expired_at[]"]').prop('disabled', false);
-	        }
-	    });
-	});
-</script>
