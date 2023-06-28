@@ -165,17 +165,17 @@ class InventoryController extends Controller
 	protected function submitProducts(Request $req)
 	{
 		$validator = Validator::make($req->all(), [
-			'category' => 'required|exists:product_categories,id|string',
+			'category' => 'required|numeric|exists:product_categories,id',
 			'product_name' => 'required|array',
-			'product_name.*' => 'required|min:2|max:255|string',
+			'product_name.*' => 'required|string|min:2|max:255',
 			'stocks' => 'required|array',
-			'stocks.*' => 'required|numeric',
+			'stocks.*' => 'required|numeric|min:0',
 			'price' => 'required|array',
 			'price.*' => 'required|numeric',
 			'status' => 'required|array',
 			'status.*' => 'required|min:2|max:255|string',
 			'expired_at' => 'nullable|array',
-			'expired_at.*' => 'nullable|max:255|string',
+			'expired_at.*' => 'nullable|date|after:' . Carbon::now("Asia/Manila")->addDays(3)->format("yyyy-MM-dd"),
 			'description' => 'nullable|array',
 			'description.*' => 'nullable|min:2|max:255|string',
 		], [
