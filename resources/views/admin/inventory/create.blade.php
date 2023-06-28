@@ -121,11 +121,13 @@
 									</div>
 								</div>
 
+								@if ($isPerishable)
 								<div class="form-group ">
 									<label class="important" for="expired_at[]">Expiration Date</label>
 									<input class="form-control" type="date" name="expired_at[]"/>
 									<small class="text-danger small">{{ $errors->first('expired_at.*') }}</small>
 								</div>
+								@endif
 
 								<div class="form-group">
 									<label class="important" for="description">Description</label>
