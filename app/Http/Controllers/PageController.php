@@ -47,49 +47,41 @@ class PageController extends Controller
 		if (Auth::user()->user_type_id == 4)
 	    return redirect()->back();
 		
-		$months = array();
-		$monthly_earnings = array();
+		$date = array();
+		$daily_earnings = array();
 
-		$monthStart = Carbon::parse(Carbon::now("Asia/Manila")->format("Y-m") . "-01");
-		$monthEnd = Carbon::parse($monthStart)->endOfMonth();
-		for ($i = 1; $i <= Carbon::now()->format('m'); $i++) {
-			array_push($months, Carbon::parse(Carbon::now()->format('Y') . '-' . $i . '-' . Carbon::now()->format('d'))->format('M'));
-
-			$consultationA = ConsultationTransaction::whereDate('created_at', '>=', Carbon::parse(Carbon::now()->format('Y') . '-' . $i . '-01'))
-				->whereDate('created_at', '<=', Carbon::parse(Carbon::now()->format('Y') . '-' . $i)->endOfMonth())
+		$dateStart = Carbon::parse(Carbon::now("Asia/Manila")->format("Y-m") . "-01");
+		for ($i = 1; $i <= Carbon::now("Asia/Manila")->format("d"); $i++) {
+			array_push($date, Carbon::parse(Carbon::now()->format('Y') . '-' . Carbon::now()->format('m') . '-' . $i)->format('M d'));
+			$consultationA = ConsultationTransaction::whereDate('created_at', '=', Carbon::parse(Carbon::now()->format('Y-m-') . $i))
 				->get()
 				->sum('total');
 
-			$vaccinationA = VaccinationTransaction::whereDate('created_at', '>=', Carbon::parse(Carbon::now()->format('Y') . '-' . $i . '-01'))
-				->whereDate('created_at', '<=', Carbon::parse(Carbon::now()->format('Y') . '-' . $i)->endOfMonth())
+			$vaccinationA = VaccinationTransaction::whereDate('created_at', '=', Carbon::parse(Carbon::now()->format('Y-m-') . $i))
 				->get()
 				->sum('total');
 
 
-			$groomingA = GroomingTransaction::whereDate('created_at', '>=', Carbon::parse(Carbon::now()->format('Y') . '-' . $i . '-01'))
-				->whereDate('created_at', '<=', Carbon::parse(Carbon::now()->format('Y') . '-' . $i)->endOfMonth())
+			$groomingA = GroomingTransaction::whereDate('created_at', '=', Carbon::parse(Carbon::now()->format('Y-m-') . $i))
 				->get()
 				->sum('total');
 
 
-			$boardingA = BoardingTransaction::whereDate('created_at', '>=', Carbon::parse(Carbon::now()->format('Y') . '-' . $i . '-01'))
-				->whereDate('created_at', '<=', Carbon::parse(Carbon::now()->format('Y') . '-' . $i)->endOfMonth())
+			$boardingA = BoardingTransaction::whereDate('created_at', '=', Carbon::parse(Carbon::now()->format('Y-m-') . $i))
 				->get()
 				->sum('total');
 
 
-			$otherTransactionA = OtherTransation::whereDate('created_at', '>=', Carbon::parse(Carbon::now()->format('Y') . '-' . $i . '-01'))
-				->whereDate('created_at', '<=', Carbon::parse(Carbon::now()->format('Y') . '-' . $i)->endOfMonth())
+			$otherTransactionA = OtherTransation::whereDate('created_at', '=', Carbon::parse(Carbon::now()->format('Y-m-') . $i))
 				->get()
 				->sum('total');
 
-			$productsOrder = ProductsOrderTransactionItem::whereDate('created_at', '>=', Carbon::parse(Carbon::now()->format('Y') . '-' . $i . '-01'))
-				->whereDate('created_at', '<=', Carbon::parse(Carbon::now()->format('Y') . '-' . $i)->endOfMonth())
+			$productsOrder = ProductsOrderTransactionItem::whereDate('created_at', '=', Carbon::parse(Carbon::now()->format('Y-m-') . $i))
 				->get()
 				->sum('total');
 
 
-			array_push($monthly_earnings, ($consultationA + $vaccinationA + $groomingA + $boardingA + $otherTransactionA + $productsOrder));
+			array_push($daily_earnings, ($consultationA + $vaccinationA + $groomingA + $boardingA + $otherTransactionA + $productsOrder));
 		}
 
 		$consultation = ConsultationTransaction::whereDate('created_at', '>=', Carbon::parse(Carbon::now()->format('Y') . '-01-01'))
@@ -170,8 +162,8 @@ class PageController extends Controller
 
 		$user = Auth::user()->with('usertype','>', 0);
 		return view('admin.dashboard', [
-			'months' => $months,
-			'monthly_earnings' => $monthly_earnings,
+			'date' => $date,
+			'daily_earnings' => $daily_earnings,
 			'patients' => $patient,
 			'client' => $clients,
 			'products' => $products,

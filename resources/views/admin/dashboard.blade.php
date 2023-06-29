@@ -207,7 +207,7 @@
 					<h5 class="card-header text-center">Monthly Earnings</h5>
 
 					<div class="card-body d-flex justify-content-center align-middle">
-						<canvas id="monthlyEarnings" class="rounded" style="border: solid 1px #707070;"></canvas>
+						<canvas id="dailyEarnings" class="rounded" style="border: solid 1px #707070;"></canvas>
 					</div>
 				</div>
 			</div>
@@ -221,16 +221,16 @@
 <script type="text/javascript">
 	var myChart;
 	$(document).ready(() => {
-		let target = $('#monthlyEarnings');
+		let target = $('#dailyEarnings');
 		let labels = [
-			@foreach ($months as $m)
-			'{{$m}}',
+			@foreach ($date as $d)
+			'{{ $d }}',
 			@endforeach
 		];
 		let dataset = [{
 			data: [
-				@for ($i = 0; $i < count($months); $i++)
-				{{$monthly_earnings[$i]}},
+				@for ($i = 0; $i < count($date); $i++)
+				{{ $daily_earnings[$i] }},
 				@endfor
 			],
 			borderColor: '#707070',
@@ -238,7 +238,7 @@
 		}];
 
 		myChart = new Chart(target, {
-			type: 'bar',
+			type: 'line',
 			data: {
 				labels: labels,
 				datasets: dataset

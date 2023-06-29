@@ -6,10 +6,13 @@ use App\ProductCategory;
 use App\Products;
 use Illuminate\Http\Request;
 
+use Carbon\Carbon;
+
 use DB;
 use Exception;
 use Log;
 use Validator;
+
 
 class InventoryController extends Controller
 {
